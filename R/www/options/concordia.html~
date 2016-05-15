@@ -1,0 +1,25 @@
+<p></p>
+
+&nbsp; <input type="text" id="mint"> Minimum age [Ma]
+
+<p></p>
+
+&nbsp; <input type="text" id="maxt"> Maximum age [Ma]
+
+<p></p>
+
+&nbsp; <input type="text" id="alpha"> Probability cutoff for error ellipses
+
+<p></p>
+
+<input type="checkbox" id="tera-wasserburg"> Plot as Tera-Wasserburg?
+
+<p></p>
+
+<input type="checkbox" id="dcu"> 
+Show decay constant and <sup>238</sup>U/<sup>235</sup>U-uncertainties?
+
+<p></p>
+
+<input type="checkbox" id="shownumbers"> 
+Add sample numbers to error ellipses?

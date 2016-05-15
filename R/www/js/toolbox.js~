@@ -1,0 +1,20 @@
+function json2handson(json){
+    var row, header;
+    var out = {
+	data: [],
+	headers: []
+    };
+    $.each(json, function(k, v) {
+	out.headers.push(k);
+    });
+    var n = json[out.headers[0]].length; // number of rows
+    var m = out.headers.length; // number of columns
+    for (var i=0; i<n; i++){
+	row = [];
+	for (var j=0; j<m; j++){
+	    row.push(json[out.headers[j]][i]);
+	}
+	out.data.push(row);
+    }
+    return out;
+}

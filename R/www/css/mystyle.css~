@@ -1,0 +1,97 @@
+body {
+    font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
+}
+a {
+    border: 0;
+    color: black;
+}
+
+a:hover {
+    color:red;
+}
+
+#myplot {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.ui-selectmenu-button {
+    height: 40px !important;
+}
+
+#options, #help {
+    vertical-align:top;
+    height: 40px !important;
+}
+
+tit {
+    position: absolute;
+    float: right;
+    top:0;
+    right: 10;
+    color:black;
+    font-weight: bold;
+    font-family: Courier;
+    font-size: 24;
+}
+
+header {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    line-heigth:50px;
+    background-color:lightblue;
+    vertical-align:middle;
+    text-align:center;
+    padding:0;
+    z-index:4;
+}
+
+footer {
+    position:absolute;
+    bottom:0;
+    left:0;
+    line-height:50px;
+    width:100%;
+    background-color:lightblue;
+    text-align:center;
+    padding:0;
+    z-index:1;
+}
+
+left {
+    overflow:hidden;
+    position:absolute;
+    left:0;
+    width:50%;
+    top:50px; 
+    bottom:50px; 
+    padding:0;
+    z-index:2;
+}
+
+right {
+    position:absolute;
+    display: inline-block;
+    left:50%;
+    width:50%;
+    top:50px; 
+    bottom:50px;
+    padding:0;
+    z-index:3;
+}
+right:after {
+  padding-top: 56.25%;
+  /* 16:9 ratio */
+  display: block;
+  content: '';
+}
+
+.handsontable table th {
+    background: white;
+    color:black;
+}
