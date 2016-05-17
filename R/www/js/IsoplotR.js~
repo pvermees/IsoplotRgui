@@ -1,8 +1,11 @@
 $(function(){
 
-    function initialise(cfile,sfile){
+    var selection = [];
+
+    function initialise(){
+	var cfile = './js/constants.json';
+	var sfile = './js/settings.json';
 	var out = {
-	    selection:  [],
 	    constants: null,
 	    settings: null,
 	    optionschanged: false
@@ -26,25 +29,64 @@ $(function(){
 	contextMenu: true,
 	afterSelectionEnd: function (r,c,r2,c2){
 	    getSelection(r,c,r2,c2);
+	},
+	afterChange: function(changes,source){
+	    selection = [];
 	}
     });
 
     function dnc(){
-	return 6;
+	var geochronometer = $("#geochronometer").val();
+	switch (geochronometer){
+	case 'U-Pb': return 6;
+	}
+	return 0;
+    }
+
+    function json2handson(json){
+	var row, header;
+	var out = {
+	    data: [],
+	    headers: []
+	};
+	$.each(json, function(k, v) {
+	    out.headers.push(k);
+	});
+	var m = out.headers.length; // number of columns
+	var n = (m>0) ? json[out.headers[0]].length : 0; // number of rows
+	for (var i=0; i<n; i++){
+	    row = [];
+	    for (var j=0; j<m; j++){
+		row.push(json[out.headers[j]][i]);
+	    }
+	    out.data.push(row);
+	}
+	out.data.push([]); // add empty row in case json is empty
+	return out;
+    }
+
+    // overwrites the data in the IsoplotR preferences based on the handsontable
+    function handson2json(){
+	var geochronometer = $("#geochronometer").val();
+	var i = 0;
+	$.each(IsoplotR.settings.data, function(k, v) {
+	    IsoplotR.settings.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
+	});
     }
 
     function getSelection(r,c,r2,c2){
 	var nr = 1+Math.abs(r2-r);
 	var nc = 1+Math.abs(c2-c);
 	var dat = [];
-	if (nc < dnc()) {
-	    nr = 1000;
-	    nc = dnc();
+	var DNC = dnc();
+	if (nc < DNC) {
+	    nc = DNC;
+	    nr = $("#INPUT").handsontable('countRows');
 	    dat = $("#INPUT").handsontable('getData',0,0,nr-1,nc-1);
 	} else {
 	    dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
 	}
-	IsoplotR.selection = [nr,nc,dat];
+	selection = [nr,nc,dat];
     }
 
     function isValidAge(foo){
@@ -215,6 +257,27 @@ $(function(){
 	$("#EXAMPLE").click();
     }
 
+    $("#OPEN").on('change', function(e){
+	var file = e.target.files[0];
+	var reader = new FileReader();
+	reader.onload = function(e){
+	    selection = [];
+	    IsoplotR = JSON.parse(this.result);
+	}
+	reader.readAsText(file);
+	loadData($("#geochronometer").val());
+    });
+
+    $("#SAVE").click(function( event ) {
+	var fname = prompt("Please enter a file name", "IsoplotR.json");
+	if (fname != null){
+	    handson2json();
+	    $('#fname').attr("href","data:text/plain," + JSON.stringify(IsoplotR));
+	    $('#fname').attr("download",fname);
+	    $('#fname')[0].click();
+	}
+    });
+
     $("#OPTIONS").click(function(){
 	var plotdevice = $("#plotdevice").children(":selected").prop('id');
 	var geochronometer = $("#geochronometer").children(":selected").prop('id');
@@ -251,11 +314,11 @@ $(function(){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
 	}
-	if (IsoplotR.selection.length == 0) getSelection(0,0,0,0);
-	Shiny.onInputChange("selection",IsoplotR.selection);
+	if (selection.length == 0) getSelection(0,0,0,0);
+	Shiny.onInputChange("selection",selection);
 	Shiny.onInputChange("Rcommand",getRcommand());
     });
 
-    var IsoplotR = initialise('./js/constants.json','./js/settings.json')
+    var IsoplotR = initialise();
 
 });

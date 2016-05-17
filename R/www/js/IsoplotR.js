@@ -1,21 +1,31 @@
 $(function(){
 
-    function initialise(cfile,sfile){
+    function initialise(){
 	var out = {
-	    selection:  [],
 	    constants: null,
 	    settings: null,
+	    selection: [],
 	    optionschanged: false
 	}
+	var cfile = './js/constants.json';
+	var sfile = './js/settings.json';
 	$.getJSON(cfile, function(data){
 	    out.constants = data;
 	});
 	$.getJSON(sfile, function(data){
 	    out.settings = data;
-	    loadData('U-Pb');
+	    json2handson(out.settings.data[out.settings.geochronometer]);
+	    selectGeochronometer(out.settings.geochronometer);
+	    $("#INPUT").handsontable({ // add change handler asynchronously
+		afterChange: function(changes,source){
+		    getSelection(0,0,0,0);
+		}
+	    });
 	});
 	return out;
     };
+
+    var IsoplotR = initialise();
 
     $("#INPUT").handsontable({
 	data : [[]],
@@ -30,16 +40,58 @@ $(function(){
     });
 
     function dnc(){
-	return 6;
+	switch (IsoplotR.settings.geochronometer){
+	case 'U-Pb': return 6;
+	}
+	return 0;
+    }
+
+    function json2handson(json){
+	var row, header;
+	var handson = {
+	    data: [],
+	    headers: []
+	};
+	$.each(json, function(k, v) {
+	    handson.headers.push(k);
+	});
+	var m = handson.headers.length; // number of columns
+	var n = (m>0) ? json[handson.headers[0]].length : 0; // number of rows
+	for (var i=0; i<n; i++){
+	    row = [];
+	    for (var j=0; j<m; j++){
+		row.push(json[handson.headers[j]][i]);
+	    }
+	    handson.data.push(row);
+	}
+	handson.data.push([]); // add empty row in case json is empty
+	$("#INPUT").handsontable({
+	    data: handson.data,
+	    colHeaders: handson.headers
+	});
+    }
+
+    // overwrites the data in the IsoplotR preferences based on the handsontable
+    function handson2json(){
+	var out = $.extend(true, {}, IsoplotR); // clone
+	var geochronometer = out.settings.geochronometer;
+	var mydata = out.settings.data[geochronometer];
+	var i = 0;
+	$.each(mydata, function(k, v) {
+	    mydata[k] = $("#INPUT").handsontable('getDataAtCol',i++);
+	});
+	out.selection = [];
+	out.optionschanged = false;
     }
 
     function getSelection(r,c,r2,c2){
 	var nr = 1+Math.abs(r2-r);
 	var nc = 1+Math.abs(c2-c);
 	var dat = [];
-	if (nc < dnc()) {
-	    nr = 1000;
-	    nc = dnc();
+	var DNC = dnc();
+	if (nc < DNC) {
+	    nc = DNC;
+	    nr = $("#INPUT").handsontable('countRows');
 	    dat = $("#INPUT").handsontable('getData',0,0,nr-1,nc-1);
 	} else {
 	    dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
@@ -76,8 +128,8 @@ $(function(){
     }
 
     function recordSettings(){
-	var plotdevice = $("#plotdevice").val();
-	var geochronometer = $("#geochronometer").val();
+	var plotdevice = IsoplotR.settings.plotdevice;
+	var geochronometer = IsoplotR.settings.geochronometer;
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var gcsettings = IsoplotR.constants;
 	switch (plotdevice){
@@ -108,13 +160,14 @@ $(function(){
     }
 
     // turns the options into a string to feed into R
-    function getOptions(plotdevice){
+    function getOptions(){
 	var out = "";
-	var set = IsoplotR.settings[plotdevice];
+	var plotdevice = IsoplotR.settings.plotdevice;
+	var settings = IsoplotR.settings[plotdevice];
 	switch (plotdevice){
 	case 'concordia':
-	    var mint = isValidAge(set.mint) ? set.mint : null;
-	    var maxt = isValidAge(set.maxt) ? set.maxt : null;
+	    var mint = isValidAge(settings.mint) ? settings.mint : null;
+	    var maxt = isValidAge(settings.maxt) ? settings.maxt : null;
 	    if (mint != null | maxt != null){
 		out += "limits=c(";
 		if (mint == null) { out += "0"; } else { out += mint; }
@@ -122,10 +175,10 @@ $(function(){
 	    } else {
 		out += "limits=NULL"
 	    }
-	    out += ", alpha=" + set.alpha;
-	    out += ", wetherill=" + set.wetherill;
-	    out += ", dcu=" + set.dcu;
-	    out += ", show.numbers=" + set.shownumbers;
+	    out += ", alpha=" + settings.alpha;
+	    out += ", wetherill=" + settings.wetherill;
+	    out += ", dcu=" + settings.dcu;
+	    out += ", show.numbers=" + settings.shownumbers;
 	    break;
 	default:
 	}
@@ -146,7 +199,12 @@ $(function(){
     $("select").selectmenu({ width : 'auto' });
     $("#geochronometer").selectmenu({
 	change: function( event, ui ) {
-	    selectGeochronometer($(this).prop('id'));
+	    selectGeochronometer($(this).val());
+	}
+    });
+    $("#plotdevice").selectmenu({
+	change: function( event, ui ) {
+	    IsoplotR.settings.plotdevice = $(this).val();
 	}
     });
 
@@ -158,6 +216,7 @@ $(function(){
     });
 
     function selectGeochronometer(geochronometer){
+	IsoplotR.settings.geochronometer = geochronometer;
 	switch (geochronometer){
 	case 'U-Pb':
 	    setSelectedMenus([false,true,true,true,true,true,true,true]);
@@ -188,45 +247,48 @@ $(function(){
 	$("#plotdevice").selectmenu("refresh");
     }
 
-    function loadData(option){
-	var handson = json2handson(IsoplotR.settings.data[option]);
-	$("#INPUT").handsontable({
-	    data: handson.data,
-	    colHeaders: handson.headers
-	});
+    function loadData(){
+	var geochronometer = IsoplotR.settings.geochronometer;
+	json2handson(IsoplotR.settings.data[geochronometer]);
     }
 
     function getRcommand(){
-	var geochronometer = $("#geochronometer").children(":selected").prop("id");
-	var plotdevice = $("#plotdevice").children(":selected").prop("id");
+	var geochronometer = IsoplotR.settings.geochronometer;
+	var plotdevice = IsoplotR.settings.plotdevice;
 	var out = "dat <- selection2data();";
 	out += "U238U235(x=" + IsoplotR.constants.U238U235.x + 
 	               ",e=" + IsoplotR.constants.U238U235.e + ");"
 	if (geochronometer == 'U-Pb' & plotdevice == 'concordia'){
 	    out += "concordia.plot";
 	}
-	var options = getOptions(plotdevice);
+	var options = getOptions();
 	out += "(dat," + options + ");";
 	return out;
-    }
-
-    function setDefaults(){
-	selectGeochronometer('U-Pb');
-	$("#EXAMPLE").click();
     }
 
     $("#OPEN").on('change', function(e){
 	var file = e.target.files[0];
 	var reader = new FileReader();
 	reader.onload = function(e){
-	    IsoplotR.settings = JSON.parse(this.result);
+	    IsoplotR = JSON.parse(this.result);
 	}
 	reader.readAsText(file);
+	loadData();
+    });
+
+    $("#SAVE").click(function( event ) {
+	var fname = prompt("Please enter a file name", "IsoplotR.json");
+	if (fname != null){
+	    handson2json();
+	    $('#fname').attr("href","data:text/plain," + JSON.stringify(IsoplotR));
+	    $('#fname').attr("download",fname);
+	    $('#fname')[0].click();
+	}
     });
 
     $("#OPTIONS").click(function(){
-	var plotdevice = $("#plotdevice").children(":selected").prop('id');
-	var geochronometer = $("#geochronometer").children(":selected").prop('id');
+	var plotdevice = IsoplotR.settings.plotdevice;
+	var geochronometer = IsoplotR.settings.geochronometer;
 	var fname = ""
 	$("#myplot").load("../options/index.html",function(){
 	    fname = "../options/" + plotdevice + ".html"
@@ -242,17 +304,17 @@ $(function(){
     });
 
     $("#HELP").click(function(){
-	var geochronometer = $("#geochronometer").children(":selected").prop('id');
+	var geochronometer = IsoplotR.settings.geochronometer;
 	var fname = "../help/" + geochronometer + ".html";
 	$("#myplot").load(fname);
     });
 
-    $("#EXAMPLE").click(function(){
-	loadData($("#geochronometer").children(":selected").prop('id'));
+    $("#DEFAULTS").click(function(){
+	IsoplotR = initialise();
     });
 
     $("#CLEAR").click(function(){
-	loadData("clear");
+	json2handson(IsoplotR.settings.data["clear"]);
     });
 
     $("#PLOT").click(function() {
@@ -264,7 +326,5 @@ $(function(){
 	Shiny.onInputChange("selection",IsoplotR.selection);
 	Shiny.onInputChange("Rcommand",getRcommand());
     });
-
-    var IsoplotR = initialise('./js/constants.json','./js/settings.json')
 
 });

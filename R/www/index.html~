@@ -2,7 +2,6 @@
 <head>
 <script src="js/jquery.js" type="text/javascript"></script>
 <script src="js/jquery-ui.js" type="text/javascript"></script>
-<script src="js/toolbox.js" type="text/javascript"></script>
 <script src="js/bootstrap-filestyle.min.js" type="text/javascript"> </script>
 <script src="js/handsontable.full.min.js" type="text/javascript"></script>
 <script src="js/shiny.js" type="text/javascript"></script>
@@ -53,9 +52,14 @@
 <footer>
 <div id="EXAMPLE" class="button">Example</div>
 <div id="CLEAR" class="button">Clear</div>
-<div class="button"><input name="OPEN" type="file"></div>
+<!-- hacked file upload button -->
+<div class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+  <input id="OPEN" type="file" class="filestyle" data-buttonText="Open" data-input="false" data-badge="false" />
+</div>
 <div id="PLOT" class="button action-button">Plot</div>
-<a id="SAVE" target="_blank" class="button shiny-download-link">Save</a>
+<div id="SAVE" class="button">Save</div>
+<a id="PDF" target="_blank" class="button shiny-download-link">PDF</a>
+<a id="fname" href="" download="IsoplotR.json"></a>
 </footer>
 
 </main>

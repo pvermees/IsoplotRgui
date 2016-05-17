@@ -13,7 +13,7 @@ shinyServer(function(input,output,session){
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
         nn <- length(d)
-        mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE) # default selection
+        mat <- matrix(as.numeric(d[3:nn]),ncol=nc,byrow=TRUE) # default selection
         out <- IsoplotR::read.matrix(mat,method,format)
         out
     }
@@ -29,7 +29,7 @@ shinyServer(function(input,output,session){
     })
 
     output$PDF <- downloadHandler(
-        filename = 'test.pdf',
+        filename = 'IsoplotR.pdf',
         content = function(file) {
             pdf(file=file)
             getPlot()
