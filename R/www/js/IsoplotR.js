@@ -116,10 +116,11 @@ $(function(){
 	    $('#errLambdaU235').val(cst.lambda.U235.e);
 	    break;
 	case 'concordia':
+	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
+	    $('#conc-age-option option[value='+set.showage+']').prop('selected', 'selected');
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
-	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
 	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    break;
@@ -134,6 +135,9 @@ $(function(){
 	var gcsettings = IsoplotR.constants;
 	switch (plotdevice){
 	case 'concordia':
+	    pdsettings.wetherill =
+		$('#tera-wasserburg').prop('checked') ? 'FALSE' : 'TRUE';
+	    pdsettings["showage"] = $('#conc-age-option').prop("value");
 	    pdsettings.mint =
 		isValidAge($('#mint').val()) ? $('#mint').val() : 'auto';
 	    pdsettings.maxt =
@@ -141,8 +145,6 @@ $(function(){
 	    if ($('#alpha').val() > 0 & $('#alpha').val() < 1) { 
 		pdsettings.alpha = $('#alpha').val(); 
 	    }
-	    pdsettings.wetherill =
-		$('#tera-wasserburg').prop('checked') ? 'FALSE' : 'TRUE';
 	    pdsettings.dcu = 
 		$('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.shownumbers =
@@ -152,8 +154,8 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    gcsettings.U238U235.x = $("#U238U235").val();
-	    gcsettings.U238U235.e = $("#errU238U235").val();
+	    gcsettings["I.R"].U238U235[0] = $("#U238U235").val();
+	    gcsettings["I.R"].U238U235[1] = $("#errU238U235").val();
 	    break;
 	default:
 	}
@@ -175,10 +177,11 @@ $(function(){
 	    } else {
 		out += "limits=NULL"
 	    }
-	    out += ", alpha=" + settings.alpha;
-	    out += ", wetherill=" + settings.wetherill;
-	    out += ", dcu=" + settings.dcu;
-	    out += ", show.numbers=" + settings.shownumbers;
+	    out += ",alpha=" + settings.alpha;
+	    out += ",wetherill=" + settings.wetherill;
+	    out += ",dcu=" + settings.dcu;
+	    out += ",show.numbers=" + settings.shownumbers;
+	    out += ",show.age=" + settings.showage;
 	    break;
 	default:
 	}
@@ -256,8 +259,8 @@ $(function(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var out = "dat <- selection2data();";
-	out += "U238U235(x=" + IsoplotR.constants.U238U235.x + 
-	               ",e=" + IsoplotR.constants.U238U235.e + ");"
+	out += "I.R('U238U235',x=" + IsoplotR.constants['I.R'].U238U235[0] + 
+  	                     ",e=" + IsoplotR.constants['I.R'].U238U235[1] + ");"
 	if (geochronometer == 'U-Pb' & plotdevice == 'concordia'){
 	    out += "concordia.plot";
 	}
@@ -314,7 +317,9 @@ $(function(){
     });
 
     $("#CLEAR").click(function(){
-	json2handson(IsoplotR.settings.data["clear"]);
+	$("#INPUT").handsontable({
+	    data: [[]]
+	});	
     });
 
     $("#PLOT").click(function() {
