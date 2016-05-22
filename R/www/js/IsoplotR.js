@@ -108,12 +108,12 @@ $(function(){
 	var cst = IsoplotR.constants;
 	switch (option){
 	case 'U-Pb':
-	    $('#U238U235').val(cst.U238U235.x);
-	    $('#errU238U235').val(cst.U238U235.e);
-	    $('#LambdaU238').val(cst.lambda.U238.x);
-	    $('#errLambdaU238').val(cst.lambda.U238.e);
-	    $('#LambdaU235').val(cst.lambda.U235.x);
-	    $('#errLambdaU235').val(cst.lambda.U235.e);
+	    $('#U238U235').val(cst['I.R'].U238U235[0]);
+	    $('#errU238U235').val(cst['I.R'].U238U235[1]);
+	    $('#LambdaU238').val(cst.lambda.U238[0]);
+	    $('#errLambdaU238').val(cst.lambda.U238[1]);
+	    $('#LambdaU235').val(cst.lambda.U235[0]);
+	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
 	case 'concordia':
 	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
