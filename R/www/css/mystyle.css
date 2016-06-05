@@ -10,6 +10,12 @@ a:hover {
     color:red;
 }
 
+#loader {
+    position:absolute;
+    left:50%;
+    top:50%
+}
+
 #myplot {
     position: absolute;
     top: 0;

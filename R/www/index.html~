@@ -50,7 +50,7 @@
 </right>
 
 <footer>
-<div id="EXAMPLE" class="button">Example</div>
+<div id="DEFAULTS" class="button">Defaults</div>
 <div id="CLEAR" class="button">Clear</div>
 <!-- hacked file upload button -->
 <div class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">

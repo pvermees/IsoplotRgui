@@ -1,5 +1,17 @@
 $(function(){
 
+    function loadExample(prefs,geochronometer,plotdevice){
+	prefs.settings.data[geochronometer] = example(geochronometer,plotdevice)
+	json2handson(prefs.settings.data[geochronometer]);
+	selectGeochronometer(prefs.settings.geochronometer);
+	$("#INPUT").handsontable({ // add change handler asynchronously
+	    afterChange: function(changes,source){
+		getSelection(0,0,0,0);
+	    }
+	});
+	return prefs;
+    }
+
     function initialise(){
 	var out = {
 	    constants: null,
@@ -14,13 +26,9 @@ $(function(){
 	});
 	$.getJSON(sfile, function(data){
 	    out.settings = data;
-	    json2handson(out.settings.data[out.settings.geochronometer]);
-	    selectGeochronometer(out.settings.geochronometer);
-	    $("#INPUT").handsontable({ // add change handler asynchronously
-		afterChange: function(changes,source){
-		    getSelection(0,0,0,0);
-		}
-	    });
+	    geochronometer = out.settings.geochronometer;
+	    plotdevice = out.settings.plotdevice;
+	    out = loadExample(out,geochronometer,plotdevice);
 	});
 	return out;
     };
@@ -241,7 +249,10 @@ $(function(){
 	case 'cosmogenics':
 	    setSelectedMenus([true,true,true,true,true,true,true,true]);
 	    break;
-	case 'other':
+	case 'detritals':
+	    setSelectedMenus([true,true,true,false,true,true,true,true]);
+	    break;
+	case 'other-X-Y':
 	    setSelectedMenus([true,true,true,true,true,true,true,true]);
 	    break;
 	default:
@@ -313,7 +324,9 @@ $(function(){
     });
 
     $("#DEFAULTS").click(function(){
-	IsoplotR = initialise();
+	var plotdevice = IsoplotR.settings.plotdevice;
+	var geochronometer = IsoplotR.settings.geochronometer;
+	IsoplotR = loadExample(IsoplotR,geochronometer,plotdevice);
     });
 
     $("#CLEAR").click(function(){
@@ -323,6 +336,7 @@ $(function(){
     });
 
     $("#PLOT").click(function() {
+	$("#myplot").load("loader.html");
 	if (IsoplotR.optionschanged){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
