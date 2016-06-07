@@ -43,7 +43,14 @@ $(function(){
 
     function dnc(){
 	switch (IsoplotR.settings.geochronometer){
-	case 'U-Pb': return 6;
+	case 'U-Pb': 
+	    return 6;
+	case 'detritals':
+	    var firstrow = $("#INPUT").handsontable('getData')[0];
+	    var nc = firstrow.length;
+	    for (var i=(nc-1); i>0; i--){
+		if (firstrow[i]!=null) return i+1;
+	    }
 	}
 	return 0;
     }
@@ -60,6 +67,10 @@ $(function(){
 	});
 	var m = handson.headers.length; // number of columns
 	var n = (m>0) ? json[handson.headers[0]].length : 0; // number of rows
+	for (var i=0; i<handson.headers.length; i++){ // maximum number of rows
+	    if (json[handson.headers[i]].length > n) {
+		n = json[handson.headers[i]].length;
+	}   }
 	for (var i=0; i<n; i++){
 	    row = [];
 	    for (var j=0; j<m; j++){
@@ -93,18 +104,26 @@ $(function(){
 	var nc = 1+Math.abs(c2-c);
 	var dat = [];
 	var DNC = dnc();
-	if (nc < DNC) {
-	    nc = DNC;
-	    nr = $("#INPUT").handsontable('countRows');
-	    dat = $("#INPUT").handsontable('getData',0,0,nr-1,nc-1);
-	} else {
-	    dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
+	var cond1 = (nc < DNC);
+	var cond2 = IsoplotR.settings.geochronometer=='detritals';
+	var cond3 = (cond1 & !cond2);
+	var cond4 = (cond2 & nr==1);
+	if (cond3|cond4) {
+		nc = DNC;
+		nr = $("#INPUT").handsontable('countRows');
+		r = 0;
+		c = 0;
+		r2 = nr-1;
+		c2 = nc-1;
 	}
+	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
+	if (cond2){
+	    for (var i=0; i<dat.length; i++){
+		for (var j=0; j<dat[i].length; j++){
+		    if (dat[i][j]==null){
+			dat[i][j] = 'NA';
+	}   }	}   }
 	IsoplotR.selection = [nr,nc,dat];
-    }
-
-    function isValidAge(foo){
-	return ($.isNumeric(foo) & foo>0 & foo<4568);
     }
 
     function showSettings(option){
@@ -119,15 +138,29 @@ $(function(){
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
+	case 'detritals':
+	    $('#headers-on').prop('checked',set.format==1);
+	    break;
 	case 'concordia':
 	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
-	    $('#conc-age-option option[value='+set.showage+']').prop('selected', 'selected');
+	    $('#conc-age-option option[value='+set.showage+']').
+		prop('selected', 'selected');
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    break;
+	case 'KDE':
+	    $('#showhist').prop('checked',set.showhist=='TRUE');
+	    $('#adaptive').prop('checked',set.adaptive=='TRUE');
+	    $('#samebandwidth').prop('checked',set.samebandwidth=='TRUE');
+	    $('#normalise').prop('checked',set.normalise=='TRUE');
+	    $('#log').prop('checked',set.log=='TRUE');
+	    $('#minx').val(set.minx);
+	    $('#maxx').val(set.maxx);
+	    $('#bandwidth').val(set.bandwidth);
+	    $('#binwidth').val(set.binwidth);
 	default:
 	}
     }
@@ -154,6 +187,21 @@ $(function(){
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    break;
+	case 'KDE':
+	    pdsettings["showhist"] = 
+		$('#showhist').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["adaptive"] = 
+		$('#adaptive').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["samebandwidth"] = 
+		$('#samebandwidth').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["normalise"] = 
+		$('#normalise').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["log"] = 
+		$('#log').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["minx"] = $('#minx').val();
+	    pdsettings["maxx"] = $('#maxx').val();
+	    pdsettings["bandwidth"] = $('#bandwidth').val();
+	    pdsettings["binwidth"] = $('#binwidth').val();
 	default:
 	}
 	switch (geochronometer){
@@ -161,35 +209,12 @@ $(function(){
 	    gcsettings["I.R"].U238U235[0] = $("#U238U235").val();
 	    gcsettings["I.R"].U238U235[1] = $("#errU238U235").val();
 	    break;
-	default:
-	}
-    }
-
-    // turns the options into a string to feed into R
-    function getOptions(){
-	var out = "";
-	var plotdevice = IsoplotR.settings.plotdevice;
-	var settings = IsoplotR.settings[plotdevice];
-	switch (plotdevice){
-	case 'concordia':
-	    var mint = isValidAge(settings.mint) ? settings.mint : null;
-	    var maxt = isValidAge(settings.maxt) ? settings.maxt : null;
-	    if (mint != null | maxt != null){
-		out += "limits=c(";
-		if (mint == null) { out += "0"; } else { out += mint; }
-		if (maxt == null) { out += ",3500)"; } else { out += "," + maxt + ")"; }
-	    } else {
-		out += "limits=NULL"
-	    }
-	    out += ",alpha=" + settings.alpha;
-	    out += ",wetherill=" + settings.wetherill;
-	    out += ",dcu=" + settings.dcu;
-	    out += ",show.numbers=" + settings.shownumbers;
-	    out += ",show.age=" + settings.showage;
+	case 'detritals':
+	    IsoplotR.settings[geochronometer].format = 
+		$("#headers-on").prop('checked') ? 1 : 2;
 	    break;
 	default:
 	}
-	return out;
     }
 
     function setSelectedMenus(options){
@@ -213,6 +238,7 @@ $(function(){
 	for (var i=0; i<7; i++){ // change to first available option
 	    if (!options[i]) {
 		$('#plotdevice').prop('selectedIndex',i);
+		IsoplotR.settings.plotdevice = $("#plotdevice").val();
 		break;
 	    }
 	}
@@ -287,20 +313,6 @@ $(function(){
 	return prefs;
     }
 
-    function getRcommand(){
-	var geochronometer = IsoplotR.settings.geochronometer;
-	var plotdevice = IsoplotR.settings.plotdevice;
-	var out = "dat <- selection2data();";
-	out += "I.R('U238U235',x=" + IsoplotR.constants['I.R'].U238U235[0] + 
-  	                     ",e=" + IsoplotR.constants['I.R'].U238U235[1] + ");"
-	if (geochronometer == 'U-Pb' & plotdevice == 'concordia'){
-	    out += "concordia.plot";
-	}
-	var options = getOptions();
-	out += "(dat," + options + ");";
-	return out;
-    }
-
     $("#OPEN").on('change', function(e){
 	var file = e.target.files[0];
 	var reader = new FileReader();
@@ -362,7 +374,7 @@ $(function(){
 	}
 	if (IsoplotR.selection.length == 0) getSelection(0,0,0,0);
 	Shiny.onInputChange("selection",IsoplotR.selection);
-	Shiny.onInputChange("Rcommand",getRcommand());
+	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     });
 
 });

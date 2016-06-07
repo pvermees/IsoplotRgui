@@ -5,6 +5,12 @@
 	"U-Pb": {},
 	"detritals": {}
     },
+    "U-Pb": {
+	"format": 1
+    },
+    "detritals": {
+	"format": 1
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
@@ -13,5 +19,20 @@
 	"dcu": "TRUE",
 	"shownumbers": "FALSE",
 	"showage": "0"
+    },
+    "KDE": {
+	"ncol": "auto",
+	"xlab": "age [Ma]",
+	"showhist": "TRUE",
+	"binwidth": "auto",
+	"bw": "auto",
+	"samebandwidth": "TRUE",
+	"normalise": "TRUE",
+	"log": "FALSE",
+	"adaptive": "TRUE",
+	"minx": "auto",
+	"maxx": "auto",
+	"bandwidth": "auto",
+	"binwidth": "auto"
     }
 }
