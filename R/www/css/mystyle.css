@@ -26,11 +26,16 @@ a:hover {
 
 .ui-selectmenu-button {
     height: 40px !important;
+    width: 150px !important;
 }
 
 #options, #help {
     vertical-align:top;
     height: 40px !important;
+}
+
+#geochronometer {
+    
 }
 
 tit {

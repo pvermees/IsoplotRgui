@@ -1,17 +1,5 @@
 $(function(){
 
-    function loadExample(prefs,geochronometer,plotdevice){
-	prefs.settings.data[geochronometer] = example(geochronometer,plotdevice)
-	json2handson(prefs.settings.data[geochronometer]);
-	selectGeochronometer(prefs.settings.geochronometer);
-	$("#INPUT").handsontable({ // add change handler asynchronously
-	    afterChange: function(changes,source){
-		getSelection(0,0,0,0);
-	    }
-	});
-	return prefs;
-    }
-
     function initialise(){
 	var out = {
 	    constants: null,
@@ -26,9 +14,14 @@ $(function(){
 	});
 	$.getJSON(sfile, function(data){
 	    out.settings = data;
-	    geochronometer = out.settings.geochronometer;
-	    plotdevice = out.settings.plotdevice;
-	    out = loadExample(out,geochronometer,plotdevice);
+	    selectGeochronometer(data.geochronometer);
+	    out = populate(out,true);
+	    $("#INPUT").handsontable({ // add change handler asynchronously
+		afterChange: function(changes,source){
+		    getSelection(0,0,0,0); // placed here because we don't want to
+		    handson2json();        // call the change handler until after
+		}                          // IsoplotR has been initialised
+	    });
 	});
 	return out;
     };
@@ -42,6 +35,7 @@ $(function(){
 	rowHeaders: true,
 	colHeaders: true,
 	contextMenu: true,
+	observeChanges: true,
 	afterSelectionEnd: function (r,c,r2,c2){
 	    getSelection(r,c,r2,c2);
 	}
@@ -54,7 +48,8 @@ $(function(){
 	return 0;
     }
 
-    function json2handson(json){
+    function json2handson(settings){
+	var json = settings.data[settings.geochronometer];
 	var row, header;
 	var handson = {
 	    data: [],
@@ -90,6 +85,7 @@ $(function(){
 	});
 	out.selection = [];
 	out.optionschanged = false;
+	IsoplotR = out;
     }
 
     function getSelection(r,c,r2,c2){
@@ -197,6 +193,15 @@ $(function(){
     }
 
     function setSelectedMenus(options){
+	$("#Ar-Ar").prop('disabled',true);
+	$("#Rb-Sr").prop('disabled',true);
+	$("#Sm-Nd").prop('disabled',true);
+	$("#Re-Os").prop('disabled',true);
+	$("#U-Th-He").prop('disabled',true);
+	$("#fission").prop('disabled',true);
+	$("#cosmogenics").prop('disabled',true);
+	$("#detritals").prop('disabled',false);
+	$("#other").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#isochron").prop('disabled',options[1]);
 	$("#spectrum").prop('disabled',options[2]);
@@ -205,12 +210,19 @@ $(function(){
 	$("#ternary").prop('disabled',options[5]);
 	$("#banana").prop('disabled',options[6]);
 	$("#MDS").prop('disabled',options[7]);
+	for (var i=0; i<7; i++){ // change to first available option
+	    if (!options[i]) {
+		$('#plotdevice').prop('selectedIndex',i);
+		break;
+	    }
+	}
     }
 
     $("select").selectmenu({ width : 'auto' });
     $("#geochronometer").selectmenu({
 	change: function( event, ui ) {
-	    selectGeochronometer($(this).val());
+	    IsoplotR.settings.geochronometer = $(this).val();
+	    selectGeochronometer();
 	}
     });
     $("#plotdevice").selectmenu({
@@ -226,8 +238,9 @@ $(function(){
 	badge: false
     });
 
-    function selectGeochronometer(geochronometer){
-	IsoplotR.settings.geochronometer = geochronometer;
+    function selectGeochronometer(){
+	var geochronometer = IsoplotR.settings.geochronometer;
+	var plotdevice = IsoplotR.settings.plotdevice;
 	switch (geochronometer){
 	case 'U-Pb':
 	    setSelectedMenus([false,true,true,true,true,true,true,true]);
@@ -258,12 +271,20 @@ $(function(){
 	default:
 	    setSelectedMenus([true,true,true,true,true,true,true,true]);
 	}
+	IsoplotR = populate(IsoplotR,false);
 	$("#plotdevice").selectmenu("refresh");
     }
 
-    function loadData(){
-	var geochronometer = IsoplotR.settings.geochronometer;
-	json2handson(IsoplotR.settings.data[geochronometer]);
+    // populate the handsontable with stored data
+    function populate(prefs,forcedefaults){
+	var geochronometer = prefs.settings.geochronometer;
+	var plotdevice = prefs.settings.plotdevice;
+	var data = prefs.settings.data[geochronometer];
+	if (forcedefaults | $.isEmptyObject(data)){
+	    prefs.settings.data[geochronometer] = example(geochronometer,plotdevice);
+	}
+	json2handson(prefs.settings);
+	return prefs;
     }
 
     function getRcommand(){
@@ -285,9 +306,9 @@ $(function(){
 	var reader = new FileReader();
 	reader.onload = function(e){
 	    IsoplotR = JSON.parse(this.result);
+	    json2handson(IsoplotR.settings);
 	}
 	reader.readAsText(file);
-	loadData();
     });
 
     $("#SAVE").click(function( event ) {
@@ -324,9 +345,7 @@ $(function(){
     });
 
     $("#DEFAULTS").click(function(){
-	var plotdevice = IsoplotR.settings.plotdevice;
-	var geochronometer = IsoplotR.settings.geochronometer;
-	IsoplotR = loadExample(IsoplotR,geochronometer,plotdevice);
+	IsoplotR = populate(IsoplotR,true);
     });
 
     $("#CLEAR").click(function(){
