@@ -1,6 +1,8 @@
 $(function(){
 
     function initialise(){
+	var loader = new Image(); // preload image
+	loader.src = "../images/loader.gif";
 	var out = {
 	    constants: null,
 	    settings: null,
@@ -131,14 +133,16 @@ $(function(){
 	var cst = IsoplotR.constants;
 	switch (option){
 	case 'U-Pb':
-	    $('#U238U235').val(cst['I.R'].U238U235[0]);
-	    $('#errU238U235').val(cst['I.R'].U238U235[1]);
+	    $('.hide4UPb').hide();
+	    $('#U238U235').val(cst['iratio'].U238U235[0]);
+	    $('#errU238U235').val(cst['iratio'].U238U235[1]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
 	case 'detritals':
+	    $('.hide4detritals').hide();
 	    $('#headers-on').prop('checked',set.format==1);
 	    break;
 	case 'concordia':
@@ -161,6 +165,11 @@ $(function(){
 	    $('#maxx').val(set.maxx);
 	    $('#bandwidth').val(set.bandwidth);
 	    $('#binwidth').val(set.binwidth);
+	    $('#pchdetritals').val(set.pchdetritals);
+	    $('#pch').val(set.pch);
+	    $('#cutoff76').val(set.cutoff76);
+	    $('#mindisc').val(set.mindisc);
+	    $('#maxdisc').val(set.maxdisc);
 	default:
 	}
     }
@@ -202,12 +211,17 @@ $(function(){
 	    pdsettings["maxx"] = $('#maxx').val();
 	    pdsettings["bandwidth"] = $('#bandwidth').val();
 	    pdsettings["binwidth"] = $('#binwidth').val();
+	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
+	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["cutoff76"] = $('#cutoff76').val();
+	    pdsettings["mindisc"] = $('#mindisc').val();
+	    pdsettings["maxdisc"] = $('#maxdisc').val();
 	default:
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    gcsettings["I.R"].U238U235[0] = $("#U238U235").val();
-	    gcsettings["I.R"].U238U235[1] = $("#errU238U235").val();
+	    gcsettings["iratio"].U238U235[0] = $("#U238U235").val();
+	    gcsettings["iratio"].U238U235[1] = $("#errU238U235").val();
 	    break;
 	case 'detritals':
 	    IsoplotR.settings[geochronometer].format = 
@@ -269,7 +283,7 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,true,true,true,true,true,true,true]);
+	    setSelectedMenus([false,true,true,false,true,true,true,true]);
 	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus([true,true,true,true,true,true,true,true]);
@@ -313,6 +327,19 @@ $(function(){
 	return prefs;
     }
 
+    $("#helpmenu").dialog({ autoOpen: false });
+
+    $('body').on('click', 'help', function(){
+	var text = help($(this).attr('id'));
+	$("#helpmenu").html(text);
+	$("#helpmenu").dialog('open');
+    });
+
+    $("#help-tera-wasserburg a").click(function(e){
+        $("#helpmenu").dialog('open');
+        return false;
+    });
+
     $("#OPEN").on('change', function(e){
 	var file = e.target.files[0];
 	var reader = new FileReader();
@@ -338,22 +365,16 @@ $(function(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var fname = ""
 	$("#myplot").load("../options/index.html",function(){
-	    fname = "../options/" + plotdevice + ".html"
-	    $("#plotdevice-options").load(fname,function(){
-		showSettings(plotdevice);
-	    });
 	    fname = "../options/" + geochronometer + ".html";
 	    $("#geochronometer-options").load(fname,function(){
 		showSettings(geochronometer);
 	    });
+	    fname = "../options/" + plotdevice + ".html";
+	    $("#plotdevice-options").load(fname,function(){
+		showSettings(plotdevice);
+	    });
 	    IsoplotR.optionschanged = true;
 	});
-    });
-
-    $("#HELP").click(function(){
-	var geochronometer = IsoplotR.settings.geochronometer;
-	var fname = "../help/" + geochronometer + ".html";
-	$("#myplot").load(fname);
     });
 
     $("#DEFAULTS").click(function(){

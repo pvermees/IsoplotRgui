@@ -1,10 +1,11 @@
 <p></p>
 
-&nbsp; <input type="checkbox" id="tera-wasserburg"> Plot as Tera-Wasserburg?
+&nbsp; <input type="checkbox" id="tera-wasserburg">
+<help id="help-tera-wasserburg">Plot as Tera-Wasserburg</help>?
 
 <p></p>
 
-&nbsp; Calculate
+&nbsp; <help id="help-conc-age-option">Calculate</help>
 <select id="conc-age-option">
   <option value="0">no</option>
   <option value="1">concordia</option>
@@ -15,29 +16,19 @@ age
 <p></p>
 
 <table>
-<tr>
-<td>
-&nbsp; Minimum age [Ma]:
-<p></p>
-&nbsp; Maximum age [Ma]:
-<p></p>
-&nbsp; Probability cutoff:
-</td>
-<td>
-<input type="text" id="mint"> 
-<p></p>
-<input type="text" id="maxt"> 
-<p></p>
-<input type="text" id="alpha"> 
-</td
-</tr>
+<tr><td>&nbsp;<help id="help-mint">Minimum age [Ma]:</help></td>
+    <td><input type="text" id="mint"></td></tr>
+<tr><td>&nbsp;<help id="help-maxt">Maximum age [Ma]:</help></td>
+    <td><input type="text" id="maxt"></td></tr>
+<tr><td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
+    <td><input type="text" id="alpha"></td></tr>
 </table>
 
 &nbsp; <input type="checkbox" id="dcu"> 
-Show decay constant and <sup>238</sup>U/<sup>235</sup>U-uncertainties?
+<help id="help-dcu">Show decay constant and <sup>238</sup>U/<sup>235</sup>U-uncertainties</help>?
 
 <p></p>
 
 &nbsp; <input type="checkbox" id="shownumbers"> 
-Add sample numbers to error ellipses?
+<help id="help-shownumbers">Add sample numbers to error ellipses</help>?
 

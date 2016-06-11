@@ -19,8 +19,12 @@ shinyServer(function(input,output,session){
         # suppress NA coercion errors:
         mat <- suppressWarnings(matrix(as.numeric(d[fi:nn]),ncol=nc,byrow=TRUE))
         if (identical(method,"detritals")){
-            if (format==1) colnames(mat) <- d[3:(fi-1)]
-            else colnames(mat) <- LETTERS[1:ncol(mat)]
+            if (format==1) {
+                colnames(mat) <- d[3:(fi-1)]
+            } else {
+                labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
+                colnames(mat) <- labels[1:ncol(mat)]
+            }
         }
         out <- IsoplotR::read.matrix(mat,method,format)
         out

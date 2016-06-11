@@ -4,23 +4,23 @@
 
 <p></p>
 
+&nbsp; Calculate
+<select id="conc-age-option">
+  <option value="0">no</option>
+  <option value="1">concordia</option>
+  <option value="2">discordia</option>
+</select>
+age
+
+<p></p>
+
 <table>
-<tr>
-<td>
-&nbsp; Minimum age [Ma]:
-<p></p>
-&nbsp; Maximum age [Ma]:
-<p></p>
-&nbsp; Probability cutoff:
-</td>
-<td>
-<input type="text" id="mint"> 
-<p></p>
-<input type="text" id="maxt"> 
-<p></p>
-<input type="text" id="alpha"> 
-</td
-</tr>
+<tr><td>&nbsp;Minimum age [Ma]:</td>
+    <td><input type="text" id="mint"></td></tr>
+<tr><td>&nbsp;Maximum age [Ma]:</td>
+    <td><input type="text" id="maxt"></td></tr>
+<tr><td>&nbsp;Probability cutoff:</td>
+    <td><input type="text" id="alpha"></td></tr>
 </table>
 
 &nbsp; <input type="checkbox" id="dcu"> 
@@ -30,3 +30,4 @@ Show decay constant and <sup>238</sup>U/<sup>235</sup>U-uncertainties?
 
 &nbsp; <input type="checkbox" id="shownumbers"> 
 Add sample numbers to error ellipses?
+

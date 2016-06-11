@@ -33,6 +33,11 @@
 	"minx": "auto",
 	"maxx": "auto",
 	"bandwidth": "auto",
-	"binwidth": "auto"
+	"binwidth": "auto",
+	"pchdetritals": "none",
+	"pch": "'|'",
+	"cutoff76": 1100,
+	"mindisc": -15,
+	"maxdisc": 5
     }
 }

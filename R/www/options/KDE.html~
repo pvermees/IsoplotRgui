@@ -1,43 +1,31 @@
 <p></p>
 
-&nbsp; <input type="checkbox" id="tera-wasserburg"> Plot as Tera-Wasserburg?
-
-<p></p>
-
-&nbsp; Calculate
-<select id="conc-age-option">
-  <option value="0">no</option>
-  <option value="1">concordia</option>
-  <option value="2">discordia</option>
-</select>
-age
-
-<p></p>
-
 <table>
-<tr>
-<td>
-&nbsp; Minimum age [Ma]:
-<p></p>
-&nbsp; Maximum age [Ma]:
-<p></p>
-&nbsp; Probability cutoff:
-</td>
-<td>
-<input type="text" id="mint"> 
-<p></p>
-<input type="text" id="maxt"> 
-<p></p>
-<input type="text" id="alpha"> 
-</td
-</tr>
+<tr><td>&nbsp; Minimum value:</td><td><input type="text" id="minx"></td></tr>
+<tr><td>&nbsp; Maximum value:</td><td><input type="text" id="maxx"></td></tr>
+<tr><td>&nbsp; Kernel bandwidth:</td><td><input type="text" id="bandwidth"></td></tr>
+<tr><td>&nbsp; Histogram binwidth:</td><td><input type="text" id="binwidth"></td></tr>
+<div class="hide4UPb">
+<tr><td>&nbsp; Plot character:</td><td><input type="text" id="pchdetritals"></td></tr>
+</div>
+<div class="hide4detritals">
+<tr><td>&nbsp; Plot character:</td><td><input type="text" id="pch"></td></tr>
+<tr><td>&nbsp; t(6/8) &rarr; t(7/6) @</td><td><input type="text" id="cutoff76">Ma</td></tr>
+<tr><td>&nbsp; Minimum discordance:</td><td><input type="text" id="mindisc">%</td></tr>
+<tr><td>&nbsp; Maximum discordance:</td><td><input type="text" id="maxdisc">%</td></tr>
+<div>
 </table>
 
-&nbsp; <input type="checkbox" id="dcu"> 
-Show decay constant and <sup>238</sup>U/<sup>235</sup>U-uncertainties?
-
 <p></p>
+&nbsp; <input type="checkbox" id="log"> Take logarithms?
+<p></p>
+&nbsp; <input type="checkbox" id="showhist"> Show histogram?
+<p></p>
+&nbsp; <input type="checkbox" id="adaptive"> Adaptive KDE?
 
-&nbsp; <input type="checkbox" id="shownumbers"> 
-Add sample numbers to error ellipses?
-
+<div class="hide4UPb">
+  <p></p>
+  &nbsp; <input type="checkbox" id="samebandwidth"> Same bandwidth for all samples?
+  <p></p>
+  &nbsp; <input type="checkbox" id="normalise"> Normalise area under the KDEs?
+</div>

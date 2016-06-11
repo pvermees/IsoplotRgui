@@ -104,8 +104,16 @@ right:after {
 
 .handsontable table th {
     background: white;
-    color:black;
+    color: black;
 }
 
 /* hack to have same effect as the jquery UI */
-label.btn.btn-default { padding: .4em 1em; display: block; cursor:pointer; }
+label.btn.btn-default { 
+    padding: .4em 1em;
+    display: block;
+    cursor: pointer;
+}
+
+help {
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 // turns the options into a string to feed into R
 function getOptions(prefs){
     var out = "";
+    var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
     var settings = prefs.settings[plotdevice];
     switch (plotdevice){
@@ -29,8 +30,15 @@ function getOptions(prefs){
 	else { out += ",bw=NA"; }
 	out += ",show.hist=" + settings.showhist;
 	out += ",adaptive=" + settings.adaptive;
-	out += ",samebandwidth=" + settings.samebandwidth;
-	out += ",normalise=" + settings.normalise;
+	if (geochronometer=="detritals"){
+	    out += ",samebandwidth=" + settings.samebandwidth;
+	    out += ",normalise=" + settings.normalise;
+	    if (settings.pchdetritals!='none') { out += ",pch=" + settings.pchdetritals; }
+	} else if (geochronometer=="U-Pb"){
+	    if (settings.pch!='none') { out += ",pch=" + settings.pch; }
+	    out += ",cutoff.76=" + settings.cutoff76;
+	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	}
 	out += ",log=" + settings.log;
 	if (settings.binwidth != 'auto') { out += ",binwidth=" + settings.binwidth; }
 	else { out += ",binwidth=NA"; }
@@ -48,23 +56,19 @@ function getRcommand(prefs){
 	"',format=" + prefs.settings[geochronometer].format + ");";
     switch (geochronometer){
     case 'U-Pb': 
-	out += "I.R('U238U235',x=" + prefs.constants['I.R'].U238U235[0] + 
-  	    ",e=" + prefs.constants['I.R'].U238U235[1] + ");"
-	switch (plotdevice) {
-	case 'concordia': 
-	    out += "concordia.plot(dat"; 
-	    out += options +");"
-	    break;
-	}
+	out += "iratio('U238U235',x=" + prefs.constants['iratio'].U238U235[0] + 
+  	    ",e=" + prefs.constants['iratio'].U238U235[1] + ");"
 	break;
     case 'detritals':
-	switch (plotdevice) {
-	case 'KDE':
-	    out += "kde.plot(dat";
-	    out += options +");"
-	    break;
-	}
 	break;
     }
+    switch (plotdevice) {
+    case 'concordia': 
+	out += "concordiaplot(dat"; 
+	break;
+    case 'KDE':
+	out += "kdeplot(dat";
+    }
+    out += options +");"
     return out;
 }
