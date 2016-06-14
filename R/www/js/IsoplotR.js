@@ -1,6 +1,9 @@
 $(function(){
 
     function initialise(){
+	$('#OUTPUT').hide();
+	$('#RUN').hide();
+	$('#CSV').hide();
 	var loader = new Image(); // preload image
 	loader.src = "../images/loader.gif";
 	var out = {
@@ -28,7 +31,7 @@ $(function(){
 	return out;
     };
 
-    var IsoplotR = initialise();
+    $(".button").button()
 
     $("#INPUT").handsontable({
 	data : [[]],
@@ -41,6 +44,16 @@ $(function(){
 	afterSelectionEnd: function (r,c,r2,c2){
 	    getSelection(r,c,r2,c2);
 	}
+    });
+
+    $("#OUTPUT").handsontable({
+	data : [[]],
+	minCols: 100,
+	minRows: 1000,
+	rowHeaders: true,
+	colHeaders: true,
+	contextMenu: true,
+	observeChanges: false
     });
 
     function dnc(){
@@ -170,6 +183,7 @@ $(function(){
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
+	    break;
 	default:
 	}
     }
@@ -216,6 +230,7 @@ $(function(){
 	    pdsettings["cutoff76"] = $('#cutoff76').val();
 	    pdsettings["mindisc"] = $('#mindisc').val();
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
+	    break;
 	default:
 	}
 	switch (geochronometer){
@@ -239,17 +254,18 @@ $(function(){
 	$("#U-Th-He").prop('disabled',true);
 	$("#fission").prop('disabled',true);
 	$("#cosmogenics").prop('disabled',true);
-	$("#detritals").prop('disabled',false);
 	$("#other").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#isochron").prop('disabled',options[1]);
 	$("#spectrum").prop('disabled',options[2]);
 	$("#KDE").prop('disabled',options[3]);
-	$("#radial").prop('disabled',options[4]);
-	$("#ternary").prop('disabled',options[5]);
-	$("#banana").prop('disabled',options[6]);
-	$("#MDS").prop('disabled',options[7]);
-	for (var i=0; i<7; i++){ // change to first available option
+	$("#CAD").prop('disabled',options[4]);
+	$("#radial").prop('disabled',options[5]);
+	$("#ternary").prop('disabled',options[6]);
+	$("#banana").prop('disabled',options[7]);
+	$("#MDS").prop('disabled',options[8]);
+	$("#ages").prop('disabled',options[9]);
+	for (var i=0; i<9; i++){ // change to first available option
 	    if (!options[i]) {
 		$('#plotdevice').prop('selectedIndex',i);
 		IsoplotR.settings.plotdevice = $("#plotdevice").val();
@@ -266,50 +282,59 @@ $(function(){
 	}
     });
     $("#plotdevice").selectmenu({
-	change: function( event, ui ) {
-	    IsoplotR.settings.plotdevice = $(this).val();
-	}
+	change: function( event, ui ) { changePlotDevice(); },
+	focus: function( event, ui ) { changePlotDevice(); }
     });
 
-    $(".button").button()
-
-    $(":file").filestyle({
-	input: false,
-	badge: false
-    });
+    function changePlotDevice(){
+	IsoplotR.settings.plotdevice = $("#plotdevice").val();
+	$('#myscript').empty();
+        if (IsoplotR.settings.plotdevice == 'ages'){
+	    $('#PLOT').hide();
+	    $('#PDF').hide();
+	    $('#RUN').show();
+	    $('#CSV').show();
+        } else {
+	    $('#PLOT').show();
+	    $('#PDF').show();
+	    $('#RUN').hide();
+	    $('#CSV').hide();
+        }
+	IsoplotR.optionschanged = false;
+    }
 
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,true,true,false,true,true,true,true]);
+	    setSelectedMenus([false,true,true,false,false,true,true,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
-	    setSelectedMenus([true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'fission':
-	    setSelectedMenus([true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'cosmogenics':
-	    setSelectedMenus([true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'detritals':
-	    setSelectedMenus([true,true,true,false,true,true,true,true]);
+	    setSelectedMenus([true,true,true,false,false,true,true,true,true,true]);
 	    break;
-	case 'other-X-Y':
-	    setSelectedMenus([true,true,true,true,true,true,true,true]);
+	case 'other':
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	default:
-	    setSelectedMenus([true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
 	}
 	IsoplotR = populate(IsoplotR,false);
 	$("#plotdevice").selectmenu("refresh");
@@ -327,17 +352,22 @@ $(function(){
 	return prefs;
     }
 
+    function run(){
+	if (IsoplotR.optionschanged){
+	    recordSettings();
+	    IsoplotR.optionschanged = false;
+	}
+	if (IsoplotR.selection.length == 0) getSelection(0,0,0,0);
+	Shiny.onInputChange("selection",IsoplotR.selection);
+	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
+    }
+
     $("#helpmenu").dialog({ autoOpen: false });
 
     $('body').on('click', 'help', function(){
 	var text = help($(this).attr('id'));
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
-    });
-
-    $("#help-tera-wasserburg a").click(function(e){
-        $("#helpmenu").dialog('open');
-        return false;
     });
 
     $("#OPEN").on('change', function(e){
@@ -364,6 +394,8 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var fname = ""
+	$("#OUTPUT").hide();
+	$("#myplot").show();
 	$("#myplot").load("../options/index.html",function(){
 	    fname = "../options/" + geochronometer + ".html";
 	    $("#geochronometer-options").load(fname,function(){
@@ -384,18 +416,28 @@ $(function(){
     $("#CLEAR").click(function(){
 	$("#INPUT").handsontable({
 	    data: [[]]
-	});	
+	});
+	$("#OUTPUT").handsontable({
+	    data: [[]]
+	});
     });
 
-    $("#PLOT").click(function() {
+    $("#PLOT").click(function(){
 	$("#myplot").load("loader.html");
-	if (IsoplotR.optionschanged){
-	    recordSettings();
-	    IsoplotR.optionschanged = false;
-	}
-	if (IsoplotR.selection.length == 0) getSelection(0,0,0,0);
-	Shiny.onInputChange("selection",IsoplotR.selection);
-	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
+	$("#OUTPUT").hide();
+	$("#myscript").empty();
+	run();
     });
+
+    $("#RUN").click(function(){
+	$("#myplot").load("loader.html");
+	$("#OUTPUT").handsontable('clear');
+	$("#OUTPUT").show();
+	$("#myscript").empty();
+	run();
+	$("#myplot").empty();
+    });
+
+    var IsoplotR = initialise();
 
 });

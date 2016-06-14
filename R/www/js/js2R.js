@@ -68,6 +68,13 @@ function getRcommand(prefs){
 	break;
     case 'KDE':
 	out += "kdeplot(dat";
+	break;
+    case 'CAD':
+	out += "cadplot(dat";
+	break;
+    case 'ages':
+	out += "age(dat";
+	break;
     }
     out += options +");"
     return out;

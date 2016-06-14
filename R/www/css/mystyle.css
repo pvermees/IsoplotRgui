@@ -34,10 +34,6 @@ a:hover {
     height: 40px !important;
 }
 
-#geochronometer {
-    
-}
-
 tit {
     position: absolute;
     float: right;
@@ -86,20 +82,25 @@ left {
 }
 
 right {
+    overflow:hidden;
     position:absolute;
-    display: inline-block;
     left:50%;
     width:50%;
     top:50px; 
-    bottom:50px;
+    bottom:50px; 
+    padding:0;
+    z-index:2;
+}
+
+.result {
+    position:relativee;
+    display:inline-block;
+    left:0;
+    width:100%;
+    top:0; 
+    bottom:0;
     padding:0;
     z-index:3;
-}
-right:after {
-  padding-top: 56.25%;
-  /* 16:9 ratio */
-  display: block;
-  content: '';
 }
 
 .handsontable table th {

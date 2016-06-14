@@ -1,5 +1,23 @@
 library(shiny)
-library(IsoplotR)
+
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/age.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/botev.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/cad.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/concordia.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/constants.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/discordia.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/errorellipse.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/io.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/json.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/kde.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/toolbox.R")
+source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UPb.R")
+
+settings("www/js/constants.json")
+
+#library(shiny)
+#library(IsoplotR)
 
 shinyServer(function(input,output,session){
 
@@ -26,27 +44,71 @@ shinyServer(function(input,output,session){
                 colnames(mat) <- labels[1:ncol(mat)]
             }
         }
-        out <- IsoplotR::read.matrix(mat,method,format)
+        #out <- IsoplotR::read.matrix(mat,method,format)
+        out <- read.matrix(mat,method,format)
         out
     }
 
-    getPlot <- function(){
-        eval(parse(text=input$Rcommand))
+    getJavascript <- function(results){
+        header <- paste0("['",paste(colnames(results),collapse="','"),"']")
+        jarray <- "["
+        for (i in 1:nrow(results)){
+            jarray <- paste0(jarray,"[",paste(results[i,],collapse=","),"]")
+            if (i<nrow(results)) jarray <- paste0(jarray,",")
+        }
+        jarray <- paste0(jarray,"]")
+        script <- paste0("<script type='text/javascript'>",
+                         "$(function(){",
+                         "$('#OUTPUT').handsontable('populateFromArray', 0, 0, ",
+                         jarray,
+                         ");",
+                         "});",
+                         "var hot = $('#OUTPUT').data('handsontable');",
+                         "hot.updateSettings({",
+                         "colHeaders:",
+                         header,
+                         "});",
+                         "</script>")
+        HTML(script)
+    }
+
+    run <- function(Rcommand){
+        if (!is.null())
+            eval(parse(text=Rcommand))
     }
     
     observeEvent(input$PLOT, {
         output$myplot <- renderPlot({
-            getPlot()
+            isolate({
+                run(input$Rcommand)
+            })
         })
     })
 
+    observeEvent(input$RUN, {
+        output$myscript <- renderUI({
+            isolate({
+                results <- run(input$Rcommand)
+                getJavascript(results)
+            })
+        })
+    })
+    
     output$PDF <- downloadHandler(
         filename = 'IsoplotR.pdf',
         content = function(file) {
             pdf(file=file)
-            getPlot()
+            run(input$Rcommand)
             dev.off()
         }
     )
 
-});
+    output$CSV <- downloadHandler(
+        filename <- 'ages.csv',
+        content = function(file) {
+            results <- run(input$Rcommand)
+            write.csv(result,file)
+        }
+    )
+    
+})

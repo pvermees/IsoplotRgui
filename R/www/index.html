@@ -29,17 +29,19 @@
     <option id="fission">fission tracks</option>
     <option id="cosmogenics">cosmogenics</option>
     <option id="detritals">detritals</option>
-    <option id="other">other X-Y</option>
+    <option id="other">other</option>
   </select>
   <select name="plotdevice" id="plotdevice">
     <option id="concordia" selected="selected">concordia</option>
     <option id="isochron">isochron</option>
     <option id="spectrum">age spectrum</option>
     <option id="KDE">KDE</option>
+    <option id="CAD">CAD</option>
     <option id="radial">radial plot</option>
     <option id="ternary">ternary diagram</option>
     <option id="banana">banana plot</option>
     <option id="MDS">MDS</option>
+    <option id="ages">ages</option>
   </select>
   <div id="OPTIONS" class="button">Options</div>
   <tit>IsoplotR</tit>
@@ -51,7 +53,9 @@
 
 <right>
 <div id="helpmenu" title="help"></div>
-<div id="myplot" class="shiny-plot-output"></div>
+<div id="myplot" class="result shiny-plot-output"></div>
+<div id="myscript" class="shiny-html-output"></div>
+<div id="OUTPUT" class="result"></div>
 </right>
 
 <footer>
@@ -59,11 +63,14 @@
 <div id="CLEAR" class="button">Clear</div>
 <!-- hacked file upload button -->
 <div class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
-  <input id="OPEN" type="file" class="filestyle" data-buttonText="Open" data-input="false" data-badge="false" />
+  <input id="OPEN" type="file" class="filestyle" data-buttonText="Open" 
+	 data-input="false" data-badge="false" />
 </div>
-<div id="PLOT" class="button action-button">Plot</div>
 <div id="SAVE" class="button">Save</div>
+<div id="PLOT" class="button action-button">PLOT</div>
+<div id="RUN" class="button action-button">RUN</div>
 <a id="PDF" target="_blank" class="button shiny-download-link">PDF</a>
+<a id="CSV" target="_blank" class="button shiny-download-link">CSV</a>
 <a id="fname" href="" download="IsoplotR.json"></a>
 </footer>
 
