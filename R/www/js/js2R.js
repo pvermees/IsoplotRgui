@@ -43,6 +43,9 @@ function getOptions(prefs){
 	if (settings.binwidth != 'auto') { out += ",binwidth=" + settings.binwidth; }
 	else { out += ",binwidth=NA"; }
 	break;
+    case 'ages':
+	out += ",dcu=" + settings.dcu;
+	break;
     default:
     }
     return out;
@@ -64,13 +67,13 @@ function getRcommand(prefs){
     }
     switch (plotdevice) {
     case 'concordia': 
-	out += "concordiaplot(dat"; 
+	out += "concordia(dat"; 
 	break;
     case 'KDE':
-	out += "kdeplot(dat";
+	out += "kde(dat";
 	break;
     case 'CAD':
-	out += "cadplot(dat";
+	out += "cad(dat";
 	break;
     case 'ages':
 	out += "age(dat";

@@ -1,23 +1,27 @@
 library(shiny)
 
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/age.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/botev.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/cad.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/concordia.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/constants.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/discordia.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/errorellipse.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/io.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/json.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/kde.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/toolbox.R")
-source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UPb.R")
+debug <- TRUE
 
-settings("www/js/constants.json")
+if (debug) {
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/age.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/botev.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/cad.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/concordia.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/constants.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/discordia.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/errorellipse.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/io.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/json.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/kde.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/toolbox.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UPb.R")
 
-#library(shiny)
-#library(IsoplotR)
+    settings("www/js/constants.json")
+} else {
+    library(shiny)
+    library(IsoplotR)
+}
 
 shinyServer(function(input,output,session){
 
@@ -44,8 +48,8 @@ shinyServer(function(input,output,session){
                 colnames(mat) <- labels[1:ncol(mat)]
             }
         }
-        #out <- IsoplotR::read.matrix(mat,method,format)
-        out <- read.matrix(mat,method,format)
+        if (debug) out <- IsoplotR::read.data(mat,method,format)
+        else out <- read.data(mat,method,format)
         out
     }
 
@@ -73,7 +77,7 @@ shinyServer(function(input,output,session){
     }
 
     run <- function(Rcommand){
-        if (!is.null())
+        if (!is.null(Rcommand))
             eval(parse(text=Rcommand))
     }
     
@@ -107,7 +111,7 @@ shinyServer(function(input,output,session){
         filename <- 'ages.csv',
         content = function(file) {
             results <- run(input$Rcommand)
-            write.csv(result,file)
+            write.csv(results,file)
         }
     )
     

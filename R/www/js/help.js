@@ -172,6 +172,16 @@ function help(id){
 	       "the column headers of the table, i.e. the letters <tt>A</tt>, <tt>B</tt>, " +
 	       "... <tt>ZZ</tt>";
 	break;
+	case "help-age-dcu":
+	text = "When this box is ticked, the analytical uncertainty associated " +
+	       "with the <sup>235</sup>U and <sup>238</sup>U decay constants will " +
+	       "be propagated into the age calculations. This is recommended if " +
+	       "each aliquot corresponds to a separate sample, but <i>not</i> if " +
+	       "they belong to the same sample. In that case, the decay constant " +
+	       "uncertainties will introduce correlated errors which are lost in " +
+	       "output table. <tt>IsoplotR</tt>'s concordia and radial plot functions " +
+	       "were designed to take into account this correlation.";
+	break;
     }
     return text;
 }

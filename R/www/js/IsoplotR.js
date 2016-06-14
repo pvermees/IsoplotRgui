@@ -184,6 +184,9 @@ $(function(){
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
+	case 'ages':
+	    $('#age-dcu').prop('checked',set.dcu=='TRUE');
+	    break;
 	default:
 	}
     }
@@ -231,6 +234,9 @@ $(function(){
 	    pdsettings["mindisc"] = $('#mindisc').val();
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
 	    break;
+	case 'ages':
+	    pdsettings.dcu = 
+		$('#age-dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	default:
 	}
 	switch (geochronometer){

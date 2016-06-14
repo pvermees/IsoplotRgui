@@ -39,5 +39,8 @@
 	"cutoff76": 1100,
 	"mindisc": -15,
 	"maxdisc": 5
+    },
+    "ages": {
+	"dcu": "TRUE"
     }
 }
