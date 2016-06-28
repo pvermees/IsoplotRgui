@@ -3,6 +3,7 @@ library(shiny)
 debug <- TRUE
 
 if (debug) {
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/ArAr.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/age.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/botev.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/cad.R")
@@ -11,6 +12,7 @@ if (debug) {
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/discordia.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/errorellipse.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/io.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/isochron.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/json.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/kde.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
@@ -27,29 +29,36 @@ shinyServer(function(input,output,session){
 
     observe({
         input$Rcommand
-        input$selection
+        input$data
     })
 
     selection2data <- function(method="U-Pb",format=1){
-        d <- input$selection
+        d <- input$data
+        nn <- length(d)
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
-        nn <- length(d)
-        fi <- 3
-        if (identical(method,"detritals") & format==1)
-            fi <- fi + nc
-        # suppress NA coercion errors:
-        mat <- suppressWarnings(matrix(as.numeric(d[fi:nn]),ncol=nc,byrow=TRUE))
-        if (identical(method,"detritals")){
-            if (format==1) {
-                colnames(mat) <- d[3:(fi-1)]
-            } else {
-                labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
-                colnames(mat) <- labels[1:ncol(mat)]
-            }
+        if (identical(method,"U-Pb") & format==1) {
+            mat <- matrix(c('Pb207Pb206','errPb207Pb206',
+                            'Pb206U238','errPb206U238',
+                            'Pb207U235','errPb207U235'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Ar-Ar") & format==1) {
+            mat <- matrix('',3,nc)
+            mat[1,1:2] <-c('J','errJ')
+            mat[2,1:2] <- d[3:4]
+            mat[3,] <- c('Ar39Ar40','errAr39Ar40',
+                         'Ar36Ar40','errAr36Ar40',
+                         'Ar39Ar36','errAr39Ar36')
+            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"detritals") & format==1) {
+            mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
+        } else if (identical(method,"detritals") & format!=1) {
+            labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
+            mat <- matrix(labels[1:nc],1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         }
-        if (debug) out <- IsoplotR::read.data(mat,method,format)
-        else out <- read.data(mat,method,format)
+        if (debug) out <- read.data(mat,method,format)
+        else out <- IsoplotR::read.data(mat,method,format)
         out
     }
 

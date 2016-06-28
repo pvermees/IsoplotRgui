@@ -11,7 +11,7 @@ function getOptions(prefs){
 	if (mint != null | maxt != null){
 	    out += ",limits=c(";
 	    if (mint == null) { out += "0"; } else { out += mint; }
-	    if (maxt == null) { out += ",3500)"; } else { out += "," + maxt + ")"; }
+	    if (maxt == null) { out += ",4500)"; } else { out += "," + maxt + ")"; }
 	} else {
 	    out += ",limits=NULL"
 	}
@@ -20,6 +20,15 @@ function getOptions(prefs){
 	out += ",dcu=" + settings.dcu;
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",show.age=" + settings.showage;
+	break;
+    case 'isochron':
+	if (settings.minx != 'auto' & settings.maxx != 'auto')
+	    out += ",xlim=c(" + settings.minx + "," + settings.maxx + ")"
+	if (settings.miny != 'auto' & settings.maxy != 'auto')
+	    out += ",ylim=c(" + settings.miny + "," + settings.maxy + ")"
+	out += ",alpha=" + settings.alpha;
+	out += ",show.numbers=" + settings.shownumbers;
+	out += ",inverse=" + settings.inverse;
 	break;
     case 'KDE':
 	if (settings.minx != 'auto') { out += ",from=" + settings.minx; }
@@ -59,8 +68,18 @@ function getRcommand(prefs){
 	"',format=" + prefs.settings[geochronometer].format + ");";
     switch (geochronometer){
     case 'U-Pb': 
-	out += "iratio('U238U235',x=" + prefs.constants['iratio'].U238U235[0] + 
-  	    ",e=" + prefs.constants['iratio'].U238U235[1] + ");"
+	out += "iratio('U238U235',x=" + prefs.constants.iratio.U238U235[0] + 
+  	       ",e=" + prefs.constants.iratio.U238U235[1] + ");"
+	out += "lambda('U238',x=" + prefs.constants.lambda.U238[0] + 
+  	       ",e=" + prefs.constants.lambda.U238[1] + ");"
+	out += "lambda('U235',x=" + prefs.constants.lambda.U235[0] + 
+  	       ",e=" + prefs.constants.lambda.U235[1] + ");"
+	break;
+    case 'Ar-Ar':
+	out += "iratio('Ar40Ar36',x=" + prefs.constants.iratio.Ar40Ar36[0] + 
+     	       ",e=" + prefs.constants.iratio.Ar40Ar36[1] + ");"
+	out += "lambda('K40',x=" + prefs.constants.lambda.K40[0] + 
+  	       ",e=" + prefs.constants.lambda.K40[1] + ");"
 	break;
     case 'detritals':
 	break;
@@ -68,6 +87,9 @@ function getRcommand(prefs){
     switch (plotdevice) {
     case 'concordia': 
 	out += "concordia(dat"; 
+	break;
+    case 'isochron':
+	out += "isochron(dat";
 	break;
     case 'KDE':
 	out += "kde(dat";

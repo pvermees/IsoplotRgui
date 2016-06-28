@@ -9,7 +9,7 @@ $(function(){
 	var out = {
 	    constants: null,
 	    settings: null,
-	    selection: [],
+	    data: [],
 	    optionschanged: false
 	}
 	var cfile = './js/constants.json';
@@ -23,7 +23,7 @@ $(function(){
 	    out = populate(out,true);
 	    $("#INPUT").handsontable({ // add change handler asynchronously
 		afterChange: function(changes,source){
-		    getSelection(0,0,0,0); // placed here because we don't want to
+		    getData(0,0,0,0); // placed here because we don't want to
 		    handson2json();        // call the change handler until after
 		}                          // IsoplotR has been initialised
 	    });
@@ -42,7 +42,7 @@ $(function(){
 	contextMenu: true,
 	observeChanges: true,
 	afterSelectionEnd: function (r,c,r2,c2){
-	    getSelection(r,c,r2,c2);
+	    getData(r,c,r2,c2);
 	}
     });
 
@@ -58,7 +58,9 @@ $(function(){
 
     function dnc(){
 	switch (IsoplotR.settings.geochronometer){
-	case 'U-Pb': 
+	case 'U-Pb':
+	    return 6;
+	case 'Ar-Ar':
 	    return 6;
 	case 'detritals':
 	    var firstrow = $("#INPUT").handsontable('getData')[0];
@@ -71,25 +73,33 @@ $(function(){
     }
 
     function json2handson(settings){
-	var json = settings.data[settings.geochronometer];
+	var geochronometer = settings.geochronometer;
+	var json = settings.data[geochronometer];
+	switch (geochronometer){
+	    case "Ar-Ar":
+	    $("#J").val(json.J[0]);
+	    $("#Jerr").val(json.J[1]);
+	    break;
+	    default:
+	}
 	var row, header;
 	var handson = {
 	    data: [],
 	    headers: []
 	};
-	$.each(json, function(k, v) {
+	$.each(json.data, function(k, v) {
 	    handson.headers.push(k);
 	});
 	var m = handson.headers.length; // number of columns
-	var n = (m>0) ? json[handson.headers[0]].length : 0; // number of rows
+	var n = (m>0) ? json.data[handson.headers[0]].length : 0; // number of rows
 	for (var i=0; i<handson.headers.length; i++){ // maximum number of rows
-	    if (json[handson.headers[i]].length > n) {
-		n = json[handson.headers[i]].length;
+	    if (json.data[handson.headers[i]].length > n) {
+		n = json.data[handson.headers[i]].length;
 	}   }
 	for (var i=0; i<n; i++){
 	    row = [];
 	    for (var j=0; j<m; j++){
-		row.push(json[handson.headers[j]][i]);
+		row.push(json.data[handson.headers[j]][i]);
 	    }
 	    handson.data.push(row);
 	}
@@ -104,17 +114,17 @@ $(function(){
     function handson2json(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
-	var mydata = out.settings.data[geochronometer];
+	var mydata = out.settings.data[geochronometer].data;
 	var i = 0;
 	$.each(mydata, function(k, v) {
 	    mydata[k] = $("#INPUT").handsontable('getDataAtCol',i++);
 	});
-	out.selection = [];
+	out.data = [];
 	out.optionschanged = false;
 	IsoplotR = out;
     }
 
-    function getSelection(r,c,r2,c2){
+    function getData(r,c,r2,c2){
 	var nr = 1+Math.abs(r2-r);
 	var nc = 1+Math.abs(c2-c);
 	var dat = [];
@@ -136,9 +146,15 @@ $(function(){
 	    for (var i=0; i<dat.length; i++){
 		for (var j=0; j<dat[i].length; j++){
 		    if (dat[i][j]==null){
-			dat[i][j] = 'NA';
+			dat[i][j] = '';
 	}   }	}   }
-	IsoplotR.selection = [nr,nc,dat];
+	if (IsoplotR.settings.geochronometer=='Ar-Ar'){
+	    var J = $('#J').val();
+	    var sJ = $('#Jerr').val();
+	    IsoplotR.data = [nr,nc,J,sJ,dat];
+	} else {
+	    IsoplotR.data = [nr,nc,dat];
+	}
     }
 
     function showSettings(option){
@@ -147,12 +163,18 @@ $(function(){
 	switch (option){
 	case 'U-Pb':
 	    $('.hide4UPb').hide();
-	    $('#U238U235').val(cst['iratio'].U238U235[0]);
-	    $('#errU238U235').val(cst['iratio'].U238U235[1]);
+	    $('#U238U235').val(cst.iratio.U238U235[0]);
+	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
+	    break;
+	case 'Ar-Ar':
+	    $('#Ar40Ar36').val(cst.iratio.Ar40Ar36[0]),
+	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
+	    $('#LambdaK40').val(cst.lambda.K40[0]),
+	    $('#errLambdaK40').val(cst.lambda.K40[1])
 	    break;
 	case 'detritals':
 	    $('.hide4detritals').hide();
@@ -167,6 +189,16 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    break;
+	case 'isochron':
+	    $('#inverse').prop('checked',set.inverse=='TRUE'),
+	    $('#isochron-dcu').prop('checked',set.dcu=='TRUE')
+	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE')
+	    $('#isochron-minx').val(set.minx),
+	    $('#isochron-maxx').val(set.maxx),
+	    $('#isochron-miny').val(set.miny),
+	    $('#isochron-maxy').val(set.maxy),
+	    $('#alpha').val(set.alpha);
 	    break;
 	case 'KDE':
 	    $('#showhist').prop('checked',set.showhist=='TRUE');
@@ -213,6 +245,16 @@ $(function(){
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    break;
+	case 'isochron':
+	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.dcu = $('#isochron-dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.minx = $('#isochron-minx').val();
+	    pdsettings.maxx = $('#isochron-maxx').val();
+	    pdsettings.miny = $('#isochron-miny').val();
+	    pdsettings.maxy = $('#isochron-maxy').val();
+	    pdsettings.alpha = $('#alpha').val();
+	    break;
 	case 'KDE':
 	    pdsettings["showhist"] = 
 		$('#showhist').prop('checked') ? 'TRUE' : 'FALSE';
@@ -241,8 +283,18 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    gcsettings["iratio"].U238U235[0] = $("#U238U235").val();
-	    gcsettings["iratio"].U238U235[1] = $("#errU238U235").val();
+	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
+	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
+	    gcsettings.lambda.U238[0] = $("#LambdaU238").val();
+	    gcsettings.lambda.U238[1] = $("#errLambdaU238").val();
+	    gcsettings.lambda.U235[0] = $("#LambdaU235").val();
+	    gcsettings.lambda.U235[1] = $("#errLambdaU235").val();
+	    break;
+	case 'Ar-Ar':
+	    gcsettings.iratio.Ar40Ar36[0] = $("#Ar40Ar36").val();
+	    gcsettings.iratio.Ar40Ar36[1] = $("#errAr40Ar36").val();
+	    gcsettings.lambda.K40[0] = $("#LambdaK40").val();
+	    gcsettings.lambda.K40[1] = $("#errLambdaK40").val();
 	    break;
 	case 'detritals':
 	    IsoplotR.settings[geochronometer].format = 
@@ -253,7 +305,7 @@ $(function(){
     }
 
     function setSelectedMenus(options){
-	$("#Ar-Ar").prop('disabled',true);
+	$("#Ar-Ar").prop('disabled',false);
 	$("#Rb-Sr").prop('disabled',true);
 	$("#Sm-Nd").prop('disabled',true);
 	$("#Re-Os").prop('disabled',true);
@@ -312,12 +364,16 @@ $(function(){
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
+	$("#JZeta").hide();
 	switch (geochronometer){
 	case 'U-Pb':
 	    setSelectedMenus([false,true,true,false,false,true,true,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,false,true,false,true,true,true,true,true,false]);
+	    $("#JZeta").html('J: <input type="text" id="J"> &plusmn;' + 
+			     '<input type="text" id="Jerr"> (1&sigma;)');
+	    $("#JZeta").show();
 	    break;
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -363,8 +419,8 @@ $(function(){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
 	}
-	if (IsoplotR.selection.length == 0) getSelection(0,0,0,0);
-	Shiny.onInputChange("selection",IsoplotR.selection);
+	if (IsoplotR.data.length == 0) getData(0,0,0,0);
+	Shiny.onInputChange("data",IsoplotR.data);
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 

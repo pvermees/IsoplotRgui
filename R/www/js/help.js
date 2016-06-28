@@ -53,6 +53,36 @@ function help(id){
 	text = "The default values of the <sup>235</sup>U decay constant " +
 	       "and its uncertainty are taken from Jaffey et al. (1971).";
 	break;
+	case "help-inverse":
+	text = "Selecting this box plots <sup>36</sup>Ar/<sup>40</sup>Ar " +
+	       "against <sup>39</sup>Ar/<sup>40</sup>Ar. Otherwise, " +
+	       "<tt>IsoplotR</tt> plots <sup>40</sup>Ar/<sup>39</sup>Ar " +
+	       "against <sup>36</sup>Ar/<sup>39</sup>Ar.";
+	break;
+	case "help-isochron-minx":
+	text = "Minimum limit of the horizontal axis.";
+	break;
+	case "help-isochron-maxx":
+	text = "Maximum limit of the horizontal axis.";
+	break;
+	case "help-isochron-miny":
+	text = "Minimum limit of the vertical axis.";
+	break;
+	case "help-isochron-maxy":
+	text = "Maximum limit of the vertical axis.";
+	break;
+	case "help-isochron-dcu":
+	text = "When this box is ticked, the analytical uncertainty associated " +
+	       "with the radioactive decay constant and the non-radiogenic " +
+	       "isotope composition is propagated into the age.";
+	break;
+	case "help-Ar40Ar36":
+	text = "Change the atmospheric ('excess') argon ratio. " +
+	       "Default value is taken from Lee et al. (2006).";
+	break;
+	case "help-LambdaK40":
+	text = "Default value taken from Renne et al. (2010).";
+	break;
 	case "help-minx":
 	text = "Minimum age constraint of the KDE. " +
                "Setting this to <tt>auto</tt> automatically sets this " +

@@ -81,6 +81,12 @@ left {
     z-index:2;
 }
 
+#JZeta {
+    position:relative;
+    left:20%;
+    right:20%;
+}
+
 right {
     overflow:hidden;
     position:absolute;
@@ -93,7 +99,7 @@ right {
 }
 
 .result {
-    position:relativee;
+    position:relative;
     display:inline-block;
     left:0;
     width:100%;
