@@ -20,6 +20,7 @@ function getOptions(prefs){
 	out += ",dcu=" + settings.dcu;
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",show.age=" + settings.showage;
+	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'isochron':
 	if (settings.minx != 'auto' & settings.maxx != 'auto')
@@ -29,6 +30,7 @@ function getOptions(prefs){
 	out += ",alpha=" + settings.alpha;
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",inverse=" + settings.inverse;
+	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'KDE':
 	if (settings.minx != 'auto') { out += ",from=" + settings.minx; }
@@ -47,6 +49,8 @@ function getOptions(prefs){
 	    if (settings.pch!='none') { out += ",pch=" + settings.pch; }
 	    out += ",cutoff.76=" + settings.cutoff76;
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	} else {
+	    if (settings.pch!='none') { out += ",pch=" + settings.pch; }
 	}
 	out += ",log=" + settings.log;
 	if (settings.binwidth != 'auto') { out += ",binwidth=" + settings.binwidth; }
@@ -54,6 +58,7 @@ function getOptions(prefs){
 	break;
     case 'ages':
 	out += ",dcu=" + settings.dcu;
+	out += ",sigdig=" + settings.sigdig;
 	break;
     default:
     }

@@ -114,10 +114,17 @@ $(function(){
     function handson2json(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
-	var mydata = out.settings.data[geochronometer].data;
+	var mydata = out.settings.data[geochronometer];
 	var i = 0;
+	switch (geochronometer){
+	    case "Ar-Ar":
+	    mydata.J[0] = $("#J").val();
+	    mydata.J[1] = $("#Jerr").val();
+	    break;
+	    default:
+	}
 	$.each(mydata, function(k, v) {
-	    mydata[k] = $("#INPUT").handsontable('getDataAtCol',i++);
+	    mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
 	});
 	out.data = [];
 	out.optionschanged = false;
@@ -171,6 +178,7 @@ $(function(){
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
 	case 'Ar-Ar':
+	    $('.hide4ArAr').hide();
 	    $('#Ar40Ar36').val(cst.iratio.Ar40Ar36[0]),
 	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
@@ -189,6 +197,7 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'isochron':
 	    $('#inverse').prop('checked',set.inverse=='TRUE'),
@@ -199,6 +208,7 @@ $(function(){
 	    $('#isochron-miny').val(set.miny),
 	    $('#isochron-maxy').val(set.maxy),
 	    $('#alpha').val(set.alpha);
+	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'KDE':
 	    $('#showhist').prop('checked',set.showhist=='TRUE');
@@ -218,6 +228,7 @@ $(function(){
 	    break;
 	case 'ages':
 	    $('#age-dcu').prop('checked',set.dcu=='TRUE');
+	    $('#sigdig').val(set.sigdig);
 	    break;
 	default:
 	}
@@ -244,6 +255,7 @@ $(function(){
 		$('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
 	case 'isochron':
 	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
@@ -254,6 +266,7 @@ $(function(){
 	    pdsettings.miny = $('#isochron-miny').val();
 	    pdsettings.maxy = $('#isochron-maxy').val();
 	    pdsettings.alpha = $('#alpha').val();
+	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
 	case 'KDE':
 	    pdsettings["showhist"] = 
@@ -279,6 +292,7 @@ $(function(){
 	case 'ages':
 	    pdsettings.dcu = 
 		$('#age-dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.sigdig = $('#sigdig').val();
 	default:
 	}
 	switch (geochronometer){
@@ -370,7 +384,7 @@ $(function(){
 	    setSelectedMenus([false,true,true,false,false,true,true,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,false,true,false,true,true,true,true,true,false]);
+	    setSelectedMenus([true,false,true,false,false,true,true,true,true,false]);
 	    $("#JZeta").html('J: <input type="text" id="J"> &plusmn;' + 
 			     '<input type="text" id="Jerr"> (1&sigma;)');
 	    $("#JZeta").show();

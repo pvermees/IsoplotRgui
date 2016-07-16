@@ -82,9 +82,8 @@ left {
 }
 
 #JZeta {
-    position:relative;
-    left:20%;
-    right:20%;
+    width: 50%;
+    margin: 0 auto; 
 }
 
 right {
