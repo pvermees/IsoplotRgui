@@ -18,7 +18,8 @@ if (debug) {
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/toolbox.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UPb.R")
-
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/weightedmean.R")
+    
     settings("www/js/constants.json")
 } else {
     library(shiny)

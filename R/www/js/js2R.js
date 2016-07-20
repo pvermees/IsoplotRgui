@@ -32,6 +32,11 @@ function getOptions(prefs){
 	out += ",inverse=" + settings.inverse;
 	out += ",sigdig=" + settings.sigdig;
 	break;
+    case 'weightedmean':
+	out += ",detect.outliers=" + settings.outliers;
+	out += ",alpha=" + settings.alpha;
+	out += ",sigdig=" + settings.sigdig;
+	break;
     case 'KDE':
 	if (settings.minx != 'auto') { out += ",from=" + settings.minx; }
 	else { out += ",from=NA"; }
@@ -95,6 +100,9 @@ function getRcommand(prefs){
 	break;
     case 'isochron':
 	out += "isochron(dat";
+	break;
+    case 'weightedmean':
+	out += "weightedmean(dat"
 	break;
     case 'KDE':
 	out += "kde(dat";

@@ -3,6 +3,7 @@
     "plotdevice": "concordia",
     "data": {
 	"U-Pb": {},
+	"Ar-Ar": {},
 	"detritals": {}
     },
     "U-Pb": {
@@ -34,6 +35,14 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2
+    },
+    "weightedmean": {
+	"outliers": "TRUE",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"cutoff76": 1100,
+	"mindisc": -15,
+	"maxdisc": 5
     },
     "KDE": {
 	"ncol": "auto",

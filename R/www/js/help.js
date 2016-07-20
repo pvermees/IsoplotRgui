@@ -30,6 +30,15 @@ function help(id){
 	text = "Set the probability cutoff (&alpha;) for the error ellipses, " + 
 	       "which will be drawn at a 100x(1-&alpha;)% confidence level. ";
 	break;
+	case "help-outliers":
+	text = "If checked, applies Chauvenet's criterion to reject outliers " +
+	       "and remove them from the weighted mean.";
+	break;
+	case "help-sigdig":
+	text = "The number of significant digits to which the numerical output should " +
+	        "be rounded. For example, if this number is 2, then 1.23456 &plusmn; " +
+	        "0.01234 is rounded to 1.234 &plusmn; 0.012.";
+	break;
 	case "help-dcu":
 	text = "When this box is ticked, the thickness of the concordia line " + 
 	       "will be adjusted to show the analytical uncertainty associated " +
