@@ -2,6 +2,7 @@
 
 &nbsp; <input type="checkbox" id="outliers">
 <help id="help-outliers">Reject outliers</help>?
+
 <p></p>
 
 <table>

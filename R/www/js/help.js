@@ -34,15 +34,30 @@ function help(id){
 	text = "If checked, applies Chauvenet's criterion to reject outliers " +
 	       "and remove them from the weighted mean.";
 	break;
+	case "plateau":
+	text = "If checked, <tt>IsoplotR</tt> computes the weighted mean of " +
+	       "the longest succession of steps that yield values passing "
+	       "the Chi-square test for age homogeneity and marks the steps " +
+	       "belonging to this plateau in a different colour.";
+	break;
 	case "help-sigdig":
 	text = "The number of significant digits to which the numerical output should " +
 	        "be rounded. For example, if this number is 2, then 1.23456 &plusmn; " +
 	        "0.01234 is rounded to 1.234 &plusmn; 0.012.";
 	break;
-	case "help-dcu":
+	case "help-dcu-UPb":
 	text = "When this box is ticked, the thickness of the concordia line " + 
 	       "will be adjusted to show the analytical uncertainty associated " +
 	       "with the <sup>235</sup>U and <sup>238</sup>U decay constants.";
+	break;
+	case "help-dcu":
+	text = "When this box is ticked, the size of the error bars/boxes " +
+	       "will be adjusted to show the analytical uncertainty associated " +
+	       "with the decay constants.";
+	break;
+	case "help-verticals":
+	text = "When this box is ticked, the horizontal steps " +
+	       "are connected with vertical lines";
 	break;
 	case "help-shownumbers":
 	text = "Add labels to the error ellipses marking the corresponding " +
@@ -90,7 +105,7 @@ function help(id){
 	       "Default value is taken from Lee et al. (2006).";
 	break;
 	case "help-LambdaK40":
-	text = "Default value taken from Renne et al. (2010).";
+	text = "Default value taken from Renne et al. (2011).";
 	break;
 	case "help-minx":
 	text = "Minimum age constraint of the KDE. " +
@@ -129,16 +144,22 @@ function help(id){
                "according to to Sturges' Rule, i.e. N=log<sub>2</sub>(n)+1, " +
                "where n is the number of ages and N is the number of bins.";
 	break;
+	case "help-pch":
+	text = "The single-grain ages may be shown under the KDE plot " +
+	       "This can either be a number (1-25) or a single character such as " +
+	       "'|', 'o', '*', '+', or '.'. Alternatively, enter <tt>none</tt> " +
+	       "to omit the plot character.";
+	break;
 	case "help-pchdetritals":
 	text = "The single-grain ages may be shown under the KDE plot " +
 	       "This can either be a number (1-25) or a single character such as " +
 	       "'|','o', '*', '+', '.'. Alternatively, enter <tt>none</tt> " +
 	       "to omit the plot character.";
 	break;
-	case "help-pch":
-	text = "The single-grain ages may be shown under the KDE plot " +
+	case "help-pch-cad":
+	text = "The beginning of each CAD step may be marked by a plot character. " +
 	       "This can either be a number (1-25) or a single character such as " +
-	       "'|', 'o', '*', '+', or '.'. Alternatively, enter <tt>none</tt> " +
+	       "'o', '*', or '+'. Alternatively, enter <tt>none</tt> " +
 	       "to omit the plot character.";
 	break;
 	case "help-cutoff76":

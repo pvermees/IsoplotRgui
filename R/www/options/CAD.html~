@@ -11,20 +11,6 @@
     <td><input type="text" id="binwidth"></td></tr>
 </table>
 
-<div class="hide4UPb hide4ArAr">
-<table>
-<tr><td>&nbsp; <help id="help-pchdetritals">Plot character</help>:</td>
-    <td><input type="text" id="pchdetritals"></td></tr>
-</table>
-</div>
-
-<div class="hide4detritals">
-<table>
-<tr><td>&nbsp; <help id="help-pch">Plot character</help>:</td>
-    <td><input type="text" id="pch"></td></tr>
-</table>
-</div>
-
 <div class="hide4detritals hide4ArAr">
 <table>
 <tr><td>&nbsp; <help id="help-cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
@@ -37,20 +23,6 @@
 </div>
 
 <p></p>
-&nbsp;<input type="checkbox" id="log">
-      <help id="help-log">Take logarithms</help>?
+&nbsp; <input type="checkbox" id="dcu"> 
+<help id="help-dcu">Propagate decay constant uncertainties</help>?
 <p></p>
-&nbsp;<input type="checkbox" id="showhist">
-      <help id="help-showhist">Show histogram</help>?
-<p></p>
-&nbsp;<input type="checkbox" id="adaptive">
-      <help id="help-adaptive">Adaptive KDE</help>?
-<p></p>
-
-<div class="hide4UPb">
-&nbsp;<input type="checkbox" id="samebandwidth">
-      <help id="help-samebandwidth">Same bandwidth for all samples</help>?
-<p></p>
-&nbsp;<input type="checkbox" id="normalise">
-      <help id="help-normalise">Normalise area under the KDEs</help>?
-</div>

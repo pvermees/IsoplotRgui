@@ -61,7 +61,12 @@ $(function(){
 	case 'U-Pb':
 	    return 6;
 	case 'Ar-Ar':
-	    return 6;
+	    switch(IsoplotR.settings.plotdevice){
+		case 'spectrum':
+		return 7;
+		default:
+		return 6;
+	    }
 	case 'detritals':
 	    var firstrow = $("#INPUT").handsontable('getData')[0];
 	    var nc = firstrow.length;
@@ -203,6 +208,7 @@ $(function(){
 	    $('#inverse').prop('checked',set.inverse=='TRUE'),
 	    $('#isochron-dcu').prop('checked',set.dcu=='TRUE')
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE')
+	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#isochron-minx').val(set.minx),
 	    $('#isochron-maxx').val(set.maxx),
 	    $('#isochron-miny').val(set.miny),
@@ -218,6 +224,11 @@ $(function(){
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
+	case 'spectrum':
+	    $('#plateau').prop('checked',set.plateau=='TRUE');
+	    $('#alpha').val(set.alpha);
+	    $('#sigdig').val(set.sigdig);
+	    break;
 	case 'KDE':
 	    $('#showhist').prop('checked',set.showhist=='TRUE');
 	    $('#adaptive').prop('checked',set.adaptive=='TRUE');
@@ -229,6 +240,13 @@ $(function(){
 	    $('#bandwidth').val(set.bandwidth);
 	    $('#binwidth').val(set.binwidth);
 	    $('#pchdetritals').val(set.pchdetritals);
+	    $('#pch').val(set.pch);
+	    $('#cutoff76').val(set.cutoff76);
+	    $('#mindisc').val(set.mindisc);
+	    $('#maxdisc').val(set.maxdisc);
+	    break;
+	case 'CAD':
+	    $('#verticals').prop('checked',set.verticals=='TRUE');
 	    $('#pch').val(set.pch);
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
@@ -285,6 +303,12 @@ $(function(){
 	    pdsettings["mindisc"] = $('#mindisc').val();
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
 	    break;
+	case 'spectrum':
+	    pdsettings["plateau"] = 
+		$('#plateau').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.alpha = $('#alpha').val();
+	    pdsettings.sigdig = $('#sigdig').val();
+	    break;
 	case 'KDE':
 	    pdsettings["showhist"] = 
 		$('#showhist').prop('checked') ? 'TRUE' : 'FALSE';
@@ -302,6 +326,14 @@ $(function(){
 	    pdsettings["binwidth"] = $('#binwidth').val();
 	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
 	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["cutoff76"] = $('#cutoff76').val();
+	    pdsettings["mindisc"] = $('#mindisc').val();
+	    pdsettings["maxdisc"] = $('#maxdisc').val();
+	    break;
+	case 'CAD':
+	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["verticals"] = 
+		$('#verticals').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings["cutoff76"] = $('#cutoff76').val();
 	    pdsettings["mindisc"] = $('#mindisc').val();
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
@@ -355,7 +387,7 @@ $(function(){
 	$("#banana").prop('disabled',options[8]);
 	$("#MDS").prop('disabled',options[9]);
 	$("#ages").prop('disabled',options[10]);
-	for (var i=0; i<9; i++){ // change to first available option
+	for (var i=0; i<10; i++){ // change to first available option
 	    if (!options[i]) {
 		$('#plotdevice').prop('selectedIndex',i);
 		IsoplotR.settings.plotdevice = 
@@ -393,6 +425,7 @@ $(function(){
 	    $('#CSV').hide();
         }
 	IsoplotR.optionschanged = false;
+	populate(IsoplotR,true);
     }
 
     function selectGeochronometer(){
@@ -404,7 +437,7 @@ $(function(){
 	    setSelectedMenus([false,true,true,false,false,false,true,true,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,false,true,false,false,false,true,true,true,true,false]);
+	    setSelectedMenus([true,false,false,false,false,false,true,true,true,true,false]);
 	    $("#JZeta").html('J: <input type="text" id="J"> &plusmn;' + 
 			     '<input type="text" id="Jerr"> (1&sigma;)');
 	    $("#JZeta").show();

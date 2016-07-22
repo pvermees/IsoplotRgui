@@ -31,11 +31,19 @@ function getOptions(prefs){
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",inverse=" + settings.inverse;
 	out += ",sigdig=" + settings.sigdig;
+	out += ",dcu=" + settings.dcu;
 	break;
-    case 'weightedmean':
+    case 'average':
 	out += ",detect.outliers=" + settings.outliers;
 	out += ",alpha=" + settings.alpha;
 	out += ",sigdig=" + settings.sigdig;
+	out += ",dcu=" + settings.dcu;
+	break;
+    case 'spectrum':
+	out += ",plateau=" + settings.plateau;
+	out += ",alpha=" + settings.alpha;
+	out += ",sigdig=" + settings.sigdig;
+	out += ",dcu=" + settings.dcu;
 	break;
     case 'KDE':
 	if (settings.minx != 'auto') { out += ",from=" + settings.minx; }
@@ -61,6 +69,14 @@ function getOptions(prefs){
 	if (settings.binwidth != 'auto') { out += ",binwidth=" + settings.binwidth; }
 	else { out += ",binwidth=NA"; }
 	break;
+    case 'CAD':
+	if (settings.pch!='none') { out += ",pch=" + settings.pch; }
+	out += ",verticals=" + settings.verticals;
+	if (geochronometer=="U-Pb"){
+	    out += ",cutoff.76=" + settings.cutoff76;
+	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	}
+	break;
     case 'ages':
 	out += ",dcu=" + settings.dcu;
 	out += ",sigdig=" + settings.sigdig;
@@ -74,8 +90,13 @@ function getRcommand(prefs){
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
-    var out = "dat <- selection2data(method='" + geochronometer +
-	"',format=" + prefs.settings[geochronometer].format + ");";
+    var out = "dat <- selection2data(method='" + geochronometer + "'";
+    switch (plotdevice){
+	case 'spectrum':
+	out += ",format=2"
+	break;
+    }
+    out += ");";
     switch (geochronometer){
     case 'U-Pb': 
 	out += "iratio('U238U235',x=" + prefs.constants.iratio.U238U235[0] + 
@@ -101,7 +122,10 @@ function getRcommand(prefs){
     case 'isochron':
 	out += "isochron(dat";
 	break;
-    case 'weightedmean':
+    case 'spectrum':
+	out += "agespectrum(dat"
+	break;
+    case 'average':
 	out += "weightedmean(dat"
 	break;
     case 'KDE':

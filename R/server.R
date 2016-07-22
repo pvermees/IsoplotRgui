@@ -5,6 +5,7 @@ debug <- TRUE
 if (debug) {
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/ArAr.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/age.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/agespectrum.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/botev.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/cad.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/concordia.R")
@@ -48,6 +49,15 @@ shinyServer(function(input,output,session){
             mat[1,1:2] <-c('J','errJ')
             mat[2,1:2] <- d[3:4]
             mat[3,] <- c('Ar39Ar40','errAr39Ar40',
+                         'Ar36Ar40','errAr36Ar40',
+                         'Ar39Ar36','errAr39Ar36')
+            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Ar-Ar") & format==2){
+            mat <- matrix('',3,nc)
+            mat[1,1:2] <-c('J','errJ')
+            mat[2,1:2] <- d[3:4]
+            mat[3,] <- c('Ar39',
+                         'Ar39Ar40','errAr39Ar40',
                          'Ar36Ar40','errAr36Ar40',
                          'Ar39Ar36','errAr39Ar36')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
