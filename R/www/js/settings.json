@@ -27,8 +27,18 @@
 	"alpha": 0.05,
 	"sigdig": 2
     },
+    "regression": {
+	"shownumbers": "FALSE",
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
+	"alpha": 0.05,
+	"sigdig": 2
+    },
     "average": {
 	"outliers": "TRUE",
+	"dcu": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"cutoff76": 1100,
@@ -37,6 +47,7 @@
     },
     "spectrum": {
 	"plateau": "TRUE",
+	"dcu": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2
     },

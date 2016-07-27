@@ -51,9 +51,8 @@ function help(id){
 	       "with the <sup>235</sup>U and <sup>238</sup>U decay constants.";
 	break;
 	case "help-dcu":
-	text = "When this box is ticked, the size of the error bars/boxes " +
-	       "will be adjusted to show the analytical uncertainty associated " +
-	       "with the decay constants.";
+	text = "When this box is ticked, the analytical uncertainty associated " +
+	       "with the decay constants will be propagated into the age.";
 	break;
 	case "help-verticals":
 	text = "When this box is ticked, the horizontal steps " +

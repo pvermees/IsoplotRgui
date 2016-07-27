@@ -67,6 +67,8 @@ shinyServer(function(input,output,session){
             labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
             mat <- matrix(labels[1:nc],1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"other")) {
+            mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
         }
         if (debug) out <- read.data(mat,method,format)
         else out <- IsoplotR::read.data(mat,method,format)

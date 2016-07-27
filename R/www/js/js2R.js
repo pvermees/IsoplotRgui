@@ -23,15 +23,16 @@ function getOptions(prefs){
 	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'isochron':
+	out += ",inverse=" + settings.inverse;
+	out += ",dcu=" + settings.dcu;
+    case 'regression':
 	if (settings.minx != 'auto' & settings.maxx != 'auto')
 	    out += ",xlim=c(" + settings.minx + "," + settings.maxx + ")"
 	if (settings.miny != 'auto' & settings.maxy != 'auto')
 	    out += ",ylim=c(" + settings.miny + "," + settings.maxy + ")"
 	out += ",alpha=" + settings.alpha;
 	out += ",show.numbers=" + settings.shownumbers;
-	out += ",inverse=" + settings.inverse;
 	out += ",sigdig=" + settings.sigdig;
-	out += ",dcu=" + settings.dcu;
 	break;
     case 'average':
 	out += ",detect.outliers=" + settings.outliers;
@@ -120,6 +121,7 @@ function getRcommand(prefs){
 	out += "concordia(dat"; 
 	break;
     case 'isochron':
+    case 'regression':
 	out += "isochron(dat";
 	break;
     case 'spectrum':

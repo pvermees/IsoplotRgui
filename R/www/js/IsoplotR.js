@@ -73,6 +73,11 @@ $(function(){
 	    for (var i=(nc-1); i>0; i--){
 		if (firstrow[i]!=null) return i+1;
 	    }
+	case 'other':
+	    switch(IsoplotR.settings.plotdevice){
+	    case 'regression':
+		return 5;
+	    }
 	}
 	return 0;
     }
@@ -207,6 +212,7 @@ $(function(){
 	case 'isochron':
 	    $('#inverse').prop('checked',set.inverse=='TRUE'),
 	    $('#isochron-dcu').prop('checked',set.dcu=='TRUE')
+	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE')
 	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#isochron-minx').val(set.minx),
@@ -216,8 +222,9 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    break;
-	case 'weightedmean':
+	case 'average':
 	    $('#outliers').prop('checked',set.outliers=='TRUE');
+	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cutoff76').val(set.cutoff76);
@@ -226,6 +233,7 @@ $(function(){
 	    break;
 	case 'spectrum':
 	    $('#plateau').prop('checked',set.plateau=='TRUE');
+	    $('#dcu').prop('checked',set.dcu=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    break;
@@ -286,6 +294,7 @@ $(function(){
 	case 'isochron':
 	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.dcu = $('#isochron-dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	case 'regression':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.minx = $('#isochron-minx').val();
 	    pdsettings.maxx = $('#isochron-maxx').val();
@@ -294,9 +303,11 @@ $(function(){
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
-	case 'weightedmean':
+	case 'average':
 	    pdsettings["outliers"] = 
 		$('#outliers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.dcu =
+		$('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings["cutoff76"] = $('#cutoff76').val();
@@ -306,6 +317,8 @@ $(function(){
 	case 'spectrum':
 	    pdsettings["plateau"] = 
 		$('#plateau').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.dcu =
+		$('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
@@ -375,19 +388,19 @@ $(function(){
 	$("#U-Th-He").prop('disabled',true);
 	$("#fission").prop('disabled',true);
 	$("#cosmogenics").prop('disabled',true);
-	$("#other").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#isochron").prop('disabled',options[1]);
-	$("#spectrum").prop('disabled',options[2]);
-	$("#average").prop('disabled',options[3]);
-	$("#KDE").prop('disabled',options[4]);
-	$("#CAD").prop('disabled',options[5]);
-	$("#radial").prop('disabled',options[6]);
-	$("#ternary").prop('disabled',options[7]);
-	$("#banana").prop('disabled',options[8]);
-	$("#MDS").prop('disabled',options[9]);
-	$("#ages").prop('disabled',options[10]);
-	for (var i=0; i<10; i++){ // change to first available option
+	$("#regression").prop('disabled',options[2]);
+	$("#spectrum").prop('disabled',options[3]);
+	$("#average").prop('disabled',options[4]);
+	$("#KDE").prop('disabled',options[5]);
+	$("#CAD").prop('disabled',options[6]);
+	$("#radial").prop('disabled',options[7]);
+	$("#ternary").prop('disabled',options[8]);
+	$("#banana").prop('disabled',options[9]);
+	$("#MDS").prop('disabled',options[10]);
+	$("#ages").prop('disabled',options[11]);
+	for (var i=0; i<11; i++){ // change to first available option
 	    if (!options[i]) {
 		$('#plotdevice').prop('selectedIndex',i);
 		IsoplotR.settings.plotdevice = 
@@ -434,10 +447,10 @@ $(function(){
 	$("#JZeta").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,true,true,false,false,false,true,true,true,true,false]);
+	    setSelectedMenus([false,true,true,true,false,false,false,true,true,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,false,false,false,false,false,true,true,true,true,false]);
+	    setSelectedMenus([true,false,true,false,false,false,false,true,true,true,true,false]);
 	    $("#JZeta").html('J: <input type="text" id="J"> &plusmn;' + 
 			     '<input type="text" id="Jerr"> (1&sigma;)');
 	    $("#JZeta").show();
@@ -445,25 +458,25 @@ $(function(){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'fission':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'cosmogenics':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'detritals':
-	    setSelectedMenus([true,true,true,true,false,false,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,false,false,true,true,true,true,true]);
 	    break;
 	case 'other':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,false,true,true,true,true,true,true,true,true,true]);
 	    break;
 	default:
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	}
 	IsoplotR = populate(IsoplotR,false);
 	$("#plotdevice").selectmenu("refresh");
