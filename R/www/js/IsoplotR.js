@@ -77,6 +77,12 @@ $(function(){
 	    switch(IsoplotR.settings.plotdevice){
 	    case 'regression':
 		return 5;
+	    case 'spectrum':
+		return 3;
+	    case 'average':
+		return 2;
+	    case 'KDE':
+		return 1;
 	    }
 	}
 	return 0;
@@ -149,8 +155,11 @@ $(function(){
 	var cond1 = (nc < DNC);
 	var cond2 = IsoplotR.settings.geochronometer=='detritals';
 	var cond3 = (cond1 & !cond2);
-	var cond4 = (cond2 & nr==1);
-	if (cond3|cond4) {
+	var cond4 = nr==1;
+	var cond5 = (cond2 & cond4);
+	var cond6 = IsoplotR.settings.geochronometer=='other';
+	var cond7 = (cond6 & cond4);
+	if (cond3|cond5|cond7) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
 		r = 0;
@@ -198,6 +207,9 @@ $(function(){
 	    $('.hide4detritals').hide();
 	    $('#headers-on').prop('checked',set.format==1);
 	    break;
+	case 'other':
+	    $('.hide4other').hide();
+	    break;
 	case 'concordia':
 	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
 	    $('#conc-age-option option[value='+set.showage+']').
@@ -223,8 +235,8 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'average':
-	    $('#outliers').prop('checked',set.outliers=='TRUE');
 	    $('#dcu').prop('checked',set.dcu=='TRUE');
+	    $('#outliers').prop('checked',set.outliers=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cutoff76').val(set.cutoff76);
@@ -232,8 +244,8 @@ $(function(){
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
 	case 'spectrum':
-	    $('#plateau').prop('checked',set.plateau=='TRUE');
 	    $('#dcu').prop('checked',set.dcu=='TRUE');
+	    $('#plateau').prop('checked',set.plateau=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    break;
@@ -304,10 +316,12 @@ $(function(){
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
 	case 'average':
+	    if (geochronometer != "other"){
+		pdsettings.dcu =
+		    $('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    }
 	    pdsettings["outliers"] = 
 		$('#outliers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.dcu =
-		$('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings["cutoff76"] = $('#cutoff76').val();
@@ -315,10 +329,12 @@ $(function(){
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
 	    break;
 	case 'spectrum':
+	    if (geochronometer != "other"){
+		pdsettings.dcu =
+		    $('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    }
 	    pdsettings["plateau"] = 
 		$('#plateau').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.dcu =
-		$('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
@@ -473,7 +489,7 @@ $(function(){
 	    setSelectedMenus([true,true,true,true,true,false,false,true,true,true,true,true]);
 	    break;
 	case 'other':
-	    setSelectedMenus([true,true,false,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,false,false,false,false,true,true,true,true,true,true]);
 	    break;
 	default:
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
@@ -499,7 +515,7 @@ $(function(){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
 	}
-	if (IsoplotR.data.length == 0) getData(0,0,0,0);
+	if (IsoplotR.data.length==0) getData(0,0,0,0);
 	Shiny.onInputChange("data",IsoplotR.data);
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }

@@ -35,16 +35,20 @@ function getOptions(prefs){
 	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'average':
+	if (geochronometer != "other"){
+	    out += ",dcu=" + settings.dcu;
+	}
 	out += ",detect.outliers=" + settings.outliers;
 	out += ",alpha=" + settings.alpha;
 	out += ",sigdig=" + settings.sigdig;
-	out += ",dcu=" + settings.dcu;
 	break;
     case 'spectrum':
+	if (geochronometer != "other"){
+	    out += ",dcu=" + settings.dcu;
+	}
 	out += ",plateau=" + settings.plateau;
 	out += ",alpha=" + settings.alpha;
 	out += ",sigdig=" + settings.sigdig;
-	out += ",dcu=" + settings.dcu;
 	break;
     case 'KDE':
 	if (settings.minx != 'auto') { out += ",from=" + settings.minx; }
