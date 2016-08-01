@@ -6,6 +6,9 @@
 	"Ar-Ar": {},
 	"detritals": {}
     },
+    "detritals": {
+	"format": 1
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
@@ -77,6 +80,17 @@
 	"cutoff76": 1100,
 	"mindisc": -15,
 	"maxdisc": 5
+    },
+    "MDS": {
+	"classical": "FALSE",
+	"shepard": "FALSE",
+        "nnlines": "FALSE",
+	"ticks": "TRUE",
+	"pch": "none",
+	"pos": "auto",
+	"cex": 5,
+        "col": "black",
+	"bg": "white"
     },
     "ages": {
 	"dcu": "TRUE",

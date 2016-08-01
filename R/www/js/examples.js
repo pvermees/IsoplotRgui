@@ -104,6 +104,7 @@ function example(geochronometer,plotdevice){
 		}
 	    });
 	case 'KDE':
+	case 'CAD':
 	    return({
 		"data": {
 		    "X": [251.634,245.422,252.170,253.803,250.100,261.653,262.474,259.587,

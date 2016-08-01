@@ -82,6 +82,18 @@ function getOptions(prefs){
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
 	}
 	break;
+    case 'MDS':
+	out += ",classical=" + settings.classical;
+	out += ",shepard=" + settings.shepard;
+	out += ",nnlines=" + settings.nnlines;
+	if (settings.ticks=='FALSE') out += ",xaxt='n',yaxt='n'";
+	if (settings.pch!='none') { out += ",pch=" + settings.pch; }
+	out += ",cex.symbols=" + settings.cex;
+	if (settings.pos==1 | settings.pos==2 | settings.pos==3 | settings.pos==4) 
+	    out += ",pos=" + settings.pos;
+	out += ",col='" + settings.col + "'";
+	out += ",bg='" + settings.bg + "'";
+	break;
     case 'ages':
 	out += ",dcu=" + settings.dcu;
 	out += ",sigdig=" + settings.sigdig;
@@ -139,6 +151,9 @@ function getRcommand(prefs){
 	break;
     case 'CAD':
 	out += "cad(dat";
+	break;
+    case 'MDS':
+	out += "mds(dat";
 	break;
     case 'ages':
 	out += "age(dat";

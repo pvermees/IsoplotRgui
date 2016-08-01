@@ -241,6 +241,54 @@ function help(id){
 	       "output table. <tt>IsoplotR</tt>'s concordia and radial plot functions " +
 	       "were designed to take into account this correlation.";
 	break;
+	case "help-classical":
+	text = "This box controls whether to use classical (Torgerson/Gower) " +
+	       "or non-metric MDS. The latter is recommended except if it leads to " +
+	       "degenerate configurations, which may be the case for small datasets.";
+	break;
+	case "help-shepard":
+	text = "Ticking this box replaces the MDS configuration with a 'Shepard plot', " +
+	       "in which the goodness-of-fit of a (non-metric) MDS configuration is " +
+	       "evaluated by plotting the fitted distances/disparities against the " +
+	       "Kolmogorov-Smirnov dissimilarities. The title of this plot shows " +
+	       "Kruskal's 'stress' parameter. As a rule of thumb, stress values of " +
+	       "0, 0.025, 0.05, 0.1 and 0.2 indicate 'perfect', 'excellent', 'good', "+
+	       "'fair' and 'poor' fits, respectively.";
+	break;
+	case "help-nnlines":
+	text = "To help identify groups of samples on the MDS configuration whilst " +
+	       "simultaneously assessing the goodness-of-fit, it is sometimes useful " +
+	       "to add 'nearest neighbour lines', in which each sample is connected " +
+	       "to its closest neighbour in Kolmogorov-Smirnov space with a solid " +
+               "line, and to its second-closest neighbour with a dashed line. " +
+               "If the nearest neighbour lines cause too much clutter, it is " +
+               "better to omit them.";
+	break;
+	case "help-ticks":
+	text = "The disparity transformation used by the (non-metric) MDS algorithm " +
+	       "produces normalised values with no physical meaning. The " +
+	       "axes of the MDS configuration can therefore safely be removed, " +
+	       "which improves the ink-to-information ratio (sensu <i>Tufte</t>) " +
+	       "of the graphical output.";
+	break;
+	case "help-cex":
+	text = "A numerical value giving the amount by which plotting " +
+	       "symbols should be magnified relative to the default";
+	break;
+	case "help-pos":
+	text = "A position specifier for the labels. Values " +
+	       "of 1, 2, 3 and 4 indicate positions below, " +
+	       "to the left of, above and to the right of the " +
+	       "MDS coordinates, respectively.";
+	break;
+	case "help-col":
+	text = "Outline colour for the plot symbols (e.g., " +
+	       "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
+	break;
+	case "help-bg":
+	text = "Fill colour for the plot symbols (e.g., " +
+	       "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
+	break;
     }
     return text;
 }

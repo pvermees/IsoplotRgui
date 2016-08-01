@@ -24,8 +24,8 @@ $(function(){
 	    $("#INPUT").handsontable({ // add change handler asynchronously
 		afterChange: function(changes,source){
 		    getData(0,0,0,0); // placed here because we don't want to
-		    handson2json();        // call the change handler until after
-		}                          // IsoplotR has been initialised
+		    handson2json();   // call the change handler until after
+		}                     // IsoplotR has been initialised
 	    });
 	});
 	return out;
@@ -35,8 +35,8 @@ $(function(){
 
     $("#INPUT").handsontable({
 	data : [[]],
-	minCols: 100,
-	minRows: 1000,
+	minRows: 100,
+	minCols: 26,
 	rowHeaders: true,
 	colHeaders: true,
 	contextMenu: true,
@@ -48,8 +48,8 @@ $(function(){
 
     $("#OUTPUT").handsontable({
 	data : [[]],
-	minCols: 100,
-	minRows: 1000,
+	minRows: 100,
+	minCols: 26,
 	rowHeaders: true,
 	colHeaders: true,
 	contextMenu: true,
@@ -82,6 +82,7 @@ $(function(){
 	    case 'average':
 		return 2;
 	    case 'KDE':
+	    case 'CAD':
 		return 1;
 	    }
 	}
@@ -155,7 +156,7 @@ $(function(){
 	var cond1 = (nc < DNC);
 	var cond2 = IsoplotR.settings.geochronometer=='detritals';
 	var cond3 = (cond1 & !cond2);
-	var cond4 = nr==1;
+	var cond4 = (nr==1);
 	var cond5 = (cond2 & cond4);
 	var cond6 = IsoplotR.settings.geochronometer=='other';
 	var cond7 = (cond6 & cond4);
@@ -276,6 +277,17 @@ $(function(){
 	    $('#age-dcu').prop('checked',set.dcu=='TRUE');
 	    $('#sigdig').val(set.sigdig);
 	    break;
+	case 'MDS':
+	    $('#classical').prop('checked',set.classical=='TRUE');
+	    $('#shepard').prop('checked',set.shepard=='TRUE');
+	    $('#nnlines').prop('checked',set.nnlines=='TRUE');
+	    $('#ticks').prop('checked',set.ticks=='TRUE');
+	    $('#pch').val(set.pch);
+	    $('#cex').val(set.cex);
+	    $('#pos').val(set.pos);
+	    $('#col').val(set.col);
+	    $('#bg').val(set.bg);
+	    break;
 	default:
 	}
     }
@@ -366,6 +378,21 @@ $(function(){
 	    pdsettings["cutoff76"] = $('#cutoff76').val();
 	    pdsettings["mindisc"] = $('#mindisc').val();
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
+	    break;
+	case 'MDS':
+	    pdsettings["classical"] =
+		$('#classical').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["shepard"] =
+		$('#shepard').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["nnlines"] =
+		$('#nnlines').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["ticks"] =
+		$('#ticks').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["cex"] = $('#cex').val();
+	    pdsettings["pos"] = $('#pos').val();
+	    pdsettings["col"] = $('#col').val();
+	    pdsettings["bg"] = $('#bg').val();
 	    break;
 	case 'ages':
 	    pdsettings.dcu = 
@@ -486,10 +513,10 @@ $(function(){
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'detritals':
-	    setSelectedMenus([true,true,true,true,true,false,false,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,false,false,true,true,true,false,true]);
 	    break;
 	case 'other':
-	    setSelectedMenus([true,true,false,false,false,false,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,false,false,false,false,false,true,true,true,true,true]);
 	    break;
 	default:
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);

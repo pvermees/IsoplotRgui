@@ -16,6 +16,7 @@ if (debug) {
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/isochron.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/json.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/kde.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/mds.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/toolbox.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UPb.R")
