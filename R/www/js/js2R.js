@@ -95,10 +95,11 @@ function getOptions(prefs){
 	out += ",bg='" + settings.bg + "'";
 	break;
     case 'ages':
-	out += ",dcu=" + settings.dcu;
+	if (geochronometer != 'U-Th-He') 
+	    out += ",dcu=" + settings.dcu;
 	out += ",sigdig=" + settings.sigdig;
 	break;
-    default:
+    default: // do nothing
     }
     return out;
 }
@@ -108,10 +109,11 @@ function getRcommand(prefs){
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
     var out = "dat <- selection2data(method='" + geochronometer + "'";
-    switch (plotdevice){
-	case 'spectrum':
-	out += ",format=2"
-	break;
+    if (geochronometer=='Ar-Ar' & plotdevice=='spectrum') { 
+	out += ",format=2"; 
+    }
+    if (geochronometer=='detritals') { 
+	out += ",format=" + prefs.settings[geochronometer].format; 
     }
     out += ");";
     switch (geochronometer){
@@ -128,6 +130,18 @@ function getRcommand(prefs){
      	       ",e=" + prefs.constants.iratio.Ar40Ar36[1] + ");"
 	out += "lambda('K40',x=" + prefs.constants.lambda.K40[0] + 
   	       ",e=" + prefs.constants.lambda.K40[1] + ");"
+	break;
+    case 'U-Th-He': 
+	out += "iratio('U238U235',x=" + prefs.constants.iratio.U238U235[0] + 
+  	       ",e=" + prefs.constants.iratio.U238U235[1] + ");"
+	out += "lambda('U238',x=" + prefs.constants.lambda.U238[0] + 
+  	       ",e=" + prefs.constants.lambda.U238[1] + ");"
+	out += "lambda('U235',x=" + prefs.constants.lambda.U235[0] + 
+  	       ",e=" + prefs.constants.lambda.U235[1] + ");"
+	out += "lambda('Th232',x=" + prefs.constants.lambda.Th232[0] + 
+  	       ",e=" + prefs.constants.lambda.Th232[1] + ");"
+	out += "lambda('Sm147',x=" + prefs.constants.lambda.Sm147[0] + 
+  	       ",e=" + prefs.constants.lambda.Sm147[1] + ");"
 	break;
     case 'detritals':
 	break;

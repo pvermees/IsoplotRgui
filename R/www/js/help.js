@@ -164,7 +164,7 @@ function help(id){
 	case "help-cutoff76":
 	text = "The <sup>206</sup>Pb/<sup>238</sup>U-method is more precise than " +
 	       "the <sup>207</sup>Pb/<sup>206</sup>Pb-method for young ages, while " +
-	       "the opposite is true for old ages. This box sets the cutoff age below "
+	       "the opposite is true for old ages. This box sets the cutoff age below " +
 	       "which the KDE should use the <sup>206</sup>Pb/<sup>238</sup>U-method, " +
 	       "and above which it should use the <sup>207</sup>Pb/<sup>206</sup>Pb-method.";
 	break;

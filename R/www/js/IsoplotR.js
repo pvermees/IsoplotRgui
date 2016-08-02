@@ -67,6 +67,8 @@ $(function(){
 		default:
 		return 6;
 	    }
+	case 'U-Th-He':
+	    return 8;
 	case 'detritals':
 	    var firstrow = $("#INPUT").handsontable('getData')[0];
 	    var nc = firstrow.length;
@@ -204,6 +206,19 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1])
 	    break;
+	case 'U-Th-He':
+	    $('.hide4UThHe').hide();
+	    $('#U238U235').val(cst.iratio.U238U235[0]);
+	    $('#errU238U235').val(cst.iratio.U238U235[1]);
+	    $('#LambdaU238').val(cst.lambda.U238[0]);
+	    $('#errLambdaU238').val(cst.lambda.U238[1]);
+	    $('#LambdaU235').val(cst.lambda.U235[0]);
+	    $('#errLambdaU235').val(cst.lambda.U235[1]);
+	    $('#LambdaTh232').val(cst.lambda.Th232[0]);
+	    $('#errLambdaTh232').val(cst.lambda.Th232[1]);
+	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
+	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
+	    break;
 	case 'detritals':
 	    $('.hide4detritals').hide();
 	    $('#headers-on').prop('checked',set.format==1);
@@ -274,7 +289,9 @@ $(function(){
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
 	case 'ages':
-	    $('#age-dcu').prop('checked',set.dcu=='TRUE');
+	    if (geochronometer != 'U-Th-He') {
+		$('#age-dcu').prop('checked',set.dcu=='TRUE');
+	    }
 	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'MDS':
@@ -395,8 +412,9 @@ $(function(){
 	    pdsettings["bg"] = $('#bg').val();
 	    break;
 	case 'ages':
-	    pdsettings.dcu = 
-		$('#age-dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    if (geochronometer != 'U-Th-He'){
+		pdsettings.dcu = $('#age-dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    }
 	    pdsettings.sigdig = $('#sigdig').val();
 	default:
 	}
@@ -415,6 +433,18 @@ $(function(){
 	    gcsettings.lambda.K40[0] = $("#LambdaK40").val();
 	    gcsettings.lambda.K40[1] = $("#errLambdaK40").val();
 	    break;
+	case 'U-Th-He':
+	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
+	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
+	    gcsettings.lambda.U238[0] = $("#LambdaU238").val();
+	    gcsettings.lambda.U238[1] = $("#errLambdaU238").val();
+	    gcsettings.lambda.U235[0] = $("#LambdaU235").val();
+	    gcsettings.lambda.U235[1] = $("#errLambdaU235").val();
+	    gcsettings.lambda.Th232[0] = $("#LambdaTh232").val();
+	    gcsettings.lambda.Th232[1] = $("#errLambdaTh232").val();
+	    gcsettings.lambda.Sm147[0] = $("#LambdaSm147").val();
+	    gcsettings.lambda.Sm147[1] = $("#errLambdaSm147").val();
+	    break;
 	case 'detritals':
 	    IsoplotR.settings[geochronometer].format = 
 		$("#headers-on").prop('checked') ? 1 : 2;
@@ -428,7 +458,6 @@ $(function(){
 	$("#Rb-Sr").prop('disabled',true);
 	$("#Sm-Nd").prop('disabled',true);
 	$("#Re-Os").prop('disabled',true);
-	$("#U-Th-He").prop('disabled',true);
 	$("#fission").prop('disabled',true);
 	$("#cosmogenics").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
@@ -504,7 +533,7 @@ $(function(){
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,false,false,true,true,true,true,false]);
 	    break;
 	case 'fission':
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
@@ -578,19 +607,19 @@ $(function(){
     $("#OPTIONS").click(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var geochronometer = IsoplotR.settings.geochronometer;
-	var fname = ""
+	var fname = "";
 	$("#OUTPUT").hide();
 	$("#myplot").show();
 	$("#myplot").load("../options/index.html",function(){
-	    fname = "../options/" + geochronometer + ".html";
-	    $("#geochronometer-options").load(fname,function(){
-		showSettings(geochronometer);
-	    });
 	    fname = "../options/" + plotdevice + ".html";
 	    $("#plotdevice-options").load(fname,function(){
 		showSettings(plotdevice);
+		fname = "../options/" + geochronometer + ".html";
+		$("#geochronometer-options").load(fname,function(){
+		    showSettings(geochronometer);
+		    IsoplotR.optionschanged = true;
+		});
 	    });
-	    IsoplotR.optionschanged = true;
 	});
     });
 
