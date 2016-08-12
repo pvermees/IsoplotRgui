@@ -241,6 +241,53 @@ function help(id){
 	       "output table. <tt>IsoplotR</tt>'s concordia and radial plot functions " +
 	       "were designed to take into account this correlation.";
 	break;
+	case "help-U238U235":
+	text = "Change the <sup>238</sup>U/<sup>235</sup>U ratio and uncertainty. " +
+               "Default values are taken from Hiess et al. (2012). To use Steiger " +
+	       "and Jaeger (1997), change to 137.88 &plusmn; 0";
+	break;
+	case "help-LambdaTh232":
+	text = "The default values of the <sup>232</sup>Th decay constant " +
+	       "and its uncertainty are taken from Le Roux and Glendenin (1963).";
+	break;
+	case "help-LambdaSm147":
+	text = "The default values of the <sup>147</sup>Sm decay constant " +
+	       "and its uncertainty are taken from Lugmair and Marti (1978).";
+	break;
+	case "help-logratio":
+	text = "Ticking this box plots the U-Th-He data on a bivariate " +
+	       "log[Th/He] vs. log[U/He] diagram. Unticking this box produces " +
+	       "a U-Th-He ternary diagram.";
+	break;
+	case "help-showcentralcomp":
+	text = "Ticking this box plots the geometric mean ('central') U-Th-He " +
+	       "composition and its standard error as a white ellipse.";
+	break;
+	case "help-minx-helioplot":
+	text = "Minimum log[U/He] limit. Setting this to <tt>auto</tt> " +
+	       "automatically sets this value to fit all the data.";
+	break;
+	case "help-maxx-helioplot":
+	text = "Maximum log[U/He] limit. Setting this to <tt>auto</tt> " +
+	       "automatically sets this value to fit all the data.";
+	break;
+	case "help-miny-helioplot":
+	text = "Minimum log[Th/He] limit. Setting this to <tt>auto</tt> " +
+	       "automatically sets this value to fit all the data.";
+	break;
+	case "help-maxy-helioplot":
+	text = "Maximum log[Th/He] limit. Setting this to <tt>auto</tt> " +
+	       "automatically sets this value to fit all the data.";
+	break;
+	case "help-fact":
+	text = "Three element vector of scaling factors for the He-Th-U ternary " +
+	       "diagram. For example, entering <tt>c(100,10,5)</tt> will multiply the " +
+	       "He abundance with 100, the Th abundance with 10 and the He abundance " +
+	       "with 5 before re-normalising and plotting on the ternary diagram. " +
+	       "The purpose of the re-normalisation is to 'zoom into' the data. " +
+	       "Entering <tt>auto</tt> automatically selects scaling factors that place the " +
+	       "geometric mean composition of the data at the barycentre of the diagram.";
+	break;
 	case "help-classical":
 	text = "This box controls whether to use classical (Torgerson/Gower) " +
 	       "or non-metric MDS. The latter is recommended except if it leads to " +

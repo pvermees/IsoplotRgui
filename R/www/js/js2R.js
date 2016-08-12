@@ -82,6 +82,19 @@ function getOptions(prefs){
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
 	}
 	break;
+    case 'helioplot':
+	out += ",logratio=" + settings.logratio;
+	out += ",show.numbers=" + settings.shownumbers;
+	out += ",show.central.comp=" + settings.showcentralcomp;
+	out += ",alpha=" + settings.alpha;
+	out += ",sigdig=" + settings.sigdig;
+	if (settings.minx != 'auto' & settings.maxx != 'auto')
+	    out += ",xlim=c(" + settings.minx + "," + settings.maxx + ")"
+	if (settings.miny != 'auto' & settings.maxy != 'auto')
+	    out += ",ylim=c(" + settings.miny + "," + settings.maxy + ")"
+	if (settings.fact != 'auto')
+	    out += ",fact=" + settings.fact;
+	break;
     case 'MDS':
 	out += ",classical=" + settings.classical;
 	out += ",shepard=" + settings.shepard;
@@ -165,6 +178,9 @@ function getRcommand(prefs){
 	break;
     case 'CAD':
 	out += "cad(dat";
+	break;
+    case 'helioplot':
+	out += "helioplot(dat";
 	break;
     case 'MDS':
 	out += "mds(dat";

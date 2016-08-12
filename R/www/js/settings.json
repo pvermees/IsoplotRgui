@@ -92,6 +92,18 @@
         "col": "black",
 	"bg": "white"
     },
+    "helioplot": {
+	"logratio": "TRUE",
+	"shownumbers": "FALSE",
+	"showcentralcomp": "TRUE",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
+	"fact": "auto"
+    },
     "ages": {
 	"dcu": "TRUE",
 	"sigdig": 2

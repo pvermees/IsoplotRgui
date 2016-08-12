@@ -156,13 +156,14 @@ $(function(){
 	var dat = [];
 	var DNC = dnc();
 	var cond1 = (nc < DNC);
-	var cond2 = IsoplotR.settings.geochronometer=='detritals';
-	var cond3 = (cond1 & !cond2);
-	var cond4 = (nr==1);
-	var cond5 = (cond2 & cond4);
-	var cond6 = IsoplotR.settings.geochronometer=='other';
-	var cond7 = (cond6 & cond4);
-	if (cond3|cond5|cond7) {
+	var cond2 = IsoplotR.settings.geochronometer=='U-Th-He' & nc==6;
+	var cond3 = IsoplotR.settings.geochronometer=='detritals';
+	var cond4 = (cond1 & !cond2 & !cond3);
+	var cond5 = (nr==1);
+	var cond6 = (cond2 & cond5);
+	var cond7 = IsoplotR.settings.geochronometer=='other';
+	var cond8 = (cond7 & cond5);
+	if (cond4|cond6|cond8) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
 		r = 0;
@@ -171,7 +172,7 @@ $(function(){
 		c2 = nc-1;
 	}
 	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
-	if (cond2){
+	if (cond3){
 	    for (var i=0; i<dat.length; i++){
 		for (var j=0; j<dat[i].length; j++){
 		    if (dat[i][j]==null){
@@ -305,6 +306,18 @@ $(function(){
 	    $('#col').val(set.col);
 	    $('#bg').val(set.bg);
 	    break;
+	case 'helioplot':
+	    $('#logratio').prop('checked',set.logratio=='TRUE');
+	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    $('#showcentralcomp').prop('checked',set.showcentralcomp=='TRUE');
+	    $('#alpha').val(set.alpha);
+	    $('#sigdig').val(set.sigdig);
+	    $('#minx').val(set.minx);
+	    $('#maxx').val(set.maxx);
+	    $('#miny').val(set.miny);
+	    $('#maxy').val(set.maxy);
+	    $('#fact').val(set.fact);
+	    break;
 	default:
 	}
     }
@@ -416,6 +429,21 @@ $(function(){
 		pdsettings.dcu = $('#age-dcu').prop('checked') ? 'TRUE' : 'FALSE';
 	    }
 	    pdsettings.sigdig = $('#sigdig').val();
+	case 'helioplot':
+	    pdsettings.logratio = 
+		$('#logratio').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.shownumbers = 
+		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.showcentralcomp = 
+		$('#showcentralcomp').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["alpha"] = $('#alpha').val();
+	    pdsettings["sigdig"] = $('#sigdig').val();
+	    pdsettings["minx"] = $('#minx').val();
+	    pdsettings["maxx"] = $('#maxx').val();
+	    pdsettings["miny"] = $('#miny').val();
+	    pdsettings["maxy"] = $('#maxy').val();
+	    pdsettings["fact"] = $('#fact').val();
+	    break;
 	default:
 	}
 	switch (geochronometer){
@@ -468,7 +496,7 @@ $(function(){
 	$("#KDE").prop('disabled',options[5]);
 	$("#CAD").prop('disabled',options[6]);
 	$("#radial").prop('disabled',options[7]);
-	$("#ternary").prop('disabled',options[8]);
+	$("#helioplot").prop('disabled',options[8]);
 	$("#banana").prop('disabled',options[9]);
 	$("#MDS").prop('disabled',options[10]);
 	$("#ages").prop('disabled',options[11]);
@@ -533,7 +561,7 @@ $(function(){
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,true,true,true,true,false,false,true,true,true,true,false]);
+	    setSelectedMenus([true,true,true,true,true,false,false,true,false,true,true,false]);
 	    break;
 	case 'fission':
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);

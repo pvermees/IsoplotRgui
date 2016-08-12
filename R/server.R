@@ -12,6 +12,7 @@ if (debug) {
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/constants.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/discordia.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/errorellipse.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/helioplot.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/io.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/isochron.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/json.R")
@@ -64,8 +65,9 @@ shinyServer(function(input,output,session){
                          'Ar39Ar36','errAr39Ar36')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Th-He")){
-            mat <- matrix(c('U','errU','Th','errTh','Sm','errSm','He','errHe'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))            
+            cn <- c('He','errHe','U','errU','Th','errTh','Sm','errSm')
+            mat <- matrix(cn[1:nc],1,nc)
+            mat <- rbind(matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"detritals") & format==1) {
             mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
         } else if (identical(method,"detritals") & format!=1) {
