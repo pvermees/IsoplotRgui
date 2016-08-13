@@ -158,7 +158,7 @@ $(function(){
 	var cond1 = (nc < DNC);
 	var cond2 = IsoplotR.settings.geochronometer=='U-Th-He' & nc==6;
 	var cond3 = IsoplotR.settings.geochronometer=='detritals';
-	var cond4 = (cond1 & !cond2 & !cond3);
+	var cond4 = (cond1 & !cond2) | (cond1 & !cond3);
 	var cond5 = (nr==1);
 	var cond6 = (cond2 & cond5);
 	var cond7 = IsoplotR.settings.geochronometer=='other';
