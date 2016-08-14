@@ -4,7 +4,10 @@
     "data": {
 	"U-Pb": {},
 	"Ar-Ar": {},
-	"detritals": {}
+	"U-Th-He": {},
+	"fissiontracks": {},
+	"detritals": {},
+	"other": {}
     },
     "detritals": {
 	"format": 1

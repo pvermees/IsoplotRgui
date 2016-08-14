@@ -8,10 +8,12 @@ if (debug) {
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/agespectrum.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/botev.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/cad.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/central.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/concordia.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/constants.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/discordia.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/errorellipse.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/fissiontracks.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/helioplot.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/io.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/isochron.R")
@@ -64,6 +66,14 @@ shinyServer(function(input,output,session){
                          'Ar36Ar40','errAr36Ar40',
                          'Ar39Ar36','errAr39Ar36')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"fissiontracks") & format==1){
+            mat <- matrix('',5,nc)
+            mat[1,1:2] <-c('Zeta','errZeta')
+            mat[2,1:2] <- d[3:4]
+            mat[3,1:2] <-c('rhoD','errRhoD')
+            mat[4,1:2] <- d[5:6]
+            mat[5,1:2] <- c('Ns','Ni')
+            mat <- rbind(mat,matrix(d[7:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Th-He")){
             cn <- c('He','errHe','U','errU','Th','errTh','Sm','errSm')
             mat <- matrix(cn[1:nc],1,nc)

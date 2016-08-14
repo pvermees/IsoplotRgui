@@ -67,6 +67,8 @@ $(function(){
 		default:
 		return 6;
 	    }
+	case 'fissiontracks':
+	    return 2;
 	case 'U-Th-He':
 	    return 8;
 	case 'detritals':
@@ -95,11 +97,17 @@ $(function(){
 	var geochronometer = settings.geochronometer;
 	var json = settings.data[geochronometer];
 	switch (geochronometer){
-	    case "Ar-Ar":
+	case "Ar-Ar":
 	    $("#J").val(json.J[0]);
 	    $("#Jerr").val(json.J[1]);
 	    break;
-	    default:
+	case "fissiontracks":
+	    $("#zeta").val(json.zeta[0]);
+	    $("#zetaErr").val(json.zeta[1]);	    
+	    $("#rhoDval").val(json.rhoD[0]);
+	    $("#rhoDerr").val(json.rhoD[1]);
+	    break;
+	default:
 	}
 	var row, header;
 	var handson = {
@@ -136,11 +144,17 @@ $(function(){
 	var mydata = out.settings.data[geochronometer];
 	var i = 0;
 	switch (geochronometer){
-	    case "Ar-Ar":
+	case "Ar-Ar":
 	    mydata.J[0] = $("#J").val();
 	    mydata.J[1] = $("#Jerr").val();
 	    break;
-	    default:
+	case "fissiontracks":
+	    mydata.zeta[0] = $("#zeta").val();
+	    mydata.zeta[1] = $("#zetaErr").val();
+	    mydata.rhoD[0] = $("#rhoDval").val();
+	    mydata.rhoD[1] = $("#rhoDerr").val();
+	    break;
+	default:
 	}
 	$.each(mydata.data, function(k, v) {
 	    mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
@@ -182,6 +196,12 @@ $(function(){
 	    var J = $('#J').val();
 	    var sJ = $('#Jerr').val();
 	    IsoplotR.data = [nr,nc,J,sJ,dat];
+	} else if (IsoplotR.settings.geochronometer=='fissiontracks'){
+	    var zeta = $('#zeta').val();
+	    var zetaErr = $('#zetaErr').val();
+	    var rhoD = $('#rhoDval').val();
+	    var rhoDerr = $('#rhoDerr').val();
+	    IsoplotR.data = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
 	} else {
 	    IsoplotR.data = [nr,nc,dat];
 	}
@@ -486,7 +506,6 @@ $(function(){
 	$("#Rb-Sr").prop('disabled',true);
 	$("#Sm-Nd").prop('disabled',true);
 	$("#Re-Os").prop('disabled',true);
-	$("#fission").prop('disabled',true);
 	$("#cosmogenics").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#isochron").prop('disabled',options[1]);
@@ -500,7 +519,7 @@ $(function(){
 	$("#banana").prop('disabled',options[9]);
 	$("#MDS").prop('disabled',options[10]);
 	$("#ages").prop('disabled',options[11]);
-	for (var i=0; i<11; i++){ // change to first available option
+	for (var i=0; i<12; i++){ // change to first available option
 	    if (!options[i]) {
 		$('#plotdevice').prop('selectedIndex',i);
 		IsoplotR.settings.plotdevice = 
@@ -513,7 +532,8 @@ $(function(){
     $("select").selectmenu({ width : 'auto' });
     $("#geochronometer").selectmenu({
 	change: function( event, ui ) {
-	    IsoplotR.settings.geochronometer = $(this).val();
+	    IsoplotR.settings.geochronometer =
+		$('option:selected', $("#geochronometer")).attr('id');
 	    selectGeochronometer();
 	}
     });
@@ -545,6 +565,7 @@ $(function(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
 	$("#JZeta").hide();
+	$("#rhoD").hide();
 	switch (geochronometer){
 	case 'U-Pb':
 	    setSelectedMenus([false,true,true,true,false,false,false,true,true,true,true,false]);
@@ -563,8 +584,16 @@ $(function(){
 	case 'U-Th-He':
 	    setSelectedMenus([true,true,true,true,true,false,false,true,false,true,true,false]);
 	    break;
-	case 'fission':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
+	case 'fissiontracks':
+	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,false]);
+	    $("#JZeta").html('&nbsp;&zeta;: <input type="text" id="zeta"> &plusmn;' + 
+			     '<input type="text" id="zetaErr"> (1&sigma;)');
+	    $("#JZeta").show();
+	    $("#rhoD").html('<div style="line-height:50%;"><br></div>' +
+			    '&rho;<sub>D</sub>: <input type="text" id="rhoDval"> &plusmn;' + 
+			    '<input type="text" id="rhoDerr"> (1&sigma;)' +
+			    '<div style="line-height:50%;"><br></div>');
+	    $("#rhoD").show();
 	    break;
 	case 'cosmogenics':
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
