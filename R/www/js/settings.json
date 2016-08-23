@@ -17,14 +17,14 @@
 	"maxt": "auto",
 	"alpha": 0.05,
 	"wetherill": "TRUE",
-	"dcu": "TRUE",
+	"exterr": "TRUE",
 	"shownumbers": "FALSE",
 	"showage": 1,
 	"sigdig": 2
     },
     "isochron": {
 	"inverse": "TRUE",
-	"dcu": "TRUE",
+	"exterr": "TRUE",
 	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",
@@ -42,9 +42,22 @@
 	"alpha": 0.05,
 	"sigdig": 2
     },
+    "radial": {
+	"transformation": "log",
+	"mint": "auto",
+	"t0": "auto",
+	"maxt": "auto",
+	"pch": 21,
+	"bg": "white",
+	"sigdig": 2,
+	"shownumbers": "FALSE",
+	"cutoff76": 1100,
+	"mindisc": -15,
+	"maxdisc": 5
+    },
     "average": {
 	"outliers": "TRUE",
-	"dcu": "TRUE",
+	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"cutoff76": 1100,
@@ -53,7 +66,7 @@
     },
     "spectrum": {
 	"plateau": "TRUE",
-	"dcu": "TRUE",
+	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2
     },
@@ -108,7 +121,7 @@
 	"fact": "auto"
     },
     "ages": {
-	"dcu": "TRUE",
+	"exterr": "TRUE",
 	"sigdig": 2
     }
 }

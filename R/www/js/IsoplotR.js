@@ -83,6 +83,7 @@ $(function(){
 		return 5;
 	    case 'spectrum':
 		return 3;
+	    case 'radial':
 	    case 'average':
 		return 2;
 	    case 'KDE':
@@ -240,6 +241,9 @@ $(function(){
 	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
 	    break;
+	case 'fissiontracks':
+	    $('.hide4fissiontracks').hide();
+	    break;
 	case 'detritals':
 	    $('.hide4detritals').hide();
 	    $('#headers-on').prop('checked',set.format==1);
@@ -254,25 +258,38 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
-	    $('#dcu').prop('checked',set.dcu=='TRUE');
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'isochron':
-	    $('#inverse').prop('checked',set.inverse=='TRUE'),
-	    $('#isochron-dcu').prop('checked',set.dcu=='TRUE')
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')	    
 	case 'regression':
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE')
-	    $('#dcu').prop('checked',set.dcu=='TRUE');
-	    $('#isochron-minx').val(set.minx),
-	    $('#isochron-maxx').val(set.maxx),
-	    $('#isochron-miny').val(set.miny),
-	    $('#isochron-maxy').val(set.maxy),
+	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#isochron-minx').val(set.minx);
+	    $('#isochron-maxx').val(set.maxx);
+	    $('#isochron-miny').val(set.miny);
+	    $('#isochron-maxy').val(set.maxy);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    break;
+	case 'radial':
+	    $('#transformation option[value='+set.transformation+']').
+		prop('selected', 'selected');
+	    $('#mint').val(set.mint);
+	    $('#t0').val(set.t0);
+	    $('#maxt').val(set.maxt);
+	    $('#sigdig').val(set.sigdig);
+	    $('#pch').val(set.pch);
+	    $('#bg').val(set.bg);
+	    $('#cutoff76').val(set.cutoff76);
+	    $('#mindisc').val(set.mindisc);
+	    $('#maxdisc').val(set.maxdisc);
+	    break;
 	case 'average':
-	    $('#dcu').prop('checked',set.dcu=='TRUE');
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#outliers').prop('checked',set.outliers=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
@@ -281,7 +298,7 @@ $(function(){
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
 	case 'spectrum':
-	    $('#dcu').prop('checked',set.dcu=='TRUE');
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#plateau').prop('checked',set.plateau=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
@@ -311,7 +328,7 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He') {
-		$('#age-dcu').prop('checked',set.dcu=='TRUE');
+		$('#age-exterr').prop('checked',set.exterr=='TRUE');
 	    }
 	    $('#sigdig').val(set.sigdig);
 	    break;
@@ -359,15 +376,15 @@ $(function(){
 	    if ($('#alpha').val() > 0 & $('#alpha').val() < 1) { 
 		pdsettings.alpha = $('#alpha').val(); 
 	    }
-	    pdsettings.dcu = 
-		$('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.exterr = 
+		$('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
 	case 'isochron':
 	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.dcu = $('#isochron-dcu').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.exterr = $('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	case 'regression':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.minx = $('#isochron-minx').val();
@@ -377,10 +394,22 @@ $(function(){
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
+	case 'radial':
+	    pdsettings.transformation = $('#transformation').prop("value");
+	    pdsettings.mint = $('#mint').val();
+	    pdsettings.t0 = $('#t0').val();
+	    pdsettings.maxt = $('#maxt').val();
+	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings.pch = $('#pch').val();
+	    pdsettings.bg = $('#bg').val();
+	    pdsettings.cutoff76 = $('#cutoff76').val();
+	    pdsettings.mindisc = $('#mindisc').val();
+	    pdsettings.maxdisc = $('#maxdisc').val();
+	    break;
 	case 'average':
 	    if (geochronometer != "other"){
-		pdsettings.dcu =
-		    $('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
+		pdsettings.exterr =
+		    $('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    }
 	    pdsettings["outliers"] = 
 		$('#outliers').prop('checked') ? 'TRUE' : 'FALSE';
@@ -392,8 +421,8 @@ $(function(){
 	    break;
 	case 'spectrum':
 	    if (geochronometer != "other"){
-		pdsettings.dcu =
-		    $('#dcu').prop('checked') ? 'TRUE' : 'FALSE';
+		pdsettings.exterr =
+		    $('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    }
 	    pdsettings["plateau"] = 
 		$('#plateau').prop('checked') ? 'TRUE' : 'FALSE';
@@ -446,7 +475,7 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He'){
-		pdsettings.dcu = $('#age-dcu').prop('checked') ? 'TRUE' : 'FALSE';
+		pdsettings.exterr = $('#age-exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    }
 	    pdsettings.sigdig = $('#sigdig').val();
 	case 'helioplot':
@@ -508,14 +537,14 @@ $(function(){
 	$("#Re-Os").prop('disabled',true);
 	$("#cosmogenics").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
-	$("#isochron").prop('disabled',options[1]);
-	$("#regression").prop('disabled',options[2]);
-	$("#spectrum").prop('disabled',options[3]);
-	$("#average").prop('disabled',options[4]);
-	$("#KDE").prop('disabled',options[5]);
-	$("#CAD").prop('disabled',options[6]);
-	$("#radial").prop('disabled',options[7]);
-	$("#helioplot").prop('disabled',options[8]);
+	$("#helioplot").prop('disabled',options[1]);
+	$("#isochron").prop('disabled',options[2]);
+	$("#radial").prop('disabled',options[3]);
+	$("#regression").prop('disabled',options[4]);
+	$("#spectrum").prop('disabled',options[5]);
+	$("#average").prop('disabled',options[6]);
+	$("#KDE").prop('disabled',options[7]);
+	$("#CAD").prop('disabled',options[8]);
 	$("#banana").prop('disabled',options[9]);
 	$("#MDS").prop('disabled',options[10]);
 	$("#ages").prop('disabled',options[11]);
@@ -568,10 +597,10 @@ $(function(){
 	$("#rhoD").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,true,true,true,false,false,false,true,true,true,true,false]);
+	    setSelectedMenus([false,true,true,false,true,true,false,false,false,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,false,true,false,false,false,false,true,true,true,true,false]);
+	    setSelectedMenus([true,true,false,false,true,false,false,false,false,true,true,false]);
 	    $("#JZeta").html('J: <input type="text" id="J"> &plusmn;' + 
 			     '<input type="text" id="Jerr"> (1&sigma;)');
 	    $("#JZeta").show();
@@ -582,16 +611,16 @@ $(function(){
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,true,true,true,true,false,false,true,false,true,true,false]);
+	    setSelectedMenus([true,false,true,false,true,true,false,false,false,true,true,false]);
 	    break;
 	case 'fissiontracks':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,false]);
-	    $("#JZeta").html('&nbsp;&zeta;: <input type="text" id="zeta"> &plusmn;' + 
-			     '<input type="text" id="zetaErr"> (1&sigma;)');
+	    setSelectedMenus([true,true,true,false,true,true,false,false,false,true,true,false]);
+	    $("#JZeta").html('&nbsp;&zeta;: <input type="text" id="zeta">' + 
+			     '&plusmn; <input type="text" id="zetaErr"> yr cm<sup>2</sup>');
 	    $("#JZeta").show();
 	    $("#rhoD").html('<div style="line-height:50%;"><br></div>' +
-			    '&rho;<sub>D</sub>: <input type="text" id="rhoDval"> &plusmn;' + 
-			    '<input type="text" id="rhoDerr"> (1&sigma;)' +
+			    '&rho;<sub>D</sub>: <input type="text" id="rhoDval">' +
+			    '&plusmn; <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>' +
 			    '<div style="line-height:50%;"><br></div>');
 	    $("#rhoD").show();
 	    break;
@@ -599,10 +628,10 @@ $(function(){
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
 	    break;
 	case 'detritals':
-	    setSelectedMenus([true,true,true,true,true,false,false,true,true,true,false,true]);
+	    setSelectedMenus([true,true,true,true,true,true,true,false,false,true,false,true]);
 	    break;
 	case 'other':
-	    setSelectedMenus([true,true,false,false,false,false,false,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,false,false,false,false,false,false,true,true,true]);
 	    break;
 	default:
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);

@@ -17,26 +17,39 @@ function getOptions(prefs){
 	}
 	out += ",alpha=" + settings.alpha;
 	out += ",wetherill=" + settings.wetherill;
-	out += ",dcu=" + settings.dcu;
+	out += ",exterr=" + settings.exterr;
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",show.age=" + settings.showage;
 	out += ",sigdig=" + settings.sigdig;
 	break;
+    case 'radial':
+	out += ",transformation='" + settings.transformation + "'";
+	if (settings.mint != 'auto') out += ",from=" + settings.mint;
+	if (settings.t0 != 'auto') out += ",t0=" + settings.t0;
+	if (settings.maxt != 'auto') out += ",to=" + settings.maxt;
+	out += ",pch=" + settings.pch;
+	out += ",bg='" + settings.bg + "'";
+	out += ",sigdig=" + settings.sigdig;
+	if (geochronometer=="U-Pb"){
+	    out += ",cutoff.76=" + settings.cutoff76;
+	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	}
+	break;
     case 'isochron':
 	out += ",inverse=" + settings.inverse;
-	out += ",dcu=" + settings.dcu;
+	out += ",exterr=" + settings.exterr;
     case 'regression':
 	if (settings.minx != 'auto' & settings.maxx != 'auto')
-	    out += ",xlim=c(" + settings.minx + "," + settings.maxx + ")"
+	    out += ",xlim=c(" + settings.minx + "," + settings.maxx + ")";
 	if (settings.miny != 'auto' & settings.maxy != 'auto')
-	    out += ",ylim=c(" + settings.miny + "," + settings.maxy + ")"
+	    out += ",ylim=c(" + settings.miny + "," + settings.maxy + ")";
 	out += ",alpha=" + settings.alpha;
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'average':
 	if (geochronometer != "other"){
-	    out += ",dcu=" + settings.dcu;
+	    out += ",exterr=" + settings.exterr;
 	}
 	out += ",detect.outliers=" + settings.outliers;
 	out += ",alpha=" + settings.alpha;
@@ -44,7 +57,7 @@ function getOptions(prefs){
 	break;
     case 'spectrum':
 	if (geochronometer != "other"){
-	    out += ",dcu=" + settings.dcu;
+	    out += ",exterr=" + settings.exterr;
 	}
 	out += ",plateau=" + settings.plateau;
 	out += ",alpha=" + settings.alpha;
@@ -109,7 +122,7 @@ function getOptions(prefs){
 	break;
     case 'ages':
 	if (geochronometer != 'U-Th-He') 
-	    out += ",dcu=" + settings.dcu;
+	    out += ",exterr=" + settings.exterr;
 	out += ",sigdig=" + settings.sigdig;
 	break;
     default: // do nothing
@@ -166,6 +179,9 @@ function getRcommand(prefs){
     case 'isochron':
     case 'regression':
 	out += "isochron(dat";
+	break;
+    case 'radial':
+	out += "radialplot(dat"
 	break;
     case 'spectrum':
 	out += "agespectrum(dat"

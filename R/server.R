@@ -21,6 +21,7 @@ if (debug) {
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/kde.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/mds.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
+    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/radialplot.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/toolbox.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UPb.R")
     source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UThHe.R")

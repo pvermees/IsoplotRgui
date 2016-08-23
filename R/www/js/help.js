@@ -45,12 +45,12 @@ function help(id){
 	        "be rounded. For example, if this number is 2, then 1.23456 &plusmn; " +
 	        "0.01234 is rounded to 1.234 &plusmn; 0.012.";
 	break;
-	case "help-dcu-UPb":
+	case "help-exterr-UPb":
 	text = "When this box is ticked, the thickness of the concordia line " + 
 	       "will be adjusted to show the analytical uncertainty associated " +
 	       "with the <sup>235</sup>U and <sup>238</sup>U decay constants.";
 	break;
-	case "help-dcu":
+	case "help-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	       "with the decay constants will be propagated into the age.";
 	break;
@@ -94,7 +94,7 @@ function help(id){
 	case "help-isochron-maxy":
 	text = "Maximum limit of the vertical axis.";
 	break;
-	case "help-isochron-dcu":
+	case "help-isochron-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	       "with the radioactive decay constant and the non-radiogenic " +
 	       "isotope composition is propagated into the age.";
@@ -231,7 +231,7 @@ function help(id){
 	       "the column headers of the table, i.e. the letters <tt>A</tt>, <tt>B</tt>, " +
 	       "... <tt>ZZ</tt>";
 	break;
-	case "help-age-dcu":
+	case "help-age-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	       "with the <sup>235</sup>U and <sup>238</sup>U decay constants will " +
 	       "be propagated into the age calculations. This is recommended if " +
