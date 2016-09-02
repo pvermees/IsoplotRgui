@@ -138,7 +138,8 @@ function getRcommand(prefs){
     if (geochronometer=='Ar-Ar' & plotdevice=='spectrum') { 
 	out += ",format=2"; 
     }
-    if (geochronometer=='detritals') { 
+    if (geochronometer=='detritals' |
+	geochronometer=='fissiontracks') {
 	out += ",format=" + prefs.settings[geochronometer].format; 
     }
     out += ");";

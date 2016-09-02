@@ -68,7 +68,12 @@ $(function(){
 		return 6;
 	    }
 	case 'fissiontracks':
-	    return 2;
+	    var format = IsoplotR.settings.fissiontracks.format;
+	    if (format==1){
+		return 2;
+	    } else if (format==2){
+		return 20;
+	    }
 	case 'U-Th-He':
 	    return 8;
 	case 'detritals':
@@ -99,14 +104,16 @@ $(function(){
 	var json = settings.data[geochronometer];
 	switch (geochronometer){
 	case "Ar-Ar":
-	    $("#J").val(json.J[0]);
+	    $("#Jval").val(json.J[0]);
 	    $("#Jerr").val(json.J[1]);
 	    break;
 	case "fissiontracks":
-	    $("#zeta").val(json.zeta[0]);
+	    $("#zetaVal").val(json.zeta[0]);
 	    $("#zetaErr").val(json.zeta[1]);	    
-	    $("#rhoDval").val(json.rhoD[0]);
-	    $("#rhoDerr").val(json.rhoD[1]);
+	    if (settings.fissiontracks.format == 1){
+		$("#rhoDval").val(json.rhoD[0]);
+		$("#rhoDerr").val(json.rhoD[1]);
+	    }
 	    break;
 	default:
 	}
@@ -146,14 +153,16 @@ $(function(){
 	var i = 0;
 	switch (geochronometer){
 	case "Ar-Ar":
-	    mydata.J[0] = $("#J").val();
+	    mydata.J[0] = $("#Jval").val();
 	    mydata.J[1] = $("#Jerr").val();
 	    break;
 	case "fissiontracks":
-	    mydata.zeta[0] = $("#zeta").val();
+	    mydata.zeta[0] = $("#zetaVal").val();
 	    mydata.zeta[1] = $("#zetaErr").val();
-	    mydata.rhoD[0] = $("#rhoDval").val();
-	    mydata.rhoD[1] = $("#rhoDerr").val();
+	    if (out.settings['fissiontracks'].format == 1){
+		mydata.rhoD[0] = $("#rhoDval").val();
+		mydata.rhoD[1] = $("#rhoDerr").val();
+	    }
 	    break;
 	default:
 	}
@@ -166,18 +175,23 @@ $(function(){
     }
 
     function getData(r,c,r2,c2){
+	var geochronometer = IsoplotR.settings.geochronometer;
+	var FTformat = IsoplotR.settings.fissiontracks.format;
 	var nr = 1+Math.abs(r2-r);
 	var nc = 1+Math.abs(c2-c);
 	var dat = [];
 	var DNC = dnc();
 	var cond1 = (nc < DNC);
-	var cond2 = IsoplotR.settings.geochronometer=='U-Th-He' & nc==6;
-	var cond3 = IsoplotR.settings.geochronometer=='detritals';
+	var cond2 = geochronometer=='U-Th-He' & nc==6;
+	var cond3 = geochronometer=='detritals';
 	var cond4 = (cond1 & !cond2) | (cond1 & !cond3);
 	var cond5 = (nr==1);
 	var cond6 = (cond2 & cond5);
-	var cond7 = IsoplotR.settings.geochronometer=='other';
+	var cond7 = geochronometer=='other';
 	var cond8 = (cond7 & cond5);
+	var cond9 = geochronometer=='fissiontracks';
+	var cond10 = FTformat==2;
+	var cond11 = cond9 & cond10;
 	if (cond4|cond6|cond8) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
@@ -187,22 +201,26 @@ $(function(){
 		c2 = nc-1;
 	}
 	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
-	if (cond3){
+	if (cond3|cond11){
 	    for (var i=0; i<dat.length; i++){
 		for (var j=0; j<dat[i].length; j++){
 		    if (dat[i][j]==null){
 			dat[i][j] = '';
 	}   }	}   }
-	if (IsoplotR.settings.geochronometer=='Ar-Ar'){
-	    var J = $('#J').val();
+	if (geochronometer=='Ar-Ar'){
+	    var J = $('#Jval').val();
 	    var sJ = $('#Jerr').val();
 	    IsoplotR.data = [nr,nc,J,sJ,dat];
-	} else if (IsoplotR.settings.geochronometer=='fissiontracks'){
-	    var zeta = $('#zeta').val();
+	} else if (geochronometer=='fissiontracks' & FTformat==1){
+	    var zeta = $('#zetaVal').val();
 	    var zetaErr = $('#zetaErr').val();
 	    var rhoD = $('#rhoDval').val();
 	    var rhoDerr = $('#rhoDerr').val();
 	    IsoplotR.data = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
+	} else if (geochronometer=='fissiontracks' & FTformat==2){
+	    var zeta = $('#zetaVal').val();
+	    var zetaErr = $('#zetaErr').val();
+	    IsoplotR.data = [nr,nc,zeta,zetaErr,dat];
 	} else {
 	    IsoplotR.data = [nr,nc,dat];
 	}
@@ -590,20 +608,46 @@ $(function(){
 	populate(IsoplotR,true);
     }
 
+    function getJbox(){
+	var out = 'J: <input type="text" id="Jval"> &plusmn;' + 
+	    '<input type="text" id="Jerr"> (1&sigma;)' +
+	    '<div style="line-height:50%;"><br></div>';
+	return out;
+    }
+
+    function getZetaBox(format){
+	var out = '&nbsp;&zeta;: ' +
+	    '<input type="text" id="zetaVal"> &plusmn; ' + 
+	    '<input type="text" id="zetaErr"> yr cm<sup>2</sup>';
+	if (format==2) {
+	     out += '<div style="line-height:50%;"><br></div>';
+	}
+	return out;
+    }
+
+    function getRhoBox(){
+	var out = '<div style="line-height:50%;"><br></div>' +
+	    '&rho;<sub>D</sub>: <input type="text" id="rhoDval">' +
+	    '&plusmn; <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>' +
+	    '<div style="line-height:50%;"><br></div>';
+	return out;
+    }
+    
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
-	$("#JZeta").hide();
-	$("#rhoD").hide();
+	$("#method").hide();
+	$("#Jdiv").hide();
+	$("#zetaDiv").hide();
+	$("#rhoDdiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
 	    setSelectedMenus([false,true,true,false,true,true,false,false,false,true,true,false]);
 	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus([true,true,false,false,true,false,false,false,false,true,true,false]);
-	    $("#JZeta").html('J: <input type="text" id="J"> &plusmn;' + 
-			     '<input type="text" id="Jerr"> (1&sigma;)');
-	    $("#JZeta").show();
+	    $("#Jdiv").html(getJbox());
+	    $("#Jdiv").show();
 	    break;
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -614,15 +658,13 @@ $(function(){
 	    setSelectedMenus([true,false,true,false,true,true,false,false,false,true,true,false]);
 	    break;
 	case 'fissiontracks':
+	    var format = IsoplotR.settings.fissiontracks.format;
 	    setSelectedMenus([true,true,true,false,true,true,false,false,false,true,true,false]);
-	    $("#JZeta").html('&nbsp;&zeta;: <input type="text" id="zeta">' + 
-			     '&plusmn; <input type="text" id="zetaErr"> yr cm<sup>2</sup>');
-	    $("#JZeta").show();
-	    $("#rhoD").html('<div style="line-height:50%;"><br></div>' +
-			    '&rho;<sub>D</sub>: <input type="text" id="rhoDval">' +
-			    '&plusmn; <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>' +
-			    '<div style="line-height:50%;"><br></div>');
-	    $("#rhoD").show();
+	    $("#zetaDiv").html(getZetaBox(format));
+	    $("#rhoDdiv").html(getRhoBox());
+	    $("#method").show();
+	    $("#zetaDiv").show();
+	    if (format==1){ $("#rhoDdiv").show(); }
 	    break;
 	case 'cosmogenics':
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
@@ -646,7 +688,12 @@ $(function(){
 	var plotdevice = prefs.settings.plotdevice;
 	var data = prefs.settings.data[geochronometer];
 	if (forcedefaults | $.isEmptyObject(data)){
-	    prefs.settings.data[geochronometer] = example(geochronometer,plotdevice);
+	    if (geochronometer=='fissiontracks'){
+		var format = prefs.settings[geochronometer].format;
+		prefs.settings.data[geochronometer] = example(geochronometer,plotdevice,format);
+	    } else {
+		prefs.settings.data[geochronometer] = example(geochronometer,plotdevice);
+	    }
 	}
 	json2handson(prefs.settings);
 	return prefs;
@@ -664,6 +711,21 @@ $(function(){
 
     $("#helpmenu").dialog({ autoOpen: false });
 
+    $("#method-options").selectmenu({
+	change: function( event, ui ) {
+	    var geochronometer = IsoplotR.settings.geochronometer;
+	    var format = 1*$('option:selected', $("#method-options")).attr('value');
+	    IsoplotR.settings[geochronometer].format = format;
+	    $("#zetaDiv").html(getZetaBox(format));
+	    if (format==1){
+		$("#rhoDdiv").show();
+	    } else {
+		$("#rhoDdiv").hide();
+	    }
+	    IsoplotR = populate(IsoplotR,true);
+	}
+    });
+    
     $('body').on('click', 'help', function(){
 	var text = help($(this).attr('id'));
 	$("#helpmenu").html(text);

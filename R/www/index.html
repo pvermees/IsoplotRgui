@@ -31,6 +31,15 @@
     <option id="detritals">detritals</option>
     <option id="other">other</option>
   </select>
+  <div id="method-cloak">
+    <div id="method">
+      <select id="method-options">
+	<option value='1' id="EDM">EDM</option>
+	<option value='2' id="ICPzeta">ICP (&zeta;-calibration)</option>
+	<option value='3' id="ICPabsolute">ICP (absolute)</option>
+      </select>
+    </div>
+  </div>
   <select name="plotdevice" id="plotdevice">
     <option id="concordia" selected="selected">concordia</option>
     <option id="helioplot">helioplot</option>
@@ -50,32 +59,33 @@
 </header>
 
 <left>
-  <div class="centerme" id="JZeta"></div>
-  <div class="centerme" id="rhoD"></div>
+  <div class="centerme" id="Jdiv"></div>
+  <div class="centerme" id="zetaDiv"></div>
+  <div class="centerme" id="rhoDdiv"></div>
   <div id="INPUT"></div>
 </left>
 
 <right>
-<div id="helpmenu" title="help"></div>
-<div id="myplot" class="result shiny-plot-output"></div>
-<div id="myscript" class="shiny-html-output"></div>
-<div id="OUTPUT" class="result"></div>
+  <div id="helpmenu" title="help"></div>
+  <div id="myplot" class="result shiny-plot-output"></div>
+  <div id="myscript" class="shiny-html-output"></div>
+  <div id="OUTPUT" class="result"></div>
 </right>
 
 <footer>
-<div id="DEFAULTS" class="button">Defaults</div>
-<div id="CLEAR" class="button">Clear</div>
-<!-- hacked file upload button -->
-<div class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
-  <input id="OPEN" type="file" class="filestyle" data-buttonText="Open" 
-	 data-input="false" data-badge="false" />
-</div>
-<div id="SAVE" class="button">Save</div>
-<div id="PLOT" class="button action-button">PLOT</div>
-<div id="RUN" class="button action-button">RUN</div>
-<a id="PDF" target="_blank" class="button shiny-download-link">PDF</a>
-<a id="CSV" target="_blank" class="button shiny-download-link">CSV</a>
-<a id="fname" href="" download="IsoplotR.json"></a>
+  <div id="DEFAULTS" class="button">Defaults</div>
+  <div id="CLEAR" class="button">Clear</div>
+  <!-- hacked file upload button -->
+  <div class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+    <input id="OPEN" type="file" class="filestyle" data-buttonText="Open" 
+	   data-input="false" data-badge="false" />
+  </div>
+  <div id="SAVE" class="button">Save</div>
+  <div id="PLOT" class="button action-button">PLOT</div>
+  <div id="RUN" class="button action-button">RUN</div>
+  <a id="PDF" target="_blank" class="button shiny-download-link">PDF</a>
+  <a id="CSV" target="_blank" class="button shiny-download-link">CSV</a>
+  <a id="fname" href="" download="IsoplotR.json"></a>
 </footer>
 
 </main>

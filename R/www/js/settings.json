@@ -9,6 +9,9 @@
 	"detritals": {},
 	"other": {}
     },
+    "fissiontracks": {
+	"format": 1
+    },
     "detritals": {
 	"format": 1
     },

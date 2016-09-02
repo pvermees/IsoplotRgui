@@ -10,6 +10,13 @@ a:hover {
     color:red;
 }
 
+#method-cloak {
+    display:inline-block;
+}
+#method {
+    display:none;
+}
+
 #loader {
     position:absolute;
     left:50%;
