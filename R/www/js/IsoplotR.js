@@ -69,9 +69,9 @@ $(function(){
 	    }
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
-	    if (format==1){
+	    if (format<2){
 		return 2;
-	    } else if (format==2){
+	    } else {
 		return 20;
 	    }
 	case 'U-Th-He':
@@ -108,9 +108,11 @@ $(function(){
 	    $("#Jerr").val(json.J[1]);
 	    break;
 	case "fissiontracks":
-	    $("#zetaVal").val(json.zeta[0]);
-	    $("#zetaErr").val(json.zeta[1]);	    
-	    if (settings.fissiontracks.format == 1){
+	    if (settings.fissiontracks.format < 3){
+		$("#zetaVal").val(json.zeta[0]);
+		$("#zetaErr").val(json.zeta[1]);
+	    }
+	    if (settings.fissiontracks.format < 2){
 		$("#rhoDval").val(json.rhoD[0]);
 		$("#rhoDerr").val(json.rhoD[1]);
 	    }
@@ -157,9 +159,11 @@ $(function(){
 	    mydata.J[1] = $("#Jerr").val();
 	    break;
 	case "fissiontracks":
-	    mydata.zeta[0] = $("#zetaVal").val();
-	    mydata.zeta[1] = $("#zetaErr").val();
-	    if (out.settings['fissiontracks'].format == 1){
+	    if (out.settings.fissiontracks.format < 3){
+		mydata.zeta[0] = $("#zetaVal").val();
+		mydata.zeta[1] = $("#zetaErr").val();
+	    }
+	    if (out.settings.fissiontracks.format < 2){
 		mydata.rhoD[0] = $("#rhoDval").val();
 		mydata.rhoD[1] = $("#rhoDerr").val();
 	    }
@@ -190,7 +194,7 @@ $(function(){
 	var cond7 = geochronometer=='other';
 	var cond8 = (cond7 & cond5);
 	var cond9 = geochronometer=='fissiontracks';
-	var cond10 = FTformat==2;
+	var cond10 = FTformat>1;
 	var cond11 = cond9 & cond10;
 	if (cond4|cond6|cond8) {
 		nc = DNC;
@@ -610,7 +614,7 @@ $(function(){
 
     function getJbox(){
 	var out = 'J: <input type="text" id="Jval"> &plusmn;' + 
-	    '<input type="text" id="Jerr"> (1&sigma;)' +
+  	    '<input type="text" id="Jerr"> (1&sigma;)' +
 	    '<div style="line-height:50%;"><br></div>';
 	return out;
     }
@@ -663,8 +667,8 @@ $(function(){
 	    $("#zetaDiv").html(getZetaBox(format));
 	    $("#rhoDdiv").html(getRhoBox());
 	    $("#method").show();
-	    $("#zetaDiv").show();
-	    if (format==1){ $("#rhoDdiv").show(); }
+	    if (format < 3){ $("#zetaDiv").show(); }
+	    if (format < 2){ $("#rhoDdiv").show(); }
 	    break;
 	case 'cosmogenics':
 	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
@@ -716,8 +720,14 @@ $(function(){
 	    var geochronometer = IsoplotR.settings.geochronometer;
 	    var format = 1*$('option:selected', $("#method-options")).attr('value');
 	    IsoplotR.settings[geochronometer].format = format;
-	    $("#zetaDiv").html(getZetaBox(format));
-	    if (format==1){
+	    if (format<3){
+		$("#zetaDiv").html(getZetaBox(format));
+		$("#zetaDiv").show();
+	    } else {
+		$("#zetaDiv").hide();
+	    }
+	    if (format<2){
+		$("#rhoDdiv").html(getRhoBox(format));
 		$("#rhoDdiv").show();
 	    } else {
 		$("#rhoDdiv").hide();

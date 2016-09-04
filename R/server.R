@@ -82,6 +82,11 @@ shinyServer(function(input,output,session){
             mat[3,1:2] <- c('Ns','A')
             mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))            
+        } else if (identical(method,"fissiontracks") & format==3){
+            mat <- matrix('',1,nc)
+            mat[1,1:2] <- c('Ns','A')
+            mat[1,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))            
         } else if (identical(method,"U-Th-He")){
             cn <- c('He','errHe','U','errU','Th','errTh','Sm','errSm')
             mat <- matrix(cn[1:nc],1,nc)

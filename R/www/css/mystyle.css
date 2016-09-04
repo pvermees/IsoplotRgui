@@ -10,7 +10,7 @@ a:hover {
     color:red;
 }
 
-#method-cloak {
+.cloak {
     display:inline-block;
 }
 #method {
