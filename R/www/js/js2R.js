@@ -28,6 +28,7 @@ function getOptions(prefs){
 	if (settings.t0 != 'auto') out += ",t0=" + settings.t0;
 	if (settings.maxt != 'auto') out += ",to=" + settings.maxt;
 	out += ",pch=" + settings.pch;
+	out += ",cex=" + settings.cex;
 	out += ",bg='" + settings.bg + "'";
 	out += ",sigdig=" + settings.sigdig;
 	if (geochronometer=="U-Pb"){

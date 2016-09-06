@@ -134,3 +134,7 @@ label.btn.btn-default {
 help {
     cursor: pointer;
 }
+
+.hidden {
+    display: none;
+}

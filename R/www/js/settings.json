@@ -10,7 +10,8 @@
 	"other": {}
     },
     "fissiontracks": {
-	"format": 1
+	"format": 1,
+	"mineral": "apatite"
     },
     "detritals": {
 	"format": 1
@@ -51,7 +52,8 @@
 	"t0": "auto",
 	"maxt": "auto",
 	"pch": 21,
-	"bg": "white",
+	"cex": 1,
+	"bg": "yellow",
 	"sigdig": 2,
 	"shownumbers": "FALSE",
 	"cutoff76": 1100,

@@ -41,6 +41,7 @@ $(function(){
 	colHeaders: true,
 	contextMenu: true,
 	observeChanges: true,
+	manualColumnResize: true,
 	afterSelectionEnd: function (r,c,r2,c2){
 	    getData(r,c,r2,c2);
 	}
@@ -53,7 +54,8 @@ $(function(){
 	rowHeaders: true,
 	colHeaders: true,
 	contextMenu: true,
-	observeChanges: false
+	observeChanges: false,
+	manualColumnResize: true
     });
 
     function dnc(){
@@ -145,6 +147,19 @@ $(function(){
 	    data: handson.data,
 	    colHeaders: handson.headers
 	});
+	// change headers for LA-ICP-MS-based fission track data
+	if (geochronometer == 'fissiontracks' & settings.fissiontracks.format > 1){
+	    var nc = $("#INPUT").handsontable('countCols');
+	    var headers = ['Ns','A'];
+	    for (var i=0; i<(nc-2)/2; i++){
+		headers.push('U'+(i+1));
+		headers.push('s[U'+(i+1)+']');		
+	    }
+	    $("#INPUT").handsontable({
+		colHeaders: headers
+	    });
+	}
+
     }
 
     // overwrites the data in the IsoplotR preferences based on the handsontable
@@ -265,6 +280,21 @@ $(function(){
 	    break;
 	case 'fissiontracks':
 	    $('.hide4fissiontracks').hide();
+	    if (set.format==3){
+		$('.show4absolute').show();
+	    }
+	    var mineral = set.mineral;
+	    $('#U238U235').val(cst.iratio.U238U235[0]);
+	    $('#errU238U235').val(cst.iratio.U238U235[1]);
+	    $('#LambdaU238').val(cst.lambda.U238[0]);
+	    $('#errLambdaU238').val(cst.lambda.U238[1]);
+	    $('#LambdaFission').val(cst.lambda.fission[0]);
+	    $('#errLambdaFission').val(cst.lambda.fission[1]);
+	    $('#mineral-option option[value='+mineral+']').
+		prop('selected', 'selected');
+	    $('#etchfact').val(cst.etchfact[mineral]);
+	    $('#tracklength').val(cst.tracklength[mineral]);
+	    $('#mindens').val(cst.mindens[mineral]);
 	    break;
 	case 'detritals':
 	    $('.hide4detritals').hide();
@@ -305,6 +335,7 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#sigdig').val(set.sigdig);
 	    $('#pch').val(set.pch);
+	    $('#cex').val(set.cex);
 	    $('#bg').val(set.bg);
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
@@ -423,6 +454,7 @@ $(function(){
 	    pdsettings.maxt = $('#maxt').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.pch = $('#pch').val();
+	    pdsettings["cex"] = $('#cex').val();
 	    pdsettings.bg = $('#bg').val();
 	    pdsettings.cutoff76 = $('#cutoff76').val();
 	    pdsettings.mindisc = $('#mindisc').val();
@@ -781,6 +813,46 @@ $(function(){
 	});
     });
 
+    $("#HELP").click(function(){
+	var plotdevice = IsoplotR.settings.plotdevice;
+	var geochronometer = IsoplotR.settings.geochronometer;
+	var fname = "";
+	$("#OUTPUT").hide();
+	$("#myplot").show();
+	fname = "../help/" + geochronometer + ".html";
+	$("#myplot").load(fname,function(){
+	    if (geochronometer=='Ar-Ar'){
+		if (plotdevice=='spectrum'){
+		    $('.show4ArArSpectrum').show();
+		}
+	    } else if (geochronometer=='fissiontracks'){
+		var format = IsoplotR.settings.fissiontracks.format;
+		if (format==1){
+		    $('.show4EDM').show();
+		} else if (format==2){
+		    $('.show4ICP').show();
+		} else if (format==3){
+		    $('.show4absolute').show();
+		}
+	    } else if (geochronometer=='other'){
+		if (plotdevice=='radial'){
+		    $('.show4radial').show();
+		} else if (plotdevice=='regression'){
+		    $('.show4regression').show();
+		} else if (plotdevice=='spectrum'){
+		    $('.show4spectrum').show();
+		} else if (plotdevice=='average'){
+		    $('.show4weightedmean').show();
+		} else if (plotdevice=='KDE'){
+		    $('.show4kde').show();
+		} else if (plotdevice=='CAD'){
+		    $('.show4cad').show();
+		}
+	    }
+	});
+    });
+
+    
     $("#DEFAULTS").click(function(){
 	IsoplotR = populate(IsoplotR,true);
     });
