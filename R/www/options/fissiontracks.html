@@ -3,26 +3,10 @@
 <div class="hidden show4absolute">
   
 &nbsp; <help id="help-mineral-option">Mineral:</help>
-<select id="mineral-option">
-  <option id="apatite" onclick="javascript:alert(IsoplotR.constants.etchfact.apatite)">apatite</option>
-  <option id="zircon">zircon</option>
+<select id="mineral-option" onchange="$.chooseMineral();">
+  <option value="apatite">apatite</option>
+  <option value="zircon">zircon</option>
 </select>
-
-<script>
-    $("#mineral-option").on('change',function(){
-    var mineral = $('option:selected', $("#mineral-option")).attr('id');
-    switch (mineral){
-    case 'apatite': $("#etchfact").val(0.94);
-    $("#tracklength").val(16.2);
-    $("#mindens").val(3.22);
-    break;
-    case 'zircon': $("#etchfact").val(1);
-    $("#tracklength").val(10.6);
-    $("#mindens").val(4.7);
-    break;
-    }
-    });
-</script>
 
 <p></p>
 

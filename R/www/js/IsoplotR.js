@@ -256,6 +256,23 @@ $(function(){
 	}
     }
 
+    $.chooseMineral = function(){
+	var cst = IsoplotR.constants;
+	var mineral = $('option:selected', $("#mineral-option")).val();
+	switch (mineral){
+	case 'apatite':
+	    $("#etchfact").val(cst.etchfact[mineral]);
+	    $("#tracklength").val(cst.tracklength[mineral]);
+	    $("#mindens").val(cst.mindens[mineral]);
+	    break;
+	case 'zircon':
+	    $("#etchfact").val(cst.etchfact[mineral]);
+	    $("#tracklength").val(cst.tracklength[mineral]);
+	    $("#mindens").val(cst.mindens[mineral]);
+	    break;
+	}
+    }
+    
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
@@ -590,6 +607,19 @@ $(function(){
 	case 'detritals':
 	    IsoplotR.settings[geochronometer].format = 
 		$("#headers-on").prop('checked') ? 1 : 2;
+	    break;
+	case 'fissiontracks':
+	    var mineral = $('#mineral-option').prop('value');
+	    IsoplotR.settings[geochronometer].mineral = mineral;
+	    IsoplotR.settings[geochronometer].format = 
+		1*$('option:selected', $("#method-options")).attr('value');
+	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
+	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
+	    gcsettings.lambda.U238[0] = $("#LambdaU238").val();
+	    gcsettings.lambda.U238[1] = $("#errLambdaU238").val();
+	    gcsettings.etchfact[mineral] = $("#etchfact").val();
+	    gcsettings.tracklength[mineral] = $("#tracklength").val();
+	    gcsettings.mindens[mineral] = $("#mindens").val();
 	    break;
 	default:
 	}
