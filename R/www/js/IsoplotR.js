@@ -118,6 +118,9 @@ $(function(){
 		$("#rhoDval").val(json.rhoD[0]);
 		$("#rhoDerr").val(json.rhoD[1]);
 	    }
+	    if (settings.fissiontracks.format > 1){
+		$("#spotSizeVal").val(json.spotSize);
+	    }
 	    break;
 	default:
 	}
@@ -182,6 +185,9 @@ $(function(){
 		mydata.rhoD[0] = $("#rhoDval").val();
 		mydata.rhoD[1] = $("#rhoDerr").val();
 	    }
+	    if (out.settings.fissiontracks.format > 1){
+		mydata.spotSize = $("#spotSizeVal").val();
+	    }
 	    break;
 	default:
 	}
@@ -239,8 +245,13 @@ $(function(){
 	} else if (geochronometer=='fissiontracks' & FTformat==2){
 	    var zeta = $('#zetaVal').val();
 	    var zetaErr = $('#zetaErr').val();
-	    IsoplotR.data = [nr,nc,zeta,zetaErr,dat];
+	    var spotSize = $('#spotSizeVal').val();
+	    IsoplotR.data = [nr,nc,zeta,zetaErr,spotSize,dat];
+	} else if (geochronometer=='fissiontracks' & FTformat==3){
+	    var spotSize = $('#spotSizeVal').val();
+	    IsoplotR.data = [nr,nc,spotSize,dat];
 	} else {
+	    var spotSize = $('#spotSizeVal').val();
 	    IsoplotR.data = [nr,nc,dat];
 	}
     }
@@ -589,7 +600,7 @@ $(function(){
 	$("#Rb-Sr").prop('disabled',true);
 	$("#Sm-Nd").prop('disabled',true);
 	$("#Re-Os").prop('disabled',true);
-	$("#cosmogenics").prop('disabled',true);
+	$("#U-series").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);
 	$("#isochron").prop('disabled',options[2]);
@@ -599,7 +610,7 @@ $(function(){
 	$("#average").prop('disabled',options[6]);
 	$("#KDE").prop('disabled',options[7]);
 	$("#CAD").prop('disabled',options[8]);
-	$("#banana").prop('disabled',options[9]);
+	$("#get-zeta").prop('disabled',options[9]);
 	$("#MDS").prop('disabled',options[10]);
 	$("#ages").prop('disabled',options[11]);
 	for (var i=0; i<12; i++){ // change to first available option
@@ -611,7 +622,7 @@ $(function(){
 	    }
 	}
     }
-
+    
     $("select").selectmenu({ width : 'auto' });
     $("#geochronometer").selectmenu({
 	change: function( event, ui ) {
@@ -643,31 +654,6 @@ $(function(){
 	IsoplotR.optionschanged = false;
 	populate(IsoplotR,true);
     }
-
-    function getJbox(){
-	var out = 'J: <input type="text" id="Jval"> &plusmn;' + 
-  	    '<input type="text" id="Jerr"> (1&sigma;)' +
-	    '<div style="line-height:50%;"><br></div>';
-	return out;
-    }
-
-    function getZetaBox(format){
-	var out = '&nbsp;&zeta;: ' +
-	    '<input type="text" id="zetaVal"> &plusmn; ' + 
-	    '<input type="text" id="zetaErr"> yr cm<sup>2</sup>';
-	if (format==2) {
-	     out += '<div style="line-height:50%;"><br></div>';
-	}
-	return out;
-    }
-
-    function getRhoBox(){
-	var out = '<div style="line-height:50%;"><br></div>' +
-	    '&rho;<sub>D</sub>: <input type="text" id="rhoDval">' +
-	    '&plusmn; <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>' +
-	    '<div style="line-height:50%;"><br></div>';
-	return out;
-    }
     
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
@@ -676,43 +662,51 @@ $(function(){
 	$("#Jdiv").hide();
 	$("#zetaDiv").hide();
 	$("#rhoDdiv").hide();
+	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,true,true,false,true,true,false,false,false,true,true,false]);
+	    setSelectedMenus([false,true,true,false,true,true,
+			      false,false,false,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,true,false,false,true,false,false,false,false,true,true,false]);
-	    $("#Jdiv").html(getJbox());
+	    setSelectedMenus([true,true,false,false,true,false,
+			      false,false,false,true,true,false]);
 	    $("#Jdiv").show();
 	    break;
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,
+			      true,true,true,true,true,true]);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,false,true,false,true,true,false,false,false,true,true,false]);
+	    setSelectedMenus([true,false,true,false,true,true,
+			      false,false,false,true,true,false]);
 	    break;
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
-	    setSelectedMenus([true,true,true,false,true,true,false,false,false,true,true,false]);
-	    $("#zetaDiv").html(getZetaBox(format));
-	    $("#rhoDdiv").html(getRhoBox());
+	    setSelectedMenus([true,true,true,false,true,true,
+			      false,false,false,true,true,false]);
 	    $("#method").show();
 	    if (format < 3){ $("#zetaDiv").show(); }
 	    if (format < 2){ $("#rhoDdiv").show(); }
+	    if (format > 1){ $("#spotSizeDiv").show(); }
 	    break;
-	case 'cosmogenics':
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
+	case 'U-series':
+	    setSelectedMenus([true,true,true,true,true,true,
+			      true,true,true,true,true,true]);
 	    break;
 	case 'detritals':
-	    setSelectedMenus([true,true,true,true,true,true,true,false,false,true,false,true]);
+	    setSelectedMenus([true,true,true,true,true,true,
+			      true,false,false,true,false,true]);
 	    break;
 	case 'other':
-	    setSelectedMenus([true,true,true,false,false,false,false,false,false,true,true,true]);
+	    setSelectedMenus([true,true,true,false,false,false,
+			      false,false,false,true,true,true]);
 	    break;
 	default:
-	    setSelectedMenus([true,true,true,true,true,true,true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,true,true,true,true,
+			      true,true,true,true,true,true]);
 	}
 	IsoplotR = populate(IsoplotR,false);
 	$("#plotdevice").selectmenu("refresh");
@@ -726,9 +720,11 @@ $(function(){
 	if (forcedefaults | $.isEmptyObject(data)){
 	    if (geochronometer=='fissiontracks'){
 		var format = prefs.settings[geochronometer].format;
-		prefs.settings.data[geochronometer] = example(geochronometer,plotdevice,format);
+		prefs.settings.data[geochronometer] =
+		    example(geochronometer,plotdevice,format);
 	    } else {
-		prefs.settings.data[geochronometer] = example(geochronometer,plotdevice);
+		prefs.settings.data[geochronometer] =
+		    example(geochronometer,plotdevice);
 	    }
 	}
 	json2handson(prefs.settings);
@@ -744,7 +740,7 @@ $(function(){
 	Shiny.onInputChange("data",IsoplotR.data);
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
-
+    
     $("#helpmenu").dialog({ autoOpen: false });
 
     $("#method-options").selectmenu({
@@ -753,16 +749,19 @@ $(function(){
 	    var format = 1*$('option:selected', $("#method-options")).attr('value');
 	    IsoplotR.settings[geochronometer].format = format;
 	    if (format<3){
-		$("#zetaDiv").html(getZetaBox(format));
 		$("#zetaDiv").show();
 	    } else {
 		$("#zetaDiv").hide();
 	    }
 	    if (format<2){
-		$("#rhoDdiv").html(getRhoBox(format));
 		$("#rhoDdiv").show();
 	    } else {
 		$("#rhoDdiv").hide();
+	    }
+	    if (format>1){
+		$("#spotSizeDiv").show();
+	    } else {
+		$("#spotSizeDiv").hide();
 	    }
 	    IsoplotR = populate(IsoplotR,true);
 	}

@@ -27,7 +27,7 @@
     <option id="Re-Os">Re-Os</option>
     <option id="U-Th-He">U-Th-He</option>
     <option id="fissiontracks">fission tracks</option>
-    <option id="cosmogenics">cosmogenics</option>
+    <option id="U-series">U-series</option>
     <option id="detritals">detritals</option>
     <option id="other">other</option>
   </select>
@@ -50,7 +50,7 @@
     <option id="average">weighted mean</option>
     <option id="KDE">KDE</option>
     <option id="CAD">CAD</option>
-    <option id="banana">banana plot</option>
+    <option id="get-zeta">get &zeta;</option>
     <option id="MDS">MDS</option>
     <option id="ages">ages</option>
   </select>
@@ -60,9 +60,25 @@
 </header>
 
 <left>
-  <div class="centerme" id="Jdiv"></div>
-  <div class="centerme" id="zetaDiv"></div>
-  <div class="centerme" id="rhoDdiv"></div>
+  <div class="centerme" id="Jdiv">
+    J: <input type="text" id="Jval"> &plusmn;
+       <input type="text" id="Jerr"> (1&sigma;)
+       <div style="line-height:50%;"><br></div>
+  </div>
+  <div class="centerme" id="zetaDiv">
+    &zeta;: <input type="text" id="zetaVal"> &plusmn;
+	    <input type="text" id="zetaErr"> yr cm<sup>2</sup>
+	    <div style="line-height:50%;"><br></div>
+  </div>
+  <div class="centerme" id="rhoDdiv">
+    &rho;<sub>D</sub>: <input type="text" id="rhoDval"> &plusmn;
+                       <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>
+		       <div style="line-height:50%;"><br></div>
+  </div>
+  <div class="centerme" id="spotSizeDiv">
+    spot size: <input type="text" id="spotSizeVal"> &mu;m
+    <div style="line-height:50%;"><br></div>
+  </div>
   <div id="INPUT"></div>
 </left>
 
