@@ -383,6 +383,28 @@ function help(id){
 	text = "The mineral density is needed to convert the uranium " +
 	    "concentration from ppm to atoms per unit volume.";
 	break;
+    case "help-FT-options":
+	text = "Choose one of three fission track dating methods: " +
+	    "1) 'EDM' = the External Detector Method: determines the " +
+	    "sample's uranium content by proxy, using neutron-induced tracks " +
+	    "recorded in a mica detector; 2) 'ICP (&zeta;)': determines " +
+	    "the uranium content directly by LA-ICP-MS using a zeta calibration " +
+	    "approach in which all measurements are normalised to " +
+	    "age standards; 3) 'ICP (absolute)': uses LA-ICP-MS without age " +
+	    "standards, assuming that the fission decay constant, etch " +
+	    "efficiency factor and uranium concentrations are known with " +
+	    "sufficient accuracy.";
+	break;
+    case "help-mixtures":
+	text = "Peak fitting using the algorithms of Galbraith and Green (1990). " +
+	    "Assumes that the data are underlain by a true age distribution " +
+	    "consisting of a finite number (1-5) of discrete age peaks. " +
+	    "'auto'-setting uses the Bayes Information Criterion (BIC) to " +
+	    "pick a parsimonous number of components. Note that the number of " +
+	    "peaks tends to increase with sample size! The 'minimum'-setting" +
+	    "assumes that the true age distribution is a truncated Normal with " +
+	    "a discrete component at its lowest, truncated end."
+	break;
 }
     return text;
 }

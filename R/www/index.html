@@ -31,15 +31,6 @@
     <option id="detritals">detritals</option>
     <option id="other">other</option>
   </select>
-  <div class="cloak">
-    <div id="method">
-      <select id="method-options">
-	<option value='1' id="EDM">EDM</option>
-	<option value='2' id="ICPzeta">ICP (&zeta;)</option>
-	<option value='3' id="ICPabsolute">ICP (absolute)</option>
-      </select>
-    </div>
-  </div>
   <select name="plotdevice" id="plotdevice">
     <option id="concordia" selected="selected">concordia</option>
     <option id="helioplot">helioplot</option>
@@ -60,22 +51,22 @@
 </header>
 
 <left>
-  <div class="centerme" id="Jdiv">
+  <div class="centerme hidden show4ArAr" id="Jdiv">
     J: <input type="text" id="Jval"> &plusmn;
        <input type="text" id="Jerr"> (1&sigma;)
        <div style="line-height:50%;"><br></div>
   </div>
-  <div class="centerme" id="zetaDiv">
+  <div class="centerme hidden show4EDM show4ICP" id="zetaDiv">
     &zeta;: <input type="text" id="zetaVal"> &plusmn;
 	    <input type="text" id="zetaErr"> yr cm<sup>2</sup>
 	    <div style="line-height:50%;"><br></div>
   </div>
-  <div class="centerme" id="rhoDdiv">
+  <div class="centerme hidden show4EDM" id="rhoDdiv">
     &rho;<sub>D</sub>: <input type="text" id="rhoDval"> &plusmn;
                        <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>
 		       <div style="line-height:50%;"><br></div>
   </div>
-  <div class="centerme" id="spotSizeDiv">
+  <div class="centerme hidden show4ICP show4absolute" id="spotSizeDiv">
     spot size: <input type="text" id="spotSizeVal"> &mu;m
     <div style="line-height:50%;"><br></div>
   </div>

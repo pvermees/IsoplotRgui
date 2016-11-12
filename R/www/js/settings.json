@@ -58,7 +58,8 @@
 	"shownumbers": "FALSE",
 	"cutoff76": 1100,
 	"mindisc": -15,
-	"maxdisc": 5
+	"maxdisc": 5,
+	"numpeaks": 0
     },
     "average": {
 	"outliers": "TRUE",

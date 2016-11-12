@@ -5,23 +5,24 @@ Input:
 <p></p>
 
 <table>
-  <tr><td>Ns:</td><td>Number of spontaneous tracks</td></tr>
+<tr class="hidden show4EDM show4ICP">
+  <td>&zeta;:</td>
+  <td>Zeta calibration constant and its standard error</td>
+</tr>
+<tr class="hidden show4EDM">
+  <td>&rho;<sub>D</sub>:</td>
+  <td>Induced track density in a co-irradiated dosimeter
+  glass</td>
+</tr>
+<tr class="hidden show4ICP show4absolute">
+  <td>spot size:</td>
+  <td>The diameter of the LA-ICP-MS laser spot, in &mu;m</td>
+</tr>
+<tr><td>Ns:</td><td>Number of spontaneous tracks</td></tr>
   <tr class="hidden show4EDM">
     <td>Ni:</td>
     <td>Number of induced tracks</td>
   </tr>
-<tr class="hidden show4EDM show4ICP">
-  <td>&zeta;:</td>
-  <td>The zeta calibration constant and its standard error</td>
-</tr>
-<tr class="hidden show4EDM">
-  <td>&rho;<sub>D</sub>:</td>
-  <td>The induced track density in a co-irradiated dosimeter glass</td>
-</tr>
-<tr class="hidden show4ICP">
-  <td>spot size:</td>
-  <td>The diameter of the LA-ICP-MS laser spot, in &mu;m</td>
-</tr>
 <tr class="hidden show4ICP show4absolute">
   <td>A:</td><td>Counting area, in &mu;<sup>2</sup></td>
 </tr>
@@ -33,8 +34,8 @@ Input:
 </tr>
 <tr class="hidden show4ICP show4absolute">
   <td>s[U1], s[U2], ... :</td>
-  <td>The standard errors of U1, U2, ... . These
-  should <i>exclude</i> any external sources of uncertainty for the
-  calculation of radial plots or weighted means.</td>
+  <td>The standard errors of U1, U2, ... . These should <i>exclude</i>
+  any external sources of uncertainty for the calculation of radial
+  plots or weighted means.</td>
 </tr>
 </table>

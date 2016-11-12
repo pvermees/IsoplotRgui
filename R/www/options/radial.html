@@ -1,20 +1,25 @@
 <p></p>
 
-<div class="hide4ArAr hide4other hide4UThHe hide4UPb">
-  &nbsp; <help id="help-transformation">Transformation:</help>
-  <select id="transformation">
+&nbsp; <help id="help-transformation">Transformation:</help>
+<select id="transformation" onchange="$.chooseTransformation();">
   <option value="log">logarithmic</option>
   <option value="linear">linear</option>
-  <option value="arcsin">arcsin</option>
+  <option hidden value="arcsin" class="show4EDM">arcsin</option>
 </select>
+<p></p>
 </div>
-<div class="hide4fissiontracks">
-  &nbsp; <help id="help-transformation">Transformation:</help>
-  <select id="transformation">
-  <option value="log">logarithmic</option>
-  <option value="linear">linear</option>
+
+&nbsp; <help id="help-mixtures">Finite mixtures:</help>
+<select id="mixtures" onchange="$.chooseNumRadialPeaks();">
+  <option value="0">0 (none)</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option hidden value="auto">auto</option>
+  <option hidden value="minimum">minimum</option>
 </select>
-</div>
 
 <p></p>
 
