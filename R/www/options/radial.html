@@ -4,7 +4,7 @@
 <select id="transformation" onchange="$.chooseTransformation();">
   <option value="log">logarithmic</option>
   <option value="linear">linear</option>
-  <option hidden value="arcsin" class="show4EDM">arcsin</option>
+  <option hidden value="arcsin" class="show4EDM hide4ICP hide4absolute">arcsin</option>
 </select>
 <p></p>
 </div>
@@ -40,7 +40,7 @@
     <td><input type="text" id="sigdig"></td></tr>
 </table>
 
-<div class="hide4ArAr hide4other hide4UThHe hide4fissiontracks">
+<div hidden class="show4UPb">
 <table>
 <tr><td>&nbsp; <help id="help-cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
     <td><input type="text" id="cutoff76">Ma</td></tr>

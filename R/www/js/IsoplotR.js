@@ -234,6 +234,7 @@ $(function(){
 	var cst = IsoplotR.constants;
 	switch (option){
 	case 'U-Pb':
+	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
@@ -243,6 +244,7 @@ $(function(){
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
 	case 'Ar-Ar':
+	    $('.show4ArAr').show();
 	    $('.hide4ArAr').hide();
 	    $('#Ar40Ar36').val(cst.iratio.Ar40Ar36[0]),
 	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
@@ -250,6 +252,7 @@ $(function(){
 	    $('#errLambdaK40').val(cst.lambda.K40[1])
 	    break;
 	case 'U-Th-He':
+	    $('.show4UThHe').show();
 	    $('.hide4UThHe').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
@@ -263,11 +266,17 @@ $(function(){
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
 	    break;
 	case 'fissiontracks':
+	    $('.show4fissiontracks').show();
 	    $('.hide4fissiontracks').hide();
 	    if (set.format==1){
 		$('.show4EDM').show();
+		$('.hide4EDM').hide();
+	    } else if (set.format==2){
+		$('.show4ICP').show();
+		$('.hide4ICP').hide();
 	    } else if (set.format==3){
 		$('.show4absolute').show();
+		$('.hide4absolute').hide();
 	    }
 	    $('#FT-options option[value='+set.format+']').
 		prop('selected', 'selected');
@@ -285,10 +294,12 @@ $(function(){
 	    $('#mindens').val(cst.mindens[mineral]);
 	    break;
 	case 'detritals':
+	    $('.show4detritals').show();
 	    $('.hide4detritals').hide();
 	    $('#headers-on').prop('checked',set.format==1);
 	    break;
 	case 'other':
+	    $('.show4other').show();
 	    $('.hide4other').hide();
 	    break;
 	case 'concordia':
@@ -743,12 +754,15 @@ $(function(){
 	switch (format){
 	case 1:
 	    $(".show4EDM").show();
+	    $(".hide4EDM").hide();
 	    break;
 	case 2:
 	    $(".show4ICP").show();
+	    $(".hide4ICP").hide();
 	    break;
 	case 3:
 	    $(".show4absolute").show();
+	    $(".hide4absolute").hide();
 	    break;
 	}
 	IsoplotR = populate(IsoplotR,true);

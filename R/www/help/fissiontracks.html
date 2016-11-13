@@ -5,16 +5,16 @@ Input:
 <p></p>
 
 <table>
-<tr class="hidden show4EDM show4ICP">
+<tr hidden class="show4EDM show4ICP hide4absolute">
   <td>&zeta;:</td>
   <td>Zeta calibration constant and its standard error</td>
 </tr>
-<tr class="hidden show4EDM">
+<tr hidden class="show4EDM hide4ICP hide4absolute">
   <td>&rho;<sub>D</sub>:</td>
   <td>Induced track density in a co-irradiated dosimeter
   glass</td>
 </tr>
-<tr class="hidden show4ICP show4absolute">
+<tr hidden class="hide4EDM show4ICP show4absolute">
   <td>spot size:</td>
   <td>The diameter of the LA-ICP-MS laser spot, in &mu;m</td>
 </tr>
@@ -23,16 +23,16 @@ Input:
     <td>Ni:</td>
     <td>Number of induced tracks</td>
   </tr>
-<tr class="hidden show4ICP show4absolute">
-  <td>A:</td><td>Counting area, in &mu;<sup>2</sup></td>
+<tr hidden class="hide4EDM show4ICP show4absolute">
+  <td>A:</td><td>Counting area, in &mu;m<sup>2</sup></td>
 </tr>
-<tr class="hidden show4ICP show4absolute">
+<tr hidden class="hide4EDM show4ICP show4absolute">
   <td>U1, U2, ... :</td>
   <td>Uranium concentration (in ppm, for both the &zeta;-calibration
   and absolute methods), or U/Ca-ratios (for the &zeta;-calibration
   method only) measured by LA-ICP-MS</td>
 </tr>
-<tr class="hidden show4ICP show4absolute">
+<tr hidden class="hide4EDM show4ICP show4absolute">
   <td>s[U1], s[U2], ... :</td>
   <td>The standard errors of U1, U2, ... . These should <i>exclude</i>
   any external sources of uncertainty for the calculation of radial

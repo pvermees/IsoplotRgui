@@ -51,8 +51,8 @@ tit {
     top:0;
     right: 10;
     color:black;
+    font-family: Courier, monospace;
     font-weight: bold;
-    font-family: Courier;
     font-size: 24;
 }
 
@@ -133,8 +133,4 @@ label.btn.btn-default {
 
 help {
     cursor: pointer;
-}
-
-.hidden {
-    display: none;
 }
