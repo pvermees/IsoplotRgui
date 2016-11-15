@@ -24,7 +24,9 @@ function getOptions(prefs){
 	break;
     case 'radial':
 	out += ",transformation='" + settings.transformation + "'";
-	out += ",k=" + settings.numpeaks ;
+	if (settings.numpeaks == 'auto') out += ",k='auto'"
+	else if (settings.numpeaks == 'min') out += ",k='min'"
+	else out += ",k=" + settings.numpeaks ;
 	if (settings.mint != 'auto') out += ",from=" + settings.mint;
 	if (settings.t0 != 'auto') out += ",t0=" + settings.t0;
 	if (settings.maxt != 'auto') out += ",to=" + settings.maxt;

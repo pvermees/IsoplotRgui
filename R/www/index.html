@@ -19,8 +19,8 @@
 <main>
 
 <header>
-  <select name="geochronometer" id="geochronometer">
-    <option id="U-Pb" selected="selected">U-Pb</option>
+  <select id="geochronometer">
+    <option id="U-Pb">U-Pb</option>
     <option id="Ar-Ar">Ar-Ar</option>
     <option id="Rb-Sr">Rb-Sr</option>
     <option id="Sm-Nd">Sm-Nd</option>
@@ -31,8 +31,8 @@
     <option id="detritals">detritals</option>
     <option id="other">other</option>
   </select>
-  <select name="plotdevice" id="plotdevice">
-    <option id="concordia" selected="selected">concordia</option>
+  <select id="plotdevice">
+    <option class="show4UPb" id="concordia">concordia</option>
     <option id="helioplot">helioplot</option>
     <option id="isochron">isochron</option>
     <option id="radial">radial plot</option>
@@ -84,7 +84,7 @@
   <div id="DEFAULTS" class="button">Defaults</div>
   <div id="CLEAR" class="button">Clear</div>
   <!-- hacked file upload button -->
-  <div class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+  <div class="ui-button" role="button">
     <input id="OPEN" type="file" class="filestyle" data-buttonText="Open" 
 	   data-input="false" data-badge="false" />
   </div>

@@ -19,7 +19,7 @@ $(function(){
 	});
 	$.getJSON(sfile, function(data){
 	    out.settings = data;
-	    selectGeochronometer(data.geochronometer);
+	    selectGeochronometer();
 	    out = populate(out,true);
 	    $("#INPUT").handsontable({ // add change handler asynchronously
 		afterChange: function(changes,source){
@@ -630,7 +630,7 @@ $(function(){
     function changePlotDevice(){
 	var gc = IsoplotR.settings.geochronometer;
 	var opd = IsoplotR.settings.plotdevice; // old plot device
-	var npd = $('option:selected', $("#plotdevice")).attr('id'); // new
+	var npd = $('option:selected', $("#plotdevice")).attr('id');
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
 	$('#myscript').empty();
@@ -651,7 +651,7 @@ $(function(){
 	    populate(IsoplotR,false);
 	}
     }
-    
+
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -750,7 +750,6 @@ $(function(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var format = 1*$('option:selected', $("#FT-options")).attr('value');
 	IsoplotR.settings[geochronometer].format = format;
-	$(".hidden").hide();
 	switch (format){
 	case 1:
 	    $(".show4EDM").show();
@@ -784,6 +783,8 @@ $(function(){
 	    break;
 	}
     }
+
+    $(".hidden").hide()
     
     $(".button").button()
 

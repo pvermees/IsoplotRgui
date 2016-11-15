@@ -1,20 +1,13 @@
 body {
     font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
 }
+
 a {
     border: 0;
     color: black;
 }
-
 a:hover {
     color:red;
-}
-
-.cloak {
-    display:inline-block;
-}
-#method {
-    display:none;
 }
 
 #loader {
@@ -35,16 +28,6 @@ a:hover {
     text-align: center;
 }
 
-.ui-selectmenu-button {
-    height: 40px !important;
-    width: 200px !important;
-}
-
-#options, #help {
-    vertical-align:top;
-    height: 40px !important;
-}
-
 tit {
     position: absolute;
     float: right;
@@ -57,7 +40,7 @@ tit {
 }
 
 header {
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     right:0;
@@ -70,7 +53,7 @@ header {
 }
 
 footer {
-    position:absolute;
+    position:fixed;
     bottom:0;
     left:0;
     line-height:50px;
@@ -83,23 +66,18 @@ footer {
 
 left {
     overflow:hidden;
-    position:absolute;
+    position:fixed;
     left:0;
-    width:50%;
+    right:50%;
     top:50px; 
     bottom:50px; 
     padding:0;
     z-index:2;
 }
 
-#JZeta {
-    width: 50%;
-    margin: 0 auto; 
-}
-
 right {
     overflow:hidden;
-    position:absolute;
+    position:fixed;
     left:50%;
     width:50%;
     top:50px; 
@@ -124,13 +102,6 @@ right {
     color: black;
 }
 
-/* hack to have same effect as the jquery UI */
-label.btn.btn-default { 
-    padding: .4em 1em;
-    display: block;
-    cursor: pointer;
-}
-
-help {
+#OPEN, help {
     cursor: pointer;
 }
