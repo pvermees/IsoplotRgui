@@ -180,17 +180,12 @@ $(function(){
 	var dat = [];
 	var DNC = dnc();
 	var cond1 = (nc < DNC);
-	var cond2 = geochronometer=='U-Th-He' & nc==6;
 	var cond3 = geochronometer=='detritals';
-	var cond4 = (cond1 & !cond2) | (cond1 & !cond3);
-	var cond5 = (nr==1);
-	var cond6 = (cond2 & cond5);
-	var cond7 = geochronometer=='other';
-	var cond8 = (cond7 & cond5);
+	var cond4 = (cond1 & !cond3);
 	var cond9 = geochronometer=='fissiontracks';
 	var cond10 = FTformat>1;
 	var cond11 = cond9 & cond10;
-	if (cond4|cond6|cond8) {
+	if (cond1) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
 		r = 0;
@@ -199,12 +194,25 @@ $(function(){
 		c2 = nc-1;
 	}
 	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
-	if (cond3|cond11){
-	    for (var i=0; i<dat.length; i++){
-		for (var j=0; j<dat[i].length; j++){
+	if (cond1|cond3|cond11){
+	    var clean = [];
+	    for (var i=0; i<nr; i++){
+		var row = [];
+		var good = false;
+		for (var j=0; j<nc; j++){
 		    if (dat[i][j]==null){
-			dat[i][j] = '';
-	}   }	}   }
+			row.push('');
+		    } else {
+			row.push(dat[i][j]);
+			good = true;
+		    }
+		}
+		if (good) {
+		    clean.push(row);
+		}
+	    }
+	    dat = clean;
+	}
 	if (geochronometer=='Ar-Ar'){
 	    var J = $('#Jval').val();
 	    var sJ = $('#Jerr').val();

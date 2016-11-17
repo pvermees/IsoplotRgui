@@ -95,7 +95,7 @@ shinyServer(function(input,output,session){
         } else if (identical(method,"U-Th-He")){
             cn <- c('He','errHe','U','errU','Th','errTh','Sm','errSm')
             mat <- matrix(cn[1:nc],1,nc)
-            mat <- rbind(matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"detritals") & format==1) {
             mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
         } else if (identical(method,"detritals") & format!=1) {
