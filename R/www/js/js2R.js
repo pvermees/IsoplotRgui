@@ -99,6 +99,11 @@ function getOptions(prefs){
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
 	}
 	break;
+    case 'set-zeta':
+	out += ",tst=c(" + settings.age[0] +
+	             "," + settings.age[1] + ")";
+	out += ",update=FALSE";
+	break;
     case 'helioplot':
 	out += ",logratio=" + settings.logratio;
 	out += ",show.numbers=" + settings.shownumbers;
@@ -200,7 +205,7 @@ function getRcommand(prefs){
     case 'CAD':
 	out += "cad(dat";
 	break;
-    case 'set.zeta':
+    case 'set-zeta':
 	out += "set.zeta(dat";
 	break;
     case 'helioplot':

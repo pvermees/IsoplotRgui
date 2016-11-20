@@ -142,6 +142,7 @@ $(function(){
     function handson2json(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
+	var plotdevice = out.settings.plotdevice;
 	var mydata = out.settings.data[geochronometer];
 	var i = 0;
 	switch (geochronometer){
@@ -150,7 +151,8 @@ $(function(){
 	    mydata.J[1] = $("#Jerr").val();
 	    break;
 	case "fissiontracks":
-	    if (out.settings.fissiontracks.format < 3){
+	    if (out.settings.fissiontracks.format < 3 &
+		plotdevice != 'set-zeta'){
 		mydata.zeta[0] = $("#zetaVal").val();
 		mydata.zeta[1] = $("#zetaErr").val();
 	    }
@@ -160,6 +162,10 @@ $(function(){
 	    }
 	    if (out.settings.fissiontracks.format > 1){
 		mydata.spotSize = $("#spotSizeVal").val();
+	    }
+	    if (plotdevice == 'set-zeta'){
+		out.settings[plotdevice].age[0] = $("#standAgeVal").val();
+		out.settings[plotdevice].age[1] = $("#standAgeErr").val();
 	    }
 	    break;
 	default:
@@ -227,13 +233,10 @@ $(function(){
 	    var zeta = $('#zetaVal').val();
 	    var zetaErr = $('#zetaErr').val();
 	    var spotSize = $('#spotSizeVal').val();
-	    IsoplotR.data = [nr,nc,zeta,zetaErr,spotSize,dat];
+	    IsoplotR.data = [nr,nc,zt,szt,spotSize,dat];
 	} else if (geochronometer=='fissiontracks' & FTformat==3){
 	    var spotSize = $('#spotSizeVal').val();
 	    IsoplotR.data = [nr,nc,spotSize,dat];
-	} else {
-	    var spotSize = $('#spotSizeVal').val();
-	    IsoplotR.data = [nr,nc,dat];
 	}
     }
     
@@ -541,6 +544,10 @@ $(function(){
 	    pdsettings["col"] = $('#col').val();
 	    pdsettings["bg"] = $('#bg').val();
 	    break;
+	case 'set-zeta':
+	    pdsettings.age[0] = $('#standAgeVal').val();
+	    pdsettings.age[1] = $('#standAgeErr').val();
+	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He'){
 		pdsettings.exterr = $('#age-exterr').prop('checked') ? 'TRUE' : 'FALSE';
@@ -646,12 +653,17 @@ $(function(){
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
 	$('#myscript').empty();
-        if (npd == 'ages' | npd == 'set-zeta'){
+        if (npd == 'ages'){
 	    $('#PLOT').hide();
 	    $('#PDF').hide();
 	    $('#RUN').show();
 	    $('#CSV').show();
-        } else {
+        } else if (npd == 'set-zeta') {
+	    $('#PLOT').hide();
+	    $('#PDF').hide();
+	    $('#RUN').show();
+	    $('#CSV').hide();    
+	} else {
 	    $('#PLOT').show();
 	    $('#PDF').show();
 	    $('#RUN').hide();
@@ -749,6 +761,8 @@ $(function(){
 	if (IsoplotR.optionschanged){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
+	} else {
+	    handson2json();
 	}
 	if (IsoplotR.data.length==0) getData(0,0,0,0);
 	Shiny.onInputChange("data",IsoplotR.data);
@@ -866,8 +880,7 @@ $(function(){
 	    var set = IsoplotR.settings;
 	    $("#" + set.geochronometer ).prop("selected",true);
 	    $("#geochronometer").selectmenu("refresh");
-	    $("#" + set.plotdevice ).prop("selected",true);
-	    $("#plotdevice").selectmenu("refresh");
+	    selectGeochronometer()
 	    json2handson(set);
 	}
 	reader.readAsText(file);
@@ -922,6 +935,10 @@ $(function(){
 		    $('.show4ICP').show();
 		} else if (format==3){
 		    $('.show4absolute').show();
+		}
+		if (IsoplotR.settings.plotdevice=='set-zeta'){
+		    $('.show4zeta').show();
+		    $('.hide4zeta').hide();
 		}
 	    } else if (geochronometer=='other'){
 		if (plotdevice=='radial'){

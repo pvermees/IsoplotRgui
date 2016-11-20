@@ -103,6 +103,9 @@
 	"mindisc": -15,
 	"maxdisc": 5
     },
+    "set-zeta": {
+	"age": [0,0]
+    },
     "MDS": {
 	"classical": "FALSE",
 	"shepard": "FALSE",
