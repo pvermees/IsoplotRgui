@@ -32,7 +32,7 @@
     <option id="other">other</option>
   </select>
   <select id="plotdevice">
-    <option class="show4UPb" id="concordia">concordia</option>
+    <option id="concordia">concordia</option>
     <option id="helioplot">helioplot</option>
     <option id="isochron">isochron</option>
     <option id="radial">radial plot</option>
@@ -41,7 +41,7 @@
     <option id="average">weighted mean</option>
     <option id="KDE">KDE</option>
     <option id="CAD">CAD</option>
-    <option id="get-zeta">get &zeta;</option>
+    <option id="set-zeta">get &zeta;</option>
     <option id="MDS">MDS</option>
     <option id="ages">ages</option>
   </select>
@@ -53,18 +53,23 @@
 <left>
   <div hidden class="centerme show4ArAr" id="Jdiv">
     J: <input type="text" id="Jval"> &plusmn;
-       <input type="text" id="Jerr"> (1&sigma;)
-       <div style="line-height:50%;"><br></div>
+    <input type="text" id="Jerr"> (1&sigma;)
+    <div style="line-height:50%;"><br></div>
   </div>
-  <div hidden class="centerme show4EDM show4ICP hide4absolute" id="zetaDiv">
+  <div hidden class="centerme show4zeta" id="standAgeDiv">
+    t: <input type="text" id="standAgeVal"> &plusmn;
+    <input type="text" id="standAgeErr"> Ma
+    <div style="line-height:50%;"><br></div>
+  </div>
+  <div hidden class="centerme show4EDM show4ICP hide4absolute hide4zeta" id="zetaDiv">
     &zeta;: <input type="text" id="zetaVal"> &plusmn;
-	    <input type="text" id="zetaErr"> yr cm<sup>2</sup>
-	    <div style="line-height:50%;"><br></div>
+    <input type="text" id="zetaErr"> yr cm<sup>2</sup>
+    <div style="line-height:50%;"><br></div>
   </div>
   <div hidden class="centerme show4EDM hide4ICP hide4absolute" id="rhoDdiv">
     &rho;<sub>D</sub>: <input type="text" id="rhoDval"> &plusmn;
-                       <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>
-		       <div style="line-height:50%;"><br></div>
+    <input type="text" id="rhoDerr"> 1/cm<sup>2</sup>
+    <div style="line-height:50%;"><br></div>
   </div>
   <div hidden class="centerme hide4EDM show4ICP show4absolute" id="spotSizeDiv">
     spot size: <input type="text" id="spotSizeVal"> &mu;m

@@ -200,6 +200,9 @@ function getRcommand(prefs){
     case 'CAD':
 	out += "cad(dat";
 	break;
+    case 'set.zeta':
+	out += "set.zeta(dat";
+	break;
     case 'helioplot':
 	out += "helioplot(dat";
 	break;

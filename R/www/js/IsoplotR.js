@@ -388,6 +388,10 @@ $(function(){
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
+	case 'set-zeta':
+	    $('.show4zeta').show();
+	    $('.hide4zeta').hide();
+	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He') {
 		$('#age-exterr').prop('checked',set.exterr=='TRUE');
@@ -622,7 +626,7 @@ $(function(){
 	$("#average").prop('disabled',options[6]);
 	$("#KDE").prop('disabled',options[7]);
 	$("#CAD").prop('disabled',options[8]);
-	$("#get-zeta").prop('disabled',options[9]);
+	$("#set-zeta").prop('disabled',options[9]);
 	$("#MDS").prop('disabled',options[10]);
 	$("#ages").prop('disabled',options[11]);
 	for (var i=0; i<12; i++){ // change to first available option
@@ -642,7 +646,7 @@ $(function(){
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
 	$('#myscript').empty();
-        if (npd == 'ages'){
+        if (npd == 'ages' | npd == 'set-zeta'){
 	    $('#PLOT').hide();
 	    $('#PDF').hide();
 	    $('#RUN').show();
@@ -657,6 +661,13 @@ $(function(){
 	    populate(IsoplotR,true);
 	} else {
 	    populate(IsoplotR,false);
+	}
+	if (gc == 'fissiontracks' & npd == 'set-zeta'){
+	    $(".show4zeta").show();
+	    $(".hide4zeta").hide();
+	} else if (gc == 'fissiontracks' & opd == 'set-zeta'){
+	    $(".show4zeta").hide();
+	    $(".hide4zeta").show();
 	}
     }
 
@@ -690,7 +701,7 @@ $(function(){
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    setSelectedMenus([true,true,true,false,true,true,
-			      false,false,false,true,true,false]);
+			      false,false,false,false,true,false]);
 	    if (format < 3){ $("#zetaDiv").show(); }
 	    if (format < 2){ $("#rhoDdiv").show(); }
 	    if (format > 1){ $("#spotSizeDiv").show(); }
@@ -756,6 +767,7 @@ $(function(){
     
     $.chooseFTmethod = function(){
 	var geochronometer = IsoplotR.settings.geochronometer;
+	var plotdevice = IsoplotR.settings.plotdevice;
 	var format = 1*$('option:selected', $("#FT-options")).attr('value');
 	IsoplotR.settings[geochronometer].format = format;
 	switch (format){
@@ -771,6 +783,10 @@ $(function(){
 	    $(".show4absolute").show();
 	    $(".hide4absolute").hide();
 	    break;
+	}
+	if (plotdevice == 'set-zeta'){
+	    $(".show4zeta").show();
+	    $(".hide4zeta").hide();
 	}
 	IsoplotR = populate(IsoplotR,true);
     }
@@ -847,7 +863,12 @@ $(function(){
 	var reader = new FileReader();
 	reader.onload = function(e){
 	    IsoplotR = JSON.parse(this.result);
-	    json2handson(IsoplotR.settings);
+	    var set = IsoplotR.settings;
+	    $("#" + set.geochronometer ).prop("selected",true);
+	    $("#geochronometer").selectmenu("refresh");
+	    $("#" + set.plotdevice ).prop("selected",true);
+	    $("#plotdevice").selectmenu("refresh");
+	    json2handson(set);
 	}
 	reader.readAsText(file);
     });
@@ -869,12 +890,12 @@ $(function(){
 	$("#OUTPUT").hide();
 	$("#myplot").show();
 	$("#myplot").load("../options/index.html",function(){
-	    fname = "../options/" + plotdevice + ".html";
-	    $("#plotdevice-options").load(fname,function(){
-		showSettings(plotdevice);
-		fname = "../options/" + geochronometer + ".html";
-		$("#geochronometer-options").load(fname,function(){
-		    showSettings(geochronometer);
+	    fname = "../options/" + geochronometer + ".html";
+	    $("#geochronometer-options").load(fname,function(){
+		showSettings(geochronometer);
+		fname = "../options/" + plotdevice + ".html";
+		$("#plotdevice-options").load(fname,function(){
+		    showSettings(plotdevice);
 		    IsoplotR.optionschanged = true;
 		});
 	    });
