@@ -194,7 +194,7 @@ $(function(){
 	var cond4 = (cond1 & !cond3);
 	var cond9 = geochronometer=='fissiontracks';
 	var cond10 = FTformat>1;
-	var cond11 = cond9 & cond10;
+	var cond11 = (cond9 & cond10);
 	if (cond1) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
@@ -241,6 +241,8 @@ $(function(){
 	} else if (geochronometer=='fissiontracks' & FTformat==3){
 	    var spotSize = $('#spotSizeVal').val();
 	    IsoplotR.data = [nr,nc,spotSize,dat];
+	} else {
+	    IsoplotR.data = [nr,nc,dat];
 	}
     }
     

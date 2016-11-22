@@ -5,9 +5,9 @@ Authors@R: person("Pieter", "Vermeesch", , "p.vermeesch@ucl.ac.uk", role = c("au
 Description: Implements the fuctionality of the popular Isoplot Excel Add-In for Isotope Geology.
 Author: Pieter Vermeesch [aut, cre]
 Maintainer: Pieter Vermeesch <p.vermeesch@ucl.ac.uk>
-Depends:
-    R (>= 3.0.0)
+Depends: R (>= 3.0.0)
 Suggests: shiny, IsoplotR
 License: GPL-2
 LazyData: true
 RoxygenNote: 5.0.1
+Built: R 3.4.0; ; 2016-11-22 22:19:13 UTC; unix

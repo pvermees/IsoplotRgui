@@ -1,40 +1,4 @@
-library(shiny)
-
-debug <- TRUE
-
-if (debug) {
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/ArAr.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/age.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/agespectrum.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/botev.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/cad.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/central.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/concordia.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/constants.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/discordia.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/errorellipse.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/fissiontracks.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/helioplot.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/io.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/isochron.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/json.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/kde.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/mds.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/peakfit.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/regression.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/radialplot.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/toolbox.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UPb.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/UThHe.R")
-    source("/home/pvermees/Dropbox/Programming/R/IsoplotR/R/weightedmean.R")
-    
-    settings("www/js/constants.json")
-} else {
-    library(shiny)
-    library(IsoplotR)
-}
-
-shinyServer(function(input,output,session){
+shiny::shinyServer(function(input,output,session){
 
     observe({
         input$Rcommand
@@ -105,9 +69,7 @@ shinyServer(function(input,output,session){
         } else if (identical(method,"other")) {
             mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
         }
-        if (debug) out <- read.data(mat,method,format)
-        else out <- IsoplotR::read.data(mat,method,format)
-        out
+        IsoplotR::read.data(mat,method,format)
     }
 
     getJavascript <- function(results){
