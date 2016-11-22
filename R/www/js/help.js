@@ -251,6 +251,11 @@ function help(id){
 	    "output table. <tt>IsoplotR</tt>'s concordia and radial plot functions " +
 	    "were designed to take into account this correlation.";
 	break;
+    case "help-zeta-exterr":
+	text = "When this box is ticked, the analytical uncertainty associated " +
+	    "with the standard age and dosimeter glass will be propagated into the " +
+	    "&zeta;-calibration factor.";
+	break;
     case "help-U238U235":
 	text = "Change the <sup>238</sup>U/<sup>235</sup>U ratio and uncertainty. " +
             "Default values are taken from Hiess et al. (2012). To use Steiger " +

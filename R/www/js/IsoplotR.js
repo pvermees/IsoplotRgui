@@ -94,6 +94,10 @@ $(function(){
 	    if (settings.fissiontracks.format > 1){
 		$("#spotSizeVal").val(json.spotSize);
 	    }
+	    if (settings.plotdevice=='set-zeta'){
+		$("#standAgeVal").val(json.age[0]);
+		$("#standAgeErr").val(json.age[1]);
+	    }
 	    break;
 	default:
 	}
@@ -164,8 +168,8 @@ $(function(){
 		mydata.spotSize = $("#spotSizeVal").val();
 	    }
 	    if (plotdevice == 'set-zeta'){
-		out.settings[plotdevice].age[0] = $("#standAgeVal").val();
-		out.settings[plotdevice].age[1] = $("#standAgeErr").val();
+		mydata.age[0] = $("#standAgeVal").val();
+		mydata.age[1] = $("#standAgeErr").val();
 	    }
 	    break;
 	default:
@@ -233,7 +237,7 @@ $(function(){
 	    var zeta = $('#zetaVal').val();
 	    var zetaErr = $('#zetaErr').val();
 	    var spotSize = $('#spotSizeVal').val();
-	    IsoplotR.data = [nr,nc,zt,szt,spotSize,dat];
+	    IsoplotR.data = [nr,nc,zeta,zetaErr,spotSize,dat];
 	} else if (geochronometer=='fissiontracks' & FTformat==3){
 	    var spotSize = $('#spotSizeVal').val();
 	    IsoplotR.data = [nr,nc,spotSize,dat];
@@ -394,6 +398,8 @@ $(function(){
 	case 'set-zeta':
 	    $('.show4zeta').show();
 	    $('.hide4zeta').hide();
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He') {
@@ -529,6 +535,11 @@ $(function(){
 	    pdsettings["mindisc"] = $('#mindisc').val();
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
 	    break;
+	case 'set-zeta':
+	    pdsettings.exterr = 
+		$('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.sigdig = $('#sigdig').val();
+	    break;
 	case 'MDS':
 	    pdsettings["classical"] =
 		$('#classical').prop('checked') ? 'TRUE' : 'FALSE';
@@ -545,8 +556,8 @@ $(function(){
 	    pdsettings["bg"] = $('#bg').val();
 	    break;
 	case 'set-zeta':
-	    pdsettings.age[0] = $('#standAgeVal').val();
-	    pdsettings.age[1] = $('#standAgeErr').val();
+	    IsoplotR.settings.data[geochronometer].age[0] = $('#standAgeVal').val();
+	    IsoplotR.settings.data[geochronometer].age[1] = $('#standAgeErr').val();
 	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He'){

@@ -100,8 +100,11 @@ function getOptions(prefs){
 	}
 	break;
     case 'set-zeta':
-	out += ",tst=c(" + settings.age[0] +
-	             "," + settings.age[1] + ")";
+	var data = prefs.settings.data[geochronometer];
+	out += ",tst=c(" + data.age[0] +
+	             "," + data.age[1] + ")";
+	out += ",exterr=" + settings.exterr;
+	out += ",sigdig=" + settings.sigdig;
 	out += ",update=FALSE";
 	break;
     case 'helioplot':

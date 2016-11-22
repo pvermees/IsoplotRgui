@@ -104,7 +104,7 @@
 	"maxdisc": 5
     },
     "set-zeta": {
-	"age": [0,0]
+	"sigdig": 2
     },
     "MDS": {
 	"classical": "FALSE",
