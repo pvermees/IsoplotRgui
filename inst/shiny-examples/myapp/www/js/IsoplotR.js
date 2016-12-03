@@ -139,7 +139,6 @@ $(function(){
 		colHeaders: headers
 	    });
 	}
-
     }
 
     // overwrites the data in the IsoplotR preferences based on the handsontable
@@ -148,7 +147,6 @@ $(function(){
 	var geochronometer = out.settings.geochronometer;
 	var plotdevice = out.settings.plotdevice;
 	var mydata = out.settings.data[geochronometer];
-	var i = 0;
 	switch (geochronometer){
 	case "Ar-Ar":
 	    mydata.J[0] = $("#Jval").val();
@@ -174,9 +172,27 @@ $(function(){
 	    break;
 	default:
 	}
-	$.each(mydata.data, function(k, v) {
-	    mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
-	});
+	if (geochronometer=='detritals'){
+	    $.each(mydata.data, function(k, v) {
+		mydata.data[k] = null;
+	    });
+	    var labels = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
+			  'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	    var label = '';
+	    for (var k=0; k<dnc(); k++){
+		if (k<26) {
+		    label = labels[k];
+		} else {
+		    label = labels[Math.floor((k-1)/26)] + labels[k%26];
+		}
+		mydata.data[label] = $("#INPUT").handsontable('getDataAtCol',k);
+	    }
+	} else {
+	    var i = 0;
+	    $.each(mydata.data, function(k, v) {
+		mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
+	    });
+	}
 	out.settings.data[geochronometer] = mydata;
 	out.optionschanged = false;
 	IsoplotR = out;
@@ -190,12 +206,13 @@ $(function(){
 	var dat = [];
 	var DNC = dnc();
 	var cond1 = (nc < DNC);
+	var cond2 = (geochronometer=='other') & (nr==1);
 	var cond3 = geochronometer=='detritals';
 	var cond4 = (cond1 & !cond3);
 	var cond9 = geochronometer=='fissiontracks';
 	var cond10 = FTformat>1;
 	var cond11 = (cond9 & cond10);
-	if (cond1) {
+	if (cond1|cond2) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
 		r = 0;

@@ -190,12 +190,13 @@ $(function(){
 	var dat = [];
 	var DNC = dnc();
 	var cond1 = (nc < DNC);
+	var cond2 = (geochronometer=='other') & (nr==1);
 	var cond3 = geochronometer=='detritals';
 	var cond4 = (cond1 & !cond3);
 	var cond9 = geochronometer=='fissiontracks';
 	var cond10 = FTformat>1;
 	var cond11 = (cond9 & cond10);
-	if (cond1) {
+	if (cond1|cond2) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
 		r = 0;
