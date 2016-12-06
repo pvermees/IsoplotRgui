@@ -116,6 +116,30 @@ function help(id){
     case "help-LambdaK40":
 	text = "Default value taken from Renne et al. (2011).";
 	break;
+    case "help-Os184Os192":
+	text = "Change the natural <sup>184</sup>Os/<sup>192</sup>Os ratio. " +
+	    "Default value is taken from Voelkening et al. (1991).";
+	break;
+    case "help-Os186Os192":
+	text = "Change the natural <sup>186</sup>Os/<sup>192</sup>Os ratio. " +
+	    "Default value is taken from Voelkening et al. (1991).";
+	break;
+    case "help-Os188Os192":
+	text = "Change the natural <sup>188</sup>Os/<sup>192</sup>Os ratio. " +
+	    "Default value is taken from Voelkening et al. (1991).";
+	break;
+    case "help-Os189Os192":
+	text = "Change the natural <sup>189</sup>Os/<sup>192</sup>Os ratio. " +
+	    "Default value is taken from Voelkening et al. (1991).";
+	break;
+    case "help-Os190Os192":
+	text = "Change the natural <sup>190</sup>Os/<sup>192</sup>Os ratio. " +
+	    "Default value is taken from Voelkening et al. (1991).";
+	break;
+    case "help-LambdaRe192":
+	text = "The default values of the <sup>187</sup>Re decay constant " +
+	    "and its uncertainty are taken from Selby et al. (2007).";
+	break;
     case "help-minx":
 	text = "Minimum age constraint of the KDE. " +
             "Setting this to <tt>auto</tt> automatically sets this " +

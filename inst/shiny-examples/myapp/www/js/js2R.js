@@ -40,7 +40,7 @@ function getOptions(prefs){
 	}
 	break;
     case 'isochron':
-	out += ",inverse=" + settings.inverse;
+	if (geochronometer=='Ar-Ar'){ out += ",inverse=" + settings.inverse; }
 	out += ",exterr=" + settings.exterr;
     case 'regression':
 	if (settings.minx != 'auto' & settings.maxx != 'auto')
@@ -169,6 +169,22 @@ function getRcommand(prefs){
      	       ",e=" + prefs.constants.iratio.Ar40Ar36[1] + ");"
 	out += "IsoplotR::lambda('K40',x=" + prefs.constants.lambda.K40[0] + 
   	       ",e=" + prefs.constants.lambda.K40[1] + ");"
+	break;
+    case 'Re-Os':
+	out += "IsoplotR::iratio('Os184Os192',x=" +
+	    prefs.constants.iratio.Os184Os192[0] + 
+     	    ",e=" + prefs.constants.iratio.Os184Os192[1] + ");"
+	out += "IsoplotR::iratio('Os186Os192',x=" +
+	    prefs.constants.iratio.Os186Os192[0] + 
+     	    ",e=" + prefs.constants.iratio.Os186Os192[1] + ");"
+	out += "IsoplotR::iratio('Os188Os192',x=" +
+	    prefs.constants.iratio.Os188Os192[0] + 
+     	    ",e=" + prefs.constants.iratio.Os188Os192[1] + ");"
+	out += "IsoplotR::iratio('Os190Os192',x=" +
+	    prefs.constants.iratio.Os190Os192[0] + 
+     	    ",e=" + prefs.constants.iratio.Os190Os192[1] + ");"
+	out += "IsoplotR::lambda('Re187',x=" + prefs.constants.lambda.Re187[0] + 
+  	    ",e=" + prefs.constants.lambda.Re187[1] + ");"	
 	break;
     case 'U-Th-He': 
 	out += "IsoplotR::iratio('U238U235',x=" + prefs.constants.iratio.U238U235[0] + 

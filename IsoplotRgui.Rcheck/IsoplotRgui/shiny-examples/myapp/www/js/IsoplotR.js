@@ -49,6 +49,10 @@ $(function(){
 	    } else {
 		return 20;
 	    }
+	case 'Rb-Sr':
+	case 'Sm-Nd':
+	case 'Re-Os':
+	    return 6;
 	case 'U-Th-He':
 	    return 8;
 	case 'detritals':
@@ -139,7 +143,6 @@ $(function(){
 		colHeaders: headers
 	    });
 	}
-
     }
 
     // overwrites the data in the IsoplotR preferences based on the handsontable
@@ -148,7 +151,6 @@ $(function(){
 	var geochronometer = out.settings.geochronometer;
 	var plotdevice = out.settings.plotdevice;
 	var mydata = out.settings.data[geochronometer];
-	var i = 0;
 	switch (geochronometer){
 	case "Ar-Ar":
 	    mydata.J[0] = $("#Jval").val();
@@ -174,9 +176,27 @@ $(function(){
 	    break;
 	default:
 	}
-	$.each(mydata.data, function(k, v) {
-	    mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
-	});
+	if (geochronometer=='detritals'){
+	    $.each(mydata.data, function(k, v) {
+		mydata.data[k] = null;
+	    });
+	    var labels = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
+			  'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	    var label = '';
+	    for (var k=0; k<dnc(); k++){
+		if (k<26) {
+		    label = labels[k];
+		} else {
+		    label = labels[Math.floor((k-1)/26)] + labels[k%26];
+		}
+		mydata.data[label] = $("#INPUT").handsontable('getDataAtCol',k);
+	    }
+	} else {
+	    var i = 0;
+	    $.each(mydata.data, function(k, v) {
+		mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
+	    });
+	}
 	out.settings.data[geochronometer] = mydata;
 	out.optionschanged = false;
 	IsoplotR = out;
@@ -268,6 +288,22 @@ $(function(){
 	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1])
+	    break;
+	case 'Re-Os':
+	    $('.show4ReOs').show();
+	    $('.hide4ReOs').hide();
+	    $('#Os184Os192').val(cst.iratio.Os184Os192[0]),
+	    $('#errOs184Os192').val(cst.iratio.Os184Os192[1]),
+	    $('#Os186Os192').val(cst.iratio.Os186Os192[0]),
+	    $('#errOs186Os192').val(cst.iratio.Os186Os192[1]),
+	    $('#Os188Os192').val(cst.iratio.Os188Os192[0]),
+	    $('#errOs188Os192').val(cst.iratio.Os188Os192[1]),
+	    $('#Os189Os192').val(cst.iratio.Os189Os192[0]),
+	    $('#errOs189Os192').val(cst.iratio.Os189Os192[1]),
+	    $('#Os190Os192').val(cst.iratio.Os190Os192[0]),
+	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]),
+	    $('#LambdaRe187').val(cst.lambda.Re187[0]),
+	    $('#errLambdaRe187').val(cst.lambda.Re187[1])
 	    break;
 	case 'U-Th-He':
 	    $('.show4UThHe').show();
@@ -633,10 +669,8 @@ $(function(){
     }
 
     function setSelectedMenus(options){
-	$("#Ar-Ar").prop('disabled',false);
 	$("#Rb-Sr").prop('disabled',true);
 	$("#Sm-Nd").prop('disabled',true);
-	$("#Re-Os").prop('disabled',true);
 	$("#U-series").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);
@@ -714,10 +748,10 @@ $(function(){
 			      false,false,false,true,true,false]);
 	    $("#Jdiv").show();
 	    break;
+	case 'Re-Os':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
-	case 'Re-Os':
-	    setSelectedMenus([true,true,true,true,true,true,
+	    setSelectedMenus([true,true,false,true,true,true,
 			      true,true,true,true,true,true]);
 	    break;
 	case 'U-Th-He':
@@ -835,8 +869,6 @@ $(function(){
 	    break;
 	}
     }
-
-    $(".hidden").hide()
     
     $(".button").button()
 
@@ -919,9 +951,9 @@ $(function(){
 	$("#myplot").load("../options/index.html",function(){
 	    fname = "../options/" + geochronometer + ".html";
 	    $("#geochronometer-options").load(fname,function(){
-		showSettings(geochronometer);
 		fname = "../options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
+		    showSettings(geochronometer);
 		    showSettings(plotdevice);
 		    IsoplotR.optionschanged = true;
 		});
