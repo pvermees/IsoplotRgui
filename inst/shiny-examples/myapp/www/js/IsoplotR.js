@@ -575,6 +575,8 @@ $(function(){
 	    pdsettings["maxdisc"] = $('#maxdisc').val();
 	    break;
 	case 'set-zeta':
+	    IsoplotR.settings.data[geochronometer].age[0] = $('#standAgeVal').val();
+	    IsoplotR.settings.data[geochronometer].age[1] = $('#standAgeErr').val();
 	    pdsettings.exterr = 
 		$('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.sigdig = $('#sigdig').val();
@@ -593,10 +595,6 @@ $(function(){
 	    pdsettings["pos"] = $('#pos').val();
 	    pdsettings["col"] = $('#col').val();
 	    pdsettings["bg"] = $('#bg').val();
-	    break;
-	case 'set-zeta':
-	    IsoplotR.settings.data[geochronometer].age[0] = $('#standAgeVal').val();
-	    IsoplotR.settings.data[geochronometer].age[1] = $('#standAgeErr').val();
 	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He'){
