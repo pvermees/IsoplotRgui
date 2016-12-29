@@ -135,6 +135,10 @@ function getOptions(prefs){
     case 'ages':
 	if (geochronometer != 'U-Th-He') 
 	    out += ",exterr=" + settings.exterr;
+	if (geochronometer == 'Re-Os') {
+	    out += ",isochron=FALSE";
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	}
 	out += ",sigdig=" + settings.sigdig;
 	break;
     default: // do nothing
@@ -182,6 +186,9 @@ function getRcommand(prefs){
 	out += "IsoplotR::settings('iratio','Os186Os192'," +
 	    prefs.constants.iratio.Os186Os192[0] + "," +
 	    prefs.constants.iratio.Os186Os192[1] + ");"
+	out += "IsoplotR::settings('iratio','Os187Os192'," +
+	    prefs.constants.iratio.Os187Os192[0] + "," +
+	    prefs.constants.iratio.Os187Os192[1] + ");"
 	out += "IsoplotR::settings('iratio','Os188Os192'," +
 	    prefs.constants.iratio.Os188Os192[0] + "," +
 	    prefs.constants.iratio.Os188Os192[1] + ");"

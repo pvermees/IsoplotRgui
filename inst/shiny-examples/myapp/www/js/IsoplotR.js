@@ -292,18 +292,21 @@ $(function(){
 	case 'Re-Os':
 	    $('.show4ReOs').show();
 	    $('.hide4ReOs').hide();
-	    $('#Os184Os192').val(cst.iratio.Os184Os192[0]),
-	    $('#errOs184Os192').val(cst.iratio.Os184Os192[1]),
-	    $('#Os186Os192').val(cst.iratio.Os186Os192[0]),
-	    $('#errOs186Os192').val(cst.iratio.Os186Os192[1]),
-	    $('#Os188Os192').val(cst.iratio.Os188Os192[0]),
-	    $('#errOs188Os192').val(cst.iratio.Os188Os192[1]),
-	    $('#Os189Os192').val(cst.iratio.Os189Os192[0]),
-	    $('#errOs189Os192').val(cst.iratio.Os189Os192[1]),
-	    $('#Os190Os192').val(cst.iratio.Os190Os192[0]),
-	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]),
-	    $('#LambdaRe187').val(cst.lambda.Re187[0]),
-	    $('#errLambdaRe187').val(cst.lambda.Re187[1])
+	    $('#Os184Os192').val(cst.iratio.Os184Os192[0]);
+	    $('#errOs184Os192').val(cst.iratio.Os184Os192[1]);
+	    $('#Os186Os192').val(cst.iratio.Os186Os192[0]);
+	    $('#errOs186Os192').val(cst.iratio.Os186Os192[1]);
+	    $('#Os187Os192').val(cst.iratio.Os187Os192[0]);
+	    $('#errOs187Os192').val(cst.iratio.Os187Os192[1]);
+	    $('#Os188Os192').val(cst.iratio.Os188Os192[0]);
+	    $('#errOs188Os192').val(cst.iratio.Os188Os192[1]);
+	    $('#Os189Os192').val(cst.iratio.Os189Os192[0]);
+	    $('#errOs189Os192').val(cst.iratio.Os189Os192[1]);
+	    $('#Os190Os192').val(cst.iratio.Os190Os192[0]);
+	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]);
+	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
+	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
+	    $('#i2i').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'U-Th-He':
 	    $('.show4UThHe').show();
@@ -633,6 +636,24 @@ $(function(){
 	    gcsettings.lambda.K40[0] = $("#LambdaK40").val();
 	    gcsettings.lambda.K40[1] = $("#errLambdaK40").val();
 	    break;
+	case 'Re-Os':
+	    gcsettings.iratio.Os184Os192[0] = $('#Os184Os192').val();
+	    gcsettings.iratio.Os184Os192[1] = $('#errOs184Os192').val();
+	    gcsettings.iratio.Os186Os192[0] = $('#Os186Os192').val();
+	    gcsettings.iratio.Os186Os192[1] = $('#errOs186Os192').val();
+	    gcsettings.iratio.Os187Os192[0] = $('#Os187Os192').val();
+	    gcsettings.iratio.Os187Os192[1] = $('#errOs187Os192').val();
+	    gcsettings.iratio.Os188Os192[0] = $('#Os188Os192').val();
+	    gcsettings.iratio.Os188Os192[1] = $('#errOs188Os192').val();
+	    gcsettings.iratio.Os189Os192[0] = $('#Os189Os192').val();
+	    gcsettings.iratio.Os189Os192[1] = $('#errOs189Os192').val();
+	    gcsettings.iratio.Os190Os192[0] = $('#Os190Os192').val();
+	    gcsettings.iratio.Os190Os192[1] = $('#errOs190Os192').val();
+	    gcsettings.lambda.Re187[0] = $('#LambdaRe187').val();
+	    gcsettings.lambda.Re187[1] = $('#errLambdaRe187').val();
+	    IsoplotR.settings[geochronometer].i2i = 
+		$("#i2i").prop('checked') ? "TRUE" : "FALSE";
+	    break;
 	case 'U-Th-He':
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
 	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
@@ -750,7 +771,7 @@ $(function(){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	    setSelectedMenus([true,true,false,true,true,true,
-			      true,true,true,true,true,true]);
+			      true,true,true,true,true,false]);
 	    break;
 	case 'U-Th-He':
 	    setSelectedMenus([true,false,true,false,true,true,
@@ -1004,6 +1025,10 @@ $(function(){
 
     
     $("#DEFAULTS").click(function(){
+	var cfile = './js/constants.json';
+	$.getJSON(cfile, function(data){
+	    IsoplotR.constants = data;
+	});
 	IsoplotR = populate(IsoplotR,true);
     });
 

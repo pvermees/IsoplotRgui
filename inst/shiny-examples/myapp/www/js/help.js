@@ -124,6 +124,12 @@ function help(id){
 	text = "Change the natural <sup>186</sup>Os/<sup>192</sup>Os ratio. " +
 	    "Default value is taken from Voelkening et al. (1991).";
 	break;
+    case "help-Os187Os192":
+	text = "Change the initial <sup>187</sup>Os/<sup>192</sup>Os ratio. " +
+	    "This value is only used to calculate ages if the isochron option " +
+	    "has been switched off. The default ratio is taken from " +
+	    "Voelkening et al. (1991).";
+	break;
     case "help-Os188Os192":
 	text = "Change the natural <sup>188</sup>Os/<sup>192</sup>Os ratio. " +
 	    "Default value is taken from Voelkening et al. (1991).";
@@ -136,9 +142,17 @@ function help(id){
 	text = "Change the natural <sup>190</sup>Os/<sup>192</sup>Os ratio. " +
 	    "Default value is taken from Voelkening et al. (1991).";
 	break;
-    case "help-LambdaRe192":
+    case "help-LambdaRe187":
 	text = "The default values of the <sup>187</sup>Re decay constant " +
 	    "and its uncertainty are taken from Selby et al. (2007).";
+	break;
+    case "help-ReOs-i2i":
+	text = "Ticking this box uses the y-intercept of an isochron fit " +
+	    "through all the Re-Os data as an initial " +
+	    "<sup>187</sup>Os/<sup>188</sup>Os-ratio for the age calculations. " +
+	    "Unticking it uses the ratio of the " +
+	    "<sup>187</sup>Os/<sup>192</sup>Os- and " +
+	    "<sup>188</sup>Os/<sup>192</sup>Os-ratios above.";
 	break;
     case "help-minx":
 	text = "Minimum age constraint of the KDE. " +

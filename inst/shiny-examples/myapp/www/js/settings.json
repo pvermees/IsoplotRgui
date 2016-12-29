@@ -16,6 +16,9 @@
     "detritals": {
 	"format": 1
     },
+    "Re-Os": {
+	"i2i": "TRUE"
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
