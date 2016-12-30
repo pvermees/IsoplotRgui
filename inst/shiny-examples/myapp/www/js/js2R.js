@@ -34,9 +34,16 @@ function getOptions(prefs){
 	out += ",cex=" + settings.cex;
 	out += ",bg='" + settings.bg + "'";
 	out += ",sigdig=" + settings.sigdig;
-	if (geochronometer=="U-Pb"){
+	switch (geochronometer){
+	case 'Ar-Ar':
+	case 'Re-Os':
+	    out += ",isochron=FALSE";
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	case 'U-Pb':
 	    out += ",cutoff.76=" + settings.cutoff76;
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	default:
 	}
 	break;
     case 'isochron':
@@ -133,11 +140,15 @@ function getOptions(prefs){
 	out += ",bg='" + settings.bg + "'";
 	break;
     case 'ages':
-	if (geochronometer != 'U-Th-He') 
+	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + settings.exterr;
-	if (geochronometer == 'Re-Os') {
+	switch (geochronometer){
+	case 'Ar-Ar':
+	case 'Re-Os':
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	default:
 	}
 	out += ",sigdig=" + settings.sigdig;
 	break;

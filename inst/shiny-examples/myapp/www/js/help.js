@@ -154,6 +154,12 @@ function help(id){
 	    "<sup>187</sup>Os/<sup>192</sup>Os- and " +
 	    "<sup>188</sup>Os/<sup>192</sup>Os-ratios above.";
 	break;
+    case "help-ArAr-i2i":
+	text = "Ticking this box uses the y-intercept of an isochron fit " +
+	    "through all the Ar data as an initial " +
+	    "<sup>40</sup>Ar/<sup>36</sup>Ar-ratio for the age calculations. " +
+	    "Unticking it uses the atmospheric ratio specified above.";
+	break;
     case "help-minx":
 	text = "Minimum age constraint of the KDE. " +
             "Setting this to <tt>auto</tt> automatically sets this " +

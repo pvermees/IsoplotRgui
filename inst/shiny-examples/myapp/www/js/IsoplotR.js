@@ -287,7 +287,8 @@ $(function(){
 	    $('#Ar40Ar36').val(cst.iratio.Ar40Ar36[0]),
 	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
-	    $('#errLambdaK40').val(cst.lambda.K40[1])
+	    $('#errLambdaK40').val(cst.lambda.K40[1]),
+	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Re-Os':
 	    $('.show4ReOs').show();
@@ -306,7 +307,7 @@ $(function(){
 	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]);
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
-	    $('#i2i').prop('checked',set.i2i=='TRUE');
+	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'U-Th-He':
 	    $('.show4UThHe').show();
@@ -635,6 +636,8 @@ $(function(){
 	    gcsettings.iratio.Ar40Ar36[1] = $("#errAr40Ar36").val();
 	    gcsettings.lambda.K40[0] = $("#LambdaK40").val();
 	    gcsettings.lambda.K40[1] = $("#errLambdaK40").val();
+	    IsoplotR.settings[geochronometer].i2i = 
+		$("#i2iArAr").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'Re-Os':
 	    gcsettings.iratio.Os184Os192[0] = $('#Os184Os192').val();
@@ -652,7 +655,7 @@ $(function(){
 	    gcsettings.lambda.Re187[0] = $('#LambdaRe187').val();
 	    gcsettings.lambda.Re187[1] = $('#errLambdaRe187').val();
 	    IsoplotR.settings[geochronometer].i2i = 
-		$("#i2i").prop('checked') ? "TRUE" : "FALSE";
+		$("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'U-Th-He':
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
@@ -770,7 +773,7 @@ $(function(){
 	case 'Re-Os':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
-	    setSelectedMenus([true,true,false,true,true,true,
+	    setSelectedMenus([true,true,false,false,true,true,
 			      true,true,true,true,true,false]);
 	    break;
 	case 'U-Th-He':

@@ -16,6 +16,9 @@
     "detritals": {
 	"format": 1
     },
+    "Ar-Ar": {
+	"i2i": "FALSE"
+    },
     "Re-Os": {
 	"i2i": "TRUE"
     },
