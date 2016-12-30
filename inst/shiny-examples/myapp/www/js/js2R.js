@@ -37,7 +37,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Ar-Ar':
 	case 'Re-Os':
-	    out += ",isochron=FALSE";
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
 	case 'U-Pb':
@@ -59,6 +58,9 @@ function getOptions(prefs){
 	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'average':
+	if (geochronometer=='Ar-Ar' | geochronometer == 'Re-Os'){
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	}
 	if (geochronometer != "other"){
 	    out += ",exterr=" + settings.exterr;
 	}
@@ -67,7 +69,8 @@ function getOptions(prefs){
 	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'spectrum':
-	if (geochronometer != "other"){
+	if (geochronometer=='Ar-Ar'){
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    out += ",exterr=" + settings.exterr;
 	}
 	out += ",plateau=" + settings.plateau;
@@ -83,16 +86,24 @@ function getOptions(prefs){
 	else { out += ",bw=NA"; }
 	out += ",show.hist=" + settings.showhist;
 	out += ",adaptive=" + settings.adaptive;
-	if (geochronometer=="detritals"){
+	switch (geochronometer){
+	case 'Ar-Ar':
+	case 'Re-Os':
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	case 'U-Pb':
+	    out += ",cutoff.76=" + settings.cutoff76;
+	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	    break;
+	case 'detritals':
 	    out += ",samebandwidth=" + settings.samebandwidth;
 	    out += ",normalise=" + settings.normalise;
 	    if (settings.pchdetritals!='none') { out += ",pch=" + settings.pchdetritals; }
-	} else if (geochronometer=="U-Pb"){
-	    if (settings.pch!='none') { out += ",pch=" + settings.pch; }
-	    out += ",cutoff.76=" + settings.cutoff76;
-	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
-	} else {
-	    if (settings.pch!='none') { out += ",pch=" + settings.pch; }
+	    break;
+	default:
+	}
+	if (geochronometer!="detritals" & settings.pch!='none'){
+	    out += ",pch=" + settings.pch;
 	}
 	out += ",log=" + settings.log;
 	if (settings.binwidth != 'auto') { out += ",binwidth=" + settings.binwidth; }
@@ -101,9 +112,16 @@ function getOptions(prefs){
     case 'CAD':
 	if (settings.pch!='none') { out += ",pch=" + settings.pch; }
 	out += ",verticals=" + settings.verticals;
-	if (geochronometer=="U-Pb"){
+	switch (geochronometer){
+	case 'U-Pb':
 	    out += ",cutoff.76=" + settings.cutoff76;
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	    break;
+	case 'Ar-Ar':
+	case 'Re-Os':
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	default:
 	}
 	break;
     case 'set-zeta':
