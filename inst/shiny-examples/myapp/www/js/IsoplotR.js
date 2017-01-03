@@ -692,7 +692,6 @@ $(function(){
 
     function setSelectedMenus(options){
 	$("#Rb-Sr").prop('disabled',true);
-	$("#Sm-Nd").prop('disabled',true);
 	$("#U-series").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);

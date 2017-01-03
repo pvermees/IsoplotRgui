@@ -162,6 +162,7 @@ function getOptions(prefs){
 	    out += ",exterr=" + settings.exterr;
 	switch (geochronometer){
 	case 'Ar-Ar':
+	case 'Sm-Nd':
 	case 'Re-Os':
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;

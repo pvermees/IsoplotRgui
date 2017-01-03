@@ -22,6 +22,9 @@
     "Re-Os": {
 	"i2i": "TRUE"
     },
+    "Sm-Nd": {
+	"i2i": "TRUE"
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
