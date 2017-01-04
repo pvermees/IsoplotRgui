@@ -16,6 +16,15 @@
     "detritals": {
 	"format": 1
     },
+    "Ar-Ar": {
+	"i2i": "FALSE"
+    },
+    "Re-Os": {
+	"i2i": "TRUE"
+    },
+    "Sm-Nd": {
+	"i2i": "TRUE"
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
@@ -104,7 +113,8 @@
 	"maxdisc": 5
     },
     "set-zeta": {
-	"sigdig": 2
+	"sigdig": 2,
+	"exterr": "TRUE"
     },
     "MDS": {
 	"classical": "FALSE",

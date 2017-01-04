@@ -116,6 +116,10 @@ function help(id){
     case "help-LambdaK40":
 	text = "Default value taken from Renne et al. (2011).";
 	break;
+    case "help-Re185Re187":
+	text = "Change the natural <sup>185</sup>Re/<sup>187</sup>Re ratio. " +
+	    "Default value is taken from Gramlich et al. (1973).";
+	break;
     case "help-Os184Os192":
 	text = "Change the natural <sup>184</sup>Os/<sup>192</sup>Os ratio. " +
 	    "Default value is taken from Voelkening et al. (1991).";
@@ -146,6 +150,54 @@ function help(id){
 	text = "The default values of the <sup>187</sup>Re decay constant " +
 	    "and its uncertainty are taken from Selby et al. (2007).";
 	break;
+    case "help-Sm144Sm152":
+	text = "Change the natural <sup>144</sup>Sm/<sup>152</sup>Sm ratio. " +
+	    "Default value is taken from Chang et al. (2002).";
+	break;
+    case "help-Sm147Sm152":
+	text = "Change the natural <sup>147</sup>Sm/<sup>152</sup>Sm ratio. " +
+	    "Default value is taken from Chang et al. (2002).";
+	break;
+    case "help-Sm148Sm152":
+	text = "Change the natural <sup>148</sup>Sm/<sup>152</sup>Sm ratio. " +
+	    "Default value is taken from Chang et al. (2002).";
+	break;
+    case "help-Sm149Sm152":
+	text = "Change the natural <sup>149</sup>Sm/<sup>152</sup>Sm ratio. " +
+	    "Default value is taken from Chang et al. (2002).";
+	break;
+    case "help-Sm150Sm152":
+	text = "Change the natural <sup>150</sup>Sm/<sup>152</sup>Sm ratio. " +
+	    "Default value is taken from Chang et al. (2002).";
+	break;
+    case "help-Sm154Sm152":
+	text = "Change the natural <sup>154</sup>Sm/<sup>152</sup>Sm ratio. " +
+	    "Default value is taken from Chang et al. (2002).";
+	break;
+    case "help-Nd142Nd144":
+	text = "Change the natural <sup>142</sup>Sm/<sup>144</sup>Nd ratio. " +
+	    "Default value is taken from Zhao et al. (2005).";
+	break;
+    case "help-Nd143Nd144":
+	text = "Change the natural <sup>143</sup>Sm/<sup>144</sup>Nd ratio. " +
+	    "Default value is taken from Zhao et al. (2005).";
+	break;
+    case "help-Nd145Nd144":
+	text = "Change the natural <sup>145</sup>Sm/<sup>144</sup>Nd ratio. " +
+	    "Default value is taken from Zhao et al. (2005).";
+	break;
+    case "help-Nd146Nd144":
+	text = "Change the natural <sup>146</sup>Sm/<sup>144</sup>Nd ratio. " +
+	    "Default value is taken from Zhao et al. (2005).";
+	break;
+    case "help-Nd148Nd144":
+	text = "Change the natural <sup>148</sup>Sm/<sup>144</sup>Nd ratio. " +
+	    "Default value is taken from Zhao et al. (2005).";
+	break;
+    case "help-Nd150Nd144":
+	text = "Change the natural <sup>150</sup>Sm/<sup>144</sup>Nd ratio. " +
+	    "Default value is taken from Zhao et al. (2005).";
+	break;
     case "help-ReOs-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Re-Os data as an initial " +
@@ -153,6 +205,12 @@ function help(id){
 	    "Unticking it uses the ratio of the " +
 	    "<sup>187</sup>Os/<sup>192</sup>Os- and " +
 	    "<sup>188</sup>Os/<sup>192</sup>Os-ratios above.";
+	break;
+    case "help-SmNd-i2i":
+	text = "Ticking this box uses the y-intercept of an isochron fit " +
+	    "through all the Sm-Nd data as an initial " +
+	    "<sup>143</sup>Nd/<sup>144</sup>Nd-ratio for the age calculations. " +
+	    "Unticking it uses the ratio given above.";
 	break;
     case "help-ArAr-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +

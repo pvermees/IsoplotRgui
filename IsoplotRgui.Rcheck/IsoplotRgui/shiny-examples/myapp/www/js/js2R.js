@@ -34,9 +34,15 @@ function getOptions(prefs){
 	out += ",cex=" + settings.cex;
 	out += ",bg='" + settings.bg + "'";
 	out += ",sigdig=" + settings.sigdig;
-	if (geochronometer=="U-Pb"){
+	switch (geochronometer){
+	case 'Ar-Ar':
+	case 'Re-Os':
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	case 'U-Pb':
 	    out += ",cutoff.76=" + settings.cutoff76;
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	default:
 	}
 	break;
     case 'isochron':
@@ -52,6 +58,9 @@ function getOptions(prefs){
 	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'average':
+	if (geochronometer=='Ar-Ar' | geochronometer == 'Re-Os'){
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	}
 	if (geochronometer != "other"){
 	    out += ",exterr=" + settings.exterr;
 	}
@@ -60,7 +69,8 @@ function getOptions(prefs){
 	out += ",sigdig=" + settings.sigdig;
 	break;
     case 'spectrum':
-	if (geochronometer != "other"){
+	if (geochronometer=='Ar-Ar'){
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    out += ",exterr=" + settings.exterr;
 	}
 	out += ",plateau=" + settings.plateau;
@@ -76,16 +86,24 @@ function getOptions(prefs){
 	else { out += ",bw=NA"; }
 	out += ",show.hist=" + settings.showhist;
 	out += ",adaptive=" + settings.adaptive;
-	if (geochronometer=="detritals"){
+	switch (geochronometer){
+	case 'Ar-Ar':
+	case 'Re-Os':
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	case 'U-Pb':
+	    out += ",cutoff.76=" + settings.cutoff76;
+	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	    break;
+	case 'detritals':
 	    out += ",samebandwidth=" + settings.samebandwidth;
 	    out += ",normalise=" + settings.normalise;
 	    if (settings.pchdetritals!='none') { out += ",pch=" + settings.pchdetritals; }
-	} else if (geochronometer=="U-Pb"){
-	    if (settings.pch!='none') { out += ",pch=" + settings.pch; }
-	    out += ",cutoff.76=" + settings.cutoff76;
-	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
-	} else {
-	    if (settings.pch!='none') { out += ",pch=" + settings.pch; }
+	    break;
+	default:
+	}
+	if (geochronometer!="detritals" & settings.pch!='none'){
+	    out += ",pch=" + settings.pch;
 	}
 	out += ",log=" + settings.log;
 	if (settings.binwidth != 'auto') { out += ",binwidth=" + settings.binwidth; }
@@ -94,9 +112,16 @@ function getOptions(prefs){
     case 'CAD':
 	if (settings.pch!='none') { out += ",pch=" + settings.pch; }
 	out += ",verticals=" + settings.verticals;
-	if (geochronometer=="U-Pb"){
+	switch (geochronometer){
+	case 'U-Pb':
 	    out += ",cutoff.76=" + settings.cutoff76;
 	    out += ",cutoff.disc=c(" + settings.mindisc + "," + settings.maxdisc + ")";
+	    break;
+	case 'Ar-Ar':
+	case 'Re-Os':
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	default:
 	}
 	break;
     case 'set-zeta':
@@ -133,8 +158,17 @@ function getOptions(prefs){
 	out += ",bg='" + settings.bg + "'";
 	break;
     case 'ages':
-	if (geochronometer != 'U-Th-He') 
+	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + settings.exterr;
+	switch (geochronometer){
+	case 'Ar-Ar':
+	case 'Sm-Nd':
+	case 'Re-Os':
+	    out += ",isochron=FALSE";
+	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
+	    break;
+	default:
+	}
 	out += ",sigdig=" + settings.sigdig;
 	break;
     default: // do nothing
@@ -157,46 +191,80 @@ function getRcommand(prefs){
     out += ");";
     switch (geochronometer){
     case 'U-Pb': 
-	out += "IsoplotR::iratio('U238U235',x=" + prefs.constants.iratio.U238U235[0] + 
-  	       ",e=" + prefs.constants.iratio.U238U235[1] + ");"
-	out += "IsoplotR::lambda('U238',x=" + prefs.constants.lambda.U238[0] + 
-  	       ",e=" + prefs.constants.lambda.U238[1] + ");"
-	out += "IsoplotR::lambda('U235',x=" + prefs.constants.lambda.U235[0] + 
-  	       ",e=" + prefs.constants.lambda.U235[1] + ");"
+	out += "IsoplotR::settings('iratio','U238U235'," +
+	    prefs.constants.iratio.U238U235[0] + "," +
+	    prefs.constants.iratio.U238U235[1] + ");"
+	out += "IsoplotR::settings('lambda','U238'," +
+	    prefs.constants.lambda.U238[0] + "," +
+	    prefs.constants.lambda.U238[1] + ");"
+	out += "IsoplotR::settings('lambda','U235'," +
+	    prefs.constants.lambda.U235[0] + "," +
+	    prefs.constants.lambda.U235[1] + ");"
 	break;
     case 'Ar-Ar':
-	out += "IsoplotR::iratio('Ar40Ar36',x=" + prefs.constants.iratio.Ar40Ar36[0] + 
-     	       ",e=" + prefs.constants.iratio.Ar40Ar36[1] + ");"
-	out += "IsoplotR::lambda('K40',x=" + prefs.constants.lambda.K40[0] + 
-  	       ",e=" + prefs.constants.lambda.K40[1] + ");"
+	out += "IsoplotR::settings('iratio','Ar40Ar36'," +
+	    prefs.constants.iratio.Ar40Ar36[0] + "," +
+	    prefs.constants.iratio.Ar40Ar36[1] + ");"
+	out += "IsoplotR::settings('lambda','K40'," +
+	    prefs.constants.lambda.K40[0] + "," +
+	    prefs.constants.lambda.K40[1] + ");"
 	break;
     case 'Re-Os':
-	out += "IsoplotR::iratio('Os184Os192',x=" +
-	    prefs.constants.iratio.Os184Os192[0] + 
-     	    ",e=" + prefs.constants.iratio.Os184Os192[1] + ");"
-	out += "IsoplotR::iratio('Os186Os192',x=" +
-	    prefs.constants.iratio.Os186Os192[0] + 
-     	    ",e=" + prefs.constants.iratio.Os186Os192[1] + ");"
-	out += "IsoplotR::iratio('Os188Os192',x=" +
-	    prefs.constants.iratio.Os188Os192[0] + 
-     	    ",e=" + prefs.constants.iratio.Os188Os192[1] + ");"
-	out += "IsoplotR::iratio('Os190Os192',x=" +
-	    prefs.constants.iratio.Os190Os192[0] + 
-     	    ",e=" + prefs.constants.iratio.Os190Os192[1] + ");"
-	out += "IsoplotR::lambda('Re187',x=" + prefs.constants.lambda.Re187[0] + 
-  	    ",e=" + prefs.constants.lambda.Re187[1] + ");"	
+	out += "IsoplotR::settings('iratio','Os184Os192'," +
+	    prefs.constants.iratio.Os184Os192[0] + "," +
+	    prefs.constants.iratio.Os184Os192[1] + ");"
+	out += "IsoplotR::settings('iratio','Os186Os192'," +
+	    prefs.constants.iratio.Os186Os192[0] + "," +
+	    prefs.constants.iratio.Os186Os192[1] + ");"
+	out += "IsoplotR::settings('iratio','Os187Os192'," +
+	    prefs.constants.iratio.Os187Os192[0] + "," +
+	    prefs.constants.iratio.Os187Os192[1] + ");"
+	out += "IsoplotR::settings('iratio','Os188Os192'," +
+	    prefs.constants.iratio.Os188Os192[0] + "," +
+	    prefs.constants.iratio.Os188Os192[1] + ");"
+	out += "IsoplotR::settings('iratio','Os190Os192'," +
+	    prefs.constants.iratio.Os190Os192[0] + "," +
+	    prefs.constants.iratio.Os190Os192[1] + ");"
+	out += "IsoplotR::settings('lambda','Re187'," +
+	    prefs.constants.lambda.Re187[0] + "," +
+	    prefs.constants.lambda.Re187[1] + ");"	
 	break;
     case 'U-Th-He': 
-	out += "IsoplotR::iratio('U238U235',x=" + prefs.constants.iratio.U238U235[0] + 
-  	       ",e=" + prefs.constants.iratio.U238U235[1] + ");"
-	out += "IsoplotR::lambda('U238',x=" + prefs.constants.lambda.U238[0] + 
-  	       ",e=" + prefs.constants.lambda.U238[1] + ");"
-	out += "IsoplotR::lambda('U235',x=" + prefs.constants.lambda.U235[0] + 
-  	       ",e=" + prefs.constants.lambda.U235[1] + ");"
-	out += "IsoplotR::lambda('Th232',x=" + prefs.constants.lambda.Th232[0] + 
-  	       ",e=" + prefs.constants.lambda.Th232[1] + ");"
-	out += "IsoplotR::lambda('Sm147',x=" + prefs.constants.lambda.Sm147[0] + 
-  	       ",e=" + prefs.constants.lambda.Sm147[1] + ");"
+	out += "IsoplotR::settings('iratio','U238U235'," +
+	    prefs.constants.iratio.U238U235[0] + "," +
+	    prefs.constants.iratio.U238U235[1] + ");"
+	out += "IsoplotR::settings('lambda','U238'," +
+	    prefs.constants.lambda.U238[0] + "," +
+	    prefs.constants.lambda.U238[1] + ");"
+	out += "IsoplotR::settings('lambda','U235'," +
+	    prefs.constants.lambda.U235[0] + "," +
+	    prefs.constants.lambda.U235[1] + ");"
+	out += "IsoplotR::settings('lambda','Th232'," +
+	    prefs.constants.lambda.Th232[0] + "," +
+	    prefs.constants.lambda.Th232[1] + ");"
+	out += "IsoplotR::settings('lambda','Sm147'," +
+	    prefs.constants.lambda.Sm147[0] + "," +
+	    prefs.constants.lambda.Sm147[1] + ");"
+	break;
+    case 'fissiontracks':
+	if (prefs.settings.fissiontracks.format == 3){
+	    var mineral = prefs.settings.fissiontracks.mineral;
+	    out += "IsoplotR::settings('iratio','U238U235'," +
+		prefs.constants.iratio.U238U235[0] + "," +
+		prefs.constants.iratio.U238U235[1] + ");"
+	    out += "IsoplotR::settings('lambda','U238'," +
+		prefs.constants.lambda.U238[0] + "," +
+		prefs.constants.lambda.U238[1] + ");"
+	    out += "IsoplotR::settings('lambda','fission'," +
+		prefs.constants.lambda.fission[0] + "," +
+		prefs.constants.lambda.fission[1] + ");"
+	    out += "IsoplotR::settings('etchfact','" + mineral + "'," +
+		prefs.constants.etchfact[mineral] + ");"
+	    out += "IsoplotR::settings('tracklength','" + mineral + "'," +
+		prefs.constants.tracklength[mineral] + ");"
+	    out += "IsoplotR::settings('mindens','" + mineral + "'," +
+		prefs.constants.mindens[mineral] + ");"
+	}	
 	break;
     case 'detritals':
 	break;
