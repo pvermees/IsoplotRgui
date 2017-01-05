@@ -25,6 +25,9 @@
     "Sm-Nd": {
 	"i2i": "TRUE"
     },
+    "Rb-Sr": {
+	"i2i": "TRUE"
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",

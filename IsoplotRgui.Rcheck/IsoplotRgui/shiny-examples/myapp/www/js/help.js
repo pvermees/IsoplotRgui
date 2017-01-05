@@ -198,6 +198,22 @@ function help(id){
 	text = "Change the natural <sup>150</sup>Sm/<sup>144</sup>Nd ratio. " +
 	    "Default value is taken from Zhao et al. (2005).";
 	break;
+    case "help-Rb85Rb87":
+	text = "Change the natural <sup>85</sup>Rb/<sup>87</sup>Rb ratio. " +
+	    "Default value is taken from Catanzaro et al. (1969).";
+	break;
+    case "help-Sr84Sr86":
+	text = "Change the natural <sup>84</sup>Sr/<sup>86</sup>Sr ratio. " +
+	    "Default value is taken from Moore et al. (1982).";
+	break;
+    case "help-Sr87Sr86":
+	text = "Change the natural <sup>87</sup>Sr/<sup>86</sup>Sr ratio. " +
+	    "Default value is taken from Moore et al. (1982).";
+	break;
+    case "help-Sr88Sr86":
+	text = "Change the natural <sup>88</sup>Sr/<sup>86</sup>Sr ratio. " +
+	    "Default value is taken from Moore et al. (1982).";
+	break;
     case "help-ReOs-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Re-Os data as an initial " +
@@ -210,6 +226,12 @@ function help(id){
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Sm-Nd data as an initial " +
 	    "<sup>143</sup>Nd/<sup>144</sup>Nd-ratio for the age calculations. " +
+	    "Unticking it uses the ratio given above.";
+	break;
+    case "help-RbSr-i2i":
+	text = "Ticking this box uses the y-intercept of an isochron fit " +
+	    "through all the Rb-Sr data as an initial " +
+	    "<sup>87</sup>Sr/<sup>86</sup>Sr-ratio for the age calculations. " +
 	    "Unticking it uses the ratio given above.";
 	break;
     case "help-ArAr-i2i":
@@ -370,6 +392,12 @@ function help(id){
     case "help-LambdaSm147":
 	text = "The default values of the <sup>147</sup>Sm decay constant " +
 	    "and its uncertainty are taken from Lugmair and Marti (1978).";
+	break;
+    case "help-LambdaRb87":
+	text = "The default values of the <sup>87</sup>Rb decay constant " +
+	    "and its uncertainty are taken from Villa et al. (2015). To " +
+	    "use the old IUGS recommended values of Steiger and Jaeger (1977), " +
+	    "change to 0.000013972 &plusmn; 0.";
 	break;
     case "help-logratio":
 	text = "Ticking this box plots the U-Th-He data on a bivariate " +

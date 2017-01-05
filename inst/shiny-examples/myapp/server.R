@@ -32,6 +32,10 @@ shiny::shinyServer(function(input,output,session){
                          'Ar36Ar40','errAr36Ar40',
                          'Ar39Ar36','errAr39Ar36')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Rb-Sr")){
+            mat <- matrix(c('Rbppm','errRbppm','Srppm','errSrppm',
+                            'Sr87Sr86','errSr87Sr86'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Re-Os")){
             mat <- matrix(c('Reppm','errReppm','Osppm','errOsppm',
                             'Os187Os188','errOs187Os188'),1,nc)

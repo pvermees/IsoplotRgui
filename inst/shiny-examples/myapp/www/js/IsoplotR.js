@@ -290,6 +290,21 @@ $(function(){
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
 	    break;
+	case 'Rb-Sr':
+	    $('.show4RbSr').show();
+	    $('.hide4RbSr').hide();
+	    $('#Rb85Rb87').val(cst.iratio.Rb85Rb87[0]);
+	    $('#errRb85Rb87').val(cst.iratio.Rb85Rb87[1]);
+	    $('#Sr84Sr86').val(cst.iratio.Sr84Sr86[0]);
+	    $('#errSr84Sr86').val(cst.iratio.Sr84Sr86[1]);
+	    $('#Sr87Sr86').val(cst.iratio.Sr87Sr86[0]);
+	    $('#errSr87Sr86').val(cst.iratio.Sr87Sr86[1]);
+	    $('#Sr88Sr86').val(cst.iratio.Sr88Sr86[0]);
+	    $('#errSr88Sr86').val(cst.iratio.Sr88Sr86[1]);
+	    $('#LambdaRb87').val(cst.lambda.Rb87[0]);
+	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
+	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
+	    break;
 	case 'Re-Os':
 	    $('.show4ReOs').show();
 	    $('.hide4ReOs').hide();
@@ -670,6 +685,19 @@ $(function(){
 	    IsoplotR.settings[geochronometer].i2i = 
 		$("#i2iArAr").prop('checked') ? "TRUE" : "FALSE";
 	    break;
+	case 'Rb-Sr':
+	    gcsettings.iratio.Rb85Rb87[0] = $('#Rb85Rb87').val();
+	    gcsettings.iratio.Rb85Rb87[1] = $('#errRb85Rb87').val();
+	    gcsettings.iratio.Sr84Sr86[0] = $('#Sr84Sr86').val();
+	    gcsettings.iratio.Sr84Sr86[1] = $('#errSr84Sr86').val();
+	    gcsettings.iratio.Sr87Sr86[0] = $('#Sr87Sr86').val();
+	    gcsettings.iratio.Sr87Sr86[1] = $('#errSr87Sr86').val();
+	    gcsettings.iratio.Sr88Sr86[0] = $('#Sr88Sr86').val();
+	    gcsettings.iratio.Sr88Sr86[1] = $('#errSr88Sr86').val();
+	    gcsettings.lambda.Rb87[0] = $('#LambdaRb87').val();
+	    gcsettings.lambda.Rb87[1]= $('#errLambdaRb87').val();
+	    IsoplotR.settings[geochronometer].i2i = 
+		$("#i2iRbSr").prop('checked') ? "TRUE" : "FALSE";
 	case 'Re-Os':
 	    gcsettings.iratio.Re185Re187[0] = $('#Re185Re187').val();
 	    gcsettings.iratio.Re185Re187[1] = $('#errRe185Re187').val();
@@ -754,7 +782,6 @@ $(function(){
     }
 
     function setSelectedMenus(options){
-	$("#Rb-Sr").prop('disabled',true);
 	$("#U-series").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);
