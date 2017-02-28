@@ -34,7 +34,12 @@ $(function(){
     function dnc(){
 	switch (IsoplotR.settings.geochronometer){
 	case 'U-Pb':
-	    return 6;
+	    var format = IsoplotR.settings["U-Pb"].format;
+	    switch (format){
+	    case 1: return 5;
+	    case 2: return 4;
+	    case 3: return 6;
+	    }
 	case 'Ar-Ar':
 	    switch(IsoplotR.settings.plotdevice){
 		case 'spectrum':
@@ -903,11 +908,14 @@ $(function(){
 	var plotdevice = prefs.settings.plotdevice;
 	var data = prefs.settings.data[geochronometer];
 	if (forcedefaults | $.isEmptyObject(data)){
-	    if (geochronometer=='fissiontracks'){
+	    switch (geochronometer){
+	    case "U-Pb":
+	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
 		prefs.settings.data[geochronometer] =
 		    example(geochronometer,plotdevice,format);
-	    } else {
+		break;
+	    default:
 		prefs.settings.data[geochronometer] =
 		    example(geochronometer,plotdevice);
 	    }

@@ -19,6 +19,9 @@
     "Ar-Ar": {
 	"i2i": "FALSE"
     },
+    "U-Pb": {
+	"format": 2
+    },
     "Re-Os": {
 	"i2i": "TRUE"
     },

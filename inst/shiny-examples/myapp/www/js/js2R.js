@@ -193,7 +193,8 @@ function getRcommand(prefs){
 	out += ",format=2"; 
     }
     if (geochronometer=='detritals' |
-	geochronometer=='fissiontracks') {
+	geochronometer=='fissiontracks' |
+	geochronometer=='U-Pb') {
 	out += ",format=" + prefs.settings[geochronometer].format; 
     }
     out += ");";

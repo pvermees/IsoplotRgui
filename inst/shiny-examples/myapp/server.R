@@ -11,6 +11,14 @@ shiny::shinyServer(function(input,output,session){
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
         if (identical(method,"U-Pb") & format==1) {
+            mat <- matrix(c('Pb207U235','errPb207U235',
+                            'Pb206U238','errPb206U238','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"U-Pb") & format==2) {
+            mat <- matrix(c('U238Pb206','errU238Pb206',
+                            'Pb207Pb206','errPb207Pb206'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"U-Pb") & format==3) {
             mat <- matrix(c('Pb207Pb206','errPb207Pb206',
                             'Pb206U238','errPb206U238',
                             'Pb207U235','errPb207U235'),1,nc)
