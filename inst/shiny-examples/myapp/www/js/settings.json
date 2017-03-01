@@ -20,7 +20,7 @@
 	"i2i": "FALSE"
     },
     "U-Pb": {
-	"format": 2
+	"format": 1
     },
     "Re-Os": {
 	"i2i": "TRUE"

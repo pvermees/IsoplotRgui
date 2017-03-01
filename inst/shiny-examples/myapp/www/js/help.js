@@ -518,7 +518,19 @@ function help(id){
 	text = "The mineral density is needed to convert the uranium " +
 	    "concentration from ppm to atoms per unit volume.";
 	break;
-    case "help-FT-options":
+    case "help-UPb-formats":
+	text = "Choose one of three input formats:<br>" +
+	    "1. <tt>7/5 s[7/5] 6/8 s[6/8] rho</tt><br>" +
+	    "where <tt>rho</tt> is the error correlation between " +
+	    "<tt>7/5</tt> and <tt>6/8</tt><br>" +
+	    "2. <tt>8/6 s[8/6] 7/6 s[7/6] (rho)</tt><br>" +
+	    "where the error correlation is optional<br>" +
+	    "3. <tt>7/6 s[7/6] 6/8 s[6/8] 7/5 s[7/5]</tt><br>" +
+	    "in which the error correlations are calculated from the" +
+	    "redundancies between the three sets of uncertainties.<br>" +
+	    "(more formats will be added later)";
+	break;
+    case "help-FT-formats":
 	text = "Choose one of three fission track dating methods: " +
 	    "1) 'EDM' = the External Detector Method: determines the " +
 	    "sample's uranium content by proxy, using neutron-induced tracks " +

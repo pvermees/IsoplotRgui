@@ -37,7 +37,7 @@ $(function(){
 	    var format = IsoplotR.settings["U-Pb"].format;
 	    switch (format){
 	    case 1: return 5;
-	    case 2: return 4;
+	    case 2: return 5;
 	    case 3: return 6;
 	    }
 	case 'Ar-Ar':
@@ -209,19 +209,16 @@ $(function(){
 
     function getData(r,c,r2,c2){
 	var geochronometer = IsoplotR.settings.geochronometer;
-	var FTformat = IsoplotR.settings.fissiontracks.format;
 	var nr = 1+Math.abs(r2-r);
 	var nc = 1+Math.abs(c2-c);
 	var dat = [];
 	var DNC = dnc();
-	var cond1 = (nc < DNC);
-	var cond2 = (geochronometer=='other') & (nr==1);
-	var cond3 = geochronometer=='detritals';
-	var cond4 = (cond1 & !cond3);
-	var cond9 = geochronometer=='fissiontracks';
-	var cond10 = FTformat>1;
-	var cond11 = (cond9 & cond10);
-	if (cond1|cond2) {
+	var toofewcols = (nc < DNC);
+	var other1row = ((geochronometer=='other') & (nr==1));
+	var detritals = (geochronometer=='detritals');
+	var FT = (geochronometer=='fissiontracks');
+	var UPb = (geochronometer=='U-Pb');
+	if ( toofewcols | other1row) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
 		r = 0;
@@ -230,14 +227,15 @@ $(function(){
 		c2 = nc-1;
 	}
 	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
-	if (cond1|cond3|cond11){
+	if ( toofewcols | detritals | FT | UPb){
 	    var clean = [];
 	    for (var i=0; i<nr; i++){
 		var row = [];
 		var good = false;
 		for (var j=0; j<nc; j++){
-		    if (dat[i][j]==null){
-			row.push('');
+		    if (isNaN(dat[i][j]) | dat[i][j]==null){
+			if (UPb) { row.push(0); }
+			else { row.push('');}
 		    } else {
 			row.push(dat[i][j]);
 			good = true;
@@ -249,25 +247,34 @@ $(function(){
 	    }
 	    dat = clean;
 	}
-	if (geochronometer=='Ar-Ar'){
+	switch (geochronometer){
+	case  'Ar-Ar':
 	    var J = $('#Jval').val();
 	    var sJ = $('#Jerr').val();
 	    IsoplotR.data = [nr,nc,J,sJ,dat];
-	} else if (geochronometer=='fissiontracks' & FTformat==1){
-	    var zeta = $('#zetaVal').val();
-	    var zetaErr = $('#zetaErr').val();
-	    var rhoD = $('#rhoDval').val();
-	    var rhoDerr = $('#rhoDerr').val();
-	    IsoplotR.data = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
-	} else if (geochronometer=='fissiontracks' & FTformat==2){
-	    var zeta = $('#zetaVal').val();
-	    var zetaErr = $('#zetaErr').val();
-	    var spotSize = $('#spotSizeVal').val();
-	    IsoplotR.data = [nr,nc,zeta,zetaErr,spotSize,dat];
-	} else if (geochronometer=='fissiontracks' & FTformat==3){
-	    var spotSize = $('#spotSizeVal').val();
-	    IsoplotR.data = [nr,nc,spotSize,dat];
-	} else {
+	    break;
+	case 'fissiontracks':
+	    switch (IsoplotR.settings.fissiontracks.format){
+	    case 1:
+		var zeta = $('#zetaVal').val();
+		var zetaErr = $('#zetaErr').val();
+		var rhoD = $('#rhoDval').val();
+		var rhoDerr = $('#rhoDerr').val();
+		IsoplotR.data = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
+		break;
+	    case 2:
+		var zeta = $('#zetaVal').val();
+		var zetaErr = $('#zetaErr').val();
+		var spotSize = $('#spotSizeVal').val();
+		IsoplotR.data = [nr,nc,zeta,zetaErr,spotSize,dat];
+		break;
+	    case 3:
+		var spotSize = $('#spotSizeVal').val();
+		IsoplotR.data = [nr,nc,spotSize,dat];
+		break;
+	    }
+	    break;
+	default:
 	    IsoplotR.data = [nr,nc,dat];
 	}
     }
@@ -277,6 +284,8 @@ $(function(){
 	var cst = IsoplotR.constants;
 	switch (option){
 	case 'U-Pb':
+	    $('#UPb-formats option[value='+set.format+']').
+		prop('selected', 'selected');
 	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -387,7 +396,7 @@ $(function(){
 		$('.show4absolute').show();
 		$('.hide4absolute').hide();
 	    }
-	    $('#FT-options option[value='+set.format+']').
+	    $('#FT-formats option[value='+set.format+']').
 		prop('selected', 'selected');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
@@ -945,12 +954,17 @@ $(function(){
 	IsoplotR.settings.radial.transformation =
 	    $('option:selected', $("#transformation")).attr('value');
     }
+
+    $.chooseUPbformat = function(){
+	var format = 1*$('option:selected', $("#UPb-formats")).attr('value');
+	IsoplotR.settings['U-Pb'].format = format;
+	IsoplotR = populate(IsoplotR,true);
+    }
     
-    $.chooseFTmethod = function(){
-	var geochronometer = IsoplotR.settings.geochronometer;
+    $.chooseFTformat = function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
-	var format = 1*$('option:selected', $("#FT-options")).attr('value');
-	IsoplotR.settings[geochronometer].format = format;
+	var format = 1*$('option:selected', $("#FT-formats")).attr('value');
+	IsoplotR.settings.fissiontracks.format = format;
 	switch (format){
 	case 1:
 	    $(".show4EDM").show();
@@ -1029,7 +1043,7 @@ $(function(){
 	focus: function( event, ui ) { changePlotDevice(); }
     });
     
-    $("#helpmenu").dialog({ autoOpen: false });
+    $("#helpmenu").dialog({ autoOpen: false, width: 500 });
     
     $('body').on('click', 'help', function(){
 	var text = help($(this).attr('id'));
@@ -1088,37 +1102,64 @@ $(function(){
 	$("#myplot").show();
 	fname = "../help/" + geochronometer + ".html";
 	$("#myplot").load(fname,function(){
-	    if (geochronometer=='Ar-Ar'){
+	    switch (geochronometer){
+	    case 'U-Pb':
+		switch (IsoplotR.settings['U-Pb'].format){
+		case 1:
+		    $('.show4UPb1').show();
+		    break;
+		case 2:
+		    $('.show4UPb2').show();
+		    break;
+		case 3:
+		    $('.show4UPb3').show();
+		    break;
+		}
+		break;
+	    case 'Ar-Ar':
 		if (plotdevice=='spectrum'){
 		    $('.show4ArArSpectrum').show();
 		}
-	    } else if (geochronometer=='fissiontracks'){
-		var format = IsoplotR.settings.fissiontracks.format;
-		if (format==1){
+		break;
+	    case 'fissiontracks':
+		switch (IsoplotR.settings.fissiontracks.format){
+		case 1:
 		    $('.show4EDM').show();
-		} else if (format==2){
+		    break;
+		case 2:
 		    $('.show4ICP').show();
-		} else if (format==3){
+		    break;
+		case 3:
 		    $('.show4absolute').show();
+		    break;
 		}
 		if (IsoplotR.settings.plotdevice=='set-zeta'){
 		    $('.show4zeta').show();
 		    $('.hide4zeta').hide();
 		}
-	    } else if (geochronometer=='other'){
-		if (plotdevice=='radial'){
+		break;
+	    case 'other':
+		switch (plotdevice){
+		case 'radial':
 		    $('.show4radial').show();
-		} else if (plotdevice=='regression'){
+		    break;
+		case 'regression':
 		    $('.show4regression').show();
-		} else if (plotdevice=='spectrum'){
+		    break;
+		case 'spectrum':
 		    $('.show4spectrum').show();
-		} else if (plotdevice=='average'){
+		    break;
+		case 'average':
 		    $('.show4weightedmean').show();
-		} else if (plotdevice=='KDE'){
+		    break;
+		case 'KDE':
 		    $('.show4kde').show();
-		} else if (plotdevice=='CAD'){
+		    break;
+		case 'CAD':
 		    $('.show4cad').show();
+		    break;
 		}
+		break;
 	    }
 	});
     });

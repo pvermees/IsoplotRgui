@@ -16,7 +16,7 @@ shiny::shinyServer(function(input,output,session){
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Pb") & format==2) {
             mat <- matrix(c('U238Pb206','errU238Pb206',
-                            'Pb207Pb206','errPb207Pb206'),1,nc)
+                            'Pb207Pb206','errPb207Pb206','rho'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Pb") & format==3) {
             mat <- matrix(c('Pb207Pb206','errPb207Pb206',
