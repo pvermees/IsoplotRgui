@@ -41,12 +41,7 @@ $(function(){
 	    case 3: return 6;
 	    }
 	case 'Ar-Ar':
-	    switch(IsoplotR.settings.plotdevice){
-		case 'spectrum':
-		return 7;
-		default:
-		return 6;
-	    }
+	    return 7;
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
@@ -218,6 +213,7 @@ $(function(){
 	var detritals = (geochronometer=='detritals');
 	var FT = (geochronometer=='fissiontracks');
 	var UPb = (geochronometer=='U-Pb');
+	var ArAr = (geochronometer=='Ar-Ar');
 	if ( toofewcols | other1row) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
@@ -227,17 +223,26 @@ $(function(){
 		c2 = nc-1;
 	}
 	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
-	if ( toofewcols | detritals | FT | UPb){
+	if ( toofewcols | detritals | FT | UPb | ArAr){
+	    var val = null;
+	    var row = [];
+	    var good = false;
 	    var clean = [];
 	    for (var i=0; i<nr; i++){
-		var row = [];
-		var good = false;
+		row = [];
+		good = false;
 		for (var j=0; j<nc; j++){
-		    if (isNaN(dat[i][j]) | dat[i][j]==null){
-			if (UPb) { row.push(0); }
-			else { row.push('');}
+		    val = dat[i][j];
+		    if (isNaN(val) | val==null | val==""){
+			if (UPb) {
+			    row.push(0);
+			} else if (ArAr) {
+			    row.push(1);
+			} else {
+			    row.push('');
+			}
 		    } else {
-			row.push(dat[i][j]);
+			row.push(val);
 			good = true;
 		    }
 		}
@@ -782,7 +787,7 @@ $(function(){
 	    var mineral = $('#mineral-option').prop('value');
 	    IsoplotR.settings[geochronometer].mineral = mineral;
 	    IsoplotR.settings[geochronometer].format = 
-		1*$('option:selected', $("#FT-options")).attr('value');
+		1*$('option:selected', $("#FT-formats")).attr('value');
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
 	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
 	    gcsettings.lambda.U238[0] = $("#LambdaU238").val();
@@ -842,7 +847,7 @@ $(function(){
 	    $('#RUN').hide();
 	    $('#CSV').hide();
         }
-	if (npd == "spectrum" | opd == "spectrum" | gc == "other"){
+	if (gc == "other"){
 	    populate(IsoplotR,true);
 	} else {
 	    populate(IsoplotR,false);
@@ -1114,11 +1119,6 @@ $(function(){
 		case 3:
 		    $('.show4UPb3').show();
 		    break;
-		}
-		break;
-	    case 'Ar-Ar':
-		if (plotdevice=='spectrum'){
-		    $('.show4ArArSpectrum').show();
 		}
 		break;
 	    case 'fissiontracks':

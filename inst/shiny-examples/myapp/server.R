@@ -23,22 +23,14 @@ shiny::shinyServer(function(input,output,session){
                             'Pb206U238','errPb206U238',
                             'Pb207U235','errPb207U235'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
-        } else if (identical(method,"Ar-Ar") & format==1) {
+        } else if (identical(method,"Ar-Ar")){
             mat <- matrix('',3,nc)
             mat[1,1:2] <-c('J','errJ')
             mat[2,1:2] <- d[3:4]
             mat[3,] <- c('Ar39Ar40','errAr39Ar40',
                          'Ar36Ar40','errAr36Ar40',
-                         'Ar39Ar36','errAr39Ar36')
-            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
-        } else if (identical(method,"Ar-Ar") & format==2){
-            mat <- matrix('',3,nc)
-            mat[1,1:2] <-c('J','errJ')
-            mat[2,1:2] <- d[3:4]
-            mat[3,] <- c('Ar39',
-                         'Ar39Ar40','errAr39Ar40',
-                         'Ar36Ar40','errAr36Ar40',
-                         'Ar39Ar36','errAr39Ar36')
+                         'Ar39Ar36','errAr39Ar36',
+                         'Ar39')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Rb-Sr")){
             mat <- matrix(c('Rbppm','errRbppm','Srppm','errSrppm',

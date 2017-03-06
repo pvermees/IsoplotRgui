@@ -189,9 +189,6 @@ function getRcommand(prefs){
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
     var out = "dat <- selection2data(method='" + geochronometer + "'";
-    if (geochronometer=='Ar-Ar' & plotdevice=='spectrum') { 
-	out += ",format=2"; 
-    }
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
 	geochronometer=='U-Pb') {
