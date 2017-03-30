@@ -191,7 +191,10 @@ function getRcommand(prefs){
     var out = "dat <- selection2data(method='" + geochronometer + "'";
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
-	geochronometer=='U-Pb') {
+	geochronometer=='U-Pb' |
+	geochronometer=='Rb-Sr' |
+        geochronometer=='Sm-Nd' |
+        geochronometer=='Re-Os') {
 	out += ",format=" + prefs.settings[geochronometer].format; 
     }
     out += ");";

@@ -4,6 +4,9 @@
     "data": {
 	"U-Pb": {},
 	"Ar-Ar": {},
+	"Rb-Sr": {},
+	"Sm-Nd": {},
+	"Re-Os": {},
 	"U-Th-He": {},
 	"fissiontracks": {},
 	"detritals": {},
@@ -16,19 +19,22 @@
     "detritals": {
 	"format": 1
     },
+    "U-Pb": {
+	"format": 3
+    },
     "Ar-Ar": {
 	"i2i": "FALSE"
     },
-    "U-Pb": {
-	"format": 1
-    },
-    "Re-Os": {
+    "Rb-Sr": {
+	"format": 2,
 	"i2i": "TRUE"
     },
     "Sm-Nd": {
+	"format": 2,
 	"i2i": "TRUE"
     },
-    "Rb-Sr": {
+    "Re-Os": {
+	"format": 2,
 	"i2i": "TRUE"
     },
     "concordia": {

@@ -21,7 +21,7 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"U-Pb") & format==3) {
             mat <- matrix(c('Pb207Pb206','errPb207Pb206',
                             'Pb206U238','errPb206U238',
-                            'Pb207U235','errPb207U235'),1,nc)
+                            'Pb207U235','errPb207U235','rhoXY','rhoYZ'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Ar-Ar")){
             mat <- matrix('',3,nc)
@@ -32,17 +32,29 @@ shiny::shinyServer(function(input,output,session){
                          'Ar39Ar36','errAr39Ar36',
                          'Ar39')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
-        } else if (identical(method,"Rb-Sr")){
+        } else if (identical(method,"Rb-Sr") & format==1){
+            mat <- matrix(c('Rb87Sr86','errRb87Sr86',
+                            'Sr87Sr86','errSr87Sr86','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Rb-Sr") & format==2){
             mat <- matrix(c('Rbppm','errRbppm','Srppm','errSrppm',
                             'Sr87Sr86','errSr87Sr86'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
-        } else if (identical(method,"Re-Os")){
-            mat <- matrix(c('Reppm','errReppm','Osppm','errOsppm',
-                            'Os187Os188','errOs187Os188'),1,nc)
+        } else if (identical(method,"Sm-Nd") & format==1){
+            mat <- matrix(c('Sm143Nd144','errSm143Nd144',
+                            'Nd143Nd144','errNd143Nd144','rho'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
-        } else if (identical(method,"Sm-Nd")){
+        } else if (identical(method,"Sm-Nd") & format==2){
             mat <- matrix(c('Smppm','errSmppm','Ndppm','errNdppm',
                             'Nd143Nd144','errNd143Nd144'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Re-Os") & format==1){
+            mat <- matrix(c('Re187Os188','errRe187Os188',
+                            'Os187Os188','errOs187Os188','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Re-Os") & format==2){
+            mat <- matrix(c('Reppm','errReppm','Osppm','errOsppm',
+                            'Os187Os188','errOs187Os188'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"fissiontracks") & format==1){
             mat <- matrix('',5,nc)

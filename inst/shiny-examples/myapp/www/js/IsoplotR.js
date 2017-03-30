@@ -32,13 +32,14 @@ $(function(){
     };
 
     function dnc(){
-	switch (IsoplotR.settings.geochronometer){
+	var gc = IsoplotR.settings.geochronometer;
+	switch (gc){
 	case 'U-Pb':
 	    var format = IsoplotR.settings["U-Pb"].format;
 	    switch (format){
 	    case 1: return 5;
 	    case 2: return 5;
-	    case 3: return 6;
+	    case 3: return 8;
 	    }
 	case 'Ar-Ar':
 	    return 7;
@@ -52,7 +53,11 @@ $(function(){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
-	    return 6;
+	    var format = IsoplotR.settings[gc].format;
+	    switch (format){
+	    case 1: return 5;
+	    case 2: return 6;
+	    }
 	case 'U-Th-He':
 	    return 8;
 	case 'detritals':
@@ -212,7 +217,7 @@ $(function(){
 	var other1row = ((geochronometer=='other') & (nr==1));
 	var detritals = (geochronometer=='detritals');
 	var FT = (geochronometer=='fissiontracks');
-	var UPb = (geochronometer=='U-Pb');
+	var UPb2 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==2);
 	var ArAr = (geochronometer=='Ar-Ar');
 	if ( toofewcols | other1row) {
 		nc = DNC;
@@ -223,7 +228,7 @@ $(function(){
 		c2 = nc-1;
 	}
 	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
-	if ( toofewcols | detritals | FT | UPb | ArAr){
+	if ( toofewcols | detritals | FT){
 	    var val = null;
 	    var row = [];
 	    var good = false;
@@ -234,9 +239,9 @@ $(function(){
 		for (var j=0; j<nc; j++){
 		    val = dat[i][j];
 		    if (isNaN(val) | val==null | val==""){
-			if (UPb) {
+			if (UPb2 & j==4) { // rho
 			    row.push(0);
-			} else if (ArAr) {
+			} else if (ArAr & j==7) { // Ar39
 			    row.push(1);
 			} else {
 			    row.push('');
@@ -310,6 +315,8 @@ $(function(){
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Rb-Sr':
+	    $('#RbSr-formats option[value='+set.format+']').
+		prop('selected', 'selected');
 	    $('.show4RbSr').show();
 	    $('.hide4RbSr').hide();
 	    $('#Rb85Rb87').val(cst.iratio.Rb85Rb87[0]);
@@ -324,28 +331,11 @@ $(function(){
 	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
 	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
 	    break;
-	case 'Re-Os':
-	    $('.show4ReOs').show();
-	    $('.hide4ReOs').hide();
-	    $('#Re185Re187').val(cst.iratio.Re185Re187[0]);
-	    $('#errRe185Re187').val(cst.iratio.Re185Re187[1]);
-	    $('#Os184Os192').val(cst.iratio.Os184Os192[0]);
-	    $('#errOs184Os192').val(cst.iratio.Os184Os192[1]);
-	    $('#Os186Os192').val(cst.iratio.Os186Os192[0]);
-	    $('#errOs186Os192').val(cst.iratio.Os186Os192[1]);
-	    $('#Os187Os192').val(cst.iratio.Os187Os192[0]);
-	    $('#errOs187Os192').val(cst.iratio.Os187Os192[1]);
-	    $('#Os188Os192').val(cst.iratio.Os188Os192[0]);
-	    $('#errOs188Os192').val(cst.iratio.Os188Os192[1]);
-	    $('#Os189Os192').val(cst.iratio.Os189Os192[0]);
-	    $('#errOs189Os192').val(cst.iratio.Os189Os192[1]);
-	    $('#Os190Os192').val(cst.iratio.Os190Os192[0]);
-	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]);
-	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
-	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
-	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
-	    break;
 	case 'Sm-Nd':
+	    $('#SmNd-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4SmNd').show();
+	    $('.hide4SmNd').hide();
 	    $('#Sm144Sm152').val(cst.iratio.Sm144Sm152[0]);
 	    $('#errSm144Sm152').val(cst.iratio.Sm144Sm152[1]);
 	    $('#Sm147Sm152').val(cst.iratio.Sm147Sm152[0]);
@@ -373,6 +363,29 @@ $(function(){
 	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
 	    $('#i2iSmNd').prop('checked',set.i2i=='TRUE');
+	    break;
+	case 'Re-Os':
+	    $('#ReOs-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4ReOs').show();
+	    $('.hide4ReOs').hide();
+	    $('#Re185Re187').val(cst.iratio.Re185Re187[0]);
+	    $('#errRe185Re187').val(cst.iratio.Re185Re187[1]);
+	    $('#Os184Os192').val(cst.iratio.Os184Os192[0]);
+	    $('#errOs184Os192').val(cst.iratio.Os184Os192[1]);
+	    $('#Os186Os192').val(cst.iratio.Os186Os192[0]);
+	    $('#errOs186Os192').val(cst.iratio.Os186Os192[1]);
+	    $('#Os187Os192').val(cst.iratio.Os187Os192[0]);
+	    $('#errOs187Os192').val(cst.iratio.Os187Os192[1]);
+	    $('#Os188Os192').val(cst.iratio.Os188Os192[0]);
+	    $('#errOs188Os192').val(cst.iratio.Os188Os192[1]);
+	    $('#Os189Os192').val(cst.iratio.Os189Os192[0]);
+	    $('#errOs189Os192').val(cst.iratio.Os189Os192[1]);
+	    $('#Os190Os192').val(cst.iratio.Os190Os192[0]);
+	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]);
+	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
+	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
+	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'U-Th-He':
 	    $('.show4UThHe').show();
@@ -717,27 +730,8 @@ $(function(){
 	    gcsettings.lambda.Rb87[1]= $('#errLambdaRb87').val();
 	    IsoplotR.settings[geochronometer].i2i = 
 		$("#i2iRbSr").prop('checked') ? "TRUE" : "FALSE";
-	case 'Re-Os':
-	    gcsettings.iratio.Re185Re187[0] = $('#Re185Re187').val();
-	    gcsettings.iratio.Re185Re187[1] = $('#errRe185Re187').val();
-	    gcsettings.iratio.Os184Os192[0] = $('#Os184Os192').val();
-	    gcsettings.iratio.Os184Os192[1] = $('#errOs184Os192').val();
-	    gcsettings.iratio.Os186Os192[0] = $('#Os186Os192').val();
-	    gcsettings.iratio.Os186Os192[1] = $('#errOs186Os192').val();
-	    gcsettings.iratio.Os187Os192[0] = $('#Os187Os192').val();
-	    gcsettings.iratio.Os187Os192[1] = $('#errOs187Os192').val();
-	    gcsettings.iratio.Os188Os192[0] = $('#Os188Os192').val();
-	    gcsettings.iratio.Os188Os192[1] = $('#errOs188Os192').val();
-	    gcsettings.iratio.Os189Os192[0] = $('#Os189Os192').val();
-	    gcsettings.iratio.Os189Os192[1] = $('#errOs189Os192').val();
-	    gcsettings.iratio.Os190Os192[0] = $('#Os190Os192').val();
-	    gcsettings.iratio.Os190Os192[1] = $('#errOs190Os192').val();
-	    gcsettings.lambda.Re187[0] = $('#LambdaRe187').val();
-	    gcsettings.lambda.Re187[1] = $('#errLambdaRe187').val();
-	    IsoplotR.settings[geochronometer].i2i = 
-		$("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
 	    break;
-	case 'SmNd':
+	case 'Sm-Nd':
 	    gcsettings.iratio.Sm144Sm152[0] = $('#Sm144Sm152').val();
 	    gcsettings.iratio.Sm144Sm152[1] = $('#errSm144Sm152').val();
 	    gcsettings.iratio.Sm147Sm152[0] = $('#Sm147Sm152').val();
@@ -766,6 +760,26 @@ $(function(){
 	    gcsettings.lambda.Sm147[1] = $('#errLambdaSm147').val();
 	    IsoplotR.settings[geochronometer].i2i = 
 		$("#i2iSmNd").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Re-Os':
+	    gcsettings.iratio.Re185Re187[0] = $('#Re185Re187').val();
+	    gcsettings.iratio.Re185Re187[1] = $('#errRe185Re187').val();
+	    gcsettings.iratio.Os184Os192[0] = $('#Os184Os192').val();
+	    gcsettings.iratio.Os184Os192[1] = $('#errOs184Os192').val();
+	    gcsettings.iratio.Os186Os192[0] = $('#Os186Os192').val();
+	    gcsettings.iratio.Os186Os192[1] = $('#errOs186Os192').val();
+	    gcsettings.iratio.Os187Os192[0] = $('#Os187Os192').val();
+	    gcsettings.iratio.Os187Os192[1] = $('#errOs187Os192').val();
+	    gcsettings.iratio.Os188Os192[0] = $('#Os188Os192').val();
+	    gcsettings.iratio.Os188Os192[1] = $('#errOs188Os192').val();
+	    gcsettings.iratio.Os189Os192[0] = $('#Os189Os192').val();
+	    gcsettings.iratio.Os189Os192[1] = $('#errOs189Os192').val();
+	    gcsettings.iratio.Os190Os192[0] = $('#Os190Os192').val();
+	    gcsettings.iratio.Os190Os192[1] = $('#errOs190Os192').val();
+	    gcsettings.lambda.Re187[0] = $('#LambdaRe187').val();
+	    gcsettings.lambda.Re187[1] = $('#errLambdaRe187').val();
+	    IsoplotR.settings[geochronometer].i2i = 
+		$("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'U-Th-He':
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
@@ -878,9 +892,9 @@ $(function(){
 			      false,false,false,true,true,false]);
 	    $("#Jdiv").show();
 	    break;
-	case 'Re-Os':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
+	case 'Re-Os':
 	    setSelectedMenus([true,true,false,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
@@ -924,6 +938,9 @@ $(function(){
 	if (forcedefaults | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
+	    case "Rb-Sr":
+	    case "Sm-Nd":
+	    case "Re-Os":
 	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
 		prefs.settings.data[geochronometer] =
@@ -961,15 +978,19 @@ $(function(){
     }
 
     $.chooseUPbformat = function(){
-	var format = 1*$('option:selected', $("#UPb-formats")).attr('value');
-	IsoplotR.settings['U-Pb'].format = format;
-	IsoplotR = populate(IsoplotR,true);
+	chooseFormat("#UPb-formats","U-Pb")
     }
-    
+    $.chooseRbSrformat = function(){
+	chooseFormat("#RbSr-formats","Rb-Sr")
+    }
+    $.chooseSmNdformat = function(){
+	chooseFormat("#SmNd-formats","Sm-Nd")
+    }
+    $.chooseReOsformat = function(){
+	chooseFormat("#ReOs-formats","Re-Os")
+    }
     $.chooseFTformat = function(){
-	var plotdevice = IsoplotR.settings.plotdevice;
-	var format = 1*$('option:selected', $("#FT-formats")).attr('value');
-	IsoplotR.settings.fissiontracks.format = format;
+	var format = chooseFormat("#FT-formats","fissiontracks")
 	switch (format){
 	case 1:
 	    $(".show4EDM").show();
@@ -988,7 +1009,12 @@ $(function(){
 	    $(".show4zeta").show();
 	    $(".hide4zeta").hide();
 	}
+    }    
+    function chooseFormat(ID,chronometer){
+	var format = 1*$('option:selected', $(ID)).attr('value');
+	IsoplotR.settings[chronometer].format = format;
 	IsoplotR = populate(IsoplotR,true);
+	return(format)
     }
     
     $.chooseMineral = function(){
@@ -1118,6 +1144,36 @@ $(function(){
 		    break;
 		case 3:
 		    $('.show4UPb3').show();
+		    break;
+		}
+		break;
+	    case 'Rb-Sr':
+		switch (IsoplotR.settings['Rb-Sr'].format){
+		case 1:
+		    $('.show4RbSr1').show();
+		    break;
+		case 2:
+		    $('.show4RbSr2').show();
+		    break;
+		}
+		break;
+	    case 'Sm-Nd':
+		switch (IsoplotR.settings['Sm-Nd'].format){
+		case 1:
+		    $('.show4SmNd1').show();
+		    break;
+		case 2:
+		    $('.show4SmNd2').show();
+		    break;
+		}
+		break;
+	    case 'Re-Os':
+		switch (IsoplotR.settings['Re-Os'].format){
+		case 1:
+		    $('.show4ReOs1').show();
+		    break;
+		case 2:
+		    $('.show4ReOs2').show();
 		    break;
 		}
 		break;
