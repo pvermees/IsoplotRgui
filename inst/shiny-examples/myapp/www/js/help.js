@@ -530,6 +530,42 @@ function help(id){
 	    "redundancies between the three sets of uncertainties.<br>" +
 	    "(more formats will be added later)";
 	break;
+    case "help-ArAr-formats":
+	text = "Choose one of three input formats:<br>" +
+	    "1. <tt>39/36 s[39/36] 40/36 s[40/36] rho (39)</tt><br>" +
+	    "where <tt>rho</tt> is the error correlation between " +
+	    "<tt>39/36</tt> and <tt>40/36</tt> and (39) is the " +
+	    "(optional) amount of <sup>39</sup>Ar<br>" +
+	    "2. <tt>39/40 s[39/40] 36/40 s[36/40] (rho) (39)</tt><br>" +
+	    "where the error correlation is optional.<br>" +
+	    "3. <tt>39/40 s[39/40] 36/40 s[36/40] 39/36 s[39/36] (39)</tt><br>" +
+	    "in which the error correlations are calculated from the" +
+	    "redundancies between the three sets of uncertainties.<br>";
+	break;
+    case "help-RbSr-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Rb87/Sr86 s[Rb87/Sr86] Sr87/Sr86 s[Sr87/Sr86] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Rb87/Sr86</tt> and <tt>Sr87/Sr86</tt><br>" +
+	    "2. <tt>Rb s[Rb] Sr s[Sr] 87/86 s[87/86]</tt><br>" +
+	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.<br>";
+	break;
+    case "help-ReOs-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Re187/Os188 s[Re187/Os188] Os187/Os188 s[Os187/Os188] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Re187/Os188</tt> and <tt>Os187/Os188</tt><br>" +
+	    "2. <tt>Re s[Re] Os s[Os] 187/188 s[187/188]</tt><br>" +
+	    "where <tt>Re</tt> and <tt>Os</tt> are in ppm.<br>";
+	break;
+    case "help-SmNd-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Sm147/Nd144 s[Sm147/Nd144] Nd143/Nd144 s[Nd143/Nd144] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Sm147/Nd144</tt> and <tt>Nd143/Nd144</tt><br>" +
+	    "2. <tt>Sm s[Sm] Nd s[Nd] 143/144 s[143/144]</tt><br>" +
+	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.<br>";
+	break;
     case "help-FT-formats":
 	text = "Choose one of three fission track dating methods: " +
 	    "1) 'EDM' = the External Detector Method: determines the " +

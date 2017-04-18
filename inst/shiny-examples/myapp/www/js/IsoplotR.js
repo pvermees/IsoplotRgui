@@ -1160,6 +1160,19 @@ $(function(){
 		    break;
 		}
 		break;
+	    case 'Ar-Ar':
+		switch (IsoplotR.settings['Ar-Ar'].format){
+		case 1:
+		    $('.show4ArAr1').show();
+		    break;
+		case 2:
+		    $('.show4ArAr2').show();
+		    break;
+		case 3:
+		    $('.show4ArAr3').show();
+		    break;
+		}
+		break;
 	    case 'Rb-Sr':
 		switch (IsoplotR.settings['Rb-Sr'].format){
 		case 1:
