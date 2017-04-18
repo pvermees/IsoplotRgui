@@ -42,7 +42,12 @@ $(function(){
 	    case 3: return 8;
 	    }
 	case 'Ar-Ar':
-	    return 7;
+	    var format = IsoplotR.settings["Ar-Ar"].format;
+	    switch (format){
+	    case 1: return 6;
+	    case 2: return 6;
+	    case 3: return 7;
+	    }
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
@@ -218,7 +223,9 @@ $(function(){
 	var detritals = (geochronometer=='detritals');
 	var FT = (geochronometer=='fissiontracks');
 	var UPb2 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==2);
-	var ArAr = (geochronometer=='Ar-Ar');
+	var ArAr1 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==1);
+	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
+	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
 	if ( toofewcols | other1row) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
@@ -239,9 +246,9 @@ $(function(){
 		for (var j=0; j<nc; j++){
 		    val = dat[i][j];
 		    if (isNaN(val) | val==null | val==""){
-			if (UPb2 & j==4) { // rho
+			if ((UPb2 & j==4)|(ArAr2 & j==4)) { // rho
 			    row.push(0);
-			} else if (ArAr & j==7) { // Ar39
+			} else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
 			    row.push(1);
 			} else {
 			    row.push('');
@@ -306,6 +313,8 @@ $(function(){
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
 	case 'Ar-Ar':
+	    $('#ArAr-formats option[value='+set.format+']').
+		prop('selected', 'selected');
 	    $('.show4ArAr').show();
 	    $('.hide4ArAr').hide();
 	    $('#Ar40Ar36').val(cst.iratio.Ar40Ar36[0]),
@@ -938,6 +947,7 @@ $(function(){
 	if (forcedefaults | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
+	    case "Ar-Ar":
 	    case "Rb-Sr":
 	    case "Sm-Nd":
 	    case "Re-Os":
@@ -979,6 +989,9 @@ $(function(){
 
     $.chooseUPbformat = function(){
 	chooseFormat("#UPb-formats","U-Pb")
+    }
+    $.chooseArArformat = function(){
+	chooseFormat("#ArAr-formats","Ar-Ar")
     }
     $.chooseRbSrformat = function(){
 	chooseFormat("#RbSr-formats","Rb-Sr")

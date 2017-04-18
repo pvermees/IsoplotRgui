@@ -10,4 +10,4 @@ Suggests: shiny, IsoplotR
 License: GPL-2
 LazyData: true
 RoxygenNote: 5.0.1
-Built: R 3.4.0; ; 2017-04-15 22:10:04 UTC; unix
+Built: R 3.4.0; ; 2017-04-17 11:37:48 UTC; unix
