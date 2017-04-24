@@ -245,7 +245,7 @@ $(function(){
 		good = false;
 		for (var j=0; j<nc; j++){
 		    val = dat[i][j];
-		    if (isNaN(val) | val==null | val==""){
+		    if (val==null | val==""){
 			if ((UPb2 & j==4)|(ArAr2 & j==4)) { // rho
 			    row.push(0);
 			} else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
