@@ -136,7 +136,7 @@ $(function(){
 	    }
 	    handson.data.push(row);
 	}
-	handson.data.push([]); // add empty row in case json is empty
+	// handson.data.push([]); // add empty row in case json is empty
 	$("#INPUT").handsontable({
 	    data: handson.data,
 	    colHeaders: handson.headers
