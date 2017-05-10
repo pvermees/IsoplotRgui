@@ -5,7 +5,7 @@ $(function(){
 	$('#RUN').hide();
 	$('#CSV').hide();
 	var loader = new Image(); // preload image
-	loader.src = "../images/loader.gif";
+	loader.src = "images/loader.gif";
 	var out = {
 	    constants: null,
 	    settings: null,
@@ -1125,10 +1125,10 @@ $(function(){
 	var fname = "";
 	$("#OUTPUT").hide();
 	$("#myplot").show();
-	$("#myplot").load("../options/index.html",function(){
-	    fname = "../options/" + geochronometer + ".html";
+	$("#myplot").load("options/index.html",function(){
+	    fname = "options/" + geochronometer + ".html";
 	    $("#geochronometer-options").load(fname,function(){
-		fname = "../options/" + plotdevice + ".html";
+		fname = "options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
 		    showSettings(geochronometer);
 		    showSettings(plotdevice);
@@ -1144,7 +1144,7 @@ $(function(){
 	var fname = "";
 	$("#OUTPUT").hide();
 	$("#myplot").show();
-	fname = "../help/" + geochronometer + ".html";
+	fname = "help/" + geochronometer + ".html";
 	$("#myplot").load(fname,function(){
 	    switch (geochronometer){
 	    case 'U-Pb':
