@@ -1049,6 +1049,10 @@ $(function(){
     
     $(".button").button()
 
+    $("#HOME").click( function() {
+	window.location.href = "http://isoplotr.london-geochron.com";
+    });
+    
     $("#INPUT").handsontable({
 	data : [[]],
 	minRows: 100,
@@ -1265,19 +1269,19 @@ $(function(){
     });
 
     $("#PLOT").click(function(){
-	$("#myplot").load("loader.html");
 	$("#OUTPUT").hide();
 	$("#myscript").empty();
+	$("#myplot").load("loader.html");
 	run();
     });
 
     $("#RUN").click(function(){
-	$("#myplot").load("loader.html");
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").show();
 	$("#myscript").empty();
+	$("#myplot").load("loader.html");
 	run();
-	$("#myplot").empty();
+	$("#myplot").empty();	    
     });
 
     var IsoplotR = initialise();

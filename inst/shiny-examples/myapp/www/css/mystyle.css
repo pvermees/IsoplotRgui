@@ -28,6 +28,12 @@ a:hover {
     text-align: center;
 }
 
+.ulcorner {
+    position: absolute;
+    float: left;
+    left: 0;
+}
+
 tit {
     position: absolute;
     float: right;
