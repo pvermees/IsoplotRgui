@@ -58,6 +58,7 @@ $(function(){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
 	    case 1: return 5;
@@ -395,6 +396,27 @@ $(function(){
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
 	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
+	    break;
+	case 'Lu-Hf':
+	    $('#LuHf-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4LuHf').show();
+	    $('.hide4LuHf').hide();
+	    $('#Lu176Lu175').val(cst.iratio.Lu176Lu175[0]);
+	    $('#errLu176Lu175').val(cst.iratio.Lu176Lu175[1]);
+	    $('#Hf174Hf177').val(cst.iratio.Hf174Hf177[0]);
+	    $('#errHf174Hf177').val(cst.iratio.Hf174Hf177[1]);
+	    $('#Hf176Hf177').val(cst.iratio.Hf176Hf177[0]);
+	    $('#errHf176Hf177').val(cst.iratio.Hf176Hf177[1]);
+	    $('#Hf178Hf177').val(cst.iratio.Hf178Hf177[0]);
+	    $('#errHf178Hf177').val(cst.iratio.Hf178Hf177[1]);
+	    $('#Hf179Hf177').val(cst.iratio.Hf179Hf177[0]);
+	    $('#errHf179Hf177').val(cst.iratio.Hf179Hf177[1]);
+	    $('#Hf180Hf177').val(cst.iratio.Hf180Hf177[0]);
+	    $('#errHf180Hf177').val(cst.iratio.Hf180Hf177[1]);
+	    $('#LambdaLu176').val(cst.lambda.Lu176[0]);
+	    $('#errLambdaLu176').val(cst.lambda.Lu176[1]);
+	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'U-Th-He':
 	    $('.show4UThHe').show();
@@ -790,6 +812,24 @@ $(function(){
 	    IsoplotR.settings[geochronometer].i2i = 
 		$("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
 	    break;
+	case 'Lu-Hf':
+	    gcsettings.iratio.Lu176Lu175[0] = $('#Lu176Lu175').val();
+	    gcsettings.iratio.Lu176Lu175[1] = $('#errLu176Lu175').val();
+	    gcsettings.iratio.Hf174Hf177[0] = $('#Hf174Hf177').val();
+	    gcsettings.iratio.Hf174Hf177[1] = $('#errHf174Hf177').val();
+	    gcsettings.iratio.Hf176Hf177[0] = $('#Hf176Hf177').val();
+	    gcsettings.iratio.Hf176Hf177[1] = $('#errHf176Hf177').val();
+	    gcsettings.iratio.Hf178Hf177[0] = $('#Hf178Hf177').val();
+	    gcsettings.iratio.Hf178Hf177[1] = $('#errHf178Hf177').val();
+	    gcsettings.iratio.Hf179Hf177[0] = $('#Hf179Hf177').val();
+	    gcsettings.iratio.Hf179Hf177[1] = $('#errHf179Hf177').val();
+	    gcsettings.iratio.Hf180Hf177[0] = $('#Hf180Hf177').val();
+	    gcsettings.iratio.Hf180Hf177[1] = $('#errHf180Hf177').val();
+	    gcsettings.lambda.Lu176[0] = $('#LambdaLu176').val();
+	    gcsettings.lambda.Lu176[1] = $('#errLambdaLu176').val();
+	    IsoplotR.settings[geochronometer].i2i = 
+		$("#i2iLuHf").prop('checked') ? "TRUE" : "FALSE";
+	    break;
 	case 'U-Th-He':
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
 	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
@@ -824,6 +864,8 @@ $(function(){
     }
 
     function setSelectedMenus(options){
+	$("#Pb-Pb").prop('disabled',true);
+	$("#K-Ar").prop('disabled',true);
 	$("#U-series").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);
@@ -896,14 +938,23 @@ $(function(){
 	    setSelectedMenus([false,true,true,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
+	case 'Pb-Pb':
+	    setSelectedMenus([true,true,true,true,true,true,
+			      true,true,true,true,true,true]);
+	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus([true,true,false,false,true,false,
 			      false,false,false,true,true,false]);
 	    $("#Jdiv").show();
 	    break;
+	case 'K-Ar':
+	    setSelectedMenus([true,true,true,true,true,true,
+			      true,true,true,true,true,true]);
+	    break;
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    setSelectedMenus([true,true,false,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
@@ -951,6 +1002,7 @@ $(function(){
 	    case "Rb-Sr":
 	    case "Sm-Nd":
 	    case "Re-Os":
+	    case "Lu-Hf":
 	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
 		prefs.settings.data[geochronometer] =
@@ -1002,6 +1054,9 @@ $(function(){
     $.chooseReOsformat = function(){
 	chooseFormat("#ReOs-formats","Re-Os")
     }
+    $.chooseLuHfformat = function(){
+	chooseFormat("#LuHf-formats","Lu-Hf")
+    }
     $.chooseFTformat = function(){
 	var format = chooseFormat("#FT-formats","fissiontracks")
 	switch (format){
@@ -1048,10 +1103,6 @@ $(function(){
     }
     
     $(".button").button()
-
-    $("#HOME").click( function() {
-	window.location.href = "http://isoplotr.london-geochron.com";
-    });
     
     $("#INPUT").handsontable({
 	data : [[]],
@@ -1204,6 +1255,16 @@ $(function(){
 		    break;
 		case 2:
 		    $('.show4ReOs2').show();
+		    break;
+		}
+		break;
+	    case 'Lu-Hf':
+		switch (IsoplotR.settings['Lu-Hf'].format){
+		case 1:
+		    $('.show4LuHf1').show();
+		    break;
+		case 2:
+		    $('.show4LuHf2').show();
 		    break;
 		}
 		break;

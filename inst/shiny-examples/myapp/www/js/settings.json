@@ -7,6 +7,7 @@
 	"Rb-Sr": {},
 	"Sm-Nd": {},
 	"Re-Os": {},
+	"Lu-Hf": {},
 	"U-Th-He": {},
 	"fissiontracks": {},
 	"detritals": {},
@@ -35,6 +36,10 @@
 	"i2i": "TRUE"
     },
     "Re-Os": {
+	"format": 2,
+	"i2i": "TRUE"
+    },
+    "Lu-Hf": {
 	"format": 2,
 	"i2i": "TRUE"
     },

@@ -72,6 +72,14 @@ shiny::shinyServer(function(input,output,session){
             mat <- matrix(c('Reppm','errReppm','Osppm','errOsppm',
                             'Os187Os188','errOs187Os188'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Lu-Hf") & format==1){
+            mat <- matrix(c('Lu176Hf177','errLu176Hf177',
+                            'Hf176Hf177','errHf176Hf177','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Lu-Hf") & format==2){
+            mat <- matrix(c('Luppm','errLuppm','Hfppm','errHfppm',
+                            'Hf176Hf177','errHf176Hf177'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"fissiontracks") & format==1){
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')

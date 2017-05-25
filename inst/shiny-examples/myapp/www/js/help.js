@@ -214,6 +214,34 @@ function help(id){
 	text = "Change the natural <sup>88</sup>Sr/<sup>86</sup>Sr ratio. " +
 	    "Default value is taken from Moore et al. (1982).";
 	break;
+    case "help-Lu176Lu175":
+	text = "Change the natural <sup>176</sup>Lu/<sup>175</sup>Lu ratio. " +
+	    "Default value is taken from De Laeter and Bukilich (2006).";
+	break;
+    case "help-Hf174Hf177":
+	text = "Change the natural <sup>174</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf176Hf177":
+	text = "Change the natural <sup>176</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf178Hf177":
+	text = "Change the natural <sup>178</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf179Hf177":
+	text = "Change the natural <sup>179</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf180Hf177":
+	text = "Change the natural <sup>180</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-LambdaLu176":
+	text = "The default values of the <sup>176</sup>Lu decay constant " +
+	    "and its uncertainty are taken from S&ouml;derlund et al. (2004).";
+	break;
     case "help-ReOs-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Re-Os data as an initial " +
@@ -232,6 +260,12 @@ function help(id){
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Rb-Sr data as an initial " +
 	    "<sup>87</sup>Sr/<sup>86</sup>Sr-ratio for the age calculations. " +
+	    "Unticking it uses the ratio given above.";
+	break;
+    case "help-LuHf-i2i":
+	text = "Ticking this box uses the y-intercept of an isochron fit " +
+	    "through all the Lu-Hf data as an initial " +
+	    "<sup>176</sup>Hf/<sup>177</sup>Hf-ratio for the age calculations. " +
 	    "Unticking it uses the ratio given above.";
 	break;
     case "help-ArAr-i2i":
@@ -549,6 +583,14 @@ function help(id){
 	    "<tt>Rb87/Sr86</tt> and <tt>Sr87/Sr86</tt><br>" +
 	    "2. <tt>Rb s[Rb] Sr s[Sr] 87/86 s[87/86]</tt><br>" +
 	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.<br>";
+	break;
+    case "help-LuHf-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Lu176/Hf177 s[Lu176/Hf177] Hf176/Hf177 s[Hf176/Hf177] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Lu176/Hf177</tt> and <tt>Hf176/Hf177</tt><br>" +
+	    "2. <tt>Lu s[Lu] Hf s[Hf] 176/177 s[176/177]</tt><br>" +
+	    "where <tt>Lu</tt> and <tt>Hf</tt> are in ppm.<br>";
 	break;
     case "help-ReOs-formats":
 	text = "Choose one of two input formats:<br>" +
