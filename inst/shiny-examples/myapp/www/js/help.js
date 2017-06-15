@@ -86,11 +86,17 @@ function help(id){
 	text = "The default values of the <sup>235</sup>U decay constant " +
 	    "and its uncertainty are taken from Jaffey et al. (1971).";
 	break;
-    case "help-inverse":
+    case "help-ArAr-inverse":
 	text = "Selecting this box plots <sup>36</sup>Ar/<sup>40</sup>Ar " +
 	    "against <sup>39</sup>Ar/<sup>40</sup>Ar. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>40</sup>Ar/<sup>39</sup>Ar " +
 	    "against <sup>36</sup>Ar/<sup>39</sup>Ar.";
+	break;
+    case "help-PbPb-inverse":
+	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +
+	    "against <sup>204</sup>Pb/<sup>206</sup>Pb. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>207</sup>Pb/<sup>204</sup>Pb " +
+	    "against <sup>206</sup>Pb/<sup>204</sup>Pb.";
 	break;
     case "help-isochron-minx":
 	text = "Minimum limit of the horizontal axis.";

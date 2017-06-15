@@ -23,6 +23,10 @@
     "U-Pb": {
 	"format": 3
     },
+    "Pb-Pb": {
+	"format": 3,
+	"i2i": "TRUE"
+    },
     "Ar-Ar": {
 	"format": 3,
 	"i2i": "FALSE"

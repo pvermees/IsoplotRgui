@@ -23,6 +23,19 @@ shiny::shinyServer(function(input,output,session){
                             'Pb206U238','errPb206U238',
                             'Pb207U235','errPb207U235','rhoXY','rhoYZ'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Pb-Pb") & format==1) {
+            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
+                            'Pb207Pb204','errPb207Pb204','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Pb-Pb") & format==2) {
+            mat <- matrix(c('Pb204Pb206','errPb204Pb206',
+                            'Pb207Pb206','errPb207Pb206','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Pb-Pb") & format==3) {
+            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
+                            'Pb207Pb204','errPb207Pb206',
+                            'Pb207Pb206','errPb207Pb206'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Ar-Ar") & format==1){
             mat <- matrix('',3,nc)
             mat[1,1:2] <-c('J','errJ')

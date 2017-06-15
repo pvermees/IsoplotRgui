@@ -49,7 +49,9 @@ function getOptions(prefs){
 	}
 	break;
     case 'isochron':
-	if (geochronometer=='Ar-Ar'){ out += ",inverse=" + settings.inverse; }
+	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar'){
+	    out += ",inverse=" + settings.inverse;
+	}
 	out += ",exterr=" + settings.exterr;
     case 'regression':
 	if (settings.minx != 'auto' & settings.maxx != 'auto')
@@ -173,6 +175,7 @@ function getOptions(prefs){
 	    out += ",exterr=" + settings.exterr;
 	switch (geochronometer){
 	case 'Ar-Ar':
+	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -197,6 +200,7 @@ function getRcommand(prefs){
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
 	geochronometer=='U-Pb' |
+	geochronometer=='Pb-Pb' |
 	geochronometer=='Ar-Ar' |
 	geochronometer=='Rb-Sr' |
         geochronometer=='Sm-Nd' |
@@ -206,7 +210,8 @@ function getRcommand(prefs){
     }
     out += ");";
     switch (geochronometer){
-    case 'U-Pb': 
+    case 'U-Pb':
+    case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','U238U235'," +
 	    prefs.constants.iratio.U238U235[0] + "," +
 	    prefs.constants.iratio.U238U235[1] + ");"

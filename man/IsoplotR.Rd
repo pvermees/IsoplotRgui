@@ -14,4 +14,3 @@ provided at \url{http://isoplotr.london-geochron.com}
 \examples{
 #IsoplotR()
 }
-

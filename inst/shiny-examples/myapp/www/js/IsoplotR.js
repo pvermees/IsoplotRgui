@@ -41,6 +41,13 @@ $(function(){
 	    case 2: return 5;
 	    case 3: return 8;
 	    }
+	case 'Pb-Pb':
+	    var format = IsoplotR.settings["Pb-Pb"].format;
+	    switch (format){
+	    case 1: return 5;
+	    case 2: return 5;
+	    case 3: return 6;
+	    }
 	case 'Ar-Ar':
 	    var format = IsoplotR.settings["Ar-Ar"].format;
 	    switch (format){
@@ -306,6 +313,18 @@ $(function(){
 		prop('selected', 'selected');
 	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
+	    $('#U238U235').val(cst.iratio.U238U235[0]);
+	    $('#errU238U235').val(cst.iratio.U238U235[1]);
+	    $('#LambdaU238').val(cst.lambda.U238[0]);
+	    $('#errLambdaU238').val(cst.lambda.U238[1]);
+	    $('#LambdaU235').val(cst.lambda.U235[0]);
+	    $('#errLambdaU235').val(cst.lambda.U235[1]);
+	    break;
+	case 'Pb-Pb':
+	    $('#PbPb-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4PbPb').show();
+	    $('.hide4PbPb').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
@@ -733,6 +752,7 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
+	case 'Pb-Pb':
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
 	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
 	    gcsettings.lambda.U238[0] = $("#LambdaU238").val();
@@ -864,8 +884,6 @@ $(function(){
     }
 
     function setSelectedMenus(options){
-	$("#Pb-Pb").prop('disabled',true);
-	$("#K-Ar").prop('disabled',true);
 	$("#U-series").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);
@@ -938,10 +956,6 @@ $(function(){
 	    setSelectedMenus([false,true,true,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
-	case 'Pb-Pb':
-	    setSelectedMenus([true,true,true,true,true,true,
-			      true,true,true,true,true,true]);
-	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus([true,true,false,false,true,false,
 			      false,false,false,true,true,false]);
@@ -951,6 +965,7 @@ $(function(){
 	    setSelectedMenus([true,true,true,true,true,true,
 			      true,true,true,true,true,true]);
 	    break;
+	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -998,6 +1013,7 @@ $(function(){
 	if (forcedefaults | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
+	    case "Pb-Pb":
 	    case "Ar-Ar":
 	    case "Rb-Sr":
 	    case "Sm-Nd":
@@ -1041,6 +1057,9 @@ $(function(){
 
     $.chooseUPbformat = function(){
 	chooseFormat("#UPb-formats","U-Pb")
+    }
+    $.choosePbPbformat = function(){
+	chooseFormat("#PbPb-formats","Pb-Pb")
     }
     $.chooseArArformat = function(){
 	chooseFormat("#ArAr-formats","Ar-Ar")
@@ -1212,6 +1231,19 @@ $(function(){
 		    break;
 		case 3:
 		    $('.show4UPb3').show();
+		    break;
+		}
+		break;
+	    case 'Pb-Pb':
+		switch (IsoplotR.settings['Pb-Pb'].format){
+		case 1:
+		    $('.show4PbPb1').show();
+		    break;
+		case 2:
+		    $('.show4PbPb2').show();
+		    break;
+		case 3:
+		    $('.show4PbPb3').show();
 		    break;
 		}
 		break;
