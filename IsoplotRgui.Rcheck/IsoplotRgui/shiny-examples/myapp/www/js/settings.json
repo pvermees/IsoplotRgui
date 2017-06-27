@@ -7,6 +7,7 @@
 	"Rb-Sr": {},
 	"Sm-Nd": {},
 	"Re-Os": {},
+	"Lu-Hf": {},
 	"U-Th-He": {},
 	"fissiontracks": {},
 	"detritals": {},
@@ -21,6 +22,10 @@
     },
     "U-Pb": {
 	"format": 3
+    },
+    "Pb-Pb": {
+	"format": 3,
+	"i2i": "TRUE"
     },
     "Ar-Ar": {
 	"format": 3,
@@ -38,12 +43,16 @@
 	"format": 2,
 	"i2i": "TRUE"
     },
+    "Lu-Hf": {
+	"format": 2,
+	"i2i": "TRUE"
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
 	"alpha": 0.05,
 	"wetherill": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 1,
 	"sigdig": 2

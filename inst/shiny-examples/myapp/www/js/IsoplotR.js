@@ -55,6 +55,8 @@ $(function(){
 	    case 2: return 6;
 	    case 3: return 7;
 	    }
+	case 'Th-U':
+	    return 9;
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
@@ -342,6 +344,13 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
+	    break;
+	case 'Th-U':
+	    $('#ThU-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4ThU').show();
+	    $('.hide4ThU').hide();
+	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Rb-Sr':
 	    $('#RbSr-formats option[value='+set.format+']').
@@ -884,20 +893,21 @@ $(function(){
     }
 
     function setSelectedMenus(options){
-	$("#U-series").prop('disabled',true);
+	$("#Th-U").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);
-	$("#isochron").prop('disabled',options[2]);
-	$("#radial").prop('disabled',options[3]);
-	$("#regression").prop('disabled',options[4]);
-	$("#spectrum").prop('disabled',options[5]);
-	$("#average").prop('disabled',options[6]);
-	$("#KDE").prop('disabled',options[7]);
-	$("#CAD").prop('disabled',options[8]);
-	$("#set-zeta").prop('disabled',options[9]);
-	$("#MDS").prop('disabled',options[10]);
-	$("#ages").prop('disabled',options[11]);
-	for (var i=0; i<12; i++){ // change to first available option
+	$("#evolution").prop('disabled',options[2]);
+	$("#isochron").prop('disabled',options[3]);
+	$("#radial").prop('disabled',options[4]);
+	$("#regression").prop('disabled',options[5]);
+	$("#spectrum").prop('disabled',options[6]);
+	$("#average").prop('disabled',options[7]);
+	$("#KDE").prop('disabled',options[8]);
+	$("#CAD").prop('disabled',options[9]);
+	$("#set-zeta").prop('disabled',options[10]);
+	$("#MDS").prop('disabled',options[11]);
+	$("#ages").prop('disabled',options[12]);
+	for (var i=0; i<13; i++){ // change to first available option
 	    if (!options[i]) {
 		$('#plotdevice').prop('selectedIndex',i);
 		IsoplotR.settings.plotdevice = 
@@ -953,16 +963,17 @@ $(function(){
 	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,true,true,false,true,true,
+	    setSelectedMenus([false,true,true,true,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,true,false,false,true,false,
+	    setSelectedMenus([true,true,true,false,false,true,false,
 			      false,false,false,true,true,false]);
 	    $("#Jdiv").show();
+	    $(".helioplot").hide()
 	    break;
 	case 'K-Ar':
-	    setSelectedMenus([true,true,true,true,true,true,
+	    setSelectedMenus([true,true,true,true,true,true,true,
 			      true,true,true,true,true,true]);
 	    break;
 	case 'Pb-Pb':
@@ -970,35 +981,35 @@ $(function(){
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	    setSelectedMenus([true,true,false,false,true,true,
+	    setSelectedMenus([true,true,true,false,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,false,true,false,true,true,
+	    setSelectedMenus([true,false,true,true,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
-	    setSelectedMenus([true,true,true,false,true,true,
+	    setSelectedMenus([true,true,true,true,false,true,true,
 			      false,false,false,false,true,false]);
 	    if (format < 3){ $("#zetaDiv").show(); }
 	    if (format < 2){ $("#rhoDdiv").show(); }
 	    if (format > 1){ $("#spotSizeDiv").show(); }
 	    break;
-	case 'U-series':
-	    setSelectedMenus([true,true,true,true,true,true,
+	case 'Th-U':
+	    setSelectedMenus([true,true,false,true,true,true,true,
 			      true,true,true,true,true,true]);
 	    break;
 	case 'detritals':
-	    setSelectedMenus([true,true,true,true,true,true,
+	    setSelectedMenus([true,true,true,true,true,true,true,
 			      true,false,false,true,false,true]);
 	    break;
 	case 'other':
-	    setSelectedMenus([true,true,true,false,false,false,
+	    setSelectedMenus([true,true,true,true,false,false,false,
 			      false,false,false,true,true,true]);
 	    break;
 	default:
-	    setSelectedMenus([true,true,true,true,true,true,
+	    setSelectedMenus([true,true,true,true,true,true,true,
 			      true,true,true,true,true,true]);
 	}
 	IsoplotR = populate(IsoplotR,false);
@@ -1019,6 +1030,7 @@ $(function(){
 	    case "Sm-Nd":
 	    case "Re-Os":
 	    case "Lu-Hf":
+	    case "Th-U":
 	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
 		prefs.settings.data[geochronometer] =
@@ -1063,6 +1075,9 @@ $(function(){
     }
     $.chooseArArformat = function(){
 	chooseFormat("#ArAr-formats","Ar-Ar")
+    }
+    $.chooseThUformat = function(){
+	chooseFormat("#ThU-formats","Th-U")
     }
     $.chooseRbSrformat = function(){
 	chooseFormat("#RbSr-formats","Rb-Sr")

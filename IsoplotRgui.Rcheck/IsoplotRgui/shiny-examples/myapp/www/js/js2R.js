@@ -39,6 +39,7 @@ function getOptions(prefs){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
 	case 'U-Pb':
@@ -48,7 +49,9 @@ function getOptions(prefs){
 	}
 	break;
     case 'isochron':
-	if (geochronometer=='Ar-Ar'){ out += ",inverse=" + settings.inverse; }
+	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar'){
+	    out += ",inverse=" + settings.inverse;
+	}
 	out += ",exterr=" + settings.exterr;
     case 'regression':
 	if (settings.minx != 'auto' & settings.maxx != 'auto')
@@ -61,7 +64,8 @@ function getOptions(prefs){
 	break;
     case 'average':
 	if (geochronometer=='Ar-Ar' | geochronometer == 'Rb-Sr' |
-	    geochronometer == 'Sm-Nd' | geochronometer == 'Re-Os'){
+	    geochronometer == 'Sm-Nd' | geochronometer == 'Re-Os' |
+	    geochronometer == 'Lu-Hf'){
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	}
 	if (geochronometer != "other"){
@@ -94,6 +98,7 @@ function getOptions(prefs){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
 	case 'U-Pb':
@@ -126,6 +131,7 @@ function getOptions(prefs){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
 	default:
@@ -169,9 +175,11 @@ function getOptions(prefs){
 	    out += ",exterr=" + settings.exterr;
 	switch (geochronometer){
 	case 'Ar-Ar':
+	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
@@ -192,15 +200,18 @@ function getRcommand(prefs){
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
 	geochronometer=='U-Pb' |
+	geochronometer=='Pb-Pb' |
 	geochronometer=='Ar-Ar' |
 	geochronometer=='Rb-Sr' |
         geochronometer=='Sm-Nd' |
-        geochronometer=='Re-Os') {
+        geochronometer=='Re-Os' |
+        geochronometer=='Lu-Hf') {
 	out += ",format=" + prefs.settings[geochronometer].format; 
     }
     out += ");";
     switch (geochronometer){
-    case 'U-Pb': 
+    case 'U-Pb':
+    case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','U238U235'," +
 	    prefs.constants.iratio.U238U235[0] + "," +
 	    prefs.constants.iratio.U238U235[1] + ");"
@@ -296,6 +307,29 @@ function getRcommand(prefs){
 	out += "IsoplotR::settings('lambda','Rb87'," +
 	    prefs.constants.lambda.Rb87[0] + "," +
 	    prefs.constants.lambda.Rb87[1] + ");"
+	break;
+    case 'Lu-Hf':
+	out += "IsoplotR::settings('iratio','Lu176Lu175'," +
+	    prefs.constants.iratio.Lu176Lu175[0] + "," +
+	    prefs.constants.iratio.Lu176Lu175[1] + ");"
+	out += "IsoplotR::settings('iratio','Hf174Hf177'," +
+	    prefs.constants.iratio.Hf174Hf177[0] + "," +
+	    prefs.constants.iratio.Hf174Hf177[1] + ");"
+	out += "IsoplotR::settings('iratio','Hf176Hf177'," +
+	    prefs.constants.iratio.Hf176Hf177[0] + "," +
+	    prefs.constants.iratio.Hf176Hf177[1] + ");"
+	out += "IsoplotR::settings('iratio','Hf178Hf177'," +
+	    prefs.constants.iratio.Hf178Hf177[0] + "," +
+	    prefs.constants.iratio.Hf178Hf177[1] + ");"
+	out += "IsoplotR::settings('iratio','Hf179Hf177'," +
+	    prefs.constants.iratio.Hf179Hf177[0] + "," +
+	    prefs.constants.iratio.Hf179Hf177[1] + ");"
+	out += "IsoplotR::settings('iratio','Hf180Hf177'," +
+	    prefs.constants.iratio.Hf180Hf177[0] + "," +
+	    prefs.constants.iratio.Hf180Hf177[1] + ");"
+	out += "IsoplotR::settings('lambda','Lu176'," +
+	    prefs.constants.lambda.Lu176[0] + "," +
+	    prefs.constants.lambda.Lu176[1] + ");"
 	break;
     case 'U-Th-He': 
 	out += "IsoplotR::settings('iratio','U238U235'," +

@@ -23,7 +23,36 @@ shiny::shinyServer(function(input,output,session){
                             'Pb206U238','errPb206U238',
                             'Pb207U235','errPb207U235','rhoXY','rhoYZ'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
-        } else if (identical(method,"Ar-Ar")){
+        } else if (identical(method,"Pb-Pb") & format==1) {
+            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
+                            'Pb207Pb204','errPb207Pb204','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Pb-Pb") & format==2) {
+            mat <- matrix(c('Pb204Pb206','errPb204Pb206',
+                            'Pb207Pb206','errPb207Pb206','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Pb-Pb") & format==3) {
+            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
+                            'Pb207Pb204','errPb207Pb206',
+                            'Pb207Pb206','errPb207Pb206'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Ar-Ar") & format==1){
+            mat <- matrix('',3,nc)
+            mat[1,1:2] <-c('J','errJ')
+            mat[2,1:2] <- d[3:4]
+            mat[3,] <- c('Ar39Ar36','errAr39Ar36',
+                         'Ar40Ar36','errAr40Ar36',
+                         'rho','Ar39')
+            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Ar-Ar") & format==2) {
+            mat <- matrix('',3,nc)
+            mat[1,1:2] <-c('J','errJ')
+            mat[2,1:2] <- d[3:4]
+            mat[3,] <- c('Ar39Ar40','errAr39Ar40',
+                         'Ar36Ar40','errAr36Ar40',
+                         'rho','Ar39')
+            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Ar-Ar") & format==3) {
             mat <- matrix('',3,nc)
             mat[1,1:2] <-c('J','errJ')
             mat[2,1:2] <- d[3:4]
@@ -55,6 +84,14 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"Re-Os") & format==2){
             mat <- matrix(c('Reppm','errReppm','Osppm','errOsppm',
                             'Os187Os188','errOs187Os188'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Lu-Hf") & format==1){
+            mat <- matrix(c('Lu176Hf177','errLu176Hf177',
+                            'Hf176Hf177','errHf176Hf177','rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Lu-Hf") & format==2){
+            mat <- matrix(c('Luppm','errLuppm','Hfppm','errHfppm',
+                            'Hf176Hf177','errHf176Hf177'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"fissiontracks") & format==1){
             mat <- matrix('',5,nc)

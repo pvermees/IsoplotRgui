@@ -48,6 +48,19 @@ function getOptions(prefs){
 	default:
 	}
 	break;
+    case 'evolution':
+	if (settings.minx != 'auto' & settings.maxx != 'auto')
+	    out += ",xlim=c(" + settings.minx + "," + settings.maxx + ")";
+	if (settings.miny != 'auto' & settings.maxy != 'auto')
+	    out += ",ylim=c(" + settings.miny + "," + settings.maxy + ")";
+	out += ",alpha=" + settings.alpha;
+	out += ",show.numbers=" + settings.shownumbers;
+	out += ",sigdig=" + settings.sigdig;
+	out += ",transform=" + settings.transform;
+	out += ",project=" + settings.project;
+	out += ",exterr=" + settings.exterr;
+	out += ",isochron=" + settings.isochron;
+	break;
     case 'isochron':
 	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar'){
 	    out += ",inverse=" + settings.inverse;
@@ -199,9 +212,10 @@ function getRcommand(prefs){
     var out = "dat <- selection2data(method='" + geochronometer + "'";
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
-	geochronometer=='U-Pb' |
+	geochronometer=='U-Pb'  |
 	geochronometer=='Pb-Pb' |
 	geochronometer=='Ar-Ar' |
+	geochronometer=='Th-U'  |
 	geochronometer=='Rb-Sr' |
         geochronometer=='Sm-Nd' |
         geochronometer=='Re-Os' |
@@ -374,6 +388,9 @@ function getRcommand(prefs){
     switch (plotdevice) {
     case 'concordia': 
 	out += "IsoplotR::concordia(dat"; 
+	break;
+    case 'evolution': 
+	out += "IsoplotR::evolution(dat"; 
 	break;
     case 'isochron':
     case 'regression':

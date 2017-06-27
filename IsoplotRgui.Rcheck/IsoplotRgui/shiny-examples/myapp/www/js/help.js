@@ -86,11 +86,17 @@ function help(id){
 	text = "The default values of the <sup>235</sup>U decay constant " +
 	    "and its uncertainty are taken from Jaffey et al. (1971).";
 	break;
-    case "help-inverse":
+    case "help-ArAr-inverse":
 	text = "Selecting this box plots <sup>36</sup>Ar/<sup>40</sup>Ar " +
 	    "against <sup>39</sup>Ar/<sup>40</sup>Ar. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>40</sup>Ar/<sup>39</sup>Ar " +
 	    "against <sup>36</sup>Ar/<sup>39</sup>Ar.";
+	break;
+    case "help-PbPb-inverse":
+	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +
+	    "against <sup>204</sup>Pb/<sup>206</sup>Pb. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>207</sup>Pb/<sup>204</sup>Pb " +
+	    "against <sup>206</sup>Pb/<sup>204</sup>Pb.";
 	break;
     case "help-isochron-minx":
 	text = "Minimum limit of the horizontal axis.";
@@ -214,6 +220,34 @@ function help(id){
 	text = "Change the natural <sup>88</sup>Sr/<sup>86</sup>Sr ratio. " +
 	    "Default value is taken from Moore et al. (1982).";
 	break;
+    case "help-Lu176Lu175":
+	text = "Change the natural <sup>176</sup>Lu/<sup>175</sup>Lu ratio. " +
+	    "Default value is taken from De Laeter and Bukilich (2006).";
+	break;
+    case "help-Hf174Hf177":
+	text = "Change the natural <sup>174</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf176Hf177":
+	text = "Change the natural <sup>176</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf178Hf177":
+	text = "Change the natural <sup>178</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf179Hf177":
+	text = "Change the natural <sup>179</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-Hf180Hf177":
+	text = "Change the natural <sup>180</sup>Hf/<sup>177</sup>Hf ratio. " +
+	    "Default value is taken from Patchett (1983).";
+	break;
+    case "help-LambdaLu176":
+	text = "The default values of the <sup>176</sup>Lu decay constant " +
+	    "and its uncertainty are taken from S&ouml;derlund et al. (2004).";
+	break;
     case "help-ReOs-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Re-Os data as an initial " +
@@ -232,6 +266,12 @@ function help(id){
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Rb-Sr data as an initial " +
 	    "<sup>87</sup>Sr/<sup>86</sup>Sr-ratio for the age calculations. " +
+	    "Unticking it uses the ratio given above.";
+	break;
+    case "help-LuHf-i2i":
+	text = "Ticking this box uses the y-intercept of an isochron fit " +
+	    "through all the Lu-Hf data as an initial " +
+	    "<sup>176</sup>Hf/<sup>177</sup>Hf-ratio for the age calculations. " +
 	    "Unticking it uses the ratio given above.";
 	break;
     case "help-ArAr-i2i":
@@ -529,6 +569,50 @@ function help(id){
 	    "in which the error correlations are calculated from the" +
 	    "redundancies between the three sets of uncertainties.<br>" +
 	    "(more formats will be added later)";
+	break;
+    case "help-ArAr-formats":
+	text = "Choose one of three input formats:<br>" +
+	    "1. <tt>39/36 s[39/36] 40/36 s[40/36] rho (39)</tt><br>" +
+	    "where <tt>rho</tt> is the error correlation between " +
+	    "<tt>39/36</tt> and <tt>40/36</tt> and (39) is the " +
+	    "(optional) amount of <sup>39</sup>Ar<br>" +
+	    "2. <tt>39/40 s[39/40] 36/40 s[36/40] (rho) (39)</tt><br>" +
+	    "where the error correlation is optional.<br>" +
+	    "3. <tt>39/40 s[39/40] 36/40 s[36/40] 39/36 s[39/36] (39)</tt><br>" +
+	    "in which the error correlations are calculated from the" +
+	    "redundancies between the three sets of uncertainties.<br>";
+	break;
+    case "help-RbSr-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Rb87/Sr86 s[Rb87/Sr86] Sr87/Sr86 s[Sr87/Sr86] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Rb87/Sr86</tt> and <tt>Sr87/Sr86</tt><br>" +
+	    "2. <tt>Rb s[Rb] Sr s[Sr] 87/86 s[87/86]</tt><br>" +
+	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.<br>";
+	break;
+    case "help-LuHf-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Lu176/Hf177 s[Lu176/Hf177] Hf176/Hf177 s[Hf176/Hf177] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Lu176/Hf177</tt> and <tt>Hf176/Hf177</tt><br>" +
+	    "2. <tt>Lu s[Lu] Hf s[Hf] 176/177 s[176/177]</tt><br>" +
+	    "where <tt>Lu</tt> and <tt>Hf</tt> are in ppm.<br>";
+	break;
+    case "help-ReOs-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Re187/Os188 s[Re187/Os188] Os187/Os188 s[Os187/Os188] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Re187/Os188</tt> and <tt>Os187/Os188</tt><br>" +
+	    "2. <tt>Re s[Re] Os s[Os] 187/188 s[187/188]</tt><br>" +
+	    "where <tt>Re</tt> and <tt>Os</tt> are in ppm.<br>";
+	break;
+    case "help-SmNd-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>Sm147/Nd144 s[Sm147/Nd144] Nd143/Nd144 s[Nd143/Nd144] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Sm147/Nd144</tt> and <tt>Nd143/Nd144</tt><br>" +
+	    "2. <tt>Sm s[Sm] Nd s[Nd] 143/144 s[143/144]</tt><br>" +
+	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.<br>";
 	break;
     case "help-FT-formats":
 	text = "Choose one of three fission track dating methods: " +

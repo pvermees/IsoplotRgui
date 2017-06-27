@@ -5,7 +5,7 @@ $(function(){
 	$('#RUN').hide();
 	$('#CSV').hide();
 	var loader = new Image(); // preload image
-	loader.src = "../images/loader.gif";
+	loader.src = "images/loader.gif";
 	var out = {
 	    constants: null,
 	    settings: null,
@@ -41,8 +41,20 @@ $(function(){
 	    case 2: return 5;
 	    case 3: return 8;
 	    }
+	case 'Pb-Pb':
+	    var format = IsoplotR.settings["Pb-Pb"].format;
+	    switch (format){
+	    case 1: return 5;
+	    case 2: return 5;
+	    case 3: return 6;
+	    }
 	case 'Ar-Ar':
-	    return 7;
+	    var format = IsoplotR.settings["Ar-Ar"].format;
+	    switch (format){
+	    case 1: return 6;
+	    case 2: return 6;
+	    case 3: return 7;
+	    }
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
@@ -53,6 +65,7 @@ $(function(){
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
 	    case 1: return 5;
@@ -131,7 +144,7 @@ $(function(){
 	    }
 	    handson.data.push(row);
 	}
-	handson.data.push([]); // add empty row in case json is empty
+	// handson.data.push([]); // add empty row in case json is empty
 	$("#INPUT").handsontable({
 	    data: handson.data,
 	    colHeaders: handson.headers
@@ -218,7 +231,9 @@ $(function(){
 	var detritals = (geochronometer=='detritals');
 	var FT = (geochronometer=='fissiontracks');
 	var UPb2 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==2);
-	var ArAr = (geochronometer=='Ar-Ar');
+	var ArAr1 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==1);
+	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
+	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
 	if ( toofewcols | other1row) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
@@ -238,10 +253,10 @@ $(function(){
 		good = false;
 		for (var j=0; j<nc; j++){
 		    val = dat[i][j];
-		    if (isNaN(val) | val==null | val==""){
-			if (UPb2 & j==4) { // rho
+		    if (val==null | val==""){
+			if ((UPb2 & j==4)|(ArAr2 & j==4)) { // rho
 			    row.push(0);
-			} else if (ArAr & j==7) { // Ar39
+			} else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
 			    row.push(1);
 			} else {
 			    row.push('');
@@ -305,7 +320,21 @@ $(function(){
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
+	case 'Pb-Pb':
+	    $('#PbPb-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4PbPb').show();
+	    $('.hide4PbPb').hide();
+	    $('#U238U235').val(cst.iratio.U238U235[0]);
+	    $('#errU238U235').val(cst.iratio.U238U235[1]);
+	    $('#LambdaU238').val(cst.lambda.U238[0]);
+	    $('#errLambdaU238').val(cst.lambda.U238[1]);
+	    $('#LambdaU235').val(cst.lambda.U235[0]);
+	    $('#errLambdaU235').val(cst.lambda.U235[1]);
+	    break;
 	case 'Ar-Ar':
+	    $('#ArAr-formats option[value='+set.format+']').
+		prop('selected', 'selected');
 	    $('.show4ArAr').show();
 	    $('.hide4ArAr').hide();
 	    $('#Ar40Ar36').val(cst.iratio.Ar40Ar36[0]),
@@ -386,6 +415,27 @@ $(function(){
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
 	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
+	    break;
+	case 'Lu-Hf':
+	    $('#LuHf-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4LuHf').show();
+	    $('.hide4LuHf').hide();
+	    $('#Lu176Lu175').val(cst.iratio.Lu176Lu175[0]);
+	    $('#errLu176Lu175').val(cst.iratio.Lu176Lu175[1]);
+	    $('#Hf174Hf177').val(cst.iratio.Hf174Hf177[0]);
+	    $('#errHf174Hf177').val(cst.iratio.Hf174Hf177[1]);
+	    $('#Hf176Hf177').val(cst.iratio.Hf176Hf177[0]);
+	    $('#errHf176Hf177').val(cst.iratio.Hf176Hf177[1]);
+	    $('#Hf178Hf177').val(cst.iratio.Hf178Hf177[0]);
+	    $('#errHf178Hf177').val(cst.iratio.Hf178Hf177[1]);
+	    $('#Hf179Hf177').val(cst.iratio.Hf179Hf177[0]);
+	    $('#errHf179Hf177').val(cst.iratio.Hf179Hf177[1]);
+	    $('#Hf180Hf177').val(cst.iratio.Hf180Hf177[0]);
+	    $('#errHf180Hf177').val(cst.iratio.Hf180Hf177[1]);
+	    $('#LambdaLu176').val(cst.lambda.Lu176[0]);
+	    $('#errLambdaLu176').val(cst.lambda.Lu176[1]);
+	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'U-Th-He':
 	    $('.show4UThHe').show();
@@ -702,6 +752,7 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
+	case 'Pb-Pb':
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
 	    gcsettings.iratio.U238U235[1] = $("#errU238U235").val();
 	    gcsettings.lambda.U238[0] = $("#LambdaU238").val();
@@ -780,6 +831,24 @@ $(function(){
 	    gcsettings.lambda.Re187[1] = $('#errLambdaRe187').val();
 	    IsoplotR.settings[geochronometer].i2i = 
 		$("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Lu-Hf':
+	    gcsettings.iratio.Lu176Lu175[0] = $('#Lu176Lu175').val();
+	    gcsettings.iratio.Lu176Lu175[1] = $('#errLu176Lu175').val();
+	    gcsettings.iratio.Hf174Hf177[0] = $('#Hf174Hf177').val();
+	    gcsettings.iratio.Hf174Hf177[1] = $('#errHf174Hf177').val();
+	    gcsettings.iratio.Hf176Hf177[0] = $('#Hf176Hf177').val();
+	    gcsettings.iratio.Hf176Hf177[1] = $('#errHf176Hf177').val();
+	    gcsettings.iratio.Hf178Hf177[0] = $('#Hf178Hf177').val();
+	    gcsettings.iratio.Hf178Hf177[1] = $('#errHf178Hf177').val();
+	    gcsettings.iratio.Hf179Hf177[0] = $('#Hf179Hf177').val();
+	    gcsettings.iratio.Hf179Hf177[1] = $('#errHf179Hf177').val();
+	    gcsettings.iratio.Hf180Hf177[0] = $('#Hf180Hf177').val();
+	    gcsettings.iratio.Hf180Hf177[1] = $('#errHf180Hf177').val();
+	    gcsettings.lambda.Lu176[0] = $('#LambdaLu176').val();
+	    gcsettings.lambda.Lu176[1] = $('#errLambdaLu176').val();
+	    IsoplotR.settings[geochronometer].i2i = 
+		$("#i2iLuHf").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'U-Th-He':
 	    gcsettings.iratio.U238U235[0] = $("#U238U235").val();
@@ -892,9 +961,15 @@ $(function(){
 			      false,false,false,true,true,false]);
 	    $("#Jdiv").show();
 	    break;
+	case 'K-Ar':
+	    setSelectedMenus([true,true,true,true,true,true,
+			      true,true,true,true,true,true]);
+	    break;
+	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
+	case 'Lu-Hf':
 	    setSelectedMenus([true,true,false,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
@@ -938,9 +1013,12 @@ $(function(){
 	if (forcedefaults | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
+	    case "Pb-Pb":
+	    case "Ar-Ar":
 	    case "Rb-Sr":
 	    case "Sm-Nd":
 	    case "Re-Os":
+	    case "Lu-Hf":
 	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
 		prefs.settings.data[geochronometer] =
@@ -980,6 +1058,12 @@ $(function(){
     $.chooseUPbformat = function(){
 	chooseFormat("#UPb-formats","U-Pb")
     }
+    $.choosePbPbformat = function(){
+	chooseFormat("#PbPb-formats","Pb-Pb")
+    }
+    $.chooseArArformat = function(){
+	chooseFormat("#ArAr-formats","Ar-Ar")
+    }
     $.chooseRbSrformat = function(){
 	chooseFormat("#RbSr-formats","Rb-Sr")
     }
@@ -988,6 +1072,9 @@ $(function(){
     }
     $.chooseReOsformat = function(){
 	chooseFormat("#ReOs-formats","Re-Os")
+    }
+    $.chooseLuHfformat = function(){
+	chooseFormat("#LuHf-formats","Lu-Hf")
     }
     $.chooseFTformat = function(){
 	var format = chooseFormat("#FT-formats","fissiontracks")
@@ -1035,7 +1122,7 @@ $(function(){
     }
     
     $(".button").button()
-
+    
     $("#INPUT").handsontable({
 	data : [[]],
 	minRows: 100,
@@ -1112,10 +1199,10 @@ $(function(){
 	var fname = "";
 	$("#OUTPUT").hide();
 	$("#myplot").show();
-	$("#myplot").load("../options/index.html",function(){
-	    fname = "../options/" + geochronometer + ".html";
+	$("#myplot").load("options/index.html",function(){
+	    fname = "options/" + geochronometer + ".html";
 	    $("#geochronometer-options").load(fname,function(){
-		fname = "../options/" + plotdevice + ".html";
+		fname = "options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
 		    showSettings(geochronometer);
 		    showSettings(plotdevice);
@@ -1131,7 +1218,7 @@ $(function(){
 	var fname = "";
 	$("#OUTPUT").hide();
 	$("#myplot").show();
-	fname = "../help/" + geochronometer + ".html";
+	fname = "help/" + geochronometer + ".html";
 	$("#myplot").load(fname,function(){
 	    switch (geochronometer){
 	    case 'U-Pb':
@@ -1144,6 +1231,32 @@ $(function(){
 		    break;
 		case 3:
 		    $('.show4UPb3').show();
+		    break;
+		}
+		break;
+	    case 'Pb-Pb':
+		switch (IsoplotR.settings['Pb-Pb'].format){
+		case 1:
+		    $('.show4PbPb1').show();
+		    break;
+		case 2:
+		    $('.show4PbPb2').show();
+		    break;
+		case 3:
+		    $('.show4PbPb3').show();
+		    break;
+		}
+		break;
+	    case 'Ar-Ar':
+		switch (IsoplotR.settings['Ar-Ar'].format){
+		case 1:
+		    $('.show4ArAr1').show();
+		    break;
+		case 2:
+		    $('.show4ArAr2').show();
+		    break;
+		case 3:
+		    $('.show4ArAr3').show();
 		    break;
 		}
 		break;
@@ -1174,6 +1287,16 @@ $(function(){
 		    break;
 		case 2:
 		    $('.show4ReOs2').show();
+		    break;
+		}
+		break;
+	    case 'Lu-Hf':
+		switch (IsoplotR.settings['Lu-Hf'].format){
+		case 1:
+		    $('.show4LuHf1').show();
+		    break;
+		case 2:
+		    $('.show4LuHf2').show();
 		    break;
 		}
 		break;
@@ -1239,19 +1362,19 @@ $(function(){
     });
 
     $("#PLOT").click(function(){
-	$("#myplot").load("loader.html");
 	$("#OUTPUT").hide();
 	$("#myscript").empty();
+	$("#myplot").load("loader.html");
 	run();
     });
 
     $("#RUN").click(function(){
-	$("#myplot").load("loader.html");
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").show();
 	$("#myscript").empty();
+	$("#myplot").load("loader.html");
 	run();
-	$("#myplot").empty();
+	$("#myplot").empty();	    
     });
 
     var IsoplotR = initialise();

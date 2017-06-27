@@ -23,6 +23,10 @@
     "U-Pb": {
 	"format": 3
     },
+    "Th-U": {
+	"format": 2,
+	"i2i": "TRUE"
+    },
     "Pb-Pb": {
 	"format": 3,
 	"i2i": "TRUE"
@@ -55,6 +59,19 @@
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 1,
+	"sigdig": 2
+    },
+    "evolution": {
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
+	"alpha": 0.05,
+	"transform": "FALSE",
+	"project": "FALSE",
+	"exterr": "FALSE",
+	"isochron": "FALSE",
+	"shownumbers": "FALSE",
 	"sigdig": 2
     },
     "isochron": {

@@ -9,5 +9,5 @@ Depends: R (>= 3.0.0)
 Suggests: shiny, IsoplotR
 License: GPL-2
 LazyData: true
-RoxygenNote: 5.0.1
-Built: R 3.4.0; ; 2017-04-17 11:37:48 UTC; unix
+RoxygenNote: 6.0.1
+Built: R 3.4.0; ; 2017-06-23 09:46:18 UTC; unix
