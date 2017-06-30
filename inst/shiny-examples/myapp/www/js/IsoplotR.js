@@ -4,8 +4,6 @@ $(function(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
-	var loader = new Image(); // preload image
-	loader.src = "images/loader.gif";
 	var out = {
 	    constants: null,
 	    settings: null,
@@ -322,6 +320,16 @@ $(function(){
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    break;
+	case 'Th-U':
+	    $('#ThU-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('.show4ThU').show();
+	    $('.hide4ThU').hide();
+	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
+	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
+	    $('#LambdaU234').val(cst.lambda.U234[0]);
+	    $('#errLambdaU234').val(cst.lambda.U234[1]);
+	    break;
 	case 'Pb-Pb':
 	    $('#PbPb-formats option[value='+set.format+']').
 		prop('selected', 'selected');
@@ -610,6 +618,28 @@ $(function(){
 	    $('#maxy').val(set.maxy);
 	    $('#fact').val(set.fact);
 	    break;
+	case 'evolution':
+	    $('#transform-evolution').prop('checked',set.transform=='TRUE');
+	    $('#isochron-evolution').prop('checked',set.isochron=='TRUE');
+	    $('#plot-projected').prop('checked',set.project=='TRUE');
+	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#min08').val(set.min08);
+	    $('#max08').val(set.max08);
+	    $('#min48').val(set.min48);
+	    $('#max48').val(set.max48);
+	    $('#mint').val(set.mint);
+	    $('#maxt').val(set.maxt);
+	    $('#alpha').val(set.alpha);
+	    $('#sigdig').val(set.sigdig);
+	    if (set.transform=='TRUE'){
+		$('.show4evotrans').show();
+		$('.hide4evotrans').hide();
+	    } else {
+		$('.show4evotrans').hide();
+		$('.hide4evotrans').show();
+	    }
+	    break;
 	default:
 	}
     }
@@ -757,6 +787,29 @@ $(function(){
 	    pdsettings["maxy"] = $('#maxy').val();
 	    pdsettings["fact"] = $('#fact').val();
 	    break;
+	case 'evolution':
+	    pdsettings.transform =
+		$('#transform-evolution').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.isochron =
+		$('#isochron-evolution').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.project = $('#plot-projected').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.exterr = $('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.min08 =
+		isValidAge($('#min08').val()) ? $('#min08').val() : 'auto';
+	    pdsettings.max08 =
+		isValidAge($('#max08').val()) ? $('#max08').val() : 'auto';
+	    pdsettings.min48 =
+		isValidAge($('#min48').val()) ? $('#min48').val() : 'auto';
+	    pdsettings.max48 =
+		isValidAge($('#max48').val()) ? $('#max48').val() : 'auto';
+	    pdsettings.mint =
+		isValidAge($('#mint').val()) ? $('#mint').val() : 'auto';
+	    pdsettings.maxt =
+		isValidAge($('#maxt').val()) ? $('#maxt').val() : 'auto';
+	    pdsettings.alpha = $('#alpha').val();
+	    pdsettings.sigdig = $('#sigdig').val();
+	    break;
 	default:
 	}
 	switch (geochronometer){
@@ -768,6 +821,12 @@ $(function(){
 	    gcsettings.lambda.U238[1] = $("#errLambdaU238").val();
 	    gcsettings.lambda.U235[0] = $("#LambdaU235").val();
 	    gcsettings.lambda.U235[1] = $("#errLambdaU235").val();
+	    break;
+	case 'Th-U':
+	    gcsettings.lambda.Th230[0] = $("#LambdaTh230").val();
+	    gcsettings.lambda.Th230[1] = $("#errLambdaTh230").val();
+	    gcsettings.lambda.U234[0] = $("#LambdaU234").val();
+	    gcsettings.lambda.U234[1] = $("#errLambdaU234").val();
 	    break;
 	case 'Ar-Ar':
 	    gcsettings.iratio.Ar40Ar36[0] = $("#Ar40Ar36").val();
@@ -1067,6 +1126,17 @@ $(function(){
 	    $('option:selected', $("#transformation")).attr('value');
     }
 
+    $.chooseEvolutionTransformation = function(){
+	var selected =  $("#transform-evolution").prop('checked');
+	if (selected){
+	    $('.show4evotrans').show();
+	    $('.hide4evotrans').hide();
+	} else {
+	    $('.show4evotrans').hide();
+	    $('.hide4evotrans').show();
+	}
+    }
+    
     $.chooseUPbformat = function(){
 	chooseFormat("#UPb-formats","U-Pb")
     }

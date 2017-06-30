@@ -49,10 +49,13 @@ function getOptions(prefs){
 	}
 	break;
     case 'evolution':
-	if (settings.minx != 'auto' & settings.maxx != 'auto')
-	    out += ",xlim=c(" + settings.minx + "," + settings.maxx + ")";
-	if (settings.miny != 'auto' & settings.maxy != 'auto')
-	    out += ",ylim=c(" + settings.miny + "," + settings.maxy + ")";
+	var transform = (settings.transform=='TRUE');
+	if (transform & settings.mint != 'auto' & settings.maxt != 'auto')
+	    out += ",xlim=c(" + settings.mint + "," + settings.maxt + ")";
+	if (!transform & settings.min08 != 'auto' & settings.max08 != 'auto')
+	    out += ",xlim=c(" + settings.min08 + "," + settings.max08 + ")";
+	if (settings.min48 != 'auto' & settings.max48 != 'auto')
+	    out += ",ylim=c(" + settings.min48 + "," + settings.max48 + ")";
 	out += ",alpha=" + settings.alpha;
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",sigdig=" + settings.sigdig;
@@ -235,6 +238,14 @@ function getRcommand(prefs){
 	out += "IsoplotR::settings('lambda','U235'," +
 	    prefs.constants.lambda.U235[0] + "," +
 	    prefs.constants.lambda.U235[1] + ");"
+	break;
+    case 'Th-U':
+	out += "IsoplotR::settings('lambda','Th230'," +
+	    prefs.constants.lambda.Th230[0] + "," +
+	    prefs.constants.lambda.Th230[1] + ");"
+	out += "IsoplotR::settings('lambda','U234'," +
+	    prefs.constants.lambda.U234[0] + "," +
+	    prefs.constants.lambda.U234[1] + ");"
 	break;
     case 'Ar-Ar':
 	out += "IsoplotR::settings('iratio','Ar40Ar36'," +
