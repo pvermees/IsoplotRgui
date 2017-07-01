@@ -31,10 +31,53 @@ function help(id){
 	    "Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
+    case "help-transform-evolution":
+	text = "Ticking this box plots <sup>234</sup>U/<sup>238</sup>U vs. age. " +
+	    "Unticking it plots <sup>234</sup>U/<sup>238</sup>U vs. " +
+	    "<sup>230</sup>Th/<sup>238</sup>U.";
+	break;
+    case "help-mint-evolution":
+	text = "Set the minimum Th-U age limit for the evolution diagram. " + 
+	    "Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-maxt-evolution":
+	text = "Set the maximum Th-U age limit for the evolution diagram. " + 
+	    "Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-min08":
+	text = "Set the minimum <sup>230</sup>Th/<sup>238</sup>U ratio " +
+	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-max08":
+	text = "Set the maximum <sup>230</sup>Th/<sup>238</sup>U ratio " +
+	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-min48":
+	text = "Set the minimum <sup>234</sup>U/<sup>238</sup>U ratio " +
+	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-max48":
+	text = "Set the maximum <sup>234</sup>U/<sup>238</sup>U ratio " +
+	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
     case "help-maxt-concordia":
 	text = "Set the maximum age limit for the concordia diagram " + 
 	    "(a number between 0 and 4568 Ma). Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-isochron-evolution":
+	text = "Fit an isochron through the data using the algorithm " +
+	    "of Ludwig and Titterington (1994)?";
+	break;
+    case "help-plot-projected":
+	text = "Project the sample compositions onto the " +
+	    "<sup>234</sup>U/<sup>238</sup>U-plane along the isochron line."
 	break;
     case "help-alpha":
 	text = "Set the probability cutoff (&alpha;) for the error ellipses, " + 
@@ -85,6 +128,16 @@ function help(id){
     case "help-LambdaU235":
 	text = "The default values of the <sup>235</sup>U decay constant " +
 	    "and its uncertainty are taken from Jaffey et al. (1971).";
+	break;
+    case "help-LambdaTh230":
+	text = "The default value of the <sup>230</sup>Th decay constant " +
+	    "is taken from Cheng et al. (2013). Its uncertainty excludes " +
+	    "all covariant sources of analytical uncertainty with <sup>234</sup>U.";
+	break;
+    case "help-LambdaU234":
+	text = "The default value of the <sup>234</sup>U decay constant " +
+	    "is taken from Cheng et al. (2013). Its uncertainty excludes " +
+	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
 	break;
     case "help-ArAr-inverse":
 	text = "Selecting this box plots <sup>36</sup>Ar/<sup>40</sup>Ar " +
@@ -279,6 +332,12 @@ function help(id){
 	    "through all the Ar data as an initial " +
 	    "<sup>40</sup>Ar/<sup>36</sup>Ar-ratio for the age calculations. " +
 	    "Unticking it uses the atmospheric ratio specified above.";
+	break;
+    case "help-ThU-i2i":
+	text = "Ticking this box uses and isochron fit " +
+	    "through all the Th-U data to remove the detrital " +
+	    "<sup>230</sup>Th-component. Unticking assumes that all " +
+	    "<sup>230</sup>Th is authigenic.";
 	break;
     case "help-minx":
 	text = "Minimum age constraint of the KDE. " +
@@ -569,6 +628,18 @@ function help(id){
 	    "in which the error correlations are calculated from the" +
 	    "redundancies between the three sets of uncertainties.<br>" +
 	    "(more formats will be added later)";
+	break;
+    case "help-ThU-formats":
+	text = "Choose one of two input formats:<br>" +
+	    "1. <tt>X=8/2 s[8/2] Y=4/2 s[4/2] Z=0/2 s[0/2] rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
+	    "2. <tt>X=2/8 s[2/8] Y=4/8 s[4/8] Z=0/8 s[0/8] rho[X,Y] rho[X,Z] rho[Y,Z]</tt>";
+	break;
+    case "ThU-isochron-types":
+	text = "Choose one of four output formats:<br>" +
+	    "1. <sup>230</sup>Th/<sup>232</sup>Th vs. <sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2a)<br>" +
+	    "2. <sup>230</sup>Th/<sup>238</sup>U vs. <sup>232</sup>Th/<sup>238</sup>U (Osmond type 2a)<br>" +
+	    "3. <sup>234</sup>U/<sup>232</sup>Th vs. <sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2b)<br>" +
+	    "4. <sup>234</sup>U/<sup>238</sup>U vs. <sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)<br>";
 	break;
     case "help-ArAr-formats":
 	text = "Choose one of three input formats:<br>" +

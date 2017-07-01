@@ -65,9 +65,10 @@ function getOptions(prefs){
 	out += ",isochron=" + settings.isochron;
 	break;
     case 'isochron':
-	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar'){
+	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar')
 	    out += ",inverse=" + settings.inverse;
-	}
+	if (geochronometer=='Th-U')
+	    out += ",type=" + settings.type;
 	out += ",exterr=" + settings.exterr;
     case 'regression':
 	if (settings.minx != 'auto' & settings.maxx != 'auto')
@@ -81,10 +82,10 @@ function getOptions(prefs){
     case 'average':
 	if (geochronometer=='Ar-Ar' | geochronometer == 'Rb-Sr' |
 	    geochronometer == 'Sm-Nd' | geochronometer == 'Re-Os' |
-	    geochronometer == 'Lu-Hf'){
+	    geochronometer == 'Lu-Hf' | geochronometer == 'Th-U'){
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	}
-	if (geochronometer != "other"){
+	if (geochronometer != "other" & geochronometer != "Th-U"){
 	    out += ",exterr=" + settings.exterr;
 	}
 	out += ",detect.outliers=" + settings.outliers;

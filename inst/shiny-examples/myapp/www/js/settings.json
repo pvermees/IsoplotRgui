@@ -77,6 +77,7 @@
 	"sigdig": 2
     },
     "isochron": {
+	"type": 4,
 	"inverse": "TRUE",
 	"exterr": "TRUE",
 	"shownumbers": "FALSE",

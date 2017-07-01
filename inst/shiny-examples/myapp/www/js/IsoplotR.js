@@ -329,6 +329,7 @@ $(function(){
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
 	    $('#errLambdaU234').val(cst.lambda.U234[1]);
+	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Pb-Pb':
 	    $('#PbPb-formats option[value='+set.format+']').
@@ -517,6 +518,8 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'isochron':
+	    $('#ThU-isochron-types option[value='+set.type+']').
+		prop('selected', 'selected');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')	    
 	case 'regression':
@@ -668,6 +671,7 @@ $(function(){
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
 	case 'isochron':
+	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
 	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr = $('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	case 'regression':
@@ -827,6 +831,8 @@ $(function(){
 	    gcsettings.lambda.Th230[1] = $("#errLambdaTh230").val();
 	    gcsettings.lambda.U234[0] = $("#LambdaU234").val();
 	    gcsettings.lambda.U234[1] = $("#errLambdaU234").val();
+	    IsoplotR.settings[geochronometer].i2i = 
+		$("#i2iThU").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'Ar-Ar':
 	    gcsettings.iratio.Ar40Ar36[0] = $("#Ar40Ar36").val();
@@ -952,7 +958,7 @@ $(function(){
     }
 
     function setSelectedMenus(options){
-	$("#Th-U").prop('disabled',true);
+//	$("#Th-U").prop('disabled',true);
 	$("#concordia").prop('disabled',options[0]);
 	$("#helioplot").prop('disabled',options[1]);
 	$("#evolution").prop('disabled',options[2]);
@@ -1022,7 +1028,7 @@ $(function(){
 	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,true,true,true,false,true,true,
+	    setSelectedMenus([false,false,true,true,false,true,true,
 			      false,false,false,true,true,false]);
 	    break;
 	case 'Ar-Ar':
@@ -1056,8 +1062,8 @@ $(function(){
 	    if (format > 1){ $("#spotSizeDiv").show(); }
 	    break;
 	case 'Th-U':
-	    setSelectedMenus([true,true,false,true,true,true,true,
-			      true,true,true,true,true,true]);
+	    setSelectedMenus([true,true,false,false,false,true,true,
+			      false,false,false,true,true,false]);
 	    break;
 	case 'detritals':
 	    setSelectedMenus([true,true,true,true,true,true,true,
@@ -1126,6 +1132,11 @@ $(function(){
 	    $('option:selected', $("#transformation")).attr('value');
     }
 
+    $.chooseThUisochronType = function(){
+	var type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
+	IsoplotR.settings.isochron.type = type;
+    }
+    
     $.chooseEvolutionTransformation = function(){
 	var selected =  $("#transform-evolution").prop('checked');
 	if (selected){
@@ -1319,6 +1330,16 @@ $(function(){
 		    break;
 		}
 		break;
+	    case 'Th-U':
+		switch (IsoplotR.settings['Th-U'].format){
+		case 1:
+		    $('.show4ThU1').show();
+		    break;
+		case 2:
+		    $('.show4ThU2').show();
+		    break;
+		}
+		break;
 	    case 'Pb-Pb':
 		switch (IsoplotR.settings['Pb-Pb'].format){
 		case 1:
@@ -1449,7 +1470,7 @@ $(function(){
     $("#PLOT").click(function(){
 	$("#OUTPUT").hide();
 	$("#myscript").empty();
-	$("#myplot").load("loader.html");
+	$("#myplot").load("loader.html")
 	run();
     });
 
