@@ -956,31 +956,6 @@ $(function(){
 	default:
 	}
     }
-
-    function setSelectedMenus(options){
-//	$("#Th-U").prop('disabled',true);
-	$("#concordia").prop('disabled',options[0]);
-	$("#helioplot").prop('disabled',options[1]);
-	$("#evolution").prop('disabled',options[2]);
-	$("#isochron").prop('disabled',options[3]);
-	$("#radial").prop('disabled',options[4]);
-	$("#regression").prop('disabled',options[5]);
-	$("#spectrum").prop('disabled',options[6]);
-	$("#average").prop('disabled',options[7]);
-	$("#KDE").prop('disabled',options[8]);
-	$("#CAD").prop('disabled',options[9]);
-	$("#set-zeta").prop('disabled',options[10]);
-	$("#MDS").prop('disabled',options[11]);
-	$("#ages").prop('disabled',options[12]);
-	for (var i=0; i<13; i++){ // change to first available option
-	    if (!options[i]) {
-		$('#plotdevice').prop('selectedIndex',i);
-		IsoplotR.settings.plotdevice = 
-		    $('option:selected', $("#plotdevice")).attr('id');
-		break;
-	    }
-	}
-    }
     
     function changePlotDevice(){
 	var gc = IsoplotR.settings.geochronometer;
@@ -1028,57 +1003,87 @@ $(function(){
 	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus([false,false,true,true,false,true,true,
-			      false,false,false,true,true,false]);
+	    setSelectedMenus(['concordia','radial','average',
+			      'KDE','CAD','ages']);
 	    break;
 	case 'Ar-Ar':
-	    setSelectedMenus([true,true,true,false,false,true,false,
-			      false,false,false,true,true,false]);
+	    setSelectedMenus(['isochron','radial','spectrum',
+			      'average','KDE','CAD','ages']);
 	    $("#Jdiv").show();
 	    $(".helioplot").hide()
-	    break;
-	case 'K-Ar':
-	    setSelectedMenus([true,true,true,true,true,true,true,
-			      true,true,true,true,true,true]);
 	    break;
 	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	    setSelectedMenus([true,true,true,false,false,true,true,
-			      false,false,false,true,true,false]);
+	    setSelectedMenus(['isochron','radial','average',
+			      'KDE','CAD','ages']);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus([true,false,true,true,false,true,true,
-			      false,false,false,true,true,false]);
+	    setSelectedMenus(['helioplot','radial','average',
+			      'KDE','CAD','ages']);
 	    break;
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
-	    setSelectedMenus([true,true,true,true,false,true,true,
-			      false,false,false,false,true,false]);
+	    setSelectedMenus(['radial','average','KDE',
+			      'CAD','set-zeta','ages']);
 	    if (format < 3){ $("#zetaDiv").show(); }
 	    if (format < 2){ $("#rhoDdiv").show(); }
 	    if (format > 1){ $("#spotSizeDiv").show(); }
 	    break;
 	case 'Th-U':
-	    setSelectedMenus([true,true,false,false,false,true,true,
-			      false,false,false,true,true,false]);
+	    setSelectedMenus(['evolution','isochron','radial',
+			      'average','KDE','CAD','ages']);
 	    break;
 	case 'detritals':
-	    setSelectedMenus([true,true,true,true,true,true,true,
-			      true,false,false,true,false,true]);
+	    setSelectedMenus(['KDE','CAD','MDS']);
 	    break;
 	case 'other':
-	    setSelectedMenus([true,true,true,true,false,false,false,
-			      false,false,false,true,true,true]);
+	    setSelectedMenus(['radial','regression','spectrum',
+			      'average','KDE','CAD']);
 	    break;
 	default:
-	    setSelectedMenus([true,true,true,true,true,true,true,
-			      true,true,true,true,true,true]);
+	    setSelectedMenus(['concordia','helioplot','evolution','isochron',
+			      'radial','regression','spectrum','average',
+			      'KDE','CAD','set-zeta','MDS','ages']);
 	}
 	IsoplotR = populate(IsoplotR,false);
 	$("#plotdevice").selectmenu("refresh");
+    }
+
+    function setSelectedMenus(options){
+	var html = '';
+	if ($.inArray('concordia',options)>-1)
+	    html += '<option id="concordia">concordia</option>';
+	if ($.inArray('helioplot',options)>-1)
+	    html += '<option id="helioplot">helioplot</option>';
+	if ($.inArray('evolution',options)>-1)
+	    html += '<option id="evolution">evolution</option>';
+	if ($.inArray('isochron',options)>-1)
+	    html += '<option id="isochron">isochron</option>';
+	if ($.inArray('radial',options)>-1)
+	    html += '<option id="radial">radial plot</option>';
+	if ($.inArray('regression',options)>-1)
+	    html += '<option id="regression">regression</option>';
+	if ($.inArray('spectrum',options)>-1)
+	    html += '<option id="spectrum">age spectrum</option>';
+	if ($.inArray('average',options)>-1)
+	    html += '<option id="average">weighted mean</option>';
+	if ($.inArray('KDE',options)>-1)
+	    html += '<option id="KDE">KDE</option>';
+	if ($.inArray('CAD',options)>-1)
+	    html += '<option id="CAD">CAD</option>';
+	if ($.inArray('set-zeta',options)>-1)
+	    html += '<option id="set-zeta">get &zeta;</option>';
+	if ($.inArray('MDS',options)>-1)
+	    html += '<option id="MDS">MDS</option>';
+	if ($.inArray('ages',options)>-1)
+	    html += '<option id="ages">ages</option>';
+	$('#plotdevice').html(html);
+	$(options[0]).prop('selected',true);
+	IsoplotR.settings.plotdevice = 
+	    $('option:selected', $("#plotdevice")).attr('id');
     }
 
     // populate the handsontable with stored data
