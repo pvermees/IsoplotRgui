@@ -1115,7 +1115,7 @@ $(function(){
 	return prefs;
     }
 
-    function run(doplot){
+    function update(){
 	if (IsoplotR.optionschanged){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
@@ -1474,18 +1474,19 @@ $(function(){
     
     $("#PLOT").click(function(){
 	$("#OUTPUT").hide();
-	$("#myscript").empty();
-	$("#myplot").load("loader.html")
-	run();
+	update();
+	$("#myplot").load("loader.html", function(){
+	    $("#PLOTTER").click();
+	})
     });
 
     $("#RUN").click(function(){
-	$("#OUTPUT").handsontable('clear');
+	$("#OUTPUT").handsontable('clear');     
 	$("#OUTPUT").show();
-	$("#myscript").empty();
-	$("#myplot").load("loader.html");
-	run();
-	$("#myplot").empty();	    
+	update();
+	$("#myscript").load("loader.html", function(){
+	    $("#RUNNER").click(); 
+	});
     });
 
     var IsoplotR = initialise();

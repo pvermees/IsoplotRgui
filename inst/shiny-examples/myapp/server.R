@@ -168,7 +168,7 @@ shiny::shinyServer(function(input,output,session){
             eval(parse(text=Rcommand))
     }
 
-    observeEvent(input$PLOT, {
+    observeEvent(input$PLOTTER, {
         output$myplot <- renderPlot({
             isolate({
                 run(input$Rcommand)
@@ -176,7 +176,7 @@ shiny::shinyServer(function(input,output,session){
         })
     })
 
-    observeEvent(input$RUN, {
+    observeEvent(input$RUNNER, {
         output$myscript <- renderUI({
             isolate({
                 results <- run(input$Rcommand)

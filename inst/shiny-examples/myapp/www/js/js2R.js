@@ -40,6 +40,7 @@ function getOptions(prefs){
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
+	case 'Th-U':
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
 	case 'U-Pb':
@@ -116,6 +117,7 @@ function getOptions(prefs){
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
+	case 'Th-U':
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
 	case 'U-Pb':
@@ -149,6 +151,7 @@ function getOptions(prefs){
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
+	case 'Th-U':
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
 	default:
@@ -197,6 +200,7 @@ function getOptions(prefs){
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
+	case 'Th-U':
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + prefs.settings[geochronometer].i2i;
 	    break;
