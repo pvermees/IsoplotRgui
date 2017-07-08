@@ -70,7 +70,7 @@
 	"maxt": "auto",
 	"alpha": 0.05,
 	"transform": "FALSE",
-	"project": "FALSE",
+	"detrital": "FALSE",
 	"exterr": "FALSE",
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",

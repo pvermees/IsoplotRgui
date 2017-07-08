@@ -1115,7 +1115,7 @@ $(function(){
 	return prefs;
     }
 
-    function run(doplot){
+    function run(plot){
 	if (IsoplotR.optionschanged){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
@@ -1124,7 +1124,8 @@ $(function(){
 	}
 	if (IsoplotR.data.length==0) getData(0,0,0,0);
 	Shiny.onInputChange("data",IsoplotR.data);
-	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
+	if (plot) Shiny.onInputChange("plotcommand",getRcommand(IsoplotR));
+	else Shiny.onInputChange("runcommand",getRcommand(IsoplotR));
     }
 
     $.chooseNumRadialPeaks = function(){
@@ -1471,20 +1472,22 @@ $(function(){
 	    data: [[]]
 	});
     });
-    
+
     $("#PLOT").click(function(){
 	$("#OUTPUT").hide();
 	$("#myscript").empty();
-	$("#myplot").load("loader.html")
-	run();
+	//$("#myplot").load("loader.html", function(){ run(true); });
+	$("#myplot").load("loader.html");
+	run(true);
     });
 
     $("#RUN").click(function(){
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").show();
 	$("#myscript").empty();
+	//$("#myplot").load("loader.html", function(){ run(false); });
 	$("#myplot").load("loader.html");
-	run();
+	run(false);
 	$("#myplot").empty();	    
     });
 

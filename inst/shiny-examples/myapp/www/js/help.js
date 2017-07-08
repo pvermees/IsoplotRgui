@@ -75,9 +75,10 @@ function help(id){
 	text = "Fit an isochron through the data using the algorithm " +
 	    "of Ludwig and Titterington (1994)?";
 	break;
-    case "help-plot-projected":
-	text = "Project the sample compositions onto the " +
-	    "<sup>234</sup>U/<sup>238</sup>U-plane along the isochron line."
+    case "help-plot-detrital":
+	text = "Apply a detrital Th-correction and project the sample " +
+	    "compositions onto the <sup>234</sup>U/<sup>238</sup>U-plane " +
+	    "along the isochron line."
 	break;
     case "help-alpha":
 	text = "Set the probability cutoff (&alpha;) for the error ellipses, " + 

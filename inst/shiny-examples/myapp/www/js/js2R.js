@@ -60,7 +60,7 @@ function getOptions(prefs){
 	out += ",show.numbers=" + settings.shownumbers;
 	out += ",sigdig=" + settings.sigdig;
 	out += ",transform=" + settings.transform;
-	out += ",project=" + settings.project;
+	out += ",detrital=" + settings.detrital;
 	out += ",exterr=" + settings.exterr;
 	out += ",isochron=" + settings.isochron;
 	break;

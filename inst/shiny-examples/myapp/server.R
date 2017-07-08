@@ -1,10 +1,5 @@
 shiny::shinyServer(function(input,output,session){
 
-    observe({
-        input$Rcommand
-        input$data
-    })
-
     selection2data <- function(method="U-Pb",format=1){
         d <- input$data
         nn <- length(d)
@@ -172,7 +167,7 @@ shiny::shinyServer(function(input,output,session){
         if (!is.null(Rcommand))
             eval(parse(text=Rcommand))
     }
-    
+
     observeEvent(input$PLOT, {
         output$myplot <- renderPlot({
             isolate({
@@ -189,7 +184,7 @@ shiny::shinyServer(function(input,output,session){
             })
         })
     })
-    
+
     output$PDF <- downloadHandler(
         filename = 'IsoplotR.pdf',
         content = function(file) {
