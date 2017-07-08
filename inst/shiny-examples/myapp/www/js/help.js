@@ -75,7 +75,7 @@ function help(id){
 	text = "Fit an isochron through the data using the algorithm " +
 	    "of Ludwig and Titterington (1994)?";
 	break;
-    case "help-plot-detrital":
+    case "help-detrital-correction":
 	text = "Apply a detrital Th-correction and project the sample " +
 	    "compositions onto the <sup>234</sup>U/<sup>238</sup>U-plane " +
 	    "along the isochron line."
