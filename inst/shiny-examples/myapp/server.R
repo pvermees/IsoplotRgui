@@ -18,6 +18,26 @@ shiny::shinyServer(function(input,output,session){
                             'Pb206U238','errPb206U238',
                             'Pb207U235','errPb207U235','rhoXY','rhoYZ'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"U-Pb") & format==4) {
+            mat <- matrix(c('Pb207U235','errPb207U235',
+                            'Pb206U238','errPb206U238',
+                            'Pb204U238','errPb204U238',
+                            'rhoXY','rhoXZ','rhoYZ'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"U-Pb") & format==5) {
+            mat <- matrix(c('U238Pb206','errU238Pb206',
+                            'Pb207Pb206','errPb207Pb206',
+                            'Pb204Pb206','errPb204Pb206',
+                            'rhoXY','rhoXZ','rhoYZ'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"U-Pb") & format==6) {
+            mat <- matrix(c('Pb207U235','errPb207U235',
+                            'Pb206U238','errPb206U238',
+                            'Pb204U238','errPb204U238',
+                            'Pb207Pb206','errPb207Pb206',
+                            'Pb204Pb207','errPb204Pb207',
+                            'Pb204Pb206','errPb204Pb206'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Pb-Pb") & format==1) {
             mat <- matrix(c('Pb206Pb204','errPb206Pb204',
                             'Pb207Pb204','errPb207Pb204','rho'),1,nc)

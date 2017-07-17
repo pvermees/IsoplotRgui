@@ -38,6 +38,9 @@ $(function(){
 	    case 1: return 5;
 	    case 2: return 5;
 	    case 3: return 8;
+	    case 4: return 9;
+	    case 5: return 9;
+	    case 6: return 12;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
@@ -231,6 +234,7 @@ $(function(){
 	var detritals = (geochronometer=='detritals');
 	var FT = (geochronometer=='fissiontracks');
 	var UPb2 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==2);
+	var UPb456 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format>3);
 	var ArAr1 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==1);
 	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
 	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
@@ -254,7 +258,7 @@ $(function(){
 		for (var j=0; j<nc; j++){
 		    val = dat[i][j];
 		    if (val==null | val==""){
-			if ((UPb2 & j==4)|(ArAr2 & j==4)) { // rho
+			if (UPb456|(UPb2 & j==4)|(ArAr2 & j==4)) { // rho
 			    row.push(0);
 			} else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
 			    row.push(1);

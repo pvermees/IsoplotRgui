@@ -19,7 +19,7 @@ install.packages('shiny')
 ## Installation
 
 The latest version of IsoplotR and IsoplotRgui can both be installed
-from github with the following commands:
+from **GitHub** with the following commands:
 
 ```
 library(devtools)
@@ -56,4 +56,4 @@ See [http://isoplotr.london-geochron.com](http://isoplotr.london-geochron.com)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License
