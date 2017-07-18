@@ -1485,7 +1485,8 @@ $(function(){
     });
 
     $("#RUN").click(function(){
-	$("#OUTPUT").handsontable('clear');     
+	$("#OUTPUT").handsontable('clear');
+	$("#OUTPUT").handsontable('deselectCell');
 	$("#OUTPUT").show();
 	update();
 	$("#myscript").load("loader.html", function(){
