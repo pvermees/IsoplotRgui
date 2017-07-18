@@ -1,5 +1,27 @@
 <p></p>
 
+<div hidden class="show4UPb">
+&nbsp; <help id="help-UPb-age-type">Type of U-Pb age</help>:
+<select id="UPb-age-type" onchange="$.chooseUPbAgeType();">
+  <option value="1">1: 7/5 age</option>
+  <option value="2">2: 6/8 age</option>
+  <option value="3">3: 7/6 age</option>
+  <option value="4">4: 7/6/8 age</option>
+  <option value="5">5: concordia age</option>
+</select>
+<p></p>
+<table>
+<tr><td>&nbsp; <help id="help-mindisc">Minimum discordance</help>:</td>
+    <td><input type="text" id="mindisc">%</td></tr>
+<tr><td>&nbsp; <help id="help-maxdisc">Maximum discordance</help>:</td>
+    <td><input type="text" id="maxdisc">%</td></tr>
+<tr hidden class="show4UPb4">
+  <td>&nbsp; <help id="help-cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
+  <td><input type="text" id="cutoff76">Ma</td></tr>
+</table>
+<p></p>
+</div>
+
 <div class="hide4other hide4ThU">
 &nbsp; <input type="checkbox" id="exterr">
 <help id="help-exterr">Propagate decay constant uncertainties?</help>?
@@ -16,17 +38,6 @@
 <tr><td>&nbsp;<help id="help-sigdig">Significant digits:</help></td>
     <td><input type="text" id="sigdig"></td></tr>
 </table>
-
-<div hidden class="show4UPb">
-<table>
-<tr><td>&nbsp; <help id="help-cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
-    <td><input type="text" id="cutoff76">Ma</td></tr>
-<tr><td>&nbsp; <help id="help-mindisc">Minimum discordance</help>:</td>
-    <td><input type="text" id="mindisc">%</td></tr>
-<tr><td>&nbsp; <help id="help-maxdisc">Maximum discordance</help>:</td>
-    <td><input type="text" id="maxdisc">%</td></tr>
-</table>
-</div>
 
 <p></p>
 

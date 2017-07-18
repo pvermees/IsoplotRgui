@@ -399,8 +399,8 @@ function help(id){
 	text = "The <sup>206</sup>Pb/<sup>238</sup>U-method is more precise than " +
 	    "the <sup>207</sup>Pb/<sup>206</sup>Pb-method for young ages, while " +
 	    "the opposite is true for old ages. This box sets the cutoff age below " +
-	    "which the KDE should use the <sup>206</sup>Pb/<sup>238</sup>U-method, " +
-	    "and above which it should use the <sup>207</sup>Pb/<sup>206</sup>Pb-method.";
+	    "which the <sup>206</sup>Pb/<sup>238</sup>U-method, and above which " +
+	    "the <sup>207</sup>Pb/<sup>206</sup>Pb-method should be used.";
 	break;
     case "help-mindisc":
 	text = "One of the great strengths of the U-Pb method is its ability to " +
@@ -408,7 +408,7 @@ function help(id){
 	    "the degree of concordance between the <sup>206</sup>Pb/<sup>238</sup>U- " +
 	    "and <sup>207</sup>Pb/<sup>235</sup>U-clocks , or between the " +
 	    "<sup>206</sup>Pb/<sup>238</sup>U- and " +
-	    "<sup>207</sup>Pb/<sup>206</sup>Pb-clocks. The KDE function applies " +
+	    "<sup>207</sup>Pb/<sup>206</sup>Pb-clocks. <tt>IsoplotR</tt> applies " +
 	    "a discordance filter to the U-Pb data in which, by default, the former " +
 	    "ages are allowed to be up to 15% younger than the latter. " +
 	    "Different values can be set in this box." ;
@@ -419,7 +419,7 @@ function help(id){
 	    "the degree of concordance between the <sup>206</sup>Pb/<sup>238</sup>U- " +
 	    "and <sup>207</sup>Pb/<sup>235</sup>U-clocks , or between the " +
 	    "<sup>206</sup>Pb/<sup>238</sup>U- and " +
-	    "<sup>207</sup>Pb/<sup>206</sup>Pb-clocks. The KDE function applies " +
+	    "<sup>207</sup>Pb/<sup>206</sup>Pb-clocks.  <tt>IsoplotR</tt> applies " +
 	    "a discordance filter to the U-Pb data in which, by default, the former " +
 	    "ages are allowed to be up to 5% older (reverse discordance) than the " +
 	    "latter. Different values can be set in this box." ;
@@ -697,6 +697,15 @@ function help(id){
 	    "standards, assuming that the fission decay constant, etch " +
 	    "efficiency factor and uranium concentrations are known with " +
 	    "sufficient accuracy.";
+	break;
+    case "help-UPb-age-type":
+	text = "Choose one of five options:<br>" +
+	    "1. Plot the <sup>207</sup>Pb/<sup>235</sup>U-ages<br>" +
+	    "2. Plot the <sup>206</sup>Pb/<sup>238</sup>U-ages<br>" +
+	    "3. Plot the <sup>207</sup>Pb/<sup>206</sup>Pb-ages<br>" +
+	    "4. Plot young grains as <sup>206</sup>Pb/<sup>238</sup>U " +
+	    "and old grains as <sup>207</sup>Pb/<sup>206</sup>Pb<br>" +
+	    "5. Plot the single-grain concordia ages.";
 	break;
     case "help-mixtures":
 	text = "Peak fitting using the algorithms of Galbraith and Green (1990). " +
