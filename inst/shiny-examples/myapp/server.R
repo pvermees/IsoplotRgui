@@ -183,11 +183,22 @@ shiny::shinyServer(function(input,output,session){
         HTML(script)
     }
 
-    run <- function(Rcommand){
-        if (!is.null(Rcommand))
-            eval(parse(text=Rcommand))
+    wrap.it <- function(x,len){
+        sapply(x, function(y){paste(strwrap(y,len), collapse = "\n")},
+               USE.NAMES = FALSE)
     }
 
+    run <- function(Rcommand){
+        tryCatch({
+            eval(parse(text=Rcommand))
+        }, error = function(e){
+            errormessage <- wrap.it(e,40)['message']
+            plot(c(0, 1),c(0,1),ann=F,bty ='n',type='n',xaxt='n',yaxt='n')
+            text(0.5,1,errormessage,cex=1.5,pos=1)
+        })
+
+    }
+    
     observeEvent(input$PLOTTER, {
         output$myplot <- renderPlot({
             isolate({
