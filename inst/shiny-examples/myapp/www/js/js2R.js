@@ -22,6 +22,7 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",show.age=" + pdsettings.showage;
 	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",common.Pb=" + gcsettings.commonPb;
 	break;
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
@@ -49,6 +50,7 @@ function getOptions(prefs){
 	    out += ",type=" + type;
 	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
 	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    out += ",common.Pb=" + gcsettings.commonPb;
 	default:
 	}
 	break;
@@ -98,6 +100,7 @@ function getOptions(prefs){
 	    out += ",type=" + type;
 	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
 	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	}
 	if (geochronometer != "other" & geochronometer != "Th-U"){
@@ -139,6 +142,7 @@ function getOptions(prefs){
 	    out += ",type=" + type;
 	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
 	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	case 'detritals':
 	    out += ",samebandwidth=" + pdsettings.samebandwidth;
@@ -163,6 +167,7 @@ function getOptions(prefs){
 	    out += ",type=" + type;
 	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
 	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	case 'Ar-Ar':
 	case 'Rb-Sr':
@@ -222,6 +227,9 @@ function getOptions(prefs){
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
+	case 'U-Pb':
+	    out += ",common.Pb=" + gcsettings.commonPb;
+	    break;
 	default:
 	}
 	out += ",sigdig=" + pdsettings.sigdig;
@@ -251,6 +259,10 @@ function getRcommand(prefs){
     out += ");";
     switch (geochronometer){
     case 'U-Pb':
+	out += "IsoplotR::settings('iratio','Pb206Pb204'," +
+	    prefs.constants.iratio.Pb206Pb204[0] + ");"
+	out += "IsoplotR::settings('iratio','Pb207Pb204'," +
+	    prefs.constants.iratio.Pb207Pb204[0] + ");"
     case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','U238U235'," +
 	    prefs.constants.iratio.U238U235[0] + "," +

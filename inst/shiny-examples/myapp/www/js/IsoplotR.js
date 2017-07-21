@@ -315,13 +315,19 @@ $(function(){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
 		prop('selected', 'selected');
+	    $('#common-Pb-option option[value='+set.commonPb+']').
+		prop('selected', 'selected');
 	    $('#UPb-age-type option[value='+set.type+']').
 		prop('selected', 'selected');
 	    if (set.type==4){ $('.show4UPb4').show(); }
+	    if (set.commonPb==3){ $('.show4commonPb3').show(); }
 	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
+	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
+	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
@@ -814,7 +820,8 @@ $(function(){
 		gcsettings["mindisc"] = $('#mindisc').val();
 		gcsettings["maxdisc"] = $('#maxdisc').val();
 	    }
-	    break;
+	    set.iratio.Pb206Pb204[0] = $('#Pb206Pb204').val();
+	    set.iratio.Pb207Pb204[0] = $('#Pb207Pb204').val();
 	case 'Pb-Pb':
 	    set.iratio.U238U235[0] = $("#U238U235").val();
 	    set.iratio.U238U235[1] = $("#errU238U235").val();
@@ -1126,6 +1133,16 @@ $(function(){
 	    $('option:selected', $("#transformation")).attr('value');
     }
 
+    $.chooseCommonPbOption = function(){
+	var option = 1*$('option:selected', $("#common-Pb-option")).attr('value');
+	IsoplotR.settings['U-Pb'].commonPb = option;
+	if (option == 3){
+	    $('.show4commonPb3').show();
+	} else {
+	    $('.show4commonPb3').hide();
+	}
+    }
+    
     $.chooseThUisochronType = function(){
 	var type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
 	IsoplotR.settings.isochron.type = type;

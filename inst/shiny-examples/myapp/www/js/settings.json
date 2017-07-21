@@ -25,7 +25,8 @@
 	"type": 4,
 	"cutoff76": 1100,
 	"mindisc": -15,
-	"maxdisc": 5
+	"maxdisc": 5,
+	"commonPb": 0
     },
     "Th-U": {
 	"format": 2,
@@ -62,7 +63,7 @@
 	"wetherill": "TRUE",
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
-	"showage": 1,
+	"showage": 0,
 	"sigdig": 2
     },
     "evolution": {

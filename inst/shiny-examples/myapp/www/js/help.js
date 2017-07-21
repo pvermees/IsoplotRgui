@@ -21,6 +21,13 @@ function help(id){
 	    "(a number between 0 and 4568 Ma). Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
+    case "help-common-Pb-option":
+	text = "apply a common lead correction with one of three methods:<br>" +
+	    "1. use the isochron intercept as the initial Pb-composition<br>" +
+	    "2. infer the initial Pb-composition from the Stacey & Kramers " +
+	    "two stage isotope evolution model<br>" +
+	    "3. use a nominal initial Pb-composition";
+	break;
     case "help-maxt-radial":
 	text = "Set the maximum age limit for the radial scale." +
 	    "Type <tt>auto</tt> to have " +
@@ -121,6 +128,16 @@ function help(id){
 	    "Default values are taken from Hiess et al. (2012). " +
 	    "To use the IUGS-recommended value of Steiger and J&auml;ger (1977), " +
 	    "change this to 137.88 &plusmn; 0.";
+	break;
+    case "help-Pb206Pb204":
+	text = "Specify the initial <sup>206</sup>Pb/<sup>204</sup>Pb-ratio " +
+	    "to be used in a nominal common Pb correction. The default value " +
+	    "corresponds to the troilite composition of Stacey and Kramers (1975).";
+	break;
+    case "help-Pb207Pb204":
+	text = "Specify the initial <sup>207</sup>Pb/<sup>204</sup>Pb-ratio " +
+	    "to be used in a nominal common Pb correction. The default value " +
+	    "corresponds to the troilite composition of Stacey and Kramers (1975).";
 	break;
     case "help-LambdaU238":
 	text = "The default values of the <sup>238</sup>U decay constant " +
