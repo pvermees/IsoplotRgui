@@ -319,7 +319,6 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#UPb-age-type option[value='+set.type+']').
 		prop('selected', 'selected');
-	    if (set.type==4){ $('.show4UPb4').show(); }
 	    if (set.commonPb==3){ $('.show4commonPb3').show(); }
 	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
@@ -1214,8 +1213,6 @@ $(function(){
     $.chooseUPbAgeType = function(){
 	var type = 1*$('option:selected', $("#UPb-age-type")).attr('value');
 	IsoplotR.settings["U-Pb"].type = type;
-	if (type==4){ $(".show4UPb4").show(); }
-	else { $(".show4UPb4").hide(); }
     }
     
     $.chooseMineral = function(){
@@ -1345,6 +1342,15 @@ $(function(){
 		    break;
 		case 3:
 		    $('.show4UPb3').show();
+		    break;
+		case 4:
+		    $('.show4UPb4').show();
+		    break;
+		case 5:
+		    $('.show4UPb5').show();
+		    break;
+		case 6:
+		    $('.show4UPb6').show();
 		    break;
 		}
 		break;

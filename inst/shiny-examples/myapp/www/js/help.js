@@ -23,9 +23,9 @@ function help(id){
 	break;
     case "help-common-Pb-option":
 	text = "apply a common lead correction with one of three methods:<br>" +
-	    "1. use the isochron intercept as the initial Pb-composition<br>" +
-	    "2. infer the initial Pb-composition from the Stacey & Kramers " +
+	    "1. infer the initial Pb-composition from the Stacey & Kramers " +
 	    "two stage isotope evolution model<br>" +
+	    "2. use the isochron intercept as the initial Pb-composition<br>" +
 	    "3. use a nominal initial Pb-composition";
 	break;
     case "help-maxt-radial":
