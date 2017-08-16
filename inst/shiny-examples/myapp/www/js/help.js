@@ -652,12 +652,26 @@ function help(id){
 	    "1. <tt>X=8/2 s[8/2] Y=4/2 s[4/2] Z=0/2 s[0/2] rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
 	    "2. <tt>X=2/8 s[2/8] Y=4/8 s[4/8] Z=0/8 s[0/8] rho[X,Y] rho[X,Z] rho[Y,Z]</tt>";
 	break;
-    case "ThU-isochron-types":
+    case "help-ThU-isochron-types":
 	text = "Choose one of four output formats:<br>" +
-	    "1. <sup>230</sup>Th/<sup>232</sup>Th vs. <sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2a)<br>" +
-	    "2. <sup>230</sup>Th/<sup>238</sup>U vs. <sup>232</sup>Th/<sup>238</sup>U (Osmond type 2a)<br>" +
-	    "3. <sup>234</sup>U/<sup>232</sup>Th vs. <sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2b)<br>" +
-	    "4. <sup>234</sup>U/<sup>238</sup>U vs. <sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)<br>";
+	    "1. <sup>230</sup>Th/<sup>232</sup>Th vs. " +
+	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2a)<br>" +
+	    "2. <sup>230</sup>Th/<sup>238</sup>U vs. " +
+	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2a)<br>" +
+	    "3. <sup>234</sup>U/<sup>232</sup>Th vs. " +
+	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2b)<br>" +
+	    "4. <sup>234</sup>U/<sup>238</sup>U vs. " +
+	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)";
+	break;
+    case "help-isochron-models":
+	text = "Choose one of two regression models:<br>" +
+	    "1. Maximum Likelihood regression, using either the modified error weighted " +
+	    "least squares algorithm of York et al. (2004) for 2-dimensional data, " +
+	    "or the Maximum Likelihood formulation of Ludwig and Titterington (1994) " +
+	    "for 3-dimensional data. These algorithms take into account the " +
+	    "analytical uncertainties and error correlations.<br>" +
+	    "2. Ordinary least squares regression, which ignores " +
+	    "the analytical uncertainties.";
 	break;
     case "help-ArAr-formats":
 	text = "Choose one of three input formats:<br>" +

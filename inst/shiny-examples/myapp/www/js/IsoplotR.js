@@ -546,6 +546,8 @@ $(function(){
 	    $('#isochron-maxy').val(set.maxy);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
+	    $('#isochron-models option[value='+set.model+']').
+		prop('selected', 'selected');
 	    break;
 	case 'radial':
 	    $('#transformation option[value='+set.transformation+']').
@@ -686,6 +688,7 @@ $(function(){
 	    pdsettings.maxy = $('#isochron-maxy').val();
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings.model = 1*$('option:selected', $("#isochron-models")).attr('value');
 	    break;
 	case 'radial':
 	    pdsettings.transformation =

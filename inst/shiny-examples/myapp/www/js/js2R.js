@@ -84,6 +84,7 @@ function getOptions(prefs){
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",model=" + pdsettings.model;
 	break;
     case 'average':
 	switch (geochronometer){

@@ -83,6 +83,7 @@
     },
     "isochron": {
 	"type": 4,
+	"model": 1,
 	"inverse": "TRUE",
 	"exterr": "TRUE",
 	"shownumbers": "FALSE",
@@ -94,6 +95,7 @@
 	"sigdig": 2
     },
     "regression": {
+	"model": 1,
 	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",
