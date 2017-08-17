@@ -1019,7 +1019,8 @@ $(function(){
 			      'KDE','CAD','ages']);
 	    break;
 	case 'U-Th-He':
-	    setSelectedMenus(['helioplot','radial','average',
+	    setSelectedMenus(['helioplot','isochron',
+			      'radial','average',
 			      'KDE','CAD','ages']);
 	    break;
 	case 'fissiontracks':
