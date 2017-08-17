@@ -36,6 +36,7 @@ function getOptions(prefs){
 	out += ",cex=" + pdsettings.cex;
 	out += ",bg='" + pdsettings.bg + "'";
 	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",show.numbers=" + pdsettings.shownumbers;
 	switch (geochronometer){
 	case 'Ar-Ar':
 	case 'Rb-Sr':
@@ -75,7 +76,8 @@ function getOptions(prefs){
 	    out += ",inverse=" + pdsettings.inverse;
 	if (geochronometer=='Th-U')
 	    out += ",type=" + pdsettings.type;
-	out += ",exterr=" + pdsettings.exterr;
+	if (geochronometer!='U-Th-He')
+	    out += ",exterr=" + pdsettings.exterr;
     case 'regression':
 	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto')
 	    out += ",xlim=c(" + pdsettings.minx + "," + pdsettings.maxx + ")";
@@ -207,8 +209,9 @@ function getOptions(prefs){
 	out += ",shepard=" + pdsettings.shepard;
 	out += ",nnlines=" + pdsettings.nnlines;
 	if (pdsettings.ticks=='FALSE') out += ",xaxt='n',yaxt='n'";
-	if (pdsettings.pch!='none') { out += ",pch=" + pdsettings.pch; }
-	out += ",cex.symbols=" + pdsettings.cex;
+	if (pdsettings.pch=='none') { out += ",pch=NA"; }
+	else { out += ",pch=" + pdsettings.pch; }
+	out += ",cex=" + pdsettings.cex;
 	if (pdsettings.pos==1 | pdsettings.pos==2 | pdsettings.pos==3 | pdsettings.pos==4) 
 	    out += ",pos=" + pdsettings.pos;
 	out += ",col='" + pdsettings.col + "'";

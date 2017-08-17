@@ -158,7 +158,7 @@
 	"shepard": "FALSE",
         "nnlines": "FALSE",
 	"ticks": "TRUE",
-	"pch": "none",
+	"pch": 21,
 	"pos": "auto",
 	"cex": 5,
         "col": "black",

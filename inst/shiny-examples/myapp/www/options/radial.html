@@ -1,5 +1,10 @@
 <p></p>
 
+&nbsp; <input type="checkbox" id="shownumbers" onchange="$.toggle_radial_pch();">
+<help id="help-shownumbers">Show sample numbers</help>?
+
+<p></p>
+
 &nbsp; <help id="help-transformation">Transformation:</help>
 <select id="transformation" onchange="$.chooseTransformation();">
   <option value="log">logarithmic</option>
@@ -51,7 +56,7 @@
     <td><input type="text" id="t0"></td></tr>
 <tr><td>&nbsp; <help id="help-maxt-radial">Maximum value</help>:</td>
     <td><input type="text" id="maxt"></td></tr>
-<tr><td>&nbsp; <help id="help-pch">Plot character</help>:</td>
+<tr id="radial-pch"><td>&nbsp; <help id="help-pch">Plot character</help>:</td>
     <td><input type="text" id="pch"></td></tr>
 <tr><td>&nbsp; <help id="help-cex">Plot symbol magnification</help>:</td>
     <td><input type="text" id="cex"></td></tr>

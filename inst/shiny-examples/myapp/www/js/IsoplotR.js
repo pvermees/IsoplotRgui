@@ -554,11 +554,15 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#mixtures option[value='+set.numpeaks+']').
 		prop('selected', 'selected');
+	    var shownumbers = (set.shownumbers=='TRUE');
+	    $('#shownumbers').prop('checked',shownumbers);
+	    $('#pch').val(set.pch);
+	    if (shownumbers){ $('#radial-pch').hide(); }
+	    else { $('#radial-pch').show(); }
 	    $('#mint').val(set.mint);
 	    $('#t0').val(set.t0);
 	    $('#maxt').val(set.maxt);
 	    $('#sigdig').val(set.sigdig);
-	    $('#pch').val(set.pch);
 	    $('#cex').val(set.cex);
 	    $('#bg').val(set.bg);
 	    break;
@@ -691,6 +695,7 @@ $(function(){
 	    pdsettings.model = 1*$('option:selected', $("#isochron-models")).attr('value');
 	    break;
 	case 'radial':
+	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.transformation =
 		$('option:selected', $("#transformation")).attr('value');
 	    pdsettings.mint = $('#mint').val();
@@ -1126,6 +1131,24 @@ $(function(){
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
+    $.toggle_radial_pch = function(){
+	var selected = $("#shownumbers").prop('checked');
+	if (selected){
+	    $('#radial-pch').hide();
+	} else {
+	    $('#radial-pch').show();
+	}
+    }
+
+    $.toggle_shepard_box = function(){
+	var selected = $("#classical").prop('checked');
+	if (selected){
+	    $('#shepard-box').hide();
+	} else {
+	    $('#shepard-box').show();
+	}
+    }
+    
     $.chooseNumRadialPeaks = function(){
 	IsoplotR.settings.radial.numpeaks =
 	    $('option:selected', $("#mixtures")).attr('value');	

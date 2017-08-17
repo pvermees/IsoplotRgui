@@ -120,8 +120,8 @@ function help(id){
 	    "are connected with vertical lines";
 	break;
     case "help-shownumbers":
-	text = "Add labels to the error ellipses marking the corresponding " +
-	    "aliquot (i.e., the row number in the input table)."
+	text = "Add labels to the data points or error ellipses marking " +
+	    "the corresponding aliquot (i.e., the row number in the input table)."
 	break;
     case "help-U238U235":
 	text = "Change the natural isotopic abundance ratio of uranium. " +
