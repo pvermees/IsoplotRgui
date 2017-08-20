@@ -159,7 +159,7 @@
         "nnlines": "FALSE",
 	"ticks": "TRUE",
 	"pch": 21,
-	"pos": "auto",
+	"pos": "centre",
 	"cex": 5,
         "col": "black",
 	"bg": "white"

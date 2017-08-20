@@ -92,13 +92,13 @@ function help(id){
 	    "which will be drawn at a 100x(1-&alpha;)% confidence level. ";
 	break;
     case "help-outliers":
-	text = "If checked, applies Chauvenet's criterion to reject outliers " +
-	    "and remove them from the weighted mean.";
+	text = "If checked, applies a generalised Chauvenet Criterion to " +
+	    "reject outliers and remove them from the weighted mean.";
 	break;
-    case "plateau":
+    case "help-plateau":
 	text = "If checked, <tt>IsoplotR</tt> computes the weighted mean of " +
-	    "the longest succession of steps that yield values passing "
-	"the Chi-square test for age homogeneity and marks the steps " +
+	    "the longest succession of steps that pass the generalised " +
+	    "Chauvenet Criterion for outliers, and marks the steps " +
 	    "belonging to this plateau in a different colour.";
 	break;
     case "help-sigdig":
