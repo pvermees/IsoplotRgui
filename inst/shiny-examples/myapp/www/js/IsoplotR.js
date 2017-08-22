@@ -57,7 +57,13 @@ $(function(){
 	    case 3: return 7;
 	    }
 	case 'Th-U':
-	    return 9;
+	    var format = IsoplotR.settings["Th-U"].format;
+	    switch (format){
+	    case 1: return 9;
+	    case 2: return 9;
+	    case 3: return 5;
+	    case 4: return 5;
+	    }
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
@@ -336,6 +342,8 @@ $(function(){
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
 	case 'Th-U':
+	    if (set.format==3 | set.format==4){ $('.hide4volcanicThU').hide(); }
+	    else { $('.hide4volcanicThU').show(); }
 	    $('#ThU-formats option[value='+set.format+']').
 		prop('selected', 'selected');
 	    $('.show4ThU').show();
@@ -631,6 +639,8 @@ $(function(){
 	    $('#fact').val(set.fact);
 	    break;
 	case 'evolution':
+	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
+	    else { $('.show4evolutionIsochron').hide(); }
 	    $('#transform-evolution').prop('checked',set.transform=='TRUE');
 	    $('#isochron-evolution').prop('checked',set.isochron=='TRUE');
 	    $('#detrital-correction').prop('checked',set.detrital=='TRUE');
@@ -1184,6 +1194,15 @@ $(function(){
 	    $('.hide4evotrans').show();
 	}
     }
+
+    $.chooseEvolutionIsochron = function(){
+	var selected =  $("#isochron-evolution").prop('checked');
+	if (selected){
+	    $('.show4evolutionIsochron').show();
+	} else {
+	    $('.show4evolutionIsochron').hide();
+	}
+    }
     
     $.chooseUPbformat = function(){
 	chooseFormat("#UPb-formats","U-Pb")
@@ -1195,7 +1214,17 @@ $(function(){
 	chooseFormat("#ArAr-formats","Ar-Ar")
     }
     $.chooseThUformat = function(){
-	chooseFormat("#ThU-formats","Th-U")
+	var format = chooseFormat("#ThU-formats","Th-U")
+	switch (format){
+	case 1:
+	case 2:
+	    $(".hide4volcanicThU").show();
+	    break;
+	case 3:
+	case 4:
+	    $(".hide4volcanicThU").hide();
+	    break;
+	}
     }
     $.chooseRbSrformat = function(){
 	chooseFormat("#RbSr-formats","Rb-Sr")

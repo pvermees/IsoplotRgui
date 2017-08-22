@@ -82,7 +82,7 @@
 	"sigdig": 2
     },
     "isochron": {
-	"type": 4,
+	"type": 2,
 	"model": 1,
 	"inverse": "TRUE",
 	"exterr": "TRUE",

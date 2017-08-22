@@ -88,6 +88,16 @@ shiny::shinyServer(function(input,output,session){
                             'Th230U238','errTh230U238',
                             'rhoXY','rhoXZ','rhoYZ'),1,nc)
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Th-U") & format==3) {
+            mat <- matrix(c('U238Th232','errU238Th232',
+                            'Th230Th232','errTh230Th232',
+                            'rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+        } else if (identical(method,"Th-U") & format==4) {
+            mat <- matrix(c('Th232U238','errTh232U238',
+                            'Th230U238','errTh230U238',
+                            'rho'),1,nc)
+            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Rb-Sr") & format==1){
             mat <- matrix(c('Rb87Sr86','errRb87Sr86',
                             'Sr87Sr86','errSr87Sr86','rho'),1,nc)

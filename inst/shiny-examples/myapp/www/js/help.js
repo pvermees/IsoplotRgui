@@ -636,21 +636,45 @@ function help(id){
 	    "concentration from ppm to atoms per unit volume.";
 	break;
     case "help-UPb-formats":
-	text = "Choose one of three input formats:<br>" +
+	text = "Choose one of six input formats:<br>" +
 	    "1. <tt>7/5 s[7/5] 6/8 s[6/8] rho</tt><br>" +
 	    "where <tt>rho</tt> is the error correlation between " +
 	    "<tt>7/5</tt> and <tt>6/8</tt><br>" +
 	    "2. <tt>8/6 s[8/6] 7/6 s[7/6] (rho)</tt><br>" +
 	    "where the error correlation is optional<br>" +
 	    "3. <tt>7/6 s[7/6] 6/8 s[6/8] 7/5 s[7/5]</tt><br>" +
-	    "in which the error correlations are calculated from the" +
+	    "in which the error correlations are calculated from the " +
 	    "redundancies between the three sets of uncertainties.<br>" +
-	    "(more formats will be added later)";
+	    "4. <tt>X=7/5 s[7/5] Y=6/8 s[6/8] Z=4/8 s[4/8] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
+	    "5. <tt>X=8/6 s[8/6] Y=7/6 s[7/6] Z=4/6 s[4/6] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
+	    "6. <tt>7/5 s[7/5] 6/8 s[6/8] 4/8 s[4/8]" +
+	    "7/6 s[7/6] 4/7 s[4/7] 4/6 s[4/6]</tt><br>" +
+	    "in which the error correlations are calculated from the" +
+	    "redundancies between the six sets of uncertainties.<br>";
+	break;
+    case "help-PbPb-formats":
+	text = "Choose one of three input formats:<br>" +
+	    "1. <tt>6/4 s[6/4] 7/4 s[7/4] rho</tt><br>" +
+	    "where <tt>rho</tt> is the error correlation between " +
+	    "<tt>6/4</tt> and <tt>7/4</tt><br>" +
+	    "2. <tt>4/6 s[4/6] 7/6 s[7/6] (rho)</tt><br>" +
+	    "where the error correlation is optional<br>" +
+	    "3. <tt>6/4 s[6/4] 7/4 s[7/4] 7/6 s[7/6]</tt><br>" +
+	    "in which the error correlations are calculated from the " +
+	    "redundancies between the three sets of uncertainties.<br>";
 	break;
     case "help-ThU-formats":
-	text = "Choose one of two input formats:<br>" +
-	    "1. <tt>X=8/2 s[8/2] Y=4/2 s[4/2] Z=0/2 s[0/2] rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
-	    "2. <tt>X=2/8 s[2/8] Y=4/8 s[4/8] Z=0/8 s[0/8] rho[X,Y] rho[X,Z] rho[Y,Z]</tt>";
+	text = "Choose one of four input formats:<br>" +
+	    "1. <tt>X=8/2 s[8/2] Y=4/2 s[4/2] Z=0/2 s[0/2] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
+	    "2. <tt>X=2/8 s[2/8] Y=4/8 s[4/8] Z=0/8 s[0/8] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
+	    "1. <tt>8/2 s[8/2] 0/2 s[0/2] (rho)</tt><br>" +
+	    "where the error correlation is optional<br>" +
+	    "2. <tt>2/8 s[2/8] 0/8 s[0/8] (rho)</tt><br>" +
+	    "where the error correlation is optional";
 	break;
     case "help-ThU-isochron-types":
 	text = "Choose one of four output formats:<br>" +
@@ -718,13 +742,15 @@ function help(id){
 	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.<br>";
 	break;
     case "help-FT-formats":
-	text = "Choose one of three fission track dating methods: " +
-	    "1) 'EDM' = the External Detector Method: determines the " +
+	text = "Choose one of three fission track dating methods:<br>" +
+	    "1. 'EDM' = the External Detector Method: determines the " +
 	    "sample's uranium content by proxy, using neutron-induced tracks " +
-	    "recorded in a mica detector; 2) 'ICP (&zeta;)': determines " +
+	    "recorded in a mica detector; <br>" +
+	    "2. 'ICP (&zeta;)': determines " +
 	    "the uranium content directly by LA-ICP-MS using a zeta calibration " +
 	    "approach in which all measurements are normalised to " +
-	    "age standards; 3) 'ICP (absolute)': uses LA-ICP-MS without age " +
+	    "age standards; <br>" +
+	    "3. 'ICP (absolute)': uses LA-ICP-MS without age " +
 	    "standards, assuming that the fission decay constant, etch " +
 	    "efficiency factor and uranium concentrations are known with " +
 	    "sufficient accuracy.";
