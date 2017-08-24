@@ -10,11 +10,17 @@ function getOptions(prefs){
 	var mint = isValidAge(pdsettings.mint) ? pdsettings.mint : null;
 	var maxt = isValidAge(pdsettings.maxt) ? pdsettings.maxt : null;
 	if (mint != null | maxt != null){
-	    out += ",limits=c(";
+	    out += ",tlim=c(";
 	    if (mint == null) { out += "0"; } else { out += mint; }
 	    if (maxt == null) { out += ",4500)"; } else { out += "," + maxt + ")"; }
 	} else {
-	    out += ",limits=NULL"
+	    out += ",tlim=NULL"
+	}
+	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto'){
+	    out += ",xlim=c(" + pdsettings.minx + "," + pdsettings.maxx + ")";
+	}
+	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto'){
+	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")";
 	}
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",wetherill=" + pdsettings.wetherill;

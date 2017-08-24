@@ -170,16 +170,28 @@ function help(id){
 	    "against <sup>206</sup>Pb/<sup>204</sup>Pb.";
 	break;
     case "help-isochron-minx":
-	text = "Minimum limit of the horizontal axis.";
+    case "help-minx-concordia":
+	text = "Minimum limit of the horizontal axis. " +
+	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
+	    "automatically set a suitable value.";
 	break;
     case "help-isochron-maxx":
-	text = "Maximum limit of the horizontal axis.";
+    case "help-maxx-concordia":
+	text = "Maximum limit of the horizontal axis." +
+	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
+	    "automatically set a suitable value.";
 	break;
     case "help-isochron-miny":
-	text = "Minimum limit of the vertical axis.";
+    case "help-miny-concordia":
+	text = "Minimum limit of the vertical axis." +
+	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
+	    "automatically set a suitable value.";
 	break;
     case "help-isochron-maxy":
-	text = "Maximum limit of the vertical axis.";
+    case "help-maxy-concordia":
+	text = "Maximum limit of the vertical axis." +
+	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
+	    "automatically set a suitable value.";
 	break;
     case "help-isochron-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +

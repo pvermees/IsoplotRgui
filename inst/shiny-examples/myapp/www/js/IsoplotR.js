@@ -535,6 +535,10 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
+	    $('#minx').val(set.minx);
+	    $('#maxx').val(set.maxx);
+	    $('#miny').val(set.miny);
+	    $('#maxy').val(set.maxy);
 	    $('#alpha').val(set.alpha);
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
@@ -681,6 +685,14 @@ $(function(){
 		isValidAge($('#mint').val()) ? $('#mint').val() : 'auto';
 	    pdsettings.maxt =
 		isValidAge($('#maxt').val()) ? $('#maxt').val() : 'auto';
+	    pdsettings.minx =
+		isValidAge($('#minx').val()) ? $('#minx').val() : 'auto';
+	    pdsettings.maxx =
+		isValidAge($('#maxx').val()) ? $('#maxx').val() : 'auto';
+	    pdsettings.miny =
+		isValidAge($('#miny').val()) ? $('#miny').val() : 'auto';
+	    pdsettings.maxy =
+		isValidAge($('#maxy').val()) ? $('#maxy').val() : 'auto';
 	    if ($('#alpha').val() > 0 & $('#alpha').val() < 1) { 
 		pdsettings.alpha = $('#alpha').val(); 
 	    }
@@ -1417,6 +1429,12 @@ $(function(){
 		    break;
 		case 2:
 		    $('.show4ThU2').show();
+		    break;
+		case 3:
+		    $('.show4ThU3').show();
+		    break;
+		case 4:
+		    $('.show4ThU4').show();
 		    break;
 		}
 		break;

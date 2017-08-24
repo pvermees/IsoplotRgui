@@ -59,6 +59,10 @@
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
 	"alpha": 0.05,
 	"wetherill": "TRUE",
 	"exterr": "FALSE",
