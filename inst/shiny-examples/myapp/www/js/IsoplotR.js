@@ -313,10 +313,217 @@ $(function(){
 	    IsoplotR.data = [nr,nc,dat];
 	}
     }
+
+    function showOrHide(option){
+	var set = IsoplotR.settings[option];
+	switch (option){
+	case 'U-Pb':
+	    $('.show4UPb').show();
+	    $('.hide4UPb').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4UPb1').show();
+		$('.hide4UPb1').hide();
+		break;
+	    case 2:
+		$('.show4UPb2').show();
+		$('.hide4UPb2').hide();
+		break;
+	    case 3:
+		$('.show4UPb3').show();
+		$('.hide4UPb3').hide();
+		break;
+	    case 4:
+		$('.show4UPb4').show();
+		$('.hide4UPb4').hide();
+		break;
+	    case 5:
+		$('.show4UPb5').show();
+		$('.hideUPb5').hide();
+		break;
+	    case 6:
+		$('.show4UPb6').show();
+		$('.hide4UPb6').hide();
+		break;
+	    }
+	    break;
+	case 'Th-U':
+	    $('.show4ThU').show();
+	    $('.hide4ThU').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4ThU1').show();
+		$('.hide4ThU1').hide();
+		break;
+	    case 2:
+		$('.show4ThU2').show();
+		$('.hide4ThU2').hide();
+		break;
+	    case 3:
+		$('.show4ThU3').show();
+		$('.hide4ThU3').hide();
+		break;
+	    case 4:
+		$('.show4ThU4').show();
+		$('.hide4ThU4').hide();
+		break;
+	    }
+	    break;
+	case 'Pb-Pb':
+	    $('.show4PbPb').show();
+	    $('.hide4PbPb').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4PbPb1').show();
+		$('.hide4PbPb1').hide();
+		break;
+	    case 2:
+		$('.show4PbPb2').show();
+		$('.hide4PbPb2').hide();
+		break;
+	    case 3:
+		$('.show4PbPb3').show();
+		$('.hide4PbPb3').hide();
+		break;
+	    }
+	    break;
+	case 'Ar-Ar':
+	    $('.show4ArAr').show();
+	    $('.hide4ArAr').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4ArAr1').show();
+		$('.hide4ArAr1').hide();
+		break;
+	    case 2:
+		$('.show4ArAr2').show();
+		$('.hide4ArAr2').hide();
+		break;
+	    case 3:
+		$('.show4ArAr3').show();
+		$('.hide4ArAr3').hide();
+		break;
+	    }
+	    break;
+	case 'Th-U':
+	    $('.show4ThU').show();
+	    $('.hide4ThU').hide();
+	    break;
+	case 'Rb-Sr':
+	    $('.show4RbSr').show();
+	    $('.hide4RbSr').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4RbSr1').show();
+		$('.hide4RbSr1').hide();
+		break;
+	    case 2:
+		$('.show4RbSr2').show();
+		$('.hide4RbSr2').hide();
+		break;
+	    }
+	    break;
+	case 'Sm-Nd':
+	    $('.show4SmNd').show();
+	    $('.hide4SmNd').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4SmNd1').show();
+		$('.hide4SmNd1').hide();
+		break;
+	    case 2:
+		$('.show4SmNd2').show();
+		$('.hide4SmNd2').hide();
+		break;
+	    }
+	    break;
+	case 'Re-Os':
+	    $('.show4ReOs').show();
+	    $('.hide4ReOs').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4ReOs1').show();
+		$('.hide4ReOs1').hide();
+		break;
+	    case 2:
+		$('.show4ReOs2').show();
+		$('.hide4ReOs2').hide();
+		break;
+	    }
+	    break;
+	case 'Lu-Hf':
+	    $('.show4LuHf').show();
+	    $('.hide4LuHf').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4LuHf1').show();
+		$('.hide4LuHf1').hide();
+		break;
+	    case 2:
+		$('.show4LuHf2').show();
+		$('.hide4LuHf2').hide();
+		break;
+	    }
+	    break;
+	case 'U-Th-He':
+	    $('.show4UThHe').show();
+	    $('.hide4UThHe').hide();
+	    break;
+	case 'fissiontracks':
+	    $('.show4fissiontracks').show();
+	    $('.hide4fissiontracks').hide();
+	    if (set.format==1){
+		$('.show4EDM').show();
+		$('.hide4EDM').hide();
+	    } else if (set.format==2){
+		$('.show4ICP').show();
+		$('.hide4ICP').hide();
+	    } else if (set.format==3){
+		$('.show4absolute').show();
+		$('.hide4absolute').hide();
+	    }
+	    break;
+	case 'detritals':
+	    $('.show4detritals').show();
+	    $('.hide4detritals').hide();
+	    break;
+	case 'other':
+	    $('.show4other').show();
+	    $('.hide4other').hide();
+	    switch (plotdevice){
+	    case 'radial':
+		$('.show4radial').show();
+		$('.hide4radial').hide();
+		break;
+	    case 'regression':
+		$('.show4regression').show();
+		$('.hide4regression').hide();
+		break;
+	    case 'spectrum':
+		$('.show4spectrum').show();
+		$('.hide4spectrum').hide();
+		break;
+	    case 'average':
+		$('.show4weightedmean').show();
+		$('.hide4weightedmean').hide();
+		break;
+	    case 'KDE':
+		$('.show4kde').show();
+		$('.hide4kde').show();
+		break;
+	    case 'CAD':
+		$('.show4cad').show();
+		$('.hide4cad').show();
+		break;
+	    }
+	    break;
+	}
+    }
     
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
+	showOrHide(option)
 	switch (option){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
@@ -326,8 +533,6 @@ $(function(){
 	    $('#UPb-age-type option[value='+set.type+']').
 		prop('selected', 'selected');
 	    if (set.commonPb==3){ $('.show4commonPb3').show(); }
-	    $('.show4UPb').show();
-	    $('.hide4UPb').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
@@ -346,8 +551,6 @@ $(function(){
 	    else { $('.hide4volcanicThU').show(); }
 	    $('#ThU-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4ThU').show();
-	    $('.hide4ThU').hide();
 	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
@@ -357,8 +560,6 @@ $(function(){
 	case 'Pb-Pb':
 	    $('#PbPb-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4PbPb').show();
-	    $('.hide4PbPb').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
@@ -369,8 +570,6 @@ $(function(){
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4ArAr').show();
-	    $('.hide4ArAr').hide();
 	    $('#Ar40Ar36').val(cst.iratio.Ar40Ar36[0]),
 	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
@@ -380,15 +579,11 @@ $(function(){
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4ThU').show();
-	    $('.hide4ThU').hide();
 	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Rb-Sr':
 	    $('#RbSr-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4RbSr').show();
-	    $('.hide4RbSr').hide();
 	    $('#Rb85Rb87').val(cst.iratio.Rb85Rb87[0]);
 	    $('#errRb85Rb87').val(cst.iratio.Rb85Rb87[1]);
 	    $('#Sr84Sr86').val(cst.iratio.Sr84Sr86[0]);
@@ -404,8 +599,6 @@ $(function(){
 	case 'Sm-Nd':
 	    $('#SmNd-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4SmNd').show();
-	    $('.hide4SmNd').hide();
 	    $('#Sm144Sm152').val(cst.iratio.Sm144Sm152[0]);
 	    $('#errSm144Sm152').val(cst.iratio.Sm144Sm152[1]);
 	    $('#Sm147Sm152').val(cst.iratio.Sm147Sm152[0]);
@@ -437,8 +630,6 @@ $(function(){
 	case 'Re-Os':
 	    $('#ReOs-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4ReOs').show();
-	    $('.hide4ReOs').hide();
 	    $('#Re185Re187').val(cst.iratio.Re185Re187[0]);
 	    $('#errRe185Re187').val(cst.iratio.Re185Re187[1]);
 	    $('#Os184Os192').val(cst.iratio.Os184Os192[0]);
@@ -460,8 +651,6 @@ $(function(){
 	case 'Lu-Hf':
 	    $('#LuHf-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('.show4LuHf').show();
-	    $('.hide4LuHf').hide();
 	    $('#Lu176Lu175').val(cst.iratio.Lu176Lu175[0]);
 	    $('#errLu176Lu175').val(cst.iratio.Lu176Lu175[1]);
 	    $('#Hf174Hf177').val(cst.iratio.Hf174Hf177[0]);
@@ -479,8 +668,6 @@ $(function(){
 	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'U-Th-He':
-	    $('.show4UThHe').show();
-	    $('.hide4UThHe').hide();
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
@@ -493,18 +680,6 @@ $(function(){
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
 	    break;
 	case 'fissiontracks':
-	    $('.show4fissiontracks').show();
-	    $('.hide4fissiontracks').hide();
-	    if (set.format==1){
-		$('.show4EDM').show();
-		$('.hide4EDM').hide();
-	    } else if (set.format==2){
-		$('.show4ICP').show();
-		$('.hide4ICP').hide();
-	    } else if (set.format==3){
-		$('.show4absolute').show();
-		$('.hide4absolute').hide();
-	    }
 	    $('#FT-formats option[value='+set.format+']').
 		prop('selected', 'selected');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -521,13 +696,7 @@ $(function(){
 	    $('#mindens').val(cst.mindens[mineral]);
 	    break;
 	case 'detritals':
-	    $('.show4detritals').show();
-	    $('.hide4detritals').hide();
 	    $('#headers-on').prop('checked',set.format==1);
-	    break;
-	case 'other':
-	    $('.show4other').show();
-	    $('.hide4other').hide();
 	    break;
 	case 'concordia':
 	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
@@ -1397,156 +1566,16 @@ $(function(){
 	var fname = "";
 	$("#OUTPUT").hide();
 	$("#myplot").show();
-	fname = "help/" + geochronometer + ".html";
-	$("#myplot").load(fname,function(){
-	    switch (geochronometer){
-	    case 'U-Pb':
-		switch (IsoplotR.settings['U-Pb'].format){
-		case 1:
-		    $('.show4UPb1').show();
-		    break;
-		case 2:
-		    $('.show4UPb2').show();
-		    break;
-		case 3:
-		    $('.show4UPb3').show();
-		    break;
-		case 4:
-		    $('.show4UPb4').show();
-		    break;
-		case 5:
-		    $('.show4UPb5').show();
-		    break;
-		case 6:
-		    $('.show4UPb6').show();
-		    break;
-		}
-		break;
-	    case 'Th-U':
-		switch (IsoplotR.settings['Th-U'].format){
-		case 1:
-		    $('.show4ThU1').show();
-		    break;
-		case 2:
-		    $('.show4ThU2').show();
-		    break;
-		case 3:
-		    $('.show4ThU3').show();
-		    break;
-		case 4:
-		    $('.show4ThU4').show();
-		    break;
-		}
-		break;
-	    case 'Pb-Pb':
-		switch (IsoplotR.settings['Pb-Pb'].format){
-		case 1:
-		    $('.show4PbPb1').show();
-		    break;
-		case 2:
-		    $('.show4PbPb2').show();
-		    break;
-		case 3:
-		    $('.show4PbPb3').show();
-		    break;
-		}
-		break;
-	    case 'Ar-Ar':
-		switch (IsoplotR.settings['Ar-Ar'].format){
-		case 1:
-		    $('.show4ArAr1').show();
-		    break;
-		case 2:
-		    $('.show4ArAr2').show();
-		    break;
-		case 3:
-		    $('.show4ArAr3').show();
-		    break;
-		}
-		break;
-	    case 'Rb-Sr':
-		switch (IsoplotR.settings['Rb-Sr'].format){
-		case 1:
-		    $('.show4RbSr1').show();
-		    break;
-		case 2:
-		    $('.show4RbSr2').show();
-		    break;
-		}
-		break;
-	    case 'Sm-Nd':
-		switch (IsoplotR.settings['Sm-Nd'].format){
-		case 1:
-		    $('.show4SmNd1').show();
-		    break;
-		case 2:
-		    $('.show4SmNd2').show();
-		    break;
-		}
-		break;
-	    case 'Re-Os':
-		switch (IsoplotR.settings['Re-Os'].format){
-		case 1:
-		    $('.show4ReOs1').show();
-		    break;
-		case 2:
-		    $('.show4ReOs2').show();
-		    break;
-		}
-		break;
-	    case 'Lu-Hf':
-		switch (IsoplotR.settings['Lu-Hf'].format){
-		case 1:
-		    $('.show4LuHf1').show();
-		    break;
-		case 2:
-		    $('.show4LuHf2').show();
-		    break;
-		}
-		break;
-	    case 'fissiontracks':
-		switch (IsoplotR.settings.fissiontracks.format){
-		case 1:
-		    $('.show4EDM').show();
-		    break;
-		case 2:
-		    $('.show4ICP').show();
-		    break;
-		case 3:
-		    $('.show4absolute').show();
-		    break;
-		}
-		if (IsoplotR.settings.plotdevice=='set-zeta'){
-		    $('.show4zeta').show();
-		    $('.hide4zeta').hide();
-		}
-		break;
-	    case 'other':
-		switch (plotdevice){
-		case 'radial':
-		    $('.show4radial').show();
-		    break;
-		case 'regression':
-		    $('.show4regression').show();
-		    break;
-		case 'spectrum':
-		    $('.show4spectrum').show();
-		    break;
-		case 'average':
-		    $('.show4weightedmean').show();
-		    break;
-		case 'KDE':
-		    $('.show4kde').show();
-		    break;
-		case 'CAD':
-		    $('.show4cad').show();
-		    break;
-		}
-		break;
-	    }
+	$("#myplot").load("help/index.html",function(){
+	    fname = "help/" + geochronometer + ".html";
+	    $("#input-help").load(fname,function(){
+		fname = "help/" + plotdevice + ".html";
+		$("#references").load(fname,function(){
+		    showOrHide(geochronometer);
+		});
+	    });
 	});
     });
-
     
     $("#DEFAULTS").click(function(){
 	var cfile = './js/constants.json';

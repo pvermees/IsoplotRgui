@@ -412,6 +412,10 @@ function help(id){
 	    "'|', 'o', '*', '+', or '.'. Alternatively, enter <tt>none</tt> " +
 	    "to omit the plot character.";
 	break;
+    case "help-radial-pch":
+	text = "The plot character can either be a number (1-25) or a " +
+	    "single character such as '|', 'o', '*', '+', or '.'.";
+	break;
     case "help-pchdetritals":
 	text = "The single-grain ages may be shown under the KDE plot " +
 	    "This can either be a number (1-25) or a single character such as " +
