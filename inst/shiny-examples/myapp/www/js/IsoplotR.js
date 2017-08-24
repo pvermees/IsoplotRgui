@@ -229,59 +229,24 @@ $(function(){
 	IsoplotR = out;
     }
 
-    function getData(r,c,r2,c2){
+    function getData(r1,c1,r2,c2){
 	var geochronometer = IsoplotR.settings.geochronometer;
-	var nr = 1+Math.abs(r2-r);
-	var nc = 1+Math.abs(c2-c);
+	var nr = 1+Math.abs(r2-r1);
+	var nc = 1+Math.abs(c2-c1);
 	var dat = [];
 	var DNC = dnc();
 	var toofewcols = (nc < DNC);
 	var other1row = ((geochronometer=='other') & (nr==1));
-	var detritals = (geochronometer=='detritals');
-	var FT = (geochronometer=='fissiontracks');
-	var UPb2 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==2);
-	var UPb456 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format>3);
-	var ArAr1 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==1);
-	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
-	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
 	if ( toofewcols | other1row) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
-		r = 0;
-		c = 0;
+		r1 = 0;
+		c1 = 0;
 		r2 = nr-1;
 		c2 = nc-1;
 	}
-	dat = $("#INPUT").handsontable('getData',r,c,r2,c2);
-	if ( toofewcols | detritals | FT){
-	    var val = null;
-	    var row = [];
-	    var good = false;
-	    var clean = [];
-	    for (var i=0; i<nr; i++){
-		row = [];
-		good = false;
-		for (var j=0; j<nc; j++){
-		    val = dat[i][j];
-		    if (val==null | val==""){
-			if (UPb456|(UPb2 & j==4)|(ArAr2 & j==4)) { // rho
-			    row.push(0);
-			} else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
-			    row.push(1);
-			} else {
-			    row.push('');
-			}
-		    } else {
-			row.push(val);
-			good = true;
-		    }
-		}
-		if (good) {
-		    clean.push(row);
-		}
-	    }
-	    dat = clean;
-	}
+	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
+	var dat = cleanData(geochronometer,d,nr,nc);
 	switch (geochronometer){
 	case  'Ar-Ar':
 	    var J = $('#Jval').val();
@@ -314,6 +279,42 @@ $(function(){
 	}
     }
 
+    function cleanData(geochronometer,dat,nr,nc){
+	var UPb2 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==2);
+	var UPb3 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==3);
+	var ArAr1 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==1);
+	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
+	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
+	var ThU34 = (geochronometer=='Th-U') & (IsoplotR.settings['Th-U'].format>2);
+	var val = null;
+	var row = [];
+	var good = false;
+	var clean = [];
+	for (var i=0; i<nr; i++){
+	    row = [];
+	    good = false;
+	    for (var j=0; j<nc; j++){
+		val = dat[i][j];
+		if ((val==null)|(val=="")){
+		    if ((UPb2 & j==4)|(ArAr2 & j==4)|(ThU34 & j==4)) { // rho
+			row.push(0);
+		    } else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
+			row.push(1);
+		    } else {
+			row.push('');
+		    }
+		} else {
+		    row.push(Number(val));
+		    good = true;
+		}
+	    }
+	    if (good) {
+		clean.push(row);
+	    }
+	}
+	return(clean);
+    }
+    
     function showOrHide(option){
 	var set = IsoplotR.settings[option];
 	switch (option){
