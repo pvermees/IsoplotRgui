@@ -7,8 +7,8 @@ function getOptions(prefs){
     var gcsettings = prefs.settings[geochronometer];
     switch (plotdevice){
     case 'concordia':
-	var mint = isValidAge(pdsettings.mint) ? pdsettings.mint : null;
-	var maxt = isValidAge(pdsettings.maxt) ? pdsettings.maxt : null;
+	var mint = check(pdsettings.mint,null);
+	var maxt = check(pdsettings.maxt,null);
 	if (mint != null | maxt != null){
 	    out += ",tlim=c(";
 	    if (mint == null) { out += "0"; } else { out += mint; }

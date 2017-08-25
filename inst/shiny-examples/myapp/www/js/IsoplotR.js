@@ -851,18 +851,12 @@ $(function(){
 	    pdsettings.wetherill =
 		$('#tera-wasserburg').prop('checked') ? 'FALSE' : 'TRUE';
 	    pdsettings["showage"] = $('#conc-age-option').prop("value");
-	    pdsettings.mint =
-		isValidAge($('#mint').val()) ? $('#mint').val() : 'auto';
-	    pdsettings.maxt =
-		isValidAge($('#maxt').val()) ? $('#maxt').val() : 'auto';
-	    pdsettings.minx =
-		isValidAge($('#minx').val()) ? $('#minx').val() : 'auto';
-	    pdsettings.maxx =
-		isValidAge($('#maxx').val()) ? $('#maxx').val() : 'auto';
-	    pdsettings.miny =
-		isValidAge($('#miny').val()) ? $('#miny').val() : 'auto';
-	    pdsettings.maxy =
-		isValidAge($('#maxy').val()) ? $('#maxy').val() : 'auto';
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.minx = check($('#minx').val(),'auto');
+	    pdsettings.maxx = check($('#maxx').val(),'auto');
+	    pdsettings.miny = check($('#miny').val(),'auto');
+	    pdsettings.maxy = check($('#maxy').val(),'auto');
 	    if ($('#alpha').val() > 0 & $('#alpha').val() < 1) { 
 		pdsettings.alpha = $('#alpha').val(); 
 	    }
@@ -994,18 +988,12 @@ $(function(){
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr =
 		$('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.min08 =
-		isValidAge($('#min08').val()) ? $('#min08').val() : 'auto';
-	    pdsettings.max08 =
-		isValidAge($('#max08').val()) ? $('#max08').val() : 'auto';
-	    pdsettings.min48 =
-		isValidAge($('#min48').val()) ? $('#min48').val() : 'auto';
-	    pdsettings.max48 =
-		isValidAge($('#max48').val()) ? $('#max48').val() : 'auto';
-	    pdsettings.mint =
-		isValidAge($('#mint').val()) ? $('#mint').val() : 'auto';
-	    pdsettings.maxt =
-		isValidAge($('#maxt').val()) ? $('#maxt').val() : 'auto';
+	    pdsettings.min08 = check($('#min08').val(),'auto');
+	    pdsettings.max08 = check($('#max08').val(),'auto');
+	    pdsettings.min48 = check($('#min48').val(),'auto');
+	    pdsettings.max48 = check($('#max48').val(),'auto');
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    break;
