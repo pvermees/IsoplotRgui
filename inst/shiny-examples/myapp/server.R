@@ -5,63 +5,64 @@ shiny::shinyServer(function(input,output,session){
         nn <- length(d)
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
+        mat <- matrix('',1,nc) # header
         if (identical(method,"U-Pb") & format==1) {
-            mat <- matrix(c('Pb207U235','errPb207U235',
-                            'Pb206U238','errPb206U238','rho'),1,nc)
+            mat[1,1:5] <- c('Pb207U235','errPb207U235',
+                            'Pb206U238','errPb206U238','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Pb") & format==2) {
-            mat <- matrix(c('U238Pb206','errU238Pb206',
-                            'Pb207Pb206','errPb207Pb206','rho'),1,nc)
+            mat[1,1:5] <- c('U238Pb206','errU238Pb206',
+                            'Pb207Pb206','errPb207Pb206','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Pb") & format==3) {
-            mat <- matrix(c('Pb207Pb206','errPb207Pb206',
+            mat[1,1:8] <- c('Pb207Pb206','errPb207Pb206',
                             'Pb206U238','errPb206U238',
-                            'Pb207U235','errPb207U235','rhoXY','rhoYZ'),1,nc)
+                            'Pb207U235','errPb207U235','rhoXY','rhoYZ')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Pb") & format==4) {
-            mat <- matrix(c('Pb207U235','errPb207U235',
+            mat[1,1:9] <- c('Pb207U235','errPb207U235',
                             'Pb206U238','errPb206U238',
                             'Pb204U238','errPb204U238',
-                            'rhoXY','rhoXZ','rhoYZ'),1,nc)
+                            'rhoXY','rhoXZ','rhoYZ')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Pb") & format==5) {
-            mat <- matrix(c('U238Pb206','errU238Pb206',
+            mat[1,1:9] <- c('U238Pb206','errU238Pb206',
                             'Pb207Pb206','errPb207Pb206',
                             'Pb204Pb206','errPb204Pb206',
-                            'rhoXY','rhoXZ','rhoYZ'),1,nc)
+                            'rhoXY','rhoXZ','rhoYZ')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"U-Pb") & format==6) {
-            mat <- matrix(c('Pb207U235','errPb207U235',
-                            'Pb206U238','errPb206U238',
-                            'Pb204U238','errPb204U238',
-                            'Pb207Pb206','errPb207Pb206',
-                            'Pb204Pb207','errPb204Pb207',
-                            'Pb204Pb206','errPb204Pb206'),1,nc)
+            mat[1,1:12] <- c('Pb207U235','errPb207U235',
+                             'Pb206U238','errPb206U238',
+                             'Pb204U238','errPb204U238',
+                             'Pb207Pb206','errPb207Pb206',
+                             'Pb204Pb207','errPb204Pb207',
+                             'Pb204Pb206','errPb204Pb206')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Pb-Pb") & format==1) {
-            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
-                            'Pb207Pb204','errPb207Pb204','rho'),1,nc)
+            mat[1,1:5] <- c('Pb206Pb204','errPb206Pb204',
+                            'Pb207Pb204','errPb207Pb204','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Pb-Pb") & format==2) {
-            mat <- matrix(c('Pb204Pb206','errPb204Pb206',
-                            'Pb207Pb206','errPb207Pb206','rho'),1,nc)
+            mat[1,1:5] <- c('Pb204Pb206','errPb204Pb206',
+                            'Pb207Pb206','errPb207Pb206','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Pb-Pb") & format==3) {
-            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
+            mat[1,1:6] <- c('Pb206Pb204','errPb206Pb204',
                             'Pb207Pb204','errPb207Pb206',
-                            'Pb207Pb206','errPb207Pb206'),1,nc)
+                            'Pb207Pb206','errPb207Pb206')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Ar-Ar") & format==1){
             mat <- matrix('',3,nc)
-            mat[1,1:2] <-c('J','errJ')
+            mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
-            mat[3,] <- c('Ar39Ar36','errAr39Ar36',
-                         'Ar40Ar36','errAr40Ar36',
-                         'rho','Ar39')
+            mat[3,1:6] <- c('Ar39Ar36','errAr39Ar36',
+                            'Ar40Ar36','errAr40Ar36',
+                            'rho','Ar39')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Ar-Ar") & format==2) {
             mat <- matrix('',3,nc)
-            mat[1,1:2] <-c('J','errJ')
+            mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
             mat[3,] <- c('Ar39Ar40','errAr39Ar40',
                          'Ar36Ar40','errAr36Ar40',
@@ -69,7 +70,7 @@ shiny::shinyServer(function(input,output,session){
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Ar-Ar") & format==3) {
             mat <- matrix('',3,nc)
-            mat[1,1:2] <-c('J','errJ')
+            mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
             mat[3,] <- c('Ar39Ar40','errAr39Ar40',
                          'Ar36Ar40','errAr36Ar40',
@@ -77,58 +78,60 @@ shiny::shinyServer(function(input,output,session){
                          'Ar39')
             mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Th-U") & format==1) {
-            mat <- matrix(c('U238Th232','errU238Th232',
+            mat[1,1:9] <- c('U238Th232','errU238Th232',
                             'U234Th232','errU234Th232',
                             'Th230Th232','errTh230Th232',
-                            'rhoXY','rhoXZ','rhoYZ'),1,nc)
+                            'rhoXY','rhoXZ','rhoYZ')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Th-U") & format==2) {
-            mat <- matrix(c('Th232U238','errTh232U238',
+            mat[1,1:9] <- c('Th232U238','errTh232U238',
                             'U234U238','errU234U238',
                             'Th230U238','errTh230U238',
-                            'rhoXY','rhoXZ','rhoYZ'),1,nc)
+                            'rhoXY','rhoXZ','rhoYZ')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Th-U") & format==3) {
-            mat <- matrix(c('U238Th232','errU238Th232',
-                            'Th230Th232','errTh230Th232',
-                            'rho'),1,nc)
+            mat[1,1:5] <- c('U238Th232','errU238Th232',
+                            'Th230Th232','errTh230Th232','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Th-U") & format==4) {
-            mat <- matrix(c('Th232U238','errTh232U238',
-                            'Th230U238','errTh230U238',
-                            'rho'),1,nc)
+            mat[1,1:5] <- c('Th232U238','errTh232U238',
+                            'Th230U238','errTh230U238','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Rb-Sr") & format==1){
-            mat <- matrix(c('Rb87Sr86','errRb87Sr86',
-                            'Sr87Sr86','errSr87Sr86','rho'),1,nc)
+            mat[1,1:5] <- c('Rb87Sr86','errRb87Sr86',
+                            'Sr87Sr86','errSr87Sr86','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Rb-Sr") & format==2){
-            mat <- matrix(c('Rbppm','errRbppm','Srppm','errSrppm',
-                            'Sr87Sr86','errSr87Sr86'),1,nc)
+            mat[1,1:6] <- c('Rbppm','errRbppm',
+                            'Srppm','errSrppm',
+                            'Sr87Sr86','errSr87Sr86')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Sm-Nd") & format==1){
-            mat <- matrix(c('Sm143Nd144','errSm143Nd144',
-                            'Nd143Nd144','errNd143Nd144','rho'),1,nc)
+            mat[1,1:5] <- c('Sm143Nd144','errSm143Nd144',
+                            'Nd143Nd144','errNd143Nd144','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Sm-Nd") & format==2){
-            mat <- matrix(c('Smppm','errSmppm','Ndppm','errNdppm',
-                            'Nd143Nd144','errNd143Nd144'),1,nc)
+            mat[1,1:6] <- c('Smppm','errSmppm',
+                            'Ndppm','errNdppm',
+                            'Nd143Nd144','errNd143Nd144')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Re-Os") & format==1){
-            mat <- matrix(c('Re187Os188','errRe187Os188',
-                            'Os187Os188','errOs187Os188','rho'),1,nc)
+            mat[1,1:5] <- c('Re187Os188','errRe187Os188',
+                            'Os187Os188','errOs187Os188','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Re-Os") & format==2){
-            mat <- matrix(c('Reppm','errReppm','Osppm','errOsppm',
-                            'Os187Os188','errOs187Os188'),1,nc)
+            mat[1,1:6] <- c('Reppm','errReppm',
+                            'Osppm','errOsppm',
+                            'Os187Os188','errOs187Os188')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Lu-Hf") & format==1){
-            mat <- matrix(c('Lu176Hf177','errLu176Hf177',
-                            'Hf176Hf177','errHf176Hf177','rho'),1,nc)
+            mat[1,1:5] <- c('Lu176Hf177','errLu176Hf177',
+                            'Hf176Hf177','errHf176Hf177','rho')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"Lu-Hf") & format==2){
-            mat <- matrix(c('Luppm','errLuppm','Hfppm','errHfppm',
-                            'Hf176Hf177','errHf176Hf177'),1,nc)
+            mat[1,1:6] <- c('Luppm','errLuppm',
+                            'Hfppm','errHfppm',
+                            'Hf176Hf177','errHf176Hf177')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"fissiontracks") & format==1){
             mat <- matrix('',5,nc)
@@ -155,8 +158,8 @@ shiny::shinyServer(function(input,output,session){
             mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
             mat <- rbind(mat,matrix(d[4:nn],ncol=nc,byrow=TRUE))            
         } else if (identical(method,"U-Th-He")){
-            cn <- c('He','errHe','U','errU','Th','errTh','Sm','errSm')
-            mat <- matrix(cn[1:nc],1,nc)
+            mat[1,1:8] <- c('He','errHe','U','errU',
+                            'Th','errTh','Sm','errSm')
             mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"detritals") & format==1) {
             mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
@@ -170,6 +173,10 @@ shiny::shinyServer(function(input,output,session){
         IsoplotR::read.data(mat,method,format)
     }
 
+    selection2levels <- function(){
+        as.numeric(input$levels)
+    }
+    
     getJavascript <- function(results){
         header <- paste0("['",paste(colnames(results),collapse="','"),"']")
         jarray <- "["
@@ -180,7 +187,7 @@ shiny::shinyServer(function(input,output,session){
         jarray <- paste0(jarray,"]")
         script <- paste0("<script type='text/javascript'>",
                          "$(function(){",
-                         "$('#OUTPUT').handsontable('populateFromArray', 0, 0, ",
+                         "$('#OUTPUT').handsontable('populateFromArray',0,0,",
                          jarray,
                          ");",
                          "});",

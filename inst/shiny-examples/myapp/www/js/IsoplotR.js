@@ -235,9 +235,11 @@ $(function(){
 	var nc = 1+Math.abs(c2-c1);
 	var dat = [];
 	var DNC = dnc();
-	var toofewcols = (nc < DNC);
-	var other1row = ((geochronometer=='other') & (nr==1));
-	if ( toofewcols | other1row) {
+	var toofewcols = (geochronometer!='detritals') & (nc < DNC);
+	var onerow = ((geochronometer=='other' |
+		       geochronometer=='detritals') &
+		      (nr==1));
+	if (toofewcols | onerow) {
 		nc = DNC;
 		nr = $("#INPUT").handsontable('countRows');
 		r1 = 0;
@@ -280,12 +282,11 @@ $(function(){
     }
 
     function cleanData(geochronometer,dat,nr,nc){
-	var UPb2 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==2);
-	var UPb3 = (geochronometer=='U-Pb') & (IsoplotR.settings['U-Pb'].format==3);
 	var ArAr1 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==1);
 	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
 	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
 	var ThU34 = (geochronometer=='Th-U') & (IsoplotR.settings['Th-U'].format>2);
+	var detrital1 = (geochronometer=='detritals') & (IsoplotR.settings['detritals'].format==1);
 	var val = null;
 	var row = [];
 	var good = false;
@@ -295,17 +296,20 @@ $(function(){
 	    good = false;
 	    for (var j=0; j<nc; j++){
 		val = dat[i][j];
-		if ((val==null)|(val=="")){
-		    if ((UPb2 & j==4)|(ArAr2 & j==4)|(ThU34 & j==4)) { // rho
+		if ($.isNumeric(val)){
+		    row.push(Number(val));
+		    good = true;
+		} else {
+		    if (detrital1 & i==0){ // col names
+			row.push(val);
+			good = true;
+		    } else if ((ArAr2 & j==4)|(ThU34 & j==4)) { // rho
 			row.push(0);
 		    } else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
 			row.push(1);
 		    } else {
 			row.push('');
 		    }
-		} else {
-		    row.push(Number(val));
-		    good = true;
 		}
 	    }
 	    if (good) {
