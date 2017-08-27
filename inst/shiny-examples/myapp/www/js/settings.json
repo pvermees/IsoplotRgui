@@ -115,7 +115,7 @@
 	"maxt": "auto",
 	"pch": 21,
 	"cex": 1,
-	"bg": "yellow",
+	"bg": "c('yellow','red')",
 	"sigdig": 2,
 	"shownumbers": "FALSE",
 	"numpeaks": 0

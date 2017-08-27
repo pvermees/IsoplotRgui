@@ -213,7 +213,7 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"detritals") & (format!=1)) {
             ci <- NA
         } else if (identical(method,"other")) {
-            ci <- NA
+            ci <- 3
         }
         mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
         out <- as.numeric(mat[,ci])

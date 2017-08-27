@@ -34,6 +34,9 @@ function getOptions(prefs){
 	break;
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	if (geochronometer!='other'){ out += ",format=" + gcsettings.format; }
+	out += ")";
 	if (pdsettings.numpeaks == 'auto') out += ",k='auto'"
 	else if (pdsettings.numpeaks == 'min') out += ",k='min'"
 	else out += ",k=" + pdsettings.numpeaks ;
@@ -42,7 +45,7 @@ function getOptions(prefs){
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
 	out += ",pch=" + pdsettings.pch;
 	out += ",cex=" + pdsettings.cex;
-	out += ",bg='" + pdsettings.bg + "'";
+	out += ",bg=" + pdsettings.bg;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	switch (geochronometer){
