@@ -719,12 +719,14 @@ $(function(){
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#sigdig').val(set.sigdig);
+	    $('#bg').val(set.bg);
 	    break;
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.type+']').
 		prop('selected', 'selected');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
-	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')	    
+	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
+	    $('#bg').val(set.bg);
 	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -736,6 +738,7 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    $('#isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
+	    $('#bg').val(set.bg);
 	    break;
 	case 'radial':
 	    $('#transformation option[value='+set.transformation+']').
@@ -817,6 +820,7 @@ $(function(){
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
 	    $('#fact').val(set.fact);
+	    $('#bg').val(set.bg);
 	    break;
 	case 'evolution':
 	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
@@ -834,6 +838,7 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
+	    $('#bg').val(set.bg);
 	    if (set.transform=='TRUE'){
 		$('.show4evotrans').show();
 		$('.hide4evotrans').hide();
@@ -871,6 +876,7 @@ $(function(){
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings.bg = $('#bg').val();
 	    break;
 	case 'isochron':
 	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
@@ -885,6 +891,7 @@ $(function(){
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.model = 1*$('option:selected', $("#isochron-models")).attr('value');
+	    pdsettings.bg = $('#bg').val();
 	    break;
 	case 'radial':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
@@ -982,6 +989,7 @@ $(function(){
 	    pdsettings["miny"] = $('#miny').val();
 	    pdsettings["maxy"] = $('#maxy').val();
 	    pdsettings["fact"] = $('#fact').val();
+	    pdsettings.bg = $('#bg').val();
 	    break;
 	case 'evolution':
 	    pdsettings.transform =
@@ -1002,6 +1010,7 @@ $(function(){
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings.bg = $('#bg').val();
 	    break;
 	default:
 	}

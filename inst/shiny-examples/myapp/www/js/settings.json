@@ -68,7 +68,8 @@
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 0,
-	"sigdig": 2
+	"sigdig": 2,
+	"bg": "c('#00FF0080','#FF000080')"
     },
     "evolution": {
 	"min08": "auto",
@@ -83,7 +84,8 @@
 	"exterr": "FALSE",
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",
-	"sigdig": 2
+	"sigdig": 2,
+	"bg": "c('#00FF0080','#FF000080')"
     },
     "isochron": {
 	"type": 2,
@@ -96,7 +98,8 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"alpha": 0.05,
-	"sigdig": 2
+	"sigdig": 2,
+	"bg": "c('#00FF0080','#FF000080')"
     },
     "regression": {
 	"model": 1,
@@ -106,7 +109,8 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"alpha": 0.05,
-	"sigdig": 2
+	"sigdig": 2,
+	"bg": "c('#00FF0080','#FF000080')"
     },
     "radial": {
 	"transformation": "log",
@@ -118,7 +122,8 @@
 	"bg": "c('yellow','red')",
 	"sigdig": 2,
 	"shownumbers": "FALSE",
-	"numpeaks": 0
+	"numpeaks": 0,
+	"bg": "c('#00FF0080','#FF000080')"
     },
     "average": {
 	"outliers": "TRUE",
@@ -178,7 +183,8 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"fact": "auto"
+	"fact": "auto",
+	"bg": "c('#00FF0080','#FF000080')"
     },
     "ages": {
 	"exterr": "TRUE",
