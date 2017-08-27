@@ -319,9 +319,11 @@ $(function(){
 	return(clean);
     }
     
-    function showOrHide(option){
-	var set = IsoplotR.settings[option];
-	switch (option){
+    function showOrHide(){
+	var geochronometer = IsoplotR.settings.geochronometer;
+	var plotdevice = IsoplotR.settings.plotdevice;
+	var set = IsoplotR.settings[geochronometer];
+	switch (geochronometer){
 	case 'U-Pb':
 	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
@@ -528,7 +530,7 @@ $(function(){
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
-	showOrHide(option)
+	showOrHide();
 	switch (option){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
@@ -1564,7 +1566,7 @@ $(function(){
 	    $("#input-help").load(fname,function(){
 		fname = "help/" + plotdevice + ".html";
 		$("#references").load(fname,function(){
-		    showOrHide(geochronometer);
+		    showOrHide();
 		});
 	    });
 	});
