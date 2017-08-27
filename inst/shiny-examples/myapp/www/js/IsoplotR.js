@@ -91,7 +91,7 @@ $(function(){
 	case 'other':
 	    switch(IsoplotR.settings.plotdevice){
 	    case 'regression':
-		return 5;
+		return 6;
 	    case 'spectrum':
 		return 3;
 	    case 'radial':

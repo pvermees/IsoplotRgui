@@ -35,7 +35,9 @@ function getOptions(prefs){
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	if (geochronometer!='other'){ out += ",format=" + gcsettings.format; }
+	if (geochronometer!='other' & geochronometer!='U-Th-He'){
+	    out += ",format=" + gcsettings.format;
+	}
 	out += ")";
 	if (pdsettings.numpeaks == 'auto') out += ",k='auto'"
 	else if (pdsettings.numpeaks == 'min') out += ",k='min'"
@@ -91,8 +93,6 @@ function getOptions(prefs){
 	    out += ",type=" + pdsettings.type;
 	if (geochronometer!='U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
-	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
     case 'regression':
 	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto')
 	    out += ",xlim=c(" + pdsettings.minx + "," + pdsettings.maxx + ")";
@@ -102,6 +102,13 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",model=" + pdsettings.model;
+	if (geochronometer!='U-Th-He'){
+	    out += ",levels=selection2levels(method='" + geochronometer + "'";
+	    if (geochronometer=='other')
+		out += ",format=2)";
+	    else
+		out += ",format=" + gcsettings.format + ")";
+	}
 	break;
     case 'average':
 	switch (geochronometer){
