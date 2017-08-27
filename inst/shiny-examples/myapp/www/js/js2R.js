@@ -81,6 +81,8 @@ function getOptions(prefs){
 	out += ",detrital=" + pdsettings.detrital;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
 	break;
     case 'isochron':
 	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar')
@@ -216,6 +218,7 @@ function getOptions(prefs){
 	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")"
 	if (pdsettings.fact != 'auto')
 	    out += ",fact=" + pdsettings.fact;
+	out += ",levels=selection2levels(method='" + geochronometer + "')";
 	break;
     case 'MDS':
 	out += ",classical=" + pdsettings.classical;
