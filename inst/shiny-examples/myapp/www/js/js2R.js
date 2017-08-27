@@ -29,6 +29,8 @@ function getOptions(prefs){
 	out += ",show.age=" + pdsettings.showage;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",common.Pb=" + gcsettings.commonPb;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
 	break;
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";

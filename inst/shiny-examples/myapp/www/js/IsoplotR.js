@@ -35,19 +35,19 @@ $(function(){
 	case 'U-Pb':
 	    var format = IsoplotR.settings["U-Pb"].format;
 	    switch (format){
-	    case 1: return 5;
-	    case 2: return 5;
-	    case 3: return 8;
-	    case 4: return 9;
-	    case 5: return 9;
-	    case 6: return 12;
+	    case 1: return 6;
+	    case 2: return 6;
+	    case 3: return 9;
+	    case 4: return 10;
+	    case 5: return 10;
+	    case 6: return 13;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
 	    switch (format){
-	    case 1: return 5;
-	    case 2: return 5;
-	    case 3: return 6;
+	    case 1: return 6;
+	    case 2: return 6;
+	    case 3: return 7;
 	    }
 	case 'Ar-Ar':
 	    var format = IsoplotR.settings["Ar-Ar"].format;
@@ -59,10 +59,10 @@ $(function(){
 	case 'Th-U':
 	    var format = IsoplotR.settings["Th-U"].format;
 	    switch (format){
-	    case 1: return 9;
-	    case 2: return 9;
-	    case 3: return 5;
-	    case 4: return 5;
+	    case 1: return 10;
+	    case 2: return 10;
+	    case 3: return 6;
+	    case 4: return 6;
 	    }
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
@@ -77,11 +77,11 @@ $(function(){
 	case 'Lu-Hf':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
-	    case 1: return 5;
-	    case 2: return 6;
+	    case 1: return 6;
+	    case 2: return 7;
 	    }
 	case 'U-Th-He':
-	    return 8;
+	    return 9;
 	case 'detritals':
 	    var firstrow = $("#INPUT").handsontable('getData')[0];
 	    var nc = firstrow.length;
@@ -96,7 +96,7 @@ $(function(){
 		return 3;
 	    case 'radial':
 	    case 'average':
-		return 2;
+		return 3;
 	    case 'KDE':
 	    case 'CAD':
 		return 1;
