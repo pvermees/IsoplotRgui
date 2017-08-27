@@ -86,6 +86,8 @@ function getOptions(prefs){
 	    out += ",type=" + pdsettings.type;
 	if (geochronometer!='U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
     case 'regression':
 	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto')
 	    out += ",xlim=c(" + pdsettings.minx + "," + pdsettings.maxx + ")";

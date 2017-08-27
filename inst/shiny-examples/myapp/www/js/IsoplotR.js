@@ -52,9 +52,9 @@ $(function(){
 	case 'Ar-Ar':
 	    var format = IsoplotR.settings["Ar-Ar"].format;
 	    switch (format){
-	    case 1: return 6;
-	    case 2: return 6;
-	    case 3: return 7;
+	    case 1: return 7;
+	    case 2: return 7;
+	    case 3: return 8;
 	    }
 	case 'Th-U':
 	    var format = IsoplotR.settings["Th-U"].format;
@@ -67,7 +67,7 @@ $(function(){
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
-		return 2;
+		return 3;
 	    } else {
 		return 20;
 	    }
@@ -305,7 +305,7 @@ $(function(){
 			good = true;
 		    } else if ((ArAr2 & j==4)|(ThU34 & j==4)) { // rho
 			row.push(0);
-		    } else if ((ArAr1 & j==6)|(ArAr2 & j==6)|(ArAr3 & j==7)) { // Ar39
+		    } else if ((ArAr1 & j==5)|(ArAr2 & j==5)|(ArAr3 & j==6)) { // Ar39
 			row.push(1);
 		    } else {
 			row.push('');

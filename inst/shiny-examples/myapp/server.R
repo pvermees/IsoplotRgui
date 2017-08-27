@@ -153,7 +153,6 @@ shiny::shinyServer(function(input,output,session){
 
     selection2levels <- function(method="U-Pb",format=1){
         d <- input$data
-        print(d)
         nn <- length(d)
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
@@ -218,7 +217,6 @@ shiny::shinyServer(function(input,output,session){
         }
         mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
         out <- as.numeric(mat[,ci])
-        print(out)
         out
     }
     
