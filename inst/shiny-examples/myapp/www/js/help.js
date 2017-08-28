@@ -610,27 +610,39 @@ function help(id){
 	text = "Outline colour for the plot symbols (e.g., " +
 	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
 	break;
-    case "help-ellipse-col":
-	text = "Fill colour(s) for the error ellipses. Examples:" +
-	    "<p></p>" +
-	    "c('white','red')<br>" +
-	    "c('#FF000080','#00FF0080')<br>" +
-	    "c(rgb(1,0,0,0.5),rgb(0,1,0,0.5))" +
-	    "<p></p>" +
-	    "where the two colours mark the minimum and maximum value in the " +
-	    "optional column labeled '(C)'. If '(C)' is empty, then only the first " +
-	    "value of the colour vector is used."
+    case "help-ellipse-col1":
+	text = "Fill colour for the error ellipses. Examples:<p></p>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>...<br>" +
+	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
+	    "(please note the apostrophes!)";
 	break;
-    case "help-radial-bg":
-	text = "Fill colour(s) for the plot symbols. Examples:" +
-	    "<p></p>" +
-	    "c('white','red')<br>" +
-	    "c('#FF000080','#00FF0080')<br>" +
-	    "c(rgb(1,0,0,0.5),rgb(0,1,0,0.5))" +
-	    "<p></p>" +
-	    "where the two colours mark the minimum and maximum value in the " +
-	    "optional column labeled '(C)'. If '(C)' is empty, then only the first " +
-	    "value of the colour vector is used."
+    case "help-ellipse-col2":
+	text = 	"Second ellipse colour to be used to build a graded " +
+	    "colour scale to display the optional input column labeled '(C)'. " +
+	    "Examples:<p></p>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
+	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
+	    "(please note the apostrophes!)<p></p>" +
+	    "If '(C)' is empty, then only one colour is used.";
+	break;
+    case "help-radial-bg1":
+	text = "Fill colour for the plot symbols. Examples:<p></p>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>...<br>" +
+	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
+	    "(please note the apostrophes!)";
+	break;
+    case "help-radial-bg2":
+	text = 	"Second fill colour to be used to build a graded " +
+	    "colour scale to display the optional input column labeled '(C)'. " +
+	    "Examples:<p></p>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
+	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
+	    "(please note the apostrophes!)<p></p>" +
+	    "If '(C)' is empty, then only one colour is used.";
 	break;
     case "help-bg":
 	text = "Fill colour for the plot symbols (e.g., " +

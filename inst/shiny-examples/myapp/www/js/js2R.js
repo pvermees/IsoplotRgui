@@ -29,7 +29,7 @@ function getOptions(prefs){
 	out += ",show.age=" + pdsettings.showage;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",common.Pb=" + gcsettings.commonPb;
-	out += ",ellipse.col=" + pdsettings.bg;
+	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
 	break;
@@ -48,7 +48,7 @@ function getOptions(prefs){
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
 	out += ",pch=" + pdsettings.pch;
 	out += ",cex=" + pdsettings.cex;
-	out += ",bg=" + pdsettings.bg;
+	out += ",bg=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	switch (geochronometer){
@@ -86,7 +86,7 @@ function getOptions(prefs){
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
-	out += ",ellipse.col=" + pdsettings.bg;
+	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	break;
     case 'isochron':
 	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar')
@@ -111,7 +111,7 @@ function getOptions(prefs){
 	    else
 		out += ",format=" + gcsettings.format + ")";
 	}
-	out += ",ellipse.col=" + pdsettings.bg;
+	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	break;
     case 'average':
 	switch (geochronometer){
@@ -229,7 +229,7 @@ function getOptions(prefs){
 	if (pdsettings.fact != 'auto')
 	    out += ",fact=" + pdsettings.fact;
 	out += ",levels=selection2levels(method='" + geochronometer + "')";
-	out += ",ellipse.col=" + pdsettings.bg;
+	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	break;
     case 'MDS':
 	out += ",classical=" + pdsettings.classical;

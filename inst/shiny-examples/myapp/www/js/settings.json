@@ -69,7 +69,8 @@
 	"shownumbers": "FALSE",
 	"showage": 0,
 	"sigdig": 2,
-	"bg": "c('#00FF0080','#FF000080')"
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)"
     },
     "evolution": {
 	"min08": "auto",
@@ -85,7 +86,8 @@
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",
 	"sigdig": 2,
-	"bg": "c('#00FF0080','#FF000080')"
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)"
     },
     "isochron": {
 	"type": 2,
@@ -99,7 +101,8 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"bg": "c('#00FF0080','#FF000080')"
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)"
     },
     "regression": {
 	"model": 1,
@@ -110,7 +113,8 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"bg": "c('#00FF0080','#FF000080')"
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)"
     },
     "radial": {
 	"transformation": "log",
@@ -123,7 +127,8 @@
 	"sigdig": 2,
 	"shownumbers": "FALSE",
 	"numpeaks": 0,
-	"bg": "c('#00FF0080','#FF000080')"
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)"
     },
     "average": {
 	"outliers": "TRUE",
@@ -184,7 +189,8 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"fact": "auto",
-	"bg": "c('#00FF0080','#FF000080')"
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(0,0,1,0.5)"
     },
     "ages": {
 	"exterr": "TRUE",

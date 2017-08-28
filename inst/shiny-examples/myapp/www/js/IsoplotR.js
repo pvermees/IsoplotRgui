@@ -719,7 +719,8 @@ $(function(){
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#sigdig').val(set.sigdig);
-	    $('#bg').val(set.bg);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
 	    break;
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.type+']').
@@ -738,7 +739,8 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    $('#isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
-	    $('#bg').val(set.bg);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
 	    break;
 	case 'radial':
 	    $('#transformation option[value='+set.transformation+']').
@@ -755,7 +757,8 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(set.cex);
-	    $('#bg').val(set.bg);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
 	    break;
 	case 'average':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -820,7 +823,8 @@ $(function(){
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
 	    $('#fact').val(set.fact);
-	    $('#bg').val(set.bg);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
 	    break;
 	case 'evolution':
 	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
@@ -838,7 +842,8 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
-	    $('#bg').val(set.bg);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
 	    if (set.transform=='TRUE'){
 		$('.show4evotrans').show();
 		$('.hide4evotrans').hide();
@@ -876,7 +881,8 @@ $(function(){
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.sigdig = $('#sigdig').val();
-	    pdsettings.bg = $('#bg').val();
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
 	    break;
 	case 'isochron':
 	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
@@ -891,7 +897,8 @@ $(function(){
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.model = 1*$('option:selected', $("#isochron-models")).attr('value');
-	    pdsettings.bg = $('#bg').val();
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
 	    break;
 	case 'radial':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
@@ -903,7 +910,8 @@ $(function(){
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.pch = $('#pch').val();
 	    pdsettings["cex"] = $('#cex').val();
-	    pdsettings.bg = $('#bg').val();
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
 	    break;
 	case 'average':
 	    if (geochronometer != "other"){
@@ -989,7 +997,8 @@ $(function(){
 	    pdsettings["miny"] = $('#miny').val();
 	    pdsettings["maxy"] = $('#maxy').val();
 	    pdsettings["fact"] = $('#fact').val();
-	    pdsettings.bg = $('#bg').val();
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
 	    break;
 	case 'evolution':
 	    pdsettings.transform =
@@ -1010,7 +1019,8 @@ $(function(){
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
-	    pdsettings.bg = $('#bg').val();
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
 	    break;
 	default:
 	}
