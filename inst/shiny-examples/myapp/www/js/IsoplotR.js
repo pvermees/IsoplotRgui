@@ -353,6 +353,17 @@ $(function(){
 		$('.hide4UPb6').hide();
 		break;
 	    }
+	    switch (set.type){
+	    case 1:
+	    case 2:
+	    case 3:
+	    case 5:
+		$(".show4UPbType4").hide();
+		break;
+	    case 4:
+		$(".show4UPbType4").show();
+		break;
+	    }
 	    break;
 	case 'Th-U':
 	    $('.show4ThU').show();
@@ -1464,6 +1475,7 @@ $(function(){
     $.chooseUPbAgeType = function(){
 	var type = 1*$('option:selected', $("#UPb-age-type")).attr('value');
 	IsoplotR.settings["U-Pb"].type = type;
+	showOrHide();
     }
     
     $.chooseMineral = function(){
