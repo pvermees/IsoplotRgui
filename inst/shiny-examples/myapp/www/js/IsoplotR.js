@@ -323,6 +323,7 @@ $(function(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
+	var pd = IsoplotR.settings[plotdevice];
 	switch (geochronometer){
 	case 'U-Pb':
 	    $('.show4UPb').show();
@@ -535,6 +536,22 @@ $(function(){
 		break;
 	    }
 	    break;
+	}
+	switch (plotdevice){
+	case 'concordia':
+	    switch (pd.showage){
+	    case '0':
+		$('.hide4noUPbAge').hide();
+		break;
+	    case '1':
+		$('.show4concordiaAge').show();
+		$('.hide4concordiaAge').hide();
+		break;
+	    case '2':
+		$('.show4discordiaAge').show();
+		$('.hide4discordiaAge').hide();
+		break;
+	    }
 	}
     }
     
@@ -1541,6 +1558,7 @@ $(function(){
 	var text = help($(this).attr('id'));
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
+	showOrHide();
     });
 
     $("#OPEN").on('change', function(e){
