@@ -175,7 +175,8 @@ function getOptions(prefs){
 	case 'detritals':
 	    out += ",samebandwidth=" + pdsettings.samebandwidth;
 	    out += ",normalise=" + pdsettings.normalise;
-	    if (pdsettings.pchdetritals!='none') { out += ",pch=" + pdsettings.pchdetritals; }
+	    if (pdsettings.pchdetritals!='none') {
+		out += ",pch=" + pdsettings.pchdetritals; }
 	    break;
 	default:
 	}

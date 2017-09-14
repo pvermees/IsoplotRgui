@@ -159,7 +159,8 @@ $(function(){
 	    colHeaders: handson.headers
 	});
 	// change headers for LA-ICP-MS-based fission track data
-	if (geochronometer == 'fissiontracks' & settings.fissiontracks.format > 1){
+	if (geochronometer == 'fissiontracks' &
+	    settings.fissiontracks.format > 1){
 	    var nc = $("#INPUT").handsontable('countCols');
 	    var headers = ['Ns','A'];
 	    for (var i=0; i<(nc-2)/2; i++){
@@ -172,7 +173,8 @@ $(function(){
 	}
     }
 
-    // overwrites the data in the IsoplotR preferences based on the handsontable
+    // overwrites the data in the IsoplotR 
+    // preferences based on the handsontable
     function handson2json(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
@@ -207,8 +209,9 @@ $(function(){
 	    $.each(mydata.data, function(k, v) {
 		mydata.data[k] = null;
 	    });
-	    var labels = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
-			  'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	    var labels = ['A','B','C','D','E','F','G','H','I','J',
+			  'K','L','M','N','O','P','Q','R','S','T',
+			  'U','V','W','X','Y','Z'];
 	    var label = '';
 	    for (var k=0; k<dnc(); k++){
 		if (k<26) {
@@ -216,12 +219,14 @@ $(function(){
 		} else {
 		    label = labels[Math.floor((k-1)/26)] + labels[k%26];
 		}
-		mydata.data[label] = $("#INPUT").handsontable('getDataAtCol',k);
+		mydata.data[label] =
+		    $("#INPUT").handsontable('getDataAtCol',k);
 	    }
 	} else {
 	    var i = 0;
 	    $.each(mydata.data, function(k, v) {
-		mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',i++);
+		mydata.data[k] =
+		    $("#INPUT").handsontable('getDataAtCol',i++);
 	    });
 	}
 	out.settings.data[geochronometer] = mydata;

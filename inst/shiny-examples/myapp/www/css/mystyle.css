@@ -2,6 +2,14 @@ body {
     font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
 }
 
+td {
+    vertical-align: top;
+}
+
+.alignright {
+    float: right;
+}
+
 a {
     border: 0;
     color: black;
@@ -82,7 +90,7 @@ left {
 }
 
 right {
-    overflow:hidden;
+    overflow:auto;
     position:fixed;
     left:50%;
     width:50%;
