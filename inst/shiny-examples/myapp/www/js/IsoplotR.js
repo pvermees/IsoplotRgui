@@ -1645,8 +1645,8 @@ $(function(){
     
     $("#PLOT").click(function(){
 	$("#OUTPUT").hide();
-//	$("#myplot").html("<div id='loader'>Processing...</div>");
 	update();
+	$("#myplot").html("<div id='loader'>Processing...</div>");
 	$("#PLOTTER").click();
     });
 
@@ -1654,8 +1654,8 @@ $(function(){
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").handsontable('deselectCell');
 	$("#OUTPUT").show();
-//	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	update();
+	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#RUNNER").click();
     });
 
