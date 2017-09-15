@@ -6,6 +6,10 @@ td {
     vertical-align: top;
 }
 
+u {
+    text-decoration: underline;
+}
+
 .alignright {
     float: right;
 }
