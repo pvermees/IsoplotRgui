@@ -21,11 +21,11 @@ distance along x-axis is a measure if its precision. Thus, the radial
 plot simultaneously visualises a measurement’s value and precision. No
 other graphical method achieves this goal with the same elegance
 (Galbraith, 1988). This makes the radial plot the method of choice for
-visualising heteroscedastic data, i.e. data with (large and) variable
-measurement uncertainties. Traditional applications in the Earth
-Sciences are fission track and luminescence dating (e.g., Galbraith,
-1990; Galbraith et al., 1999). <tt>IsoplotR</tt> generalises it to all
-other geochronometers as well.
+visualising heteroscedastic data, i.e. data with variable measurement
+uncertainties. Traditional applications in the Earth Sciences are
+fission track and luminescence dating (e.g., Galbraith, 1990;
+Galbraith et al., 1999). <tt>IsoplotR</tt> generalises it to all other
+geochronometers as well.
 
 <p></p>
 Legend:
@@ -43,7 +43,7 @@ Legend:
 	  <td>the central age, which is defined as e<sup>&mu;</sup> where
 	    &mu; is the mean of the following log-normal distribution:
 	    <br>
-	    t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;)
+	    t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup>)
 	    <span class="alignright">(eq. 1)</span>
 	    <br>
 	    with s[t<sub>i</sub>] the standard error of the i<sup>th</sup>

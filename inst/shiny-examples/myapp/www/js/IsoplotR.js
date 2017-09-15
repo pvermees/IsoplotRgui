@@ -1645,20 +1645,18 @@ $(function(){
     
     $("#PLOT").click(function(){
 	$("#OUTPUT").hide();
+	$("#myplot").html("<div id='loader'>Processing...</div>");
 	update();
-	$("#myplot").load("loader.html", function(){
-	    $("#PLOTTER").click();
-	})
+	$("#PLOTTER").click();
     });
 
     $("#RUN").click(function(){
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").handsontable('deselectCell');
 	$("#OUTPUT").show();
+	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	update();
-	$("#myscript").load("loader.html", function(){
-	    $("#RUNNER").click(); 
-	});
+	$("#RUNNER").click();
     });
 
     var IsoplotR = initialise();
