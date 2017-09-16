@@ -49,6 +49,7 @@ function getOptions(prefs){
 	out += ",pch=" + pdsettings.pch;
 	out += ",cex=" + pdsettings.cex;
 	out += ",bg=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	switch (geochronometer){

@@ -788,6 +788,7 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#t0').val(set.t0);
 	    $('#maxt').val(set.maxt);
+	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(set.cex);
 	    $('#bg1').val(set.bg1);
@@ -940,6 +941,7 @@ $(function(){
 	    pdsettings.mint = $('#mint').val();
 	    pdsettings.t0 = $('#t0').val();
 	    pdsettings.maxt = $('#maxt').val();
+	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.pch = $('#pch').val();
 	    pdsettings["cex"] = $('#cex').val();
@@ -1644,18 +1646,18 @@ $(function(){
     });
     
     $("#PLOT").click(function(){
-	$("#OUTPUT").hide();
 	update();
+	$("#OUTPUT").hide();
 	$("#myplot").html("<div id='loader'>Processing...</div>");
 	$("#PLOTTER").click();
     });
 
     $("#RUN").click(function(){
+	update();
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").handsontable('deselectCell');
-	$("#OUTPUT").show();
-	update();
 	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
+	$("#OUTPUT").show();
 	$("#RUNNER").click();
     });
 

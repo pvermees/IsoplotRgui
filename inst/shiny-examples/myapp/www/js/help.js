@@ -88,8 +88,8 @@ function help(id){
 	    "along the isochron line."
 	break;
     case "help-alpha":
-	text = "Set the probability cutoff (&alpha;) for the error ellipses, " + 
-	    "which will be drawn at a 100x(1-&alpha;)% confidence level. ";
+	text = "Set the probability cutoff (&alpha;) for error ellipses, " + 
+	    "and 100(1-&alpha;)% confidence intervals. ";
 	break;
     case "help-outliers":
 	text = "If checked, applies a generalised Chauvenet Criterion to " +

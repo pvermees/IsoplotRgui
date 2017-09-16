@@ -125,6 +125,7 @@
 	"cex": 1,
 	"bg": "c('yellow','red')",
 	"sigdig": 2,
+	"alpha": 0.05,
 	"shownumbers": "FALSE",
 	"numpeaks": 0,
 	"bg1": "rgb(0,1,0,0.5)",
