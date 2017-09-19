@@ -432,6 +432,24 @@ $(function(){
 	case 'Th-U':
 	    $('.show4ThU').show();
 	    $('.hide4ThU').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4ThU1').show();
+		$('.hide4ThU1').hide();
+		break;
+	    case 2:
+		$('.show4ThU2').show();
+		$('.hide4ThU2').hide();
+		break;
+	    case 3:
+		$('.show4ThU3').show();
+		$('.hide4ThU3').hide();
+		break;
+	    case 4:
+		$('.show4ThU4').show();
+		$('.hide4ThU4').hide();
+		break;
+	    }
 	    break;
 	case 'Rb-Sr':
 	    $('.show4RbSr').show();

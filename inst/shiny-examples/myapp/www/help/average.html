@@ -1,6 +1,86 @@
 (under construction)
 
 <p></p>
+<u>Legend:</u>
+<p></p>
+
+<ol>
+  <li>
+    mean = t &plusmn; x | y
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>t:</td>
+	<td>the weighted mean age using a random effects model with
+	  two sources of uncertainty.
+	</td>
+      </tr>
+      <tr>
+	<td>x:</td>
+	<td>the estimated uncertainty (&sigma;) of t.</td>
+      </tr>
+      <tr>
+	<td>y:</td>
+	<td>the 100(1-&alpha;)% confidence interval for t
+	  using the appropriate number of degrees of freedom.
+	</td>
+      </tr>
+    </table>
+  </li>
+  
+  <li>
+    MSWD = x, p(&chi;<sup>2</sup>) = y 
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>x:</td>
+	<td>the Mean Square of the Weighted Deviates (MSWD) for age homogeneity.
+	  MSWD values >> 1 indicate that the ages are overdispersed with respect
+	  to the stated analytical uncertainties.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>the Chi-squared p-value for the age homogeneity test.
+	  p-values << 0.05 indicate that the ages are overdispersed with respect
+	  to the stated analytical uncertainties.
+	</td>
+      </tr>
+    </table>
+  </li>
+
+  <li>
+    dispersion = x | y
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>x:</td>
+	<td>the standard deviation of the true ages after removal of
+	  the analytical uncertainties. The dispersion is
+	  significantly greater than zero if the MSWD is significantly
+	  greater than one.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>the 100(1-&alpha;)% confidence interval for x.
+	</td>
+      </tr>
+    </table>
+  </li>
+</ol>
+
+<p></p>
 <u>References:</u>
 <p></p>
 
