@@ -1666,7 +1666,7 @@ $(function(){
     $("#PLOT").click(function(){
 	update();
 	$("#OUTPUT").hide();
-	$("#myplot").html("<div id='loader'>Processing...</div>");
+	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
 	$("#PLOTTER").click();
     });
 
