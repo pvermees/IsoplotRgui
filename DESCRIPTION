@@ -8,6 +8,6 @@ Maintainer: Pieter Vermeesch <p.vermeesch@ucl.ac.uk>
 Depends:
     R (>= 3.0.0)
 Suggests: shiny, IsoplotR
-License: GPL-2
+License: MIT
 LazyData: true
 RoxygenNote: 6.0.1

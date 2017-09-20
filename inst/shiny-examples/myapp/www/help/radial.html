@@ -31,51 +31,56 @@ geochronometers as well.
 <u>Legend:</u>
 <p></p>
 
-  <ol>
-    <li>
-      central age = t &plusmn; s (1&sigma;)
-      <p></p>
-      where:
-      <p></p>
-      <table>
-	<tr>
-	  <td>t:</td>
-	  <td>the central age, which is defined as e<sup>&mu;</sup> where
-	    &mu; is the mean of the following log-normal distribution:
-	    <br>
-	    t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup>)
-	    <span class="alignright">(eq. 1)</span>
-	    <br>
-	    with s[t<sub>i</sub>] the standard error of the i<sup>th</sup>
-	    (out of n) measurements, and &omega; the <i>overdispersion</i>.
-	  </td>
-	</tr>
-	<tr>
-	  <td>s:</td>
-	  <td>the estimated standard deviation of t, estimated by the
-	    method of maximum likelihood.</td>
-	</tr>
-      </table>
-    </li>
-    <li>
-      dispersion = 100&omega;%, p(&Chi;<sup>2</sup>) = p
-      <p></p>
-      where:
-      <p></p>
-      <table>
-	<tr>
-	  <td>&omega;:</td>
-	  <td>the overdispersion defined by eq. 1.</td>
-	</tr>
-	<tr>
-	  <td>p:</td>
-	  <td>the p-value of a Chi-square probability for homogeneity.
-	    High values of p (>0.05, say) indicate that there is not
-	    enough evidence for overdispersion.</td>
-	</tr>
-      </table>
-    </li>
-  </ol>
+<ol>
+  <li>
+    central age = t &plusmn; x | y
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>t:</td>
+	<td>the central age, which is defined as e<sup>&mu;</sup> where
+	  &mu; is the mean of the following log-normal distribution:
+	  <br>
+	  t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup>)
+	  <span class="alignright">(eq. 1)</span>
+	  <br>
+	  with s[t<sub>i</sub>] the standard error of the i<sup>th</sup>
+	  (out of n) measurements, and &omega; the <i>overdispersion</i>.
+	</td>
+      </tr>
+      <tr>
+	<td>x:</td>
+	<td>the estimated standard deviation of t, estimated by the
+	  method of maximum likelihood.</td>
+      </tr>
+      <tr>
+	<td>y:</td>
+	<td>the 100(1-&alpha;)% confidence interval for t
+	  using the appropriate number of degrees of freedom.
+	</td>
+      </tr>
+    </table>
+  </li>
+  <li>
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>&omega;:</td>
+	<td>the overdispersion defined by eq. 1.</td>
+      </tr>
+      <tr>
+	<td>p:</td>
+	<td>the p-value of a Chi-square probability for homogeneity.
+	  High values of p (>0.05, say) indicate that there is not
+	  enough evidence for overdispersion.</td>
+      </tr>
+    </table>
+  </li>
+</ol>
 
 <p></p>
 <u>References:</u>

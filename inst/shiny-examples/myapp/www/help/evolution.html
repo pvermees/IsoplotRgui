@@ -1,6 +1,127 @@
 (under construction)
 
 <p></p>
+<u>Legend:</u> (if isochron age calculation is selected)
+<p></p>
+
+<ol>
+  <li>
+    age  = t &plusmn; x | y | z
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>t:</td>
+	<td>the isochron age.
+	</td>
+      </tr>
+      <tr>
+	<td>x:</td>
+	<td>the estimated uncertainty (&sigma;) of t.</td>
+      </tr>
+      <tr>
+	<td>y:</td>
+	<td>
+	  the 100(1-&alpha;)% confidence interval for t
+	  using the appropriate number of degrees of freedom.</td>
+      </tr>
+      <tr>
+	<td>
+	  z:
+	</td>
+	<td>
+	  the approximate 100(1-&alpha;)% confidence interval for t
+	  with overdispersion, calculated as z = y&radic;MSWD.
+	</td>
+      </tr>
+    </table>
+  </li>
+  
+  <li>
+    <span hidden class="show4ThU1 show4ThU2">
+      (<sup>234</sup>U/<sup>238</sup>U)<sub>0</sub>
+    </span>
+    <span hidden class="show4ThU3 show4ThU4">
+      (<sup>230</sup>Th/<sup>232</sup>Th)<sub>0</sub><sub>x</sub>
+    </span>
+    <span class="hide4PbPb hide4ArAr hide4ThU">intercept</span>
+    = i &plusmn; x | y | z
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>i:</td>
+	<td>
+	  the initial
+	  <span hidden class="show4ThU1 show4ThU2">
+	    (<sup>234</sup>U/<sup>238</sup>U)
+	  </span>
+	  <span hidden class="show4ThU3 show4ThU4">
+	    excess (<sup>230</sup>Th/<sup>232</sup>Th)
+	  </span>
+	  -ratio obtained by linear regression.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  x:
+	</td>
+	<td>the estimated uncertainty (&sigma;) of i.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>
+	  the 100(1-&alpha;)% confidence interval for i using the
+	  appropriate number of degrees of freedom.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  z:
+	</td>
+	<td>
+	  the approximate 100(1-&alpha;)% confidence interval for i
+	  with overdispersion, calculated as z = y&radic;MSWD.
+	  (only reported if MSWD > 1)
+	</td>
+      </tr>
+    </table>
+  </li>
+
+  <li>
+    MSWD = x, p(&chi;<sup>2</sup>) = y 
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>x:</td>
+	<td>the Mean Square of the Weighted Deviates (MSWD) for the
+	  linear fit.  MSWD values >> 1 indicate that the ages are
+	  overdispersed with respect to the stated analytical
+	  uncertainties.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>the Chi-squared p-value for the linear fit.  p-values <<
+	  0.05 indicate that the ages are overdispersed with respect
+	  to the stated analytical uncertainties.
+	</td>
+      </tr>
+    </table>
+  </li>
+</ol>
+
+
+<p></p>
 <u>References:</u>
 <p></p>
 
