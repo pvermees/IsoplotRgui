@@ -88,6 +88,7 @@ function getOptions(prefs){
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",model=" + pdsettings.model;
 	break;
     case 'isochron':
 	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar')

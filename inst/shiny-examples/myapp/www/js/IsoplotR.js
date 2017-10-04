@@ -905,6 +905,8 @@ $(function(){
 		$('.show4evotrans').hide();
 		$('.hide4evotrans').show();
 	    }
+	    $('#evolution-isochron-models option[value='+set.model+']').
+		prop('selected', 'selected');
 	    break;
 	default:
 	}
@@ -1054,7 +1056,8 @@ $(function(){
 	    pdsettings["fact"] = $('#fact').val();
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
-	    pdsettings.model = 1*$('option:selected', $("#helioplot-models")).attr('value');
+	    pdsettings.model = 1*$('option:selected',
+				   $("#helioplot-models")).attr('value');
 	    break;
 	case 'evolution':
 	    pdsettings.transform =
@@ -1077,6 +1080,8 @@ $(function(){
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.model = 1*$('option:selected',
+				   $("#evolution-isochron-models")).attr('value');
 	    break;
 	default:
 	}

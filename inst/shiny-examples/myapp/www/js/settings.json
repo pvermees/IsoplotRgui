@@ -87,7 +87,8 @@
 	"shownumbers": "FALSE",
 	"sigdig": 2,
 	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)"
+	"bg2": "rgb(1,0,0,0.5)",
+	"model": 1
     },
     "isochron": {
 	"type": 2,

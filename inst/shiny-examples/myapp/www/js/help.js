@@ -8,13 +8,22 @@ function help(id){
 	    "<sup>206</sup>Pb/<sup>238</sup>U-ratio (Wetherill concordia).";
 	break;
     case "help-conc-age-option":
-	text = "Select the option to either plot the data without calculating " +
-	    "an age; to fit a concordia composition and age; or to fit a discordia " +
-	    "line through the data. In the latter case, <tt>IsoplotR</tt> will " +
+	text = "Select the option to either <ul> " +
+	    "<li>plot the data without calculating an age</i> " +
+	    "<li>fit a concordia composition and age</li> " +
+	    "<li>fit a discordia line through the data using the " +
+	    "maximum likelihood algorithm of Ludwig (1998), which " +
+	    "assumes that the scatter of the data is solely due to the " +
+	    "analytical uncertainties. In this case, <tt>IsoplotR</tt> will " +
 	    "either calculate an upper and lower intercept age (for Wetherill " +
 	    "concordia), or a lower intercept age and common " +
 	    "(<sup>207</sup>Pb/<sup>206</sup>Pb)<sub>o</sub>-ratio intercept " +
-	    "(for Tera-Wasserburg).";
+	    "(for Tera-Wasserburg). If MSWD>0, then the analytical uncertainties " +
+	    "are augmented by a <i>factor</i> &radic;MSWD.</li>" +
+	    "<li>fit a discordia line ignoring the analytical uncertainties</li>" +
+	    "<li>fit a discordia line using a modified maximum likelihood " +
+	    "algorithm that includes accounts for any overdispersion by adding a " +
+	    "geological (co)variance <i>term</i>.";
 	break;
     case "help-mint-concordia":
 	text = "Set the minimum age limit for the concordia diagram " + 
