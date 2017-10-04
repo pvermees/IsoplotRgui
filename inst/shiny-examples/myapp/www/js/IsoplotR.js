@@ -877,6 +877,8 @@ $(function(){
 	    $('#fact').val(set.fact);
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
+	    $('#helioplot-models option[value='+set.model+']').
+		prop('selected', 'selected');
 	    break;
 	case 'evolution':
 	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
@@ -1052,6 +1054,7 @@ $(function(){
 	    pdsettings["fact"] = $('#fact').val();
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.model = 1*$('option:selected', $("#helioplot-models")).attr('value');
 	    break;
 	case 'evolution':
 	    pdsettings.transform =

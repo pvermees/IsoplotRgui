@@ -737,15 +737,45 @@ function help(id){
 	    "4. <sup>234</sup>U/<sup>238</sup>U vs. " +
 	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)";
 	break;
+    case "help-helioplot-models":
+	text = "Choose one of the following statistical models:<br>" +
+	    "1. Weighted mean: This model assumes that the scatter between " +
+	    "the data points is solely caused by the analytical uncertainty. " +
+	    "If the assumption is correct, then the MSWD value should be " +
+	    "approximately equal to one. There are three strategies to deal " +
+	    " with the case where MSWD>1. The first of these is to assume that " +
+	    "the analytical uncertainties have been underestimated by a <i>factor</i> " +
+	    "&radic;MSWD. Alternative approaches are described below. <br>" +
+	    "2. Unweighted mean: A second way to deal with over- or underdispersed " +
+	    "datasets is to simply ignore the analytical uncertainties.<br>" +
+	    "3. Weighted mean with overdispersion: Instead of attributing any " +
+	    "overdispersion (MSWD > 1) to underestimated analytical uncertainties " +
+	    "(model 1), one could also attribute it to the presence of geological " +
+	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>.";
+	break;
     case "help-isochron-models":
 	text = "Choose one of two regression models:<br>" +
 	    "1. Maximum Likelihood regression, using either the modified error weighted " +
 	    "least squares algorithm of York et al. (2004) for 2-dimensional data, " +
 	    "or the Maximum Likelihood formulation of Ludwig and Titterington (1994) " +
 	    "for 3-dimensional data. These algorithms take into account the " +
-	    "analytical uncertainties and error correlations.<br>" +
-	    "2. Ordinary least squares regression, which ignores " +
-	    "the analytical uncertainties.";
+	    "analytical uncertainties and error correlations, under the assumption " +
+	    "that the scatter between the data points is solely caused " +
+	    "by the analytical uncertainty. " +
+	    "If the assumption is correct, then the MSWD value should be " +
+	    "approximately equal to one. There are three " +
+	    "strategies to deal with the case where MSWD>1. " +
+	    "The first of these is to assume that " +
+	    "the analytical uncertainties have been underestimated by a <i>factor</i> " +
+	    "&radic;MSWD. Alternative approaches are described below. <br>" +
+	    "2. Ordinary least squares regression: A second way to deal with " +
+	    "over- or underdispersed datasets is to simply ignore the " +
+	    "analytical uncertainties.<br>" +
+	    "3. Maximum likelihood regression with overdispersion: " +
+	    "Instead of attributing any overdispersion (MSWD > 1) to " +
+	    "underestimated analytical uncertainties " +
+	    "(model 1), one can also attribute it to the presence of geological " +
+	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>.";
 	break;
     case "help-ArAr-formats":
 	text = "Choose one of three input formats:<br>" +

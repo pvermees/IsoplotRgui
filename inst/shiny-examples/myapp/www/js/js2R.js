@@ -232,6 +232,7 @@ function getOptions(prefs){
 	    out += ",fact=" + pdsettings.fact;
 	out += ",levels=selection2levels(method='" + geochronometer + "')";
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",model=" + pdsettings.model;
 	break;
     case 'MDS':
 	out += ",classical=" + pdsettings.classical;

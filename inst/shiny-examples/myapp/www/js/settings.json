@@ -191,7 +191,8 @@
 	"maxy": "auto",
 	"fact": "auto",
 	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(0,0,1,0.5)"
+	"bg2": "rgb(0,0,1,0.5)",
+	"model": 1
     },
     "ages": {
 	"exterr": "TRUE",
