@@ -946,10 +946,10 @@ $(function(){
 	    pdsettings.exterr = $('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	case 'regression':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.minx = $('#isochron-minx').val();
-	    pdsettings.maxx = $('#isochron-maxx').val();
-	    pdsettings.miny = $('#isochron-miny').val();
-	    pdsettings.maxy = $('#isochron-maxy').val();
+	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
+	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
+	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
+	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.model = 1*$('option:selected', $("#isochron-models")).attr('value');
@@ -1578,6 +1578,7 @@ $(function(){
 	    IsoplotR.settings.geochronometer =
 		$('option:selected', $("#geochronometer")).attr('id');
 	    selectGeochronometer();
+	    IsoplotR.optionschanged = false;
 	}
     });
     $("#plotdevice").selectmenu({
