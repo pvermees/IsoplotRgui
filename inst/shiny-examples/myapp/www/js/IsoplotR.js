@@ -1252,7 +1252,7 @@ $(function(){
 	if (gc == "other"){
 	    populate(IsoplotR,true);
 	} else {
-	    populate(IsoplotR,false);
+	    populate(IsoplotR,false); 
 	}
 	if (gc == 'fissiontracks' & npd == 'set-zeta'){
 	    $(".show4zeta").show();
@@ -1582,8 +1582,7 @@ $(function(){
 	}
     });
     $("#plotdevice").selectmenu({
-	change: function( event, ui ) { changePlotDevice(); },
-	focus: function( event, ui ) { changePlotDevice(); }
+	change: function( event, ui ) { changePlotDevice(); }
     });
     
     $("#helpmenu").dialog({ autoOpen: false, width: 500 });
