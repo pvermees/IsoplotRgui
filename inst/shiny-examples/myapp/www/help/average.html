@@ -1,4 +1,51 @@
-(under construction)
+Let t = {t<sub>1</sub>, ..., t<sub>n</sub>} be a set of <sub>n</sub>
+age estimates determined on different aliquots of the same sample, and
+let s[t<sub>1</sub>], ..., s[t<sub>n</sub>]} be their analytical
+uncertainties. <tt>IsoplotR</tt> then calculates the weighted mean of
+these data assuming a Normal distribution with two sources of
+variance:
+
+<p></p>
+t<sub>i</sub> ~ <i>N</i>( &mu;, &sigma;<sup>2</sup> =
+s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup> )
+<span class="alignright">(eq. 1)</span>
+<p></p>
+
+where &mu; is the mean, &sigma;<sup>2</sup> is the total variance and
+&omega; is the 'overdispersion'. Equation 1 can be solved for &mu; and
+&omega; by the method of maximum likelihood.
+<tt>IsoplotR</tt> uses a modified version of Chauvenet's criterion for
+outlier detection:
+
+<ol>
+<li> Compute the error-weighted mean of the n age determinations
+  t<sub>i</sub> using their analytical uncertainties s[t<sub>i</sub>]
+  by solving Equation 1 for &mu; and &omega; as discussed
+  before.
+</li>
+<li> For each t<sub>i</sub>, compute the probability p<sub>i</sub>
+  that that |t-&mu;|>|t<sub>i</sub>-&mu;| for
+<p>
+  t ~ <i>N</i>(0,&radic;<span style="text-decoration: overline;">
+    s[t<sub>i</sub>]<sup>2</sup>+&omega;<sup>2</sup>
+  </span>)
+<span class="alignright">(eq. 2)</span>
+</p>
+</li>
+<li>
+  Let p<sub>j</sub> &equiv; min(p<sub>1</sub>,&hellip;,p<sub>n</sub>).
+  If p<sub>j</sub><0.05/n, then reject the j<sup>th</sup> date, reduce
+  n by one (i.e., n &rarr; (n-1) and repeat steps 1 through 3 until
+  the surviving dates pass the third step.
+</li>
+</ol>
+
+If the analtyical uncertainties are small compared to the scatter
+between the dates (i.e. if &omega; >> s[t<sub<i</sub>] for all
+i), then this generalised algorithm reduces to the conventional
+Chauvenet criterion. If the analytical uncertainties are large and the
+data do not exhibit any overdispersion, then the heuristic outlier
+detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
 
 <p></p>
 <u>Legend:</u>
@@ -6,25 +53,25 @@
 
 <ol>
   <li>
-    mean = t &plusmn; x | y
+    mean = &mu; &plusmn; x | y
     <p></p>
     where:
     <p></p>
     <table>
       <tr>
-	<td>t:</td>
+	<td>&mu;:</td>
 	<td>the weighted mean age using a random effects model with
 	  two sources of uncertainty.
 	</td>
       </tr>
       <tr>
 	<td>x:</td>
-	<td>the estimated uncertainty (&sigma;) of t.</td>
+	<td>the estimated uncertainty (&sigma;) of &mu;.</td>
       </tr>
       <tr>
 	<td>y:</td>
-	<td>the 100(1-&alpha;)% confidence interval for t
-	  using the appropriate number of degrees of freedom.
+	<td>the studentised 100(1-&alpha;)% confidence interval for
+	  &mu; using the appropriate number of degrees of freedom.
 	</td>
       </tr>
     </table>
@@ -56,13 +103,13 @@
   </li>
 
   <li>
-    dispersion = x | y
+    dispersion = &omega; | &Omega;
     <p></p>
     where:
     <p></p>
     <table>
       <tr>
-	<td>x:</td>
+	<td>&omega;:</td>
 	<td>the standard deviation of the true ages after removal of
 	  the analytical uncertainties. The dispersion is
 	  significantly greater than zero if the MSWD is significantly
@@ -71,9 +118,9 @@
       </tr>
       <tr>
 	<td>
-	  y:
+	  &Omega;:
 	</td>
-	<td>the 100(1-&alpha;)% confidence interval for x.
+	<td>the 100(1-&alpha;)% confidence interval of the geological scatter.
 	</td>
       </tr>
     </table>
@@ -84,4 +131,6 @@
 <u>References:</u>
 <p></p>
 
-(in preparation)
+Ludwig, K. R. User’s manual for Isoplot 3.00:
+a geochronological toolkit for Microsoft Excel.
+<i>Berkeley Geochronology Center Special Pulication</i>, 2003.

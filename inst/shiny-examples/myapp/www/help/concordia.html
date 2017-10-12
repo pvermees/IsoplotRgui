@@ -38,8 +38,8 @@ lead loss.
 	</tr>
 	<tr>
 	  <td>y:</td>
-	  <td>the 100(1-&alpha;)% confidence interval for t
-	    using the appropriate number of degrees of freedom.
+	  <td>the studentised 100(1-&alpha;)% confidence interval for
+	    t using the appropriate number of degrees of freedom.
 	  </td>
 	</tr>
 	<tr>
@@ -60,7 +60,8 @@ lead loss.
       <table>
 	<tr>
 	  <td>u:</td>
-	  <td>the Mean Square of the Weighted Deviates (MSWD) for concordance.</td>
+	  <td>the Mean Square of the Weighted Deviates (MSWD)
+	    for concordance.</td>
 	</tr>
 	<tr>
 	  <td>v:</td>
@@ -95,24 +96,50 @@ lead loss.
 
 <div hidden class="hide4concordiaAge show4discordiaAge hide4noUPbAge">
   <p></p>
-  Legend:
+  <u>Legend:</u>
   <p></p>
 
   <ol>
     <li>
-      lower intercept = t &plusmn; x | y | z (Wetherill)<br>
-      upper intercept = t &plusmn; x | y | z (Wetherill)<br>
-      age = t &plusmn; x | y | z (Tera-Wasserburg)<br>
-      (<sup>207</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = t &plusmn; x | y | z (Tera-Wasserburg)<br>
+      lower intercept = t &plusmn; x | y
+      <span hidden class="show4model1 hide4model2 hide4model3">
+	| z 
+      </span>
+      (Wetherill)<br>
+      upper intercept = t &plusmn; x | y
+      <span hidden class="show4model1 hide4model2 hide4model3">
+	| z
+      </span>
+      (Wetherill)<br>
+      age = t
+      &plusmn; x | y
+      <span hidden class="show4model1 hide4model2 hide4model3">
+	| z
+      </span>
+      (Tera-Wasserburg)<br>
+      (<sup>207</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = t &plusmn; x | y
+      <span hidden class="show4model1 hide4model2 hide4model3">
+	| z
+      </span>
+      (Tera-Wasserburg)<br>
       <p></p>
       where:
       <p></p>
       <table>
 	<tr>
 	  <td>t:</td>
-	  <td>the Maximum Likelihood estimate of the age or
-	    initial <sup>207</sup>Pb/<sup>206</sup>Pb-ratio using the
-	    algorithm of Ludwig (1998).</td>
+	  <td>the
+	    <span hidden class="show4model1 hide4model2 show4model3">
+	      Maximum Likelihood
+	    </span>
+	    <span hidden class="hide4model1 show4model2 hide4model3">
+	      least squares
+	    </span>
+	    estimate of the age or initial
+	    <sup>207</sup>Pb/<sup>206</sup>Pb-ratio
+	    <span hidden class="show4model1 hide4model2 show4model3">
+	      using the algorithm of Ludwig (1998)
+	    </span>.</td>
 	</tr>
 	<tr>
 	  <td>x:</td>
@@ -120,10 +147,10 @@ lead loss.
 	</tr>
 	<tr>
 	  <td>y:</td>
-	  <td>the 100(1-&alpha;)% confidence interval for t
-	    using the appropriate number of degrees of freedom.</td>
+	  <td>the studentised 100(1-&alpha;)% confidence interval for
+	    t using the appropriate number of degrees of freedom.</td>
 	</tr>
-	<tr>
+	<tr class="show4model1 hide4model2 hide4model3">
 	  <td>
 	    z:
 	  </td>
@@ -134,7 +161,7 @@ lead loss.
       </table>
     </li>
     
-    <li>
+    <li class="show4model1 hide4model2 hide4model3">
       MSWD = u, p(&chi;<sup>2</sup>) = v
       <p></p>
       where:
@@ -151,6 +178,26 @@ lead loss.
 	</tr>
       </table>
     </li>
+
+    <li class="hide4model1 hide4model2 show4model3">
+      overdispersion = x | y % of the initial Pb
+      <p></p>
+      where:
+      <p></p>
+      <table>
+	<tr>
+	  <td>x:</td>
+	  <td>the estimated standard deviation of the assumedly
+	    Gaussian geological scatter of the common-Pb compositions.</td>
+	</tr>
+	<tr>
+	  <td>y:</td>
+	  <td>a studentised 100(1-&alpha;)% confidence interval
+	    for the common-Pb dispersion.</td>
+	</tr>
+      </table>
+    </li>
+
   </ol>
 </div>
 

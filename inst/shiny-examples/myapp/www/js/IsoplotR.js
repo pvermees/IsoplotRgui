@@ -563,18 +563,51 @@ $(function(){
 	switch (plotdevice){
 	case 'concordia':
 	    switch (pd.showage){
-	    case '0':
+	    case 0:
 		$('.hide4noUPbAge').hide();
 		break;
-	    case '1':
+	    case 1:
 		$('.show4concordiaAge').show();
 		$('.hide4concordiaAge').hide();
 		break;
-	    case '2':
+	    case 2:
+	    case 3:
+	    case 4:
 		$('.show4discordiaAge').show();
 		$('.hide4discordiaAge').hide();
+		switch (pd.showage){
+		case 2:
+		    $('.show4model1').show();
+		    $('.hide4model1').hide();
+		    break;
+		case 3:
+		    $('.show4model2').show();
+		    $('.hide4model2').hide();
+		    break;
+		case 4:
+		    $('.show4model3').show();
+		    $('.hide4model3').hide();
+		    break;
+		}
 		break;
 	    }
+	    break;
+	case 'isochron':
+	    switch (pd.model){
+	    case 1:
+		$('.show4model1').show();
+		$('.hide4model1').hide();
+		break;
+	    case 2:
+		$('.show4model2').show();
+		$('.hide4model2').hide();
+		break;
+	    case 3:
+		$('.show4model3').show();
+		$('.hide4model3').hide();
+		break;
+	    }
+	    break;
 	}
     }
     
@@ -922,7 +955,7 @@ $(function(){
 	case 'concordia':
 	    pdsettings.wetherill =
 		$('#tera-wasserburg').prop('checked') ? 'FALSE' : 'TRUE';
-	    pdsettings["showage"] = $('#conc-age-option').prop("value");
+	    pdsettings["showage"] = 1*$('#conc-age-option').prop("value");
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.minx = check($('#minx').val(),'auto');
@@ -1638,6 +1671,7 @@ $(function(){
     });
 
     $("#HELP").click(function(){
+	IsoplotR.optionschanged = false;
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var fname = "";
