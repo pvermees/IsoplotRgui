@@ -291,7 +291,8 @@ $(function(){
 	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
 	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
 	var ThU34 = (geochronometer=='Th-U') & (IsoplotR.settings['Th-U'].format>2);
-	var detrital1 = (geochronometer=='detritals') & (IsoplotR.settings['detritals'].format==1);
+	var detrital1 = (geochronometer=='detritals') &
+	    (IsoplotR.settings['detritals'].format==1);
 	var val = null;
 	var row = [];
 	var good = false;
@@ -592,7 +593,17 @@ $(function(){
 		break;
 	    }
 	    break;
+	case 'evolution':
+	    switch (pd.isochron){
+	    case "TRUE":
+		$(".show4isochron").show();
+		break;
+	    case "FALSE":
+		$(".show4isochron").hide();
+		break;
+	    }
 	case 'isochron':
+	case 'helioplot':
 	    switch (pd.model){
 	    case 1:
 		$('.show4model1').show();
