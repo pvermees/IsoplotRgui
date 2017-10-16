@@ -1,4 +1,27 @@
-(under construction)
+<tt>IsoplotR</tt> offers three ways to fit a straight line through
+2-dimensional data with measurement uncertainties:
+
+<ol>
+  <li>Model-1: maximum Likelihood regression, using the modified error
+      weighted least squares algorithm of York et al. (2004) This
+      algorithm takes into account the analytical uncertainties and
+      error correlations, under the assumption that the scatter
+      between the data points is solely caused by the analytical
+      uncertainty. If the assumption is correct, then the MSWD value
+      should be approximately equal to one. If MSWD > 1, then model-1
+      regression assumes that the analytical uncertainties have been
+      underestimated by a factor &radic;MSWD.
+  </li>
+  <li>Model-2: ordinary least squares regression, ignoring the
+  analytical uncertainties.
+  </li>
+  <li>Model-3: maximum likelihood regression with
+  overdispersion. Instead of attributing any overdispersion (MSWD > 1)
+  to underestimated analytical uncertainties, one can also attribute
+  it to the presence of geological uncertainty, which manifests itself
+  as an added (co)variance term.
+  </li>
+</ol>
 
 <p></p>
 <u>Legend:</u>
