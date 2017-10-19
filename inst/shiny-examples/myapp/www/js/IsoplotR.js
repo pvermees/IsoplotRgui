@@ -4,6 +4,7 @@ $(function(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
+	$('#myplot').load('welcome.html')
 	var out = {
 	    constants: null,
 	    settings: null,
