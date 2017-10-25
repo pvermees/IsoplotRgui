@@ -1662,7 +1662,7 @@ $(function(){
 	    $('#fname')[0].click();
 	}
     });
-
+    
     $("#OPTIONS").click(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var geochronometer = IsoplotR.settings.geochronometer;
