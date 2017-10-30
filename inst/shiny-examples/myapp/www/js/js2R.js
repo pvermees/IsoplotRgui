@@ -66,6 +66,7 @@ function getOptions(prefs){
 	    out += ",type=" + type;
 	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
 	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	default:
 	}
@@ -130,6 +131,7 @@ function getOptions(prefs){
 	    out += ",type=" + type;
 	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
 	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	}
@@ -172,6 +174,7 @@ function getOptions(prefs){
 	    out += ",type=" + type;
 	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
 	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	case 'detritals':
@@ -193,13 +196,6 @@ function getOptions(prefs){
 	if (pdsettings.pch!='none') { out += ",pch=" + pdsettings.pch; }
 	out += ",verticals=" + pdsettings.verticals;
 	switch (geochronometer){
-	case 'U-Pb':
-	    var type = gcsettings.type;
-	    out += ",type=" + type;
-	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
-	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
-	    out += ",common.Pb=" + gcsettings.commonPb;
-	    break;
 	case 'Ar-Ar':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -207,6 +203,14 @@ function getOptions(prefs){
 	case 'Lu-Hf':
 	case 'Th-U':
 	    out += ",i2i=" + gcsettings.i2i;
+	    break;
+	case 'U-Pb':
+	    var type = gcsettings.type;
+	    out += ",type=" + type;
+	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
+	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	case 'Pb-Pb':
+	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	default:
 	}
@@ -263,6 +267,7 @@ function getOptions(prefs){
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
 	case 'U-Pb':
+	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	default:

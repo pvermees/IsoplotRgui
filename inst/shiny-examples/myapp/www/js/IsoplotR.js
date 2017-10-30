@@ -631,9 +631,9 @@ $(function(){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('#common-Pb-option option[value='+set.commonPb+']').
-		prop('selected', 'selected');
 	    $('#UPb-age-type option[value='+set.type+']').
+		prop('selected', 'selected');
+	    $('#common-Pb-option option[value='+set.commonPb+']').
 		prop('selected', 'selected');
 	    if (set.commonPb==3){ $('.show4commonPb3').show(); }
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -669,6 +669,11 @@ $(function(){
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
+	    $('#common-Pb-option option[value='+set.commonPb+']').
+		prop('selected', 'selected');
+	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
+	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    if (set.commonPb==3){ $('.show4commonPb3').show(); }
 	    break;
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
@@ -1470,9 +1475,10 @@ $(function(){
 	    $('option:selected', $("#transformation")).attr('value');
     }
 
-    $.chooseCommonPbOption = function(){
+    // method = 'U-Pb' or 'Pb-Pb'
+    $.chooseCommonPbOption = function(method){
 	var option = 1*$('option:selected', $("#common-Pb-option")).attr('value');
-	IsoplotR.settings['U-Pb'].commonPb = option;
+	IsoplotR.settings[method].commonPb = option;
 	if (option == 3){
 	    $('.show4commonPb3').show();
 	} else {

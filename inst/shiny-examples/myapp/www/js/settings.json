@@ -34,7 +34,7 @@
     },
     "Pb-Pb": {
 	"format": 3,
-	"i2i": "TRUE"
+	"commonPb": 2
     },
     "Ar-Ar": {
 	"format": 3,
