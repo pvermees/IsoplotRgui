@@ -1,7 +1,14 @@
 <p></p>
 
-&nbsp; <input type="checkbox" id="shownumbers" onchange="$.toggle_radial_pch();">
-<help id="help-shownumbers">Show sample numbers</help>?
+<div hidden class="show4PbPb">
+&nbsp; <help id="help-common-Pb-option">Common Pb correction:</help>
+<select id="common-Pb-option" onchange="$.chooseCommonPbOption('Pb-Pb');">
+  <option value=0>none</option>
+  <option value=1>Stacey-Kramers</option>
+  <option value=2>isochron</option>
+  <option value=3>nominal</option>
+</select>
+</div>
 
 <p></p>
 
@@ -28,6 +35,11 @@
 
 <p></p>
 
+&nbsp; <input type="checkbox" id="shownumbers" onchange="$.toggle_radial_pch();">
+<help id="help-shownumbers">Show sample numbers</help>?
+
+<p></p>
+
 <div hidden class="show4UPb">
 &nbsp; <help id="help-UPb-age-type">Type of U-Pb age</help>:
 <select id="UPb-age-type" onchange="$.chooseUPbAgeType();">
@@ -50,27 +62,28 @@
 </div>
 
 <table>
-<tr><td>&nbsp;<help id="help-mint-radial">Minimum value</help>:</td>
-  <td><input type="text" id="mint"></td></tr>
-<tr><td>&nbsp;<help id="help-t0">Central value</help>:</td>
+  <tr><td>&nbsp;<help id="help-mint-radial">Minimum value</help>:</td>
+    <td><input type="text" id="mint"></td></tr>
+  <tr><td>&nbsp;<help id="help-t0">Central value</help>:</td>
     <td><input type="text" id="t0"></td></tr>
-<tr><td>&nbsp;<help id="help-maxt-radial">Maximum value</help>:</td>
+  <tr><td>&nbsp;<help id="help-maxt-radial">Maximum value</help>:</td>
     <td><input type="text" id="maxt"></td></tr>
-<tr id="radial-pch"><td>&nbsp;<help id="help-radial-pch">Plot character</help>:</td>
+  <tr id="radial-pch"><td>&nbsp;<help id="help-radial-pch">Plot character</help>:</td>
     <td><input type="text" id="pch"></td></tr>
-<tr><td>&nbsp;<help id="help-cex">Plot symbol magnification</help>:</td>
+  <tr><td>&nbsp;<help id="help-cex">Plot symbol magnification</help>:</td>
     <td><input type="text" id="cex"></td></tr>
-<tr><td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
+  <tr><td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
     <td><input type="text" id="alpha"></td></tr>
-<tr><td>&nbsp;<help id="help-sigdig">Significant digits</help>:</td>
+  <tr><td>&nbsp;<help id="help-sigdig">Significant digits</help>:</td>
     <td><input type="text" id="sigdig"></td></tr>
-<tr class="show4EDM hide4ICP hide4absolute">
-  <td>&nbsp;<help id="help-radial-bg1">Fill colour 1:</help></td>
+  <tr class="show4EDM hide4ICP hide4absolute">
+    <td>&nbsp;<help id="help-radial-bg1">Fill colour 1:</help></td>
     <td><input type="text" id="bg1"></td></tr>
-<tr class="show4EDM hide4ICP hide4absolute">
-  <td>&nbsp;<help id="help-radial-bg2">Fill colour 2:</help></td>
+  <tr class="show4EDM hide4ICP hide4absolute">
+    <td>&nbsp;<help id="help-radial-bg2">Fill colour 2:</help></td>
     <td><input type="text" id="bg2"></td></tr>
-
+  <tr><td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+    <td><input type="text" id="clabel"></td></tr>
 </table>
 
 <p></p>
@@ -104,15 +117,6 @@
 <help id="help-ThU-i2i">Apply a detrital Th correction using the
   isochron intercept as the <sup>230</sup>Th/<sup>238</sup>U-ratio
 </help>
-</div>
-<div hidden class="show4PbPb">
-&nbsp; <help id="help-common-Pb-option">Common Pb correction:</help>
-<select id="common-Pb-option" onchange="$.chooseCommonPbOption('Pb-Pb');">
-  <option value=0>none</option>
-  <option value=1>Stacey-Kramers</option>
-  <option value=2>isochron</option>
-  <option value=3>nominal</option>
-</select>
 </div>
 
 <p></p>

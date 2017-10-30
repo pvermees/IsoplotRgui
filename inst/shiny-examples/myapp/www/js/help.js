@@ -657,6 +657,9 @@ function help(id){
 	text = "Fill colour for the plot symbols (e.g., " +
 	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
 	break;
+    case "help-clabel":
+	text = "Text label for the (optional) colour scale";
+	break;
     case "help-t0":
 	text = "Set the central value of the radial scale. " + 
 	    "Type <tt>auto</tt> to have " +

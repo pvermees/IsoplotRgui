@@ -32,6 +32,7 @@ function getOptions(prefs){
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
+	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
@@ -52,6 +53,7 @@ function getOptions(prefs){
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	switch (geochronometer){
 	case 'Ar-Ar':
 	case 'Rb-Sr':
@@ -90,6 +92,7 @@ function getOptions(prefs){
 	out += ",format=" + gcsettings.format + ")";
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",model=" + pdsettings.model;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
     case 'isochron':
 	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar')
@@ -107,6 +110,7 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",model=" + pdsettings.model;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	if (geochronometer!='U-Th-He'){
 	    out += ",levels=selection2levels(method='" + geochronometer + "'";
 	    if (geochronometer=='other')
@@ -238,6 +242,7 @@ function getOptions(prefs){
 	out += ",levels=selection2levels(method='" + geochronometer + "')";
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",model=" + pdsettings.model;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
     case 'MDS':
 	out += ",classical=" + pdsettings.classical;

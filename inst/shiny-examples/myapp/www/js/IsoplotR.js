@@ -822,6 +822,7 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
+	    $('#clabel').val(set.clabel);
 	    break;
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.type+']').
@@ -829,6 +830,7 @@ $(function(){
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
 	    $('#bg').val(set.bg);
+	    $('#clabel').val(set.clabel);
 	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -842,6 +844,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
+	    $('#clabel').val(set.clabel);
 	    break;
 	case 'radial':
 	    $('#transformation option[value='+set.transformation+']').
@@ -861,6 +864,7 @@ $(function(){
 	    $('#cex').val(set.cex);
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
+	    $('#clabel').val(set.clabel);
 	    break;
 	case 'average':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -929,6 +933,7 @@ $(function(){
 	    $('#bg2').val(set.bg2);
 	    $('#helioplot-models option[value='+set.model+']').
 		prop('selected', 'selected');
+	    $('#clabel').val(set.clabel);
 	    break;
 	case 'evolution':
 	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
@@ -957,6 +962,7 @@ $(function(){
 	    }
 	    $('#evolution-isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
+	    $('#clabel').val(set.clabel);
 	    break;
 	default:
 	}
@@ -989,11 +995,13 @@ $(function(){
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.clabel = $('#clabel').val();
 	    break;
 	case 'isochron':
 	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
 	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr = $('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.clabel = $('#clabel').val();
 	case 'regression':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
@@ -1005,6 +1013,7 @@ $(function(){
 	    pdsettings.model = 1*$('option:selected', $("#isochron-models")).attr('value');
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.clabel = $('#clabel').val();
 	    break;
 	case 'radial':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
@@ -1019,6 +1028,7 @@ $(function(){
 	    pdsettings["cex"] = $('#cex').val();
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.clabel = $('#clabel').val();
 	    break;
 	case 'average':
 	    if (geochronometer != "other"){
@@ -1108,6 +1118,7 @@ $(function(){
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.model = 1*$('option:selected',
 				   $("#helioplot-models")).attr('value');
+	    pdsettings.clabel = $('#clabel').val();
 	    break;
 	case 'evolution':
 	    pdsettings.transform =
@@ -1132,6 +1143,7 @@ $(function(){
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.model = 1*$('option:selected',
 				   $("#evolution-isochron-models")).attr('value');
+	    pdsettings.clabel = $('#clabel').val();
 	    break;
 	default:
 	}

@@ -70,7 +70,8 @@
 	"showage": 0,
 	"sigdig": 2,
 	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)"
+	"bg2": "rgb(1,0,0,0.5)",
+	"clabel": ""
     },
     "evolution": {
 	"min08": "auto",
@@ -88,7 +89,8 @@
 	"sigdig": 2,
 	"bg1": "rgb(0,1,0,0.5)",
 	"bg2": "rgb(1,0,0,0.5)",
-	"model": 1
+	"model": 1,
+	"clabel": ""
     },
     "isochron": {
 	"type": 2,
@@ -103,7 +105,8 @@
 	"alpha": 0.05,
 	"sigdig": 2,
 	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)"
+	"bg2": "rgb(1,0,0,0.5)",
+	"clabel": ""
     },
     "regression": {
 	"model": 1,
@@ -115,7 +118,8 @@
 	"alpha": 0.05,
 	"sigdig": 2,
 	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)"
+	"bg2": "rgb(1,0,0,0.5)",
+	"clabel": ""
     },
     "radial": {
 	"transformation": "log",
@@ -130,7 +134,8 @@
 	"shownumbers": "FALSE",
 	"numpeaks": 0,
 	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)"
+	"bg2": "rgb(1,0,0,0.5)",
+	"clabel": ""
     },
     "average": {
 	"outliers": "TRUE",
@@ -193,7 +198,8 @@
 	"fact": "auto",
 	"bg1": "rgb(0,1,0,0.5)",
 	"bg2": "rgb(0,0,1,0.5)",
-	"model": 1
+	"model": 1,
+	"clabel": ""
     },
     "ages": {
 	"exterr": "TRUE",
