@@ -658,7 +658,6 @@ $(function(){
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
 	    $('#errLambdaU234').val(cst.lambda.U234[1]);
-	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Pb-Pb':
 	    $('#PbPb-formats option[value='+set.format+']').
@@ -702,7 +701,7 @@ $(function(){
 	    $('#errSr88Sr86').val(cst.iratio.Sr88Sr86[1]);
 	    $('#LambdaRb87').val(cst.lambda.Rb87[0]);
 	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
-	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
+	    $('#i2iRbSr').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Sm-Nd':
 	    $('#SmNd-formats option[value='+set.format+']').
@@ -1029,6 +1028,7 @@ $(function(){
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
+	    i2i(geochronometer);
 	    break;
 	case 'average':
 	    if (geochronometer != "other"){
@@ -1039,6 +1039,7 @@ $(function(){
 		$('#outliers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
+	    i2i(geochronometer);
 	    break;
 	case 'spectrum':
 	    if (geochronometer != "other"){
@@ -1049,6 +1050,7 @@ $(function(){
 		$('#plateau').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
+	    i2i(geochronometer);
 	    break;
 	case 'KDE':
 	    pdsettings["showhist"] = 
@@ -1067,11 +1069,13 @@ $(function(){
 	    pdsettings["binwidth"] = $('#binwidth').val();
 	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
 	    pdsettings["pch"] = $('#pch').val();
+	    i2i(geochronometer);
 	    break;
 	case 'CAD':
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["verticals"] = 
 		$('#verticals').prop('checked') ? 'TRUE' : 'FALSE';
+	    i2i(geochronometer);
 	    break;
 	case 'set-zeta':
 	    IsoplotR.settings.data[geochronometer].age[0] = $('#standAgeVal').val();
@@ -1100,6 +1104,8 @@ $(function(){
 		pdsettings.exterr = $('#age-exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    }
 	    pdsettings.sigdig = $('#sigdig').val();
+	    i2i(geochronometer);
+	    break;
 	case 'helioplot':
 	    pdsettings.logratio = 
 		$('#logratio').prop('checked') ? 'TRUE' : 'FALSE';
@@ -1144,6 +1150,7 @@ $(function(){
 	    pdsettings.model = 1*$('option:selected',
 				   $("#evolution-isochron-models")).attr('value');
 	    pdsettings.clabel = $('#clabel').val();
+	    i2i(geochronometer);
 	    break;
 	default:
 	}
@@ -1170,14 +1177,12 @@ $(function(){
 	    set.lambda.Th230[1] = $("#errLambdaTh230").val();
 	    set.lambda.U234[0] = $("#LambdaU234").val();
 	    set.lambda.U234[1] = $("#errLambdaU234").val();
-	    gcsettings.i2i = $("#i2iThU").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'Ar-Ar':
 	    set.iratio.Ar40Ar36[0] = $("#Ar40Ar36").val();
 	    set.iratio.Ar40Ar36[1] = $("#errAr40Ar36").val();
 	    set.lambda.K40[0] = $("#LambdaK40").val();
 	    set.lambda.K40[1] = $("#errLambdaK40").val();
-	    gcsettings.i2i = $("#i2iArAr").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'Rb-Sr':
 	    set.iratio.Rb85Rb87[0] = $('#Rb85Rb87').val();
@@ -1190,7 +1195,6 @@ $(function(){
 	    set.iratio.Sr88Sr86[1] = $('#errSr88Sr86').val();
 	    set.lambda.Rb87[0] = $('#LambdaRb87').val();
 	    set.lambda.Rb87[1]= $('#errLambdaRb87').val();
-	    gcsettings.i2i = $("#i2iRbSr").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'Sm-Nd':
 	    set.iratio.Sm144Sm152[0] = $('#Sm144Sm152').val();
@@ -1219,7 +1223,6 @@ $(function(){
 	    set.iratio.Nd150Nd144[1] = $('#errNd150Nd144').val();
 	    set.lambda.Sm147[0] = $('#LambdaSm147').val();
 	    set.lambda.Sm147[1] = $('#errLambdaSm147').val();
-	    gcsettings.i2i = $("#i2iSmNd").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'Re-Os':
 	    set.iratio.Re185Re187[0] = $('#Re185Re187').val();
@@ -1238,7 +1241,6 @@ $(function(){
 	    set.iratio.Os190Os192[1] = $('#errOs190Os192').val();
 	    set.lambda.Re187[0] = $('#LambdaRe187').val();
 	    set.lambda.Re187[1] = $('#errLambdaRe187').val();
-	    gcsettings.i2i = $("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'Lu-Hf':
 	    set.iratio.Lu176Lu175[0] = $('#Lu176Lu175').val();
@@ -1255,7 +1257,6 @@ $(function(){
 	    set.iratio.Hf180Hf177[1] = $('#errHf180Hf177').val();
 	    set.lambda.Lu176[0] = $('#LambdaLu176').val();
 	    set.lambda.Lu176[1] = $('#errLambdaLu176').val();
-	    gcsettings.i2i = $("#i2iLuHf").prop('checked') ? "TRUE" : "FALSE";
 	    break;
 	case 'U-Th-He':
 	    set.iratio.U238U235[0] = $("#U238U235").val();
@@ -1285,6 +1286,34 @@ $(function(){
 	    set.mindens[mineral] = $("#mindens").val();
 	    break;
 	default:
+	}
+    }
+
+    function i2i(geochronometer){
+	var gcsettings = IsoplotR.settings[geochronometer];
+	switch (geochronometer){
+	case 'Ar-Ar':
+	    gcsettings.i2i = $("#i2iArAr").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Th-U':
+	    gcsettings.i2i = $("#i2iThU").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Rb-Sr':
+	    gcsettings.i2i = $("#i2iRbSr").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Sm-Nd':
+	    gcsettings.i2i = $("#i2iSmNd").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Re-Os':
+	    gcsettings.i2i = $("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Lu-Hf':
+	    gcsettings.i2i = $("#i2iLuHf").prop('checked') ? "TRUE" : "FALSE";
+	    break;
+	case 'Pb-Pb':
+	    gcsettings.commonPb =
+		1*$('option:selected', $("#common-Pb-option")).attr('value');
+	    break;
 	}
     }
     
@@ -1641,6 +1670,7 @@ $(function(){
 	    IsoplotR.settings.geochronometer =
 		$('option:selected', $("#geochronometer")).attr('id');
 	    selectGeochronometer();
+	    changePlotDevice();
 	    IsoplotR.optionschanged = false;
 	}
     });
