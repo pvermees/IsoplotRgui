@@ -43,13 +43,17 @@
   </tr>
   <tr hidden class="show4UPb3">
     <td>(rhoXY):</td>
-    <td>Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U-
-      and <sup>206</sup>Pb/<sup>238</sup>U-ratios (optional).</td>
+    <td>Error correlation between
+      the <sup>207</sup>Pb/<sup>235</sup>U-
+      and <sup>206</sup>Pb/<sup>238</sup>U-ratios (optional).
+    </td>
   </tr>
   <tr hidden class="show4UPb3">
     <td>(rhoYZ):</td>
-    <td>Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb-
-      and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).</td>
+    <td>Error correlation between
+      the <sup>238</sup>U/<sup>206</sup>Pb-
+      and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional). The
+      same assumption applies as for <tt>rhoYZ</tt></td>
   </tr>
   <tr hidden class="show4UPb4 show4UPb6">
     <td>4/8:</td>
@@ -116,3 +120,16 @@
     radial plots.</td>
   </tr>
 </table>
+
+<p></p>
+
+<div hidden class="show4UPb3">
+  If <tt>rhoXY</tt>, <tt>rhoXZ</tt> or <tt>rhoYZ</tt> are omitted,
+  then their value will be inferred from the redundancy between the
+  three sets of standard errors (<tt>s[X]</tt>, <tt>s[Y]</tt>
+  and <tt>s[Z]</tt>). This inference assumes that these errors are
+  based on the same number of data points. If some data has been
+  rejected from one ratio but not another, because of isobaric
+  interferences, instrument issues, outlier rejection, or any other
+  reason, then this method will not work.
+</div>

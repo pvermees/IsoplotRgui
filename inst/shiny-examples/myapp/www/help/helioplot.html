@@ -69,8 +69,11 @@ purpose as the U-Pb concordia diagram and the U-series evolution plot.
       </tr>
       <tr>
 	<td>y:</td>
-	<td>the 100(1-&alpha;)% confidence interval for t
-	  using the appropriate number of degrees of freedom.
+	<td>the<span hidden class="show4model1 show4model2
+	  hide4model3"> studentised</span> 100(1-&alpha;)% confidence
+	  interval for t<span hidden class="show4model1 show4model2
+	  hide4model3"> using the appropriate number of degrees of
+	  freedom</span>.
 	</td>
       </tr>
       <tr class="show4model1 hide4model2 hide4model3">
@@ -111,25 +114,28 @@ purpose as the U-Pb concordia diagram and the U-series evolution plot.
   </li>
 
   <li class="hide4model1 hide4model2 show4model3">
-    dispersion = x | y %
+    dispersion = &omega; + u /- l %
     <p></p>
     where:
     <p></p>
     <table>
       <tr>
-	<td>x:</td>
+	<td>&omega;:</td>
 	<td>the estimated standard deviation of the 'geological
 	  scatter' of the U/He, Th/He (and Sm/He) ratios required to
 	  explain the overdispersion of the U-Th-(Sm)-He compositions
 	  with respect to the stated analytical uncertainties.
 	</td>
       </tr>
+       <tr>
+	<td>u:</td>
+	<td>width of the upper half of a (1-&alpha;)% confidence
+	  interval for &omega;.</td>
+      </tr>
       <tr>
-	<td>
-	  y:
-	</td>
-	<td>the 100(1-&alpha;)% interval of the dispersion.
-	</td>
+	<td>l:</td>
+	<td>width of the lower half of the (1-&alpha;)% confidence
+	  interval for &omega;.</td>
       </tr>
     </table>
   </li>

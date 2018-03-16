@@ -3,7 +3,7 @@ consistency of U-Pb data. It sets out the measured
 <sup>206</sup>Pb/<sup>238</sup>U- and <sup>207</sup>Pb/<sup>235</sup>-ratios
 against each other ('Wetherill' diagram) or, equivalently, the
 <sup>207</sup>Pb/<sup>206</sup>Pb-
-and <sup>207</sup>Pb/<sup>235</sup>-ratios ('Tera-Wasserburg'
+and <sup>207</sup>Pb/<sup>235</sup>U-ratios ('Tera-Wasserburg'
 diagram). The space of concordant isotopic compositions is marked by
 a curve, the 'concordia line'. Isotopic ratio measurements are shown
 as 100(1-&alpha;)% confidence ellipses, where &alpha; is set in the
@@ -147,8 +147,11 @@ lead loss.
 	</tr>
 	<tr>
 	  <td>y:</td>
-	  <td>the studentised 100(1-&alpha;)% confidence interval for
-	    t using the appropriate number of degrees of freedom.</td>
+	  <td>the <span hidden class="show4model1 show4model2
+	    hide4model3">studentised</span> 100(1-&alpha;)% confidence
+	    interval for t<span hidden class="show4model1 show4model2
+	    hide4model3"> using the appropriate number of degrees of
+	    freedom</span>.</td>
 	</tr>
 	<tr class="show4model1 hide4model2 hide4model3">
 	  <td>
@@ -180,7 +183,7 @@ lead loss.
     </li>
 
     <li class="hide4model1 hide4model2 show4model3">
-      overdispersion = x | y % of the initial Pb
+      overdispersion = x + u /- l % of Pb<sub>o</sub></p>
       <p></p>
       where:
       <p></p>
@@ -191,9 +194,14 @@ lead loss.
 	    Gaussian geological scatter of the common-Pb compositions.</td>
 	</tr>
 	<tr>
-	  <td>y:</td>
-	  <td>a studentised 100(1-&alpha;)% confidence interval
-	    for the common-Pb dispersion.</td>
+	  <td>u:</td>
+	  <td>width of the upper half of a (1-&alpha;)% confidence
+	  interval for <tt>t</tt>.</td>
+	</tr>
+	<tr>
+	  <td>l:</td>
+	  <td>width of the lower half of the (1-&alpha;)% confidence
+	  interval for <tt>t</tt>.</td>
 	</tr>
       </table>
     </li>

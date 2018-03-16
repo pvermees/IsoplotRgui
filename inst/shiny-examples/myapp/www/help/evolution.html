@@ -35,7 +35,8 @@ decorated with a fanning set of isochrone lines.
 
 <ol>
   <li>
-    age  = t &plusmn; x | y | z
+    age = t &plusmn; x | y <span class="show4model1 hide4model2
+    hide4model3"> | z</span>
     <p></p>
     where:
     <p></p>
@@ -52,10 +53,10 @@ decorated with a fanning set of isochrone lines.
       <tr>
 	<td>y:</td>
 	<td>
-	  the 100(1-&alpha;)% confidence interval for t
+	  the studentised 100(1-&alpha;)% confidence interval for t
 	  using the appropriate number of degrees of freedom.</td>
       </tr>
-      <tr>
+      <tr class="show4model1 hide4model2 hide4model3">
 	<td>
 	  z:
 	</td>
@@ -74,8 +75,8 @@ decorated with a fanning set of isochrone lines.
     <span hidden class="show4ThU3 show4ThU4">
       (<sup>230</sup>Th/<sup>232</sup>Th)<sub>0</sub><sub>x</sub>
     </span>
-    <span class="hide4PbPb hide4ArAr hide4ThU">intercept</span>
-    = i &plusmn; x | y | z
+    intercept = i &plusmn; x | y <span class="show4model1 hide4model2
+    hide4model3">| z</span>
     <p></p>
     where:
     <p></p>
@@ -109,7 +110,7 @@ decorated with a fanning set of isochrone lines.
 	  appropriate number of degrees of freedom.
 	</td>
       </tr>
-      <tr>
+      <tr class="show4model1 hide4model2 hide4model3">
 	<td>
 	  z:
 	</td>
@@ -122,7 +123,7 @@ decorated with a fanning set of isochrone lines.
     </table>
   </li>
 
-  <li>
+  <li class="show4model1 hide4model2 hide4model3">
     MSWD = x, p(&chi;<sup>2</sup>) = y 
     <p></p>
     where:
@@ -147,6 +148,43 @@ decorated with a fanning set of isochrone lines.
       </tr>
     </table>
   </li>
+
+  <li class="hide4model1 hide4model2 show4model3">
+    dispersion = &omega; + u /- l
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>&omega;:</td>
+	<td>
+	  the excess ('geological') dispersion of the y-intercept,
+	  i.e. the standard deviation of the assumedly Gaussian
+	  distribution that describes the true non-radiogenic
+	  component.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  u:
+	</td>
+	<td>
+	  width of the upper half of a (1-&alpha;)% confidence
+	  interval for &omega;.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  l:
+	</td>
+	<td>
+	  width of the lower half of a (1-&alpha;)% confidence
+	  interval for &omega;.
+	</td>
+      </tr>
+    </table>
+  </li>  
+
 </ol>
 
 </div>

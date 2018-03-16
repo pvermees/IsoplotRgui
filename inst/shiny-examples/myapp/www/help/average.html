@@ -13,9 +13,8 @@ s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup> )
 
 where &mu; is the mean, &sigma;<sup>2</sup> is the total variance and
 &omega; is the 'overdispersion'. Equation 1 can be solved for &mu; and
-&omega; by the method of maximum likelihood.
-<tt>IsoplotR</tt> uses a modified version of Chauvenet's criterion for
-outlier detection:
+&omega; by the method of maximum likelihood. <tt>IsoplotR</tt> uses a
+modified version of Chauvenet's criterion for outlier detection:
 
 <ol>
 <li> Compute the error-weighted mean of the n age determinations
@@ -40,7 +39,7 @@ outlier detection:
 </li>
 </ol>
 
-If the analtyical uncertainties are small compared to the scatter
+If the analytical uncertainties are small compared to the scatter
 between the dates (i.e. if &omega; >> s[t<sub<i</sub>] for all
 i), then this generalised algorithm reduces to the conventional
 Chauvenet criterion. If the analytical uncertainties are large and the
@@ -70,8 +69,8 @@ detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
       </tr>
       <tr>
 	<td>y:</td>
-	<td>the studentised 100(1-&alpha;)% confidence interval for
-	  &mu; using the appropriate number of degrees of freedom.
+	<td>the width of the 100(1-&alpha;)% confidence interval for
+	  &mu;. This is also shown as a grey band on the plot.
 	</td>
       </tr>
     </table>
@@ -85,9 +84,10 @@ detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
     <table>
       <tr>
 	<td>x:</td>
-	<td>the Mean Square of the Weighted Deviates (MSWD) for age homogeneity.
-	  MSWD values >> 1 indicate that the ages are overdispersed with respect
-	  to the stated analytical uncertainties.
+	<td>the Mean Square of the Weighted Deviates (MSWD) for age
+	  homogeneity.  MSWD values >> 1 indicate that the ages are
+	  overdispersed with respect to the stated analytical
+	  uncertainties.
 	</td>
       </tr>
       <tr>
@@ -95,15 +95,15 @@ detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
 	  y:
 	</td>
 	<td>the Chi-squared p-value for the age homogeneity test.
-	  p-values << 0.05 indicate that the ages are overdispersed with respect
-	  to the stated analytical uncertainties.
+	  p-values << 0.05 indicate that the ages are overdispersed
+	  with respect to the stated analytical uncertainties.
 	</td>
       </tr>
     </table>
   </li>
 
   <li>
-    dispersion = &omega; | &Omega;
+    dispersion = &omega; + &omega;<sub>u</sub> - &omega;<sub>l</sub>
     <p></p>
     where:
     <p></p>
@@ -113,15 +113,20 @@ detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
 	<td>the standard deviation of the true ages after removal of
 	  the analytical uncertainties. The dispersion is
 	  significantly greater than zero if the MSWD is significantly
-	  greater than one.
+	  greater than one. The 100(1-&alpha;)% Normal confidence
+	  region for the dispersion (e.g., 1.96 &times; &omega; if
+	  &alpha; = 0.05) is shown as a set of dashed lines.
 	</td>
       </tr>
       <tr>
-	<td>
-	  &Omega;:
-	</td>
-	<td>the 100(1-&alpha;)% confidence interval of the geological scatter.
-	</td>
+	<td>u:</td>
+	<td>width of the upper half of a (1-&alpha;)% confidence
+	  interval for &omega;.</td>
+      </tr>
+      <tr>
+	<td>l:</td>
+	<td>width of the lower half of the (1-&alpha;)% confidence
+	  interval for &omega;.</td>
       </tr>
     </table>
   </li>
@@ -131,6 +136,6 @@ detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
 <u>References:</u>
 <p></p>
 
-Ludwig, K. R. User’s manual for Isoplot 3.00:
+Ludwig, K. R. User's manual for Isoplot 3.00:
 a geochronological toolkit for Microsoft Excel.
 <i>Berkeley Geochronology Center Special Pulication</i>, 2003.
