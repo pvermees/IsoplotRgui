@@ -713,7 +713,7 @@ function help(id){
 	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
 	    "6. <tt>7/5 s[7/5] 6/8 s[6/8] 4/8 s[4/8]" +
 	    "7/6 s[7/6] 4/7 s[4/7] 4/6 s[4/6]</tt><br>" +
-	    "in which the error correlations are calculated from the" +
+	    "in which the error correlations are calculated from the " +
 	    "redundancies between the six sets of uncertainties.<br>";
 	break;
     case "help-PbPb-formats":
