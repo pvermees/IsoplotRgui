@@ -21,7 +21,7 @@
 	"format": 1
     },
     "U-Pb": {
-	"format": 3,
+	"format": 2,
 	"type": 4,
 	"cutoff76": 1100,
 	"mindisc": -15,
