@@ -8,7 +8,7 @@ $(function(){
 	var out = {
 	    constants: null,
 	    settings: null,
-	    data: [],
+	    data4server: [],
 	    optionschanged: false
 	}
 	var cfile = './js/constants.json';
@@ -22,9 +22,9 @@ $(function(){
 	    out = populate(out,true);
 	    $("#INPUT").handsontable({ // add change handler asynchronously
 		afterChange: function(changes,source){
-		    getData(0,0,0,0); // placed here because we don't want to
-		    handson2json();   // call the change handler until after
-		}                     // IsoplotR has been initialised
+		    getData4Server(0,0,0,0); // placed here because we don't want to
+		    handson2json();          // call the change handler until after
+		}                            // IsoplotR has been initialised
 	    });
 	});
 	return out;
@@ -235,7 +235,7 @@ $(function(){
 	IsoplotR = out;
     }
 
-    function getData(r1,c1,r2,c2){
+    function getData4Server(r1,c1,r2,c2){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var nr = 1+Math.abs(r2-r1);
 	var nc = 1+Math.abs(c2-c1);
@@ -246,12 +246,12 @@ $(function(){
 		       geochronometer=='detritals') &
 		      (nr==1));
 	if (toofewcols | onerow) {
-		nc = DNC;
-		nr = $("#INPUT").handsontable('countRows');
-		r1 = 0;
-		c1 = 0;
-		r2 = nr-1;
-		c2 = nc-1;
+	    nc = DNC;
+	    c1 = 0;
+	    c2 = nc-1;
+	    nr = $("#INPUT").handsontable('countRows');
+	    r1 = 0;
+	    r2 = nr-1;
 	}
 	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
 	var dat = cleanData(geochronometer,d,nr,nc);
@@ -259,7 +259,7 @@ $(function(){
 	case  'Ar-Ar':
 	    var J = $('#Jval').val();
 	    var sJ = $('#Jerr').val();
-	    IsoplotR.data = [nr,nc,J,sJ,dat];
+	    IsoplotR.data4server = [nr,nc,J,sJ,dat];
 	    break;
 	case 'fissiontracks':
 	    switch (IsoplotR.settings.fissiontracks.format){
@@ -268,22 +268,22 @@ $(function(){
 		var zetaErr = $('#zetaErr').val();
 		var rhoD = $('#rhoDval').val();
 		var rhoDerr = $('#rhoDerr').val();
-		IsoplotR.data = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
+		IsoplotR.data4server = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
 		break;
 	    case 2:
 		var zeta = $('#zetaVal').val();
 		var zetaErr = $('#zetaErr').val();
 		var spotSize = $('#spotSizeVal').val();
-		IsoplotR.data = [nr,nc,zeta,zetaErr,spotSize,dat];
+		IsoplotR.data4server = [nr,nc,zeta,zetaErr,spotSize,dat];
 		break;
 	    case 3:
 		var spotSize = $('#spotSizeVal').val();
-		IsoplotR.data = [nr,nc,spotSize,dat];
+		IsoplotR.data4server = [nr,nc,spotSize,dat];
 		break;
 	    }
 	    break;
 	default:
-	    IsoplotR.data = [nr,nc,dat];
+	    IsoplotR.data4server = [nr,nc,dat];
 	}
     }
 
@@ -1483,8 +1483,8 @@ $(function(){
 	} else {
 	    handson2json();
 	}
-	if (IsoplotR.data.length==0) getData(0,0,0,0);
-	Shiny.onInputChange("data",IsoplotR.data);
+	if (IsoplotR.data4server.length==0) getData4Server(0,0,0,0);
+	Shiny.onInputChange("data",IsoplotR.data4server);
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
@@ -1649,7 +1649,7 @@ $(function(){
 	observeChanges: true,
 	manualColumnResize: true,
 	afterSelectionEnd: function (r,c,r2,c2){
-	    getData(r,c,r2,c2);
+	    getData4Server(r,c,r2,c2);
 	}
     });
 

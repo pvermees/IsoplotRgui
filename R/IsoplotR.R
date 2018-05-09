@@ -8,9 +8,9 @@
 #' #IsoplotR()
 #' @export
 IsoplotR <- function(){
-  appDir <- system.file("shiny-examples","myapp", package = "IsoplotRgui")
-  if (appDir == "") {
-    stop("Could not find shinyApp directory. Try re-installing `IsoplotR`.", call. = FALSE)
-  }
-  shiny::runApp(appDir, display.mode = "normal")
+    appDir <- system.file("shiny-examples","myapp", package = "IsoplotRgui")
+    if (appDir == "") {
+        stop("Could not find shinyApp directory. Try re-installing `IsoplotR`.", call. = FALSE)
+    }
+    shiny::runApp(appDir, display.mode = "normal")
 }
