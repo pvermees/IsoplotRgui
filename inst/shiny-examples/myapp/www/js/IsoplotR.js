@@ -22,7 +22,7 @@ $(function(){
 	    out = populate(out,true);
 	    $("#INPUT").handsontable({ // add change handler asynchronously
 		afterChange: function(changes,source){
-		    getData4Server(0,0,0,0); // placed here because we don't want to
+		    getData4Server(); // placed here because we don't want to
 		    handson2json();          // call the change handler until after
 		}                            // IsoplotR has been initialised
 	    });
@@ -235,8 +235,16 @@ $(function(){
 	IsoplotR = out;
     }
 
-    function getData4Server(r1,c1,r2,c2){
-	var geochronometer = IsoplotR.settings.geochronometer;
+    function getData4Server(){
+	var selected = $("#INPUT").handsontable('getSelected');
+	var selection = [0,0,0,0];
+	if (typeof selected != 'undefined'){
+	    selection = selected[0];
+	}
+	var r1 = selection[0];
+	var c1 = selection[1];
+	var r2 = selection[2];
+	var c2 = selection[3];
 	var nr = 1+Math.abs(r2-r1);
 	var nc = 1+Math.abs(c2-c1);
 	var dat = [];
@@ -253,6 +261,7 @@ $(function(){
 	    r1 = 0;
 	    r2 = nr-1;
 	}
+	geochronometer = IsoplotR.settings.geochronometer;
 	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
 	var dat = cleanData(geochronometer,d,nr,nc);
 	switch (geochronometer){
@@ -1477,13 +1486,13 @@ $(function(){
     }
 
     function update(){
+	getData4Server();
 	if (IsoplotR.optionschanged){
 	    recordSettings();
 	    IsoplotR.optionschanged = false;
 	} else {
 	    handson2json();
 	}
-	if (IsoplotR.data4server.length==0) getData4Server(0,0,0,0);
 	Shiny.onInputChange("data",IsoplotR.data4server);
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
@@ -1648,9 +1657,8 @@ $(function(){
 	contextMenu: true,
 	observeChanges: true,
 	manualColumnResize: true,
-	afterSelectionEnd: function (r,c,r2,c2){
-	    getData4Server(r,c,r2,c2);
-	}
+	outsideClickDeselects: false,
+	selectionMode: 'range'
     });
 
     $("#OUTPUT").handsontable({
