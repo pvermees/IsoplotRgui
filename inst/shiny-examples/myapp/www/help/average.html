@@ -1,35 +1,54 @@
-Let t = {t<sub>1</sub>, ..., t<sub>n</sub>} be a set of <sub>n</sub>
-age estimates determined on different aliquots of the same sample, and
-let s[t<sub>1</sub>], ..., s[t<sub>n</sub>]} be their analytical
-uncertainties. <tt>IsoplotR</tt> then calculates the weighted mean of
-these data assuming a Normal distribution with two sources of
-variance:
+Let t = {t<sub>1</sub>, ..., t<sub>n</sub>} be a set of n age
+estimates determined on different aliquots of the same sample, and let
+s[t<sub>1</sub>], ..., s[t<sub>n</sub>]} be their analytical
+uncertainties. <tt>IsoplotR</tt> implements two ways to compute the
+average of these data:
 
-<p></p>
-t<sub>i</sub> ~ <i>N</i>( &mu;, &sigma;<sup>2</sup> =
-s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup> )
-<span class="alignright">(eq. 1)</span>
-<p></p>
+<ol>
+  <li>A random effects model with two sources of variance:
 
-where &mu; is the mean, &sigma;<sup>2</sup> is the total variance and
-&omega; is the 'overdispersion'. Equation 1 can be solved for &mu; and
-&omega; by the method of maximum likelihood. <tt>IsoplotR</tt> uses a
-modified version of Chauvenet's criterion for outlier detection:
+    <p></p>
+    t<sub>i</sub> ~ <i>N</i>( &mu;, &sigma;<sup>2</sup> =
+    s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup> )
+    <span class="alignright">(eq. 1a)</span>
+    <p></p>
+
+    where &mu; is the mean, &sigma;<sup>2</sup> is the total variance and
+    &omega; is the 'overdispersion'. Equation 1a can be solved for &mu; and
+    &omega; by the method of maximum likelihood.
+
+  </li>
+  <li>A weighted mean algorithm that assumes that any dispersion
+  between the different aliquots is only due to the analytical
+    uncertainty:
+
+    <p></p>
+    <span style="text-decoration: overline">t</span> =
+    &Sigma;(t<sub>i</sub>/s[t<sub>i</sub>]<sup>2</sup>)/&Sigma;(1/s[t<sub>i</sub>]<sup>2</sup>)<span class="alignright">(eq. 1b)</span>
+    <p></p>
+
+  </li>
+</ol>
+
+<tt>IsoplotR</tt> uses a modified version of Chauvenet's criterion for
+outlier detection:
 
 <ol>
 <li> Compute the error-weighted mean of the n age determinations
   t<sub>i</sub> using their analytical uncertainties s[t<sub>i</sub>]
-  by solving Equation 1 for &mu; and &omega; as discussed
-  before.
+  using one of the aforementioned two approaches.
 </li>
 <li> For each t<sub>i</sub>, compute the probability p<sub>i</sub>
   that that |t-&mu;|>|t<sub>i</sub>-&mu;| for
 <p>
-  t ~ <i>N</i>(0,&radic;<span style="text-decoration: overline;">
-    s[t<sub>i</sub>]<sup>2</sup>+&omega;<sup>2</sup>
-  </span>)
-<span class="alignright">(eq. 2)</span>
+  t ~ <i>N</i>(0,&Xi;<sup>2</sup>) <span class="alignright">(eq. 2)</span>
 </p>
+where &Xi; = &radic;<span style="text-decoration: overline;">
+  s[t<sub>i</sub>]<sup>2</sup>+&omega;<sup>2</sup> </span> if the
+  random effects model is used; or &Xi; =
+  s[<span style="text-decoration:
+  overline">t</span>]&radic;<span style="text-decoration:
+  overline;">MSWD</span> if the ordinary weighted mean is used.
 </li>
 <li>
   Let p<sub>j</sub> &equiv; min(p<sub>1</sub>,&hellip;,p<sub>n</sub>).
@@ -40,11 +59,11 @@ modified version of Chauvenet's criterion for outlier detection:
 </ol>
 
 If the analytical uncertainties are small compared to the scatter
-between the dates (i.e. if &omega; >> s[t<sub<i</sub>] for all
-i), then this generalised algorithm reduces to the conventional
-Chauvenet criterion. If the analytical uncertainties are large and the
-data do not exhibit any overdispersion, then the heuristic outlier
-detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
+between the dates, then this generalised algorithm reduces to the
+conventional Chauvenet criterion. If the analytical uncertainties are
+large and the data do not exhibit any overdispersion, then the
+heuristic outlier detection method is equivalent to Ludwig (2003)'s
+'modified 2-sigma' method.
 
 <p></p>
 <u>Legend:</u>
@@ -52,25 +71,31 @@ detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
 
 <ol>
   <li>
-    mean = &mu; &plusmn; x | y
+    mean = &mu; &plusmn; x | y (| z)
     <p></p>
     where:
     <p></p>
     <table>
       <tr>
 	<td>&mu;:</td>
-	<td>the weighted mean age using a random effects model with
-	  two sources of uncertainty.
+	<td>the weighted mean age.
 	</td>
       </tr>
       <tr>
 	<td>x:</td>
-	<td>the estimated uncertainty (&sigma;) of &mu;.</td>
+	<td>the standard error (&sigma;) of &mu;.</td>
       </tr>
       <tr>
 	<td>y:</td>
 	<td>the width of the 100(1-&alpha;)% confidence interval for
 	  &mu;. This is also shown as a grey band on the plot.
+	</td>
+      </tr>
+      <tr>
+	<td>z:</td>
+	<td>the approximate 100(1-&alpha;)% confidence interval for t
+	with overdispersion, calculated as z = y&sqrt;MSWD (not
+	reported for random effects models).
 	</td>
       </tr>
     </table>
@@ -103,7 +128,8 @@ detection method is equivalent to Ludwig (2003)'s '2-sigma' method.
   </li>
 
   <li>
-    dispersion = &omega; + &omega;<sub>u</sub> - &omega;<sub>l</sub>
+    dispersion = &omega; + &omega;<sub>u</sub> /- &omega;<sub>l</sub>
+    (only reported for random effects models)
     <p></p>
     where:
     <p></p>

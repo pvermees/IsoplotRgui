@@ -145,6 +145,7 @@ function getOptions(prefs){
 	out += ",detect.outliers=" + pdsettings.outliers;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",random.effects=" + pdsettings.randomeffects;
 	break;
     case 'spectrum':
 	if (geochronometer=='Ar-Ar'){
@@ -152,6 +153,7 @@ function getOptions(prefs){
 	    out += ",exterr=" + pdsettings.exterr;
 	}
 	out += ",plateau=" + pdsettings.plateau;
+	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
 	break;

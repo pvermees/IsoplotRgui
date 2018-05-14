@@ -141,13 +141,15 @@
 	"outliers": "TRUE",
 	"exterr": "TRUE",
 	"alpha": 0.05,
-	"sigdig": 2
+	"sigdig": 2,
+	"randomeffects": "FALSE"
     },
     "spectrum": {
 	"plateau": "TRUE",
 	"exterr": "TRUE",
 	"alpha": 0.05,
-	"sigdig": 2
+	"sigdig": 2,
+	"randomeffects": "FALSE"
     },
     "KDE": {
 	"ncol": "auto",

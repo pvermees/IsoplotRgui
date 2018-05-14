@@ -104,6 +104,14 @@ function help(id){
 	text = "If checked, applies a generalised Chauvenet Criterion to " +
 	    "reject outliers and remove them from the weighted mean.";
 	break;
+    case "help-randomeffects":
+	text = "<ul><li>If checked, computes the weighted mean using a random " +
+	    "effects model with two sources of uncertainty: the analytical " +
+	    "uncertainty and an overdispersion term.</li>" +
+	    "<li>Otherwise calculates the ordinary weighted mean, attributing any " +
+	    "excess scatter to an underestimation of the analytical uncertainties." +
+	    "The latter approach is the one taken by <tt>Isoplot</tt></li></ul>.";
+	break;
     case "help-plateau":
 	text = "If checked, <tt>IsoplotR</tt> computes the weighted mean of " +
 	    "the longest succession of steps that pass the generalised " +

@@ -877,12 +877,14 @@ $(function(){
 	case 'average':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#outliers').prop('checked',set.outliers=='TRUE');
+	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'spectrum':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#plateau').prop('checked',set.plateau=='TRUE');
+	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    break;
@@ -1046,6 +1048,8 @@ $(function(){
 	    }
 	    pdsettings["outliers"] = 
 		$('#outliers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["randomeffects"] = 
+		$('#randomeffects').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    i2i(geochronometer);
@@ -1057,6 +1061,8 @@ $(function(){
 	    }
 	    pdsettings["plateau"] = 
 		$('#plateau').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["randomeffects"] = 
+		$('#randomeffects').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    i2i(geochronometer);
