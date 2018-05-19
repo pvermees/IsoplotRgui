@@ -97,6 +97,8 @@ function getOptions(prefs){
     case 'isochron':
 	if (geochronometer=='Pb-Pb' | geochronometer=='Ar-Ar')
 	    out += ",inverse=" + pdsettings.inverse;
+	if (geochronometer=='Pb-Pb')
+	    out += ",growth=" + pdsettings.growth;
 	if (geochronometer=='Th-U')
 	    out += ",type=" + pdsettings.type;
 	if (geochronometer!='U-Th-He')

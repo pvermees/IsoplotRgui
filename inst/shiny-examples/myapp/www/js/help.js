@@ -215,6 +215,12 @@ function help(id){
 	    "with the radioactive decay constant and the non-radiogenic " +
 	    "isotope composition is propagated into the age.";
 	break;
+    case "help-PbPb-growth":
+	text = "When this box is ticked, <tt>IsoplotR</tt> adds " +
+	    "Stacey & Kramer (1975)'s two-stage Pb growth curve to the plot. " +
+	    "This shows the evolution of the Pb isotopic composition for a " +
+	    "hypothesised Earth reservoir with a fixed U/Pb ratio.";
+	break;
     case "help-Ar40Ar36":
 	text = "Change the atmospheric ('excess') argon ratio. " +
 	    "Default value is taken from Lee et al. (2006).";

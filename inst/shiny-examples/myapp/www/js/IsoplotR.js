@@ -837,6 +837,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
+	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
 	    $('#bg').val(set.bg);
 	    $('#clabel').val(set.clabel);
 	case 'regression':
@@ -1011,6 +1012,7 @@ $(function(){
 	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
 	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr = $('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.growth = $('#PbPb-growth').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.clabel = $('#clabel').val();
 	case 'regression':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
