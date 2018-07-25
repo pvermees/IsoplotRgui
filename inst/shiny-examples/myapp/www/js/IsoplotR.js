@@ -663,6 +663,7 @@ $(function(){
 	    else { $('.hide4volcanicThU').show(); }
 	    $('#ThU-formats option[value='+set.format+']').
 		prop('selected', 'selected');
+	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
@@ -691,11 +692,6 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
-	    break;
-	case 'Th-U':
-	    $('#ThU-formats option[value='+set.format+']').
-		prop('selected', 'selected');
-	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Rb-Sr':
 	    $('#RbSr-formats option[value='+set.format+']').
