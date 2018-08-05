@@ -91,7 +91,7 @@ function help(id){
 	text = "Fit an isochron through the data using the algorithm " +
 	    "of Ludwig and Titterington (1994)?";
 	break;
-    case "help-detrital-correction":
+    case "help-project":
 	text = "Apply a detrital Th-correction and project the sample " +
 	    "compositions onto the <sup>234</sup>U/<sup>238</sup>U-plane " +
 	    "along the isochron line."
@@ -389,8 +389,7 @@ function help(id){
     case "help-ThU-i2i":
 	text = "Ticking this box uses and isochron fit " +
 	    "through all the Th-U data to remove the detrital " +
-	    "<sup>230</sup>Th-component. Unticking assumes that all " +
-	    "<sup>230</sup>Th is authigenic.";
+	    "<sup>230</sup>Th-component.";
 	break;
     case "help-minx":
 	text = "Minimum age constraint of the KDE. " +

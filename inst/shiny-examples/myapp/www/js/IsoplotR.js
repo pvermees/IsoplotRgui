@@ -604,6 +604,7 @@ $(function(){
 	    }
 	    break;
 	case 'evolution':
+	    $(".hide4evolution").hide();
 	    switch (pd.isochron){
 	    case "TRUE":
 		$(".show4isochron").show();
@@ -613,6 +614,7 @@ $(function(){
 		break;
 	    }
 	case 'isochron':
+	    $(".hide4isochron").hide();
 	case 'helioplot':
 	    switch (pd.model){
 	    case 1:
@@ -668,6 +670,10 @@ $(function(){
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
 	    $('#errLambdaU234').val(cst.lambda.U234[1]);
+	    $("#U234U238").val(cst.iratio.U234U238[0]);
+	    $("#errU234U238").val(cst.iratio.U234U238[1]);
+	    $("#Th230Th232").val(cst.iratio.Th230Th232[0]);
+	    $("#errTh230Th232").val(cst.iratio.Th230Th232[1]);
 	    break;
 	case 'Pb-Pb':
 	    $('#PbPb-formats option[value='+set.format+']').
@@ -947,7 +953,7 @@ $(function(){
 	    else { $('.show4evolutionIsochron').hide(); }
 	    $('#transform-evolution').prop('checked',set.transform=='TRUE');
 	    $('#isochron-evolution').prop('checked',set.isochron=='TRUE');
-	    $('#detrital-correction').prop('checked',set.detrital=='TRUE');
+	    $('#project').prop('checked',set.project=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#min08').val(set.min08);
@@ -1144,8 +1150,8 @@ $(function(){
 		$('#transform-evolution').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.isochron =
 		$('#isochron-evolution').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.detrital =
-		$('#detrital-correction').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.project =
+		$('#project').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr =
@@ -1190,6 +1196,10 @@ $(function(){
 	    set.lambda.Th230[1] = $("#errLambdaTh230").val();
 	    set.lambda.U234[0] = $("#LambdaU234").val();
 	    set.lambda.U234[1] = $("#errLambdaU234").val();
+	    set.iratio.U234U238[0] = $("#U234U238").val();
+	    set.iratio.U234U238[1] = $("#errU234U238").val();
+	    set.iratio.Th230Th232[0] = $("#Th230Th232").val();
+	    set.iratio.Th230Th232[1] = $("#errTh230Th232").val();
 	    break;
 	case 'Ar-Ar':
 	    set.iratio.Ar40Ar36[0] = $("#Ar40Ar36").val();
@@ -1539,7 +1549,7 @@ $(function(){
 	    $('.show4commonPb3').hide();
 	}
     }
-    
+
     $.chooseThUisochronType = function(){
 	var type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
 	IsoplotR.settings.isochron.type = type;

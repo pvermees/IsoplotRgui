@@ -85,7 +85,7 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
-	out += ",detrital=" + pdsettings.detrital;
+	out += ",project=" + pdsettings.project;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
