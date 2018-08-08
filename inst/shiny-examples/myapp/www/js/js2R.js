@@ -62,6 +62,7 @@ function getOptions(prefs){
 	case 'Lu-Hf':
 	case 'Th-U':
 	    out += ",i2i=" + gcsettings.i2i;
+	    out += ",detritus=" + gcsettings.detritus;
 	    break;
 	case 'U-Pb':
 	    var type = gcsettings.type;
@@ -85,7 +86,7 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
-	out += ",project=" + pdsettings.project;
+	out += ",detritus=" + gcsettings.detritus;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
@@ -274,6 +275,7 @@ function getOptions(prefs){
 	case 'Th-U':
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + gcsettings.i2i;
+	    out += ",detritus=" + gcsettings.detritus;
 	    break;
 	case 'U-Pb':
 	case 'Pb-Pb':

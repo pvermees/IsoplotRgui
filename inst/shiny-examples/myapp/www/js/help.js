@@ -23,7 +23,7 @@ function help(id){
 	    "<li>fit a discordia line ignoring the analytical uncertainties</li>" +
 	    "<li>fit a discordia line using a modified maximum likelihood " +
 	    "algorithm that includes accounts for any overdispersion by adding a " +
-	    "geological (co)variance <i>term</i>.";
+	    "geological (co)variance <i>term</i>.</li></ul>";
 	break;
     case "help-mint-concordia":
 	text = "Set the minimum age limit for the concordia diagram " + 
@@ -31,11 +31,11 @@ function help(id){
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
     case "help-common-Pb-option":
-	text = "apply a common lead correction with one of three methods:<br>" +
-	    "1. infer the initial Pb-composition from the Stacey & Kramers " +
-	    "two stage isotope evolution model<br>" +
-	    "2. use the isochron intercept as the initial Pb-composition<br>" +
-	    "3. use a nominal initial Pb-composition";
+	text = "apply a common lead correction with one of three methods:" +
+	    "<ol><li>infer the initial Pb-composition from the Stacey & Kramers " +
+	    "two stage isotope evolution model</li>" +
+	    "<li>use the isochron intercept as the initial Pb-composition</li>" +
+	    "<li>use a nominal initial Pb-composition</li></ol>";
 	break;
     case "help-maxt-radial":
 	text = "Set the maximum age limit for the radial scale." +
@@ -91,10 +91,15 @@ function help(id){
 	text = "Fit an isochron through the data using the algorithm " +
 	    "of Ludwig and Titterington (1994)?";
 	break;
-    case "help-project":
-	text = "Apply a detrital Th-correction and project the sample " +
-	    "compositions onto the <sup>234</sup>U/<sup>238</sup>U-plane " +
-	    "along the isochron line."
+    case "help-detritus":
+	text = "Choose one of four ways of dealing with detrital " +
+	    "<sup>230</sup>Th (and <sup>234</sup>U):" +
+	    "<ol><li>Do not apply a detrital <sup>230</sup>Th correction</li>" +
+	    "<li>Obtain the detrital component by isochron regression</li>" +
+	    "<li>Specify an assumed initial <sup>230</sup>Th/<sup>232</sup>Th-ratio</li>" +
+	    "<li>Provide the measured <sup>230</sup>Th-<sup>232</sup>Th-" +
+	    "<sup>234</sup>U-<sup>238</sup>U composition of the detritus</li>";
+	    "</ol>";
 	break;
     case "help-alpha":
 	text = "Set the probability cutoff (&alpha;) for error ellipses, " + 
@@ -711,7 +716,7 @@ function help(id){
 	    "concentration from ppm to atoms per unit volume.";
 	break;
     case "help-UPb-formats":
-	text = "Choose one of six input formats:<br>" +
+	text = "Choose one of six input formats:<ol>" +
 	    "1. <tt>7/5 s[7/5] 6/8 s[6/8] rho</tt><br>" +
 	    "where <tt>rho</tt> is the error correlation between " +
 	    "<tt>7/5</tt> and <tt>6/8</tt><br>" +
@@ -752,15 +757,15 @@ function help(id){
 	    "where the error correlation is optional";
 	break;
     case "help-ThU-isochron-types":
-	text = "Choose one of four output formats:<br>" +
-	    "1. <sup>230</sup>Th/<sup>232</sup>Th vs. " +
-	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2a)<br>" +
-	    "2. <sup>230</sup>Th/<sup>238</sup>U vs. " +
-	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2a)<br>" +
-	    "3. <sup>234</sup>U/<sup>232</sup>Th vs. " +
-	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2b)<br>" +
-	    "4. <sup>234</sup>U/<sup>238</sup>U vs. " +
-	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)";
+	text = "Choose one of four output formats:<ol>" +
+	    "<li><sup>230</sup>Th/<sup>232</sup>Th vs. " +
+	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2a)</li>" +
+	    "<li><sup>230</sup>Th/<sup>238</sup>U vs. " +
+	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2a)</li>" +
+	    "<li><sup>234</sup>U/<sup>232</sup>Th vs. " +
+	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2b)</li>" +
+	    "<li><sup>234</sup>U/<sup>238</sup>U vs. " +
+	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)</li></ol>";
 	break;
     case "help-helioplot-models":
 	text = "Choose one of the following statistical models:<br>" +

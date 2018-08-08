@@ -661,9 +661,16 @@ $(function(){
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
 	case 'Th-U':
-	    if (set.format==3 | set.format==4){ $('.hide4volcanicThU').hide(); }
-	    else { $('.hide4volcanicThU').show(); }
+	    if (set.format==3 | set.format==4){
+		$('.hide4volcanicThU').hide();
+		$('.show4volcanicThU').show();
+	    } else {
+		$('.hide4carbonateThU').hide();
+		$('.show4carbonateThU').show();
+	    }
 	    $('#ThU-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('#detritus option[value='+set.detritus+']').
 		prop('selected', 'selected');
 	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
@@ -953,7 +960,6 @@ $(function(){
 	    else { $('.show4evolutionIsochron').hide(); }
 	    $('#transform-evolution').prop('checked',set.transform=='TRUE');
 	    $('#isochron-evolution').prop('checked',set.isochron=='TRUE');
-	    $('#project').prop('checked',set.project=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#min08').val(set.min08);
@@ -1150,8 +1156,6 @@ $(function(){
 		$('#transform-evolution').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.isochron =
 		$('#isochron-evolution').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.project =
-		$('#project').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.shownumbers =
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr =
@@ -1590,10 +1594,16 @@ $(function(){
 	case 1:
 	case 2:
 	    $(".hide4volcanicThU").show();
+	    $(".hide4carbonateThU").hide();
+	    $(".show4volcanicThU").hide();
+	    $(".show4carbonateThU").show();
 	    break;
 	case 3:
 	case 4:
-	    $(".hide4volcanicThU").hide();
+	    $(".hide4volcanicThU").show();
+	    $(".hide4carbonateThU").hide();
+	    $(".show4volcanicThU").show();
+	    $(".show4carbonateThU").hide();
 	    break;
 	}
     }
@@ -1640,6 +1650,11 @@ $(function(){
     $.chooseUPbAgeType = function(){
 	var type = 1*$('option:selected', $("#UPb-age-type")).attr('value');
 	IsoplotR.settings["U-Pb"].type = type;
+	showOrHide();
+    }
+    $.chooseTh230correction = function(){
+	var type = 1*$('option:selected', $("#detritus")).attr('value');
+	IsoplotR.settings["Th-U"].detritus = type;
 	showOrHide();
     }
     
