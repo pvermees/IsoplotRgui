@@ -1,6 +1,6 @@
 <p></p>
 
-<div class="hide4volcanicThU">
+<div class="hide4ThU3 hide4ThU4">
 &nbsp; <help id="help-detritus">detrital <sup>230</sup>Th correction:</help>
 <select id="detritus" onchange="$.chooseTh230correction();">
   <option value="0">none</option>
@@ -9,6 +9,39 @@
   <option value="3">measured</option>
 </select>
 <p></p>
+<div hidden class="show4Th230corr">
+<table>
+  <tr hidden class="show4assumedTh230corr">
+    <td>&nbsp;<sup>230</sup>Th/<sup>232</sup>Th:</td>
+    <td><input type="text" id="Th02"></td>
+    <td>&plusmn;</td>
+    <td><input type="text" id="errTh02"></td>
+    <td></td><td></td>
+  </tr><tr hidden class="show4measuredTh230corr">
+    <td>&nbsp;X=<sup>230</sup>Th/<sup>238</sup>U:</td>
+    <td><input type="text" id="Th0U8"></td>
+    <td>&plusmn;</td>
+    <td><input type="text" id="errTh0U8"></td>
+    <td>, r[X,Y]:</td>
+    <td><input type="text" id="rXY"></td>
+  </tr><tr hidden class="show4measuredTh230corr">
+    <td>&nbsp;Y=<sup>232</sup>Th/<sup>238</sup>U:</td>
+    <td><input type="text" id="Th2U8"></td>
+    <td>&plusmn;</td>
+    <td><input type="text" id="errTh2U8"></td>
+    <td>, r[X,Z]:</td>
+    <td><input type="text" id="rXZ"></td>
+  </tr><tr hidden class="show4measuredTh230corr">
+    <td>&nbsp;Z=<sup>234</sup>U/<sup>238</sup>U:</td>
+    <td><input type="text" id="U48"></td>
+    <td>&plusmn;</td>
+    <td><input type="text" id="errU48"></td>
+    <td>, r[Y,Z]:</td>
+    <td><input type="text" id="rYZ"></td>
+  </tr><tr>
+</tr></table>      
+<p></p>
+</div>
 &nbsp; <input type="checkbox" id="transform-evolution"
 	      onchange="$.chooseEvolutionTransformation();">
 <help id="help-transform-evolution">Plot as <sup>234</sup>U/<sup>238</sup>U vs. age</help>?

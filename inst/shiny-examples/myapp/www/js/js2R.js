@@ -87,6 +87,8 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
 	out += ",detritus=" + gcsettings.detritus;
+	out += ",Th02=" + concatenate(gcsettings.Th02);
+	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
@@ -287,6 +289,15 @@ function getOptions(prefs){
 	break;
     default: // do nothing
     }
+    return out;
+}
+
+function concatenate(vector){
+    var out = "c(" + vector[0];
+    for (i=1; i<vector.length; i++){
+	out += "," + vector[i];
+    }
+    out += ")";
     return out;
 }
 

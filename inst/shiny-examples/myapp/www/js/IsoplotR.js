@@ -23,8 +23,8 @@ $(function(){
 	    $("#INPUT").handsontable({ // add change handler asynchronously
 		afterChange: function(changes,source){
 		    getData4Server(); // placed here because we don't want to
-		    handson2json();          // call the change handler until after
-		}                            // IsoplotR has been initialised
+		    handson2json();   // call the change handler until after
+		}                     // IsoplotR has been initialised
 	    });
 	});
 	return out;
@@ -403,6 +403,20 @@ $(function(){
 		$('.hide4ThU4').hide();
 		break;
 	    }
+	    switch (set.detritus){
+	    case 2:
+		$('.show4Th230corr').show();
+		$('.show4assumedTh230corr').show();
+		$('.show4measuredTh230corr').hide();
+		break;
+	    case 3:
+		$('.show4Th230corr').show();
+		$('.show4assumedTh230corr').hide();
+		$('.show4measuredTh230corr').show();
+		break;
+	    default:
+		$('.show4Th230corr').hide();
+	    }
 	    break;
 	case 'Pb-Pb':
 	    $('.show4PbPb').show();
@@ -437,28 +451,6 @@ $(function(){
 	    case 3:
 		$('.show4ArAr3').show();
 		$('.hide4ArAr3').hide();
-		break;
-	    }
-	    break;
-	case 'Th-U':
-	    $('.show4ThU').show();
-	    $('.hide4ThU').hide();
-	    switch (set.format){
-	    case 1:
-		$('.show4ThU1').show();
-		$('.hide4ThU1').hide();
-		break;
-	    case 2:
-		$('.show4ThU2').show();
-		$('.hide4ThU2').hide();
-		break;
-	    case 3:
-		$('.show4ThU3').show();
-		$('.hide4ThU3').hide();
-		break;
-	    case 4:
-		$('.show4ThU4').show();
-		$('.hide4ThU4').hide();
 		break;
 	    }
 	    break;
@@ -613,6 +605,13 @@ $(function(){
 		$(".show4isochron").hide();
 		break;
 	    }
+	    if (pd.transform=='TRUE'){
+		$('.show4evotrans').show();
+		$('.hide4evotrans').hide();
+	    } else {
+		$('.show4evotrans').hide();
+		$('.hide4evotrans').show();
+	    }
 	case 'isochron':
 	    $(".hide4isochron").hide();
 	case 'helioplot':
@@ -661,18 +660,13 @@ $(function(){
 	    $('#maxdisc').val(set.maxdisc);
 	    break;
 	case 'Th-U':
-	    if (set.format==3 | set.format==4){
-		$('.hide4volcanicThU').hide();
-		$('.show4volcanicThU').show();
-	    } else {
-		$('.hide4carbonateThU').hide();
-		$('.show4carbonateThU').show();
-	    }
 	    $('#ThU-formats option[value='+set.format+']').
 		prop('selected', 'selected');
 	    $('#detritus option[value='+set.detritus+']').
 		prop('selected', 'selected');
 	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
+	    $('#Th02').val(set.Th02[0]);
+	    $('#errTh02').val(set.Th02[1]);
 	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
@@ -972,13 +966,6 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
-	    if (set.transform=='TRUE'){
-		$('.show4evotrans').show();
-		$('.hide4evotrans').hide();
-	    } else {
-		$('.show4evotrans').hide();
-		$('.hide4evotrans').show();
-	    }
 	    $('#evolution-isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
 	    $('#clabel').val(set.clabel);
@@ -1196,6 +1183,8 @@ $(function(){
 	    set.lambda.U235[1] = $("#errLambdaU235").val();
 	    break;
 	case 'Th-U':
+	    gcsettings.Th02[0] = $("#Th02").val();
+	    gcsettings.Th02[1] = $("#errTh02").val();
 	    set.lambda.Th230[0] = $("#LambdaTh230").val();
 	    set.lambda.Th230[1] = $("#errLambdaTh230").val();
 	    set.lambda.U234[0] = $("#LambdaU234").val();
@@ -1558,7 +1547,6 @@ $(function(){
 	var type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
 	IsoplotR.settings.isochron.type = type;
     }
-    
     $.chooseEvolutionTransformation = function(){
 	var selected =  $("#transform-evolution").prop('checked');
 	if (selected){
@@ -1569,7 +1557,6 @@ $(function(){
 	    $('.hide4evotrans').show();
 	}
     }
-
     $.chooseEvolutionIsochron = function(){
 	var selected =  $("#isochron-evolution").prop('checked');
 	if (selected){
@@ -1577,6 +1564,11 @@ $(function(){
 	} else {
 	    $('.show4evolutionIsochron').hide();
 	}
+    }
+    $.chooseTh230correction = function(){
+	var type = 1*$('option:selected', $("#detritus")).attr('value');
+	IsoplotR.settings["Th-U"].detritus = type;
+	showOrHide();
     }
     
     $.chooseUPbformat = function(){
@@ -1589,23 +1581,8 @@ $(function(){
 	chooseFormat("#ArAr-formats","Ar-Ar")
     }
     $.chooseThUformat = function(){
-	var format = chooseFormat("#ThU-formats","Th-U")
-	switch (format){
-	case 1:
-	case 2:
-	    $(".hide4volcanicThU").show();
-	    $(".hide4carbonateThU").hide();
-	    $(".show4volcanicThU").hide();
-	    $(".show4carbonateThU").show();
-	    break;
-	case 3:
-	case 4:
-	    $(".hide4volcanicThU").show();
-	    $(".hide4carbonateThU").hide();
-	    $(".show4volcanicThU").show();
-	    $(".show4carbonateThU").hide();
-	    break;
-	}
+	IsoplotR.settings["Th-U"].format = chooseFormat("#ThU-formats","Th-U")
+	showOrHide();
     }
     $.chooseRbSrformat = function(){
 	chooseFormat("#RbSr-formats","Rb-Sr")
@@ -1650,11 +1627,6 @@ $(function(){
     $.chooseUPbAgeType = function(){
 	var type = 1*$('option:selected', $("#UPb-age-type")).attr('value');
 	IsoplotR.settings["U-Pb"].type = type;
-	showOrHide();
-    }
-    $.chooseTh230correction = function(){
-	var type = 1*$('option:selected', $("#detritus")).attr('value');
-	IsoplotR.settings["Th-U"].detritus = type;
 	showOrHide();
     }
     
