@@ -101,6 +101,37 @@ function help(id){
 	    "<sup>234</sup>U-<sup>238</sup>U composition of the detritus</li>";
 	    "</ol>";
 	break;
+    case "help-Th02":
+	text = "Specify the assumed initial <sup>230</sup>Th/" +
+	    "<sup>232</sup>Th-ratio of the detritus and its standard error.";
+	break;
+    case "help-Th0U8":
+	text = "Specify the measured present day <sup>230</sup>Th/" +
+	    "<sup>238</sup>U-ratio of the detritus and its standard error.";
+	break;
+    case "help-Th2U8":
+	text = "Specify the measured present day <sup>232</sup>Th/" +
+	    "<sup>238</sup>U-ratio of the detritus and its standard error.";
+	break;
+    case "help-U48":
+	text = "Specify the measured present day <sup>234</sup>U/" +
+	    "<sup>238</sup>U-ratio of the detritus and its standard error.";
+	break;
+    case "help-rXY-detritus":
+	text = "Specify the error correlation between the measured " +
+	    "present day <sup>230</sup>Th/<sup>238</sup>U and " +
+	    "<sup>232</sup>Th/<sup>238</sup>U-ratios of the detritus.";
+	break;
+    case "help-rXZ-detritus":
+	text = "Specify the error correlation between the measured " +
+	    "present day <sup>230</sup>Th/<sup>238</sup>U and " +
+	    "<sup>234</sup>U/<sup>238</sup>U-ratios of the detritus.";
+	break;
+    case "help-rYZ-detritus":
+	text = "Specify the error correlation between the measured " +
+	    "present day <sup>232</sup>Th/<sup>238</sup>U and " +
+	    "<sup>234</sup>U/<sup>238</sup>U-ratios of the detritus.";
+	break;
     case "help-alpha":
 	text = "Set the probability cutoff (&alpha;) for error ellipses, " + 
 	    "and 100(1-&alpha;)% confidence intervals. ";

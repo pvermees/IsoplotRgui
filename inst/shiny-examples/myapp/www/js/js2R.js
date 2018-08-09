@@ -55,14 +55,16 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	switch (geochronometer){
+	case 'Th-U':
+	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th02=" + concatenate(gcsettings.Th02);
+	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	case 'Th-U':
 	    out += ",i2i=" + gcsettings.i2i;
-	    out += ",detritus=" + gcsettings.detritus;
 	    break;
 	case 'U-Pb':
 	    var type = gcsettings.type;

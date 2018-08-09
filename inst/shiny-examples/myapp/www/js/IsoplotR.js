@@ -667,6 +667,15 @@ $(function(){
 	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
 	    $('#Th02').val(set.Th02[0]);
 	    $('#errTh02').val(set.Th02[1]);
+	    $('#Th0U8').val(set.Th02U48[0]);
+	    $('#errTh0U8').val(set.Th02U48[1]);
+	    $('#Th2U8').val(set.Th02U48[2]);
+	    $('#errTh2U8').val(set.Th02U48[3]);
+	    $('#U48').val(set.Th02U48[4]);
+	    $('#errU48').val(set.Th02U48[5]);
+	    $('#rXY').val(set.Th02U48[6]);
+	    $('#rXZ').val(set.Th02U48[7]);
+	    $('#rYZ').val(set.Th02U48[8]);
 	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
@@ -1185,6 +1194,15 @@ $(function(){
 	case 'Th-U':
 	    gcsettings.Th02[0] = $("#Th02").val();
 	    gcsettings.Th02[1] = $("#errTh02").val();
+	    gcsettings.Th02U48[0] = $("#Th0U8").val();
+	    gcsettings.Th02U48[1] = $("#errTh0U8").val();
+	    gcsettings.Th02U48[2] = $("#Th2U8").val();
+	    gcsettings.Th02U48[3] = $("#errTh2U8").val();
+	    gcsettings.Th02U48[4] = $("#U48").val();
+	    gcsettings.Th02U48[5] = $("#errU48").val();
+	    gcsettings.Th02U48[6] = $("#rXY").val();
+	    gcsettings.Th02U48[7] = $("#rXZ").val();
+	    gcsettings.Th02U48[8] = $("#rYZ").val();
 	    set.lambda.Th230[0] = $("#LambdaTh230").val();
 	    set.lambda.Th230[1] = $("#errLambdaTh230").val();
 	    set.lambda.U234[0] = $("#LambdaU234").val();
