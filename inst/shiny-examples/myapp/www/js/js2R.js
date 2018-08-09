@@ -129,12 +129,15 @@ function getOptions(prefs){
 	break;
     case 'average':
 	switch (geochronometer){
+	case 'Th-U':
+	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th02=" + concatenate(gcsettings.Th02);
+	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	case 'Th-U':
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
 	case 'U-Pb':
@@ -174,12 +177,15 @@ function getOptions(prefs){
 	out += ",show.hist=" + pdsettings.showhist;
 	out += ",adaptive=" + pdsettings.adaptive;
 	switch (geochronometer){
+	case 'Th-U':
+	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th02=" + concatenate(gcsettings.Th02);
+	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	case 'Th-U':
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
 	case 'U-Pb':
@@ -209,12 +215,15 @@ function getOptions(prefs){
 	if (pdsettings.pch!='none') { out += ",pch=" + pdsettings.pch; }
 	out += ",verticals=" + pdsettings.verticals;
 	switch (geochronometer){
+	case 'Th-U':
+	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th02=" + concatenate(gcsettings.Th02);
+	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	case 'Th-U':
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
 	case 'U-Pb':
@@ -270,16 +279,18 @@ function getOptions(prefs){
 	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
 	switch (geochronometer){
+	case 'Th-U':
+	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th02=" + concatenate(gcsettings.Th02);
+	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	case 'Th-U':
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + gcsettings.i2i;
-	    out += ",detritus=" + gcsettings.detritus;
 	    break;
 	case 'U-Pb':
 	case 'Pb-Pb':

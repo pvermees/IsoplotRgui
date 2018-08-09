@@ -424,8 +424,7 @@ function help(id){
 	break;
     case "help-ThU-i2i":
 	text = "Ticking this box uses and isochron fit " +
-	    "through all the Th-U data to remove the detrital " +
-	    "<sup>230</sup>Th-component.";
+	    "to estimate the initial <sup>230</sup>Th-component.";
 	break;
     case "help-minx":
 	text = "Minimum age constraint of the KDE. " +
