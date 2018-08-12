@@ -891,6 +891,7 @@ $(function(){
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#outliers').prop('checked',set.outliers=='TRUE');
 	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
+	    $('#ranked').prop('checked',set.ranked=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#mint').val(set.mint);
@@ -1058,6 +1059,8 @@ $(function(){
 		$('#outliers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings["randomeffects"] = 
 		$('#randomeffects').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["ranked"] = 
+		$('#ranked').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.mint = check($('#mint').val(),'auto');

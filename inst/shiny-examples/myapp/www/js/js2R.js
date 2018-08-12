@@ -156,6 +156,7 @@ function getOptions(prefs){
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",random.effects=" + pdsettings.randomeffects;
+	out += ",ranked=" + pdsettings.ranked;
 	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
 	break;

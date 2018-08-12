@@ -52,6 +52,9 @@ function help(id){
 	    "weighted mean plot. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
+    case "help-ranked":
+	text = "Arrange the measurements in order of increasing value?";
+	break;
     case "help-mint-radial":
 	text = "Set the minimum age limit for the radial scale. " + 
 	    "Type <tt>auto</tt> to have " +

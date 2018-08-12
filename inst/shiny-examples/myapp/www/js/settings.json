@@ -147,7 +147,8 @@
 	"sigdig": 2,
 	"randomeffects": "FALSE",
 	"mint": "auto",
-	"maxt": "auto"
+	"maxt": "auto",
+	"ranked": "FALSE"
     },
     "spectrum": {
 	"plateau": "TRUE",
