@@ -893,6 +893,8 @@ $(function(){
 	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
+	    $('#mint').val(set.mint);
+	    $('#maxt').val(set.maxt);
 	    break;
 	case 'spectrum':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -1058,6 +1060,8 @@ $(function(){
 		$('#randomeffects').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    i2i(geochronometer);
 	    break;
 	case 'spectrum':
@@ -1795,15 +1799,16 @@ $(function(){
     $("#PLOT").click(function(){
 	update();
 	$("#OUTPUT").hide();
-	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
+	//$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
 	$("#PLOTTER").click();
     });
 
     $("#RUN").click(function(){
 	update();
+	$("#myplot").empty();
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").handsontable('deselectCell');
-	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
+	//$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#OUTPUT").show();
 	$("#RUNNER").click();
     });

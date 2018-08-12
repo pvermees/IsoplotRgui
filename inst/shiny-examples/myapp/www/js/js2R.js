@@ -156,6 +156,8 @@ function getOptions(prefs){
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",random.effects=" + pdsettings.randomeffects;
+	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
+	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
 	break;
     case 'spectrum':
 	if (geochronometer=='Ar-Ar'){

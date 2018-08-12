@@ -30,6 +30,11 @@ function help(id){
 	    "(a number between 0 and 4568 Ma). Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
+    case "help-maxt-concordia":
+	text = "Set the maximum age limit for the concordia diagram " + 
+	    "(a number between 0 and 4568 Ma). Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
     case "help-common-Pb-option":
 	text = "apply a common lead correction with one of three methods:" +
 	    "<ol><li>infer the initial Pb-composition from the Stacey & Kramers " +
@@ -37,13 +42,23 @@ function help(id){
 	    "<li>use the isochron intercept as the initial Pb-composition</li>" +
 	    "<li>use a nominal initial Pb-composition</li></ol>";
 	break;
-    case "help-maxt-radial":
-	text = "Set the maximum age limit for the radial scale." +
-	    "Type <tt>auto</tt> to have " +
+    case "help-mint-average":
+	text = "Set the minimum age limit for the y-axis of the " + 
+	    "weighted mean plot. Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-maxt-average":
+	text = "Set the maximum age limit for the y-axis of the " +
+	    "weighted mean plot. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
     case "help-mint-radial":
 	text = "Set the minimum age limit for the radial scale. " + 
+	    "Type <tt>auto</tt> to have " +
+	    "<tt>IsoplotR</tt> automatically set a suitable value.";
+	break;
+    case "help-maxt-radial":
+	text = "Set the maximum age limit for the radial scale." +
 	    "Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
@@ -80,11 +95,6 @@ function help(id){
     case "help-max48":
 	text = "Set the maximum <sup>234</sup>U/<sup>238</sup>U ratio " +
 	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
-	    "<tt>IsoplotR</tt> automatically set a suitable value.";
-	break;
-    case "help-maxt-concordia":
-	text = "Set the maximum age limit for the concordia diagram " + 
-	    "(a number between 0 and 4568 Ma). Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
     case "help-isochron-evolution":
