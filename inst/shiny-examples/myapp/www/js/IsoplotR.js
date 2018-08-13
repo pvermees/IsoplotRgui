@@ -1364,6 +1364,7 @@ $(function(){
 	var npd = $('option:selected', $("#plotdevice")).attr('id');
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
+	$("#myplot").empty();
 	$('#myscript').empty();
         if (npd == 'ages'){
 	    $('#PLOT').hide();
