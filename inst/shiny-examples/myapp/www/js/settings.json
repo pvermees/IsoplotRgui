@@ -30,6 +30,9 @@
     },
     "Th-U": {
 	"format": 2,
+	"detritus": 0,
+	"Th02": [0,0],
+	"Th02U48": [0,0,1e6,0,0,0,0,0,0],
 	"i2i": "TRUE"
     },
     "Pb-Pb": {
@@ -82,7 +85,6 @@
 	"maxt": "auto",
 	"alpha": 0.05,
 	"transform": "FALSE",
-	"project": "FALSE",
 	"exterr": "FALSE",
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",
@@ -143,7 +145,10 @@
 	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "FALSE"
+	"randomeffects": "TRUE",
+	"mint": "auto",
+	"maxt": "auto",
+	"ranked": "FALSE"
     },
     "spectrum": {
 	"plateau": "TRUE",
