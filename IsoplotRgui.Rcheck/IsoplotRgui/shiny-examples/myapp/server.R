@@ -1,107 +1,127 @@
 shiny::shinyServer(function(input,output,session){
 
-    observe({
-        input$Rcommand
-        input$data
-    })
-
     selection2data <- function(method="U-Pb",format=1){
         d <- input$data
         nn <- length(d)
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
+        mat <- matrix('',1,nc) # header
+        bi <- 3 # index of the first isotope measurement
         if (identical(method,"U-Pb") & format==1) {
-            mat <- matrix(c('Pb207U235','errPb207U235',
-                            'Pb206U238','errPb206U238','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('Pb207U235','errPb207U235',
+                            'Pb206U238','errPb206U238','rho')
         } else if (identical(method,"U-Pb") & format==2) {
-            mat <- matrix(c('U238Pb206','errU238Pb206',
-                            'Pb207Pb206','errPb207Pb206','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('U238Pb206','errU238Pb206',
+                            'Pb207Pb206','errPb207Pb206','rho')
         } else if (identical(method,"U-Pb") & format==3) {
-            mat <- matrix(c('Pb207Pb206','errPb207Pb206',
+            mat[1,1:8] <- c('Pb207Pb206','errPb207Pb206',
                             'Pb206U238','errPb206U238',
-                            'Pb207U235','errPb207U235','rhoXY','rhoYZ'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+                            'Pb207U235','errPb207U235','rhoXY','rhoYZ')
+        } else if (identical(method,"U-Pb") & format==4) {
+            mat[1,1:9] <- c('Pb207U235','errPb207U235',
+                            'Pb206U238','errPb206U238',
+                            'Pb204U238','errPb204U238',
+                            'rhoXY','rhoXZ','rhoYZ')
+        } else if (identical(method,"U-Pb") & format==5) {
+            mat[1,1:9] <- c('U238Pb206','errU238Pb206',
+                            'Pb207Pb206','errPb207Pb206',
+                            'Pb204Pb206','errPb204Pb206',
+                            'rhoXY','rhoXZ','rhoYZ')
+        } else if (identical(method,"U-Pb") & format==6) {
+            mat[1,1:12] <- c('Pb207U235','errPb207U235',
+                             'Pb206U238','errPb206U238',
+                             'Pb204U238','errPb204U238',
+                             'Pb207Pb206','errPb207Pb206',
+                             'Pb204Pb207','errPb204Pb207',
+                             'Pb204Pb206','errPb204Pb206')
         } else if (identical(method,"Pb-Pb") & format==1) {
-            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
-                            'Pb207Pb204','errPb207Pb204','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('Pb206Pb204','errPb206Pb204',
+                            'Pb207Pb204','errPb207Pb204','rho')
         } else if (identical(method,"Pb-Pb") & format==2) {
-            mat <- matrix(c('Pb204Pb206','errPb204Pb206',
-                            'Pb207Pb206','errPb207Pb206','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('Pb204Pb206','errPb204Pb206',
+                            'Pb207Pb206','errPb207Pb206','rho')
         } else if (identical(method,"Pb-Pb") & format==3) {
-            mat <- matrix(c('Pb206Pb204','errPb206Pb204',
+            mat[1,1:6] <- c('Pb206Pb204','errPb206Pb204',
                             'Pb207Pb204','errPb207Pb206',
-                            'Pb207Pb206','errPb207Pb206'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+                            'Pb207Pb206','errPb207Pb206')
         } else if (identical(method,"Ar-Ar") & format==1){
+            bi <- 5
             mat <- matrix('',3,nc)
-            mat[1,1:2] <-c('J','errJ')
+            mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
-            mat[3,] <- c('Ar39Ar36','errAr39Ar36',
-                         'Ar40Ar36','errAr40Ar36',
-                         'rho','Ar39')
-            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+            mat[3,1:6] <- c('Ar39Ar36','errAr39Ar36',
+                            'Ar40Ar36','errAr40Ar36',
+                            'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==2) {
+            bi <- 5
             mat <- matrix('',3,nc)
-            mat[1,1:2] <-c('J','errJ')
+            mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
-            mat[3,] <- c('Ar39Ar40','errAr39Ar40',
-                         'Ar36Ar40','errAr36Ar40',
-                         'rho','Ar39')
-            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+            mat[3,1:6] <- c('Ar39Ar40','errAr39Ar40',
+                            'Ar36Ar40','errAr36Ar40',
+                            'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==3) {
+            bi <- 5
             mat <- matrix('',3,nc)
-            mat[1,1:2] <-c('J','errJ')
+            mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
-            mat[3,] <- c('Ar39Ar40','errAr39Ar40',
-                         'Ar36Ar40','errAr36Ar40',
-                         'Ar39Ar36','errAr39Ar36',
-                         'Ar39')
-            mat <- rbind(mat,matrix(d[5:nn],ncol=nc,byrow=TRUE))
+            mat[3,1:7] <- c('Ar39Ar40','errAr39Ar40',
+                            'Ar36Ar40','errAr36Ar40',
+                            'Ar39Ar36','errAr39Ar36','Ar39')
+        } else if (identical(method,"Th-U") & format==1) {
+            mat[1,1:9] <- c('U238Th232','errU238Th232',
+                            'U234Th232','errU234Th232',
+                            'Th230Th232','errTh230Th232',
+                            'rhoXY','rhoXZ','rhoYZ')
+        } else if (identical(method,"Th-U") & format==2) {
+            mat[1,1:9] <- c('Th232U238','errTh232U238',
+                            'U234U238','errU234U238',
+                            'Th230U238','errTh230U238',
+                            'rhoXY','rhoXZ','rhoYZ')
+        } else if (identical(method,"Th-U") & format==3) {
+            mat[1,1:5] <- c('U238Th232','errU238Th232',
+                            'Th230Th232','errTh230Th232','rho')
+        } else if (identical(method,"Th-U") & format==4) {
+            mat[1,1:5] <- c('Th232U238','errTh232U238',
+                            'Th230U238','errTh230U238','rho')
         } else if (identical(method,"Rb-Sr") & format==1){
-            mat <- matrix(c('Rb87Sr86','errRb87Sr86',
-                            'Sr87Sr86','errSr87Sr86','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('Rb87Sr86','errRb87Sr86',
+                            'Sr87Sr86','errSr87Sr86','rho')
         } else if (identical(method,"Rb-Sr") & format==2){
-            mat <- matrix(c('Rbppm','errRbppm','Srppm','errSrppm',
-                            'Sr87Sr86','errSr87Sr86'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:6] <- c('Rbppm','errRbppm',
+                            'Srppm','errSrppm',
+                            'Sr87Sr86','errSr87Sr86')
         } else if (identical(method,"Sm-Nd") & format==1){
-            mat <- matrix(c('Sm143Nd144','errSm143Nd144',
-                            'Nd143Nd144','errNd143Nd144','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('Sm143Nd144','errSm143Nd144',
+                            'Nd143Nd144','errNd143Nd144','rho')
         } else if (identical(method,"Sm-Nd") & format==2){
-            mat <- matrix(c('Smppm','errSmppm','Ndppm','errNdppm',
-                            'Nd143Nd144','errNd143Nd144'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:6] <- c('Smppm','errSmppm',
+                            'Ndppm','errNdppm',
+                            'Nd143Nd144','errNd143Nd144')
         } else if (identical(method,"Re-Os") & format==1){
-            mat <- matrix(c('Re187Os188','errRe187Os188',
-                            'Os187Os188','errOs187Os188','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('Re187Os188','errRe187Os188',
+                            'Os187Os188','errOs187Os188','rho')
         } else if (identical(method,"Re-Os") & format==2){
-            mat <- matrix(c('Reppm','errReppm','Osppm','errOsppm',
-                            'Os187Os188','errOs187Os188'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:6] <- c('Reppm','errReppm',
+                            'Osppm','errOsppm',
+                            'Os187Os188','errOs187Os188')
         } else if (identical(method,"Lu-Hf") & format==1){
-            mat <- matrix(c('Lu176Hf177','errLu176Hf177',
-                            'Hf176Hf177','errHf176Hf177','rho'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:5] <- c('Lu176Hf177','errLu176Hf177',
+                            'Hf176Hf177','errHf176Hf177','rho')
         } else if (identical(method,"Lu-Hf") & format==2){
-            mat <- matrix(c('Luppm','errLuppm','Hfppm','errHfppm',
-                            'Hf176Hf177','errHf176Hf177'),1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:6] <- c('Luppm','errLuppm',
+                            'Hfppm','errHfppm',
+                            'Hf176Hf177','errHf176Hf177')
         } else if (identical(method,"fissiontracks") & format==1){
+            bi <- 7
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
             mat[2,1:2] <- d[3:4]
             mat[3,1:2] <-c('rhoD','errRhoD')
             mat[4,1:2] <- d[5:6]
             mat[5,1:2] <- c('Ns','Ni')
-            mat <- rbind(mat,matrix(d[7:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"fissiontracks") & format==2){
+            bi <- 6
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
             mat[2,1:2] <- d[3:4]
@@ -109,30 +129,98 @@ shiny::shinyServer(function(input,output,session){
             mat[4,1] <- d[5]
             mat[5,1:2] <- c('Ns','A')
             mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
-            mat <- rbind(mat,matrix(d[6:nn],ncol=nc,byrow=TRUE))            
         } else if (identical(method,"fissiontracks") & format==3){
+            bi <- 4
             mat <- matrix('',3,nc)
             mat[1,1] <-'spot-size'
             mat[2,1] <- d[3]
             mat[3,1:2] <- c('Ns','A')
             mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
-            mat <- rbind(mat,matrix(d[4:nn],ncol=nc,byrow=TRUE))            
         } else if (identical(method,"U-Th-He")){
-            cn <- c('He','errHe','U','errU','Th','errTh','Sm','errSm')
-            mat <- matrix(cn[1:nc],1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
+            mat[1,1:8] <- c('He','errHe','U','errU',
+                            'Th','errTh','Sm','errSm')
         } else if (identical(method,"detritals") & format==1) {
-            mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
+            mat <- NULL
         } else if (identical(method,"detritals") & format!=1) {
             labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
             mat <- matrix(labels[1:nc],1,nc)
-            mat <- rbind(mat,matrix(d[3:nn],ncol=nc,byrow=TRUE))
         } else if (identical(method,"other")) {
-            mat <- matrix(d[3:nn],ncol=nc,byrow=TRUE)
+            mat <- NULL
         }
+        mat <- rbind(mat,matrix(d[bi:nn],ncol=nc,byrow=TRUE))
         IsoplotR::read.data(mat,method,format)
     }
 
+    selection2levels <- function(method="U-Pb",format=1){
+        d <- input$data
+        nn <- length(d)
+        nr <- as.numeric(d[1])
+        nc <- as.numeric(d[2])
+        bi <- 3 # index of the first isotopic data column
+        ci <- 6 # index of the optional levels column
+        if (identical(method,"U-Pb") & format %in% c(1,2)) {
+            ci <- 6
+        } else if (identical(method,"U-Pb") & (format==3)) {
+            ci <- 9
+        } else if (identical(method,"U-Pb") & (format %in% c(4,5))) {
+            ci <- 10
+        } else if (identical(method,"U-Pb") & (format==6)) {
+            ci <- 13
+        } else if (identical(method,"Pb-Pb") & (format %in% c(1,2))) {
+            ci <- 6
+        } else if (identical(method,"Pb-Pb") & (format==3)) {
+            ci <- 7
+        } else if (identical(method,"Ar-Ar") & (format %in% c(1,2))) {
+            bi <- 5
+            ci <- 7
+        } else if (identical(method,"Ar-Ar") & (format==3)) {
+            bi <- 5
+            ci <- 8
+        } else if (identical(method,"Th-U") & (format %in% c(1,2))) {
+            ci <- 10
+        } else if (identical(method,"Th-U") & (format %in% c(3,4))) {
+            ci <- 6
+        } else if (identical(method,"Rb-Sr") & (format==1)) {
+            ci <- 6
+        } else if (identical(method,"Rb-Sr") & (format==2)) {
+            ci <- 7
+        } else if (identical(method,"Sm-Nd") & (format==1)) {
+            ci <- 6
+        } else if (identical(method,"Sm-Nd") & (format==2)) {
+            ci <- 7
+        } else if (identical(method,"Re-Os") & (format==1)) {
+            ci <- 6
+        } else if (identical(method,"Re-Os") & (format==2)) {
+            ci <- 7
+        } else if (identical(method,"Lu-Hf") & (format==1)) {
+            ci <- 6
+        } else if (identical(method,"Lu-Hf") & (format==2)) {
+            ci <- 7
+        } else if (identical(method,"fissiontracks") & (format==1)) {
+            bi <- 7
+            ci <- 3
+        } else if (identical(method,"fissiontracks") & (format==2)) {
+            bi <- 6
+            ci <- NA
+        } else if (identical(method,"fissiontracks") & (format==3)) {
+            bi <- 4
+            ci <- NA
+        } else if (identical(method,"U-Th-He")) {
+            ci <- 9
+        } else if (identical(method,"detritals") & (format==1)) {
+            mat <- NULL
+            ci <- NA
+        } else if (identical(method,"detritals") & (format!=1)) {
+            ci <- NA
+        } else if (identical(method,"other")) {
+            if (format==2) ci <- 6
+            else ci <- 3                
+        }
+        mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
+        out <- as.numeric(mat[,ci])
+        out
+    }
+    
     getJavascript <- function(results){
         header <- paste0("['",paste(colnames(results),collapse="','"),"']")
         jarray <- "["
@@ -143,7 +231,7 @@ shiny::shinyServer(function(input,output,session){
         jarray <- paste0(jarray,"]")
         script <- paste0("<script type='text/javascript'>",
                          "$(function(){",
-                         "$('#OUTPUT').handsontable('populateFromArray', 0, 0, ",
+                         "$('#OUTPUT').handsontable('populateFromArray',0,0,",
                          jarray,
                          ");",
                          "});",
@@ -156,12 +244,23 @@ shiny::shinyServer(function(input,output,session){
         HTML(script)
     }
 
+    wrap.it <- function(x,len){
+        sapply(x, function(y){paste(strwrap(y,len), collapse = "\n")},
+               USE.NAMES = FALSE)
+    }
+
     run <- function(Rcommand){
-        if (!is.null(Rcommand))
+        tryCatch({
             eval(parse(text=Rcommand))
+        }, error = function(e){
+            errormessage <- wrap.it(e,40)['message']
+            plot(c(0, 1),c(0,1),ann=F,bty ='n',type='n',xaxt='n',yaxt='n')
+            text(0.5,1,errormessage,cex=1.5,pos=1)
+        })
+
     }
     
-    observeEvent(input$PLOT, {
+    observeEvent(input$PLOTTER, {
         output$myplot <- renderPlot({
             isolate({
                 run(input$Rcommand)
@@ -169,7 +268,7 @@ shiny::shinyServer(function(input,output,session){
         })
     })
 
-    observeEvent(input$RUN, {
+    observeEvent(input$RUNNER, {
         output$myscript <- renderUI({
             isolate({
                 results <- run(input$Rcommand)
@@ -177,7 +276,7 @@ shiny::shinyServer(function(input,output,session){
             })
         })
     })
-    
+
     output$PDF <- downloadHandler(
         filename = 'IsoplotR.pdf',
         content = function(file) {

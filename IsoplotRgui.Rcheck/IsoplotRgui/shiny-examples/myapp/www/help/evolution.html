@@ -1,0 +1,198 @@
+<div class="show4ThU1 show4ThU1 hide4ThU3 hide4ThU4">
+The Th-U evolution diagram is a scatter plot that sets out the
+<sup>234</sup>U/<sup>238</sup>U-activity ratios against
+the <sup>230</sup>Th/<sup>238</sup>U-activity ratios as error ellipses
+(drawn at 100[1-&alpha;]% confidence level), and displays the initial
+<sup>234</sup>U/<sup>238</sup>U-activity ratios and ages as a set of
+intersecting lines. The Th-U evolution diagram has a similar and
+purpose and appearance as the U-Pb concordia diagram, which also
+displays compositions and dates simultaneously. An alternative way of
+doing so is to plot the
+<sup>234</sup>U/<sup>238</sup>U-ratios against the
+<sup>230</sup>Th/<sup>234</sup>U-<sup>238</sup>U-ages. In
+both types of evolution diagrams, <tt>IsoplotR</tt> provides the
+option to project the raw measurements along the best fitting isochron
+line and thereby remove the detrital
+<sup>230</sup>Th-component. This procedure allows a visual
+assessment of the degree of homogeneity within a dataset, as is
+quantified by the MSWD.
+</div>
+
+<div hidden class="hide4ThU1 hide4ThU1 show4ThU3 show4ThU4">
+The Th-U evolution diagram has a similar and purpose and appearance as
+the U-Pb concordia diagram, which also displays compositions and dates
+simultaneously. For igneous datasets, in which <sup>234</sup>U and
+<sup>238</sup>U are in secular equilibrium,
+<tt>IsoplotR</tt> produces an (Osmond-style) isochron plot that is
+decorated with a fanning set of isochrone lines.
+</div>
+
+<div class="show4isochron">
+
+<p></p>
+<u>Legend:</u>
+<p></p>
+
+<ol>
+  <li>
+    age = t &plusmn; x | y <span class="show4model1 hide4model2
+    hide4model3"> | z</span>
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>t:</td>
+	<td>the isochron age.
+	</td>
+      </tr>
+      <tr>
+	<td>x:</td>
+	<td>the estimated uncertainty (&sigma;) of t.</td>
+      </tr>
+      <tr>
+	<td>y:</td>
+	<td>
+	  the studentised 100(1-&alpha;)% confidence interval for t
+	  using the appropriate number of degrees of freedom.</td>
+      </tr>
+      <tr class="show4model1 hide4model2 hide4model3">
+	<td>
+	  z:
+	</td>
+	<td>
+	  the approximate 100(1-&alpha;)% confidence interval for t
+	  with overdispersion, calculated as z = y&radic;MSWD.
+	</td>
+      </tr>
+    </table>
+  </li>
+  
+  <li>
+    <span hidden class="show4ThU1 show4ThU2">
+      (<sup>234</sup>U/<sup>238</sup>U)<sub>0</sub>
+    </span>
+    <span hidden class="show4ThU3 show4ThU4">
+      (<sup>230</sup>Th/<sup>232</sup>Th)<sub>0</sub><sub>x</sub>
+    </span>
+    intercept = i &plusmn; x | y <span class="show4model1 hide4model2
+    hide4model3">| z</span>
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>i:</td>
+	<td>
+	  the initial
+	  <span hidden class="show4ThU1 show4ThU2">
+	    (<sup>234</sup>U/<sup>238</sup>U)
+	  </span>
+	  <span hidden class="show4ThU3 show4ThU4">
+	    excess (<sup>230</sup>Th/<sup>232</sup>Th)
+	  </span>
+	  -ratio obtained by linear regression.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  x:
+	</td>
+	<td>the estimated uncertainty (&sigma;) of i.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>
+	  the 100(1-&alpha;)% confidence interval for i using the
+	  appropriate number of degrees of freedom.
+	</td>
+      </tr>
+      <tr class="show4model1 hide4model2 hide4model3">
+	<td>
+	  z:
+	</td>
+	<td>
+	  the approximate 100(1-&alpha;)% confidence interval for i
+	  with overdispersion, calculated as z = y&radic;MSWD.
+	  (only reported if MSWD > 1)
+	</td>
+      </tr>
+    </table>
+  </li>
+
+  <li class="show4model1 hide4model2 hide4model3">
+    MSWD = x, p(&chi;<sup>2</sup>) = y 
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>x:</td>
+	<td>the Mean Square of the Weighted Deviates (MSWD) for the
+	  linear fit.  MSWD values >> 1 indicate that the ages are
+	  overdispersed with respect to the stated analytical
+	  uncertainties.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>the Chi-squared p-value for the linear fit.  p-values <<
+	  0.05 indicate that the ages are overdispersed with respect
+	  to the stated analytical uncertainties.
+	</td>
+      </tr>
+    </table>
+  </li>
+
+  <li class="hide4model1 hide4model2 show4model3">
+    dispersion = &omega; + u /- l
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>&omega;:</td>
+	<td>
+	  the excess ('geological') dispersion of the y-intercept,
+	  i.e. the standard deviation of the assumedly Gaussian
+	  distribution that describes the true non-radiogenic
+	  component.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  u:
+	</td>
+	<td>
+	  width of the upper half of a (1-&alpha;)% confidence
+	  interval for &omega;.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  l:
+	</td>
+	<td>
+	  width of the lower half of a (1-&alpha;)% confidence
+	  interval for &omega;.
+	</td>
+      </tr>
+    </table>
+  </li>  
+
+</ol>
+
+</div>
+
+<p></p>
+<u>References:</u>
+<p></p>
+
+Ludwig, K.R., 2003. Mathematical–statistical treatment of data and
+errors for <sup>230</sup> Th/U geochronology.
+<i>Reviews in Mineralogy and Geochemistry</i>, 52(1), pp.631-656.

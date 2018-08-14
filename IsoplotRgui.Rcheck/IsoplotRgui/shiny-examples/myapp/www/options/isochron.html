@@ -1,5 +1,35 @@
 <p></p>
 
+<div hidden class="show4ThU">
+&nbsp; <help id="help-ThU-isochron-types">Type:</help>
+<select id="ThU-isochron-types" onchange="$.chooseThUisochronType();">
+  <option value=1>
+    1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A)
+  </option>
+  <option value=2>
+    2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A)
+  </option>
+  <option class="hide4ThU3 hide4ThU4" value=3>
+    3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B)
+  </option>
+  <option class="hide4ThU3 hide4ThU4" value=4>
+    4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B)
+  </option>
+</select>
+<p></p>
+</div>
+
+<div>
+&nbsp; <help id="help-isochron-models">Model:</help>
+<select id="isochron-models">
+  <option value=1>1. Maximum likelihood</option>
+  <option value=2>2. Ordinary least squares</option>
+  <option value=3>3. Maximum likelihood with overdispersion</option>
+</select>
+</div>
+
+<p></p>
+
 <div hidden class="show4ArAr show4PbPb">
 &nbsp; <input type="checkbox" id="inverse">
 <help id="help-ArAr-inverse" hidden class="show4ArAr">Inverse isochron</help>
@@ -7,27 +37,40 @@
 <p></p>
 </div>
 
+<div hidden class="show4PbPb">
+&nbsp; <input type="checkbox" id="PbPb-growth"> 
+<help id="help-PbPb-growth">Add Stacey-Kramer Pb-Pb growth curve</help>?
+<p></p>
+</div>
+
+<div class="hide4UThHe">
 &nbsp; <input type="checkbox" id="isochron-exterr"> 
 <help id="help-exterr">Propagate decay constant uncertainties</help>?
-
 <p></p>
+</div>
 
 &nbsp; <input type="checkbox" id="shownumbers"> 
-<help id="help-shownumbers">Add sample numbers to error ellipses</help>?
+<help id="help-shownumbers">Show sample numbers</help>?
 
 <p></p>
 
 <table>
-<tr><td>&nbsp;<help id="help-isochron-minx">Minimum X:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-minx">Minimum X:</help></td>
     <td><input type="text" id="isochron-minx"></td></tr>
-<tr><td>&nbsp;<help id="help-isochron-maxx">Maximum X:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-maxx">Maximum X:</help></td>
     <td><input type="text" id="isochron-maxx"></td></tr>
-<tr><td>&nbsp;<help id="help-isochron-miny">Minimum Y:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-miny">Minimum Y:</help></td>
     <td><input type="text" id="isochron-miny"></td></tr>
-<tr><td>&nbsp;<help id="help-isochron-maxy">Maximum Y:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-maxy">Maximum Y:</help></td>
     <td><input type="text" id="isochron-maxy"></td></tr>
-<tr><td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
+  <tr><td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
     <td><input type="text" id="alpha"></td></tr>
-<tr><td>&nbsp;<help id="help-sigdig">Significant digits:</help></td>
+  <tr><td>&nbsp;<help id="help-sigdig">Significant digits:</help></td>
     <td><input type="text" id="sigdig"></td></tr>
+  <tr><td>&nbsp;<help id="help-ellipse-col1">Ellipse colour 1:</help></td>
+    <td><input type="text" id="bg1"></td></tr>
+  <tr><td>&nbsp;<help id="help-ellipse-col2">Ellipse colour 2:</help></td>
+    <td><input type="text" id="bg2"></td></tr>
+  <tr><td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+    <td><input type="text" id="clabel"></td></tr>
 </table>

@@ -1,6 +1,6 @@
 
-R Under development (unstable) (2016-08-17 r71112) -- "Unsuffered Consequences"
-Copyright (C) 2016 The R Foundation for Statistical Computing
+R version 3.4.4 (2018-03-15) -- "Someone to Lean On"
+Copyright (C) 2018 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -58,7 +58,7 @@ Type 'q()' to quit R.
 > ###
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.044 0.004 0.073 0 0 
+Time elapsed:  0.089 0 0.089 0 0 
 > grDevices::dev.off()
 null device 
           1 

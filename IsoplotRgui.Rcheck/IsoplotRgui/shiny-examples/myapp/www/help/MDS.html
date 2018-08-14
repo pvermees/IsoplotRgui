@@ -1,0 +1,55 @@
+Multidimensional Scaling (MDS) is a dimension-reducting technique that
+takes a matrix of pairwise 'dissimilarities' between objects (e.g.,
+detrital age distributions) as input and produces a configuration of
+two (or higher-) coordinates as output, so that the Euclidean distance
+between these coordinates approximates the dissimilarities of the
+input matrix. Thus, an MDS-configuration serves as a 'map' in which
+similar samples cluster closely together and dissimilar samples plot
+far apart. In the context of detrital geochronology, the dissimilarity
+between samples is given by the statistical distance between age
+distributions. There are many ways to define this statistical distance.
+<tt>IsoplotR</tt> uses the Kolmogorov-Smirnov (KS) statistic for this
+purpose due to its simplicity and the fact that it behaves like a true
+distance in the mathematical sense of the word (Vermeesch, 2013,
+2018). The KS-distance is closely related to the CAD-plot.  It is
+given by the maximum vertical distance between two CAD step
+functions. Thus, the KS-distance takes on values between zero (perfect
+match between two age distributions) and one (no overlap between two
+distributions).  Calculating the KS-distance between samples two at a
+time populates a symmetric dissimilarity matrix with positive values
+and a zero diagonal. <tt>IsoplotR</tt> implements two algorithms to
+convert this matrix into a configuration. The first ('classical' MDS)
+approach uses a sequence of basic matrix manipulations to achieve a
+linear fit between the KS-distances and the fittted distances on the
+MDS configuration. The second, more sophisticated ('nonmetric' MDS)
+approach subjects the input distances to a transformation f prior to
+fitting a configuration:
+
+<p></p>
+&delta;<sub>i,j</sub> = f(KS<sub>i,j</sub>)
+<p></p>
+
+where KS<sub>i,j</sub> is the KS-distance between samples i and j (for
+1 &le; i &ne; j &le; n) and &delta;<sub>i,j</sub> is the 'disparity'.
+Fitting an MDS configuration then involves finding the disparity
+transformation that maximises the goodness of fit (or minimises the
+'stress') between the disparities and the fitted distances. The latter
+two quantities can also be plotted against each other as a 'Shepard
+plot'. Additional options and higher order alternatives to these MDS
+algorithms are provided in a separate <tt>R</tt>-package called
+<a href="http://provenance-london-geochron.com">provenance</a>
+(Vermeesch et al., 2016).
+
+<p></p>
+<u>References:</u>
+<p></p>
+
+Vermeesch, P., 2013.
+Multi-sample comparison of detrital age distributions.
+<i>Chemical Geology</i>,
+341, pp.140-146.
+
+<p></p>
+
+Vermeesch, P., Resentini, A. and Garzanti, E., 2016, An R package for
+statistical provenance analysis, <i>Sedimentary Geology</i>, 336, 14-25

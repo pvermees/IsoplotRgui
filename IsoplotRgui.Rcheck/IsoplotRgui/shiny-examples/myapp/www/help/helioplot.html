@@ -1,0 +1,166 @@
+The space of all possible U-Th-He compositions fits within the
+constraints of a ternary diagram or 'helioplot' (Vermeesch, 2008,
+2010). If Sm is included as well, then this expands to a
+three-dimensional tetrahaedral space (Vermeesch, 2008).  Conventional
+statistical analysis of data that fit within these constrained spaces
+is fraught with theoretical and practical problems that can be solved
+by applying a simple logratio transformation (Aitchison, 1982, 1986)
+
+<p></p>
+u &equiv; ln[U/He], &nbsp; v &equiv; ln[Th/He] &nbsp;
+(, w &equiv; ln[Sm/He] )
+<span class="alignright">(eq. 1)</span>
+<p></p>
+
+and then performing the desired statistical analysis (averaging,
+uncertainty propagation, ...) on the transformed data (Vermeesch,
+2008, 2010). Upon completion of these mathematical operations, the
+results can then be mapped back to U-Th-(Sm)-He space using an inverse
+logratio transformation:
+
+<p></p>
+[He] = 1/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
+&nbsp;
+[U] = e<sup>u</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
+&nbsp;<br>
+[Th] = e<sup>v</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
+&nbsp;
+([Sm] = e<sup>w</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
+&nbsp;)
+<span class="alignright">(eq. 2)</span>
+<p></p>
+
+where [He] + [U] + [Th] (+ [Sm]) = 1. In the context of U-Th-(Sm)-He
+dating, the <i>central</i> age is defined as the age that corresponds
+to the arithmetic mean composition in logratio space, which is
+equivalent to the geometric mean in compositional dataspace
+(Vermeesch, 2008).  The <tt>helioplot</tt> function visualises
+U-Th-(Sm)-He data on either a ternary diagram or a bivariate ln[Th/U]
+vs. ln[U/He] contour plot. These diagrams provide a convenient way to
+simultaneously display the isotopic composition of samples as well as
+their chronological meaning. In this respect, they fulfil the same
+purpose as the U-Pb concordia diagram and the U-series evolution plot.
+
+<p></p>
+<u>Legend:</u>
+<p></p>
+
+<ol>
+  <li>
+    central age = t &plusmn; x | y
+    <span class="show4model1 hide4model2 hide4model3">
+      | z
+    </span>
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>t:</td>
+	<td>the central age, which is defined as the U-Th-He age
+	  corresponding to the weighted mean composition in
+	  log(U/He)-log(Th/He) space.
+	</td>
+      </tr>
+      <tr>
+	<td>x:</td>
+	<td>the estimated standard deviation of t, estimated by the
+	  method of maximum likelihood.</td>
+      </tr>
+      <tr>
+	<td>y:</td>
+	<td>the<span hidden class="show4model1 show4model2
+	  hide4model3"> studentised</span> 100(1-&alpha;)% confidence
+	  interval for t<span hidden class="show4model1 show4model2
+	  hide4model3"> using the appropriate number of degrees of
+	  freedom</span>.
+	</td>
+      </tr>
+      <tr class="show4model1 hide4model2 hide4model3">
+	<td>
+	  z:
+	</td>
+	<td>the approximate 100(1-&alpha;)% confidence interval for t
+	  with overdispersion, calculated as z = y&radic;MSWD.</td>
+      </tr>
+    </table>
+  </li>
+
+  <li class="show4model1 hide4model2 hide4model3">
+    MSWD = x, p(&chi;<sup>2</sup>) = y 
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>x:</td>
+	<td>the Mean Square of the Weighted Deviates (MSWD) of
+	  compositional equivalence for the U-Th-He measurements.
+	  MSWD values >> 1 indicate that the ages are overdispersed
+	  with respect to the stated analytical uncertainties.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>the Chi-squared p-value of equivalence for the geometric
+	  mean composition.  p-values << 0.05 indicate that the ages
+	  are overdispersed with respect to the stated analytical
+	  uncertainties.
+	</td>
+      </tr>
+    </table>
+  </li>
+
+  <li class="hide4model1 hide4model2 show4model3">
+    dispersion = &omega; + u /- l %
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>&omega;:</td>
+	<td>the estimated standard deviation of the 'geological
+	  scatter' of the U/He, Th/He (and Sm/He) ratios required to
+	  explain the overdispersion of the U-Th-(Sm)-He compositions
+	  with respect to the stated analytical uncertainties.
+	</td>
+      </tr>
+       <tr>
+	<td>u:</td>
+	<td>width of the upper half of a (1-&alpha;)% confidence
+	  interval for &omega;.</td>
+      </tr>
+      <tr>
+	<td>l:</td>
+	<td>width of the lower half of the (1-&alpha;)% confidence
+	  interval for &omega;.</td>
+      </tr>
+    </table>
+  </li>
+  
+</ol>
+
+<p></p>
+<u>References:</u>
+<p></p>
+
+Aitchison, J., 1982, The statistical analysis of compositional data.
+<i>Journal of the Royal Statistical Society</i>, v. 44, p. 139-177.
+
+<p></p>
+
+Aitchison, J., 1986, <i>The statistical analysis of compositional
+data</i>.  London, Chapman and Hall, 416 p.
+
+<p></p>
+
+Vermeesch, P., 2008. Three new ways to calculate average (U-Th)/He
+ages.
+<i>Chemical Geology</i>, 249(3), pp.339-347.
+
+<p></p>
+
+Vermeesch, P., 2010. HelioPlot, and the treatment of overdispersed
+(U-Th-Sm)/He data. <i>Chemical Geology</i>, 271(3), pp.108-111.
