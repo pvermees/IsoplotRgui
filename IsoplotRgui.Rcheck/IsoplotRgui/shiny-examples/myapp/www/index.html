@@ -30,27 +30,14 @@
       <option id="Lu-Hf">Lu-Hf</option>
       <option id="U-Th-He">U-Th-He</option>
       <option id="fissiontracks">fission tracks</option>
-      <option id="U-series">U-series</option>
+      <option id="Th-U">U-series</option>
       <option id="detritals">detritals</option>
       <option id="other">other</option>
     </select>
-    <select id="plotdevice">
-      <option id="concordia">concordia</option>
-      <option id="helioplot">helioplot</option>
-      <option id="isochron">isochron</option>
-      <option id="radial">radial plot</option>
-      <option id="regression">regression</option>
-      <option id="spectrum">age spectrum</option>
-      <option id="average">weighted mean</option>
-      <option id="KDE">KDE</option>
-      <option id="CAD">CAD</option>
-      <option id="set-zeta">get &zeta;</option>
-      <option id="MDS">MDS</option>
-      <option id="ages">ages</option>
-    </select>
+    <select id="plotdevice"></select>
     <div id="OPTIONS" class="button">Options</div>
     <div id="HELP" class="button">Help</div>
-    <tit>IsoplotR[beta]</tit>
+    <tit>IsoplotR</tit>
   </header>
 
 <left>
@@ -66,7 +53,9 @@
   </div>
   <div hidden class="centerme show4EDM show4ICP hide4absolute hide4zeta" id="zetaDiv">
     &zeta;: <input type="text" id="zetaVal"> &plusmn;
-    <input type="text" id="zetaErr"> yr cm<sup>2</sup>
+    <input type="text" id="zetaErr">
+    <span class="show4EDM hide4ICP">yr cm<sup>2</sup></span>
+    <span hidden class="hide4EDM show4ICP">Myr &mu;m<sup>2</sup></span>
     <div style="line-height:50%;"><br></div>
   </div>
   <div hidden class="centerme show4EDM hide4ICP hide4absolute" id="rhoDdiv">
@@ -97,8 +86,10 @@
 	   data-input="false" data-badge="false" />
   </div>
   <div id="SAVE" class="button">Save</div>
-  <div id="PLOT" class="button action-button">PLOT</div>
-  <div id="RUN" class="button action-button">RUN</div>
+  <div id="PLOT" class="button">PLOT</div>
+  <div id="PLOTTER" hidden class="action-button"></div>
+  <div id="RUN" class="button">RUN</div>
+  <div id="RUNNER" hidden class="action-button"></div>
   <a id="PDF" target="_blank" class="button shiny-download-link">PDF</a>
   <a id="CSV" target="_blank" class="button shiny-download-link">CSV</a>
   <a id="fname" href="" download="IsoplotR.json"></a>

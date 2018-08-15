@@ -1,0 +1,136 @@
+Radial plots are bivariate (x<sub>i</sub>,y<sub>i</sub>) scatterplots where:
+
+<p></p>
+
+x<sub>i</sub>
+= 1∕&sigma;(z<sub>i</sub>) and y<sub>i</sub>
+= (z<sub>i</sub> - z<sub>o</sub>)∕&sigma;(z<sub>i</sub>)
+(for 1 &le; i &le; n)
+
+<p></p>
+
+with z<sub>i</sub> a transformation of some data and
+&sigma;(z<sub>i</sub>) the corresponding measurement uncertainty. For
+example, if z<sub>i</sub> = log(t<sub>i</sub>) then
+&sigma;(z<sub>i</sub>) =
+&sigma;(t<sub>i</sub>)∕t<sub>i</sub>. z<sub>o</sub> is a convenient
+central value such as the weighted mean. The slope of a line
+connecting the origin (x=0,y=0) of a radial plot with a data point
+(x<sub>i</sub>,y<sub>i</sub>) equals z<sub>i</sub>, and the horizontal
+distance along x-axis is a measure if its precision. Thus, the radial
+plot simultaneously visualises a measurement’s value and precision. No
+other graphical method achieves this goal with the same elegance
+(Galbraith, 1988). This makes the radial plot the method of choice for
+visualising heteroscedastic data, i.e. data with variable measurement
+uncertainties. Traditional applications in the Earth Sciences are
+fission track and luminescence dating (e.g., Galbraith, 1990;
+Galbraith et al., 1999). <tt>IsoplotR</tt> generalises it to all other
+geochronometers as well.
+
+<p></p>
+<u>Legend:</u>
+<p></p>
+
+<ol>
+  <li>
+    central age = t &plusmn; x | y
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>t:</td>
+	<td>the central age, which is defined as e<sup>&mu;</sup> where
+	  &mu; is the mean of the following log-normal distribution:
+	  <br>
+	  t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup>)
+	  <span class="alignright">(eq. 1)</span>
+	  <br>
+	  with s[t<sub>i</sub>] the standard error of the i<sup>th</sup>
+	  (out of n) measurements, and &omega; the <i>overdispersion</i>.
+	</td>
+      </tr>
+      <tr>
+	<td>x:</td>
+	<td>the estimated standard deviation of t, estimated by the
+	  method of maximum likelihood.</td>
+      </tr>
+      <tr>
+	<td>y:</td>
+	<td>the 100(1-&alpha;)% confidence interval for t.
+	</td>
+      </tr>
+    </table>
+  </li>
+  
+  <li>
+    MSWD = m, p(&chi;<sup>2</sup>) = p
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>m:</td>
+	<td>the Mean Square of the Weighted Deviates a.k.a.  the
+	  reduced Chi-squared statistic. MSWD values greater than
+	  unity suggest that the dataset under consideration is
+	  overdispersed with respect to the analyical
+	  uncertainties.</td>
+      </tr>
+      <tr>
+	<td>p:</td>
+	<td>the p-value of a Chi-square probability for homogeneity.
+	  High values of p (>0.05, say) indicate that there is not
+	  enough evidence for overdispersion.</td>
+      </tr>
+    </table>
+  </li>
+
+  <li>
+    dispersion = &omega; + u /- l %
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>&omega;:</td>
+	<td>the dispersion defined by eq. 1.</td>
+      </tr>
+      <tr>
+	<td>u:</td>
+	<td>width of the upper half of a (1-&alpha;)% confidence
+	  interval for &omega;.</td>
+      </tr>
+      <tr>
+	<td>l:</td>
+	<td>width of the lower half of the (1-&alpha;)% confidence
+	  interval for &omega;.</td>
+      </tr>
+    </table>
+  </li>
+
+  
+</ol>
+
+<p></p>
+<u>References:</u>
+<p></p>
+
+Galbraith, R.F., 1988.
+Graphical display of estimates having differing standard errors.
+<i>Technometrics</i>, 30(3), pp.271-281.
+
+<p></p>
+
+Galbraith, R.F., 1990.
+The radial plot: graphical assessment of spread in ages.
+<i>Nuclear Tracks and Radiation Measurements</i>,
+17(3), pp.207-214.
+<p></p>
+
+<p></p>
+
+Galbraith, R.F., Roberts, R.G., Laslett, G.M., Yoshida, H. and Olley,
+J.M., 1999. Optical dating of single and multiple grains of quartz
+from Jinmium rock shelter, northern Australia: Part I, experimental
+design and statistical models. <i>Archaeometry</i>, 41(2), pp.339-364.

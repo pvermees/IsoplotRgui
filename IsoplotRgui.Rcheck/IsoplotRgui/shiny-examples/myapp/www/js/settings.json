@@ -21,11 +21,23 @@
 	"format": 1
     },
     "U-Pb": {
-	"format": 3
+	"format": 2,
+	"type": 4,
+	"cutoff76": 1100,
+	"mindisc": -15,
+	"maxdisc": 5,
+	"commonPb": 0
+    },
+    "Th-U": {
+	"format": 2,
+	"detritus": 0,
+	"Th02": [0,0],
+	"Th02U48": [0,0,1e6,0,0,0,0,0,0],
+	"i2i": "TRUE"
     },
     "Pb-Pb": {
 	"format": 3,
-	"i2i": "TRUE"
+	"commonPb": 2
     },
     "Ar-Ar": {
 	"format": 3,
@@ -50,14 +62,41 @@
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
 	"alpha": 0.05,
 	"wetherill": "TRUE",
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
-	"showage": 1,
-	"sigdig": 2
+	"showage": 0,
+	"sigdig": 2,
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"clabel": ""
+    },
+    "evolution": {
+	"min08": "auto",
+	"max08": "auto",
+	"min48": "auto",
+	"max48": "auto",
+	"mint": "auto",
+	"maxt": "auto",
+	"alpha": 0.05,
+	"transform": "FALSE",
+	"exterr": "FALSE",
+	"isochron": "FALSE",
+	"shownumbers": "FALSE",
+	"sigdig": 2,
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"model": 1,
+	"clabel": ""
     },
     "isochron": {
+	"type": 2,
+	"model": 1,
 	"inverse": "TRUE",
 	"exterr": "TRUE",
 	"shownumbers": "FALSE",
@@ -66,16 +105,24 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"alpha": 0.05,
-	"sigdig": 2
+	"sigdig": 2,
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"growth": "FALSE",
+	"clabel": ""
     },
     "regression": {
+	"model": 1,
 	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
 	"alpha": 0.05,
-	"sigdig": 2
+	"sigdig": 2,
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"clabel": ""
     },
     "radial": {
 	"transformation": "log",
@@ -84,28 +131,31 @@
 	"maxt": "auto",
 	"pch": 21,
 	"cex": 1,
-	"bg": "yellow",
+	"bg": "c('yellow','red')",
 	"sigdig": 2,
+	"alpha": 0.05,
 	"shownumbers": "FALSE",
-	"cutoff76": 1100,
-	"mindisc": -15,
-	"maxdisc": 5,
-	"numpeaks": 0
+	"numpeaks": 0,
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"clabel": ""
     },
     "average": {
 	"outliers": "TRUE",
 	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"cutoff76": 1100,
-	"mindisc": -15,
-	"maxdisc": 5
+	"randomeffects": "TRUE",
+	"mint": "auto",
+	"maxt": "auto",
+	"ranked": "FALSE"
     },
     "spectrum": {
 	"plateau": "TRUE",
 	"exterr": "TRUE",
 	"alpha": 0.05,
-	"sigdig": 2
+	"sigdig": 2,
+	"randomeffects": "FALSE"
     },
     "KDE": {
 	"ncol": "auto",
@@ -122,17 +172,11 @@
 	"bandwidth": "auto",
 	"binwidth": "auto",
 	"pchdetritals": "none",
-	"pch": "'|'",
-	"cutoff76": 1100,
-	"mindisc": -15,
-	"maxdisc": 5
+	"pch": "'|'"
     },
     "CAD": {
 	"pch": "none",
-	"verticals": "TRUE",
-	"cutoff76": 1100,
-	"mindisc": -15,
-	"maxdisc": 5
+	"verticals": "TRUE"
     },
     "set-zeta": {
 	"sigdig": 2,
@@ -143,8 +187,8 @@
 	"shepard": "FALSE",
         "nnlines": "FALSE",
 	"ticks": "TRUE",
-	"pch": "none",
-	"pos": "auto",
+	"pch": 21,
+	"pos": "centre",
 	"cex": 5,
         "col": "black",
 	"bg": "white"
@@ -159,7 +203,11 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"fact": "auto"
+	"fact": "auto",
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(0,0,1,0.5)",
+	"model": 1,
+	"clabel": ""
     },
     "ages": {
 	"exterr": "TRUE",

@@ -1803,7 +1803,7 @@ $(function(){
     $("#PLOT").click(function(){
 	update();
 	$("#OUTPUT").hide();
-	//$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
+	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
 	$("#PLOTTER").click();
     });
 
@@ -1812,7 +1812,7 @@ $(function(){
 	$("#myplot").empty();
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").handsontable('deselectCell');
-	//$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
+	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#OUTPUT").show();
 	$("#RUNNER").click();
     });

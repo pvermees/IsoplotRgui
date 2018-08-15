@@ -2,8 +2,24 @@ body {
     font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
 }
 
+td {
+    vertical-align: top;
+}
+
+u {
+    text-decoration: underline;
+}
+
+.alignright {
+    float: right;
+}
+
 a {
     border: 0;
+    color: black;
+}
+#tutorial {
+    text-decoration: underline;
     color: black;
 }
 a:hover {
@@ -82,7 +98,7 @@ left {
 }
 
 right {
-    overflow:hidden;
+    overflow:auto;
     position:fixed;
     left:50%;
     width:50%;
@@ -110,4 +126,24 @@ right {
 
 #OPEN, help {
     cursor: pointer;
+}
+
+.middle {
+    position: relative;
+    width: 800;
+    margin: 0 auto;
+}
+
+.thumbnail {
+    max-width:100%;
+    width:600px;
+    border:2px solid;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
 }

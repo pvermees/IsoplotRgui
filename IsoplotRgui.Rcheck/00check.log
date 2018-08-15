@@ -1,10 +1,10 @@
 * using log directory ‘/home/pvermees/Dropbox/Programming/R/IsoplotRgui/IsoplotRgui.Rcheck’
-* using R Under development (unstable) (2016-08-17 r71112)
+* using R version 3.4.4 (2018-03-15)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using option ‘--as-cran’
 * checking for file ‘IsoplotRgui/DESCRIPTION’ ... OK
-* this is package ‘IsoplotRgui’ version ‘0.1’
+* this is package ‘IsoplotRgui’ version ‘1.0’
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Pieter Vermeesch <p.vermeesch@ucl.ac.uk>’
 
@@ -22,22 +22,29 @@ The build time stamp is missing.
 * checking for executable files ... OK
 * checking for hidden files and directories ... NOTE
 Found the following hidden files and directories:
+  inst/shiny-examples/myapp/www/css/.Rhistory
   .git
 These were most likely included in error. See section ‘Package
 structure’ in the ‘Writing R Extensions’ manual.
 
 CRAN-pack does not know about
   .git
-* checking for portable file names ... OK
+* checking for portable file names ... WARNING
+Found the following file with a non-portable file name:
+  .git/index (pieter-laptop's conflicted copy 2017-10-25)
+These are not fully portable file names.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
 * checking for sufficient/correct file permissions ... OK
 * checking whether package ‘IsoplotRgui’ can be installed ... OK
 * checking installed package size ... OK
 * checking package directory ... OK
 * checking DESCRIPTION meta-information ... NOTE
+License components which are templates and need '+ file LICENSE':
+  MIT
 Checking should be performed on sources prepared by ‘R CMD build’.
 * checking top-level files ... NOTE
 Non-standard files/directories found at top level:
-  ‘IsoplotRgui.Rcheck’ ‘IsoplotRgui.pdf’
+  ‘IsoplotRgui.Rcheck’ ‘IsoplotRgui_1.0.tar.gz’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... WARNING
@@ -73,4 +80,4 @@ These should not be in a package tarball.
 * checking examples ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 WARNING, 4 NOTEs
+Status: 2 WARNINGs, 4 NOTEs

@@ -1,0 +1,51 @@
+Histograms smooth data by binning. <tt>IsoplotR</tt> uses Sturges'
+Rule (log<sub>2</sub>[n]+1, where n is the number of data points) as
+the default number of histogram bins, but this can be changed to any
+other natural number by the user. Alternatively, kernel density
+estimates KDEs (Vermeesch, 2012) smooth data by applying a (Gaussian)
+kernel:
+
+<p></p>
+KDE(t) = &sum;<sub>i</sub><i>N</i>
+(t | &mu;=t<sub>i</sub>, &sigma;=h[t])
+<span class="alignright">(eq. 1)</span>
+<p></p>
+
+where <i>N</i>(&mu;,&sigma;) is the probability of observing a value t
+under a Normal distribution with mean &mu; and standard deviation
+&sigma;.  h[t] is the smoothing parameter or 'bandwidth' of the kernel
+density estimate which may or may not depend on the age t. If h[t]
+depends on t, then KDE(t) is known as an 'adaptive' KDE.  The default
+bandwidth used by <tt>IsoplotR</tt> is calculated using the algorithm
+of Botev et al. (2010) and modulated by the adaptive smoothing
+approach of Abramson (1982). The rationale behind adaptive kernel
+density estimation is to use a narrower bandwidth near the peaks fo
+the sampling distribution (where the ordered dates are closely spaced
+in time), and a wider bandwidth in the distribution's sparsely sampled
+troughs. Thus, the resolution of the density estimate is optimised
+according to data availability. Kernel density estimates are not to be
+confused with <tt>Isoplot</tt>'s 'probability density plots'
+(PDPs). The mathematical definition of a PDP closely resembles that of
+the KDE, the only difference being the substitution of the bandwidth
+h[t] by the analytical uncertainty s[t<sub>i</sub>] in Equation
+1. This similarity in appearance and definition is the source of much
+confusion. PDPs do not stand up to further statistical scrutiny (see
+counter-examples provided by Vermeesch, 2012), and are not implemented
+in <tt>IsoplotR</tt>.
+
+<p></p>
+<u>References:</u>
+<p></p>
+
+Abramson, I.S., 1982. On bandwidth variation in kernel estimates-a
+square root law. <i>Annals of Statistics</i>, 1217-1223.
+
+<p></p>
+
+Botev, Z. I., Grotowski, J. F., Kroese, D. P., 2010. Kernel density
+estimation via diffusion. <i>Annals of Statistics</i> 38, 2916-2957.
+
+<p></p>
+
+Vermeesch, P., 2012. On the visualisation of detrital age distributions.
+<i>Chemical Geology</i>, 312, pp.190-194.
