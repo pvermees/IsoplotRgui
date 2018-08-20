@@ -92,7 +92,8 @@ $(function(){
 	case 'other':
 	    switch(IsoplotR.settings.plotdevice){
 	    case 'regression':
-		return 6;
+		if (IsoplotR.settings["other"].format == 1){ return 6; }
+		else {return 7;}
 	    case 'spectrum':
 		return 3;
 	    case 'radial':
@@ -1504,6 +1505,7 @@ $(function(){
 	    case "Re-Os":
 	    case "Lu-Hf":
 	    case "Th-U":
+	    case "other":
 	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
 		prefs.settings.data[geochronometer] =
