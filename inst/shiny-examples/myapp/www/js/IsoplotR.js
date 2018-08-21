@@ -827,6 +827,12 @@ $(function(){
 	case 'detritals':
 	    $('#headers-on').prop('checked',set.format==1);
 	    break;
+	case 'other':
+	    if (IsoplotR.settings.plotdevice=='regression'){
+		$('#regression-format option[value='+set.format+']').
+		    prop('selected', 'selected');
+	    }
+	    break;
 	case 'concordia':
 	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
 	    $('#conc-age-option option[value='+set.showage+']').
@@ -1650,6 +1656,12 @@ $(function(){
 	IsoplotR.settings[chronometer].format = format;
 	IsoplotR = populate(IsoplotR,true);
 	return(format)
+    }
+
+    $.chooseRegressionFormat = function(){
+	var format = 1*$('option:selected', $("#regression-format")).attr('value');
+	IsoplotR.settings['other'].format = format;
+	IsoplotR = populate(IsoplotR,true);
     }
 
     $.chooseUPbAgeType = function(){
