@@ -37,9 +37,7 @@ function getOptions(prefs){
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	if (geochronometer!='other' & geochronometer!='U-Th-He'){
-	    out += ",format=" + gcsettings.format;
-	}
+	if (geochronometer!='U-Th-He'){ out += ",format=" + gcsettings.format; }
 	out += ")";
 	if (pdsettings.numpeaks == 'auto') out += ",k='auto'"
 	else if (pdsettings.numpeaks == 'min') out += ",k='min'"
@@ -118,12 +116,13 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
-	if (geochronometer!='U-Th-He'){
+	if (geochronometer=='other'){
+	    out += ",levels=selection2levels(method='regression'";
+	} else if (geochronometer!='U-Th-He'){
 	    out += ",levels=selection2levels(method='" + geochronometer + "'";
-	    if (geochronometer=='other')
-		out += ",format=2)";
-	    else
-		out += ",format=" + gcsettings.format + ")";
+	}
+	if (geochronometer!='U-Th-He'){
+	    out += ",format=" + gcsettings.format + ")";
 	}
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	break;
@@ -516,8 +515,10 @@ function getRcommand(prefs){
     case 'evolution': 
 	out += "IsoplotR::evolution(dat"; 
 	break;
-    case 'isochron':
     case 'regression':
+	out += "dat <- data2york(dat,format=" +
+	    prefs.settings['other'].format + ");"
+    case 'isochron':
 	out += "IsoplotR::isochron(dat";
 	break;
     case 'radial':

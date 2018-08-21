@@ -139,12 +139,12 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"U-Th-He")){
             mat[1,1:8] <- c('He','errHe','U','errU',
                             'Th','errTh','Sm','errSm')
-        } else if (identical(method,"detritals") & format==1) {
+        } else if (identical(method,"detritals") & format==1){
             mat <- NULL
-        } else if (identical(method,"detritals") & format!=1) {
+        } else if (identical(method,"detritals") & format!=1){
             labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
             mat <- matrix(labels[1:nc],1,nc)
-        } else if (identical(method,"other")) {
+        } else if (identical(method,"other")){
             mat <- NULL
         }
         mat <- rbind(mat,matrix(d[bi:nn],ncol=nc,byrow=TRUE))
@@ -212,9 +212,14 @@ shiny::shinyServer(function(input,output,session){
             ci <- NA
         } else if (identical(method,"detritals") & (format!=1)) {
             ci <- NA
+        } else if (identical(method,"regression")) {
+            if (format==1) {
+                ci <- 6 # York regression
+            } else if (format==2) {
+                ci <- 7 # regression with redundant ratios
+            } 
         } else if (identical(method,"other")) {
-            if (format==2) ci <- 6
-            else ci <- 3                
+            ci <- 3
         }
         mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
         out <- as.numeric(mat[,ci])

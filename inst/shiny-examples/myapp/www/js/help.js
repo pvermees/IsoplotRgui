@@ -810,6 +810,17 @@ function help(id){
 	    "<li><sup>234</sup>U/<sup>238</sup>U vs. " +
 	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)</li></ol>";
 	break;
+    case "help-regression-format":
+	text = "Choose one of two output formats:<ol>" +
+	    "<li><tt>X, s[X], Y, s[Y], rho</tt><br> where <tt>X</tt> and " +
+	    "<tt>Y</tt> are two sets of measurements, <tt>s[X]</tt> and " +
+	    "<tt>s[Y]</tt>are their respective standard errors " +
+	    "and <tt>rho</tt> the error correlation.</li>" +
+	    "<li><tt>X/Z, s[X/Z], Y/Z, s[Y/Z], X/Y, s[X/Y]</tt><br>" +
+	    "in which the redundancy between the three error estimates " +
+	    "allows the correlation coefficient between <tt>X/Z</tt> and " +
+	    "<tt>Y/Z</tt> to be computed.</li></ol>";
+	break;
     case "help-helioplot-models":
 	text = "Choose one of the following statistical models:<br>" +
 	    "1. Weighted mean: This model assumes that the scatter between " +
