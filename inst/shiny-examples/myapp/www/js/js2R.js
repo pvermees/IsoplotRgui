@@ -516,7 +516,7 @@ function getRcommand(prefs){
 	out += "IsoplotR::evolution(dat"; 
 	break;
     case 'regression':
-	out += "dat <- IsoplotR:::data2york.default(dat,format=" +
+	out += "dat <- IsoplotR::data2york.default(dat,format=" +
 	    prefs.settings['other'].format + ");"
     case 'isochron':
 	out += "IsoplotR::isochron(dat";
