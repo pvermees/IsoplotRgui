@@ -58,6 +58,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -133,6 +134,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -184,6 +186,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -222,6 +225,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -286,6 +290,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -326,6 +331,7 @@ function getRcommand(prefs){
 	geochronometer=='U-Pb'  |
 	geochronometer=='Pb-Pb' |
 	geochronometer=='Ar-Ar' |
+	geochronometer=='K-Ca' |
 	geochronometer=='Th-U'  |
 	geochronometer=='Rb-Sr' |
         geochronometer=='Sm-Nd' |
@@ -363,6 +369,11 @@ function getRcommand(prefs){
 	out += "IsoplotR::settings('iratio','Ar40Ar36'," +
 	    prefs.constants.iratio.Ar40Ar36[0] + "," +
 	    prefs.constants.iratio.Ar40Ar36[1] + ");"
+	out += "IsoplotR::settings('lambda','K40'," +
+	    prefs.constants.lambda.K40[0] + "," +
+	    prefs.constants.lambda.K40[1] + ");"
+	break;
+    case 'K-Ca':
 	out += "IsoplotR::settings('lambda','K40'," +
 	    prefs.constants.lambda.K40[0] + "," +
 	    prefs.constants.lambda.K40[1] + ");"

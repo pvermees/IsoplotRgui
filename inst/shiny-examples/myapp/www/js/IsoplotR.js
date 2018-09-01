@@ -57,6 +57,12 @@ $(function(){
 	    case 2: return 7;
 	    case 3: return 8;
 	    }
+	case 'K-Ca':
+	    var format = IsoplotR.settings["K-Ca"].format;
+	    switch (format){
+	    case 1: return 6;
+	    case 2: return 7;
+	    }
 	case 'Th-U':
 	    var format = IsoplotR.settings["Th-U"].format;
 	    switch (format){
@@ -455,6 +461,10 @@ $(function(){
 		break;
 	    }
 	    break;
+	case 'K-Ca':
+	    $('.show4KCa').show();
+	    $('.hide4KCa').hide();
+	    break;
 	case 'Rb-Sr':
 	    $('.show4RbSr').show();
 	    $('.hide4RbSr').hide();
@@ -709,6 +719,13 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
+	    break;
+	case 'K-Ca':
+	    $('#KCa-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('#LambdaK40').val(cst.lambda.K40[0]),
+	    $('#errLambdaK40').val(cst.lambda.K40[1]),
+	    $('#i2iKCa').prop('checked',set.i2i=='TRUE');
 	    break;
 	case 'Rb-Sr':
 	    $('#RbSr-formats option[value='+set.format+']').
@@ -1232,6 +1249,10 @@ $(function(){
 	    set.lambda.K40[0] = $("#LambdaK40").val();
 	    set.lambda.K40[1] = $("#errLambdaK40").val();
 	    break;
+	case 'K-Ca':
+	    set.lambda.K40[0] = $("#LambdaK40").val();
+	    set.lambda.K40[1] = $("#errLambdaK40").val();
+	    break;
 	case 'Rb-Sr':
 	    set.iratio.Rb85Rb87[0] = $('#Rb85Rb87').val();
 	    set.iratio.Rb85Rb87[1] = $('#errRb85Rb87').val();
@@ -1343,6 +1364,9 @@ $(function(){
 	case 'Ar-Ar':
 	    gcsettings.i2i = $("#i2iArAr").prop('checked') ? "TRUE" : "FALSE";
 	    break;
+	case 'K-Ca':
+	    gcsettings.i2i = $("#i2iKCa").prop('checked') ? "TRUE" : "FALSE";
+	    break;
 	case 'Th-U':
 	    gcsettings.i2i = $("#i2iThU").prop('checked') ? "TRUE" : "FALSE";
 	    break;
@@ -1421,6 +1445,7 @@ $(function(){
 	    $("#Jdiv").show();
 	    $(".helioplot").hide()
 	    break;
+	case 'K-Ca':
 	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -1506,6 +1531,7 @@ $(function(){
 	    case "U-Pb":
 	    case "Pb-Pb":
 	    case "Ar-Ar":
+	    case "K-Ca":
 	    case "Rb-Sr":
 	    case "Sm-Nd":
 	    case "Re-Os":
@@ -1613,6 +1639,9 @@ $(function(){
     }
     $.chooseArArformat = function(){
 	chooseFormat("#ArAr-formats","Ar-Ar")
+    }
+    $.chooseKCaformat = function(){
+	chooseFormat("#KCa-formats","K-Ca")
     }
     $.chooseThUformat = function(){
 	IsoplotR.settings["Th-U"].format = chooseFormat("#ThU-formats","Th-U")

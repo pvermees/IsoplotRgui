@@ -68,6 +68,13 @@ shiny::shinyServer(function(input,output,session){
             mat[3,1:7] <- c('Ar39Ar40','errAr39Ar40',
                             'Ar36Ar40','errAr36Ar40',
                             'Ar39Ar36','errAr39Ar36','Ar39')
+        } else if (identical(method,"K-Ca") & format==1){
+            mat[1,1:5] <- c('K40Ca44','errK40Ca44',
+                            'Ca40Ca44','errCa40Ca44','rho')
+        } else if (identical(method,"K-Ca") & format==2){
+            mat[1,1:6] <- c('K40Ca44','errK40Ca44',
+                            'Ca40Ca44','errCa40Ca44',
+                            'K40Ca40','errK40Ca40')
         } else if (identical(method,"Th-U") & format==1) {
             mat[1,1:9] <- c('U238Th232','errU238Th232',
                             'U234Th232','errU234Th232',
@@ -176,6 +183,10 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"Ar-Ar") & (format==3)) {
             bi <- 5
             ci <- 8
+        } else if (identical(method,"K-Ca") & (format==1)) {
+            ci <- 6
+        } else if (identical(method,"K-Ca") & (format==2)) {
+            ci <- 7
         } else if (identical(method,"Th-U") & (format %in% c(1,2))) {
             ci <- 10
         } else if (identical(method,"Th-U") & (format %in% c(3,4))) {
