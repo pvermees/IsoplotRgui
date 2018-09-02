@@ -1841,6 +1841,7 @@ $(function(){
     });
     
     $("#DEFAULTS").click(function(){
+	$("#myplot").empty();
 	var cfile = './js/constants.json';
 	$.getJSON(cfile, function(data){
 	    IsoplotR.constants = data;

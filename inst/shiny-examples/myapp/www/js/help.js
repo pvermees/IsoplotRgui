@@ -274,6 +274,10 @@ function help(id){
 	text = "Change the atmospheric ('excess') argon ratio. " +
 	    "Default value is taken from Lee et al. (2006).";
 	break;
+    case "help-Ca40Ca44":
+	text = "Change the natural <sup>40</sup>Ca/<sup>44</sup>Ca ratio. " +
+	    "Default value is taken from Moore and Machlan (1972).";
+	break;
     case "help-LambdaK40":
 	text = "Default value taken from Renne et al. (2011).";
 	break;
@@ -438,7 +442,8 @@ function help(id){
     case "help-KCa-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the K-Ca data as an initial " +
-	    "<sup>40</sup>Ca/<sup>44</sup>Ca-ratio for the age calculations.";
+	    "<sup>40</sup>Ca/<sup>44</sup>Ca-ratio for the age calculations. " +
+	    "Unticking it uses the <sup>40</sup>Ca/<sup>44</sup>Ca-ratio above.";
 	break;
     case "help-ThU-i2i":
 	text = "Ticking this box uses and isochron fit " +
