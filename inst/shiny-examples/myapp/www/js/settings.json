@@ -43,6 +43,10 @@
 	"format": 3,
 	"i2i": "FALSE"
     },
+    "K-Ca": {
+	"format": 1,
+	"i2i": "TRUE"
+    },
     "Rb-Sr": {
 	"format": 2,
 	"i2i": "TRUE"

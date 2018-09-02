@@ -46,21 +46,13 @@
     <td><input type="text" id="bandwidth"></td></tr>
 <tr><td>&nbsp; <help id="help-binwidth">Histogram binwidth</help>:</td>
     <td><input type="text" id="binwidth"></td></tr>
+<tr class="hide4detritals">
+  <td>&nbsp; <help id="help-pch">Plot character</help>:</td>
+  <td><input type="text" id="pch"></td></tr>
+<tr hidden class="show4detritals">
+  <td>&nbsp; <help id="help-pchdetritals">Plot character</help>:</td>
+  <td><input type="text" id="pchdetritals"></td></tr>
 </table>
-
-<div hidden class="show4detritals">
-<table>
-<tr><td>&nbsp; <help id="help-pchdetritals">Plot character</help>:</td>
-    <td><input type="text" id="pchdetritals"></td></tr>
-</table>
-</div>
-
-<div class="hide4detritals">
-<table>
-<tr><td>&nbsp; <help id="help-pch">Plot character</help>:</td>
-    <td><input type="text" id="pch"></td></tr>
-</table>
-</div>
 
 <p></p>
 &nbsp;<input type="checkbox" id="log">
@@ -86,6 +78,12 @@
 &nbsp;<input type="checkbox" id="i2iArAr">
 <help id="help-ArAr-i2i">Use isochron intercept as initial
   <sup>40</sup>Ar/<sup>36</sup>Ar-ratio?
+</help>
+</div>
+<div hidden class="show4KCa">
+&nbsp;<input type="checkbox" id="i2iKCa">
+<help id="help-KCa-i2i">Use isochron intercept as initial
+  <sup>40</sup>Ca/<sup>44</sup>Ca-ratio
 </help>
 </div>
 <div hidden class="show4ReOs">
