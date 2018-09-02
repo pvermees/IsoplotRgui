@@ -369,7 +369,7 @@ function help(id){
 	break;
     case "help-Sr87Sr86":
 	text = "Change the natural <sup>87</sup>Sr/<sup>86</sup>Sr ratio. " +
-	    "Default value is taken from Moore et al. (1982).";
+	    "Default value is taken from Compston et al. (1971).";
 	break;
     case "help-Sr88Sr86":
 	text = "Change the natural <sup>88</sup>Sr/<sup>86</sup>Sr ratio. " +

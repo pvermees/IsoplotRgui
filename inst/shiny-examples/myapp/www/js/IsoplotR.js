@@ -733,6 +733,8 @@ $(function(){
 	case 'K-Ca':
 	    $('#KCa-formats option[value='+set.format+']').
 		prop('selected', 'selected');
+	    $('#Ca40Ca44').val(cst.iratio.Ca40Ca44[0]);
+	    $('#errCa40Ca44').val(cst.iratio.Ca40Ca44[1]);
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iKCa').prop('checked',set.i2i=='TRUE');
@@ -1260,6 +1262,8 @@ $(function(){
 	    set.lambda.K40[1] = $("#errLambdaK40").val();
 	    break;
 	case 'K-Ca':
+	    set.iratio.Ca40Ca44[0] = $('#Ca40Ca44').val();
+	    set.iratio.Ca40Ca44[1] = $('#errCa40Ca44').val();
 	    set.lambda.K40[0] = $("#LambdaK40").val();
 	    set.lambda.K40[1] = $("#errLambdaK40").val();
 	    break;

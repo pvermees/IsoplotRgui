@@ -374,6 +374,9 @@ function getRcommand(prefs){
 	    prefs.constants.lambda.K40[1] + ");"
 	break;
     case 'K-Ca':
+	out += "IsoplotR::settings('iratio','Ca40Ca44'," +
+	    prefs.constants.iratio.Ca40Ca44[0] + "," +
+	    prefs.constants.iratio.Ca40Ca44[1] + ");"
 	out += "IsoplotR::settings('lambda','K40'," +
 	    prefs.constants.lambda.K40[0] + "," +
 	    prefs.constants.lambda.K40[1] + ");"
