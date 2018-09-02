@@ -435,6 +435,11 @@ function help(id){
 	    "<sup>40</sup>Ar/<sup>36</sup>Ar-ratio for the age calculations. " +
 	    "Unticking it uses the atmospheric ratio specified above.";
 	break;
+    case "help-KCa-i2i":
+	text = "Ticking this box uses the y-intercept of an isochron fit " +
+	    "through all the K-Ca data as an initial " +
+	    "<sup>40</sup>Ca/<sup>44</sup>Ca-ratio for the age calculations.";
+	break;
     case "help-ThU-i2i":
 	text = "Ticking this box uses and isochron fit " +
 	    "to estimate the initial <sup>230</sup>Th-component.";
@@ -798,6 +803,20 @@ function help(id){
 	    "where the error correlation is optional<br>" +
 	    "2. <tt>2/8 s[2/8] 0/8 s[0/8] (rho)</tt><br>" +
 	    "where the error correlation is optional";
+	break;
+    case "help-KCa-formats":
+	text = "Choose one of two input formats:<ol><li>" +
+	    "<tt>X=K/Ca s[X] Y=Ca/Ca s[Y] r[X,Y]</tt><br>" +
+	    "where <tt>X=K/Ca</tt> is the <sup>40</sup>K/<sup>44</sup>Ca ratio, " +
+	    "<tt>Y=Ca/Ca</tt> is the<br><sup>40</sup>Ca/<sup>44</sup>Ca ratio, and " +
+	    "<tt>s[X], s[Y]</tt> and <tt>rho[X,Y]</tt><br> are the standard errors and "+
+	    "error correlations, respectively.</li>" +
+	    "<li><tt>X s[X] Y s[Y] Z s[Z]</tt><br>" +
+	    "where <tt>X, s[X], Y,</tt> and <tt>s[Y]</tt> are defined as before,<br>" +
+	    "<tt>Z</tt> is the <sup>40</sup>K/<sup>40</sup>Ca ratio, and " +
+	    "<tt>s[Z]</tt> is its standard error.<br>Here the redundancy between " +
+	    "three ratio uncertainties allows the covariance to be determined implicitly." +
+	    "</li></ol>";
 	break;
     case "help-ThU-isochron-types":
 	text = "Choose one of four output formats:<ol>" +
