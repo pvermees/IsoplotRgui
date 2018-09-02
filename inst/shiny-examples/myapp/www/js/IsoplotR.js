@@ -464,6 +464,16 @@ $(function(){
 	case 'K-Ca':
 	    $('.show4KCa').show();
 	    $('.hide4KCa').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4KCa1').show();
+		$('.hide4KCa1').hide();
+		break;
+	    case 2:
+		$('.show4KCa2').show();
+		$('.hide4KCa2').hide();
+		break;
+	    }
 	    break;
 	case 'Rb-Sr':
 	    $('.show4RbSr').show();
