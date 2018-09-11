@@ -162,7 +162,7 @@
 	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "FALSE"
+	"randomeffects": "TRUE"
     },
     "KDE": {
 	"ncol": "auto",
