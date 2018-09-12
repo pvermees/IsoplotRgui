@@ -888,10 +888,8 @@ $(function(){
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
 	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
 	    $('#bg').val(set.bg);
-	    $('#clabel').val(set.clabel);
 	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#isochron-minx').val(set.minx);
 	    $('#isochron-maxx').val(set.maxx);
 	    $('#isochron-miny').val(set.miny);
@@ -903,6 +901,7 @@ $(function(){
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
 	    $('#clabel').val(set.clabel);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'radial':
 	    $('#transformation option[value='+set.transformation+']').
@@ -919,10 +918,11 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
-	    $('#cex').val(set.cex);
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
 	    $('#clabel').val(set.clabel);
+	    $('#pcex').val(set.cex);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'average':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -933,6 +933,7 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'spectrum':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -940,6 +941,7 @@ $(function(){
 	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'KDE':
 	    $('#showhist').prop('checked',set.showhist=='TRUE');
@@ -953,10 +955,12 @@ $(function(){
 	    $('#binwidth').val(set.binwidth);
 	    $('#pchdetritals').val(set.pchdetritals);
 	    $('#pch').val(set.pch);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'CAD':
 	    $('#verticals').prop('checked',set.verticals=='TRUE');
 	    $('#pch').val(set.pch);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
@@ -976,10 +980,11 @@ $(function(){
 	    $('#nnlines').prop('checked',set.nnlines=='TRUE');
 	    $('#ticks').prop('checked',set.ticks=='TRUE');
 	    $('#pch').val(set.pch);
-	    $('#cex').val(set.cex);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
 	    $('#bg').val(set.bg);
+	    $('#pcex').val(set.cex);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'helioplot':
 	    $('#logratio').prop('checked',set.logratio=='TRUE');
@@ -997,6 +1002,7 @@ $(function(){
 	    $('#helioplot-models option[value='+set.model+']').
 		prop('selected', 'selected');
 	    $('#clabel').val(set.clabel);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'evolution':
 	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
@@ -1018,6 +1024,7 @@ $(function(){
 	    $('#evolution-isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
 	    $('#clabel').val(set.clabel);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	default:
 	}
@@ -1058,7 +1065,6 @@ $(function(){
 	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr = $('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.growth = $('#PbPb-growth').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.clabel = $('#clabel').val();
 	case 'regression':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
@@ -1071,6 +1077,7 @@ $(function(){
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'radial':
 	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
@@ -1082,11 +1089,12 @@ $(function(){
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    pdsettings.pch = $('#pch').val();
-	    pdsettings["cex"] = $('#cex').val();
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    i2i(geochronometer);
+	    pdsettings["cex"] = $('#pcex').val();
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'average':
 	    if (geochronometer != "other"){
@@ -1104,6 +1112,7 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    i2i(geochronometer);
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'spectrum':
 	    if (geochronometer != "other"){
@@ -1117,6 +1126,7 @@ $(function(){
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
 	    i2i(geochronometer);
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'KDE':
 	    pdsettings["showhist"] = 
@@ -1136,12 +1146,14 @@ $(function(){
 	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
 	    pdsettings["pch"] = $('#pch').val();
 	    i2i(geochronometer);
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'CAD':
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["verticals"] = 
 		$('#verticals').prop('checked') ? 'TRUE' : 'FALSE';
 	    i2i(geochronometer);
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'set-zeta':
 	    IsoplotR.settings.data[geochronometer].age[0] = $('#standAgeVal').val();
@@ -1160,7 +1172,7 @@ $(function(){
 	    pdsettings["ticks"] =
 		$('#ticks').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["cex"] = $('#cex').val();
+	    pdsettings["cex"] = $('#pcex').val();
 	    pdsettings["pos"] = $('#pos').val();
 	    pdsettings["col"] = $('#col').val();
 	    pdsettings["bg"] = $('#bg').val();
@@ -1191,6 +1203,7 @@ $(function(){
 	    pdsettings.model = 1*$('option:selected',
 				   $("#helioplot-models")).attr('value');
 	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'evolution':
 	    pdsettings.transform =
@@ -1215,6 +1228,7 @@ $(function(){
 				   $("#evolution-isochron-models")).attr('value');
 	    pdsettings.clabel = $('#clabel').val();
 	    i2i(geochronometer);
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	default:
 	}

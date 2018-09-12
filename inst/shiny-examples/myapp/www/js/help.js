@@ -677,8 +677,8 @@ function help(id){
 	    "of the graphical output.";
 	break;
     case "help-cex":
-	text = "A numerical value giving the amount by which plotting " +
-	    "symbols should be magnified relative to the default";
+	text = "A numerical value giving the factor by which text labels and " +
+	    "plotting symbols should be magnified relative to the default";
 	break;
     case "help-pos":
 	text = "A position specifier for the labels. Values " +
