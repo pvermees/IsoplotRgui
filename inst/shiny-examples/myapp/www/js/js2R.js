@@ -325,7 +325,8 @@ function getRcommand(prefs){
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
-    var out = "dat <- selection2data(method='" + geochronometer + "'";
+    var out = "par(cex=" + prefs.settings.par.cex + ");";
+    out += "dat <- selection2data(method='" + geochronometer + "'";
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
 	geochronometer=='U-Pb'  |

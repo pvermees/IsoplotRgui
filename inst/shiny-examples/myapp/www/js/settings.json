@@ -1,6 +1,9 @@
 {
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
+    "par": {
+	"cex": 2
+    },
     "data": {
 	"U-Pb": {},
 	"Ar-Ar": {},
