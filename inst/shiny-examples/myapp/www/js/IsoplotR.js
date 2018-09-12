@@ -879,6 +879,7 @@ $(function(){
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
 	    $('#clabel').val(set.clabel);
+	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.type+']').
@@ -1050,6 +1051,7 @@ $(function(){
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'isochron':
 	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');

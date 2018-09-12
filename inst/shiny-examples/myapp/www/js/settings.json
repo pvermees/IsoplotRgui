@@ -2,7 +2,7 @@
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "par": {
-	"cex": 2
+	"cex": 1
     },
     "data": {
 	"U-Pb": {},
