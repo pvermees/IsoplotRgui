@@ -1172,10 +1172,11 @@ $(function(){
 	    pdsettings["ticks"] =
 		$('#ticks').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["cex"] = $('#pcex').val();
 	    pdsettings["pos"] = $('#pos').val();
 	    pdsettings["col"] = $('#col').val();
 	    pdsettings["bg"] = $('#bg').val();
+	    pdsettings["cex"] = $('#pcex').val();
+	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'ages':
 	    if (geochronometer != 'U-Th-He'){
