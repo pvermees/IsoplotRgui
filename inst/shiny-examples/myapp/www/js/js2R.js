@@ -325,8 +325,7 @@ function getRcommand(prefs){
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
-    var out = "par(cex=" + prefs.settings.par.cex + ");";
-    out += "dat <- selection2data(method='" + geochronometer + "'";
+    var out = "dat <- selection2data(method='" + geochronometer + "'";
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
 	geochronometer=='U-Pb'  |
@@ -522,6 +521,9 @@ function getRcommand(prefs){
 	break;
     case 'detritals':
 	break;
+    }
+    if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
+	out += "par(cex=" + prefs.settings.par.cex + ");";
     }
     switch (plotdevice) {
     case 'concordia': 
