@@ -391,12 +391,9 @@ $(function(){
 	    if (set.commonPb==3 & set.format<4){
 		$('.show4commonPbwithout204').show();
 		$('.show4commonPbwith204').hide();
-	    } else if (set.commonPb==3 & set.format>3){
+	    } else if (set.commonPb==3){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').show();
-	    } else {
-		$('.show4commonPbwithout204').hide();
-		$('.show4commonPbwith204').hide();
 	    }
 	    break;
 	case 'Th-U':
@@ -607,8 +604,8 @@ $(function(){
 	    case 2:
 	    case 3:
 	    case 4:
-		$('.show4discordiaAge').show();
-		$('.hide4discordiaAge').hide();
+		$('.show4discordia').show();
+		$('.hide4discordia').hide();
 		switch (pd.showage){
 		case 2:
 		    $('.show4model1').show();
@@ -625,7 +622,21 @@ $(function(){
 		}
 		break;
 	    }
+	    if (pd.anchor == 1){
+		$('.show4tanchor').show();
+	    } else {
+		$('.show4tanchor').hide();
+	    }
+	    if (pd.anchor==2 & set.format<4){
+		$('.show4commonPbwithout204').show();
+	    } else if (pd.anchor==2){
+		$('.show4commonPbwith204').show();
+	    } else if (set.commonPb!=3){
+		$('.show4commonPbwithout204').hide();
+		$('.show4commonPbwith204').hide();
+	    }
 	    break;
+	    
 	case 'evolution':
 	    $(".hide4evolution").hide();
 	    switch (pd.isochron){
@@ -875,6 +886,8 @@ $(function(){
 	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
 	    $('#conc-age-option option[value='+set.showage+']').
 		prop('selected', 'selected');
+	    $('#anchor-option option[value='+set.anchor+']').
+		prop('selected', 'selected');
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#minx').val(set.minx);
@@ -889,6 +902,7 @@ $(function(){
 	    $('#bg2').val(set.bg2);
 	    $('#clabel').val(set.clabel);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#tanchor').val(set.tanchor);
 	    break;
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.type+']').
@@ -1049,7 +1063,8 @@ $(function(){
 	case 'concordia':
 	    pdsettings.wetherill =
 		$('#tera-wasserburg').prop('checked') ? 'FALSE' : 'TRUE';
-	    pdsettings["showage"] = 1*$('#conc-age-option').prop("value");
+	    pdsettings.showage = 1*$('#conc-age-option').prop("value");
+	    pdsettings.anchor = 1*$('#anchor-option').prop("value");
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.minx = check($('#minx').val(),'auto');
@@ -1068,6 +1083,7 @@ $(function(){
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = $('#cex').val();
+	    pdsettings.tanchor = $('#tanchor').val();
 	    break;
 	case 'isochron':
 	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
@@ -1633,23 +1649,19 @@ $(function(){
 	    $('option:selected', $("#transformation")).attr('value');
     }
 
-//    $.chooseConcAgeOption = function(){
-//	var option = 1*$('option:selected', $("#conc-age-option")).attr('value');
-//	if (option < 2){
-//	    $('.show4discordia').hide();
-//	} else {
-//	    $('.show4discordia').show();
-//	}
-//    }
-//    $.chooseAnchorOption = function(){
-//	var option = 1*$('option:selected', $("#anchor-option")).attr('value');
-//	IsoplotR.settings.concordia.anchor = option;
-//	if (option == 1){
-//	    $('.show4tanchor').show();
-//	} else {
-//	    $('.show4tanchor').hide();
-//	}
-//    }
+    $.chooseConcAgeOption = function(){
+	var option = 1*$('option:selected', $("#conc-age-option")).attr('value');
+	if (option < 2){
+	    $('.show4discordia').hide();
+	} else {
+	    $('.show4discordia').show();
+	}
+    }
+    $.chooseAnchorOption = function(){
+	var option = 1*$('option:selected', $("#anchor-option")).attr('value');
+	IsoplotR.settings.concordia.anchor = option;
+	showOrHide();
+    }
     
     // method = 'U-Pb' or 'Pb-Pb'
     $.chooseCommonPbOption = function(method){

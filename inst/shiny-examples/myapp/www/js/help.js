@@ -42,6 +42,15 @@ function help(id){
 	    "<li>use the isochron intercept as the initial Pb-composition</li>" +
 	    "<li>use a nominal initial Pb-composition</li></ol>";
 	break;
+    case "help-anchor-option":
+	text = "Select an option to either <ol> " +
+	    "<li>Fit the discordia line without external constraints</li>" +
+	    "<li>Anchor the discordia line to a particular age</li>" +
+	    "<li>Anchor the discordia line to a particular common Pb composition</li></ol>";
+	break;
+    case "help-tanchor":
+	text = "Anchor the discordia line fit to a specific concordia age.";
+	break;
     case "help-mint-average":
 	text = "Set the minimum age limit for the y-axis of the " + 
 	    "weighted mean plot. Type <tt>auto</tt> to have " +
@@ -194,6 +203,12 @@ function help(id){
 	    "Default values are taken from Hiess et al. (2012). " +
 	    "To use the IUGS-recommended value of Steiger and J&auml;ger (1977), " +
 	    "change this to 137.88 &plusmn; 0.";
+	break;
+    case "help-Pb207Pb206":
+	text = "Specify the initial <sup>207</sup>Pb/<sup>206</sup>Pb-ratio " +
+	    "to be used in a nominal common Pb correction or anchored discordia " +
+	    "line regression. The default value corresponds to the troilite " +
+	    "composition of Stacey and Kramers (1975).";
 	break;
     case "help-Pb206Pb204":
 	text = "Specify the initial <sup>206</sup>Pb/<sup>204</sup>Pb-ratio " +
