@@ -6,7 +6,7 @@
 <p></p>
 
 &nbsp; <help id="help-conc-age-option">Calculate</help>
-<select id="conc-age-option">
+<select id="conc-age-option" onchange="$.chooseConcAgeOption();">
   <option value="0">no</option>
   <option value="1">concordia</option>
   <option value="2">discordia (model-1)</option>
@@ -14,6 +14,17 @@
   <option value="4">discordia (model-3)</option>
 </select>
 age
+
+<div hidden class="show4discordia">
+<p></p>
+&nbsp; <help id="help-anchor-option">Anchored discordia line?</help>
+<select id="anchor-option" onchange="$.chooseAnchorOption();">
+  <option value="0">no</option>
+  <option value="1">age</option>
+  <option value="2">Pb</option>
+</select>
+<span hidden class="show4tanchor">: <input type="text" id="tanchor"> Ma</span>
+</div>
 
 <p></p>
 

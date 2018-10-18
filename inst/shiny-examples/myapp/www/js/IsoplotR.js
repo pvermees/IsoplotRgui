@@ -388,6 +388,16 @@ $(function(){
 		$(".show4UPbType4").show();
 		break;
 	    }
+	    if (set.commonPb==3 & set.format<4){
+		$('.show4commonPbwithout204').show();
+		$('.show4commonPbwith204').hide();
+	    } else if (set.commonPb==3 & set.format>3){
+		$('.show4commonPbwithout204').hide();
+		$('.show4commonPbwith204').show();
+	    } else {
+		$('.show4commonPbwithout204').hide();
+		$('.show4commonPbwith204').hide();
+	    }
 	    break;
 	case 'Th-U':
 	    $('.show4ThU').show();
@@ -666,9 +676,9 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#common-Pb-option option[value='+set.commonPb+']').
 		prop('selected', 'selected');
-	    if (set.commonPb==3){ $('.show4commonPb3').show(); }
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
+	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -719,7 +729,6 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
-	    if (set.commonPb==3){ $('.show4commonPb3').show(); }
 	    break;
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
@@ -1241,6 +1250,7 @@ $(function(){
 		gcsettings["mindisc"] = $('#mindisc').val();
 		gcsettings["maxdisc"] = $('#maxdisc').val();
 	    }
+	    set.iratio.Pb207Pb206[0] = $('#Pb207Pb206').val();
 	    set.iratio.Pb206Pb204[0] = $('#Pb206Pb204').val();
 	    set.iratio.Pb207Pb204[0] = $('#Pb207Pb204').val();
 	case 'Pb-Pb':
@@ -1623,15 +1633,29 @@ $(function(){
 	    $('option:selected', $("#transformation")).attr('value');
     }
 
+//    $.chooseConcAgeOption = function(){
+//	var option = 1*$('option:selected', $("#conc-age-option")).attr('value');
+//	if (option < 2){
+//	    $('.show4discordia').hide();
+//	} else {
+//	    $('.show4discordia').show();
+//	}
+//    }
+//    $.chooseAnchorOption = function(){
+//	var option = 1*$('option:selected', $("#anchor-option")).attr('value');
+//	IsoplotR.settings.concordia.anchor = option;
+//	if (option == 1){
+//	    $('.show4tanchor').show();
+//	} else {
+//	    $('.show4tanchor').hide();
+//	}
+//    }
+    
     // method = 'U-Pb' or 'Pb-Pb'
     $.chooseCommonPbOption = function(method){
 	var option = 1*$('option:selected', $("#common-Pb-option")).attr('value');
 	IsoplotR.settings[method].commonPb = option;
-	if (option == 3){
-	    $('.show4commonPb3').show();
-	} else {
-	    $('.show4commonPb3').hide();
-	}
+	showOrHide();
     }
 
     $.chooseThUisochronType = function(){
