@@ -33,6 +33,11 @@ function getOptions(prefs){
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
 	out += ",clabel='" + pdsettings.clabel + "'";
+	if (pdsettings.anchor==1){
+	    out += ",anchor=list(TRUE," + pdsettings.tanchor + ")";
+	} else if (pdsettings.anchor==2){
+	    out += ",anchor=list(TRUE,NA)";
+	}
 	break;
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
