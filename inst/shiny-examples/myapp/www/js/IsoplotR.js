@@ -333,7 +333,7 @@ $(function(){
 			row.push(0);
 		    } else if ((ArAr1 & j==5)|(ArAr2 & j==5)|(ArAr3 & j==6)) { // Ar39
 			row.push(1);
-		    } else if (omissable & j==(nc-1)){ // omit
+		    } else if (omissable & j==(nc-1) & val!=null){ // omit
 			row.push(val);
 		    } else {
 			row.push('');

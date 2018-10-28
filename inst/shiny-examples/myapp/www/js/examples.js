@@ -15,7 +15,7 @@ function example(geochronometer,plotdevice,format){
 			       0.0001,0.00004,0.00006,0.00004,0.00005],
 		    "rho":    [0.79,0.31,0.85,0.58,0.65,0.88,0.43,0.74,0.65,0.87],
 		    "(C)":    [],
-		    "(omit)": ['','','','','','X','','','','x']
+		    "(omit)": []
 		}
 	    });
 	case 2:
@@ -31,7 +31,7 @@ function example(geochronometer,plotdevice,format){
 			       0.00007,0.00011,0.00007,0.00006,0.00004],
 		    "(rho)":  [],
 		    "(C)":    [],
-		    "(omit)": ['','','','','','X','','','','x']
+		    "(omit)": []
 		}
 	    });
 	case 3:
@@ -52,7 +52,7 @@ function example(geochronometer,plotdevice,format){
 		    "(rhoXY)": [],
 		    "(rhoYZ)": [],
 		    "(C)":     [],
-		    "(omit)": ['','','','','','X','','','','x']
+		    "(omit)":  []
 		}		
 	    });
 	case 4:

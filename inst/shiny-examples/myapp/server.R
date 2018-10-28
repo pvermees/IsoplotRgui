@@ -155,6 +155,9 @@ shiny::shinyServer(function(input,output,session){
             mat <- NULL
         }
         mat <- rbind(mat,matrix(d[bi:nn],ncol=nc,byrow=TRUE))
+        if (identical(method,"other")){
+            mat <- mat[,-nc] # the last column may contain letters
+        }
         IsoplotR::read.data(mat,method,format)
     }
 
@@ -172,14 +175,16 @@ shiny::shinyServer(function(input,output,session){
         nn <- length(d)
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
-        bi <- 3 # index of the first isotopic data column
-        ci <- levelscol(method=method,format=format)
-        if (omit) ci <- ci+1
+        bici <- levelscol(method=method,format=format)
+        bi <- bici[1]
+        if (omit) ci <- bici[2]+1
+        else ci <- bici[2]
         mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
         mat[,ci]
     }
     
     levelscol <- function(method="U-Pb",format=1){
+        bi <- 3
         ci <- 6
         if (identical(method,"U-Pb") & format %in% c(1,2)) {
             ci <- 6
@@ -244,11 +249,11 @@ shiny::shinyServer(function(input,output,session){
                 ci <- 6 # York regression
             } else if (format==2) {
                 ci <- 7 # regression with redundant ratios
-            } 
+            }
         } else if (identical(method,"other")) {
             ci <- 3
         }
-        ci
+        c(bi,ci)
     }
     
     getJavascript <- function(results){
