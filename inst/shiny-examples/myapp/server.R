@@ -159,12 +159,28 @@ shiny::shinyServer(function(input,output,session){
     }
 
     selection2levels <- function(method="U-Pb",format=1){
+        out <- selection2aux(method=method,format=format,omit=FALSE)
+        out <- as.numeric(out)
+    }
+    
+    selection2omit <- function(method="U-Pb",format=1){
+        selection2aux(method=method,format=format,omit=TRUE)
+    }
+    
+    selection2aux <- function(method="U-Pb",format=1,omit=FALSE){
         d <- input$data
         nn <- length(d)
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
         bi <- 3 # index of the first isotopic data column
-        ci <- 6 # index of the optional levels column
+        ci <- levelscol(method=method,format=format)
+        if (omit) ci <- ci+1
+        mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
+        mat[,ci]
+    }
+    
+    levelscol <- function(method="U-Pb",format=1){
+        ci <- 6
         if (identical(method,"U-Pb") & format %in% c(1,2)) {
             ci <- 6
         } else if (identical(method,"U-Pb") & (format==3)) {
@@ -232,9 +248,7 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"other")) {
             ci <- 3
         }
-        mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
-        out <- as.numeric(mat[,ci])
-        out
+        ci
     }
     
     getJavascript <- function(results){
