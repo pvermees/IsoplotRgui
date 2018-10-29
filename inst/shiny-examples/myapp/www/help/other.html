@@ -9,6 +9,14 @@
     <td>(C):</td>
     <td>Optional variable to be used as fill colour.</td>
   </tr>
+  <tr>
+    <td>(omit):</td>
+    <td>Optional variable used to hide or ignore aliquots. Aliquots
+      marked as '<tt>1</tt>' or '<tt>x</tt>' are plotted but ignored
+      for numerical analysis; Aliquots marked as '<tt>2</tt>' or
+      '<tt>X</tt>' (uppercase '<tt>x</tt>') are removed from both
+      plots and calculations.</td>
+  </tr>
 </table>
 
 <table hidden class="show4regression">
@@ -36,6 +44,14 @@
     <td>(C):</td>
     <td>Optional variable to be used as fill colour in error ellipses.</td>
   </tr>
+  <tr>
+    <td>(omit):</td>
+    <td>Optional variable used to hide or ignore aliquots. Aliquots
+      marked as '<tt>1</tt>' or '<tt>x</tt>' are plotted but ignored
+      for numerical analysis; Aliquots marked as '<tt>2</tt>' or
+      '<tt>X</tt>' (uppercase '<tt>x</tt>') are removed from both
+      plots and calculations.</td>
+  </tr>
 </table>
 
 <table hidden class="show4spectrum">
@@ -52,6 +68,12 @@
     <td>s[X]:</td>
     <td>The standard errors of these values</td>
   </tr>
+  <tr>
+    <td>(omit):</td>
+    <td>Optional variable used to ignore aliquots. Aliquots marked as
+      '<tt>1</tt>', '<tt>2</tt>', '<tt>x</tt>' or '<tt>X</tt>' are
+      removed from both plots and calculations.</td>
+  </tr>
 </table>
 
 <table hidden class="show4weightedmean">
@@ -63,10 +85,31 @@
     <td>s[X]:</td>
     <td>The standard errors of these values</td>
   </tr>
+  <tr>
+    <td>(omit):</td>
+    <td>Optional variable used to hide or ignore aliquots. Aliquots
+      marked as '<tt>1</tt>' or '<tt>x</tt>' are plotted but ignored
+      for numerical analysis; Aliquots marked as '<tt>2</tt>' or
+      '<tt>X</tt>' (uppercase '<tt>x</tt>') are removed from both
+      plots and calculations.</td>
+  </tr>
 </table>
 
 <table hidden class="show4kde show4cad">
   <tr>
-    <td>X:</td><td>A column of numerical values</td>
+    <td>
+      X:
+    </td>
+    <td>A column of numerical values
+    </td>
+  </tr>
+  <tr>
+    <td>
+      (omit):
+    </td>
+    <td>Optional variable used to ignore aliquots. Aliquots marked as
+      '<tt>1</tt>', '<tt>2</tt>', '<tt>x</tt>' or '<tt>X</tt>' are
+      removed from the plot.
+    </td>
   </tr>
 </table>

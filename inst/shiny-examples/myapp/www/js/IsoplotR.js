@@ -36,47 +36,47 @@ $(function(){
 	case 'U-Pb':
 	    var format = IsoplotR.settings["U-Pb"].format;
 	    switch (format){
-	    case 1: return 6;
-	    case 2: return 6;
-	    case 3: return 9;
-	    case 4: return 10;
-	    case 5: return 10;
-	    case 6: return 13;
+	    case 1: return 7;
+	    case 2: return 7;
+	    case 3: return 10;
+	    case 4: return 11;
+	    case 5: return 11;
+	    case 6: return 14;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
-	    switch (format){
-	    case 1: return 6;
-	    case 2: return 6;
-	    case 3: return 7;
-	    }
-	case 'Ar-Ar':
-	    var format = IsoplotR.settings["Ar-Ar"].format;
 	    switch (format){
 	    case 1: return 7;
 	    case 2: return 7;
 	    case 3: return 8;
 	    }
+	case 'Ar-Ar':
+	    var format = IsoplotR.settings["Ar-Ar"].format;
+	    switch (format){
+	    case 1: return 8;
+	    case 2: return 8;
+	    case 3: return 9;
+	    }
 	case 'K-Ca':
 	    var format = IsoplotR.settings["K-Ca"].format;
 	    switch (format){
-	    case 1: return 6;
-	    case 2: return 7;
+	    case 1: return 7;
+	    case 2: return 8;
 	    }
 	case 'Th-U':
 	    var format = IsoplotR.settings["Th-U"].format;
 	    switch (format){
-	    case 1: return 10;
-	    case 2: return 10;
-	    case 3: return 6;
-	    case 4: return 6;
+	    case 1: return 11;
+	    case 2: return 11;
+	    case 3: return 7;
+	    case 4: return 7;
 	    }
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
-		return 3;
+		return 4;
 	    } else {
-		return 20;
+		return 14;
 	    }
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -84,11 +84,11 @@ $(function(){
 	case 'Lu-Hf':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
-	    case 1: return 6;
-	    case 2: return 7;
+	    case 1: return 7;
+	    case 2: return 8;
 	    }
 	case 'U-Th-He':
-	    return 9;
+	    return 10;
 	case 'detritals':
 	    var firstrow = $("#INPUT").handsontable('getData')[0];
 	    var nc = firstrow.length;
@@ -98,16 +98,16 @@ $(function(){
 	case 'other':
 	    switch(IsoplotR.settings.plotdevice){
 	    case 'regression':
-		if (IsoplotR.settings["other"].format == 1){ return 6; }
-		else {return 7;}
+		if (IsoplotR.settings["other"].format == 1){ return 7; }
+		else {return 8;}
 	    case 'spectrum':
-		return 3;
 	    case 'radial':
+		return 4;
 	    case 'average':
 		return 3;
 	    case 'KDE':
 	    case 'CAD':
-		return 1;
+		return 2;
 	    }
 	}
 	return 0;
@@ -166,19 +166,6 @@ $(function(){
 	    data: handson.data,
 	    colHeaders: handson.headers
 	});
-	// change headers for LA-ICP-MS-based fission track data
-	if (geochronometer == 'fissiontracks' &
-	    settings.fissiontracks.format > 1){
-	    var nc = $("#INPUT").handsontable('countCols');
-	    var headers = ['Ns','A'];
-	    for (var i=0; i<(nc-2)/2; i++){
-		headers.push('U'+(i+1));
-		headers.push('s[U'+(i+1)+']');		
-	    }
-	    $("#INPUT").handsontable({
-		colHeaders: headers
-	    });
-	}
     }
 
     // overwrites the data in the IsoplotR 
@@ -310,6 +297,9 @@ $(function(){
 	var ThU34 = (geochronometer=='Th-U') & (IsoplotR.settings['Th-U'].format>2);
 	var detrital1 = (geochronometer=='detritals') &
 	    (IsoplotR.settings['detritals'].format==1);
+	var omitters = ["U-Pb","Pb-Pb","Ar-Ar","K-Ca","Rb-Sr","Sm-Nd","Re-Os",
+			 "Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
+	var omissable = ($.inArray(geochronometer,omitters) >= 0);
 	var val = null;
 	var row = [];
 	var good = false;
@@ -330,6 +320,8 @@ $(function(){
 			row.push(0);
 		    } else if ((ArAr1 & j==5)|(ArAr2 & j==5)|(ArAr3 & j==6)) { // Ar39
 			row.push(1);
+		    } else if (omissable & j==(nc-1) & val!=null){ // omit
+			row.push(val);
 		    } else {
 			row.push('');
 		    }
