@@ -6,7 +6,7 @@ shiny::shinyServer(function(input,output,session){
         nr <- as.numeric(d[1])
         nc <- as.numeric(d[2])
         mat <- matrix('',1,nc) # header
-        bi <- 3 # index of the first isotope measurement
+        bi <- getbi(method=method,format=format)
         if (identical(method,"U-Pb") & format==1) {
             mat[1,1:5] <- c('Pb207U235','errPb207U235',
                             'Pb206U238','errPb206U238','rho')
@@ -45,7 +45,6 @@ shiny::shinyServer(function(input,output,session){
                             'Pb207Pb204','errPb207Pb206',
                             'Pb207Pb206','errPb207Pb206')
         } else if (identical(method,"Ar-Ar") & format==1){
-            bi <- 5
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
@@ -53,7 +52,6 @@ shiny::shinyServer(function(input,output,session){
                             'Ar40Ar36','errAr40Ar36',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==2) {
-            bi <- 5
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
@@ -61,7 +59,6 @@ shiny::shinyServer(function(input,output,session){
                             'Ar36Ar40','errAr36Ar40',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==3) {
-            bi <- 5
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
             mat[2,1:2] <- d[3:4]
@@ -120,7 +117,6 @@ shiny::shinyServer(function(input,output,session){
                             'Hfppm','errHfppm',
                             'Hf176Hf177','errHf176Hf177')
         } else if (identical(method,"fissiontracks") & format==1){
-            bi <- 7
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
             mat[2,1:2] <- d[3:4]
@@ -128,7 +124,6 @@ shiny::shinyServer(function(input,output,session){
             mat[4,1:2] <- d[5:6]
             mat[5,1:2] <- c('Ns','Ni')
         } else if (identical(method,"fissiontracks") & format==2){
-            bi <- 6
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
             mat[2,1:2] <- d[3:4]
@@ -137,7 +132,6 @@ shiny::shinyServer(function(input,output,session){
             mat[5,1:2] <- c('Ns','A')
             mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
         } else if (identical(method,"fissiontracks") & format==3){
-            bi <- 4
             mat <- matrix('',3,nc)
             mat[1,1] <-'spot-size'
             mat[2,1] <- d[3]
@@ -155,105 +149,47 @@ shiny::shinyServer(function(input,output,session){
             mat <- NULL
         }
         mat <- rbind(mat,matrix(d[bi:nn],ncol=nc,byrow=TRUE))
-        if (identical(method,"other")){
-            mat <- mat[,-nc] # the last column may contain letters
+        if (!identical(method,"detritals")){
+            mat <- subset(mat,select=-nc) # the last column may contain letters
         }
         IsoplotR::read.data(mat,method,format)
     }
 
+    # return index of the first isotope measurement
+    getbi <- function(method="U-Pb",format=1){
+        out <- 3
+        if (identical(method,"Ar-Ar") & format<2){
+            out <- 5
+        } else if (identical(method,"Ar-Ar") & format>1) {
+            out <- 5
+        } else if (identical(method,"fissiontracks") & format==1){
+            out <- 7
+        } else if (identical(method,"fissiontracks") & format==2){
+            out <- 6
+        } else if (identical(method,"fissiontracks") & format==3){
+            out <- 4
+        }
+        out
+    }
+    
     selection2levels <- function(method="U-Pb",format=1){
-        out <- selection2aux(method=method,format=format,omit=FALSE)
-        out <- as.numeric(out)
+        d <- input$data
+        nn <- length(d)
+        bi <- getbi(method=method,format=format)
+        nc <- as.numeric(d[2])
+        lc <- nc-1 # penultimate column
+        li <- seq(from=bi+lc-1,to=nn-1,by=nc)
+        as.numeric(d[li])
     }
     
     selection2omit <- function(method="U-Pb",format=1){
-        selection2aux(method=method,format=format,omit=TRUE)
-    }
-    
-    selection2aux <- function(method="U-Pb",format=1,omit=FALSE){
         d <- input$data
         nn <- length(d)
-        nr <- as.numeric(d[1])
+        bi <- getbi(method=method,format=format)
         nc <- as.numeric(d[2])
-        bici <- levelscol(method=method,format=format)
-        bi <- bici[1]
-        if (omit) ci <- bici[2]+1
-        else ci <- bici[2]
-        mat <- matrix(d[bi:nn],ncol=nc,byrow=TRUE)
-        mat[,ci]
-    }
-    
-    levelscol <- function(method="U-Pb",format=1){
-        bi <- 3
-        ci <- 6
-        if (identical(method,"U-Pb") & format %in% c(1,2)) {
-            ci <- 6
-        } else if (identical(method,"U-Pb") & (format==3)) {
-            ci <- 9
-        } else if (identical(method,"U-Pb") & (format %in% c(4,5))) {
-            ci <- 10
-        } else if (identical(method,"U-Pb") & (format==6)) {
-            ci <- 13
-        } else if (identical(method,"Pb-Pb") & (format %in% c(1,2))) {
-            ci <- 6
-        } else if (identical(method,"Pb-Pb") & (format==3)) {
-            ci <- 7
-        } else if (identical(method,"Ar-Ar") & (format %in% c(1,2))) {
-            bi <- 5
-            ci <- 7
-        } else if (identical(method,"Ar-Ar") & (format==3)) {
-            bi <- 5
-            ci <- 8
-        } else if (identical(method,"K-Ca") & (format==1)) {
-            ci <- 6
-        } else if (identical(method,"K-Ca") & (format==2)) {
-            ci <- 7
-        } else if (identical(method,"Th-U") & (format %in% c(1,2))) {
-            ci <- 10
-        } else if (identical(method,"Th-U") & (format %in% c(3,4))) {
-            ci <- 6
-        } else if (identical(method,"Rb-Sr") & (format==1)) {
-            ci <- 6
-        } else if (identical(method,"Rb-Sr") & (format==2)) {
-            ci <- 7
-        } else if (identical(method,"Sm-Nd") & (format==1)) {
-            ci <- 6
-        } else if (identical(method,"Sm-Nd") & (format==2)) {
-            ci <- 7
-        } else if (identical(method,"Re-Os") & (format==1)) {
-            ci <- 6
-        } else if (identical(method,"Re-Os") & (format==2)) {
-            ci <- 7
-        } else if (identical(method,"Lu-Hf") & (format==1)) {
-            ci <- 6
-        } else if (identical(method,"Lu-Hf") & (format==2)) {
-            ci <- 7
-        } else if (identical(method,"fissiontracks") & (format==1)) {
-            bi <- 7
-            ci <- 3
-        } else if (identical(method,"fissiontracks") & (format==2)) {
-            bi <- 6
-            ci <- NA
-        } else if (identical(method,"fissiontracks") & (format==3)) {
-            bi <- 4
-            ci <- NA
-        } else if (identical(method,"U-Th-He")) {
-            ci <- 9
-        } else if (identical(method,"detritals") & (format==1)) {
-            mat <- NULL
-            ci <- NA
-        } else if (identical(method,"detritals") & (format!=1)) {
-            ci <- NA
-        } else if (identical(method,"regression")) {
-            if (format==1) {
-                ci <- 6 # York regression
-            } else if (format==2) {
-                ci <- 7 # regression with redundant ratios
-            }
-        } else if (identical(method,"other")) {
-            ci <- 3
-        }
-        c(bi,ci)
+        oc <- nc
+        oi <- seq(from=bi+oc-1,to=nn,by=nc)
+        d[oi]
     }
     
     getJavascript <- function(results){

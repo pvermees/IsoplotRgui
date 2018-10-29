@@ -101,10 +101,10 @@ $(function(){
 		if (IsoplotR.settings["other"].format == 1){ return 7; }
 		else {return 8;}
 	    case 'spectrum':
-		return 4;
 	    case 'radial':
-	    case 'average':
 		return 4;
+	    case 'average':
+		return 3;
 	    case 'KDE':
 	    case 'CAD':
 		return 2;
