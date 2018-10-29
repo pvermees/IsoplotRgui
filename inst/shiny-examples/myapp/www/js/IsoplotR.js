@@ -76,7 +76,7 @@ $(function(){
 	    if (format<2){
 		return 4;
 	    } else {
-		return 20;
+		return 14;
 	    }
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -166,19 +166,6 @@ $(function(){
 	    data: handson.data,
 	    colHeaders: handson.headers
 	});
-	// change headers for LA-ICP-MS-based fission track data
-	if (geochronometer == 'fissiontracks' &
-	    settings.fissiontracks.format > 1){
-	    var nc = $("#INPUT").handsontable('countCols');
-	    var headers = ['Ns','A'];
-	    for (var i=0; i<(nc-2)/2; i++){
-		headers.push('U'+(i+1));
-		headers.push('s[U'+(i+1)+']');		
-	    }
-	    $("#INPUT").handsontable({
-		colHeaders: headers
-	    });
-	}
     }
 
     // overwrites the data in the IsoplotR 
