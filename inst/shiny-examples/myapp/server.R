@@ -191,6 +191,15 @@ shiny::shinyServer(function(input,output,session){
         oi <- seq(from=bi+oc-1,to=nn,by=nc)
         d[oi]
     }
+
+    omitter <- function(method="U-Pb",format=1){
+        o <- selection2omit(method=method,format=format)
+        which(o%in%'x')
+    }
+    hider <- function(method="U-Pb",format=1){
+        h <- selection2omit(method=method,format=format)
+        which(h%in%'X')
+    }    
     
     getJavascript <- function(results){
         header <- paste0("['",paste(colnames(results),collapse="','"),"']")
