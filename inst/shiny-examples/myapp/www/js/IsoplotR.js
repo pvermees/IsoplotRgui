@@ -587,6 +587,7 @@ $(function(){
 	case 'concordia':
 	    switch (pd.showage){
 	    case 0:
+		$('.show4noUPbAge').show();
 		$('.hide4noUPbAge').hide();
 		break;
 	    case 1:
@@ -594,24 +595,22 @@ $(function(){
 		$('.hide4concordiaAge').hide();
 		break;
 	    case 2:
+		$('.show4discordia').show();
+		$('.hide4discordia').hide();
+		$('.show4model1').show();
+		$('.hide4model1').hide();
+		break;
 	    case 3:
+		$('.show4discordia').show();
+		$('.hide4discordia').hide();
+		$('.show4model2').show();
+		$('.hide4model2').hide();
+		break;
 	    case 4:
 		$('.show4discordia').show();
 		$('.hide4discordia').hide();
-		switch (pd.showage){
-		case 2:
-		    $('.show4model1').show();
-		    $('.hide4model1').hide();
-		    break;
-		case 3:
-		    $('.show4model2').show();
-		    $('.hide4model2').hide();
-		    break;
-		case 4:
-		    $('.show4model3').show();
-		    $('.hide4model3').hide();
-		    break;
-		}
+		$('.show4model3').show();
+		$('.hide4model3').hide();
 		break;
 	    }
 	    if (pd.anchor == 1){
@@ -628,7 +627,6 @@ $(function(){
 		$('.show4commonPbwith204').hide();
 	    }
 	    break;
-	    
 	case 'evolution':
 	    $(".hide4evolution").hide();
 	    switch (pd.isochron){
@@ -1643,11 +1641,8 @@ $(function(){
 
     $.chooseConcAgeOption = function(){
 	var option = 1*$('option:selected', $("#conc-age-option")).attr('value');
-	if (option < 2){
-	    $('.show4discordia').hide();
-	} else {
-	    $('.show4discordia').show();
-	}
+	IsoplotR.settings.concordia.showage = option;
+	showOrHide();
     }
     $.chooseAnchorOption = function(){
 	var option = 1*$('option:selected', $("#anchor-option")).attr('value');
