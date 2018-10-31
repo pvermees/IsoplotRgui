@@ -1644,6 +1644,19 @@ $(function(){
 	IsoplotR.settings.concordia.showage = option;
 	showOrHide();
     }
+
+    $.chooseIsochronModel = function(){
+	var option = 1*$('option:selected', $("#isochron-models")).attr('value');
+	IsoplotR.settings.isochron.model = option;
+	showOrHide();
+    }
+    
+    $.chooseIsochronModelThU = function(){
+	var option = 1*$('option:selected', $("#evolution-isochron-models")).attr('value');
+	IsoplotR.settings.evolution.model = option;
+	showOrHide();
+    }
+    
     $.chooseAnchorOption = function(){
 	var option = 1*$('option:selected', $("#anchor-option")).attr('value');
 	IsoplotR.settings.concordia.anchor = option;

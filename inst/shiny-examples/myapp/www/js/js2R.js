@@ -141,30 +141,32 @@ function getOptions(prefs){
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (geochronometer=='other'){
 	    out += ",levels=selection2levels(method='regression'";
-	} else if (geochronometer!='U-Th-He'){
+	} else {
 	    out += ",levels=selection2levels(method='" + geochronometer + "'";
 	}
-	if (geochronometer!='U-Th-He'){
+	if (geochronometer=='U-Th-He'){
+	    out += ")";
+	} else {
 	    out += ",format=" + gcsettings.format + ")";
 	}
 	if (geochronometer=='other'){
 	    out += ",omit=omitter(flags='x',method='regression'";
-	} else if (geochronometer=='U-Th-He'){
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
 	} else {
 	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
 	}
-	if (geochronometer!='U-Th-He'){
+	if (geochronometer=='U-Th-He'){
+	    out += ")";
+	} else {
 	    out += ",format=" + gcsettings.format + ")";
 	}
 	if (geochronometer=='other'){
 	    out += ",hide=omitter(flags='X',method='regression'";
-	} else if (geochronometer=='U-Th-He'){
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
 	} else {
 	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
 	}
-	if (geochronometer!='U-Th-He'){
+	if (geochronometer=='U-Th-He'){
+	    out += ")";
+	} else {
 	    out += ",format=" + gcsettings.format + ")";
 	}
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
