@@ -281,7 +281,9 @@ function getOptions(prefs){
 	else { out += ",binwidth=NA"; }
 	if (geochronometer=='U-Th-He'){
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
-	} else if (geochronometer!='detritals'){
+	} else if (geochronometer=='detritals'){
+	    out += ",hide=c(" + gcsettings.hide + ')';
+	} else {
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
 	    out += ",format=" + gcsettings.format + ")";
 	}
@@ -314,7 +316,9 @@ function getOptions(prefs){
 	}
 	if (geochronometer=='U-Th-He'){
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
-	} else if (geochronometer!='detritals'){
+	} else if (geochronometer=='detritals'){
+	    out += ",hide=c(" + gcsettings.hide + ')';
+	} else {
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
 	    out += ",format=" + gcsettings.format + ")";
 	}
@@ -358,6 +362,7 @@ function getOptions(prefs){
 	    out += ",pos=" + pdsettings.pos;
 	out += ",col='" + pdsettings.col + "'";
 	out += ",bg='" + pdsettings.bg + "'";
+	out += ",hide=c(" + gcsettings.hide + ')';
 	break;
     case 'ages':
 	if (geochronometer != 'U-Th-He')

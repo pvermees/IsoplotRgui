@@ -593,6 +593,11 @@ function help(id){
 	    "the column headers of the table, i.e. the letters <tt>A</tt>, <tt>B</tt>, " +
 	    "... <tt>ZZ</tt>";
 	break;
+    case "help-hide-detritals":
+	text = "A comma-separated list of sample names or column numbers " +
+	    "that should be omitted from the plot. Examples: " +
+	    "<tt>1,2,15</tt> or <tt>'N1','N2','T8'</tt>";
+	break;
     case "help-age-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	    "with the <sup>235</sup>U and <sup>238</sup>U decay constants will " +

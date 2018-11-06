@@ -865,6 +865,7 @@ $(function(){
 	    break;
 	case 'detritals':
 	    $('#headers-on').prop('checked',set.format==1);
+	    $('#hide').val(set.hide);
 	    break;
 	case 'other':
 	    if (IsoplotR.settings.plotdevice=='regression'){
@@ -1388,6 +1389,7 @@ $(function(){
 	    break;
 	case 'detritals':
 	    gcsettings.format = $("#headers-on").prop('checked') ? 1 : 2;
+	    gcsettings.hide = $('#hide').val();
 	    break;
 	case 'fissiontracks':
 	    var mineral = $('#mineral-option').prop('value');
