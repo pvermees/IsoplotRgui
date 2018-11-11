@@ -422,6 +422,13 @@ function help(id){
 	text = "The default values of the <sup>176</sup>Lu decay constant " +
 	    "and its uncertainty are taken from S&ouml;derlund et al. (2004).";
 	break;
+    case "help-show_p":
+	text = "Show the p-value for concordance for each aliquot to the output " +
+	    "table. Note: it would be unwise to use the p-value value as a " +
+	    "concordance filter. Doing so would 'punish' high precision measurements, " +
+	    "which are more likely to fail the Chi-square test than low precision " +
+	    "measurements. The latter would therefore be 'rewarded' by such a criterion.";
+	break;
     case "help-ReOs-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Re-Os data as an initial " +
@@ -592,6 +599,11 @@ function help(id){
 	    "the input table. Otherwise, the corresponding plots will be labeled with " +
 	    "the column headers of the table, i.e. the letters <tt>A</tt>, <tt>B</tt>, " +
 	    "... <tt>ZZ</tt>";
+	break;
+    case "help-hide-detritals":
+	text = "A comma-separated list of sample names or column numbers " +
+	    "that should be omitted from the plot. Examples: " +
+	    "<tt>1,2,15</tt> or <tt>'N1','N2','T8'</tt>";
 	break;
     case "help-age-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +

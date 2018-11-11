@@ -21,7 +21,8 @@
 	"mineral": "apatite"
     },
     "detritals": {
-	"format": 1
+	"format": 1,
+	"hide": []
     },
     "U-Pb": {
 	"format": 2,
@@ -222,6 +223,7 @@
 	"clabel": ""
     },
     "ages": {
+	"show_p": "FALSE",
 	"exterr": "TRUE",
 	"sigdig": 2
     }
