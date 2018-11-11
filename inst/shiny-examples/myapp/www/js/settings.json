@@ -223,6 +223,7 @@
 	"clabel": ""
     },
     "ages": {
+	"show_p": "FALSE",
 	"exterr": "TRUE",
 	"sigdig": 2
     }

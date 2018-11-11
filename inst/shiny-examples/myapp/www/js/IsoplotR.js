@@ -662,6 +662,13 @@ $(function(){
 		break;
 	    }
 	    break;
+	case 'ages':
+	    if (pd.show_p=='TRUE'){
+		$('.show4show_p').show();
+	    } else {
+		$('.show4show_p').hide();
+	    }
+	    break;
 	}
     }
     
@@ -980,9 +987,12 @@ $(function(){
 	    $('.show4zeta').show();
 	    $('.hide4zeta').hide();
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#sigdig').val(set.sigdig);
+	    $('#spigdig').val(set.sigdig);
 	    break;
 	case 'ages':
+	    if (geochronometer == 'U-Pb'){
+		$('#show_p').prop('checked',set.show_p=='TRUE');
+	    }
 	    if (geochronometer != 'U-Th-He') {
 		$('#age-exterr').prop('checked',set.exterr=='TRUE');
 	    }
@@ -1195,6 +1205,9 @@ $(function(){
 	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'ages':
+	    if (geochronometer == 'U-Pb'){
+		pdsettings.show_p = $('#show_p').prop('checked') ? 'TRUE' : 'FALSE';
+	    }
 	    if (geochronometer != 'U-Th-He'){
 		pdsettings.exterr = $('#age-exterr').prop('checked') ? 'TRUE' : 'FALSE';
 	    }

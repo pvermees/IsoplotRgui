@@ -365,6 +365,8 @@ function getOptions(prefs){
 	out += ",hide=c(" + gcsettings.hide + ')';
 	break;
     case 'ages':
+	if (geochronometer == 'U-Pb')
+	    out += ",show.p=" + pdsettings.show_p;
 	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
 	switch (geochronometer){

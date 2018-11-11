@@ -422,6 +422,13 @@ function help(id){
 	text = "The default values of the <sup>176</sup>Lu decay constant " +
 	    "and its uncertainty are taken from S&ouml;derlund et al. (2004).";
 	break;
+    case "help-show_p":
+	text = "Show the p-value for concordance for each aliquot to the output " +
+	    "table. Note: it would be unwise to use the p-value value as a " +
+	    "concordance filter. Doing so would 'punish' high precision measurements, " +
+	    "which are more likely to fail the Chi-square test than low precision " +
+	    "measurements. The latter would therefore be 'rewarded' by such a criterion.";
+	break;
     case "help-ReOs-i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Re-Os data as an initial " +
