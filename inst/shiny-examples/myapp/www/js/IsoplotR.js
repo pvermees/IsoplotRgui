@@ -669,6 +669,10 @@ $(function(){
 		$('.show4show_p').hide();
 	    }
 	    break;
+	case 'set-zeta':
+	    $(".show4zeta").show();
+	    $(".hide4zeta").hide();
+	    break;
 	}
     }
     
@@ -1742,31 +1746,13 @@ $(function(){
 	chooseFormat("#LuHf-formats","Lu-Hf")
     }
     $.chooseFTformat = function(){
-	var format = chooseFormat("#FT-formats","fissiontracks")
-	switch (format){
-	case 1:
-	    $(".show4EDM").show();
-	    $(".hide4EDM").hide();
-	    break;
-	case 2:
-	    $(".show4ICP").show();
-	    $(".hide4ICP").hide();
-	    break;
-	case 3:
-	    $(".show4absolute").show();
-	    $(".hide4absolute").hide();
-	    break;
-	}
-	if (plotdevice == 'set-zeta'){
-	    $(".show4zeta").show();
-	    $(".hide4zeta").hide();
-	}
+	chooseFormat("#FT-formats","fissiontracks")
     }    
     function chooseFormat(ID,chronometer){
 	var format = 1*$('option:selected', $(ID)).attr('value');
 	IsoplotR.settings[chronometer].format = format;
 	IsoplotR = populate(IsoplotR,true);
-	return(format)
+	showOrHide();
     }
 
     $.chooseRegressionFormat = function(){
