@@ -388,6 +388,29 @@ $(function(){
 		$('.show4commonPbwith204').show();
 	    }
 	    break;
+	case 'Pb-Pb':
+	    $('.show4PbPb').show();
+	    $('.hide4PbPb').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4PbPb1').show();
+		$('.hide4PbPb1').hide();
+		break;
+	    case 2:
+		$('.show4PbPb2').show();
+		$('.hide4PbPb2').hide();
+		break;
+	    case 3:
+		$('.show4PbPb3').show();
+		$('.hide4PbPb3').hide();
+		break;
+	    }
+	    if (set.commonPb==3){
+		$('.show4commonPb3').show();
+	    } else {
+		$('.show4commonPb3').hide();
+	    }
+	    break;
 	case 'Th-U':
 	    $('.show4ThU').show();
 	    $('.hide4ThU').hide();
@@ -422,24 +445,6 @@ $(function(){
 		break;
 	    default:
 		$('.show4Th230corr').hide();
-	    }
-	    break;
-	case 'Pb-Pb':
-	    $('.show4PbPb').show();
-	    $('.hide4PbPb').hide();
-	    switch (set.format){
-	    case 1:
-		$('.show4PbPb1').show();
-		$('.hide4PbPb1').hide();
-		break;
-	    case 2:
-		$('.show4PbPb2').show();
-		$('.hide4PbPb2').hide();
-		break;
-	    case 3:
-		$('.show4PbPb3').show();
-		$('.hide4PbPb3').hide();
-		break;
 	    }
 	    break;
 	case 'Ar-Ar':
@@ -1088,26 +1093,33 @@ $(function(){
 	    pdsettings.tanchor = $('#tanchor').val();
 	    break;
 	case 'isochron':
-	    pdsettings.type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
-	    pdsettings.inverse = $('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.exterr = $('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.growth = $('#PbPb-growth').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.type =
+		1*$('option:selected', $("#ThU-isochron-types")).attr('value');
+	    pdsettings.inverse =
+		$('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.exterr =
+		$('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.growth =
+		$('#PbPb-growth').prop('checked') ? 'TRUE' : 'FALSE';
 	case 'regression':
-	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.shownumbers =
+		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.model =
+		1*$('option:selected', $("#isochron-models")).attr('value');
 	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
 	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
 	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
 	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
 	    pdsettings.alpha = $('#alpha').val();
 	    pdsettings.sigdig = $('#sigdig').val();
-	    pdsettings.model = 1*$('option:selected', $("#isochron-models")).attr('value');
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'radial':
-	    pdsettings.shownumbers = $('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.shownumbers =
+		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.transformation =
 		$('option:selected', $("#transformation")).attr('value');
 	    pdsettings.mint = $('#mint').val();
@@ -1274,15 +1286,17 @@ $(function(){
 		gcsettings["maxdisc"] = $('#maxdisc').val();
 	    }
 	    set.iratio.Pb207Pb206[0] = $('#Pb207Pb206').val();
-	    set.iratio.Pb206Pb204[0] = $('#Pb206Pb204').val();
-	    set.iratio.Pb207Pb204[0] = $('#Pb207Pb204').val();
 	case 'Pb-Pb':
+	    IsoplotR.settings[geochronometer].commonPb =
+		$('option:selected', $("#common-Pb-option")).attr('value');
 	    set.iratio.U238U235[0] = $("#U238U235").val();
 	    set.iratio.U238U235[1] = $("#errU238U235").val();
 	    set.lambda.U238[0] = $("#LambdaU238").val();
 	    set.lambda.U238[1] = $("#errLambdaU238").val();
 	    set.lambda.U235[0] = $("#LambdaU235").val();
 	    set.lambda.U235[1] = $("#errLambdaU235").val();
+	    set.iratio.Pb206Pb204[0] = $('#Pb206Pb204').val();
+	    set.iratio.Pb207Pb204[0] = $('#Pb207Pb204').val();
 	    break;
 	case 'Th-U':
 	    gcsettings.Th02[0] = $("#Th02").val();
@@ -1683,14 +1697,12 @@ $(function(){
     
     // method = 'U-Pb' or 'Pb-Pb'
     $.chooseCommonPbOption = function(method){
-	var option = 1*$('option:selected', $("#common-Pb-option")).attr('value');
-	IsoplotR.settings[method].commonPb = option;
+	recordSettings();
 	showOrHide();
     }
 
     $.chooseThUisochronType = function(){
-	var type = 1*$('option:selected', $("#ThU-isochron-types")).attr('value');
-	IsoplotR.settings.isochron.type = type;
+	recordSettings();
     }
     $.chooseEvolutionTransformation = function(){
 	recordSettings();
