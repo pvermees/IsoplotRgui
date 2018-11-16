@@ -629,20 +629,17 @@ $(function(){
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
-	    switch (pd.isochron){
-	    case "TRUE":
-		$(".show4isochron").show();
-		break;
-	    case "FALSE":
-		$(".show4isochron").hide();
-		break;
-	    }
 	    if (pd.transform=='TRUE'){
 		$('.show4evotrans').show();
 		$('.hide4evotrans').hide();
 	    } else {
 		$('.show4evotrans').hide();
 		$('.hide4evotrans').show();
+	    }
+	    if (pd.isochron=='TRUE'){
+		$('.show4evolutionIsochron').show();
+	    } else {
+		$('.show4evolutionIsochron').hide();
 	    }
 	case 'isochron':
 	    $(".hide4isochron").hide();
@@ -1248,6 +1245,8 @@ $(function(){
 		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
 	    pdsettings.exterr =
 		$('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    gcsettings.detritus =
+		1*$('option:selected', $("#detritus")).attr('value');
 	    pdsettings.min08 = check($('#min08').val(),'auto');
 	    pdsettings.max08 = check($('#max08').val(),'auto');
 	    pdsettings.min48 = check($('#min48').val(),'auto');
@@ -1694,26 +1693,15 @@ $(function(){
 	IsoplotR.settings.isochron.type = type;
     }
     $.chooseEvolutionTransformation = function(){
-	var selected =  $("#transform-evolution").prop('checked');
-	if (selected){
-	    $('.show4evotrans').show();
-	    $('.hide4evotrans').hide();
-	} else {
-	    $('.show4evotrans').hide();
-	    $('.hide4evotrans').show();
-	}
+	recordSettings();
+	showOrHide();
     }
     $.chooseEvolutionIsochron = function(){
-	var selected =  $("#isochron-evolution").prop('checked');
-	if (selected){
-	    $('.show4evolutionIsochron').show();
-	} else {
-	    $('.show4evolutionIsochron').hide();
-	}
+	recordSettings();
+	showOrHide();
     }
     $.chooseTh230correction = function(){
-	var type = 1*$('option:selected', $("#detritus")).attr('value');
-	IsoplotR.settings["Th-U"].detritus = type;
+	recordSettings();
 	showOrHide();
     }
     
@@ -1730,7 +1718,7 @@ $(function(){
 	chooseFormat("#KCa-formats","K-Ca")
     }
     $.chooseThUformat = function(){
-	IsoplotR.settings["Th-U"].format = chooseFormat("#ThU-formats","Th-U")
+	chooseFormat("#ThU-formats","Th-U")
 	showOrHide();
     }
     $.chooseRbSrformat = function(){
