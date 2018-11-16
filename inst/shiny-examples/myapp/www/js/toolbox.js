@@ -1,7 +1,8 @@
 function check(x,val){
-    if (isNaN(x)){
+    var num = Number(x);
+    if (isNaN(num)){
 	return(val);
     } else {
-	return(x);
+	return(num);
     }
 }
