@@ -1255,17 +1255,16 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    IsoplotR.settings["U-Pb"].type = getOption("#UPb-age-type");
+	    gcsettings.type = getOption("#UPb-age-type");
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
 		plotdevice == 'CAD' | plotdevice == 'radial'){
-		gcsettings["cutoff76"] = getNumber('#cutoff76');
-		gcsettings["mindisc"] = getNumber('#mindisc');
-		gcsettings["maxdisc"] = getNumber('#maxdisc');
+		gcsettings.cutoff76 = getNumber('#cutoff76');
+		gcsettings.mindisc = getNumber('#mindisc');
+		gcsettings.maxdisc = getNumber('#maxdisc');
 	    }
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	case 'Pb-Pb':
-	    IsoplotR.settings[geochronometer].commonPb =
-		getOption("#common-Pb-option");
+	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    set.iratio.U238U235[0] = getNumber("#U238U235");
 	    set.iratio.U238U235[1] = getNumber("#errU238U235");
 	    set.lambda.U238[0] = getNumber("#LambdaU238");
