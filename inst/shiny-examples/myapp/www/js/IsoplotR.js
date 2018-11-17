@@ -1068,14 +1068,11 @@ $(function(){
 	var set = IsoplotR.constants;
 	switch (plotdevice){
 	case 'concordia':
-	    pdsettings.wetherill =
-		$('#tera-wasserburg').prop('checked') ? 'FALSE' : 'TRUE';
-	    pdsettings.exterr = 
-		$('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.shownumbers =
-		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.showage = parseInt($('#conc-age-option').prop("value"));
-	    pdsettings.anchor = parseInt($('#anchor-option').prop("value"));
+	    pdsettings.wetherill = falsetrue('#tera-wasserburg');
+	    pdsettings.exterr = truefalse('#exterr');
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.showage = getOption('#conc-age-option');
+	    pdsettings.anchor = getOption('#anchor-option');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.minx = check($('#minx').val(),'auto');
@@ -1085,25 +1082,19 @@ $(function(){
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = $('#cex').val();
-	    pdsettings.alpha = Number($('#alpha').val());
-	    pdsettings.sigdig = parseInt($('#sigdig').val());
-	    pdsettings.tanchor = Number($('#tanchor').val());
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.tanchor = getNumber('#tanchor');
 	    break;
 	case 'isochron':
-	    pdsettings.type =
-		parseInt($('option:selected', $("#ThU-isochron-types")).attr('value'));
-	    pdsettings.inverse =
-		$('#inverse').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.exterr =
-		$('#isochron-exterr').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.growth =
-		$('#PbPb-growth').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.type = getOption("#ThU-isochron-types");
+	    pdsettings.inverse = truefalse('#inverse');
+	    pdsettings.exterr = truefalse('#isochron-exterr');
+	    pdsettings.growth = truefalse('#PbPb-growth');
 	case 'regression':
-	    pdsettings.shownumbers =
-		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.model =
-		parseInt($('option:selected', $("#isochron-models")).attr('value'));
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.model = getOption("#isochron-models");
 	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
 	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
 	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
@@ -1111,152 +1102,124 @@ $(function(){
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
-	    pdsettings.alpha = Number($('#alpha').val());
-	    pdsettings.sigdig = parseInt($('#sigdig').val());
-	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'radial':
-	    pdsettings.shownumbers =
-		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.transformation =
-		parseInt($('option:selected', $("#transformation")).attr('value'));
-	    pdsettings.mint = $('#mint').val();
-	    pdsettings.t0 = $('#t0').val();
-	    pdsettings.maxt = $('#maxt').val();
-	    pdsettings.alpha = $('#alpha').val();
-	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.transformation = getOption("#transformation");
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.t0 = check($('#t0').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.pch = $('#pch').val();
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings["cex"] = getNumber('#pcex');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
-	    pdsettings["cex"] = $('#pcex').val();
-	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'average':
 	    if (geochronometer != "other"){
-		pdsettings.exterr =
-		    $('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
+		pdsettings.exterr = truefalse('#exterr');
 	    }
-	    pdsettings["outliers"] = 
-		$('#outliers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["randomeffects"] = 
-		$('#randomeffects').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["ranked"] = 
-		$('#ranked').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.alpha = $('#alpha').val();
-	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings["outliers"] = truefalse('#outliers');
+	    pdsettings["randomeffects"] = truefalse('#randomeffects');
+	    pdsettings["ranked"] = truefalse('#ranked');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
-	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'spectrum':
 	    if (geochronometer != "other"){
-		pdsettings.exterr =
-		    $('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
+		pdsettings.exterr = truefalse('#exterr');
 	    }
-	    pdsettings["plateau"] = 
-		$('#plateau').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["randomeffects"] = 
-		$('#randomeffects').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.alpha = $('#alpha').val();
-	    pdsettings.sigdig = $('#sigdig').val();
+	    pdsettings.plateau = truefalse('#plateau');
+	    pdsettings.randomeffects = truefalse('#randomeffects');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
-	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	case 'KDE':
-	    pdsettings["showhist"] = 
-		$('#showhist').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["adaptive"] = 
-		$('#adaptive').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["samebandwidth"] = 
-		$('#samebandwidth').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["normalise"] = 
-		$('#normalise').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["log"] = 
-		$('#log').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings["showhist"] = truefalse('#showhist');
+	    pdsettings["adaptive"] = truefalse('#adaptive');
+	    pdsettings["samebandwidth"] = truefalse('#samebandwidth');
+	    pdsettings["normalise"] = truefalse('#normalise');
+	    pdsettings["log"] = truefalse('#log');
 	    pdsettings["minx"] = check($('#minx').val(),'auto');
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["bandwidth"] = check($('#bandwidth').val(),'auto');
 	    pdsettings["binwidth"] = check($('#binwidth').val(),'auto');
-	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
-	    pdsettings["pch"] = $('#pch').val();
-	    i2i(geochronometer);
+	    pdsettings["pchdetritals"] = Number($('#pchdetritals').val());
+	    pdsettings["pch"] = Number($('#pch').val());
 	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    i2i(geochronometer);
 	    break;
 	case 'CAD':
-	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["verticals"] = 
-		$('#verticals').prop('checked') ? 'TRUE' : 'FALSE';
-	    i2i(geochronometer);
+	    pdsettings["pch"] = Number($('#pch').val());
+	    pdsettings["verticals"] = truefalse('#verticals');
 	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    i2i(geochronometer);
 	    break;
 	case 'set-zeta':
-	    IsoplotR.settings.data[geochronometer].age[0] =
+	    IsoplotR.settings.data.fissiontracks.age[0] =
 		Number($('#standAgeVal').val());
-	    IsoplotR.settings.data[geochronometer].age[1] =
+	    IsoplotR.settings.data.fissiontracks.age[1] =
 		Number($('#standAgeErr').val());
-	    pdsettings.exterr = $('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.sigdig = parseInt($('#sigdig').val());
 	    break;
 	case 'MDS':
-	    pdsettings["classical"] =
-		$('#classical').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["shepard"] =
-		$('#shepard').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["nnlines"] =
-		$('#nnlines').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["ticks"] =
-		$('#ticks').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["pos"] = $('#pos').val();
+	    pdsettings["classical"] = truefalse('#classical');
+	    pdsettings["shepard"] = truefalse('#shepard');
+	    pdsettings["nnlines"] = truefalse('#nnlines');
+	    pdsettings["ticks"] = truefalse('#ticks');
+	    pdsettings["pch"] = Number($('#pch').val());
+	    pdsettings["pos"] = parseInt($('#pos').val());
 	    pdsettings["col"] = $('#col').val();
 	    pdsettings["bg"] = $('#bg').val();
-	    pdsettings["cex"] = $('#pcex').val();
-	    IsoplotR.settings.par.cex = $('#cex').val();
+	    pdsettings["cex"] = Number($('#pcex').val());
+	    IsoplotR.settings.par.cex = Number($('#cex').val());
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		pdsettings.show_p = $('#show_p').prop('checked') ? 'TRUE' : 'FALSE';
+		pdsettings.show_p = truefalse('#show_p');
 	    }
 	    if (geochronometer != 'U-Th-He'){
-		pdsettings.exterr = $('#age-exterr').prop('checked') ? 'TRUE' : 'FALSE';
+		pdsettings.exterr = truefalse('#age-exterr');
 	    }
 	    pdsettings.sigdig = parseInt($('#sigdig').val());
 	    i2i(geochronometer);
 	    break;
 	case 'helioplot':
-	    pdsettings.logratio = 
-		$('#logratio').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.shownumbers = 
-		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.showcentralcomp = 
-		$('#showcentralcomp').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings["alpha"] = $('#alpha').val();
-	    pdsettings["sigdig"] = $('#sigdig').val();
-	    pdsettings["minx"] = $('#minx').val();
-	    pdsettings["maxx"] = $('#maxx').val();
-	    pdsettings["miny"] = $('#miny').val();
-	    pdsettings["maxy"] = $('#maxy').val();
-	    pdsettings["fact"] = $('#fact').val();
+	    pdsettings.logratio = truefalse('#logratio');
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
+	    pdsettings["alpha"] = Number($('#alpha').val());
+	    pdsettings["sigdig"] = parseInt($('#sigdig').val());
+	    pdsettings["minx"] = check($('#minx').val(),'auto');
+	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
+	    pdsettings["miny"] = check($('#miny').val(),'auto');
+	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
+	    pdsettings["fact"] = check($('#fact').val(),'auto');
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
-	    pdsettings.model =
-		parseInt($('option:selected',
-			   $("#helioplot-models")).attr('value'));
+	    pdsettings.model = getOption("#helioplot-models");
 	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = $('#cex').val();
+	    IsoplotR.settings.par.cex = Number($('#cex').val());
 	    break;
 	case 'evolution':
-	    pdsettings.transform =
-		$('#transform-evolution').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.isochron =
-		$('#isochron-evolution').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.shownumbers =
-		$('#shownumbers').prop('checked') ? 'TRUE' : 'FALSE';
-	    pdsettings.exterr =
-		$('#exterr').prop('checked') ? 'TRUE' : 'FALSE';
+	    pdsettings.transform = truefalse('#transform-evolution');
+	    pdsettings.isochron = truefalse('#isochron-evolution');
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.min08 = check($('#min08').val(),'auto');
 	    pdsettings.max08 = check($('#max08').val(),'auto');
 	    pdsettings.min48 = check($('#min48').val(),'auto');
@@ -1267,12 +1230,10 @@ $(function(){
 	    pdsettings.sigdig = parseInt($('#sigdig').val());
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
-	    pdsettings.model =
-		parseInt($('option:selected',
-			   $("#evolution-isochron-models")).attr('value'));
+	    pdsettings.model = getOption("#evolution-isochron-models");
 	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = Number($('#cex').val());
 	    i2i(geochronometer);
-	    IsoplotR.settings.par.cex = $('#cex').val();
 	    break;
 	default:
 	}
@@ -1284,11 +1245,10 @@ $(function(){
 		gcsettings["mindisc"] = Number($('#mindisc').val());
 		gcsettings["maxdisc"] = Number($('#maxdisc').val());
 	    }
-	    set.iratio.Pb207Pb206[0] = $('#Pb207Pb206').val();
+	    set.iratio.Pb207Pb206[0] = Number($('#Pb207Pb206').val());
 	case 'Pb-Pb':
 	    IsoplotR.settings[geochronometer].commonPb =
-		parseInt($('option:selected',
-			   $("#common-Pb-option")).attr('value'));
+		getOption("#common-Pb-option");
 	    set.iratio.U238U235[0] = Number($("#U238U235").val());
 	    set.iratio.U238U235[1] = Number($("#errU238U235").val());
 	    set.lambda.U238[0] = Number($("#LambdaU238").val());
@@ -1299,16 +1259,15 @@ $(function(){
 	    set.iratio.Pb207Pb204[0] = Number($('#Pb207Pb204').val());
 	    break;
 	case 'Th-U':
-	    gcsettings.detritus =
-		parseInt($('option:selected', $("#detritus")).attr('value'));
-	    gcsettings.Th02[0] = $("#Th02").val();
-	    gcsettings.Th02[1] = $("#errTh02").val();
-	    gcsettings.Th02U48[0] = $("#Th0U8").val();
-	    gcsettings.Th02U48[1] = $("#errTh0U8").val();
-	    gcsettings.Th02U48[2] = $("#Th2U8").val();
-	    gcsettings.Th02U48[3] = $("#errTh2U8").val();
-	    gcsettings.Th02U48[4] = $("#U48").val();
-	    gcsettings.Th02U48[5] = $("#errU48").val();
+	    gcsettings.detritus = getOption("#detritus");
+	    gcsettings.Th02[0] = Number($("#Th02").val());
+	    gcsettings.Th02[1] = Number($("#errTh02").val());
+	    gcsettings.Th02U48[0] = Number($("#Th0U8").val());
+	    gcsettings.Th02U48[1] = Number($("#errTh0U8").val());
+	    gcsettings.Th02U48[2] = Number($("#Th2U8").val());
+	    gcsettings.Th02U48[3] = Number($("#errTh2U8").val());
+	    gcsettings.Th02U48[4] = Number($("#U48").val());
+	    gcsettings.Th02U48[5] = Number($("#errU48").val());
 	    gcsettings.Th02U48[6] = $("#rXY").val();
 	    gcsettings.Th02U48[7] = $("#rXZ").val();
 	    gcsettings.Th02U48[8] = $("#rYZ").val();
