@@ -1157,36 +1157,36 @@ $(function(){
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["bandwidth"] = check($('#bandwidth').val(),'auto');
 	    pdsettings["binwidth"] = check($('#binwidth').val(),'auto');
-	    pdsettings["pchdetritals"] = Number($('#pchdetritals').val());
-	    pdsettings["pch"] = Number($('#pch').val());
-	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
+	    pdsettings["pch"] = $('#pch').val();
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
 	case 'CAD':
-	    pdsettings["pch"] = Number($('#pch').val());
+	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["verticals"] = truefalse('#verticals');
-	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
 	case 'set-zeta':
 	    IsoplotR.settings.data.fissiontracks.age[0] =
-		Number($('#standAgeVal').val());
+		getNumber('#standAgeVal');
 	    IsoplotR.settings.data.fissiontracks.age[1] =
-		Number($('#standAgeErr').val());
+		getNumber('#standAgeErr');
 	    pdsettings.exterr = truefalse('#exterr');
-	    pdsettings.sigdig = parseInt($('#sigdig').val());
+	    pdsettings.sigdig = getInt('#sigdig');
 	    break;
 	case 'MDS':
 	    pdsettings["classical"] = truefalse('#classical');
 	    pdsettings["shepard"] = truefalse('#shepard');
 	    pdsettings["nnlines"] = truefalse('#nnlines');
 	    pdsettings["ticks"] = truefalse('#ticks');
-	    pdsettings["pch"] = Number($('#pch').val());
-	    pdsettings["pos"] = parseInt($('#pos').val());
+	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["pos"] = getInt('#pos');
 	    pdsettings["col"] = $('#col').val();
 	    pdsettings["bg"] = $('#bg').val();
-	    pdsettings["cex"] = Number($('#pcex').val());
-	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    pdsettings["cex"] = getNumber('#pcex');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
@@ -1195,15 +1195,15 @@ $(function(){
 	    if (geochronometer != 'U-Th-He'){
 		pdsettings.exterr = truefalse('#age-exterr');
 	    }
-	    pdsettings.sigdig = parseInt($('#sigdig').val());
+	    pdsettings.sigdig = getInt('#sigdig');
 	    i2i(geochronometer);
 	    break;
 	case 'helioplot':
 	    pdsettings.logratio = truefalse('#logratio');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
-	    pdsettings["alpha"] = Number($('#alpha').val());
-	    pdsettings["sigdig"] = parseInt($('#sigdig').val());
+	    pdsettings["alpha"] = getNumber('#alpha');
+	    pdsettings["sigdig"] = getInt('#sigdig');
 	    pdsettings["minx"] = check($('#minx').val(),'auto');
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
@@ -1213,7 +1213,7 @@ $(function(){
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.model = getOption("#helioplot-models");
 	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'evolution':
 	    pdsettings.transform = truefalse('#transform-evolution');
@@ -1226,13 +1226,13 @@ $(function(){
 	    pdsettings.max48 = check($('#max48').val(),'auto');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = Number($('#alpha').val());
-	    pdsettings.sigdig = parseInt($('#sigdig').val());
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.model = getOption("#evolution-isochron-models");
 	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = Number($('#cex').val());
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
 	default:
@@ -1241,158 +1241,157 @@ $(function(){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
 		plotdevice == 'CAD' | plotdevice == 'radial'){
-		gcsettings["cutoff76"] = Number($('#cutoff76').val());
-		gcsettings["mindisc"] = Number($('#mindisc').val());
-		gcsettings["maxdisc"] = Number($('#maxdisc').val());
+		gcsettings["cutoff76"] = getNumber('#cutoff76');
+		gcsettings["mindisc"] = getNumber('#mindisc');
+		gcsettings["maxdisc"] = getNumber('#maxdisc');
 	    }
-	    set.iratio.Pb207Pb206[0] = Number($('#Pb207Pb206').val());
+	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	case 'Pb-Pb':
 	    IsoplotR.settings[geochronometer].commonPb =
 		getOption("#common-Pb-option");
-	    set.iratio.U238U235[0] = Number($("#U238U235").val());
-	    set.iratio.U238U235[1] = Number($("#errU238U235").val());
-	    set.lambda.U238[0] = Number($("#LambdaU238").val());
-	    set.lambda.U238[1] = Number($("#errLambdaU238").val());
-	    set.lambda.U235[0] = Number($("#LambdaU235").val());
-	    set.lambda.U235[1] = Number($("#errLambdaU235").val());
-	    set.iratio.Pb206Pb204[0] = Number($('#Pb206Pb204').val());
-	    set.iratio.Pb207Pb204[0] = Number($('#Pb207Pb204').val());
+	    set.iratio.U238U235[0] = getNumber("#U238U235");
+	    set.iratio.U238U235[1] = getNumber("#errU238U235");
+	    set.lambda.U238[0] = getNumber("#LambdaU238");
+	    set.lambda.U238[1] = getNumber("#errLambdaU238");
+	    set.lambda.U235[0] = getNumber("#LambdaU235");
+	    set.lambda.U235[1] = getNumber("#errLambdaU235");
+	    set.iratio.Pb206Pb204[0] = getNumber('#Pb206Pb204');
+	    set.iratio.Pb207Pb204[0] = getNumber('#Pb207Pb204');
 	    break;
 	case 'Th-U':
 	    gcsettings.detritus = getOption("#detritus");
-	    gcsettings.Th02[0] = Number($("#Th02").val());
-	    gcsettings.Th02[1] = Number($("#errTh02").val());
-	    gcsettings.Th02U48[0] = Number($("#Th0U8").val());
-	    gcsettings.Th02U48[1] = Number($("#errTh0U8").val());
-	    gcsettings.Th02U48[2] = Number($("#Th2U8").val());
-	    gcsettings.Th02U48[3] = Number($("#errTh2U8").val());
-	    gcsettings.Th02U48[4] = Number($("#U48").val());
-	    gcsettings.Th02U48[5] = Number($("#errU48").val());
-	    gcsettings.Th02U48[6] = $("#rXY").val();
-	    gcsettings.Th02U48[7] = $("#rXZ").val();
-	    gcsettings.Th02U48[8] = $("#rYZ").val();
-	    set.lambda.Th230[0] = $("#LambdaTh230").val();
-	    set.lambda.Th230[1] = $("#errLambdaTh230").val();
-	    set.lambda.U234[0] = $("#LambdaU234").val();
-	    set.lambda.U234[1] = $("#errLambdaU234").val();
-	    set.iratio.U234U238[0] = $("#U234U238").val();
-	    set.iratio.U234U238[1] = $("#errU234U238").val();
-	    set.iratio.Th230Th232[0] = $("#Th230Th232").val();
-	    set.iratio.Th230Th232[1] = $("#errTh230Th232").val();
+	    gcsettings.Th02[0] = getNumber("#Th02");
+	    gcsettings.Th02[1] = getNumber("#errTh02");
+	    gcsettings.Th02U48[0] = getNumber("#Th0U8");
+	    gcsettings.Th02U48[1] = getNumber("#errTh0U8");
+	    gcsettings.Th02U48[2] = getNumber("#Th2U8");
+	    gcsettings.Th02U48[3] = getNumber("#errTh2U8");
+	    gcsettings.Th02U48[4] = getNumber("#U48");
+	    gcsettings.Th02U48[5] = getNumber("#errU48");
+	    gcsettings.Th02U48[6] = getNumber("#rXY");
+	    gcsettings.Th02U48[7] = getNumber("#rXZ");
+	    gcsettings.Th02U48[8] = getNumber("#rYZ");
+	    set.lambda.Th230[0] = getNumber("#LambdaTh230");
+	    set.lambda.Th230[1] = getNumber("#errLambdaTh230");
+	    set.lambda.U234[0] = getNumber("#LambdaU234");
+	    set.lambda.U234[1] = getNumber("#errLambdaU234");
+	    set.iratio.U234U238[0] = getNumber("#U234U238");
+	    set.iratio.U234U238[1] = getNumber("#errU234U238");
+	    set.iratio.Th230Th232[0] = getNumber("#Th230Th232");
+	    set.iratio.Th230Th232[1] = getNumber("#errTh230Th232");
 	    break;
 	case 'Ar-Ar':
-	    set.iratio.Ar40Ar36[0] = $("#Ar40Ar36").val();
-	    set.iratio.Ar40Ar36[1] = $("#errAr40Ar36").val();
-	    set.lambda.K40[0] = $("#LambdaK40").val();
-	    set.lambda.K40[1] = $("#errLambdaK40").val();
+	    set.iratio.Ar40Ar36[0] = getNumber("#Ar40Ar36");
+	    set.iratio.Ar40Ar36[1] = getNumber("#errAr40Ar36");
+	    set.lambda.K40[0] = getNumber("#LambdaK40");
+	    set.lambda.K40[1] = getNumber("#errLambdaK40");
 	    break;
 	case 'K-Ca':
-	    set.iratio.Ca40Ca44[0] = $('#Ca40Ca44').val();
-	    set.iratio.Ca40Ca44[1] = $('#errCa40Ca44').val();
-	    set.lambda.K40[0] = $("#LambdaK40").val();
-	    set.lambda.K40[1] = $("#errLambdaK40").val();
+	    set.iratio.Ca40Ca44[0] = getNumber('#Ca40Ca44');
+	    set.iratio.Ca40Ca44[1] = getNumber('#errCa40Ca44');
+	    set.lambda.K40[0] = getNumber("#LambdaK40");
+	    set.lambda.K40[1] = getNumber("#errLambdaK40");
 	    break;
 	case 'Rb-Sr':
-	    set.iratio.Rb85Rb87[0] = $('#Rb85Rb87').val();
-	    set.iratio.Rb85Rb87[1] = $('#errRb85Rb87').val();
-	    set.iratio.Sr84Sr86[0] = $('#Sr84Sr86').val();
-	    set.iratio.Sr84Sr86[1] = $('#errSr84Sr86').val();
-	    set.iratio.Sr87Sr86[0] = $('#Sr87Sr86').val();
-	    set.iratio.Sr87Sr86[1] = $('#errSr87Sr86').val();
-	    set.iratio.Sr88Sr86[0] = $('#Sr88Sr86').val();
-	    set.iratio.Sr88Sr86[1] = $('#errSr88Sr86').val();
-	    set.lambda.Rb87[0] = $('#LambdaRb87').val();
-	    set.lambda.Rb87[1]= $('#errLambdaRb87').val();
+	    set.iratio.Rb85Rb87[0] = getNumber('#Rb85Rb87');
+	    set.iratio.Rb85Rb87[1] = getNumber('#errRb85Rb87');
+	    set.iratio.Sr84Sr86[0] = getNumber('#Sr84Sr86');
+	    set.iratio.Sr84Sr86[1] = getNumber('#errSr84Sr86');
+	    set.iratio.Sr87Sr86[0] = getNumber('#Sr87Sr86');
+	    set.iratio.Sr87Sr86[1] = getNumber('#errSr87Sr86');
+	    set.iratio.Sr88Sr86[0] = getNumber('#Sr88Sr86');
+	    set.iratio.Sr88Sr86[1] = getNumber('#errSr88Sr86');
+	    set.lambda.Rb87[0] = getNumber('#LambdaRb87');
+	    set.lambda.Rb87[1]= getNumber('#errLambdaRb87');
 	    break;
 	case 'Sm-Nd':
-	    set.iratio.Sm144Sm152[0] = $('#Sm144Sm152').val();
-	    set.iratio.Sm144Sm152[1] = $('#errSm144Sm152').val();
-	    set.iratio.Sm147Sm152[0] = $('#Sm147Sm152').val();
-	    set.iratio.Sm147Sm152[1] = $('#errSm147Sm152').val();
-	    set.iratio.Sm148Sm152[0] = $('#Sm148Sm152').val();
-	    set.iratio.Sm148Sm152[1] = $('#errSm148Sm152').val();
-	    set.iratio.Sm149Sm152[0] = $('#Sm149Sm152').val();
-	    set.iratio.Sm149Sm152[1] = $('#errSm149Sm152').val();
-	    set.iratio.Sm150Sm152[0] = $('#Sm150Sm152').val();
-	    set.iratio.Sm150Sm152[1] = $('#errSm150Sm152').val();
-	    set.iratio.Sm154Sm152[0] = $('#Sm154Sm152').val();
-	    set.iratio.Sm154Sm152[1] = $('#errSm154Sm152').val();
-	    set.iratio.Nd142Nd144[0] = $('#Nd142Nd144').val();
-	    set.iratio.Nd142Nd144[1] = $('#errNd142Nd144').val();
-	    set.iratio.Nd143Nd144[0] = $('#Nd143Nd144').val();
-	    set.iratio.Nd143Nd144[1] = $('#errNd143Nd144').val();
-	    set.iratio.Nd145Nd144[0] = $('#Nd145Nd144').val();
-	    set.iratio.Nd145Nd144[1] = $('#errNd145Nd144').val();
-	    set.iratio.Nd146Nd144[0] = $('#Nd146Nd144').val();
-	    set.iratio.Nd146Nd144[1] = $('#errNd146Nd144').val();
-	    set.iratio.Nd148Nd144[0] = $('#Nd148Nd144').val();
-	    set.iratio.Nd148Nd144[1] = $('#errNd148Nd144').val();
-	    set.iratio.Nd150Nd144[0] = $('#Nd150Nd144').val();
-	    set.iratio.Nd150Nd144[1] = $('#errNd150Nd144').val();
-	    set.lambda.Sm147[0] = $('#LambdaSm147').val();
-	    set.lambda.Sm147[1] = $('#errLambdaSm147').val();
+	    set.iratio.Sm144Sm152[0] = getNumber('#Sm144Sm152');
+	    set.iratio.Sm144Sm152[1] = getNumber('#errSm144Sm152');
+	    set.iratio.Sm147Sm152[0] = getNumber('#Sm147Sm152');
+	    set.iratio.Sm147Sm152[1] = getNumber('#errSm147Sm152');
+	    set.iratio.Sm148Sm152[0] = getNumber('#Sm148Sm152');
+	    set.iratio.Sm148Sm152[1] = getNumber('#errSm148Sm152');
+	    set.iratio.Sm149Sm152[0] = getNumber('#Sm149Sm152');
+	    set.iratio.Sm149Sm152[1] = getNumber('#errSm149Sm152');
+	    set.iratio.Sm150Sm152[0] = getNumber('#Sm150Sm152');
+	    set.iratio.Sm150Sm152[1] = getNumber('#errSm150Sm152');
+	    set.iratio.Sm154Sm152[0] = getNumber('#Sm154Sm152');
+	    set.iratio.Sm154Sm152[1] = getNumber('#errSm154Sm152');
+	    set.iratio.Nd142Nd144[0] = getNumber('#Nd142Nd144');
+	    set.iratio.Nd142Nd144[1] = getNumber('#errNd142Nd144');
+	    set.iratio.Nd143Nd144[0] = getNumber('#Nd143Nd144');
+	    set.iratio.Nd143Nd144[1] = getNumber('#errNd143Nd144');
+	    set.iratio.Nd145Nd144[0] = getNumber('#Nd145Nd144');
+	    set.iratio.Nd145Nd144[1] = getNumber('#errNd145Nd144');
+	    set.iratio.Nd146Nd144[0] = getNumber('#Nd146Nd144');
+	    set.iratio.Nd146Nd144[1] = getNumber('#errNd146Nd144');
+	    set.iratio.Nd148Nd144[0] = getNumber('#Nd148Nd144');
+	    set.iratio.Nd148Nd144[1] = getNumber('#errNd148Nd144');
+	    set.iratio.Nd150Nd144[0] = getNumber('#Nd150Nd144');
+	    set.iratio.Nd150Nd144[1] = getNumber('#errNd150Nd144');
+	    set.lambda.Sm147[0] = getNumber('#LambdaSm147');
+	    set.lambda.Sm147[1] = getNumber('#errLambdaSm147');
 	    break;
 	case 'Re-Os':
-	    set.iratio.Re185Re187[0] = $('#Re185Re187').val();
-	    set.iratio.Re185Re187[1] = $('#errRe185Re187').val();
-	    set.iratio.Os184Os192[0] = $('#Os184Os192').val();
-	    set.iratio.Os184Os192[1] = $('#errOs184Os192').val();
-	    set.iratio.Os186Os192[0] = $('#Os186Os192').val();
-	    set.iratio.Os186Os192[1] = $('#errOs186Os192').val();
-	    set.iratio.Os187Os192[0] = $('#Os187Os192').val();
-	    set.iratio.Os187Os192[1] = $('#errOs187Os192').val();
-	    set.iratio.Os188Os192[0] = $('#Os188Os192').val();
-	    set.iratio.Os188Os192[1] = $('#errOs188Os192').val();
-	    set.iratio.Os189Os192[0] = $('#Os189Os192').val();
-	    set.iratio.Os189Os192[1] = $('#errOs189Os192').val();
-	    set.iratio.Os190Os192[0] = $('#Os190Os192').val();
-	    set.iratio.Os190Os192[1] = $('#errOs190Os192').val();
-	    set.lambda.Re187[0] = $('#LambdaRe187').val();
-	    set.lambda.Re187[1] = $('#errLambdaRe187').val();
+	    set.iratio.Re185Re187[0] = getNumber('#Re185Re187');
+	    set.iratio.Re185Re187[1] = getNumber('#errRe185Re187');
+	    set.iratio.Os184Os192[0] = getNumber('#Os184Os192');
+	    set.iratio.Os184Os192[1] = getNumber('#errOs184Os192');
+	    set.iratio.Os186Os192[0] = getNumber('#Os186Os192');
+	    set.iratio.Os186Os192[1] = getNumber('#errOs186Os192');
+	    set.iratio.Os187Os192[0] = getNumber('#Os187Os192');
+	    set.iratio.Os187Os192[1] = getNumber('#errOs187Os192');
+	    set.iratio.Os188Os192[0] = getNumber('#Os188Os192');
+	    set.iratio.Os188Os192[1] = getNumber('#errOs188Os192');
+	    set.iratio.Os189Os192[0] = getNumber('#Os189Os192');
+	    set.iratio.Os189Os192[1] = getNumber('#errOs189Os192');
+	    set.iratio.Os190Os192[0] = getNumber('#Os190Os192');
+	    set.iratio.Os190Os192[1] = getNumber('#errOs190Os192');
+	    set.lambda.Re187[0] = getNumber('#LambdaRe187');
+	    set.lambda.Re187[1] = getNumber('#errLambdaRe187');
 	    break;
 	case 'Lu-Hf':
-	    set.iratio.Lu176Lu175[0] = $('#Lu176Lu175').val();
-	    set.iratio.Lu176Lu175[1] = $('#errLu176Lu175').val();
-	    set.iratio.Hf174Hf177[0] = $('#Hf174Hf177').val();
-	    set.iratio.Hf174Hf177[1] = $('#errHf174Hf177').val();
-	    set.iratio.Hf176Hf177[0] = $('#Hf176Hf177').val();
-	    set.iratio.Hf176Hf177[1] = $('#errHf176Hf177').val();
-	    set.iratio.Hf178Hf177[0] = $('#Hf178Hf177').val();
-	    set.iratio.Hf178Hf177[1] = $('#errHf178Hf177').val();
-	    set.iratio.Hf179Hf177[0] = $('#Hf179Hf177').val();
-	    set.iratio.Hf179Hf177[1] = $('#errHf179Hf177').val();
-	    set.iratio.Hf180Hf177[0] = $('#Hf180Hf177').val();
-	    set.iratio.Hf180Hf177[1] = $('#errHf180Hf177').val();
-	    set.lambda.Lu176[0] = $('#LambdaLu176').val();
-	    set.lambda.Lu176[1] = $('#errLambdaLu176').val();
+	    set.iratio.Lu176Lu175[0] = getNumber('#Lu176Lu175');
+	    set.iratio.Lu176Lu175[1] = getNumber('#errLu176Lu175');
+	    set.iratio.Hf174Hf177[0] = getNumber('#Hf174Hf177');
+	    set.iratio.Hf174Hf177[1] = getNumber('#errHf174Hf177');
+	    set.iratio.Hf176Hf177[0] = getNumber('#Hf176Hf177');
+	    set.iratio.Hf176Hf177[1] = getNumber('#errHf176Hf177');
+	    set.iratio.Hf178Hf177[0] = getNumber('#Hf178Hf177');
+	    set.iratio.Hf178Hf177[1] = getNumber('#errHf178Hf177');
+	    set.iratio.Hf179Hf177[0] = getNumber('#Hf179Hf177');
+	    set.iratio.Hf179Hf177[1] = getNumber('#errHf179Hf177');
+	    set.iratio.Hf180Hf177[0] = getNumber('#Hf180Hf177');
+	    set.iratio.Hf180Hf177[1] = getNumber('#errHf180Hf177');
+	    set.lambda.Lu176[0] = getNumber('#LambdaLu176');
+	    set.lambda.Lu176[1] = getNumber('#errLambdaLu176');
 	    break;
 	case 'U-Th-He':
-	    set.iratio.U238U235[0] = $("#U238U235").val();
-	    set.iratio.U238U235[1] = $("#errU238U235").val();
-	    set.lambda.U238[0] = $("#LambdaU238").val();
-	    set.lambda.U238[1] = $("#errLambdaU238").val();
-	    set.lambda.U235[0] = $("#LambdaU235").val();
-	    set.lambda.U235[1] = $("#errLambdaU235").val();
-	    set.lambda.Th232[0] = $("#LambdaTh232").val();
-	    set.lambda.Th232[1] = $("#errLambdaTh232").val();
-	    set.lambda.Sm147[0] = $("#LambdaSm147").val();
-	    set.lambda.Sm147[1] = $("#errLambdaSm147").val();
+	    set.iratio.U238U235[0] = getNumber("#U238U235");
+	    set.iratio.U238U235[1] = getNumber("#errU238U235");
+	    set.lambda.U238[0] = getNumber("#LambdaU238");
+	    set.lambda.U238[1] = getNumber("#errLambdaU238");
+	    set.lambda.U235[0] = getNumber("#LambdaU235");
+	    set.lambda.U235[1] = getNumber("#errLambdaU235");
+	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
+	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
+	    set.lambda.Sm147[0] = getNumber("#LambdaSm147");
+	    set.lambda.Sm147[1] = getNumber("#errLambdaSm147");
 	    break;
 	case 'detritals':
 	    gcsettings.format = $("#headers-on").prop('checked') ? 1 : 2;
 	    gcsettings.hide = $('#hide').val();
 	    break;
 	case 'fissiontracks':
-	    var mineral = $('#mineral-option').prop('value');
-	    gcsettings.mineral = mineral;
-	    gcsettings.format = 1*$('option:selected', $("#FT-formats")).attr('value');
-	    set.iratio.U238U235[0] = $("#U238U235").val();
-	    set.iratio.U238U235[1] = $("#errU238U235").val();
-	    set.lambda.U238[0] = $("#LambdaU238").val();
-	    set.lambda.U238[1] = $("#errLambdaU238").val();
-	    set.etchfact[mineral] = $("#etchfact").val();
-	    set.tracklength[mineral] = $("#tracklength").val();
-	    set.mindens[mineral] = $("#mindens").val();
+	    gcsettings.mineral = $('#mineral-option').prop('value');
+	    gcsettings.format = getOption("#FT-formats");
+	    set.iratio.U238U235[0] = getNumber("#U238U235");
+	    set.iratio.U238U235[1] = getNumber("#errU238U235");
+	    set.lambda.U238[0] = getNumber("#LambdaU238");
+	    set.lambda.U238[1] = getNumber("#errLambdaU238");
+	    set.etchfact[mineral] = getNumber("#etchfact");
+	    set.tracklength[mineral] = getNumber("#tracklength");
+	    set.mindens[mineral] = getNumber("#mindens");
 	    break;
 	default:
 	}
@@ -1402,29 +1401,28 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	switch (geochronometer){
 	case 'Ar-Ar':
-	    gcsettings.i2i = $("#i2iArAr").prop('checked') ? "TRUE" : "FALSE";
+	    gcsettings.i2i = truefalse("#i2iArAr");
 	    break;
 	case 'K-Ca':
-	    gcsettings.i2i = $("#i2iKCa").prop('checked') ? "TRUE" : "FALSE";
+	    gcsettings.i2i = truefalse("#i2iKCa");
 	    break;
 	case 'Th-U':
-	    gcsettings.i2i = $("#i2iThU").prop('checked') ? "TRUE" : "FALSE";
+	    gcsettings.i2i = truefalse("#i2iThU");
 	    break;
 	case 'Rb-Sr':
-	    gcsettings.i2i = $("#i2iRbSr").prop('checked') ? "TRUE" : "FALSE";
+	    gcsettings.i2i = truefalse("#i2iRbSr");
 	    break;
 	case 'Sm-Nd':
-	    gcsettings.i2i = $("#i2iSmNd").prop('checked') ? "TRUE" : "FALSE";
+	    gcsettings.i2i = truefalse("#i2iSmNd");
 	    break;
 	case 'Re-Os':
-	    gcsettings.i2i = $("#i2iReOs").prop('checked') ? "TRUE" : "FALSE";
+	    gcsettings.i2i = truefalse("#i2iReOs");
 	    break;
 	case 'Lu-Hf':
-	    gcsettings.i2i = $("#i2iLuHf").prop('checked') ? "TRUE" : "FALSE";
+	    gcsettings.i2i = truefalse("#i2iLuHf");
 	    break;
 	case 'Pb-Pb':
-	    gcsettings.commonPb =
-		1*$('option:selected', $("#common-Pb-option")).attr('value');
+	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    break;
 	}
     }
@@ -1623,36 +1621,32 @@ $(function(){
     }
     
     $.chooseNumRadialPeaks = function(){
-	IsoplotR.settings.radial.numpeaks =
-	    $('option:selected', $("#mixtures")).attr('value');	
+	IsoplotR.settings.radial.numpeaks = getOption("#mixtures");	
     }
     
     $.chooseTransformation = function(){
 	IsoplotR.settings.radial.transformation =
-	    $('option:selected', $("#transformation")).attr('value');
+	    getOption("#transformation");
     }
 
     $.chooseConcAgeOption = function(){
-	var option = 1*$('option:selected', $("#conc-age-option")).attr('value');
-	IsoplotR.settings.concordia.showage = option;
+	IsoplotR.settings.concordia.showage = getOption("#conc-age-option");
 	showOrHide();
     }
 
     $.chooseIsochronModel = function(){
-	var option = 1*$('option:selected', $("#isochron-models")).attr('value');
-	IsoplotR.settings.isochron.model = option;
+	IsoplotR.settings.isochron.model = getOption("#isochron-models");;
 	showOrHide();
     }
     
     $.chooseIsochronModelThU = function(){
-	var option = 1*$('option:selected', $("#evolution-isochron-models")).attr('value');
-	IsoplotR.settings.evolution.model = option;
+	IsoplotR.settings.evolution.model =
+	    getOption("#evolution-isochron-models");
 	showOrHide();
     }
     
     $.chooseAnchorOption = function(){
-	var option = 1*$('option:selected', $("#anchor-option")).attr('value');
-	IsoplotR.settings.concordia.anchor = option;
+	IsoplotR.settings.concordia.anchor = getOption("#anchor-option");
 	showOrHide();
     }
     
