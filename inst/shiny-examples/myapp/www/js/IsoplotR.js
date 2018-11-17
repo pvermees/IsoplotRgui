@@ -664,6 +664,13 @@ $(function(){
 		break;
 	    }
 	    break;
+	case 'radial':
+	    if (pd.shownumbers=='TRUE'){
+		$('#radial-pch').hide();
+	    } else {
+		$('#radial-pch').show();
+	    }
+	    break;
 	case 'ages':
 	    if (pd.show_p=='TRUE'){
 		$('.show4show_p').show();
@@ -674,6 +681,13 @@ $(function(){
 	case 'set-zeta':
 	    $(".show4zeta").show();
 	    $(".hide4zeta").hide();
+	    break;
+	case 'MDS':
+	    if (pd.classical=='TRUE'){
+		$('#shepard-box').hide();
+	    } else {
+		$('#shepard-box').show();
+	    }
 	    break;
 	}
     }
@@ -869,12 +883,11 @@ $(function(){
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
 	    $('#LambdaFission').val(cst.lambda.fission[0]);
 	    $('#errLambdaFission').val(cst.lambda.fission[1]);
-	    var mineral = set.mineral;
-	    $('#mineral-option option[value='+mineral+']').
+	    $('#mineral-option option[value='+set.mineral+']').
 		prop('selected', 'selected');
-	    $('#etchfact').val(cst.etchfact[mineral]);
-	    $('#tracklength').val(cst.tracklength[mineral]);
-	    $('#mindens').val(cst.mindens[mineral]);
+	    $('#etchfact').val(cst.etchfact[set.mineral]);
+	    $('#tracklength').val(cst.tracklength[set.mineral]);
+	    $('#mindens').val(cst.mindens[set.mineral]);
 	    break;
 	case 'detritals':
 	    $('#headers-on').prop('checked',set.format==1);
@@ -1082,16 +1095,18 @@ $(function(){
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.anchor = getOption("#anchor-option")
 	    pdsettings.tanchor = getNumber('#tanchor');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'isochron':
 	    pdsettings.type = getOption("#ThU-isochron-types");
 	    pdsettings.inverse = truefalse('#inverse');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
+	    pdsettings.model = getOption("#isochron-models");
 	case 'regression':
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.model = getOption("#isochron-models");
@@ -1109,6 +1124,7 @@ $(function(){
 	case 'radial':
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.transformation = getOption("#transformation");
+	    pdsettings.numpeaks = getOption("#mixtures");
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.t0 = check($('#t0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
@@ -1239,6 +1255,7 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
+	    IsoplotR.settings["U-Pb"].type = getOption("#UPb-age-type");
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
 		plotdevice == 'CAD' | plotdevice == 'radial'){
 		gcsettings["cutoff76"] = getNumber('#cutoff76');
@@ -1383,15 +1400,17 @@ $(function(){
 	    gcsettings.hide = $('#hide').val();
 	    break;
 	case 'fissiontracks':
-	    gcsettings.mineral = $('#mineral-option').prop('value');
 	    gcsettings.format = getOption("#FT-formats");
 	    set.iratio.U238U235[0] = getNumber("#U238U235");
 	    set.iratio.U238U235[1] = getNumber("#errU238U235");
 	    set.lambda.U238[0] = getNumber("#LambdaU238");
 	    set.lambda.U238[1] = getNumber("#errLambdaU238");
-	    set.etchfact[mineral] = getNumber("#etchfact");
-	    set.tracklength[mineral] = getNumber("#tracklength");
-	    set.mindens[mineral] = getNumber("#mindens");
+	    if (gcsettings.format == 3){
+		set.mineral = $('#mineral-option').prop('value');
+		set.etchfact[set.mineral] = getNumber("#etchfact");
+		set.tracklength[set.mineral] = getNumber("#tracklength");
+		set.mindens[set.mineral] = getNumber("#mindens");
+	    }
 	    break;
 	default:
 	}
@@ -1602,129 +1621,20 @@ $(function(){
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
-    $.toggle_radial_pch = function(){
-	var selected = $("#shownumbers").prop('checked');
-	if (selected){
-	    $('#radial-pch').hide();
-	} else {
-	    $('#radial-pch').show();
-	}
-    }
-
-    $.toggle_shepard_box = function(){
-	var selected = $("#classical").prop('checked');
-	if (selected){
-	    $('#shepard-box').hide();
-	} else {
-	    $('#shepard-box').show();
-	}
-    }
-    
-    $.chooseNumRadialPeaks = function(){
-	IsoplotR.settings.radial.numpeaks = getOption("#mixtures");	
-    }
-    
-    $.chooseTransformation = function(){
-	IsoplotR.settings.radial.transformation =
-	    getOption("#transformation");
-    }
-
-    $.chooseConcAgeOption = function(){
-	IsoplotR.settings.concordia.showage = getOption("#conc-age-option");
-	showOrHide();
-    }
-
-    $.chooseIsochronModel = function(){
-	IsoplotR.settings.isochron.model = getOption("#isochron-models");;
-	showOrHide();
-    }
-    
-    $.chooseIsochronModelThU = function(){
-	IsoplotR.settings.evolution.model =
-	    getOption("#evolution-isochron-models");
-	showOrHide();
-    }
-    
-    $.chooseAnchorOption = function(){
-	IsoplotR.settings.concordia.anchor = getOption("#anchor-option");
-	showOrHide();
-    }
-    
-    // method = 'U-Pb' or 'Pb-Pb'
-    $.chooseCommonPbOption = function(method){
-	recordSettings();
-	showOrHide();
-    }
-
-    $.chooseThUisochronType = function(){
-	recordSettings();
-    }
-    $.chooseEvolutionTransformation = function(){
-	recordSettings();
-	showOrHide();
-    }
-    $.chooseEvolutionIsochron = function(){
-	recordSettings();
-	showOrHide();
-    }
-    $.chooseTh230correction = function(){
+    $.register = function(){
 	recordSettings();
 	showOrHide();
     }
     
-    $.chooseUPbformat = function(){
-	chooseFormat("#UPb-formats","U-Pb")
-    }
-    $.choosePbPbformat = function(){
-	chooseFormat("#PbPb-formats","Pb-Pb")
-    }
-    $.chooseArArformat = function(){
-	chooseFormat("#ArAr-formats","Ar-Ar")
-    }
-    $.chooseKCaformat = function(){
-	chooseFormat("#KCa-formats","K-Ca")
-    }
-    $.chooseThUformat = function(){
-	chooseFormat("#ThU-formats","Th-U")
-	showOrHide();
-    }
-    $.chooseRbSrformat = function(){
-	chooseFormat("#RbSr-formats","Rb-Sr")
-    }
-    $.chooseSmNdformat = function(){
-	chooseFormat("#SmNd-formats","Sm-Nd")
-    }
-    $.chooseReOsformat = function(){
-	chooseFormat("#ReOs-formats","Re-Os")
-    }
-    $.chooseLuHfformat = function(){
-	chooseFormat("#LuHf-formats","Lu-Hf")
-    }
-    $.chooseFTformat = function(){
-	chooseFormat("#FT-formats","fissiontracks")
-    }    
-    function chooseFormat(ID,chronometer){
-	var format = 1*$('option:selected', $(ID)).attr('value');
-	IsoplotR.settings[chronometer].format = format;
+    $.chooseFormat = function(ID,chronometer){
+	IsoplotR.settings[chronometer].format = getInt(ID);
 	IsoplotR = populate(IsoplotR,true);
-	showOrHide();
-    }
-
-    $.chooseRegressionFormat = function(){
-	var format = 1*$('option:selected', $("#regression-format")).attr('value');
-	IsoplotR.settings['other'].format = format;
-	IsoplotR = populate(IsoplotR,true);
-    }
-
-    $.chooseUPbAgeType = function(){
-	var type = 1*$('option:selected', $("#UPb-age-type")).attr('value');
-	IsoplotR.settings["U-Pb"].type = type;
 	showOrHide();
     }
     
     $.chooseMineral = function(){
 	var cst = IsoplotR.constants;
-	var mineral = $('option:selected', $("#mineral-option")).val();
+	var mineral = getOption("#mineral-option");
 	switch (mineral){
 	case 'apatite':
 	    $("#etchfact").val(cst.etchfact[mineral]);
@@ -1806,7 +1716,8 @@ $(function(){
 	var fname = prompt("Please enter a file name", "IsoplotR.json");
 	if (fname != null){
 	    handson2json();
-	    $('#fname').attr("href","data:text/plain," + JSON.stringify(IsoplotR));
+	    $('#fname').attr("href","data:text/plain," +
+			     JSON.stringify(IsoplotR));
 	    $('#fname').attr("download",fname);
 	    $('#fname')[0].click();
 	}

@@ -2,7 +2,7 @@
 
 <div hidden class="show4UPb">
 &nbsp; <help id="help-UPb-age-type">Type of U-Pb age</help>:
-<select id="UPb-age-type" onchange="$.chooseUPbAgeType();">
+<select id="UPb-age-type" onchange="$.register();">
   <option value=1>1: 7/5 age</option>
   <option value=2>2: 6/8 age</option>
   <option value=3>3: 7/6 age</option>
@@ -27,7 +27,7 @@
 
 <div hidden class="show4PbPb">
 &nbsp;<help id="help-common-Pb-option">Common Pb correction:</help>
-<select id="common-Pb-option" onchange="$.chooseCommonPbOption('Pb-Pb');">
+<select id="common-Pb-option" onchange="$.register();">
   <option value=0>none</option>
   <option value=1>Stacey-Kramers</option>
   <option value=2>isochron</option>
@@ -121,7 +121,7 @@
 </div>
 <div hidden class="show4ThU1 show4ThU2 hide4ThU3 hide4ThU4">
 &nbsp;<help id="help-detritus">detrital <sup>230</sup>Th correction:</help>
-<select id="detritus" onchange="$.chooseTh230correction();">
+<select id="detritus" onchange="$.register();">
   <option value="0">0. none</option>
   <option value="1">1. isochron</option>
   <option value="2">2. assumed</option>

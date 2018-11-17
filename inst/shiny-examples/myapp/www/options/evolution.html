@@ -2,7 +2,7 @@
 
 <div class="show4ThU1 show4ThU2 hide4ThU3 hide4ThU4">
 &nbsp; <help id="help-detritus">detrital <sup>230</sup>Th correction:</help>
-<select id="detritus" onchange="$.chooseTh230correction();">
+<select id="detritus" onchange="$.register();">
   <option value=0>none</option>
   <option value=1>isochron</option>
   <option value=2>assumed</option>
@@ -42,14 +42,12 @@
 </tr></table>      
 <p></p>
 </div>
-&nbsp; <input type="checkbox" id="transform-evolution"
-	      onchange="$.chooseEvolutionTransformation();">
+&nbsp; <input type="checkbox" id="transform-evolution" onchange="$.register();">
 <help id="help-transform-evolution">Plot as <sup>234</sup>U/<sup>238</sup>U vs. age</help>?
 <p></p>
 </div>
 
-&nbsp; <input type="checkbox" id="isochron-evolution"
-	      onclick="$.chooseEvolutionIsochron();">
+&nbsp; <input type="checkbox" id="isochron-evolution" onclick="$.register();">
 <help id="help-isochron-evolution">Calculate isochron age</help>?
 
 <div class="show4evolutionIsochron">
