@@ -111,7 +111,7 @@
 	"type": 2,
 	"model": 1,
 	"inverse": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",
@@ -155,7 +155,7 @@
     },
     "average": {
 	"outliers": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE",
@@ -165,7 +165,7 @@
     },
     "spectrum": {
 	"plateau": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE"
@@ -193,7 +193,7 @@
     },
     "set-zeta": {
 	"sigdig": 2,
-	"exterr": "TRUE"
+	"exterr": "FALSE"
     },
     "MDS": {
 	"classical": "FALSE",
