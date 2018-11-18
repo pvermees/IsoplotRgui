@@ -889,7 +889,7 @@ function help(id){
 	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>.";
 	break;
     case "help-isochron-models":
-	text = "Choose one of two regression models:<br>" +
+	text = "Choose one of three regression models:<br>" +
 	    "1. Maximum Likelihood regression, using either the modified error weighted " +
 	    "least squares algorithm of York et al. (2004) for 2-dimensional data, " +
 	    "or the Maximum Likelihood formulation of Ludwig and Titterington (1994) " +
