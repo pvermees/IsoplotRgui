@@ -158,7 +158,7 @@
 	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "TRUE",
+	"randomeffects": "FALSE",
 	"mint": "auto",
 	"maxt": "auto",
 	"ranked": "FALSE"
@@ -168,7 +168,7 @@
 	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "TRUE"
+	"randomeffects": "FALSE"
     },
     "KDE": {
 	"ncol": "auto",
