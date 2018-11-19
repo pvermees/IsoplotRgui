@@ -220,16 +220,16 @@ shiny::shinyServer(function(input,output,session){
         HTML(script)
     }
 
-    wrap.it <- function(x,len){
-        sapply(x, function(y){paste(strwrap(y,len), collapse = "\n")},
-               USE.NAMES = FALSE)
-    }
-
     run <- function(Rcommand){
         tryCatch({
             eval(parse(text=Rcommand))
         }, error = function(e){
-            errormessage <- wrap.it(e,40)['message']
+            errormessage <-
+                paste0("Something went wrong. If this problem occurs again,\n",
+                       "then please save a reproducible example as a .json file\n",
+                       "(using the 'Save' button below) and email it to p.vermeesch@ucl.ac.uk\n",
+                       "The problem will be addressed asap.\n",
+                       "-PV")
             plot(c(0, 1),c(0,1),ann=F,bty ='n',type='n',xaxt='n',yaxt='n')
             text(0.5,1,errormessage,cex=1.5,pos=1)
         })
