@@ -380,10 +380,13 @@ $(function(){
 		$(".show4UPbType4").show();
 		break;
 	    }
-	    if (set.commonPb==3 & set.format<4){
+	    if (set.commonPb!=3){
+		$('.show4commonPbwithout204').hide();
+		$('.show4commonPbwith204').hide();		
+	    } else if (set.format<4){
 		$('.show4commonPbwithout204').show();
 		$('.show4commonPbwith204').hide();
-	    } else if (set.commonPb==3){
+	    } else {
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').show();
 	    }
