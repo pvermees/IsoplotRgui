@@ -116,24 +116,25 @@ $(function(){
     function json2handson(settings){
 	var geochronometer = settings.geochronometer;
 	var json = settings.data[geochronometer];
+	var gcsettings = settings[geochronometer];
 	switch (geochronometer){
 	case "Ar-Ar":
 	    $("#Jval").val(json.J[0]);
 	    $("#Jerr").val(json.J[1]);
 	    break;
 	case "fissiontracks":
-	    if (settings.fissiontracks.format < 3){
+	    if (gcsettings.format < 3){
 		$("#zetaVal").val(json.zeta[0]);
 		$("#zetaErr").val(json.zeta[1]);
 	    }
-	    if (settings.fissiontracks.format < 2){
+	    if (gcsettings.format < 2){
 		$("#rhoDval").val(json.rhoD[0]);
 		$("#rhoDerr").val(json.rhoD[1]);
 	    }
-	    if (settings.fissiontracks.format > 1){
+	    if (gcsettings.format > 1){
 		$("#spotSizeVal").val(json.spotSize);
 	    }
-	    if (settings.plotdevice=='set-zeta'){
+	    if (IsoplotR.settings.plotdevice=='set-zeta'){
 		$("#standAgeVal").val(json.age[0]);
 		$("#standAgeErr").val(json.age[1]);
 	    }
@@ -148,26 +149,27 @@ $(function(){
 	$.each(json.data, function(k, v) {
 	    handson.headers.push(k);
 	});
-	var m = handson.headers.length; // number of columns
-	var n = (m>0) ? json.data[handson.headers[0]].length : 0; // number of rows
-	for (var i=0; i<handson.headers.length; i++){ // maximum number of rows
-	    if (json.data[handson.headers[i]].length > n) {
-		n = json.data[handson.headers[i]].length;
+	var nc = handson.headers.length;
+	var nr = (nc>0) ? json.data[handson.headers[0]].length : 0;
+	for (var i=0; i<handson.headers.length; i++){
+	    if (json.data[handson.headers[i]].length > nr) {
+		nr = json.data[handson.headers[i]].length;
 	}   }
-	for (var i=0; i<n; i++){
+	for (var i=0; i<nr; i++){
 	    row = [];
-	    for (var j=0; j<m; j++){
+	    for (var j=0; j<nc; j++){
 		row.push(json.data[handson.headers[j]][i]);
 	    }
 	    handson.data.push(row);
 	}
-	// handson.data.push([]); // add empty row in case json is empty
+	var pd = settings.plotdevice;
+	handson = err4handson(handson,settings);
 	$("#INPUT").handsontable({
 	    data: handson.data,
 	    colHeaders: handson.headers
 	});
     }
-
+    
     // overwrites the data in the IsoplotR 
     // preferences based on the handsontable
     function handson2json(){
@@ -225,10 +227,12 @@ $(function(){
 	    });
 	}
 	out.settings.data[geochronometer] = mydata;
+	out.settings.data[geochronometer].data =
+	    err4json(mydata.data,out.settings);
 	out.optionschanged = false;
 	IsoplotR = out;
     }
-
+    
     function getData4Server(){
 	var selected = $("#INPUT").handsontable('getSelected');
 	var selection = [0,0,0,0];
@@ -699,6 +703,8 @@ $(function(){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
 	showOrHide();
+	$('#ierr option[value='+IsoplotR.settings.ierr+']').
+	    prop('selected', 'selected');
 	switch (option){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
@@ -1621,6 +1627,11 @@ $(function(){
 	}
 	Shiny.onInputChange("data",IsoplotR.data4server);
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
+    }
+
+    $.switchErr = function(){
+	IsoplotR.settings.ierr = getInt("#ierr");
+	json2handson(IsoplotR.settings);
     }
 
     $.register = function(){
