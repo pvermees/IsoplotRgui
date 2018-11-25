@@ -162,8 +162,6 @@ $(function(){
 	    }
 	    handson.data.push(row);
 	}
-	var pd = settings.plotdevice;
-	handson = err4handson(handson,settings);
 	$("#INPUT").handsontable({
 	    data: handson.data,
 	    colHeaders: handson.headers
@@ -227,8 +225,6 @@ $(function(){
 	    });
 	}
 	out.settings.data[geochronometer] = mydata;
-	out.settings.data[geochronometer].data =
-	    err4json(mydata.data,out.settings);
 	out.optionschanged = false;
 	IsoplotR = out;
     }
@@ -1629,11 +1625,27 @@ $(function(){
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
-    $.switchErr = function(){
-	IsoplotR.settings.ierr = getInt("#ierr");
-	json2handson(IsoplotR.settings);
+    function errconvert(from,to){
+	var gc = IsoplotR.settings.geochronometer;
+	var format = IsoplotR.settings[gc].format;
+	var headers = $("#INPUT").handsontable("getColHeader");
+	var data = IsoplotR.settings.data[gc].data;
+	var nratios = 0;
+	if (gc=='U-Pb' && format==2){
+	    nratios = 2;
+	}
     }
 
+    $.switchErr = function(){
+	var from = IsoplotR.settings.ierr;
+	var to = getInt("#ierr");
+	if (to == from){
+	    // do nothing
+	} else {
+	    errconvert(from,to);
+	}
+    }
+    
     $.register = function(){
 	recordSettings();
 	showOrHide();
