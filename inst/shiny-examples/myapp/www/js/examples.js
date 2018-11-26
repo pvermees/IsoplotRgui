@@ -4,6 +4,7 @@ function example(geochronometer,plotdevice,format){
 	switch (format){
 	case 1:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "7/5":  [0.2819,0.2814,0.2814,0.2812,0.2814,
 			       0.2811,0.2813,0.281,0.2816,0.2554],
@@ -20,6 +21,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 2:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "8/6":    [25.094,25.126,25.138,25.151,25.176,
 			       25.183,25.208,25.214,25.164,27.724],
@@ -36,6 +38,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 3:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "X=7/5":   [0.2819,0.2814,0.2814,0.2812,0.2814,
 				0.2811,0.2813,0.281,0.2816,0.2554],
@@ -57,6 +60,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 4:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "X=7/5":  [2.8229,2.6401,1.9623,2.5838,2.2208,4.3988,2.0326],
 		    "err[X]": [0.0044,0.0041,0.0034,0.0049,0.0045,0.0049,0.005],
@@ -75,6 +79,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 5:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "X=8/6":  [14.24,14.575,16.045,14.695,15.428,11.773,15.821],
 		    "err[X]": [0.020,0.020,0.023,0.025,0.029,0.011,0.031],
@@ -91,6 +96,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 6:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "U=7/5":  [2.8229,2.6401,1.9623,2.5838,2.2208,4.3988,2.0326],
 		    "err[U]": [0.0044,0.0041,0.0034,0.0049,0.0045,0.0049,0.005],

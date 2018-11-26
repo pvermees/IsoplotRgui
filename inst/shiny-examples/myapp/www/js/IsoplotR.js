@@ -1625,25 +1625,79 @@ $(function(){
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
+    function multiply(cols,num,vec,divide){
+	var gc = IsoplotR.settings.geochronometer;
+	var data = IsoplotR.settings.data[gc].data;
+	var headers = $("#INPUT").handsontable("getColHeader");
+	var errname = null;
+	var muname = null;
+	for (var i=0; i<cols.length; i++){
+	    errname = headers[cols[i]];
+	    muname = headers[cols[i]-1];
+	    for (var j=0; j<data[errname].length; j++){
+		if (Number(data[errname][j])){
+		    data[errname][j] = num*data[errname][j];
+		}
+		if (!vec){
+		    // do nothing
+		} else if (Number(data[muname][j]) && divide){
+		    data[errname][j] = data[errname][j]/data[muname][j];
+		} else if (Number(data[muname][j])){
+		    data[errname][j] = data[errname][j]*data[muname][j];
+		}
+	    }
+	}
+    }
+    
     function errconvert(from,to){
 	var gc = IsoplotR.settings.geochronometer;
 	var format = IsoplotR.settings[gc].format;
-	var headers = $("#INPUT").handsontable("getColHeader");
-	var data = IsoplotR.settings.data[gc].data;
-	var nratios = 0;
-	if (gc=='U-Pb' && format==2){
-	    nratios = 2;
+	var cols = [];
+	if (gc=='U-Pb' && format==1){
+	    cols = [1,3];
+	} else if (gc=='U-Pb' && format==2){
+	    cols = [1,3];
+	}
+	if (from==1 && to==2){
+	    multiply(cols,2,false,false);
+	} else if (from==1 && to==3){
+	    multiply(cols,1,true,true);
+	} else if (from==1 && to==4){
+	    multiply(cols,2,true,true);
+	} else if (from==2 && to==1){
+	    multiply(cols,0.5,false,false);
+	} else if (from==2 && to==3){
+	    multiply(cols,0.5,true,true);
+	} else if (from==2 && to==4){
+	    multiply(cols,1,true,true);
+	} else if (from==3 && to==1){
+	    multiply(cols,1,true,false);
+	} else if (from==3 && to==2){
+	    multiply(cols,2,true,false);
+	} else if (from==3 && to==4){
+	    multiply(cols,2,false,false);
+	} else if (from==4 && to==1){
+	    multiply(cols,0.5,true,false);
+	} else if (from==4 && to==2){
+	    multiply(cols,1,true,false);
+	} else if (from==4 && to==3){
+	    multiply(cols,0.5,false,false);
 	}
     }
 
     $.switchErr = function(){
-	var from = IsoplotR.settings.ierr;
+	var gc = IsoplotR.settings.geochronometer;
+	var data = IsoplotR.settings.data[gc];
+	var from = data.ierr;
 	var to = getInt("#ierr");
 	if (to == from){
 	    // do nothing
 	} else {
 	    errconvert(from,to);
 	}
+	IsoplotR.settings.ierr = to;
+	IsoplotR.settings.data[gc].ierr = to;
+	json2handson(IsoplotR.settings);
     }
     
     $.register = function(){
