@@ -121,6 +121,7 @@ function example(geochronometer,plotdevice,format){
 	switch (format){
 	case 1:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "6/4":    [115,140.57,152.16,189.04,104.52,159.01,105.13,86.03,140.53,
 			       106,67.36,88.03,807.75,849.62,276.78,210.66,428.82,38.22],
@@ -138,6 +139,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 2:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "4/6":    [0.008696,0.007114,0.006572,0.00529,0.009568,0.006289,
 			       0.009512,0.011624,0.007116,0.009434,0.014846,0.01136,
@@ -159,6 +161,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 3:
 	    return({
+		"ierr": 1,
 		"data": {
 		    "6/4":    [115,140.57,152.16,189.04,104.52,159.01,105.13,86.03,140.53,
 			       106,67.36,88.03,807.75,849.62,276.78,210.66,428.82,38.22],
@@ -183,6 +186,7 @@ function example(geochronometer,plotdevice,format){
 	switch (format){
 	case 1:
 	    return({
+		"ierr": 1,
 		"J":  [0.007608838,0.0000190],
 		"data": {
 		    "39/36":    [20.38, 26.46, 52.94, 83.1, 194.29, 203.3,
@@ -203,6 +207,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 2:
 	    return({
+		"ierr": 1,
 		"J":  [0.007608838,0.0000190],
 		"data": {
 		    "39/40":    [0.050356, 0.063141, 0.09737, 0.123648, 0.163314, 0.166361,
@@ -222,6 +227,7 @@ function example(geochronometer,plotdevice,format){
 	    });
 	case 3:
 	    return({
+		"ierr": 1,
 		"J":  [0.007608838,0.0000190],
 		"data": {
 		    "39/40":    [0.05035597,0.06314063,0.09736973,0.12364790,

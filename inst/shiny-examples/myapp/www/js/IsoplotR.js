@@ -1545,6 +1545,7 @@ $(function(){
 			      'KDE','CAD','set-zeta','MDS','ages']);
 	}
 	IsoplotR = populate(IsoplotR,false);
+	$.switchErr();
 	$("#plotdevice").selectmenu("refresh");
     }
 
@@ -1648,18 +1649,29 @@ $(function(){
 	    }
 	}
     }
+
+    function getErrCols(gc,format){
+	var UPb12 = (gc=='U-Pb' && ($.inArray(format,[1,2])>-1));
+	var UPb345 = (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1));
+	var UPb6 = (gc=='U-Pb' && format==6);
+	var PbPb12 = (gc=='Pb-Pb' && ($.inArray(format,[1,2])>-1));
+	var PbPb3 = (gc=='Pb-Pb' && format==3);
+	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
+	var ArAr3 = (gc=='Ar-Ar' && format==3);
+	if (UPb12 || PbPb12 || ArAr12){
+	    cols = [1,3];
+	} else if (UPb345 || PbPb3 || ArAr3){
+	    cols = [1,3,5];
+	} else if (UPb6){
+	    cols = [1,3,5,7,9,11];
+	}
+	return(cols);
+    }
     
     function errconvert(from,to){
 	var gc = IsoplotR.settings.geochronometer;
 	var format = IsoplotR.settings[gc].format;
-	var cols = [];
-	if (gc=='U-Pb' && ($.inArray(format,[1,2])>-1)){
-	    cols = [1,3];
-	} else if (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1)){
-	    cols = [1,3,5];
-	} else if (gc=='U-Pb' && format==6){
-	    cols = [1,3,5,7,9,11];
-	}
+	var cols = getErrCols(gc,format);
 	if (from==1 && to==2){
 	    multiply(cols,2,false,false);
 	} else if (from==1 && to==3){
@@ -1696,10 +1708,10 @@ $(function(){
 	    // do nothing
 	} else {
 	    errconvert(from,to);
+	    IsoplotR.settings.ierr = to;
+	    IsoplotR.settings.data[gc].ierr = to;
+	    json2handson(IsoplotR.settings);
 	}
-	IsoplotR.settings.ierr = to;
-	IsoplotR.settings.data[gc].ierr = to;
-	json2handson(IsoplotR.settings);
     }
     
     $.register = function(){
@@ -1710,6 +1722,7 @@ $(function(){
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
 	IsoplotR = populate(IsoplotR,true);
+	$.switchErr();
 	showOrHide();
     }
     
