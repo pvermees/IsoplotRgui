@@ -1653,10 +1653,12 @@ $(function(){
 	var gc = IsoplotR.settings.geochronometer;
 	var format = IsoplotR.settings[gc].format;
 	var cols = [];
-	if (gc=='U-Pb' && format==1){
+	if (gc=='U-Pb' && ($.inArray(format,[1,2])>-1)){
 	    cols = [1,3];
-	} else if (gc=='U-Pb' && format==2){
-	    cols = [1,3];
+	} else if (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1)){
+	    cols = [1,3,5];
+	} else if (gc=='U-Pb' && format==6){
+	    cols = [1,3,5,7,9,11];
 	}
 	if (from==1 && to==2){
 	    multiply(cols,2,false,false);
