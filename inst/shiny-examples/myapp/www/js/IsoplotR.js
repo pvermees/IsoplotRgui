@@ -1626,27 +1626,39 @@ $(function(){
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
-    function multiply(cols,num,vec,divide){
+    function multiplytwo(x,num,vec,divide){
+	var out = x[1];
+	if (Number(x[1])){
+	    out = num*x[1];
+	    if (vec && divide){ out /= x[0]; }
+	    else if (vec){ out *= x[0]; }
+	}
+	return(out);
+    }
+
+    function multiply(num,vec,divide){
 	var gc = IsoplotR.settings.geochronometer;
 	var data = IsoplotR.settings.data[gc].data;
 	var headers = $("#INPUT").handsontable("getColHeader");
+	var format = IsoplotR.settings[gc].format;
+	var cols = getErrCols(gc,format);
+	var pair = [0,0];
 	var errname = null;
 	var muname = null;
 	for (var i=0; i<cols.length; i++){
 	    errname = headers[cols[i]];
 	    muname = headers[cols[i]-1];
 	    for (var j=0; j<data[errname].length; j++){
-		if (Number(data[errname][j])){
-		    data[errname][j] = num*data[errname][j];
-		}
-		if (!vec){
-		    // do nothing
-		} else if (Number(data[muname][j]) && divide){
-		    data[errname][j] = data[errname][j]/data[muname][j];
-		} else if (Number(data[muname][j])){
-		    data[errname][j] = data[errname][j]*data[muname][j];
-		}
+		pair[0] = data[muname][j];
+		pair[1] = data[errname][j];
+		IsoplotR.settings.data[gc].data[errname][j] =
+		    multiplytwo(pair,num,vec,divide);
 	    }
+	}
+	if (gc=='Ar-Ar'){
+	    var J = IsoplotR.settings.data[gc].J;
+	    IsoplotR.settings.data[gc].J[1] =
+		multiplytwo(J,num,vec,divide);
 	}
     }
 
@@ -1675,6 +1687,32 @@ $(function(){
 	if (to == from){
 	    // do nothing
 	} else {
+<<<<<<< HEAD
+	    if (from==1 && to==2){
+		multiply(2,false,false);
+	    } else if (from==1 && to==3){
+		multiply(1,true,true);
+	    } else if (from==1 && to==4){
+		multiply(2,true,true);
+	    } else if (from==2 && to==1){
+		multiply(0.5,false,false);
+	    } else if (from==2 && to==3){
+		multiply(0.5,true,true);
+	    } else if (from==2 && to==4){
+		multiply(1,true,true);
+	    } else if (from==3 && to==1){
+		multiply(1,true,false);
+	    } else if (from==3 && to==2){
+		multiply(2,true,false);
+	    } else if (from==3 && to==4){
+		multiply(2,false,false);
+	    } else if (from==4 && to==1){
+		multiply(0.5,true,false);
+	    } else if (from==4 && to==2){
+		multiply(1,true,false);
+	    } else if (from==4 && to==3){
+		multiply(0.5,false,false);
+=======
 	    var format = IsoplotR.settings[gc].format;
 	    var cols = getErrCols(gc,format);
 	    if (from==1 && to==2){
@@ -1701,6 +1739,7 @@ $(function(){
 		multiply(cols,1,true,false);
 	    } else if (from==4 && to==3){
 		multiply(cols,0.5,false,false);
+>>>>>>> d4cedcc06da7c74c5b89fcceebdaaa98230e9ca3
 	    }
 	    IsoplotR.settings.data[gc].ierr = to;
 	    json2handson(IsoplotR.settings);
