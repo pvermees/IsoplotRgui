@@ -1545,7 +1545,7 @@ $(function(){
 			      'KDE','CAD','set-zeta','MDS','ages']);
 	}
 	IsoplotR = populate(IsoplotR,false);
-	$.switchErr();
+	errconvert();
 	$("#plotdevice").selectmenu("refresh");
     }
 
@@ -1668,50 +1668,48 @@ $(function(){
 	return(cols);
     }
     
-    function errconvert(from,to){
+    function errconvert(){
 	var gc = IsoplotR.settings.geochronometer;
-	var format = IsoplotR.settings[gc].format;
-	var cols = getErrCols(gc,format);
-	if (from==1 && to==2){
-	    multiply(cols,2,false,false);
-	} else if (from==1 && to==3){
-	    multiply(cols,1,true,true);
-	} else if (from==1 && to==4){
-	    multiply(cols,2,true,true);
-	} else if (from==2 && to==1){
-	    multiply(cols,0.5,false,false);
-	} else if (from==2 && to==3){
-	    multiply(cols,0.5,true,true);
-	} else if (from==2 && to==4){
-	    multiply(cols,1,true,true);
-	} else if (from==3 && to==1){
-	    multiply(cols,1,true,false);
-	} else if (from==3 && to==2){
-	    multiply(cols,2,true,false);
-	} else if (from==3 && to==4){
-	    multiply(cols,2,false,false);
-	} else if (from==4 && to==1){
-	    multiply(cols,0.5,true,false);
-	} else if (from==4 && to==2){
-	    multiply(cols,1,true,false);
-	} else if (from==4 && to==3){
-	    multiply(cols,0.5,false,false);
+	var from = IsoplotR.settings.data[gc].ierr;
+	var to = IsoplotR.settings.ierr;
+	if (to == from){
+	    // do nothing
+	} else {
+	    var format = IsoplotR.settings[gc].format;
+	    var cols = getErrCols(gc,format);
+	    if (from==1 && to==2){
+		multiply(cols,2,false,false);
+	    } else if (from==1 && to==3){
+		multiply(cols,1,true,true);
+	    } else if (from==1 && to==4){
+		multiply(cols,2,true,true);
+	    } else if (from==2 && to==1){
+		multiply(cols,0.5,false,false);
+	    } else if (from==2 && to==3){
+		multiply(cols,0.5,true,true);
+	    } else if (from==2 && to==4){
+		multiply(cols,1,true,true);
+	    } else if (from==3 && to==1){
+		multiply(cols,1,true,false);
+	    } else if (from==3 && to==2){
+		multiply(cols,2,true,false);
+	    } else if (from==3 && to==4){
+		multiply(cols,2,false,false);
+	    } else if (from==4 && to==1){
+		multiply(cols,0.5,true,false);
+	    } else if (from==4 && to==2){
+		multiply(cols,1,true,false);
+	    } else if (from==4 && to==3){
+		multiply(cols,0.5,false,false);
+	    }
+	    IsoplotR.settings.data[gc].ierr = to;
+	    json2handson(IsoplotR.settings);
 	}
     }
 
     $.switchErr = function(){
-	var gc = IsoplotR.settings.geochronometer;
-	var data = IsoplotR.settings.data[gc];
-	var from = data.ierr;
-	var to = getInt("#ierr");
-	if (to == from){
-	    // do nothing
-	} else {
-	    errconvert(from,to);
-	    IsoplotR.settings.ierr = to;
-	    IsoplotR.settings.data[gc].ierr = to;
-	    json2handson(IsoplotR.settings);
-	}
+	IsoplotR.settings.ierr = getInt("#ierr");
+	errconvert();
     }
     
     $.register = function(){
@@ -1722,7 +1720,7 @@ $(function(){
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
 	IsoplotR = populate(IsoplotR,true);
-	$.switchErr();
+	errconvert();
 	showOrHide();
     }
     
