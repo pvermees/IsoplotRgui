@@ -1476,6 +1476,7 @@ $(function(){
         }
 	if (gc == "other"){
 	    populate(IsoplotR,true);
+	    errconvert();
 	} else {
 	    populate(IsoplotR,false); 
 	}
@@ -1638,10 +1639,11 @@ $(function(){
 
     function multiply(num,vec,divide){
 	var gc = IsoplotR.settings.geochronometer;
+	var pd = IsoplotR.settings.plotdevice;
 	var data = IsoplotR.settings.data[gc].data;
 	var headers = $("#INPUT").handsontable("getColHeader");
 	var format = IsoplotR.settings[gc].format;
-	var cols = getErrCols(gc,format);
+	var cols = getErrCols(gc,pd,format);
 	var pair = [0,0];
 	var errname = null;
 	var muname = null;
@@ -1662,7 +1664,7 @@ $(function(){
 	}
     }
 
-    function getErrCols(gc,format){
+    function getErrCols(gc,pd,format){
 	var UPb12 = (gc=='U-Pb' && ($.inArray(format,[1,2])>-1));
 	var UPb345 = (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1));
 	var UPb6 = (gc=='U-Pb' && format==6);
@@ -1670,12 +1672,42 @@ $(function(){
 	var PbPb3 = (gc=='Pb-Pb' && format==3);
 	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
 	var ArAr3 = (gc=='Ar-Ar' && format==3);
-	if (UPb12 || PbPb12 || ArAr12){
+	var KCa1 = (gc=='K-Ca' && format==1);
+	var KCa2 = (gc=='K-Ca' && format==2);
+	var RbSr1 = (gc=='Rb-Sr' && format==1);
+	var RbSr2 = (gc=='Rb-Sr' && format==2);
+	var SmNd1 = (gc=='Sm-Nd' && format==1);
+	var SmNd2 = (gc=='Sm-Nd' && format==2);
+	var ReOs1 = (gc=='Re-Os' && format==1);
+	var ReOs2 = (gc=='Re-Os' && format==2);
+	var LuHf1 = (gc=='Lu-Hf' && format==1);
+	var LuHf2 = (gc=='Lu-Hf' && format==2);
+	var UThHe = (gc=='U-Th-He');
+	var FT23 = (gc=='fissiontracks' && format>0);
+	var ThU12 = (gc=='Th-U' && format<3);
+	var ThU34 = (gc=='Th-U' && format>2);
+	var radial = (gc=='other' && pd=='radial');
+	var regression = (gc=='other' && pd=='regression');
+	var spectrum = (gc=='other' && pd=='spectrum');
+	var average = (gc=='other' && pd=='average');
+	if (UPb12 || PbPb12 || ArAr12 || KCa1 ||
+	    RbSr1 || SmNd1 || ReOs1 || LuHf1 ||
+	    ThU34 || regression){
 	    cols = [1,3];
-	} else if (UPb345 || PbPb3 || ArAr3){
+	} else if (UPb345 || PbPb3 || ArAr3 || KCa2 ||
+		   RbSr2 || SmNd2 || ReOs2 || LuHf2 ||
+		   UThHe || ThU12){
 	    cols = [1,3,5];
 	} else if (UPb6){
 	    cols = [1,3,5,7,9,11];
+	} else if (FT23){
+	    cols = [3,5,7,9,11];
+	} else if (radial || average){
+	    cols = [1];
+	} else if (spectrum){
+	    cols = [2];
+	} else {
+	    cols = [];
 	}
 	return(cols);
     }
@@ -1687,7 +1719,6 @@ $(function(){
 	if (to == from){
 	    // do nothing
 	} else {
-<<<<<<< HEAD
 	    if (from==1 && to==2){
 		multiply(2,false,false);
 	    } else if (from==1 && to==3){
@@ -1712,34 +1743,6 @@ $(function(){
 		multiply(1,true,false);
 	    } else if (from==4 && to==3){
 		multiply(0.5,false,false);
-=======
-	    var format = IsoplotR.settings[gc].format;
-	    var cols = getErrCols(gc,format);
-	    if (from==1 && to==2){
-		multiply(cols,2,false,false);
-	    } else if (from==1 && to==3){
-		multiply(cols,1,true,true);
-	    } else if (from==1 && to==4){
-		multiply(cols,2,true,true);
-	    } else if (from==2 && to==1){
-		multiply(cols,0.5,false,false);
-	    } else if (from==2 && to==3){
-		multiply(cols,0.5,true,true);
-	    } else if (from==2 && to==4){
-		multiply(cols,1,true,true);
-	    } else if (from==3 && to==1){
-		multiply(cols,1,true,false);
-	    } else if (from==3 && to==2){
-		multiply(cols,2,true,false);
-	    } else if (from==3 && to==4){
-		multiply(cols,2,false,false);
-	    } else if (from==4 && to==1){
-		multiply(cols,0.5,true,false);
-	    } else if (from==4 && to==2){
-		multiply(cols,1,true,false);
-	    } else if (from==4 && to==3){
-		multiply(cols,0.5,false,false);
->>>>>>> d4cedcc06da7c74c5b89fcceebdaaa98230e9ca3
 	    }
 	    IsoplotR.settings.data[gc].ierr = to;
 	    json2handson(IsoplotR.settings);
