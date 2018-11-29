@@ -1662,7 +1662,7 @@ $(function(){
 	var pd = IsoplotR.settings.plotdevice;
 	var data = IsoplotR.settings.data[gc].data;
 	var headers = $("#INPUT").handsontable("getColHeader");
-	var format = IsoplotR.settings[gc].format;
+	var format = (gc=='U-Th-He') ? 0 : IsoplotR.settings[gc].format;
 	var cols = getErrCols(gc,pd,format);
 	var pair = [0,0];
 	var errname = null;
