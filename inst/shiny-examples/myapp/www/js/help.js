@@ -1,6 +1,14 @@
 function help(id){
     var text = ""
     switch (id){
+    case "help-ierr":
+	text = "Choose one of the following four options:<br><ol>" +
+	    "<li>absolute uncertainties at 1&sigma;</li>" +
+	    "<li>absolute uncertainties at 2&sigma;</li>" +
+	    "<li>relative uncertainties (in %) at 1&sigma;</li>" +
+	    "<li>relative uncertainties (in %) at 2&sigma;</li>" +
+	    "</ol>";
+	break;
     case "help-tera-wasserburg":
 	text = "Tick this box to plot the <sup>207</sup>Pb/<sup>206</sup>Pb- " +
 	    "vs. the <sup>238</sup>U/<sup>206</sup>Pb-ratio. Untick to " +

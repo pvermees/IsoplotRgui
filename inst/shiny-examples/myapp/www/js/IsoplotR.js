@@ -339,6 +339,24 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
 	var pd = IsoplotR.settings[plotdevice];
+	switch (IsoplotR.settings.ierr){
+	case 1:
+	    $('.show4ierr1').show();
+	    $('.hide4ierr1').hide();
+	    break;
+	case 2:
+	    $('.show4ierr2').show();
+	    $('.hide4ierr2').hide();
+	    break;
+	case 3:
+	    $('.show4ierr3').show();
+	    $('.hide4ierr3').hide();
+	    break;
+	case 4:
+	    $('.show4ierr4').show();
+	    $('.hide4ierr4').hide();
+	    break;
+	}
 	switch (geochronometer){
 	case 'U-Pb':
 	    $('.show4UPb').show();
@@ -1661,6 +1679,20 @@ $(function(){
 	    var J = IsoplotR.settings.data[gc].J;
 	    IsoplotR.settings.data[gc].J[1] =
 		multiplytwo(J,num,vec,divide);
+	} else if (gc=='fissiontracks'){
+	    var age = IsoplotR.settings.data[gc].age;
+	    IsoplotR.settings.data[gc].age[1] =
+		multiplytwo(age,num,vec,divide);
+	    if (format<3){
+		var zeta = IsoplotR.settings.data[gc].zeta;
+		IsoplotR.settings.data[gc].zeta[1] =
+		    multiplytwo(zeta,num,vec,divide);
+	    }
+	    if (format==1){
+		var rhoD = IsoplotR.settings.data[gc].rhoD;
+		IsoplotR.settings.data[gc].rhoD[1] =
+		    multiplytwo(rhoD,num,vec,divide);
+	    }
 	}
     }
 
@@ -1683,7 +1715,7 @@ $(function(){
 	var LuHf1 = (gc=='Lu-Hf' && format==1);
 	var LuHf2 = (gc=='Lu-Hf' && format==2);
 	var UThHe = (gc=='U-Th-He');
-	var FT23 = (gc=='fissiontracks' && format>0);
+	var FT23 = (gc=='fissiontracks' && format>1);
 	var ThU12 = (gc=='Th-U' && format<3);
 	var ThU34 = (gc=='Th-U' && format>2);
 	var radial = (gc=='other' && pd=='radial');
@@ -1722,25 +1754,25 @@ $(function(){
 	    if (from==1 && to==2){
 		multiply(2,false,false);
 	    } else if (from==1 && to==3){
-		multiply(1,true,true);
+		multiply(100,true,true);
 	    } else if (from==1 && to==4){
-		multiply(2,true,true);
+		multiply(200,true,true);
 	    } else if (from==2 && to==1){
 		multiply(0.5,false,false);
 	    } else if (from==2 && to==3){
-		multiply(0.5,true,true);
+		multiply(50,true,true);
 	    } else if (from==2 && to==4){
-		multiply(1,true,true);
+		multiply(100,true,true);
 	    } else if (from==3 && to==1){
-		multiply(1,true,false);
+		multiply(0.01,true,false);
 	    } else if (from==3 && to==2){
-		multiply(2,true,false);
+		multiply(0.02,true,false);
 	    } else if (from==3 && to==4){
 		multiply(2,false,false);
 	    } else if (from==4 && to==1){
-		multiply(0.5,true,false);
+		multiply(0.005,true,false);
 	    } else if (from==4 && to==2){
-		multiply(1,true,false);
+		multiply(0.01,true,false);
 	    } else if (from==4 && to==3){
 		multiply(0.5,false,false);
 	    }
