@@ -1647,12 +1647,14 @@ $(function(){
 
     function multiplytwo(x,num,vec,divide){
 	var out = x[1];
+	var ndig = getSignificantDigits(x[1]);
 	if (Number(x[1])){
 	    out = num*x[1];
 	    if (vec && divide){ out /= x[0]; }
 	    else if (vec){ out *= x[0]; }
+	    out = setSignificantDigits(out,ndig);
 	}
-	return(out);
+	return out;
     }
 
     function multiply(num,vec,divide){

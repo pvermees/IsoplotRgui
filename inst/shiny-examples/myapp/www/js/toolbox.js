@@ -30,3 +30,13 @@ function getNumber(id){
 function getInt(id){
     return(parseInt($(id).val()));
 }
+
+function getSignificantDigits(x){
+    n = Math.abs(String(x).replace(".", "")); //remove decimal and make positive
+    if (n == 0) return 0;
+    return Math.floor(Math.log(n) / Math.log(10)) + 1; //get number of digits
+}
+
+function setSignificantDigits(x,n) {
+    return Number.parseFloat(x).toPrecision(n);
+}
