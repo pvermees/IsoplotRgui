@@ -1505,6 +1505,7 @@ $(function(){
 	    $(".show4zeta").hide();
 	    $(".hide4zeta").show();
 	}
+	showOrHide();
     }
 
     function selectGeochronometer(){
@@ -1780,6 +1781,7 @@ $(function(){
 	    }
 	    IsoplotR.settings.data[gc].ierr = to;
 	    json2handson(IsoplotR.settings);
+	    showOrHide();
 	}
     }
 
