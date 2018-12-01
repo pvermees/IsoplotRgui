@@ -422,8 +422,9 @@ function getRcommand(prefs){
         geochronometer=='Sm-Nd' |
         geochronometer=='Re-Os' |
         geochronometer=='Lu-Hf') {
-	out += ",format=" + prefs.settings[geochronometer].format; 
+	out += ",format=" + prefs.settings[geochronometer].format;
     }
+    out += ",ierr=" + prefs.settings.ierr;
     out += ");";
     switch (geochronometer){
     case 'U-Pb':
