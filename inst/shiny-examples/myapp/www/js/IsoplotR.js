@@ -600,11 +600,11 @@ $(function(){
 		break;
 	    case 'KDE':
 		$('.show4kde').show();
-		$('.hide4kde').show();
+		$('.hide4kde').hide();
 		break;
 	    case 'CAD':
 		$('.show4cad').show();
-		$('.hide4cad').show();
+		$('.hide4cad').hide();
 		break;
 	    }
 	    break;

@@ -32,9 +32,10 @@ function getInt(id){
 }
 
 function getSignificantDigits(x){
-    n = Math.abs(String(x).replace(".", "")); //remove decimal and make positive
+    var n = Math.abs(String(x).replace(".", "")); //remove decimal and make positive
     if (n == 0) return 0;
-    return Math.floor(Math.log(n) / Math.log(10)) + 1; //get number of digits
+    var out = Math.floor(Math.log(n) / Math.log(10)) + 1;
+    return Math.max(2,out);
 }
 
 function setSignificantDigits(x,n) {

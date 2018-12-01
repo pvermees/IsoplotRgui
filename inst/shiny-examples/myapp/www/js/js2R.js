@@ -423,6 +423,8 @@ function getRcommand(prefs){
         geochronometer=='Re-Os' |
         geochronometer=='Lu-Hf') {
 	out += ",format=" + prefs.settings[geochronometer].format;
+    } else if (geochronometer=='other'){
+	out += ",format='" + plotdevice + "'";
     }
     out += ",ierr=" + prefs.settings.ierr;
     out += ");";
