@@ -116,24 +116,25 @@ $(function(){
     function json2handson(settings){
 	var geochronometer = settings.geochronometer;
 	var json = settings.data[geochronometer];
+	var gcsettings = settings[geochronometer];
 	switch (geochronometer){
 	case "Ar-Ar":
 	    $("#Jval").val(json.J[0]);
 	    $("#Jerr").val(json.J[1]);
 	    break;
 	case "fissiontracks":
-	    if (settings.fissiontracks.format < 3){
+	    if (gcsettings.format < 3){
 		$("#zetaVal").val(json.zeta[0]);
 		$("#zetaErr").val(json.zeta[1]);
 	    }
-	    if (settings.fissiontracks.format < 2){
+	    if (gcsettings.format < 2){
 		$("#rhoDval").val(json.rhoD[0]);
 		$("#rhoDerr").val(json.rhoD[1]);
 	    }
-	    if (settings.fissiontracks.format > 1){
+	    if (gcsettings.format > 1){
 		$("#spotSizeVal").val(json.spotSize);
 	    }
-	    if (settings.plotdevice=='set-zeta'){
+	    if (IsoplotR.settings.plotdevice=='set-zeta'){
 		$("#standAgeVal").val(json.age[0]);
 		$("#standAgeErr").val(json.age[1]);
 	    }
@@ -148,26 +149,25 @@ $(function(){
 	$.each(json.data, function(k, v) {
 	    handson.headers.push(k);
 	});
-	var m = handson.headers.length; // number of columns
-	var n = (m>0) ? json.data[handson.headers[0]].length : 0; // number of rows
-	for (var i=0; i<handson.headers.length; i++){ // maximum number of rows
-	    if (json.data[handson.headers[i]].length > n) {
-		n = json.data[handson.headers[i]].length;
+	var nc = handson.headers.length;
+	var nr = (nc>0) ? json.data[handson.headers[0]].length : 0;
+	for (var i=0; i<handson.headers.length; i++){
+	    if (json.data[handson.headers[i]].length > nr) {
+		nr = json.data[handson.headers[i]].length;
 	}   }
-	for (var i=0; i<n; i++){
+	for (var i=0; i<nr; i++){
 	    row = [];
-	    for (var j=0; j<m; j++){
+	    for (var j=0; j<nc; j++){
 		row.push(json.data[handson.headers[j]][i]);
 	    }
 	    handson.data.push(row);
 	}
-	// handson.data.push([]); // add empty row in case json is empty
 	$("#INPUT").handsontable({
 	    data: handson.data,
 	    colHeaders: handson.headers
 	});
     }
-
+    
     // overwrites the data in the IsoplotR 
     // preferences based on the handsontable
     function handson2json(){
@@ -228,7 +228,7 @@ $(function(){
 	out.optionschanged = false;
 	IsoplotR = out;
     }
-
+    
     function getData4Server(){
 	var selected = $("#INPUT").handsontable('getSelected');
 	var selection = [0,0,0,0];
@@ -339,6 +339,24 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
 	var pd = IsoplotR.settings[plotdevice];
+	switch (IsoplotR.settings.ierr){
+	case 1:
+	    $('.show4ierr1').show();
+	    $('.hide4ierr1').hide();
+	    break;
+	case 2:
+	    $('.show4ierr2').show();
+	    $('.hide4ierr2').hide();
+	    break;
+	case 3:
+	    $('.show4ierr3').show();
+	    $('.hide4ierr3').hide();
+	    break;
+	case 4:
+	    $('.show4ierr4').show();
+	    $('.hide4ierr4').hide();
+	    break;
+	}
 	switch (geochronometer){
 	case 'U-Pb':
 	    $('.show4UPb').show();
@@ -582,11 +600,11 @@ $(function(){
 		break;
 	    case 'KDE':
 		$('.show4kde').show();
-		$('.hide4kde').show();
+		$('.hide4kde').hide();
 		break;
 	    case 'CAD':
 		$('.show4cad').show();
-		$('.hide4cad').show();
+		$('.hide4cad').hide();
 		break;
 	    }
 	    break;
@@ -699,6 +717,8 @@ $(function(){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
 	showOrHide();
+	$('#ierr option[value='+IsoplotR.settings.ierr+']').
+	    prop('selected', 'selected');
 	switch (option){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
@@ -1474,6 +1494,7 @@ $(function(){
         }
 	if (gc == "other"){
 	    populate(IsoplotR,true);
+	    errconvert();
 	} else {
 	    populate(IsoplotR,false); 
 	}
@@ -1484,6 +1505,7 @@ $(function(){
 	    $(".show4zeta").hide();
 	    $(".hide4zeta").show();
 	}
+	showOrHide();
     }
 
     function selectGeochronometer(){
@@ -1543,6 +1565,7 @@ $(function(){
 			      'KDE','CAD','set-zeta','MDS','ages']);
 	}
 	IsoplotR = populate(IsoplotR,false);
+	errconvert();
 	$("#plotdevice").selectmenu("refresh");
     }
 
@@ -1623,6 +1646,150 @@ $(function(){
 	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
+    function multiplytwo(x,num,vec,divide){
+	var out = x[1];
+	var ndig = getSignificantDigits(x[1]);
+	if (Number(x[1])){
+	    out = num*x[1];
+	    if (vec && divide){ out /= x[0]; }
+	    else if (vec){ out *= x[0]; }
+	    out = setSignificantDigits(out,ndig);
+	}
+	return out;
+    }
+
+    function multiply(num,vec,divide){
+	var gc = IsoplotR.settings.geochronometer;
+	var pd = IsoplotR.settings.plotdevice;
+	var data = IsoplotR.settings.data[gc].data;
+	var headers = $("#INPUT").handsontable("getColHeader");
+	var format = (gc=='U-Th-He') ? 0 : IsoplotR.settings[gc].format;
+	var cols = getErrCols(gc,pd,format);
+	var pair = [0,0];
+	var errname = null;
+	var muname = null;
+	for (var i=0; i<cols.length; i++){
+	    errname = headers[cols[i]];
+	    muname = headers[cols[i]-1];
+	    for (var j=0; j<data[errname].length; j++){
+		pair[0] = data[muname][j];
+		pair[1] = data[errname][j];
+		IsoplotR.settings.data[gc].data[errname][j] =
+		    multiplytwo(pair,num,vec,divide);
+	    }
+	}
+	if (gc=='Ar-Ar'){
+	    var J = IsoplotR.settings.data[gc].J;
+	    IsoplotR.settings.data[gc].J[1] =
+		multiplytwo(J,num,vec,divide);
+	} else if (gc=='fissiontracks'){
+	    var age = IsoplotR.settings.data[gc].age;
+	    IsoplotR.settings.data[gc].age[1] =
+		multiplytwo(age,num,vec,divide);
+	    if (format<3){
+		var zeta = IsoplotR.settings.data[gc].zeta;
+		IsoplotR.settings.data[gc].zeta[1] =
+		    multiplytwo(zeta,num,vec,divide);
+	    }
+	    if (format==1){
+		var rhoD = IsoplotR.settings.data[gc].rhoD;
+		IsoplotR.settings.data[gc].rhoD[1] =
+		    multiplytwo(rhoD,num,vec,divide);
+	    }
+	}
+    }
+
+    function getErrCols(gc,pd,format){
+	var UPb12 = (gc=='U-Pb' && ($.inArray(format,[1,2])>-1));
+	var UPb345 = (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1));
+	var UPb6 = (gc=='U-Pb' && format==6);
+	var PbPb12 = (gc=='Pb-Pb' && ($.inArray(format,[1,2])>-1));
+	var PbPb3 = (gc=='Pb-Pb' && format==3);
+	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
+	var ArAr3 = (gc=='Ar-Ar' && format==3);
+	var KCa1 = (gc=='K-Ca' && format==1);
+	var KCa2 = (gc=='K-Ca' && format==2);
+	var RbSr1 = (gc=='Rb-Sr' && format==1);
+	var RbSr2 = (gc=='Rb-Sr' && format==2);
+	var SmNd1 = (gc=='Sm-Nd' && format==1);
+	var SmNd2 = (gc=='Sm-Nd' && format==2);
+	var ReOs1 = (gc=='Re-Os' && format==1);
+	var ReOs2 = (gc=='Re-Os' && format==2);
+	var LuHf1 = (gc=='Lu-Hf' && format==1);
+	var LuHf2 = (gc=='Lu-Hf' && format==2);
+	var UThHe = (gc=='U-Th-He');
+	var FT23 = (gc=='fissiontracks' && format>1);
+	var ThU12 = (gc=='Th-U' && format<3);
+	var ThU34 = (gc=='Th-U' && format>2);
+	var radial = (gc=='other' && pd=='radial');
+	var regression = (gc=='other' && pd=='regression');
+	var spectrum = (gc=='other' && pd=='spectrum');
+	var average = (gc=='other' && pd=='average');
+	if (UPb12 || PbPb12 || ArAr12 || KCa1 ||
+	    RbSr1 || SmNd1 || ReOs1 || LuHf1 ||
+	    ThU34 || regression){
+	    cols = [1,3];
+	} else if (UPb345 || PbPb3 || ArAr3 || KCa2 ||
+		   RbSr2 || SmNd2 || ReOs2 || LuHf2 ||
+		   UThHe || ThU12){
+	    cols = [1,3,5];
+	} else if (UPb6){
+	    cols = [1,3,5,7,9,11];
+	} else if (FT23){
+	    cols = [3,5,7,9,11];
+	} else if (radial || average){
+	    cols = [1];
+	} else if (spectrum){
+	    cols = [2];
+	} else {
+	    cols = [];
+	}
+	return(cols);
+    }
+    
+    function errconvert(){
+	var gc = IsoplotR.settings.geochronometer;
+	var from = IsoplotR.settings.data[gc].ierr;
+	var to = IsoplotR.settings.ierr;
+	if (to == from){
+	    // do nothing
+	} else {
+	    if (from==1 && to==2){
+		multiply(2,false,false);
+	    } else if (from==1 && to==3){
+		multiply(100,true,true);
+	    } else if (from==1 && to==4){
+		multiply(200,true,true);
+	    } else if (from==2 && to==1){
+		multiply(0.5,false,false);
+	    } else if (from==2 && to==3){
+		multiply(50,true,true);
+	    } else if (from==2 && to==4){
+		multiply(100,true,true);
+	    } else if (from==3 && to==1){
+		multiply(0.01,true,false);
+	    } else if (from==3 && to==2){
+		multiply(0.02,true,false);
+	    } else if (from==3 && to==4){
+		multiply(2,false,false);
+	    } else if (from==4 && to==1){
+		multiply(0.005,true,false);
+	    } else if (from==4 && to==2){
+		multiply(0.01,true,false);
+	    } else if (from==4 && to==3){
+		multiply(0.5,false,false);
+	    }
+	    IsoplotR.settings.data[gc].ierr = to;
+	    json2handson(IsoplotR.settings);
+	    showOrHide();
+	}
+    }
+
+    $.switchErr = function(){
+	IsoplotR.settings.ierr = getInt("#ierr");
+	errconvert();
+    }
+    
     $.register = function(){
 	recordSettings();
 	showOrHide();
@@ -1631,6 +1798,7 @@ $(function(){
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
 	IsoplotR = populate(IsoplotR,true);
+	errconvert();
 	showOrHide();
     }
     

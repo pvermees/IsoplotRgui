@@ -1,6 +1,6 @@
 shiny::shinyServer(function(input,output,session){
 
-    selection2data <- function(method="U-Pb",format=1){
+    selection2data <- function(method="U-Pb",format=1,ierr=1){
         d <- input$data
         nn <- length(d)
         nr <- as.numeric(d[1])
@@ -152,7 +152,7 @@ shiny::shinyServer(function(input,output,session){
         if (!identical(method,"detritals")){
             mat <- subset(mat,select=-nc) # the last column may contain letters
         }
-        IsoplotR::read.data(mat,method,format)
+        IsoplotR::read.data(mat,method=method,format=format,ierr=ierr)
     }
 
     # return index of the first isotope measurement
