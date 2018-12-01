@@ -2,7 +2,7 @@ function help(id){
     var text = ""
     switch (id){
     case "help-ierr":
-	text = "Choose one of the following four options:<br><ol>" +
+	text = "Choose one of the following four options:<ol>" +
 	    "<li>absolute uncertainties at 1&sigma;</li>" +
 	    "<li>absolute uncertainties at 2&sigma;</li>" +
 	    "<li>relative uncertainties (in %) at 1&sigma;</li>" +
@@ -207,7 +207,7 @@ function help(id){
 	    "the corresponding aliquot (i.e., the row number in the input table)."
 	break;
     case "help-U238U235":
-	text = "Change the natural isotopic abundance ratio of uranium. " +
+	text = "The natural isotopic abundance ratio of uranium and it standard error." +
 	    "Default values are taken from Hiess et al. (2012). " +
 	    "To use the IUGS-recommended value of Steiger and J&auml;ger (1977), " +
 	    "change this to 137.88 &plusmn; 0.";
@@ -230,20 +230,20 @@ function help(id){
 	break;
     case "help-LambdaU238":
 	text = "The default values of the <sup>238</sup>U decay constant " +
-	    "and its uncertainty are taken from Jaffey et al. (1971).";
+	    "and its standard error are taken from Jaffey et al. (1971).";
 	break;
     case "help-LambdaU235":
 	text = "The default values of the <sup>235</sup>U decay constant " +
-	    "and its uncertainty are taken from Jaffey et al. (1971).";
+	    "and its standard error are taken from Jaffey et al. (1971).";
 	break;
     case "help-LambdaTh230":
 	text = "The default value of the <sup>230</sup>Th decay constant " +
-	    "is taken from Cheng et al. (2013). Its uncertainty excludes " +
+	    "is taken from Cheng et al. (2013). Its standard error excludes " +
 	    "all covariant sources of analytical uncertainty with <sup>234</sup>U.";
 	break;
     case "help-LambdaU234":
 	text = "The default value of the <sup>234</sup>U decay constant " +
-	    "is taken from Cheng et al. (2013). Its uncertainty excludes " +
+	    "is taken from Cheng et al. (2013). Its standard error excludes " +
 	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
 	break;
     case "help-ArAr-inverse":
@@ -294,141 +294,114 @@ function help(id){
 	    "hypothesised Earth reservoir with a fixed U/Pb ratio.";
 	break;
     case "help-Ar40Ar36":
-	text = "Change the atmospheric ('excess') argon ratio. " +
-	    "Default value is taken from Lee et al. (2006).";
-	break;
-    case "help-Ca40Ca44":
-	text = "Change the natural <sup>40</sup>Ca/<sup>44</sup>Ca ratio. " +
-	    "Default value is taken from Moore and Machlan (1972).";
+	text = "The default values for the atmospheric ('excess') argon ratio " +
+	    "and its standard error are taken from Lee et al. (2006).";
 	break;
     case "help-LambdaK40":
-	text = "Default value taken from Renne et al. (2011).";
+	text = "The default values for the decay constant of <sup>40</sup>K " +
+	    "and its standard error are taken from Renne et al. (2011).";
+	break;
+    case "help-Ca40Ca44":
+	text = ratioMessage("<sup>40</sup>Ca/<sup>44</sup>Ca","Moore and Machlan (1972)");
 	break;
     case "help-Re185Re187":
-	text = "Change the natural <sup>185</sup>Re/<sup>187</sup>Re ratio. " +
-	    "Default value is taken from Gramlich et al. (1973).";
+	text = ratioMessage("<sup>185</sup>Re/<sup>187</sup>Re","Gramlich et al. (1973)");
 	break;
     case "help-Os184Os192":
-	text = "Change the natural <sup>184</sup>Os/<sup>192</sup>Os ratio. " +
-	    "Default value is taken from Voelkening et al. (1991).";
+	text = ratioMessage("<sup>184</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
     case "help-Os186Os192":
-	text = "Change the natural <sup>186</sup>Os/<sup>192</sup>Os ratio. " +
-	    "Default value is taken from Voelkening et al. (1991).";
+	text = ratioMessage("<sup>186</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
     case "help-Os187Os192":
-	text = "Change the initial <sup>187</sup>Os/<sup>192</sup>Os ratio. " +
-	    "This value is only used to calculate ages if the isochron option " +
-	    "has been switched off. The default ratio is taken from " +
-	    "Voelkening et al. (1991).";
+	text = "Change the initial <sup>187</sup>Os/<sup>192</sup>Os ratio " +
+	    "and its standard error. This value is only used to calculate ages " +
+	    "if the isochron option has been switched off. The default ratio is " +
+	    "taken from Voelkening et al. (1991).";
 	break;
     case "help-Os188Os192":
-	text = "Change the natural <sup>188</sup>Os/<sup>192</sup>Os ratio. " +
-	    "Default value is taken from Voelkening et al. (1991).";
+	text = ratioMessage("<sup>188</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
     case "help-Os189Os192":
-	text = "Change the natural <sup>189</sup>Os/<sup>192</sup>Os ratio. " +
-	    "Default value is taken from Voelkening et al. (1991).";
+	text = ratioMessage("<sup>189</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
     case "help-Os190Os192":
-	text = "Change the natural <sup>190</sup>Os/<sup>192</sup>Os ratio. " +
-	    "Default value is taken from Voelkening et al. (1991).";
+	text = ratioMessage("<sup>190</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
     case "help-LambdaRe187":
 	text = "The default values of the <sup>187</sup>Re decay constant " +
-	    "and its uncertainty are taken from Selby et al. (2007).";
+	    "and its standard error are taken from Selby et al. (2007).";
 	break;
     case "help-Sm144Sm152":
-	text = "Change the natural <sup>144</sup>Sm/<sup>152</sup>Sm ratio. " +
-	    "Default value is taken from Chang et al. (2002).";
+	text = ratioMessage("<sup>144</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
     case "help-Sm147Sm152":
-	text = "Change the natural <sup>147</sup>Sm/<sup>152</sup>Sm ratio. " +
-	    "Default value is taken from Chang et al. (2002).";
+	text = ratioMessage("<sup>147</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
     case "help-Sm148Sm152":
-	text = "Change the natural <sup>148</sup>Sm/<sup>152</sup>Sm ratio. " +
-	    "Default value is taken from Chang et al. (2002).";
+	text = ratioMessage("<sup>148</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
     case "help-Sm149Sm152":
-	text = "Change the natural <sup>149</sup>Sm/<sup>152</sup>Sm ratio. " +
-	    "Default value is taken from Chang et al. (2002).";
+	text = ratioMessage("<sup>149</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
     case "help-Sm150Sm152":
-	text = "Change the natural <sup>150</sup>Sm/<sup>152</sup>Sm ratio. " +
-	    "Default value is taken from Chang et al. (2002).";
+	text = ratioMessage("<sup>150</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
     case "help-Sm154Sm152":
-	text = "Change the natural <sup>154</sup>Sm/<sup>152</sup>Sm ratio. " +
-	    "Default value is taken from Chang et al. (2002).";
+	text = ratioMessage("<sup>154</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
     case "help-Nd142Nd144":
-	text = "Change the natural <sup>142</sup>Sm/<sup>144</sup>Nd ratio. " +
-	    "Default value is taken from Zhao et al. (2005).";
+	text = ratioMessage("<sup>142</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
     case "help-Nd143Nd144":
-	text = "Change the natural <sup>143</sup>Sm/<sup>144</sup>Nd ratio. " +
-	    "Default value is taken from Zhao et al. (2005).";
+	text = ratioMessage("<sup>143</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
     case "help-Nd145Nd144":
-	text = "Change the natural <sup>145</sup>Sm/<sup>144</sup>Nd ratio. " +
-	    "Default value is taken from Zhao et al. (2005).";
+	text = ratioMessage("<sup>145</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
     case "help-Nd146Nd144":
-	text = "Change the natural <sup>146</sup>Sm/<sup>144</sup>Nd ratio. " +
-	    "Default value is taken from Zhao et al. (2005).";
+	text = ratioMessage("<sup>146</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
     case "help-Nd148Nd144":
-	text = "Change the natural <sup>148</sup>Sm/<sup>144</sup>Nd ratio. " +
-	    "Default value is taken from Zhao et al. (2005).";
+	text = ratioMessage("<sup>148</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
     case "help-Nd150Nd144":
-	text = "Change the natural <sup>150</sup>Sm/<sup>144</sup>Nd ratio. " +
-	    "Default value is taken from Zhao et al. (2005).";
+	text = ratioMessage("<sup>150</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
     case "help-Rb85Rb87":
-	text = "Change the natural <sup>85</sup>Rb/<sup>87</sup>Rb ratio. " +
-	    "Default value is taken from Catanzaro et al. (1969).";
+	text = ratioMessage("<sup>85</sup>Rb/<sup>87</sup>Rb","Catanzaro et al. (1969)");
 	break;
     case "help-Sr84Sr86":
-	text = "Change the natural <sup>84</sup>Sr/<sup>86</sup>Sr ratio. " +
-	    "Default value is taken from Moore et al. (1982).";
+	text = ratioMessage("<sup>84</sup>Sr/<sup>86</sup>Sr","Moore et al. (1982)");
 	break;
     case "help-Sr87Sr86":
-	text = "Change the natural <sup>87</sup>Sr/<sup>86</sup>Sr ratio. " +
-	    "Default value is taken from Compston et al. (1971).";
+	text = ratioMessage("<sup>87</sup>Sr/<sup>86</sup>Sr","Compston et al. (1971)");
 	break;
     case "help-Sr88Sr86":
-	text = "Change the natural <sup>88</sup>Sr/<sup>86</sup>Sr ratio. " +
-	    "Default value is taken from Moore et al. (1982).";
+	text = ratioMessage("<sup>88</sup>Sr/<sup>86</sup>Sr","Moore et al. (1982)");
 	break;
     case "help-Lu176Lu175":
-	text = "Change the natural <sup>176</sup>Lu/<sup>175</sup>Lu ratio. " +
-	    "Default value is taken from De Laeter and Bukilich (2006).";
+	text = ratioMessage("<sup>176</sup>Lu/<sup>175</sup>Lu","De Laeter and Bukilich (2006)");
 	break;
     case "help-Hf174Hf177":
-	text = "Change the natural <sup>174</sup>Hf/<sup>177</sup>Hf ratio. " +
-	    "Default value is taken from Patchett (1983).";
+	text = ratioMessage("<sup>174</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
     case "help-Hf176Hf177":
-	text = "Change the natural <sup>176</sup>Hf/<sup>177</sup>Hf ratio. " +
-	    "Default value is taken from Patchett (1983).";
+	text = ratioMessage("<sup>176</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
     case "help-Hf178Hf177":
-	text = "Change the natural <sup>178</sup>Hf/<sup>177</sup>Hf ratio. " +
-	    "Default value is taken from Patchett (1983).";
+	text = ratioMessage("<sup>178</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
     case "help-Hf179Hf177":
-	text = "Change the natural <sup>179</sup>Hf/<sup>177</sup>Hf ratio. " +
-	    "Default value is taken from Patchett (1983).";
+	text = ratioMessage("<sup>179</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
     case "help-Hf180Hf177":
-	text = "Change the natural <sup>180</sup>Hf/<sup>177</sup>Hf ratio. " +
-	    "Default value is taken from Patchett (1983).";
+	text = ratioMessage("<sup>180</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
     case "help-LambdaLu176":
+	text = ratioMessage("","");
 	text = "The default values of the <sup>176</sup>Lu decay constant " +
-	    "and its uncertainty are taken from S&ouml;derlund et al. (2004).";
+	    "and its standard error are taken from S&ouml;derlund et al. (2004).";
 	break;
     case "help-show_p":
 	text = "Show the p-value for concordance for each aliquot to the output " +
@@ -629,21 +602,21 @@ function help(id){
 	    "&zeta;-calibration factor.";
 	break;
     case "help-U238U235":
-	text = "Change the <sup>238</sup>U/<sup>235</sup>U ratio and uncertainty. " +
+	text = "Change the <sup>238</sup>U/<sup>235</sup>U ratio and its standard error. " +
             "Default values are taken from Hiess et al. (2012). To use Steiger " +
 	    "and Jaeger (1997), change to 137.88 &plusmn; 0";
 	break;
     case "help-LambdaTh232":
 	text = "The default values of the <sup>232</sup>Th decay constant " +
-	    "and its uncertainty are taken from Le Roux and Glendenin (1963).";
+	    "and its standard error are taken from Le Roux and Glendenin (1963).";
 	break;
     case "help-LambdaSm147":
 	text = "The default values of the <sup>147</sup>Sm decay constant " +
-	    "and its uncertainty are taken from Lugmair and Marti (1978).";
+	    "and its standard error are taken from Lugmair and Marti (1978).";
 	break;
     case "help-LambdaRb87":
 	text = "The default values of the <sup>87</sup>Rb decay constant " +
-	    "and its uncertainty are taken from Villa et al. (2015). To " +
+	    "and its standard error are taken from Villa et al. (2015). To " +
 	    "use the old IUGS recommended values of Steiger and Jaeger (1977), " +
 	    "change to 0.000013972 &plusmn; 0.";
 	break;
@@ -805,61 +778,61 @@ function help(id){
 	break;
     case "help-UPb-formats":
 	text = "Choose one of six input formats:<ol>" +
-	    "1. <tt>7/5 s[7/5] 6/8 s[6/8] rho</tt><br>" +
+	    "<li><tt>7/5 err[7/5] 6/8 err[6/8] rho</tt><br>" +
 	    "where <tt>rho</tt> is the error correlation between " +
-	    "<tt>7/5</tt> and <tt>6/8</tt><br>" +
-	    "2. <tt>8/6 s[8/6] 7/6 s[7/6] (rho)</tt><br>" +
-	    "where the error correlation is optional<br>" +
-	    "3. <tt>7/6 s[7/6] 6/8 s[6/8] 7/5 s[7/5]</tt><br>" +
+	    "<tt>7/5</tt> and <tt>6/8</tt></li>" +
+	    "<li><tt>8/6 err[8/6] 7/6 err[7/6] (rho)</tt><br>" +
+	    "where the error correlation is optional</li>" +
+	    "<li><tt>7/6 err[7/6] 6/8 err[6/8] 7/5 err[7/5]</tt><br>" +
 	    "in which the error correlations are calculated from the " +
-	    "redundancies between the three sets of uncertainties.<br>" +
-	    "4. <tt>X=7/5 s[7/5] Y=6/8 s[6/8] Z=4/8 s[4/8] " +
-	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
-	    "5. <tt>X=8/6 s[8/6] Y=7/6 s[7/6] Z=4/6 s[4/6] " +
-	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
-	    "6. <tt>7/5 s[7/5] 6/8 s[6/8] 4/8 s[4/8]" +
-	    "7/6 s[7/6] 4/7 s[4/7] 4/6 s[4/6]</tt><br>" +
+	    "redundancies between the three sets of uncertainties.</li>" +
+	    "<li><tt>X=7/5 err[7/5] Y=6/8 err[6/8] Z=4/8 err[4/8] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
+	    "<li><tt>X=8/6 err[8/6] Y=7/6 err[7/6] Z=4/6 err[4/6] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
+	    "<li><tt>7/5 err[7/5] 6/8 err[6/8] 4/8 err[4/8]" +
+	    "7/6 err[7/6] 4/7 err[4/7] 4/6 err[4/6]</tt><br>" +
 	    "in which the error correlations are calculated from the " +
-	    "redundancies between the six sets of uncertainties.<br>";
+	    "redundancies between the six sets of uncertainties.</li></ol>";
 	break;
     case "help-PbPb-formats":
-	text = "Choose one of three input formats:<br>" +
-	    "1. <tt>6/4 s[6/4] 7/4 s[7/4] rho</tt><br>" +
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>6/4 err[6/4] 7/4 err[7/4] rho</tt><br>" +
 	    "where <tt>rho</tt> is the error correlation between " +
-	    "<tt>6/4</tt> and <tt>7/4</tt><br>" +
-	    "2. <tt>4/6 s[4/6] 7/6 s[7/6] (rho)</tt><br>" +
-	    "where the error correlation is optional<br>" +
-	    "3. <tt>6/4 s[6/4] 7/4 s[7/4] 7/6 s[7/6]</tt><br>" +
+	    "<tt>6/4</tt> and <tt>7/4</tt>.</li>" +
+	    "<li><tt>4/6 err[4/6] 7/6 err[7/6] (rho)</tt><br>" +
+	    "where the error correlation is optional.</li>" +
+	    "<li><tt>6/4 err[6/4] 7/4 err[7/4] 7/6 err[7/6]</tt><br>" +
 	    "in which the error correlations are calculated from the " +
-	    "redundancies between the three sets of uncertainties.<br>";
+	    "redundancies between the three sets of uncertainties.</li></ol>";
 	break;
     case "help-ThU-formats":
-	text = "Choose one of four input formats:<br>" +
-	    "1. <tt>X=8/2 s[8/2] Y=4/2 s[4/2] Z=0/2 s[0/2] " +
-	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
-	    "2. <tt>X=2/8 s[2/8] Y=4/8 s[4/8] Z=0/8 s[0/8] " +
-	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt><br>" +
-	    "1. <tt>8/2 s[8/2] 0/2 s[0/2] (rho)</tt><br>" +
-	    "where the error correlation is optional<br>" +
-	    "2. <tt>2/8 s[2/8] 0/8 s[0/8] (rho)</tt><br>" +
-	    "where the error correlation is optional";
+	text = "Choose one of four input formats:<ol>" +
+	    "<li><tt>X=8/2 err[8/2] Y=4/2 err[4/2] Z=0/2 err[0/2] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
+	    "<li><tt>X=2/8 err[2/8] Y=4/8 err[4/8] Z=0/8 err[0/8] " +
+	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
+	    "<li> <tt>8/2 err[8/2] 0/2 err[0/2] (rho)</tt><br>" +
+	    "where the error correlation is optional</li>" +
+	    "<li><tt>2/8 err[2/8] 0/8 err[0/8] (rho)</tt><br>" +
+	    "where the error correlation is optional</li></ol>";
 	break;
     case "help-KCa-formats":
-	text = "Choose one of two input formats:<ol><li>" +
-	    "<tt>X=K/Ca s[X] Y=Ca/Ca s[Y] r[X,Y]</tt><br>" +
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><tt>X=K/Ca err[X] Y=Ca/Ca err[Y] r[X,Y]</tt><br>" +
 	    "where <tt>X=K/Ca</tt> is the <sup>40</sup>K/<sup>44</sup>Ca ratio, " +
-	    "<tt>Y=Ca/Ca</tt> is the<br><sup>40</sup>Ca/<sup>44</sup>Ca ratio, and " +
-	    "<tt>s[X], s[Y]</tt> and <tt>rho[X,Y]</tt><br> are the standard errors and "+
-	    "error correlations, respectively.</li>" +
-	    "<li><tt>X s[X] Y s[Y] Z s[Z]</tt><br>" +
-	    "where <tt>X, s[X], Y,</tt> and <tt>s[Y]</tt> are defined as before,<br>" +
+	    "<tt>Y=Ca/Ca</tt> is the <sup>40</sup>Ca/<sup>44</sup>Ca ratio, and " +
+	    "<tt>err[X], err[Y]</tt> and <tt>rho[X,Y]</tt> are the "+
+	    "uncertainties and error correlations, respectively.</li>" +
+	    "<li><tt>X err[X] Y err[Y] Z err[Z]</tt><br>" +
+	    "where <tt>X, err[X], Y,</tt> and <tt>err[Y]</tt> are defined as before, " +
 	    "<tt>Z</tt> is the <sup>40</sup>K/<sup>40</sup>Ca ratio, and " +
-	    "<tt>s[Z]</tt> is its standard error.<br>Here the redundancy between " +
+	    "<tt>err[Z]</tt> is its uncertainty. Here the redundancy between " +
 	    "three ratio uncertainties allows the covariance to be determined implicitly." +
 	    "</li></ol>";
 	break;
     case "help-ThU-isochron-types":
-	text = "Choose one of four output formats:<ol>" +
+	text = "Choose one of four input formats:<ol>" +
 	    "<li><sup>230</sup>Th/<sup>232</sup>Th vs. " +
 	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2a)</li>" +
 	    "<li><sup>230</sup>Th/<sup>238</sup>U vs. " +
@@ -870,35 +843,36 @@ function help(id){
 	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)</li></ol>";
 	break;
     case "help-regression-format":
-	text = "Choose one of two output formats:<ol>" +
-	    "<li><tt>X, s[X], Y, s[Y], rho</tt><br> where <tt>X</tt> and " +
-	    "<tt>Y</tt> are two sets of measurements, <tt>s[X]</tt> and " +
-	    "<tt>s[Y]</tt>are their respective standard errors " +
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><tt>X, err[X], Y, err[Y], rho</tt><br> where <tt>X</tt> and " +
+	    "<tt>Y</tt> are two sets of measurements, <tt>err[X]</tt> and " +
+	    "<tt>err[Y]</tt>are their respective uncertainties " +
 	    "and <tt>rho</tt> the error correlation.</li>" +
-	    "<li><tt>X/Z, s[X/Z], Y/Z, s[Y/Z], X/Y, s[X/Y]</tt><br>" +
+	    "<li><tt>X/Z, err[X/Z], Y/Z, err[Y/Z], X/Y, err[X/Y]</tt><br>" +
 	    "in which the redundancy between the three error estimates " +
 	    "allows the correlation coefficient between <tt>X/Z</tt> and " +
 	    "<tt>Y/Z</tt> to be computed.</li></ol>";
 	break;
     case "help-helioplot-models":
-	text = "Choose one of the following statistical models:<br>" +
-	    "1. Weighted mean: This model assumes that the scatter between " +
+	text = "Choose one of the following statistical models:<ol>" +
+	    "<li>Weighted mean: This model assumes that the scatter between " +
 	    "the data points is solely caused by the analytical uncertainty. " +
 	    "If the assumption is correct, then the MSWD value should be " +
 	    "approximately equal to one. There are three strategies to deal " +
 	    " with the case where MSWD>1. The first of these is to assume that " +
 	    "the analytical uncertainties have been underestimated by a <i>factor</i> " +
-	    "&radic;MSWD. Alternative approaches are described below. <br>" +
-	    "2. Unweighted mean: A second way to deal with over- or underdispersed " +
-	    "datasets is to simply ignore the analytical uncertainties.<br>" +
-	    "3. Weighted mean with overdispersion: Instead of attributing any " +
+	    "&radic;MSWD. Alternative approaches are described below. </li>" +
+	    "<li>Unweighted mean: A second way to deal with over- or underdispersed " +
+	    "datasets is to simply ignore the analytical uncertainties.</li>" +
+	    "<li>Weighted mean with overdispersion: Instead of attributing any " +
 	    "overdispersion (MSWD > 1) to underestimated analytical uncertainties " +
 	    "(model 1), one could also attribute it to the presence of geological " +
-	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>.";
+	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>." +
+	    "</li></ol>";
 	break;
     case "help-isochron-models":
-	text = "Choose one of three regression models:<br>" +
-	    "1. Maximum Likelihood regression, using either the modified error weighted " +
+	text = "Choose one of three regression models:<ol>" +
+	    "<li>Maximum Likelihood regression, using either the modified error weighted " +
 	    "least squares algorithm of York et al. (2004) for 2-dimensional data, " +
 	    "or the Maximum Likelihood formulation of Ludwig and Titterington (1994) " +
 	    "for 3-dimensional data. These algorithms take into account the " +
@@ -910,82 +884,86 @@ function help(id){
 	    "strategies to deal with the case where MSWD>1. " +
 	    "The first of these is to assume that " +
 	    "the analytical uncertainties have been underestimated by a <i>factor</i> " +
-	    "&radic;MSWD. Alternative approaches are described below. <br>" +
-	    "2. Ordinary least squares regression: A second way to deal with " +
+	    "&radic;MSWD. Alternative approaches are described below. </li>" +
+	    "<li>Ordinary least squares regression: A second way to deal with " +
 	    "over- or underdispersed datasets is to simply ignore the " +
-	    "analytical uncertainties.<br>" +
-	    "3. Maximum likelihood regression with overdispersion: " +
+	    "analytical uncertainties.</li>" +
+	    "<li>Maximum likelihood regression with overdispersion: " +
 	    "Instead of attributing any overdispersion (MSWD > 1) to " +
 	    "underestimated analytical uncertainties " +
 	    "(model 1), one can also attribute it to the presence of geological " +
-	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>.";
+	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>." +
+	    "</li></ol>";
 	break;
     case "help-ArAr-formats":
-	text = "Choose one of three input formats:<br>" +
-	    "1. <tt>39/36 s[39/36] 40/36 s[40/36] rho (39)</tt><br>" +
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>39/36 err[39/36] 40/36 err[40/36] rho (39)</tt><br>" +
 	    "where <tt>rho</tt> is the error correlation between " +
 	    "<tt>39/36</tt> and <tt>40/36</tt> and (39) is the " +
-	    "(optional) amount of <sup>39</sup>Ar<br>" +
-	    "2. <tt>39/40 s[39/40] 36/40 s[36/40] (rho) (39)</tt><br>" +
-	    "where the error correlation is optional.<br>" +
-	    "3. <tt>39/40 s[39/40] 36/40 s[36/40] 39/36 s[39/36] (39)</tt><br>" +
+	    "(optional) amount of <sup>39</sup>Ar.</li>" +
+	    "<li><tt>39/40 err[39/40] 36/40 err[36/40] (rho) (39)</tt><br>" +
+	    "where the error correlation is optional.</li>" +
+	    "<li><tt>39/40 err[39/40] 36/40 err[36/40] 39/36 err[39/36] (39)</tt><br>" +
 	    "in which the error correlations are calculated from the" +
-	    "redundancies between the three sets of uncertainties.<br>";
+	    "redundancies between the three sets of uncertainties.</li></ol>";
 	break;
     case "help-RbSr-formats":
-	text = "Choose one of two input formats:<br>" +
-	    "1. <tt>Rb87/Sr86 s[Rb87/Sr86] Sr87/Sr86 s[Sr87/Sr86] (rho)</tt><br>" +
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><tt>Rb87/Sr86 err[Rb87/Sr86] Sr87/Sr86 err[Sr87/Sr86] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Rb87/Sr86</tt> and <tt>Sr87/Sr86</tt><br>" +
-	    "2. <tt>Rb s[Rb] Sr s[Sr] 87/86 s[87/86]</tt><br>" +
-	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.<br>";
+	    "<tt>Rb87/Sr86</tt> and <tt>Sr87/Sr86</tt></li>" +
+	    "<li><tt>Rb err[Rb] Sr err[Sr] 87/86 err[87/86]</tt><br>" +
+	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.</li></ol>";
 	break;
     case "help-LuHf-formats":
-	text = "Choose one of two input formats:<br>" +
-	    "1. <tt>Lu176/Hf177 s[Lu176/Hf177] Hf176/Hf177 s[Hf176/Hf177] (rho)</tt><br>" +
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><tt>Lu176/Hf177 err[Lu176/Hf177] Hf176/Hf177 " +
+	    "err[Hf176/Hf177] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Lu176/Hf177</tt> and <tt>Hf176/Hf177</tt><br>" +
-	    "2. <tt>Lu s[Lu] Hf s[Hf] 176/177 s[176/177]</tt><br>" +
-	    "where <tt>Lu</tt> and <tt>Hf</tt> are in ppm.<br>";
+	    "<tt>Lu176/Hf177</tt> and <tt>Hf176/Hf177</tt></li>" +
+	    "<li><tt>Lu err[Lu] Hf err[Hf] 176/177 err[176/177]</tt><br>" +
+	    "where <tt>Lu</tt> and <tt>Hf</tt> are in ppm.</li></ol>";
 	break;
     case "help-ReOs-formats":
-	text = "Choose one of two input formats:<br>" +
-	    "1. <tt>Re187/Os188 s[Re187/Os188] Os187/Os188 s[Os187/Os188] (rho)</tt><br>" +
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><tt>Re187/Os188 err[Re187/Os188] Os187/Os188 " +
+	    "err[Os187/Os188] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Re187/Os188</tt> and <tt>Os187/Os188</tt><br>" +
-	    "2. <tt>Re s[Re] Os s[Os] 187/188 s[187/188]</tt><br>" +
-	    "where <tt>Re</tt> and <tt>Os</tt> are in ppm.<br>";
+	    "<tt>Re187/Os188</tt> and <tt>Os187/Os188</tt></li>" +
+	    "<li><tt>Re err[Re] Os err[Os] 187/188 err[187/188]</tt><br>" +
+	    "where <tt>Re</tt> and <tt>Os</tt> are in ppm.</li></ol>";
 	break;
     case "help-SmNd-formats":
-	text = "Choose one of two input formats:<br>" +
-	    "1. <tt>Sm147/Nd144 s[Sm147/Nd144] Nd143/Nd144 s[Nd143/Nd144] (rho)</tt><br>" +
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><tt>Sm147/Nd144 err[Sm147/Nd144] Nd143/Nd144 " +
+	    "err[Nd143/Nd144] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Sm147/Nd144</tt> and <tt>Nd143/Nd144</tt><br>" +
-	    "2. <tt>Sm s[Sm] Nd s[Nd] 143/144 s[143/144]</tt><br>" +
-	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.<br>";
+	    "<tt>Sm147/Nd144</tt> and <tt>Nd143/Nd144</tt></li>" +
+	    "<li><tt>Sm err[Sm] Nd err[Nd] 143/144 err[143/144]</tt><br>" +
+	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.</li></ol>";
 	break;
     case "help-FT-formats":
-	text = "Choose one of three fission track dating methods:<br>" +
-	    "1. 'EDM' = the External Detector Method: determines the " +
+	text = "Choose one of three fission track dating methods:<ol>" +
+	    "<li>'EDM' = the External Detector Method: determines the " +
 	    "sample's uranium content by proxy, using neutron-induced tracks " +
-	    "recorded in a mica detector; <br>" +
-	    "2. 'ICP (&zeta;)': determines " +
+	    "recorded in a mica detector; </li>" +
+	    "<li>'ICP (&zeta;)': determines " +
 	    "the uranium content directly by LA-ICP-MS using a zeta calibration " +
 	    "approach in which all measurements are normalised to " +
-	    "age standards; <br>" +
-	    "3. 'ICP (absolute)': uses LA-ICP-MS without age " +
+	    "age standards; </li>" +
+	    "<li>'ICP (absolute)': uses LA-ICP-MS without age " +
 	    "standards, assuming that the fission decay constant, etch " +
 	    "efficiency factor and uranium concentrations are known with " +
-	    "sufficient accuracy.";
+	    "sufficient accuracy.</li></ol>";
 	break;
     case "help-UPb-age-type":
-	text = "Choose one of five options:<br>" +
-	    "1. Plot the <sup>207</sup>Pb/<sup>235</sup>U-ages<br>" +
-	    "2. Plot the <sup>206</sup>Pb/<sup>238</sup>U-ages<br>" +
-	    "3. Plot the <sup>207</sup>Pb/<sup>206</sup>Pb-ages<br>" +
-	    "4. Plot young grains as <sup>206</sup>Pb/<sup>238</sup>U " +
-	    "and old grains as <sup>207</sup>Pb/<sup>206</sup>Pb<br>" +
-	    "5. Plot the single-grain concordia ages.";
+	text = "Choose one of five options:<ol>" +
+	    "<li>Plot the <sup>207</sup>Pb/<sup>235</sup>U-ages</li>" +
+	    "<li>Plot the <sup>206</sup>Pb/<sup>238</sup>U-ages</li>" +
+	    "<li>Plot the <sup>207</sup>Pb/<sup>206</sup>Pb-ages</li>" +
+	    "<li>Plot young grains as <sup>206</sup>Pb/<sup>238</sup>U " +
+	    "and old grains as <sup>207</sup>Pb/<sup>206</sup>Pb</li>" +
+	    "<li>Plot the single-grain concordia ages.</li></ol>";
 	break;
     case "help-mixtures":
 	text = "Peak fitting using the algorithms of Galbraith and Green (1990). " +
@@ -999,4 +977,10 @@ function help(id){
 	break;
 }
     return text;
+}
+
+function ratioMessage(ratio,reference){
+    var msg = "The default values for the natural " + ratio +
+	" ratio and its standard error are taken from " + reference + "."
+    return msg;
 }
