@@ -162,7 +162,8 @@
 	"randomeffects": "FALSE",
 	"mint": "auto",
 	"maxt": "auto",
-	"ranked": "FALSE"
+	"ranked": "FALSE",
+	"clabel": ""
     },
     "spectrum": {
 	"plateau": "TRUE",
