@@ -101,7 +101,6 @@ $(function(){
 		if (IsoplotR.settings["other"].format == 1){ return 7; }
 		else {return 8;}
 	    case 'spectrum':
-		return 5;
 	    case 'radial':
 	    case 'average':
 		return 4;
@@ -997,6 +996,9 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
+	    $('#bg3').val(set.bg3);
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'spectrum':
@@ -1174,6 +1176,9 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.bg3 = $('#bg3').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    i2i(geochronometer);
 	    break;

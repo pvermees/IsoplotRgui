@@ -163,6 +163,9 @@
 	"mint": "auto",
 	"maxt": "auto",
 	"ranked": "FALSE",
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"bg3": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "spectrum": {

@@ -206,6 +206,8 @@ function getOptions(prefs){
 	out += ",ranked=" + pdsettings.ranked;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
+	out += ",rect.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
+	out += ",outlier.col=" + pdsettings.bg3;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
