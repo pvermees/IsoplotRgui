@@ -715,14 +715,14 @@ function help(id){
 	    "(please note the apostrophes!)<p></p>" +
 	    "If '(C)' is empty, then only one colour is used.";
 	break;
-    case "help-radial-bg1":
+    case "help-bg1":
 	text = "Fill colour for the plot symbols. Examples:<p></p>" +
 	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>...<br>" +
 	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
 	    "(please note the apostrophes!)";
 	break;
-    case "help-radial-bg2":
+    case "help-bg2":
 	text = 	"Second fill colour to be used to build a graded " +
 	    "colour scale to display the optional input column labeled '(C)'. " +
 	    "Examples:<p></p>" +
@@ -731,6 +731,13 @@ function help(id){
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
 	    "(please note the apostrophes!)<p></p>" +
 	    "If '(C)' is empty, then only one colour is used.";
+	break;
+    case "help-bg3":
+	text = 	"Fill colour used to mark the outliers. Examples:<p></p>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
+	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
+	    "(please note the apostrophes!)";
 	break;
     case "help-bg":
 	text = "Fill colour for the plot symbols (e.g., " +
