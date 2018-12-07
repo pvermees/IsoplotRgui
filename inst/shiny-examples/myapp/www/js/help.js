@@ -739,6 +739,13 @@ function help(id){
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
 	    "(please note the apostrophes!)";
 	break;
+    case "help-bg3-plateau":
+	text = 	"Fill colour used to mark the age plateau. Examples:<p></p>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
+	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
+	    "(please note the apostrophes!)";
+	break;
     case "help-bg":
 	text = "Fill colour for the plot symbols (e.g., " +
 	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";

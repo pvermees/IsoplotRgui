@@ -1008,6 +1008,10 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
+	    $('#bg3').val(set.bg3);
+	    $('#clabel').val(set.clabel);
 	    break;
 	case 'KDE':
 	    $('#showhist').prop('checked',set.showhist=='TRUE');
@@ -1175,11 +1179,11 @@ $(function(){
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.bg3 = $('#bg3').val();
 	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
 	case 'spectrum':
@@ -1190,6 +1194,10 @@ $(function(){
 	    pdsettings.randomeffects = truefalse('#randomeffects');
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.bg3 = $('#bg3').val();
+	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;

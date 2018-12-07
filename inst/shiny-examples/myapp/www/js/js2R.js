@@ -233,6 +233,11 @@ function getOptions(prefs){
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
+	out += ",plateau.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
+	out += ",non.plateau.col=" + pdsettings.bg3;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	if (geochronometer=='other'){
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
 	} else {
