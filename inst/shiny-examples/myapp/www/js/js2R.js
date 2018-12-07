@@ -205,7 +205,10 @@ function getOptions(prefs){
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",ranked=" + pdsettings.ranked;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
+	if (geochronometer!='U-Th-He'){
+	    out += ",format=" + gcsettings.format;
+	}
+	out += ")";
 	out += ",rect.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
 	out += ",outlier.col=" + pdsettings.bg3;
 	out += ",clabel='" + pdsettings.clabel + "'";
