@@ -101,10 +101,10 @@ $(function(){
 		if (IsoplotR.settings["other"].format == 1){ return 7; }
 		else {return 8;}
 	    case 'spectrum':
+		return 5;
 	    case 'radial':
-		return 4;
 	    case 'average':
-		return 3;
+		return 4;
 	    case 'KDE':
 	    case 'CAD':
 		return 2;
@@ -997,6 +997,10 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
+	    $('#bg3').val(set.bg3);
+	    $('#clabel').val(set.clabel);
 	    break;
 	case 'spectrum':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -1005,6 +1009,10 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#bg1').val(set.bg1);
+	    $('#bg2').val(set.bg2);
+	    $('#bg3').val(set.bg3);
+	    $('#clabel').val(set.clabel);
 	    break;
 	case 'KDE':
 	    $('#showhist').prop('checked',set.showhist=='TRUE');
@@ -1172,6 +1180,10 @@ $(function(){
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.bg3 = $('#bg3').val();
+	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
@@ -1183,6 +1195,10 @@ $(function(){
 	    pdsettings.randomeffects = truefalse('#randomeffects');
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.bg1 = $('#bg1').val();
+	    pdsettings.bg2 = $('#bg2').val();
+	    pdsettings.bg3 = $('#bg3').val();
+	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
@@ -1872,7 +1888,8 @@ $(function(){
 	var file = e.target.files[0];
 	var reader = new FileReader();
 	reader.onload = function(e){
-	    IsoplotR = JSON.parse(this.result);
+	    var newIsoplotR = JSON.parse(this.result);
+	    IsoplotR = patchJSON(newIsoplotR,IsoplotR);
 	    var set = IsoplotR.settings;
 	    $("#" + set.geochronometer ).prop("selected",true);
 	    $("#geochronometer").selectmenu("refresh");

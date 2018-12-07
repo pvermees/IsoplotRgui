@@ -204,6 +204,14 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",ranked=" + pdsettings.ranked;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	if (geochronometer!='U-Th-He'){
+	    out += ",format=" + gcsettings.format;
+	}
+	out += ")";
+	out += ",rect.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
+	out += ",outlier.col=" + pdsettings.bg3;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
 	if (geochronometer=='U-Th-He'){
@@ -228,6 +236,11 @@ function getOptions(prefs){
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
+	out += ",plateau.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
+	out += ",non.plateau.col=" + pdsettings.bg3;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	if (geochronometer=='other'){
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
 	} else {
