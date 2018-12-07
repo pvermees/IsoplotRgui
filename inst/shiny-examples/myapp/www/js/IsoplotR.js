@@ -101,6 +101,7 @@ $(function(){
 		if (IsoplotR.settings["other"].format == 1){ return 7; }
 		else {return 8;}
 	    case 'spectrum':
+		return 5;
 	    case 'radial':
 	    case 'average':
 		return 4;
