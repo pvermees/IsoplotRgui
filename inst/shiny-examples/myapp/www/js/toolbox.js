@@ -38,6 +38,18 @@ function getSignificantDigits(x){
     return Math.max(2,out);
 }
 
-function setSignificantDigits(x,n) {
+function setSignificantDigits(x,n){
     return Number.parseFloat(x).toPrecision(n);
+}
+
+function patchJSON(n,o){
+    if ($.type(o) !== 'object'){
+        return n;
+    }
+    for (var k in o){
+	if (k in n){
+	    o[k] = patchJSON(n[k],o[k]);
+	}
+    }
+    return o;
 }
