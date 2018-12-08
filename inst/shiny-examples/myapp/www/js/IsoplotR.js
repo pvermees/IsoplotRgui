@@ -1888,8 +1888,9 @@ $(function(){
 	var file = e.target.files[0];
 	var reader = new FileReader();
 	reader.onload = function(e){
-	    var newIsoplotR = JSON.parse(this.result);
-	    IsoplotR = patchJSON(newIsoplotR,IsoplotR);
+	    IsoplotR = JSON.parse(this.result);
+	    //var newIsoplotR = JSON.parse(this.result);
+	    //IsoplotR = patchJSON(newIsoplotR,IsoplotR);
 	    var set = IsoplotR.settings;
 	    $("#" + set.geochronometer ).prop("selected",true);
 	    $("#geochronometer").selectmenu("refresh");
