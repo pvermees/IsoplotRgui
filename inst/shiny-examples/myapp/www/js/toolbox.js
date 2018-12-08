@@ -43,13 +43,13 @@ function setSignificantDigits(x,n){
 }
 
 function patchJSON(n,o){
-    if ($.type(o) !== 'object' || $.isEmptyObject(o)){
+    if ($.type(o) !== 'object'){
         return n;
     }
     for (var k in o){
-	if (k in n){
-	    o[k] = patchJSON(n[k],o[k]);
-	}
+	 if (k in n){
+	     o[k] = (k === 'data') ? n[k] : patchJSON(n[k],o[k]);
+	 }
     }
     return o;
 }
