@@ -43,7 +43,7 @@ function setSignificantDigits(x,n){
 }
 
 function patchJSON(n,o){
-    if ($.type(o) !== 'object'){
+    if ($.type(o) === 'array' || $.isEmptyObject(o)){
         return n;
     }
     for (var k in o){
