@@ -22,6 +22,9 @@ function getOptions(prefs){
 	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto'){
 	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")";
 	}
+	if (pdsettings.ticks != 'auto'){
+	    out += ",ticks=c(" + pdsettings.ticks + ")";
+	}
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",wetherill=" + pdsettings.wetherill;
 	out += ",exterr=" + pdsettings.exterr;

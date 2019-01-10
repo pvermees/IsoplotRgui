@@ -750,6 +750,9 @@ function help(id){
 	text = "Fill colour for the plot symbols (e.g., " +
 	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
 	break;
+    case "help-concordia-ticks":
+	text = "Comma-separated list of custom age ticks for the concordia line.";
+	break;
     case "help-clabel":
 	text = "Text label for the (optional) colour scale";
 	break;
