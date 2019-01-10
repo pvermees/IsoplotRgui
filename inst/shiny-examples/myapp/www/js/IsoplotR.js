@@ -617,8 +617,8 @@ $(function(){
 		$('.hide4noUPbAge').hide();
 		break;
 	    case 1:
-		$('.show4concordiaAge').show();
-		$('.hide4concordiaAge').hide();
+		$('.show4concordia').show();
+		$('.hide4concordia').hide();
 		break;
 	    case 2:
 		$('.show4discordia').show();
@@ -941,6 +941,7 @@ $(function(){
 	    $('#bg1').val(set.bg1);
 	    $('#bg2').val(set.bg2);
 	    $('#clabel').val(set.clabel);
+	    $('#ticks').val(set.ticks);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    $('#tanchor').val(set.tanchor);
 	    break;
@@ -1126,6 +1127,7 @@ $(function(){
 	    pdsettings.bg1 = $('#bg1').val();
 	    pdsettings.bg2 = $('#bg2').val();
 	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings.ticks = $('#ticks').val();
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.anchor = getOption("#anchor-option")
