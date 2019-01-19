@@ -1,8 +1,8 @@
 Let t = {t<sub>1</sub>, ..., t<sub>n</sub>} be a set of n age
 estimates determined on different aliquots of the same sample, and let
 s[t<sub>1</sub>], ..., s[t<sub>n</sub>]} be their analytical
-uncertainties. <tt>IsoplotR</tt> implements two ways to compute the
-average of these data:
+uncertainties (standard errors). <tt>IsoplotR</tt> implements two ways
+to compute the average of these data:
 
 <ol>
   <li>A random effects model with two sources of variance:
@@ -94,7 +94,7 @@ heuristic outlier detection method is equivalent to Ludwig (2003)'s
       <tr>
 	<td>z:</td>
 	<td>the approximate 100(1-&alpha;)% confidence interval for t
-	with overdispersion, calculated as z = y&sqrt;MSWD (not
+	with overdispersion, calculated as z = y&Sqrt;MSWD (not
 	reported for random effects models).
 	</td>
       </tr>
@@ -145,12 +145,12 @@ heuristic outlier detection method is equivalent to Ludwig (2003)'s
 	</td>
       </tr>
       <tr>
-	<td>u:</td>
+	<td>&omega;<sub>u</sub>:</td>
 	<td>width of the upper half of a (1-&alpha;)% confidence
 	  interval for &omega;.</td>
       </tr>
       <tr>
-	<td>l:</td>
+	<td>&omega;<sub>l</sub>:</td>
 	<td>width of the lower half of the (1-&alpha;)% confidence
 	  interval for &omega;.</td>
       </tr>

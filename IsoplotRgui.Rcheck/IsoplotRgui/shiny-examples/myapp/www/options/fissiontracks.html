@@ -1,10 +1,10 @@
 <p></p>
 
 &nbsp; <help id="help-FT-formats">Method:</help>
-<select id="FT-formats" onchange="$.chooseFTformat();">
-  <option value='1'>EDM</option>
-  <option value='2'>ICP (&zeta;)</option>
-  <option value='3'>ICP (absolute)</option>
+<select id="FT-formats" onchange="$.chooseFormat('#FT-formats','fissiontracks');">
+  <option value=1>EDM</option>
+  <option value=2>ICP (&zeta;)</option>
+  <option value=3>ICP (absolute)</option>
 </select>
 
 <p></p>
@@ -20,25 +20,25 @@
 <p></p>
 
 <table>
-<tr><td>&nbsp;<help id="help-U238U235"><sup>238</sup>U/<sup>235</sup>U ratio</help>:</td>
+<tr><td>&nbsp; <help id="help-U238U235"><sup>238</sup>U/<sup>235</sup>U ratio</help>:</td>
     <td><input type="text" id="U238U235"> &plusmn;</td>
     <td><input type="text" id="errU238U235"></td>
 </tr>
-<tr><td>&nbsp;<help id="help-LambdaU238"><sup>238</sup>U decay constant</help>:</td>
+<tr><td>&nbsp; <help id="help-LambdaU238"><sup>238</sup>U decay constant</help>:</td>
     <td><input type="text" id="LambdaU238"> &plusmn;</td>
     <td><input type="text" id="errLambdaU238">Myr<sup>-1</sup></td>
 </tr>
-<tr><td>&nbsp;<help id="help-LambdaFission"><sup>238</sup>U fission decay constant</help>:</td>
+<tr><td>&nbsp; <help id="help-LambdaFission"><sup>238</sup>U fission decay constant</help>:</td>
     <td><input type="text" id="LambdaFission"> &plusmn;</td>
     <td><input type="text" id="errLambdaFission">Myr<sup>-1</sup></td>
 </tr>
-<tr><td>&nbsp;<help id="help-etchfact">efficiency factor</help>:</td>
+<tr><td>&nbsp; <help id="help-etchfact">efficiency factor</help>:</td>
     <td><input type="text" id="etchfact"></td><td></td>
 </tr>
-<tr><td>&nbsp;<help id="help-tracklength">equivelent isotropic track length</help>:</td>
+<tr><td>&nbsp; <help id="help-tracklength">equivelent isotropic track length</help>:</td>
     <td><input type="text" id="tracklength"></td><td></td>
 </tr>
-<tr><td>&nbsp;<help id="help-mindens">mineral density</help>:</td>
+<tr><td>&nbsp; <help id="help-mindens">mineral density</help>:</td>
     <td><input type="text" id="mindens"></td><td></td>
 </tr>
 </table>

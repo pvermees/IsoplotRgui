@@ -22,6 +22,9 @@ function getOptions(prefs){
 	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto'){
 	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")";
 	}
+	if (pdsettings.ticks != 'auto'){
+	    out += ",ticks=c(" + pdsettings.ticks + ")";
+	}
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",wetherill=" + pdsettings.wetherill;
 	out += ",exterr=" + pdsettings.exterr;
@@ -32,15 +35,31 @@ function getOptions(prefs){
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
+	out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
+	out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
 	out += ",clabel='" + pdsettings.clabel + "'";
+	if (pdsettings.anchor==1){
+	    out += ",anchor=list(TRUE," + pdsettings.tanchor + ")";
+	} else if (pdsettings.anchor==2){
+	    out += ",anchor=list(TRUE,NA)";
+	}
 	break;
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
-	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	if (geochronometer!='other' & geochronometer!='U-Th-He'){
-	    out += ",format=" + gcsettings.format;
+	if (geochronometer=='U-Th-He'){
+	    out += ",levels=selection2levels(method='" + geochronometer + "')";
+	    out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
+	    out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
+	} else {
+	    out += ",levels=selection2levels(method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";
+	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";
+	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";
 	}
-	out += ")";
 	if (pdsettings.numpeaks == 'auto') out += ",k='auto'"
 	else if (pdsettings.numpeaks == 'min') out += ",k='min'"
 	else out += ",k=" + pdsettings.numpeaks ;
@@ -60,6 +79,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -95,6 +115,10 @@ function getOptions(prefs){
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
+	out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
+	out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
@@ -118,12 +142,35 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
-	if (geochronometer!='U-Th-He'){
+	if (geochronometer=='other'){
+	    out += ",levels=selection2levels(method='regression'";
+	} else {
 	    out += ",levels=selection2levels(method='" + geochronometer + "'";
-	    if (geochronometer=='other')
-		out += ",format=2)";
-	    else
-		out += ",format=" + gcsettings.format + ")";
+	}
+	if (geochronometer=='U-Th-He'){
+	    out += ")";
+	} else {
+	    out += ",format=" + gcsettings.format + ")";
+	}
+	if (geochronometer=='other'){
+	    out += ",omit=omitter(flags='x',method='regression'";
+	} else {
+	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
+	}
+	if (geochronometer=='U-Th-He'){
+	    out += ")";
+	} else {
+	    out += ",format=" + gcsettings.format + ")";
+	}
+	if (geochronometer=='other'){
+	    out += ",hide=omitter(flags='X',method='regression'";
+	} else {
+	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
+	}
+	if (geochronometer=='U-Th-He'){
+	    out += ")";
+	} else {
+	    out += ",format=" + gcsettings.format + ")";
 	}
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	break;
@@ -134,6 +181,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -149,7 +197,9 @@ function getOptions(prefs){
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	}
-	if (geochronometer != "other" & geochronometer != "Th-U"){
+	if (geochronometer != "other" &
+	    geochronometer != "Th-U" &
+	    geochronometer != 'U-Th-He'){
 	    out += ",exterr=" + pdsettings.exterr;
 	}
 	out += ",detect.outliers=" + pdsettings.outliers;
@@ -157,8 +207,28 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",ranked=" + pdsettings.ranked;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	if (geochronometer!='U-Th-He'){
+	    out += ",format=" + gcsettings.format;
+	}
+	out += ")";
+	out += ",rect.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
+	out += ",outlier.col=" + pdsettings.bg3;
+	out += ",clabel='" + pdsettings.clabel + "'";
 	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
+	if (geochronometer=='U-Th-He'){
+	    out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
+	} else {
+	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";
+	}
+	if (geochronometer=='U-Th-He'){
+	    out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
+	} else {
+	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";
+	}
 	break;
     case 'spectrum':
 	if (geochronometer=='Ar-Ar'){
@@ -169,6 +239,17 @@ function getOptions(prefs){
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",levels=selection2levels(method='" + geochronometer + "'";
+	out += ",format=" + gcsettings.format + ")";
+	out += ",plateau.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
+	out += ",non.plateau.col=" + pdsettings.bg3;
+	out += ",clabel='" + pdsettings.clabel + "'";
+	if (geochronometer=='other'){
+	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
+	} else {
+	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";	    
+	}
 	break;
     case 'KDE':
 	if (pdsettings.minx != 'auto') { out += ",from=" + pdsettings.minx; }
@@ -185,6 +266,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -213,6 +295,14 @@ function getOptions(prefs){
 	out += ",log=" + pdsettings.log;
 	if (pdsettings.binwidth != 'auto') { out += ",binwidth=" + pdsettings.binwidth; }
 	else { out += ",binwidth=NA"; }
+	if (geochronometer=='U-Th-He'){
+	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
+	} else if (geochronometer=='detritals'){
+	    out += ",hide=c(" + gcsettings.hide + ')';
+	} else {
+	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";
+	}
 	break;
     case 'CAD':
 	if (pdsettings.pch!='none') { out += ",pch=" + pdsettings.pch; }
@@ -223,6 +313,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
@@ -238,6 +329,14 @@ function getOptions(prefs){
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
 	default:
+	}
+	if (geochronometer=='U-Th-He'){
+	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
+	} else if (geochronometer=='detritals'){
+	    out += ",hide=c(" + gcsettings.hide + ')';
+	} else {
+	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
+	    out += ",format=" + gcsettings.format + ")";
 	}
 	break;
     case 'set-zeta':
@@ -261,6 +360,8 @@ function getOptions(prefs){
 	if (pdsettings.fact != 'auto')
 	    out += ",fact=" + pdsettings.fact;
 	out += ",levels=selection2levels(method='" + geochronometer + "')";
+	out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
+	out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
 	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
@@ -277,8 +378,11 @@ function getOptions(prefs){
 	    out += ",pos=" + pdsettings.pos;
 	out += ",col='" + pdsettings.col + "'";
 	out += ",bg='" + pdsettings.bg + "'";
+	out += ",hide=c(" + gcsettings.hide + ')';
 	break;
     case 'ages':
+	if (geochronometer == 'U-Pb')
+	    out += ",show.p=" + pdsettings.show_p;
 	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
 	switch (geochronometer){
@@ -287,6 +391,7 @@ function getOptions(prefs){
 	    out += ",Th02=" + concatenate(gcsettings.Th02);
 	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
+	case 'K-Ca':
 	case 'Pb-Pb':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -327,21 +432,27 @@ function getRcommand(prefs){
 	geochronometer=='U-Pb'  |
 	geochronometer=='Pb-Pb' |
 	geochronometer=='Ar-Ar' |
+	geochronometer=='K-Ca' |
 	geochronometer=='Th-U'  |
 	geochronometer=='Rb-Sr' |
         geochronometer=='Sm-Nd' |
         geochronometer=='Re-Os' |
         geochronometer=='Lu-Hf') {
-	out += ",format=" + prefs.settings[geochronometer].format; 
+	out += ",format=" + prefs.settings[geochronometer].format;
+    } else if (geochronometer=='other'){
+	out += ",format='" + plotdevice + "'";
     }
+    out += ",ierr=" + prefs.settings.ierr;
     out += ");";
     switch (geochronometer){
     case 'U-Pb':
-	out += "IsoplotR::settings('iratio','Pb206Pb204'," +
+	out += "IsoplotR::settings('iratio','Pb207Pb206'," +
+	    prefs.constants.iratio.Pb207Pb206[0] + ");"
+    case 'Pb-Pb':
+	out += "IsoplotR::settings('iratio','Pb207Pb204'," +
 	    prefs.constants.iratio.Pb206Pb204[0] + ");"
 	out += "IsoplotR::settings('iratio','Pb207Pb204'," +
 	    prefs.constants.iratio.Pb207Pb204[0] + ");"
-    case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','U238U235'," +
 	    prefs.constants.iratio.U238U235[0] + "," +
 	    prefs.constants.iratio.U238U235[1] + ");"
@@ -364,6 +475,14 @@ function getRcommand(prefs){
 	out += "IsoplotR::settings('iratio','Ar40Ar36'," +
 	    prefs.constants.iratio.Ar40Ar36[0] + "," +
 	    prefs.constants.iratio.Ar40Ar36[1] + ");"
+	out += "IsoplotR::settings('lambda','K40'," +
+	    prefs.constants.lambda.K40[0] + "," +
+	    prefs.constants.lambda.K40[1] + ");"
+	break;
+    case 'K-Ca':
+	out += "IsoplotR::settings('iratio','Ca40Ca44'," +
+	    prefs.constants.iratio.Ca40Ca44[0] + "," +
+	    prefs.constants.iratio.Ca40Ca44[1] + ");"
 	out += "IsoplotR::settings('lambda','K40'," +
 	    prefs.constants.lambda.K40[0] + "," +
 	    prefs.constants.lambda.K40[1] + ");"
@@ -509,6 +628,9 @@ function getRcommand(prefs){
     case 'detritals':
 	break;
     }
+    if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
+	out += "par(cex=" + prefs.settings.par.cex + ");";
+    }
     switch (plotdevice) {
     case 'concordia': 
 	out += "IsoplotR::concordia(dat"; 
@@ -516,8 +638,10 @@ function getRcommand(prefs){
     case 'evolution': 
 	out += "IsoplotR::evolution(dat"; 
 	break;
-    case 'isochron':
     case 'regression':
+	out += "dat <- IsoplotR::data2york(dat,format=" +
+	    prefs.settings['other'].format + ");"
+    case 'isochron':
 	out += "IsoplotR::isochron(dat";
 	break;
     case 'radial':

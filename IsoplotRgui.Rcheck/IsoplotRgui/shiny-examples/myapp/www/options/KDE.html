@@ -2,23 +2,23 @@
 
 <div hidden class="show4UPb">
 &nbsp; <help id="help-UPb-age-type">Type of U-Pb age</help>:
-<select id="UPb-age-type" onchange="$.chooseUPbAgeType();">
-  <option value="1">1: 7/5 age</option>
-  <option value="2">2: 6/8 age</option>
-  <option value="3">3: 7/6 age</option>
-  <option value="4">4: 7/6/8 age</option>
-  <option value="5">5: concordia age</option>
+<select id="UPb-age-type" onchange="$.register();">
+  <option value=1>1: 7/5 age</option>
+  <option value=2>2: 6/8 age</option>
+  <option value=3>3: 7/6 age</option>
+  <option value=4>4: 7/6/8 age</option>
+  <option value=5>5: concordia age</option>
 </select>
 
 <p></p>
 
 <table>
-<tr><td>&nbsp; <help id="help-mindisc">Minimum discordance</help>:</td>
+<tr><td>&nbsp;<help id="help-mindisc">Minimum discordance</help>:</td>
     <td><input type="text" id="mindisc">%</td></tr>
-<tr><td>&nbsp; <help id="help-maxdisc">Maximum discordance</help>:</td>
+<tr><td>&nbsp;<help id="help-maxdisc">Maximum discordance</help>:</td>
     <td><input type="text" id="maxdisc">%</td></tr>
 <tr hidden class="show4UPbType4">
-  <td>&nbsp; <help id="help-cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
+  <td>&nbsp;<help id="help-cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
   <td><input type="text" id="cutoff76">Ma</td></tr>
 </table>
 </div>
@@ -26,8 +26,8 @@
 <p></p>
 
 <div hidden class="show4PbPb">
-&nbsp; <help id="help-common-Pb-option">Common Pb correction:</help>
-<select id="common-Pb-option" onchange="$.chooseCommonPbOption('Pb-Pb');">
+&nbsp;<help id="help-common-Pb-option">Common Pb correction:</help>
+<select id="common-Pb-option" onchange="$.register();">
   <option value=0>none</option>
   <option value=1>Stacey-Kramers</option>
   <option value=2>isochron</option>
@@ -38,29 +38,23 @@
 <p></p>
 
 <table>
-<tr><td>&nbsp; <help id="help-minx">Minimum value</help>:</td>
+  <tr><td>&nbsp;<help id="help-minx">Minimum value</help>:</td>
     <td><input type="text" id="minx"></td></tr>
-<tr><td>&nbsp; <help id="help-maxx">Maximum value</help>:</td>
+  <tr><td>&nbsp;<help id="help-maxx">Maximum value</help>:</td>
     <td><input type="text" id="maxx"></td></tr>
-<tr><td>&nbsp; <help id="help-bandwidth">Kernel bandwidth</help>:</td>
+  <tr><td>&nbsp;<help id="help-bandwidth">Kernel bandwidth</help>:</td>
     <td><input type="text" id="bandwidth"></td></tr>
-<tr><td>&nbsp; <help id="help-binwidth">Histogram binwidth</help>:</td>
+  <tr><td>&nbsp;<help id="help-binwidth">Histogram binwidth</help>:</td>
     <td><input type="text" id="binwidth"></td></tr>
-</table>
-
-<div hidden class="show4detritals">
-<table>
-<tr><td>&nbsp; <help id="help-pchdetritals">Plot character</help>:</td>
-    <td><input type="text" id="pchdetritals"></td></tr>
-</table>
-</div>
-
-<div class="hide4detritals">
-<table>
-<tr><td>&nbsp; <help id="help-pch">Plot character</help>:</td>
+  <tr class="hide4detritals">
+    <td>&nbsp;<help id="help-pch">Plot character</help>:</td>
     <td><input type="text" id="pch"></td></tr>
+  <tr hidden class="show4detritals">
+    <td>&nbsp;<help id="help-pchdetritals">Plot character</help>:</td>
+    <td><input type="text" id="pchdetritals"></td></tr>
+  <tr class="hide4detritals"><td>&nbsp;<help id="help-cex">Font magnification</help>:</td>
+    <td><input type="text" id="cex"></td></tr>
 </table>
-</div>
 
 <p></p>
 &nbsp;<input type="checkbox" id="log">
@@ -86,6 +80,12 @@
 &nbsp;<input type="checkbox" id="i2iArAr">
 <help id="help-ArAr-i2i">Use isochron intercept as initial
   <sup>40</sup>Ar/<sup>36</sup>Ar-ratio?
+</help>
+</div>
+<div hidden class="show4KCa">
+&nbsp;<input type="checkbox" id="i2iKCa">
+<help id="help-KCa-i2i">Use isochron intercept as initial
+  <sup>40</sup>Ca/<sup>44</sup>Ca-ratio
 </help>
 </div>
 <div hidden class="show4ReOs">
@@ -120,8 +120,8 @@
 </help>
 </div>
 <div hidden class="show4ThU1 show4ThU2 hide4ThU3 hide4ThU4">
-&nbsp; <help id="help-detritus">detrital <sup>230</sup>Th correction:</help>
-<select id="detritus" onchange="$.chooseTh230correction();">
+&nbsp;<help id="help-detritus">detrital <sup>230</sup>Th correction:</help>
+<select id="detritus" onchange="$.register();">
   <option value="0">0. none</option>
   <option value="1">1. isochron</option>
   <option value="2">2. assumed</option>
