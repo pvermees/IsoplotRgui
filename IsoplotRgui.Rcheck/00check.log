@@ -4,7 +4,8 @@
 * using session charset: UTF-8
 * using option ‘--as-cran’
 * checking for file ‘IsoplotRgui/DESCRIPTION’ ... OK
-* this is package ‘IsoplotRgui’ version ‘1.0’
+* this is package ‘IsoplotRgui’ version ‘2.4’
+* package encoding: UTF-8
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Pieter Vermeesch <p.vermeesch@ucl.ac.uk>’
 
@@ -30,8 +31,14 @@ structure’ in the ‘Writing R Extensions’ manual.
 CRAN-pack does not know about
   .git
 * checking for portable file names ... WARNING
-Found the following file with a non-portable file name:
+Found the following files with non-portable file names:
+  .git/COMMIT_EDITMSG (pieter-laptop's conflicted copy 2018-11-27)
   .git/index (pieter-laptop's conflicted copy 2017-10-25)
+  .git/index (pieter-laptop's conflicted copy 2018-11-27)
+  .git/logs/HEAD (pieter-laptop's conflicted copy 2018-11-27)
+  .git/logs/refs/heads/beta (pieter-laptop's conflicted copy 2018-11-27)
+  .git/logs/refs/remotes/origin/beta (pieter-laptop's conflicted copy 2018-11-27)
+  .git/refs/heads/beta (pieter-laptop's conflicted copy 2018-11-27)
 These are not fully portable file names.
 See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
 * checking for sufficient/correct file permissions ... OK
@@ -39,12 +46,11 @@ See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
 * checking installed package size ... OK
 * checking package directory ... OK
 * checking DESCRIPTION meta-information ... NOTE
-License components which are templates and need '+ file LICENSE':
-  MIT
 Checking should be performed on sources prepared by ‘R CMD build’.
 * checking top-level files ... NOTE
 Non-standard files/directories found at top level:
-  ‘IsoplotRgui.Rcheck’ ‘IsoplotRgui_1.0.tar.gz’
+  ‘IsoplotRgui.Rcheck’ ‘IsoplotRgui_2.2.tar.gz’
+  ‘IsoplotRgui_2.4.tar.gz’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... WARNING

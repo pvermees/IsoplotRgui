@@ -1,6 +1,10 @@
 {
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
+    "ierr": 1,
+    "par": {
+	"cex": 1
+    },
     "data": {
 	"U-Pb": {},
 	"Ar-Ar": {},
@@ -18,7 +22,8 @@
 	"mineral": "apatite"
     },
     "detritals": {
-	"format": 1
+	"format": 1,
+	"hide": []
     },
     "U-Pb": {
 	"format": 2,
@@ -43,6 +48,10 @@
 	"format": 3,
 	"i2i": "FALSE"
     },
+    "K-Ca": {
+	"format": 1,
+	"i2i": "TRUE"
+    },
     "Rb-Sr": {
 	"format": 2,
 	"i2i": "TRUE"
@@ -59,6 +68,9 @@
 	"format": 2,
 	"i2i": "TRUE"
     },
+    "other": {
+	"format": 1
+    },
     "concordia": {
 	"mint": "auto",
 	"maxt": "auto",
@@ -71,10 +83,13 @@
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 0,
+	"anchor":0,
+	"tanchor":0,
 	"sigdig": 2,
 	"bg1": "rgb(0,1,0,0.5)",
 	"bg2": "rgb(1,0,0,0.5)",
-	"clabel": ""
+	"clabel": "",
+	"ticks": "auto"
     },
     "evolution": {
 	"min08": "auto",
@@ -98,7 +113,7 @@
 	"type": 2,
 	"model": 1,
 	"inverse": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",
@@ -142,20 +157,28 @@
     },
     "average": {
 	"outliers": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "TRUE",
+	"randomeffects": "FALSE",
 	"mint": "auto",
 	"maxt": "auto",
-	"ranked": "FALSE"
+	"ranked": "FALSE",
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"bg3": "rgb(0,1,1,0.5)",
+	"clabel": ""
     },
     "spectrum": {
 	"plateau": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "FALSE"
+	"randomeffects": "FALSE",
+	"bg1": "rgb(0,1,0,0.5)",
+	"bg2": "rgb(1,0,0,0.5)",
+	"bg3": "rgb(0,1,1,0.5)",
+	"clabel": ""
     },
     "KDE": {
 	"ncol": "auto",
@@ -180,7 +203,7 @@
     },
     "set-zeta": {
 	"sigdig": 2,
-	"exterr": "TRUE"
+	"exterr": "FALSE"
     },
     "MDS": {
 	"classical": "FALSE",
@@ -210,6 +233,7 @@
 	"clabel": ""
     },
     "ages": {
+	"show_p": "FALSE",
 	"exterr": "TRUE",
 	"sigdig": 2
     }
