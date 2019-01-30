@@ -224,16 +224,29 @@ shiny::shinyServer(function(input,output,session){
         tryCatch({
             eval(parse(text=Rcommand))
         }, error = function(e){
-            errormessage <-
-                paste0("Something went wrong. If this problem occurs again,\n",
-                       "then please save a reproducible example as a .json file\n",
-                       "(using the 'Save' button below) and email it to p.vermeesch@ucl.ac.uk\n",
-                       "The problem will be addressed asap.\n",
-                       "-PV")
+            width <- 70
+            message1 <- e$message
+            message2 <- paste0("If this message does not make sense to you, then please save a ",
+                               "reproducible example as a .json file (using the 'Save' button ",
+                               "below) and email it to p.vermeesch@ucl.ac.uk. The problem will ",
+                               "be addressed asap.")
+            errormessage <- paste0("Error message:\n\n",wrap(message1,width),
+                                   "\n\n",wrap(message2,width),"\n\n-PV")
             plot(c(0, 1),c(0,1),ann=F,bty ='n',type='n',xaxt='n',yaxt='n')
-            text(0.5,1,errormessage,cex=1.5,pos=1)
+            text(0.5,0,errormessage,cex=1.5,pos=3)
         })
 
+    }
+
+    wrap <- function(tekst,width){
+        out <- tekst
+        spaces <- which(strsplit(tekst, "")[[1]]==" ")
+        toreplace <- seq(from=width,to=nchar(tekst),by=width)
+        for (i in 1:length(toreplace)){
+            j <- which.min(abs(spaces-toreplace[i]))
+            substr(out,spaces[j],spaces[j]) <- '\n'
+        }
+        out
     }
     
     observeEvent(input$PLOTTER, {
