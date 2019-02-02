@@ -196,7 +196,7 @@ function help(id){
 	break;
     case "help-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
-	    "with the decay constants will be propagated into the age.";
+	    "with the decay constants or calibration factors will be propagated into the age.";
 	break;
     case "help-verticals":
 	text = "When this box is ticked, the horizontal steps " +
