@@ -157,7 +157,7 @@
     },
     "average": {
 	"outliers": "TRUE",
-	"exterr": "FALSE",
+	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE",
@@ -171,7 +171,7 @@
     },
     "spectrum": {
 	"plateau": "TRUE",
-	"exterr": "FALSE",
+	"exterr": "TRUE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE",
