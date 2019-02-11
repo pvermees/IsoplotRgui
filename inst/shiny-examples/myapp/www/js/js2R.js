@@ -76,8 +76,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -109,8 +107,6 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
 	out += ",detritus=" + gcsettings.detritus;
-	out += ",Th02=" + concatenate(gcsettings.Th02);
-	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
@@ -178,8 +174,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -263,8 +257,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -310,8 +302,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -388,8 +378,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Pb-Pb':
@@ -441,6 +429,10 @@ function getRcommand(prefs){
 	out += ",format=" + prefs.settings[geochronometer].format;
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
+    }
+    if (geochronometer=='Th-U'){
+	out += ",Th02=" + concatenate(prefs.settings[geochronometer].Th02);
+	out += ",Th02U48=" + concatenate(prefs.settings[geochronometer].Th02U48);
     }
     out += ",ierr=" + prefs.settings.ierr;
     out += ");";
