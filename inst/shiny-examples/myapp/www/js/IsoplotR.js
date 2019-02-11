@@ -667,8 +667,11 @@ $(function(){
 	    } else {
 		$('.show4evolutionIsochron').hide();
 	    }
+	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
+	    $(".show4Th230corr").hide();
+	    break;
 	case 'helioplot':
 	    switch (pd.model){
 	    case 1:
