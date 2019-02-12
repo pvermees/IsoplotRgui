@@ -31,7 +31,12 @@
 	"cutoff76": 1100,
 	"mindisc": -15,
 	"maxdisc": 5,
-	"commonPb": 0
+	"commonPb": 0,
+	"diseq": "FALSE",
+	"U48": 1,
+	"Th0U8": 1,
+	"Ra6U8": 1,
+	"Pa1U5": 1
     },
     "Th-U": {
 	"format": 2,

@@ -414,6 +414,7 @@ function getRcommand(prefs){
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
+    var gcsettings = prefs.settings[geochronometer];
     var out = "dat <- selection2data(method='" + geochronometer + "'";
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
@@ -426,13 +427,18 @@ function getRcommand(prefs){
         geochronometer=='Sm-Nd' |
         geochronometer=='Re-Os' |
         geochronometer=='Lu-Hf') {
-	out += ",format=" + prefs.settings[geochronometer].format;
+	out += ",format=" + gcsettings.format;
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
     }
-    if (geochronometer=='Th-U'){
-	out += ",Th02=" + concatenate(prefs.settings[geochronometer].Th02);
-	out += ",Th02U48=" + concatenate(prefs.settings[geochronometer].Th02U48);
+    if (geochronometer=='U-Pb'){
+	out += ",U48=" + gcsettings.U48;
+	out += ",Th0U8=" + gcsettings.Th0U8;
+	out += ",Ra6U8=" + gcsettings.Ra6U8;
+	out += ",Pa1U5=" + gcsettings.Pa1U5;
+    } else if (geochronometer=='Th-U'){
+	out += ",Th02=" + concatenate(gcsettings.Th02);
+	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
     }
     out += ",ierr=" + prefs.settings.ierr;
     out += ");";

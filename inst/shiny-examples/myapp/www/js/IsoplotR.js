@@ -408,6 +408,11 @@ $(function(){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').show();
 	    }
+	    if (set.diseq=='TRUE'){
+		$('.show4diseq').show();
+	    } else {
+		$('.show4diseq').hide();
+	    }
 	    break;
 	case 'Pb-Pb':
 	    $('.show4PbPb').show();
@@ -743,6 +748,11 @@ $(function(){
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
+	    $('#diseq').prop('checked',set.diseq=='TRUE');
+	    $('#U48').val(set.U48);
+	    $('#Th0U8').val(set.Th0U8);
+	    $('#Ra6U8').val(set.Ra6U8);
+	    $('#Pa1U5').val(set.Pa1U5);
 	    break;
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
@@ -1306,6 +1316,11 @@ $(function(){
 		gcsettings.mindisc = getNumber('#mindisc');
 		gcsettings.maxdisc = getNumber('#maxdisc');
 	    }
+	    gcsettings.diseq = truefalse('#diseq');
+	    gcsettings.U48 = getNumber('#U48');
+	    gcsettings.Th0U8 = getNumber('#Th0U8');
+	    gcsettings.Ra6U8 = getNumber('#Ra6U8');
+	    gcsettings.Pa1U8 = getNumber('#Pa1U8');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");
