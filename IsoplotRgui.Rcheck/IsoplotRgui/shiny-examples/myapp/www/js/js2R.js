@@ -76,8 +76,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -109,8 +107,6 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
 	out += ",detritus=" + gcsettings.detritus;
-	out += ",Th02=" + concatenate(gcsettings.Th02);
-	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
@@ -178,8 +174,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -263,8 +257,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -310,8 +302,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Rb-Sr':
@@ -388,8 +378,6 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	    out += ",Th02=" + concatenate(gcsettings.Th02);
-	    out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
 	case 'Ar-Ar':
 	case 'K-Ca':
 	case 'Pb-Pb':
@@ -426,6 +414,7 @@ function getRcommand(prefs){
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
+    var gcsettings = prefs.settings[geochronometer];
     var out = "dat <- selection2data(method='" + geochronometer + "'";
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
@@ -438,9 +427,18 @@ function getRcommand(prefs){
         geochronometer=='Sm-Nd' |
         geochronometer=='Re-Os' |
         geochronometer=='Lu-Hf') {
-	out += ",format=" + prefs.settings[geochronometer].format;
+	out += ",format=" + gcsettings.format;
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
+    }
+    if (geochronometer=='U-Pb' & gcsettings.diseq=='TRUE'){
+	out += ",U48=" + gcsettings.U48;
+	out += ",Th0U8=" + gcsettings.Th0U8;
+	out += ",Ra6U8=" + gcsettings.Ra6U8;
+	out += ",Pa1U5=" + gcsettings.Pa1U5;
+    } else if (geochronometer=='Th-U'){
+	out += ",Th02=" + concatenate(gcsettings.Th02);
+	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
     }
     out += ",ierr=" + prefs.settings.ierr;
     out += ");";
