@@ -131,21 +131,43 @@ function help(id){
 	    "<sup>234</sup>U-<sup>238</sup>U composition of the detritus</li>";
 	    "</ol>";
 	break;
-    case "help-Th02":
+    case "help-Th02-ThU":
 	text = "Specify the assumed initial <sup>230</sup>Th/" +
-	    "<sup>232</sup>Th-ratio of the detritus and its standard error.";
+	    "<sup>232</sup>Th activity ratio of the detritus and its standard error.";
 	break;
-    case "help-Th0U8":
+    case "help-Th0U8-ThU":
 	text = "Specify the measured present day <sup>230</sup>Th/" +
-	    "<sup>238</sup>U-ratio of the detritus and its standard error.";
+	    "<sup>238</sup>U activity ratio of the detritus and its standard error.";
 	break;
-    case "help-Th2U8":
+    case "help-Th2U8-ThU":
 	text = "Specify the measured present day <sup>232</sup>Th/" +
-	    "<sup>238</sup>U-ratio of the detritus and its standard error.";
+	    "<sup>238</sup> activity ratio of the detritus and its standard error.";
 	break;
-    case "help-U48":
+    case "help-U48-ThU":
 	text = "Specify the measured present day <sup>234</sup>U/" +
-	    "<sup>238</sup>U-ratio of the detritus and its standard error.";
+	    "<sup>238</sup>U activity ratio of the detritus and its standard error.";
+	break;
+    case "help-U48-UPb":
+	text = "Specify the assumed initial <sup>234</sup>U/" +
+	    "<sup>238</sup>U activity ratio of the sample.";
+	break;
+    case "help-Th0U8-UPb":
+	text = "Specify the assumed initial <sup>230</sup>Th/" +
+	    "<sup>238</sup>U activity ratio of the sample.";
+	break;
+    case "help-Ra6U8-UPb":
+	text = "Specify the assumed initial <sup>226</sup>Ra/" +
+	    "<sup>238</sup>U activity ratio of the sample.";
+	break;
+    case "help-Pa1U5-UPb":
+	text = "Specify the assumed initial <sup>231</sup>Pa/" +
+	    "<sup>235</sup>U activity ratio of the sample.";
+	break;
+    case "help-diseq":
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
+	    "initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
+	    "ratios of the sample.";
 	break;
     case "help-rXY-detritus":
 	text = "Specify the error correlation between the measured " +
