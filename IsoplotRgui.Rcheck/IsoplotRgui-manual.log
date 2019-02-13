@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.1)  4 FEB 2019 11:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.14)  13 FEB 2019 20:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -712,7 +712,7 @@ Now handling font encoding PD1 ...
 
 
 Writing index file Rd2.idx
-(/tmp/Rtmp8wTpga/Rd2pdf1e6470dfcc41/Rd2.aux)
+(/tmp/Rtmp3egjHH/Rd2pdf1ea12c63ebec/Rd2.aux)
 \openout1 = `Rd2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -769,8 +769,8 @@ LaTeX Info: Redefining \ref on input line 8.
 LaTeX Info: Redefining \pageref on input line 8.
 LaTeX Info: Redefining \nameref on input line 8.
 
-(/tmp/Rtmp8wTpga/Rd2pdf1e6470dfcc41/Rd2.out)
-(/tmp/Rtmp8wTpga/Rd2pdf1e6470dfcc41/Rd2.out)
+(/tmp/Rtmp3egjHH/Rd2pdf1ea12c63ebec/Rd2.out)
+(/tmp/Rtmp3egjHH/Rd2pdf1ea12c63ebec/Rd2.out)
 \@outlinefile=\write4
 \openout4 = `Rd2.out'.
 
@@ -784,25 +784,25 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20.74> not available
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
-LaTeX Font Info:    Try loading font information for T1+zi4 on input line 21.
+LaTeX Font Info:    Try loading font information for T1+zi4 on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 21.
+(Font)              scaled to size 10.0pt on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 25.
+(Font)              <7> on input line 26.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 25.
+(Font)              <5> on input line 26.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 30.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 30.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 31.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
-(/tmp/Rtmp8wTpga/Rd2pdf1e6470dfcc41/Rd2.toc)
+(/tmp/Rtmp3egjHH/Rd2pdf1ea12c63ebec/Rd2.toc)
 \tf@toc=\write5
 \openout5 = `Rd2.toc'.
 
@@ -811,28 +811,29 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 47.
+(Font)              scaled to size 9.0pt on input line 48.
+ [1
 
-(/tmp/Rtmp8wTpga/Rd2pdf1e6470dfcc41/Rd2.ind [1
 
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/tmp/Rtmp3egjHH/Rd2pdf1ea
+12c63ebec/Rd2.ind
+[2] [3
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
- (/tmp/Rtmp8wTpga/Rd2pdf1e6470dfcc41/Rd2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 53.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 53.
+ (/tmp/Rtmp3egjHH/Rd2pdf1ea12c63ebec/Rd2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 53.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 53.
 Package rerunfilecheck Info: File `Rd2.out' has not changed.
 (rerunfilecheck)             Checksum: 66E830ACE39AF83ED0697B2028737F47;86.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 53.
  ) 
 Here is how much of TeX's memory you used:
  6570 strings out of 492982
- 93134 string characters out of 6134896
- 173288 words of memory out of 5000000
+ 93134 string characters out of 6134895
+ 173289 words of memory out of 5000000
  10026 multiletter control sequences out of 15000+600000
  37871 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -844,7 +845,7 @@ xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (3 pages, 64903 bytes).
+Output written on Rd2.pdf (3 pages, 64931 bytes).
 PDF statistics:
  69 PDF objects out of 1000 (max. 8388607)
  57 compressed objects within 1 object stream
