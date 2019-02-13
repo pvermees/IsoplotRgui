@@ -33,10 +33,10 @@
 	"maxdisc": 5,
 	"commonPb": 0,
 	"diseq": "FALSE",
-	"U48": 1,
-	"Th0U8": 1,
-	"Ra6U8": 1,
-	"Pa1U5": 1
+	"U48": 1.15,
+	"Th0U8": 0,
+	"Ra6U8": 0,
+	"Pa1U5": 0
     },
     "Th-U": {
 	"format": 2,

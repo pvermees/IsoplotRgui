@@ -149,19 +149,23 @@ function help(id){
 	break;
     case "help-U48-UPb":
 	text = "Specify the assumed initial <sup>234</sup>U/" +
-	    "<sup>238</sup>U activity ratio of the sample.";
+	    "<sup>238</sup>U activity ratio of the sample. " +
+	    "1.15 is the canonical value for modern sea water.";
 	break;
     case "help-Th0U8-UPb":
 	text = "Specify the assumed initial <sup>230</sup>Th/" +
-	    "<sup>238</sup>U activity ratio of the sample.";
+	    "<sup>238</sup>U activity ratio of the sample. " +
+	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-Ra6U8-UPb":
 	text = "Specify the assumed initial <sup>226</sup>Ra/" +
-	    "<sup>238</sup>U activity ratio of the sample.";
+	    "<sup>238</sup>U activity ratio of the sample. " +
+	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-Pa1U5-UPb":
 	text = "Specify the assumed initial <sup>231</sup>Pa/" +
-	    "<sup>235</sup>U activity ratio of the sample.";
+	    "<sup>235</sup>U activity ratio of the sample. " +
+	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-diseq":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
