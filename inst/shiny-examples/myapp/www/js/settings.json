@@ -73,6 +73,7 @@
 	"format": 2,
 	"i2i": "TRUE"
     },
+    "U-Th-He": {},
     "other": {
 	"format": 1
     },
@@ -162,7 +163,7 @@
     },
     "average": {
 	"outliers": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE",
@@ -176,7 +177,7 @@
     },
     "spectrum": {
 	"plateau": "TRUE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE",

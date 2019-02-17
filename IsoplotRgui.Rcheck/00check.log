@@ -48,9 +48,8 @@ See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
 * checking DESCRIPTION meta-information ... NOTE
 Checking should be performed on sources prepared by ‘R CMD build’.
 * checking top-level files ... NOTE
-Non-standard files/directories found at top level:
-  ‘IsoplotRgui.Rcheck’ ‘IsoplotRgui_2.2.tar.gz’
-  ‘IsoplotRgui_2.4.tar.gz’
+Non-standard file/directory found at top level:
+  ‘IsoplotRgui.Rcheck’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... WARNING

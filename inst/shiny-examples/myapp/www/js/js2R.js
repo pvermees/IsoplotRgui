@@ -431,7 +431,7 @@ function getRcommand(prefs){
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
     }
-    if (geochronometer=='U-Pb' & gcsettings.diseq=='TRUE'){
+    if (geochronometer=='U-Pb' && gcsettings.diseq=='TRUE'){
 	out += ",U48=" + gcsettings.U48;
 	out += ",Th0U8=" + gcsettings.Th0U8;
 	out += ",Ra6U8=" + gcsettings.Ra6U8;
