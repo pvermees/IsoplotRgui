@@ -1309,9 +1309,9 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    gcsettings.type = getOption("#UPb-age-type");
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
 		plotdevice == 'CAD' | plotdevice == 'radial'){
+		gcsettings.type = getOption("#UPb-age-type");
 		gcsettings.cutoff76 = getNumber('#cutoff76');
 		gcsettings.mindisc = getNumber('#mindisc');
 		gcsettings.maxdisc = getNumber('#maxdisc');
@@ -1320,7 +1320,7 @@ $(function(){
 	    gcsettings.U48 = getNumber('#U48');
 	    gcsettings.Th0U8 = getNumber('#Th0U8');
 	    gcsettings.Ra6U8 = getNumber('#Ra6U8');
-	    gcsettings.Pa1U8 = getNumber('#Pa1U8');
+	    gcsettings.Pa1U5 = getNumber('#Pa1U5');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");
