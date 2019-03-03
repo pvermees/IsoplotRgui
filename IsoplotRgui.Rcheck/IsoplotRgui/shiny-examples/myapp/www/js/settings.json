@@ -240,7 +240,7 @@
     },
     "ages": {
 	"show_p": "FALSE",
-	"exterr": "TRUE",
+	"exterr": "FALSE",
 	"sigdig": 2
     }
 }
