@@ -161,7 +161,7 @@ shiny::shinyServer(function(input,output,session){
             out <- IsoplotR::read.data(mat,method=method,format=format,
                                        ierr=ierr,Th02=Th02,Th02U48=Th02U48)
         } else {
-            out <- IsoplotR::read.data(mat,method=method,format=format)
+            out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr)
         }
         out
     }
