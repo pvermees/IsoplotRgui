@@ -4,7 +4,7 @@
 * using session charset: UTF-8
 * using option ‘--as-cran’
 * checking for file ‘IsoplotRgui/DESCRIPTION’ ... OK
-* this is package ‘IsoplotRgui’ version ‘2.4’
+* this is package ‘IsoplotRgui’ version ‘2.5’
 * package encoding: UTF-8
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Pieter Vermeesch <p.vermeesch@ucl.ac.uk>’
