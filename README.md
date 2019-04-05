@@ -44,15 +44,15 @@ IsoplotR()
 
 at the command prompt. Alternatively, the program can also be accessed
 online via the IsoplotR website at
-[http://isoplotr.london-geochron.com](http://isoplotr.london-geochron.com)
+[http://isoplotr.london-geochron.com](http://ucl.ac.uk/~ucfbpve/isoplotr)
 
 ## Further information
 
-See [http://isoplotr.london-geochron.com](http://isoplotr.london-geochron.com)
+See [http://isoplotr.london-geochron.com](http://ucl.ac.uk/~ucfbpve/isoplotrlnnn)
 
 ## Author
 
-[Pieter Vermeesch](http://pieter.london-geochron.com)
+[Pieter Vermeesch](http://ucl.ac.uk/~ucfbpve)
 
 ## License
 
