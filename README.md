@@ -13,8 +13,12 @@ the following code at the R command line prompt:
 
 ```
 install.packages('devtools')
-install.packages('shiny')
+library(devtools)
+install_version('shiny',version='1.2.0',repos='http://cran.r-project.com/')
 ```
+
+Note that this uses a legacy version if **shiny** due to a bug in the
+current version (1.3.0).
 
 ## Installation
 

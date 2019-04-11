@@ -11,6 +11,12 @@ Maintainer: ‘Pieter Vermeesch <p.vermeesch@ucl.ac.uk>’
 
 New submission
 
+Found the following (possibly) invalid URLs:
+  URL: http://ucl.ac.uk/~ucfbpve/isoplotrlnnn (moved to https://www.ucl.ac.uk/~ucfbpve/isoplotrlnnn)
+    From: README.md
+    Status: 404
+    Message: Not Found
+
 The Title field should be in title case, current version then in title case:
 ‘Web interface to IsoplotR’
 ‘Web Interface to IsoplotR’
