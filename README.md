@@ -14,10 +14,10 @@ the following code at the R command line prompt:
 ```
 install.packages('devtools')
 library(devtools)
-install_version('shiny',version='1.2.0',repos='http://cran.r-project.com/')
+install_version('shiny',version='1.2.0',repos='http://cran.r-project.org/')
 ```
 
-Note that this uses a legacy version if **shiny** due to a bug in the
+Note that this uses a legacy version of **shiny** due to a bug in its
 current version (1.3.0).
 
 ## Installation
