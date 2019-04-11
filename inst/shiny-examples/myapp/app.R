@@ -1,4 +1,4 @@
-shiny::shinyServer(function(input,output,session){
+server <- function(input,output,session){
 
     selection2data <- function(method="U-Pb",format=1,ierr=1,
                                U48=1,Th0U8=1,Ra6U8=1,Pa1U5=1,
@@ -182,7 +182,7 @@ shiny::shinyServer(function(input,output,session){
         }
         out
     }
-    
+
     selection2levels <- function(method="U-Pb",format=1){
         d <- input$data
         nn <- length(d)
@@ -192,7 +192,7 @@ shiny::shinyServer(function(input,output,session){
         li <- seq(from=bi+lc-1,to=nn-1,by=nc)
         as.numeric(d[li])
     }
-    
+
     selection2omit <- function(method="U-Pb",format=1){
         d <- input$data
         nn <- length(d)
@@ -207,7 +207,7 @@ shiny::shinyServer(function(input,output,session){
         o <- selection2omit(method=method,format=format)
         which(o%in%flags)
     }
-    
+
     getJavascript <- function(results){
         header <- paste0("['",paste(colnames(results),collapse="','"),"']")
         jarray <- "["
@@ -259,7 +259,7 @@ shiny::shinyServer(function(input,output,session){
         }
         out
     }
-    
+
     observeEvent(input$PLOTTER, {
         output$myplot <- renderPlot({
             isolate({
@@ -293,5 +293,7 @@ shiny::shinyServer(function(input,output,session){
             write.csv(results,file)
         }
     )
-    
-})
+
+}
+
+shinyApp(ui = htmlTemplate("www/index.html"), server)
