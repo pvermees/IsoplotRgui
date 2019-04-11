@@ -447,7 +447,7 @@ function getRcommand(prefs){
 	out += "IsoplotR::settings('iratio','Pb207Pb206'," +
 	    prefs.constants.iratio.Pb207Pb206[0] + ");"
     case 'Pb-Pb':
-	out += "IsoplotR::settings('iratio','Pb207Pb204'," +
+	out += "IsoplotR::settings('iratio','Pb206Pb204'," +
 	    prefs.constants.iratio.Pb206Pb204[0] + ");"
 	out += "IsoplotR::settings('iratio','Pb207Pb204'," +
 	    prefs.constants.iratio.Pb207Pb204[0] + ");"
