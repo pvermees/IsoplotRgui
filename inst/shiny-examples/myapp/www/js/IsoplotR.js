@@ -61,7 +61,8 @@ $(function(){
 	    var format = IsoplotR.settings["K-Ca"].format;
 	    switch (format){
 	    case 1: return 7;
-	    case 2: return 8;
+	    case 2: return 7;
+	    case 3: return 8;
 	    }
 	case 'Th-U':
 	    var format = IsoplotR.settings["Th-U"].format;
@@ -85,7 +86,8 @@ $(function(){
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
 	    case 1: return 7;
-	    case 2: return 8;
+	    case 2: return 7;
+	    case 3: return 8;
 	    }
 	case 'U-Th-He':
 	    return 10;
@@ -503,6 +505,10 @@ $(function(){
 		$('.show4KCa2').show();
 		$('.hide4KCa2').hide();
 		break;
+	    case 3:
+		$('.show4KCa3').show();
+		$('.hide4KCa3').hide();
+		break;
 	    }
 	    break;
 	case 'Rb-Sr':
@@ -516,6 +522,10 @@ $(function(){
 	    case 2:
 		$('.show4RbSr2').show();
 		$('.hide4RbSr2').hide();
+		break;
+	    case 3:
+		$('.show4RbSr3').show();
+		$('.hide4RbSr3').hide();
 		break;
 	    }
 	    break;
@@ -531,6 +541,10 @@ $(function(){
 		$('.show4SmNd2').show();
 		$('.hide4SmNd2').hide();
 		break;
+	    case 3:
+		$('.show4SmNd3').show();
+		$('.hide4SmNd3').hide();
+		break;
 	    }
 	    break;
 	case 'Re-Os':
@@ -545,6 +559,10 @@ $(function(){
 		$('.show4ReOs2').show();
 		$('.hide4ReOs2').hide();
 		break;
+	    case 3:
+		$('.show4ReOs3').show();
+		$('.hide4ReOs3').hide();
+		break;
 	    }
 	    break;
 	case 'Lu-Hf':
@@ -558,6 +576,10 @@ $(function(){
 	    case 2:
 		$('.show4LuHf2').show();
 		$('.hide4LuHf2').hide();
+		break;
+	    case 3:
+		$('.show4LuHf3').show();
+		$('.hide4LuHf3').hide();
 		break;
 	    }
 	    break;
@@ -1743,16 +1765,16 @@ $(function(){
 	var PbPb3 = (gc=='Pb-Pb' && format==3);
 	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
 	var ArAr3 = (gc=='Ar-Ar' && format==3);
-	var KCa1 = (gc=='K-Ca' && format==1);
-	var KCa2 = (gc=='K-Ca' && format==2);
-	var RbSr1 = (gc=='Rb-Sr' && format==1);
-	var RbSr2 = (gc=='Rb-Sr' && format==2);
-	var SmNd1 = (gc=='Sm-Nd' && format==1);
-	var SmNd2 = (gc=='Sm-Nd' && format==2);
-	var ReOs1 = (gc=='Re-Os' && format==1);
-	var ReOs2 = (gc=='Re-Os' && format==2);
-	var LuHf1 = (gc=='Lu-Hf' && format==1);
-	var LuHf2 = (gc=='Lu-Hf' && format==2);
+	var KCa12 = (gc=='K-Ca' && format<3);
+	var KCa3 = (gc=='K-Ca' && format==3);
+	var RbSr12 = (gc=='Rb-Sr' && format<3);
+	var RbSr3 = (gc=='Rb-Sr' && format==3);
+	var SmNd12 = (gc=='Sm-Nd' && format<3);
+	var SmNd3 = (gc=='Sm-Nd' && format==3);
+	var ReOs12 = (gc=='Re-Os' && format<3);
+	var ReOs3 = (gc=='Re-Os' && format==3);
+	var LuHf12 = (gc=='Lu-Hf' && format<3);
+	var LuHf3 = (gc=='Lu-Hf' && format==3);
 	var UThHe = (gc=='U-Th-He');
 	var FT23 = (gc=='fissiontracks' && format>1);
 	var ThU12 = (gc=='Th-U' && format<3);
@@ -1761,12 +1783,12 @@ $(function(){
 	var regression = (gc=='other' && pd=='regression');
 	var spectrum = (gc=='other' && pd=='spectrum');
 	var average = (gc=='other' && pd=='average');
-	if (UPb12 || PbPb12 || ArAr12 || KCa1 ||
-	    RbSr1 || SmNd1 || ReOs1 || LuHf1 ||
+	if (UPb12 || PbPb12 || ArAr12 || KCa12 ||
+	    RbSr12 || SmNd12 || ReOs12 || LuHf12 ||
 	    ThU34 || regression){
 	    cols = [1,3];
-	} else if (UPb345 || PbPb3 || ArAr3 || KCa2 ||
-		   RbSr2 || SmNd2 || ReOs2 || LuHf2 ||
+	} else if (UPb345 || PbPb3 || ArAr3 || KCa3 ||
+		   RbSr3 || SmNd3 || ReOs3 || LuHf3 ||
 		   UThHe || ThU12){
 	    cols = [1,3,5];
 	} else if (UPb6){

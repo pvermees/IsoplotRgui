@@ -294,6 +294,19 @@ function example(geochronometer,plotdevice,format){
 	    return({
 		"ierr": 1,
 		"data": {
+		    "K40/Ca40":       [],
+		    "err[K40/Ca40]":  [],
+		    "Ca40/Ca44":      [],
+		    "err[Ca44/Ca40]": [],
+		    "(rho)":          [],
+		    "(C)":            [],
+		    "(omit)":         []
+		}	
+	    });
+	case 3:
+	    return({
+		"ierr": 1,
+		"data": {
 		    "K40/Ca44":       [54.749,65.793,79.784,79.413,89.754,102.107,
 				       130.123,119.797,139.483,135.326,152.376,153.985,
 				       144.645,184.432,160.832,218.38,147.093,174.808,
@@ -417,6 +430,19 @@ function example(geochronometer,plotdevice,format){
 	    return({
 		"ierr": 1,
 		"data": {
+		    "Rb87/Sr87":      [],
+		    "err[Rb87/Sr87]": [],
+		    "Sr86/Sr87":      [],
+		    "err[Sr86/Sr87]": [],
+		    "(rho)":          [],
+		    "(C)":            [],
+		    "(omit)":         []
+		}	
+	    });
+	case 3:
+	    return({
+		"ierr": 1,
+		"data": {
 		    "Rb":         [1.03,2.15,0.94,1.033,1.15,0.77,0.826,0.475,
 			           0.49,1.22,1.02,1,1.21,1.13,10.1,6.36,6.33],
 		    "err[Rb]":    [0.025,0.025,0.03,0.025,0.01,0.01,0.025,0.025,0.03,
@@ -455,6 +481,19 @@ function example(geochronometer,plotdevice,format){
 	    return({
 		"ierr": 1,
 		"data": {
+		    "Sm147/Nd143":      [],
+		    "err[Sm147/Nd143]": [],
+		    "Nd144/Nd143":      [],
+		    "err[Nd144/Nd143]": [],
+		    "(rho)":            [],
+		    "(C)":              [],
+		    "(omit)":           []
+		}
+	    });
+	case 3:
+	    return({
+		"ierr": 1,
+		"data": {
 		    "Sm":           [4.173,27.41,48,39.12],
 		    "err[Sm]":      [0.001,0.01,0.01,0.01],
 		    "Nd":           [13.53895,71.47659,117.867,84.12472],
@@ -485,6 +524,19 @@ function example(geochronometer,plotdevice,format){
 	    return({
 		"ierr": 1,
 		"data": {
+		    "Re187/Os187":      [],
+		    "err[Re187/Os187]": [],
+		    "Os188/Os187":      [],
+		    "err[Os188/Os187]": [],
+		    "(rho)":            [],
+		    "(C)":              [],
+		    "(omit)":           []
+		}
+	    });
+	case 3:
+	    return({
+		"ierr": 1,
+		"data": {
 		    "Re":           [13.36,13.2,16.98,32.7,49.81,44.25,47.09,47.16],
 		    "err[Re]":      [0.08,0.04,0.08,0.16,0.24,0.14,0.15,0.23],
 		    "Os":           [0.1939,0.1991,0.2575,0.2873,0.4903,0.3496,0.3409,0.3418],
@@ -512,6 +564,19 @@ function example(geochronometer,plotdevice,format){
 		}
 	    });
 	case 2:
+	    return({
+		"ierr": 1,
+		"data": {
+		    "Lu176/Hf176":      [],
+		    "err[Lu176/Hf176]": [],
+		    "Hf177/Hf176":      [],
+		    "err[Hf177/Hf176]": [],
+		    "(rho)":            [],
+		    "(C)":              [],
+		    "(omit)":           []
+		}
+	    });
+	case 3:
 	    return({
 		"ierr": 1,
 		"data": {

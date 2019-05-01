@@ -58,19 +58,19 @@
 	"i2i": "TRUE"
     },
     "Rb-Sr": {
-	"format": 2,
+	"format": 1,
 	"i2i": "TRUE"
     },
     "Sm-Nd": {
-	"format": 2,
+	"format": 1,
 	"i2i": "TRUE"
     },
     "Re-Os": {
-	"format": 2,
+	"format": 1,
 	"i2i": "TRUE"
     },
     "Lu-Hf": {
-	"format": 2,
+	"format": 1,
 	"i2i": "TRUE"
     },
     "U-Th-He": {},
