@@ -815,6 +815,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
@@ -824,6 +825,7 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'K-Ca':
 	    $('#KCa-formats option[value='+set.format+']').
@@ -833,6 +835,7 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iKCa').prop('checked',set.i2i=='TRUE');
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Rb-Sr':
 	    $('#RbSr-formats option[value='+set.format+']').
@@ -848,6 +851,7 @@ $(function(){
 	    $('#LambdaRb87').val(cst.lambda.Rb87[0]);
 	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
 	    $('#i2iRbSr').prop('checked',set.i2i=='TRUE');
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Sm-Nd':
 	    $('#SmNd-formats option[value='+set.format+']').
@@ -879,6 +883,7 @@ $(function(){
 	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
 	    $('#i2iSmNd').prop('checked',set.i2i=='TRUE');
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Re-Os':
 	    $('#ReOs-formats option[value='+set.format+']').
@@ -900,6 +905,7 @@ $(function(){
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
 	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Lu-Hf':
 	    $('#LuHf-formats option[value='+set.format+']').
@@ -919,6 +925,7 @@ $(function(){
 	    $('#LambdaLu176').val(cst.lambda.Lu176[0]);
 	    $('#errLambdaLu176').val(cst.lambda.Lu176[1]);
 	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'U-Th-He':
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -983,7 +990,6 @@ $(function(){
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.type+']').
 		prop('selected', 'selected');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
 	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
 	    $('#bg').val(set.bg);
@@ -1171,10 +1177,10 @@ $(function(){
 	    break;
 	case 'isochron':
 	    pdsettings.type = getOption("#ThU-isochron-types");
-	    pdsettings.inverse = truefalse('#inverse');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.model = getOption("#isochron-models");
+	    inverse(geochronometer);
 	case 'regression':
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.model = getOption("#isochron-models");
@@ -1496,6 +1502,14 @@ $(function(){
 	}
     }
 
+    function inverse(geochronometer){
+	var gcsettings = IsoplotR.settings[geochronometer];
+	if ($.inArray(geochronometer,['Pb-Pb','Ar-Ar','K-Ca','Rb-Sr',
+				      'Sm-Nd','Lu-Hf','Re-Os'])){
+	    gcsettings.inverse = truefalse('#inverse');
+	}
+    }
+    
     function i2i(geochronometer){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	switch (geochronometer){
