@@ -301,7 +301,7 @@ $(function(){
 	    (IsoplotR.settings['detritals'].format==1);
 	var omitters = ["U-Pb","Pb-Pb","Ar-Ar","K-Ca","Rb-Sr","Sm-Nd","Re-Os",
 			 "Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
-	var omissable = ($.inArray(geochronometer,omitters) >= 0);
+	var omissable = ($.inArray(geochronometer,omitters)>-1);
 	var val = null;
 	var row = [];
 	var good = false;
@@ -1505,7 +1505,7 @@ $(function(){
     function inverse(geochronometer){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	if ($.inArray(geochronometer,['Pb-Pb','Ar-Ar','K-Ca','Rb-Sr',
-				      'Sm-Nd','Lu-Hf','Re-Os'])){
+				      'Sm-Nd','Lu-Hf','Re-Os'])>-1){
 	    gcsettings.inverse = truefalse('#inverse');
 	}
     }
