@@ -69,7 +69,7 @@ No file Rd2.aux.
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
 No file Rd2.ind.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -82,7 +82,7 @@ xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on Rd2.pdf (1 page, 55988 bytes).
+Output written on Rd2.pdf (1 page, 56051 bytes).
 Transcript written on Rd2.log.
 This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -140,30 +140,30 @@ Package hyperref Warning: Option `pagebackref' has already been used,
 (/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
 Writing index file Rd2.idx
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.toc)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.toc)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
 No file Rd2.ind.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux) ){/usr/share/texlive/texmf-dist/font
-s/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/inconsol
-ata/i4-t1-0.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/I
-nconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
-r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (1 page, 56165 bytes).
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux) ){/usr/share/texlive/texmf-dist/fo
+nts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/incons
+olata/i4-t1-0.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata
+/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (1 page, 56229 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2017] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (1 entries accepted, 0 rejected).
@@ -227,22 +227,22 @@ Package hyperref Warning: Option `pagebackref' has already been used,
 (/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
 Writing index file Rd2.idx
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.toc)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.toc)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.ind [1{/var/lib/texmf/fonts/map/pdftex/up
-dmap/pdftex.map}] [2]) (/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.ind [1{/var/lib/texmf/fonts/map/pdftex/
+updmap/pdftex.map}] [2]) (/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -255,7 +255,7 @@ xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on Rd2.pdf (2 pages, 56517 bytes).
+Output written on Rd2.pdf (2 pages, 56578 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2017] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (1 entries accepted, 0 rejected).
@@ -319,30 +319,30 @@ Package hyperref Warning: Option `pagebackref' has already been used,
 (/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
 Writing index file Rd2.idx
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.toc)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.toc)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [1{/var/lib/texmf/fonts
-/map/pdftex/updmap/pdftex.map}] (/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.ind
-[2] [3]) (/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux) ){/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
-/inconsolata/i4-t1-0.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/inco
-nsolata/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
-vetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (3 pages, 64639 bytes).
+/map/pdftex/updmap/pdftex.map}] (/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.ind
+[2] [3]) (/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux) ){/usr/share/texlive/texm
+f-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvi
+ps/inconsolata/i4-t1-0.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/in
+consolata/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/h
+elvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (3 pages, 64703 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2017] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (1 entries accepted, 0 rejected).
@@ -406,31 +406,31 @@ Package hyperref Warning: Option `pagebackref' has already been used,
 (/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
 Writing index file Rd2.idx
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.out)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.toc)
+(/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.toc)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [1{/var/lib/texmf/fonts
-/map/pdftex/updmap/pdftex.map}] (/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.ind
-[2] [3]) (/tmp/RtmpL9TNn2/Rd2pdf1eb384800e/Rd2.aux) ){/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
-/inconsolata/i4-t1-0.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/inco
-nsolata/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
-vetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (3 pages, 65065 bytes).
+/map/pdftex/updmap/pdftex.map}] (/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.ind
+[2] [3]) (/tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0/Rd2.aux) ){/usr/share/texlive/texm
+f-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvi
+ps/inconsolata/i4-t1-0.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/in
+consolata/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/h
+elvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (3 pages, 65120 bytes).
 Transcript written on Rd2.log.
 Saving output to ‘IsoplotRgui-manual.pdf’ ...
 Done
-You may want to clean up by 'rm -rf /tmp/RtmpL9TNn2/Rd2pdf1eb384800e'
+You may want to clean up by 'rm -rf /tmp/RtmpnHTRWU/Rd2pdf6ae7571ef8e0'

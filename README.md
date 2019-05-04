@@ -48,7 +48,7 @@ online via the IsoplotR website at
 
 ## Further information
 
-See [http://isoplotr.london-geochron.com](http://ucl.ac.uk/~ucfbpve/isoplotrlnnn)
+See [http://isoplotr.london-geochron.com](http://ucl.ac.uk/~ucfbpve/isoplotr)
 
 ## Author
 

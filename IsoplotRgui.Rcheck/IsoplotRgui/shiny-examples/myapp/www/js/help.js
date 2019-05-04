@@ -272,17 +272,47 @@ function help(id){
 	    "is taken from Cheng et al. (2013). Its standard error excludes " +
 	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
 	break;
+    case "help-PbPb-inverse":
+	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +
+	    "against <sup>204</sup>Pb/<sup>206</sup>Pb. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>207</sup>Pb/<sup>204</sup>Pb " +
+	    "against <sup>206</sup>Pb/<sup>204</sup>Pb.";
+	break;
     case "help-ArAr-inverse":
 	text = "Selecting this box plots <sup>36</sup>Ar/<sup>40</sup>Ar " +
 	    "against <sup>39</sup>Ar/<sup>40</sup>Ar. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>40</sup>Ar/<sup>39</sup>Ar " +
 	    "against <sup>36</sup>Ar/<sup>39</sup>Ar.";
 	break;
-    case "help-PbPb-inverse":
-	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +
-	    "against <sup>204</sup>Pb/<sup>206</sup>Pb. Otherwise, " +
-	    "<tt>IsoplotR</tt> plots <sup>207</sup>Pb/<sup>204</sup>Pb " +
-	    "against <sup>206</sup>Pb/<sup>204</sup>Pb.";
+    case "help-KCa-inverse":
+	text = "Selecting this box plots <sup>44</sup>Ca/<sup>40</sup>Ca " +
+	    "against <sup>40</sup>K/<sup>40</sup>Ca. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>40</sup>Ca/<sup>44</sup>Ca " +
+	    "against <sup>40</sup>K/<sup>44</sup>Ca.";
+	break;
+    case "help-RbSr-inverse":
+	text = "Selecting this box plots <sup>86</sup>Sr/<sup>87</sup>Sr " +
+	    "against <sup>87</sup>Rb/<sup>87</sup>Sr. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>87</sup>Sr/<sup>86</sup>Sr " +
+	    "against <sup>87</sup>Rb/<sup>86</sup>Sr.";
+	break;
+    case "help-SmNd-inverse":
+	text = "Selecting this box plots <sup>144</sup>Nd/<sup>143</sup>Nd " +
+	    "against <sup>147</sup>Sm/<sup>143</sup>Nd. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>143</sup>Nd/<sup>144</sup>Nd " +
+	    "against <sup>147</sup>Sm/<sup>144</sup>Nd.";
+	break;
+    case "help-LuHf-inverse":
+	text = "Selecting this box plots <sup>177</sup>Hf/<sup>176</sup>Hf " +
+	    "against <sup>176</sup>Lu/<sup>176</sup>Hf. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>176</sup>Hf/<sup>177</sup>Hf " +
+	    "against <sup>176</sup>Lu/<sup>177</sup>Hf.";
+	break;
+    case "help-ReOs-inverse":
+	text = "Selecting this box plots <sup>188</sup>Os/<sup>187</sup>Os " +
+	    "against <sup>187</sup>Re/<sup>187</sup>Os. Otherwise, " +
+	    "<tt>IsoplotR</tt> plots <sup>187</sup>Os/<sup>188</sup>Os " +
+	    "against <sup>187</sup>Re/<sup>188</sup>Os.";
 	break;
     case "help-isochron-minx":
     case "help-minx-concordia":
@@ -861,18 +891,94 @@ function help(id){
 	    "where the error correlation is optional</li></ol>";
 	break;
     case "help-KCa-formats":
-	text = "Choose one of two input formats:<ol>" +
-	    "<li><tt>X=K/Ca err[X] Y=Ca/Ca err[Y] r[X,Y]</tt><br>" +
-	    "where <tt>X=K/Ca</tt> is the <sup>40</sup>K/<sup>44</sup>Ca ratio, " +
-	    "<tt>Y=Ca/Ca</tt> is the <sup>40</sup>Ca/<sup>44</sup>Ca ratio, and " +
-	    "<tt>err[X], err[Y]</tt> and <tt>rho[X,Y]</tt> are the "+
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>X err[X] Y err[Y] rho</tt><br>" +
+	    "where <tt>X</tt> is the <sup>40</sup>K/<sup>44</sup>Ca ratio, " +
+	    "<tt>Y</tt> is the <sup>40</sup>Ca/<sup>44</sup>Ca ratio, and " +
+	    "<tt>err[X], err[Y]</tt> and <tt>rho</tt> are the "+
+	    "uncertainties and error correlations, respectively.</li>" +
+	    "<li><tt>X err[X] Y err[Y] rho</tt><br>" +
+	    "where <tt>X</tt> is the <sup>40</sup>K/<sup>40</sup>Ca ratio, " +
+	    "<tt>Y</tt> is the <sup>44</sup>Ca/<sup>40</sup>Ca ratio, and " +
+	    "<tt>err[X], err[Y]</tt> and <tt>rho</tt> are the "+
 	    "uncertainties and error correlations, respectively.</li>" +
 	    "<li><tt>X err[X] Y err[Y] Z err[Z]</tt><br>" +
-	    "where <tt>X, err[X], Y,</tt> and <tt>err[Y]</tt> are defined as before, " +
+	    "where <tt>X, err[X], Y,</tt> and <tt>err[Y]</tt>" +
+	    " are defined as in option 1, " +
 	    "<tt>Z</tt> is the <sup>40</sup>K/<sup>40</sup>Ca ratio, and " +
 	    "<tt>err[Z]</tt> is its uncertainty. Here the redundancy between " +
 	    "three ratio uncertainties allows the covariance to be determined implicitly." +
 	    "</li></ol>";
+	break;
+    case "help-ArAr-formats":
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>39/36 err[39/36] 40/36 err[40/36] rho (39)</tt><br>" +
+	    "where <tt>rho</tt> is the error correlation between " +
+	    "<tt>39/36</tt> and <tt>40/36</tt> and (39) is the " +
+	    "(optional) amount of <sup>39</sup>Ar.</li>" +
+	    "<li><tt>39/40 err[39/40] 36/40 err[36/40] (rho) (39)</tt><br>" +
+	    "where the error correlation is optional.</li>" +
+	    "<li><tt>39/40 err[39/40] 36/40 err[36/40] 39/36 err[39/36] (39)</tt><br>" +
+	    "in which the error correlations are calculated from the" +
+	    "redundancies between the three sets of uncertainties.</li></ol>";
+	break;
+    case "help-RbSr-formats":
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>X=Rb87/Sr86 err[X] Y=Sr87/Sr86 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Rb87/Sr86</tt> and <tt>Sr87/Sr86</tt></li>" +
+	    "<li><tt>X=Rb87/Sr87 err[X] Y=Sr86/Sr87 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Rb86/Sr87</tt> and <tt>Sr86/Sr87</tt></li>" +
+	    "<li><tt>Rb err[Rb] Sr err[Sr] 87/86 err[87/86]</tt><br>" +
+	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.</li></ol>";
+	break;
+    case "help-LuHf-formats":
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>X=Lu176/Hf177 err[X] Y=Hf176/Hf177 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Lu176/Hf177</tt> and <tt>Hf176/Hf177</tt></li>" +
+	    "<li><tt>X=Lu176/Hf176 err[X] Y=Hf177/Hf176 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Lu177/Hf176</tt> and <tt>Hf177/Hf176</tt></li>" +
+	    "<li><tt>Lu err[Lu] Hf err[Hf] 176/177 err[176/177]</tt><br>" +
+	    "where <tt>Lu</tt> and <tt>Hf</tt> are in ppm.</li></ol>";
+	break;
+    case "help-ReOs-formats":
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>X=Re187/Os188 err[X] Y=Os187/Os188 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Re187/Os188</tt> and <tt>Os187/Os188</tt></li>" +
+	    "<li><tt>X=Re187/Os187 err[X] Y=Os188/Os187 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Re187/Os187</tt> and <tt>Os188/Os187</tt></li>" +
+	    "<li><tt>Re err[Re] Os err[Os] 187/188 err[187/188]</tt><br>" +
+	    "where <tt>Re</tt> and <tt>Os</tt> are in ppm.</li></ol>";
+	break;
+    case "help-SmNd-formats":
+	text = "Choose one of three input formats:<ol>" +
+	    "<li><tt>X=Sm147/Nd144 err[X] Y=Nd143/Nd144 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Sm147/Nd144</tt> and <tt>Nd143/Nd144</tt></li>" +
+	    "<li><tt>X=Sm147/Nd143 err[X] Y=Nd144/Nd143 err[Y] (rho)</tt><br>" +
+	    "where <tt>rho</tt> is the (optional) error correlation between " +
+	    "<tt>Sm147/Nd143</tt> and <tt>Nd144/Nd143</tt></li>" +
+	    "<li><tt>Sm err[Sm] Nd err[Nd] 143/144 err[143/144]</tt><br>" +
+	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.</li></ol>";
+	break;
+    case "help-FT-formats":
+	text = "Choose one of three fission track dating methods:<ol>" +
+	    "<li>'EDM' = the External Detector Method: determines the " +
+	    "sample's uranium content by proxy, using neutron-induced tracks " +
+	    "recorded in a mica detector; </li>" +
+	    "<li>'ICP (&zeta;)': determines " +
+	    "the uranium content directly by LA-ICP-MS using a zeta calibration " +
+	    "approach in which all measurements are normalised to " +
+	    "age standards; </li>" +
+	    "<li>'ICP (absolute)': uses LA-ICP-MS without age " +
+	    "standards, assuming that the fission decay constant, etch " +
+	    "efficiency factor and uranium concentrations are known with " +
+	    "sufficient accuracy.</li></ol>";
 	break;
     case "help-ThU-isochron-types":
 	text = "Choose one of four input formats:<ol>" +
@@ -937,67 +1043,6 @@ function help(id){
 	    "(model 1), one can also attribute it to the presence of geological " +
 	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>." +
 	    "</li></ol>";
-	break;
-    case "help-ArAr-formats":
-	text = "Choose one of three input formats:<ol>" +
-	    "<li><tt>39/36 err[39/36] 40/36 err[40/36] rho (39)</tt><br>" +
-	    "where <tt>rho</tt> is the error correlation between " +
-	    "<tt>39/36</tt> and <tt>40/36</tt> and (39) is the " +
-	    "(optional) amount of <sup>39</sup>Ar.</li>" +
-	    "<li><tt>39/40 err[39/40] 36/40 err[36/40] (rho) (39)</tt><br>" +
-	    "where the error correlation is optional.</li>" +
-	    "<li><tt>39/40 err[39/40] 36/40 err[36/40] 39/36 err[39/36] (39)</tt><br>" +
-	    "in which the error correlations are calculated from the" +
-	    "redundancies between the three sets of uncertainties.</li></ol>";
-	break;
-    case "help-RbSr-formats":
-	text = "Choose one of two input formats:<ol>" +
-	    "<li><tt>Rb87/Sr86 err[Rb87/Sr86] Sr87/Sr86 err[Sr87/Sr86] (rho)</tt><br>" +
-	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Rb87/Sr86</tt> and <tt>Sr87/Sr86</tt></li>" +
-	    "<li><tt>Rb err[Rb] Sr err[Sr] 87/86 err[87/86]</tt><br>" +
-	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.</li></ol>";
-	break;
-    case "help-LuHf-formats":
-	text = "Choose one of two input formats:<ol>" +
-	    "<li><tt>Lu176/Hf177 err[Lu176/Hf177] Hf176/Hf177 " +
-	    "err[Hf176/Hf177] (rho)</tt><br>" +
-	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Lu176/Hf177</tt> and <tt>Hf176/Hf177</tt></li>" +
-	    "<li><tt>Lu err[Lu] Hf err[Hf] 176/177 err[176/177]</tt><br>" +
-	    "where <tt>Lu</tt> and <tt>Hf</tt> are in ppm.</li></ol>";
-	break;
-    case "help-ReOs-formats":
-	text = "Choose one of two input formats:<ol>" +
-	    "<li><tt>Re187/Os188 err[Re187/Os188] Os187/Os188 " +
-	    "err[Os187/Os188] (rho)</tt><br>" +
-	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Re187/Os188</tt> and <tt>Os187/Os188</tt></li>" +
-	    "<li><tt>Re err[Re] Os err[Os] 187/188 err[187/188]</tt><br>" +
-	    "where <tt>Re</tt> and <tt>Os</tt> are in ppm.</li></ol>";
-	break;
-    case "help-SmNd-formats":
-	text = "Choose one of two input formats:<ol>" +
-	    "<li><tt>Sm147/Nd144 err[Sm147/Nd144] Nd143/Nd144 " +
-	    "err[Nd143/Nd144] (rho)</tt><br>" +
-	    "where <tt>rho</tt> is the (optional) error correlation between " +
-	    "<tt>Sm147/Nd144</tt> and <tt>Nd143/Nd144</tt></li>" +
-	    "<li><tt>Sm err[Sm] Nd err[Nd] 143/144 err[143/144]</tt><br>" +
-	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.</li></ol>";
-	break;
-    case "help-FT-formats":
-	text = "Choose one of three fission track dating methods:<ol>" +
-	    "<li>'EDM' = the External Detector Method: determines the " +
-	    "sample's uranium content by proxy, using neutron-induced tracks " +
-	    "recorded in a mica detector; </li>" +
-	    "<li>'ICP (&zeta;)': determines " +
-	    "the uranium content directly by LA-ICP-MS using a zeta calibration " +
-	    "approach in which all measurements are normalised to " +
-	    "age standards; </li>" +
-	    "<li>'ICP (absolute)': uses LA-ICP-MS without age " +
-	    "standards, assuming that the fission decay constant, etch " +
-	    "efficiency factor and uranium concentrations are known with " +
-	    "sufficient accuracy.</li></ol>";
 	break;
     case "help-UPb-age-type":
 	text = "Choose one of five options:<ol>" +

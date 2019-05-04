@@ -47,31 +47,38 @@
     },
     "Pb-Pb": {
 	"format": 3,
-	"commonPb": 2
+	"commonPb": 2,
+	"inverse": "TRUE"
     },
     "Ar-Ar": {
 	"format": 3,
-	"i2i": "FALSE"
+	"i2i": "FALSE",
+	"inverse": "TRUE"
     },
     "K-Ca": {
 	"format": 1,
-	"i2i": "TRUE"
+	"i2i": "TRUE",
+	"inverse": "FALSE"
     },
     "Rb-Sr": {
-	"format": 2,
-	"i2i": "TRUE"
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
     },
     "Sm-Nd": {
-	"format": 2,
-	"i2i": "TRUE"
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
     },
     "Re-Os": {
-	"format": 2,
-	"i2i": "TRUE"
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
     },
     "Lu-Hf": {
-	"format": 2,
-	"i2i": "TRUE"
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
     },
     "U-Th-He": {},
     "other": {
@@ -118,7 +125,6 @@
     "isochron": {
 	"type": 2,
 	"model": 1,
-	"inverse": "TRUE",
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"minx": "auto",
