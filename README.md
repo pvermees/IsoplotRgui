@@ -75,7 +75,7 @@ chmod 755 IsoplotR.sh
 ```
 # Minute    Hour   Day of Month    Month            Day of Week           Command
 # (0-59)   (0-23)    (1-31)    (1-12 or Jan-Dec) (0-6 or Sun-Sat)
-    0        0         *             *                  0        /home/pvermees/IsoplotR.sh
+    0        0         *             *                  0        /srv/shiny-server/IsoplotR.sh
 ```
 
 which will automatically synchronise **IsoplotR** and **IsoplotRgui** with **GitHub** on every Sunday.
