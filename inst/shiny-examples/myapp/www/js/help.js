@@ -148,30 +148,50 @@ function help(id){
 	    "<sup>238</sup>U activity ratio of the detritus and its standard error.";
 	break;
     case "help-U48-UPb":
-	text = "Specify the assumed initial <sup>234</sup>U/" +
+	text = "Specify the (initial or measured) <sup>234</sup>U/" +
 	    "<sup>238</sup>U activity ratio of the sample. " +
 	    "1.15 is the canonical value for modern sea water.";
 	break;
     case "help-Th0U8-UPb":
-	text = "Specify the assumed initial <sup>230</sup>Th/" +
+	text = "Specify the (initial or measured) <sup>230</sup>Th/" +
 	    "<sup>238</sup>U activity ratio of the sample. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-Ra6U8-UPb":
-	text = "Specify the assumed initial <sup>226</sup>Ra/" +
+	text = "Specify the (initial or measured) <sup>226</sup>Ra/" +
 	    "<sup>238</sup>U activity ratio of the sample. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-Pa1U5-UPb":
-	text = "Specify the assumed initial <sup>231</sup>Pa/" +
+	text = "Specify the (initial or measured) <sup>231</sup>Pa/" +
 	    "<sup>235</sup>U activity ratio of the sample. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
+    case "help-fThU":
+	text = "Specify the Th/U fractionation between the mineral (m)" +
+	    "and the magma (M): f(Th/U) = (Th/U)<sub>m</sub>/(Th/U)<sub>M</sub>. " +
+	    "Set to 1 for secular equilibrium.";
+	break;
+    case "help-fRaU":
+	text = "Specify the Ra/U fractionation between the mineral (m)" +
+	    "and the magma (M): f(Ra/U) = (Ra/U)<sub>m</sub>/(Ra/U)<sub>M</sub>. " +
+	    "Set to 1 for secular equilibrium.";
+	break;
+    case "help-fPaU":
+	text = "Specify the Pa/U fractionation between the mineral (m)" +
+	    "and the magma (M): f(Pa/U) = (Pa/U)<sub>m</sub>/(Pa/U)<sub>M</sub>. " +
+	    "Set to 1 for secular equilibrium.";
+	break;
     case "help-diseq":
-	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
-	    "initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on: <ol>" +
+	    "<li> the initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
 	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
-	    "ratios of the sample.";
+	    "ratios of the sample.</li>" +
+	    "<li> the current <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
+	    "ratios of the sample.</li>" +
+	    "<li> the fractionation factors of Th/U, Ra/U and Pa/U between the mineral "+
+	    "and the magma from which the sample formed.</li></ol>";
 	break;
     case "help-rXY-detritus":
 	text = "Specify the error correlation between the measured " +

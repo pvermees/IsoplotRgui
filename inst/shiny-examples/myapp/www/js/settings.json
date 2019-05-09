@@ -32,7 +32,7 @@
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,
-	"diseq": "FALSE",
+	"diseq": 0,
 	"U48": 1.15,
 	"Th0U8": 0,
 	"Ra6U8": 0,
