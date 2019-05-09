@@ -786,6 +786,9 @@ $(function(){
 	    $('#Th0U8').val(set.Th0U8);
 	    $('#Ra6U8').val(set.Ra6U8);
 	    $('#Pa1U5').val(set.Pa1U5);
+	    $('#fThU').val(set.fThU);
+	    $('#fRaU').val(set.fRaU);
+	    $('#fPaU').val(set.fPaU);
 	    break;
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
@@ -1360,6 +1363,9 @@ $(function(){
 	    gcsettings.Th0U8 = getNumber('#Th0U8');
 	    gcsettings.Ra6U8 = getNumber('#Ra6U8');
 	    gcsettings.Pa1U5 = getNumber('#Pa1U5');
+	    gcsettings.fThU = getNumber('#fThU');
+	    gcsettings.fRaU = getNumber('#fRaU');
+	    gcsettings.fPaU = getNumber('#fPaU');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");

@@ -48,21 +48,21 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"Ar-Ar") & format==1){
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1:2] <- d[3:4]
+            mat[2,1:2] <- dat[3:4]
             mat[3,1:6] <- c('Ar39Ar36','errAr39Ar36',
                             'Ar40Ar36','errAr40Ar36',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==2) {
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1:2] <- d[3:4]
+            mat[2,1:2] <- dat[3:4]
             mat[3,1:6] <- c('Ar39Ar40','errAr39Ar40',
                             'Ar36Ar40','errAr36Ar40',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==3) {
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1:2] <- d[3:4]
+            mat[2,1:2] <- dat[3:4]
             mat[3,1:7] <- c('Ar39Ar40','errAr39Ar40',
                             'Ar36Ar40','errAr36Ar40',
                             'Ar39Ar36','errAr39Ar36','Ar39')
@@ -120,22 +120,22 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"fissiontracks") & format==1){
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
-            mat[2,1:2] <- d[3:4]
+            mat[2,1:2] <- dat[3:4]
             mat[3,1:2] <-c('rhoD','errRhoD')
-            mat[4,1:2] <- d[5:6]
+            mat[4,1:2] <- dat[5:6]
             mat[5,1:2] <- c('Ns','Ni')
         } else if (identical(method,"fissiontracks") & format==2){
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
-            mat[2,1:2] <- d[3:4]
+            mat[2,1:2] <- dat[3:4]
             mat[3,1] <-'spot-size'
-            mat[4,1] <- d[5]
+            mat[4,1] <- dat[5]
             mat[5,1:2] <- c('Ns','A')
             mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
         } else if (identical(method,"fissiontracks") & format==3){
             mat <- matrix('',3,nc)
             mat[1,1] <-'spot-size'
-            mat[2,1] <- d[3]
+            mat[2,1] <- dat[3]
             mat[3,1:2] <- c('Ns','A')
             mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
         } else if (identical(method,"U-Th-He")){
@@ -149,7 +149,7 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"other")){
             mat <- NULL
         }
-        mat <- rbind(mat,matrix(d[bi:nn],ncol=nc,byrow=TRUE))
+        mat <- rbind(mat,matrix(dat[bi:nn],ncol=nc,byrow=TRUE))
         if (!identical(method,"detritals")){
             mat <- subset(mat,select=-nc) # the last column may contain letters
         }
@@ -182,23 +182,23 @@ shiny::shinyServer(function(input,output,session){
     }
     
     selection2levels <- function(method="U-Pb",format=1){
-        d <- input$data
-        nn <- length(d)
+        dat <- input$data
+        nn <- length(dat)
         bi <- getbi(method=method,format=format)
-        nc <- as.numeric(d[2])
+        nc <- as.numeric(dat[2])
         lc <- nc-1 # penultimate column
         li <- seq(from=bi+lc-1,to=nn-1,by=nc)
-        as.numeric(d[li])
+        as.numeric(dat[li])
     }
     
     selection2omit <- function(method="U-Pb",format=1){
-        d <- input$data
-        nn <- length(d)
+        dat <- input$data
+        nn <- length(dat)
         bi <- getbi(method=method,format=format)
-        nc <- as.numeric(d[2])
+        nc <- as.numeric(dat[2])
         oc <- nc
         oi <- seq(from=bi+oc-1,to=nn,by=nc)
-        d[oi]
+        dat[oi]
     }
 
     omitter <- function(flags=c('x','X'),method="U-Pb",format=1){
