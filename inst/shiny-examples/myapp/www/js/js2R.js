@@ -431,11 +431,16 @@ function getRcommand(prefs){
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
     }
-    if (geochronometer=='U-Pb' && gcsettings.diseq=='TRUE'){
+    if (geochronometer=='U-Pb'){
+	out += ",d=IsoplotR::diseq(option=" + gcsettings.diseq;
 	out += ",U48=" + gcsettings.U48;
 	out += ",Th0U8=" + gcsettings.Th0U8;
 	out += ",Ra6U8=" + gcsettings.Ra6U8;
 	out += ",Pa1U5=" + gcsettings.Pa1U5;
+	out += ",fThU=" + gcsettings.fThU;
+	out += ",fRaU=" + gcsettings.fRaU;
+	out += ",fPaU=" + gcsettings.fPaU;
+	out += ")";
     } else if (geochronometer=='Th-U'){
 	out += ",Th02=" + concatenate(gcsettings.Th02);
 	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);

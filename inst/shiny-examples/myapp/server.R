@@ -1,12 +1,11 @@
 shiny::shinyServer(function(input,output,session){
 
-    selection2data <- function(method="U-Pb",format=1,ierr=1,
-                               U48=1,Th0U8=1,Ra6U8=1,Pa1U5=1,
+    selection2data <- function(method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
                                Th02=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
-        d <- input$data
-        nn <- length(d)
-        nr <- as.numeric(d[1])
-        nc <- as.numeric(d[2])
+        dat <- input$data
+        nn <- length(dat)
+        nr <- as.numeric(dat[1])
+        nc <- as.numeric(dat[2])
         mat <- matrix('',1,nc) # header
         bi <- getbi(method=method,format=format)
         if (identical(method,"U-Pb") & format==1) {
@@ -155,8 +154,7 @@ shiny::shinyServer(function(input,output,session){
             mat <- subset(mat,select=-nc) # the last column may contain letters
         }
         if (identical(method,'U-Pb')){
-            out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,
-                                       U48=U48,Th0U8=Th0U8,Ra6U8=Ra6U8,Pa1U5=Pa1U5)
+            out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,d=d)
         } else if (identical(method,'Th-U')){
             out <- IsoplotR::read.data(mat,method=method,format=format,
                                        ierr=ierr,Th02=Th02,Th02U48=Th02U48)
