@@ -774,57 +774,40 @@ function help(id){
 	text = "Outline colour for the plot symbols (e.g., " +
 	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
 	break;
-    case "help-ellipse-col1":
-	text = "Fill colour for the error ellipses. Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>...<br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
+    case "help-ellipse-col":
+	text = "Fill colour for the error ellipses. This can either be " +
+	    "a single colour or multiple colours to form a colour ramp:" +
+	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>, ... </li>" +
+	    "<li>multiple colours: <tt>c('#FF000080','#00FF0080')</tt>, " +
+	    "<tt>c(rbg(1,0,0,0.5),rgb(0,1,0,0.5))</tt>, " +
+	    "<tt>c('blue','red')</tt>, <tt>c('blue','yellow','red','white')</tt>, ... </li>" +
+	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
+	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, ...</li>" +
+	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
+	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>";
 	break;
-    case "help-ellipse-col2":
-	text = 	"Second ellipse colour to be used to build a graded " +
-	    "colour scale to display the optional input column labeled '(C)'. " +
-	    "Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)<p></p>" +
-	    "If '(C)' is empty, then only one colour is used.";
+    case "help-bg":
+	text = "Fill colour for the error ellipses. This can either be " +
+	    "a single colour or multiple colours to form a colour ramp:" +
+	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>, ... </li>" +
+	    "<li>multiple colours: <tt>c('#FF000080','#00FF0080')</tt>, " +
+	    "<tt>c(rbg(1,0,0,0.5),rgb(0,1,0,0.5))</tt>, " +
+	    "<tt>c('blue','red')</tt>, <tt>c('blue','yellow','red','white')</tt>, ... </li>" +
+	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
+	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, ...</li>" +
+	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
+	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>";
 	break;
-    case "help-bg1":
-	text = "Fill colour for the plot symbols. Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>...<br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
-	break;
-    case "help-bg2":
-	text = 	"Second fill colour to be used to build a graded " +
-	    "colour scale to display the optional input column labeled '(C)'. " +
-	    "Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)<p></p>" +
-	    "If '(C)' is empty, then only one colour is used.";
-	break;
-    case "help-bg3":
+    case "help-outlier-col":
 	text = 	"Fill colour used to mark the outliers. Examples:<p></p>" +
 	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
 	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
 	    "(please note the apostrophes!)";
-	break;
-    case "help-bg3-plateau":
-	text = 	"Fill colour used to mark the age plateau. Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
-	break;
-    case "help-bg":
-	text = "Fill colour for the plot symbols (e.g., " +
-	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
 	break;
     case "help-concordia-ticks":
 	text = "Comma-separated list of custom age ticks for the concordia line.";
