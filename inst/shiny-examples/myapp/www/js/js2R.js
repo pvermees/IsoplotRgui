@@ -32,7 +32,7 @@ function getOptions(prefs){
 	out += ",show.age=" + pdsettings.showage;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",common.Pb=" + gcsettings.commonPb;
-	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",ellipse.col=" + pdsettings.ellipsecol;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
 	out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
@@ -68,7 +68,7 @@ function getOptions(prefs){
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
 	out += ",pch=" + pdsettings.pch;
 	out += ",cex=" + pdsettings.cex;
-	out += ",bg=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",bg=" + pdsettings.bg;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
@@ -115,7 +115,7 @@ function getOptions(prefs){
 	out += ",format=" + gcsettings.format + ")";
 	out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
-	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",ellipse.col=" + pdsettings.ellipsecol;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
@@ -168,7 +168,7 @@ function getOptions(prefs){
 	} else {
 	    out += ",format=" + gcsettings.format + ")";
 	}
-	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",ellipse.col=" + pdsettings.ellipsecol;
 	break;
     case 'average':
 	switch (geochronometer){
@@ -206,8 +206,8 @@ function getOptions(prefs){
 	    out += ",format=" + gcsettings.format;
 	}
 	out += ")";
-	out += ",rect.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
-	out += ",outlier.col=" + pdsettings.bg3;
+	out += ",rect.col=" + pdsettings.rectcol;
+	out += ",outlier.col=" + pdsettings.outliercol;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
@@ -235,8 +235,8 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
-	out += ",plateau.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";	
-	out += ",non.plateau.col=" + pdsettings.bg3;
+	out += ",plateau.col=" + pdsettings.plateaucol;	
+	out += ",non.plateau.col=" + pdsettings.nonplateaucol;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (geochronometer=='other'){
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
@@ -352,7 +352,7 @@ function getOptions(prefs){
 	out += ",levels=selection2levels(method='" + geochronometer + "')";
 	out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
 	out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
-	out += ",ellipse.col=c(" + pdsettings.bg1 + "," + pdsettings.bg2 + ")";
+	out += ",ellipse.col=" + pdsettings.ellipsecol;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
