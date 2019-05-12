@@ -786,10 +786,11 @@ function help(id){
 	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
 	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, ...</li>" +
 	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
-	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>";
+	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
+	    "Enter <tt>NA</tt> for empty error ellipses.";
 	break;
     case "help-bg":
-	text = "Fill colour for the error ellipses. This can either be " +
+	text = "Fill colour for the plot symbols. This can either be " +
 	    "a single colour or multiple colours to form a colour ramp:" +
 	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>" +
@@ -800,14 +801,15 @@ function help(id){
 	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
 	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, ...</li>" +
 	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
-	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>";
+	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
+	    "Enter <tt>NA</tt> for empty plot symbols.";
 	break;
     case "help-outlier-col":
 	text = 	"Fill colour used to mark the outliers. Examples:<p></p>" +
 	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
 	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
+	    "Enter <tt>NA</tt> for empty plot symbols.";
 	break;
     case "help-concordia-ticks":
 	text = "Comma-separated list of custom age ticks for the concordia line.";
