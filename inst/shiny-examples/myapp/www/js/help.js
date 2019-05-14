@@ -778,13 +778,16 @@ function help(id){
 	text = "Fill colour for the error ellipses. This can either be " +
 	    "a single colour or multiple colours to form a colour ramp:" +
 	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>" +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, " +
 	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>, ... </li>" +
 	    "<li>multiple colours: <tt>c('#FF000080','#00FF0080')</tt>, " +
 	    "<tt>c(rbg(1,0,0,0.5),rgb(0,1,0,0.5))</tt>, " +
 	    "<tt>c('blue','red')</tt>, <tt>c('blue','yellow','red','white')</tt>, ... </li>" +
 	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
-	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, ...</li>" +
+	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, " +
+	    "<tt>terrain.colors(n=256)</tt>, " +
+	    "<tt>heat.colors(n=10,alpha=0.8)</tt>, " +
+	    "<tt>cm.colors(n=10,alpha=0.5)</tt>, ...</li>" +
 	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
 	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
 	    "Enter <tt>NA</tt> for empty error ellipses.";
@@ -799,7 +802,10 @@ function help(id){
 	    "<tt>c(rbg(1,0,0,0.5),rgb(0,1,0,0.5))</tt>, " +
 	    "<tt>c('blue','red')</tt>, <tt>c('blue','yellow','red','white')</tt>, ... </li>" +
 	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
-	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, ...</li>" +
+	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, " +
+	    "<tt>terrain.colors(n=256)</tt>, " +
+	    "<tt>heat.colors(n=10,alpha=0.8)</tt>, " +
+	    "<tt>cm.colors(n=10,alpha=0.5)</tt>, ...</li>" +
 	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
 	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
 	    "Enter <tt>NA</tt> for empty plot symbols.";
