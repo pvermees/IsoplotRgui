@@ -95,7 +95,7 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"alpha": 0.05,
-	"wetherill": "TRUE",
+	"type": 1,
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 0,

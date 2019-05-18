@@ -42,6 +42,8 @@ $(function(){
 	    case 4: return 11;
 	    case 5: return 11;
 	    case 6: return 14;
+	    case 7:
+	    case 8: return 16;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
@@ -300,7 +302,7 @@ $(function(){
 	var detrital1 = (geochronometer=='detritals') &
 	    (IsoplotR.settings['detritals'].format==1);
 	var omitters = ["U-Pb","Pb-Pb","Ar-Ar","K-Ca","Rb-Sr","Sm-Nd","Re-Os",
-			 "Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
+		        "Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
 	var omissable = ($.inArray(geochronometer,omitters)>-1);
 	var val = null;
 	var row = [];
@@ -979,7 +981,8 @@ $(function(){
 	    }
 	    break;
 	case 'concordia':
-	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
+	    $('#tera-wasserburg option[value='+set.type+']').
+		prop('selected', 'selected');
 	    $('#conc-age-option option[value='+set.showage+']').
 		prop('selected', 'selected');
 	    $('#anchor-option option[value='+set.anchor+']').
@@ -1160,7 +1163,7 @@ $(function(){
 	var set = IsoplotR.constants;
 	switch (plotdevice){
 	case 'concordia':
-	    pdsettings.wetherill = falsetrue('#tera-wasserburg');
+	    pdsettings.type = getOption('#tera-wasserburg');
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showage = getOption('#conc-age-option');

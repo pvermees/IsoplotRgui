@@ -26,7 +26,7 @@ function getOptions(prefs){
 	    out += ",ticks=c(" + pdsettings.ticks + ")";
 	}
 	out += ",alpha=" + pdsettings.alpha;
-	out += ",wetherill=" + pdsettings.wetherill;
+	out += ",type=" + pdsettings.type;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",show.age=" + pdsettings.showage;
