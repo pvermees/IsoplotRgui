@@ -390,6 +390,14 @@ $(function(){
 		$('.show4UPb6').show();
 		$('.hide4UPb6').hide();
 		break;
+	    case 7:
+		$(".show4UPb7").show();
+		$('.hide4UPb7').hide();
+		break;
+	    case 8:
+		$(".show4UPb8").show();
+		$('.hide4UPb8').hide();
+		break;
 	    }
 	    switch (set.type){
 	    case 1:
@@ -781,6 +789,8 @@ $(function(){
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
+	    $('#LambdaTh232').val(cst.lambda.Th232[0]);
+	    $('#errLambdaTh232').val(cst.lambda.Th232[1]);
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
@@ -1355,6 +1365,8 @@ $(function(){
 	    gcsettings.fRaU = getNumber('#fRaU');
 	    gcsettings.fPaU = getNumber('#fPaU');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
+	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
+	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    set.iratio.U238U235[0] = getNumber("#U238U235");
