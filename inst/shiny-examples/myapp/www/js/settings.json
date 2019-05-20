@@ -102,7 +102,7 @@
 	"anchor":0,
 	"tanchor":0,
 	"sigdig": 2,
-	"ellipsecol": "c('#00FF0080','#FF000080')",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"clabel": "",
 	"ticks": "auto"
     },
@@ -119,7 +119,7 @@
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",
 	"sigdig": 2,
-	"ellipsecol": "c('#00FF0080','#FF000080')",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"model": 1,
 	"clabel": ""
     },
@@ -134,7 +134,7 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"ellipsecol": "c('#00FF0080','#FF000080')",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"growth": "FALSE",
 	"clabel": ""
     },
@@ -147,7 +147,7 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"ellipsecol": "c('#00FF0080','#FF000080')",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"clabel": ""
     },
     "radial": {
@@ -157,7 +157,7 @@
 	"maxt": "auto",
 	"pch": 21,
 	"cex": 1,
-	"bg": "c('#00FF0080','#FF000080')",
+	"bg": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"sigdig": 2,
 	"alpha": 0.05,
 	"shownumbers": "FALSE",
@@ -173,8 +173,8 @@
 	"mint": "auto",
 	"maxt": "auto",
 	"ranked": "FALSE",
-	"rectcol": "c('#00FF0080','#FF000080')",
-	"outliercol": "'#00FFFF80'",
+	"rectcol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"outliercol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "spectrum": {
@@ -183,8 +183,8 @@
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE",
-	"plateaucol": "c('#00FF0080','#FF000080')",
-	"nonplateaucol": "'#00FFFF80'",
+	"plateaucol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"nonplateaucol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "KDE": {
@@ -234,7 +234,7 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"fact": "auto",
-	"ellipsecol": "c('#00FF0080','#FF000080')",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"model": 1,
 	"clabel": ""
     },
