@@ -658,6 +658,20 @@ $(function(){
 	}
 	switch (plotdevice){
 	case 'concordia':
+	    switch (pd.type){
+	    case 1:
+		$('.show4wetherill').show();
+		$('.hide4wetherill').hide();
+		break;
+	    case 2:
+		$('.show4terawasserburg').show();
+		$('.hide4terawasserburg').hide();
+		break;
+	    case 3:
+		$('.show4UThPbconcordia').show();
+		$('.hide4UThPbconcordia').hide();
+		break;		
+	    }
 	    switch (pd.showage){
 	    case 0:
 		$('.show4noUPbAge').show();

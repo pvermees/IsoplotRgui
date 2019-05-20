@@ -10,27 +10,27 @@
 
 <p></p>
 
-&nbsp;<help id="help-conc-age-option">Calculate</help>
-<select id="conc-age-option" onchange="$.register();">
-  <option value=0>no</option>
-  <option value=1>concordia</option>
-  <option value=2>discordia (model-1)</option>
-  <option value=3>discordia (model-2)</option>
-  <option value=4>discordia (model-3)</option>
-</select>
-age
-
-<div hidden class="hide4noUPbAge hide4concordiaAge show4discordia">
+<div class="show4wetherill show4terawasserburg hide4UThPbconcordia">
+  &nbsp;<help id="help-conc-age-option">Calculate</help>
+  <select id="conc-age-option" onchange="$.register();">
+    <option value=0>no</option>
+    <option value=1>concordia</option>
+    <option value=2>discordia (model-1)</option>
+    <option value=3>discordia (model-2)</option>
+    <option value=4>discordia (model-3)</option>
+  </select>
+  age
+  <div hidden class="hide4noUPbAge hide4concordia show4discordia">
+    <p></p>
+    &nbsp;<help id="help-anchor-option">Anchored discordia line?</help>
+    <select id="anchor-option" onchange="$.register();">
+      <option value=0>no</option>
+      <option value=1>age</option>
+      <option value=2>Pb</option>
+    </select>
+  </div>
 <p></p>
-&nbsp;<help id="help-anchor-option">Anchored discordia line?</help>
-<select id="anchor-option" onchange="$.register();">
-  <option value=0>no</option>
-  <option value=1>age</option>
-  <option value=2>Pb</option>
-</select>
 </div>
-
-<p></p>
 
 <table>
   <tr hidden class="show4tanchor">
