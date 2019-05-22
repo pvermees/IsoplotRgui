@@ -10,10 +10,12 @@ function help(id){
 	    "</ol>";
 	break;
     case "help-tera-wasserburg":
-	text = "Tick this box to plot the <sup>207</sup>Pb/<sup>206</sup>Pb- " +
-	    "vs. the <sup>238</sup>U/<sup>206</sup>Pb-ratio. Untick to " +
-	    "plot the <sup>207</sup>Pb/<sup>235</sup>U- vs. " +
-	    "<sup>206</sup>Pb/<sup>238</sup>U-ratio (Wetherill concordia).";
+	text = "<ol><li>Wetherill: <sup>206</sup>Pb/<sup>238</sup>U vs." +
+	    "<sup>207</sup>Pb/<sup>235</sup>U</li>" +
+	    "<li>Tera-Wasserburg: <sup>207</sup>Pb/<sup>206</sup>Pb " +
+	    "vs. <sup>238</sup>U/<sup>206</sup>Pb</li>" +
+	    "<li>U-Th-Pb concordia: <sup>208</sup>Pb/<sup>232</sup>Th " +
+	    "vs. <sup>206</sup>Pb/<sup>238</sup>U</li></ol>";
 	break;
     case "help-conc-age-option":
 	text = "Select the option to either <ul> " +
