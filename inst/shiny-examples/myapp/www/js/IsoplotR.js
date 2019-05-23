@@ -8,16 +8,21 @@ $(function(){
 	var out = {
 	    constants: null,
 	    settings: null,
+	    data: null,
 	    data4server: [],
 	    optionschanged: false
 	}
 	var cfile = './js/constants.json';
 	var sfile = './js/settings.json';
+	var dfile = './js/data.json';
 	$.getJSON(cfile, function(data){
 	    out.constants = data;
 	});
 	$.getJSON(sfile, function(data){
 	    out.settings = data;
+	});
+	$.getJSON(dfile, function(data){
+	    out.data = data;
 	    selectGeochronometer();
 	    out = populate(out,true);
 	    $("#INPUT").handsontable({ // add change handler asynchronously
@@ -117,10 +122,10 @@ $(function(){
 	return 0;
     }
 
-    function json2handson(settings){
-	var geochronometer = settings.geochronometer;
-	var json = settings.data[geochronometer];
-	var gcsettings = settings[geochronometer];
+    function json2handson(){
+	var geochronometer = IsoplotR.settings.geochronometer;
+	var json = IsoplotR.data[geochronometer];
+	var gcsettings = IsoplotR.settings[geochronometer];
 	switch (geochronometer){
 	case "Ar-Ar":
 	    $("#Jval").val(json.J[0]);
@@ -178,7 +183,7 @@ $(function(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
 	var plotdevice = out.settings.plotdevice;
-	var mydata = out.settings.data[geochronometer];
+	var mydata = out.data[geochronometer];
 	switch (geochronometer){
 	case "Ar-Ar":
 	    mydata.J[0] = $("#Jval").val();
@@ -228,7 +233,7 @@ $(function(){
 		    $("#INPUT").handsontable('getDataAtCol',i++);
 	    });
 	}
-	out.settings.data[geochronometer] = mydata;
+	out.data[geochronometer] = mydata;
 	out.optionschanged = false;
 	IsoplotR = out;
     }
@@ -1295,9 +1300,9 @@ $(function(){
 	    i2i(geochronometer);
 	    break;
 	case 'set-zeta':
-	    IsoplotR.settings.data.fissiontracks.age[0] =
+	    IsoplotR.data.fissiontracks.age[0] =
 		getNumber('#standAgeVal');
-	    IsoplotR.settings.data.fissiontracks.age[1] =
+	    IsoplotR.data.fissiontracks.age[1] =
 		getNumber('#standAgeErr');
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.sigdig = getInt('#sigdig');
@@ -1710,7 +1715,7 @@ $(function(){
     function populate(prefs,forcedefaults){
 	var geochronometer = prefs.settings.geochronometer;
 	var plotdevice = prefs.settings.plotdevice;
-	var data = prefs.settings.data[geochronometer];
+	var data = prefs.data[geochronometer];
 	if (forcedefaults | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
@@ -1725,15 +1730,15 @@ $(function(){
 	    case "other":
 	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
-		prefs.settings.data[geochronometer] =
+		prefs.data[geochronometer] =
 		    example(geochronometer,plotdevice,format);
 		break;
 	    default:
-		prefs.settings.data[geochronometer] =
+		prefs.data[geochronometer] =
 		    example(geochronometer,plotdevice);
 	    }
 	}
-	json2handson(prefs.settings);
+	json2handson();
 	return prefs;
     }
 
@@ -1764,7 +1769,7 @@ $(function(){
     function multiply(num,vec,divide){
 	var gc = IsoplotR.settings.geochronometer;
 	var pd = IsoplotR.settings.plotdevice;
-	var data = IsoplotR.settings.data[gc].data;
+	var data = IsoplotR.data[gc].data;
 	var headers = $("#INPUT").handsontable("getColHeader");
 	var format = (gc=='U-Th-He') ? 0 : IsoplotR.settings[gc].format;
 	var cols = getErrCols(gc,pd,format);
@@ -1777,26 +1782,26 @@ $(function(){
 	    for (var j=0; j<data[errname].length; j++){
 		pair[0] = data[muname][j];
 		pair[1] = data[errname][j];
-		IsoplotR.settings.data[gc].data[errname][j] =
+		IsoplotR.data[gc].data[errname][j] =
 		    multiplytwo(pair,num,vec,divide);
 	    }
 	}
 	if (gc=='Ar-Ar'){
-	    var J = IsoplotR.settings.data[gc].J;
-	    IsoplotR.settings.data[gc].J[1] =
+	    var J = IsoplotR.data[gc].J;
+	    IsoplotR.data[gc].J[1] =
 		multiplytwo(J,num,vec,divide);
 	} else if (gc=='fissiontracks'){
-	    var age = IsoplotR.settings.data[gc].age;
-	    IsoplotR.settings.data[gc].age[1] =
+	    var age = IsoplotR.data[gc].age;
+	    IsoplotR.data[gc].age[1] =
 		multiplytwo(age,num,vec,divide);
 	    if (format<3){
-		var zeta = IsoplotR.settings.data[gc].zeta;
-		IsoplotR.settings.data[gc].zeta[1] =
+		var zeta = IsoplotR.data[gc].zeta;
+		IsoplotR.data[gc].zeta[1] =
 		    multiplytwo(zeta,num,vec,divide);
 	    }
 	    if (format==1){
-		var rhoD = IsoplotR.settings.data[gc].rhoD;
-		IsoplotR.settings.data[gc].rhoD[1] =
+		var rhoD = IsoplotR.data[gc].rhoD;
+		IsoplotR.data[gc].rhoD[1] =
 		    multiplytwo(rhoD,num,vec,divide);
 	    }
 	}
@@ -1852,7 +1857,7 @@ $(function(){
     
     function errconvert(){
 	var gc = IsoplotR.settings.geochronometer;
-	var from = IsoplotR.settings.data[gc].ierr;
+	var from = IsoplotR.data[gc].ierr;
 	var to = IsoplotR.settings.ierr;
 	if (to == from){
 	    // do nothing
@@ -1882,8 +1887,8 @@ $(function(){
 	    } else if (from==4 && to==3){
 		multiply(0.5,false,false);
 	    }
-	    IsoplotR.settings.data[gc].ierr = to;
-	    json2handson(IsoplotR.settings);
+	    IsoplotR.data[gc].ierr = to;
+	    json2handson();
 	    showOrHide();
 	}
     }
@@ -1982,7 +1987,7 @@ $(function(){
 	    $("#" + set.geochronometer ).prop("selected",true);
 	    $("#geochronometer").selectmenu("refresh");
 	    selectGeochronometer()
-	    json2handson(set);
+	    json2handson();
 	}
 	reader.readAsText(file);
     });
@@ -2045,7 +2050,7 @@ $(function(){
 	$.getJSON(sfile, function(data){
 	    IsoplotR.settings = data;
 	});
-	IsoplotR = populate(IsoplotR,true);
+	IsoplotR = populate(IsoplotR,false);
     });
 
     $("#CLEAR").click(function(){
