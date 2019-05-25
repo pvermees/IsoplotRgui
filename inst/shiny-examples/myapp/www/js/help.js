@@ -863,23 +863,33 @@ function help(id){
 	    "concentration from ppm to atoms per unit volume.";
 	break;
     case "help-UPb-formats":
-	text = "Choose one of six input formats:<ol>" +
-	    "<li><tt>7/5 err[7/5] 6/8 err[6/8] rho</tt><br>" +
-	    "where <tt>rho</tt> is the error correlation between " +
-	    "<tt>7/5</tt> and <tt>6/8</tt></li>" +
-	    "<li><tt>8/6 err[8/6] 7/6 err[7/6] (rho)</tt><br>" +
+	text = "Choose one of eight input formats:<ol>" +
+	    "<li><tt>X=07/35 err[X] Y=06/38 err[Y] rho</tt><br>" +
+	    "where <tt>07/35</tt> stands for the " +
+	    "<sup>207</sup>Pb/<sup>235</sup>U ratio, <tt>06/38</tt> " +
+	    "for the <sup>206</sup>Pb/<sup>235</sup>U ratio and " +
+	    "<tt>rho</tt> is the error correlation between " +
+	    "<tt>X</tt> and <tt>Y</tt></li>" +
+	    "<li><tt>X=38/06 err[X] Y=07/06 err[Y] (rho)</tt><br>" +
 	    "where the error correlation is optional</li>" +
-	    "<li><tt>7/6 err[7/6] 6/8 err[6/8] 7/5 err[7/5]</tt><br>" +
+	    "<li><tt>X=07/06 err[X] Y=06/38 err[Y] Z=07/35 err[Z]</tt><br>" +
 	    "in which the error correlations are calculated from the " +
 	    "redundancies between the three sets of uncertainties.</li>" +
-	    "<li><tt>X=7/5 err[7/5] Y=6/8 err[6/8] Z=4/8 err[4/8] " +
+	    "<li><tt>X=07/35 err[X] Y=06/38 err[Y] Z=04/38 err[Z] " +
 	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
-	    "<li><tt>X=8/6 err[8/6] Y=7/6 err[7/6] Z=4/6 err[4/6] " +
+	    "<li><tt>X=38/06 err[38/06] Y=07/06 err[Y] Z=04/06 err[Z] " +
 	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
-	    "<li><tt>7/5 err[7/5] 6/8 err[6/8] 4/8 err[4/8]" +
-	    "7/6 err[7/6] 4/7 err[4/7] 4/6 err[4/6]</tt><br>" +
+	    "<li><tt>U=07/35 err[U] V=06/38 err[V] W=04/38 err[W]" +
+	    "X=07/06 err[X] Y=04/07 err[Y] Z=04/06 err[Z]</tt><br>" +
 	    "in which the error correlations are calculated from the " +
-	    "redundancies between the six sets of uncertainties.</li></ol>";
+	    "redundancies between the six sets of uncertainties.</li>" +
+	    "<li><tt>W=07/35 err[W] X=06/38 err[X] Y=08/32 err[Y] " +
+	    "Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt><br>" +
+	    "where <tt>32</tt> stands for <sup>232</sup>Th and " +
+	    "<tt>08</tt> for <sup>208</sup>Pb </li>" +
+	    "<li><tt>W=38/06 err[W] X=07/06 err[X] Y=08/06 err[Y] " +
+	    "Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt>" +
+	    "</li></ol>";
 	break;
     case "help-PbPb-formats":
 	text = "Choose one of three input formats:<ol>" +
