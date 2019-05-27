@@ -389,7 +389,7 @@ $(function(){
 		break;
 	    case 5:
 		$('.show4UPb5').show();
-		$('.hideUPb5').hide();
+		$('.hide4UPb5').hide();
 		break;
 	    case 6:
 		$('.show4UPb6').show();
