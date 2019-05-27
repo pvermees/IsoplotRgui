@@ -2051,7 +2051,12 @@ $(function(){
 	});
 	var sfile = './js/settings.json';
 	$.getJSON(sfile, function(data){
-	    IsoplotR.settings = data;
+	    var chronometer = IsoplotR.settings.geochronometer;
+	    var plotdevice = IsoplotR.settings.plotdevice;
+	    var format = IsoplotR.settings[chronometer].format;
+	    IsoplotR.settings[plotdevice] = data[plotdevice];
+	    IsoplotR.settings[chronometer] = data[chronometer];
+	    IsoplotR.settings[chronometer].format = format;
 	});
 	IsoplotR = populate(IsoplotR,false);
     });
