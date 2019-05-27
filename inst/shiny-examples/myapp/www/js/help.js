@@ -14,8 +14,9 @@ function help(id){
 	    "<sup>207</sup>Pb/<sup>235</sup>U</li>" +
 	    "<li>Tera-Wasserburg: <sup>207</sup>Pb/<sup>206</sup>Pb " +
 	    "vs. <sup>238</sup>U/<sup>206</sup>Pb</li>" +
-	    "<li>U-Th-Pb concordia: <sup>208</sup>Pb/<sup>232</sup>Th " +
-	    "vs. <sup>206</sup>Pb/<sup>238</sup>U</li></ol>";
+	    "<li hidden class='show4UPb7 show4UPb8'>U-Th-Pb concordia: " +
+	    "<sup>208</sup>Pb/<sup>232</sup>Th vs. " +
+	    "<sup>206</sup>Pb/<sup>238</sup>U</li></ol>";
 	break;
     case "help-conc-age-option":
 	text = "Select the option to either <ul> " +
