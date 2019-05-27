@@ -1814,6 +1814,7 @@ $(function(){
 	var UPb12 = (gc=='U-Pb' && ($.inArray(format,[1,2])>-1));
 	var UPb345 = (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1));
 	var UPb6 = (gc=='U-Pb' && format==6);
+	var UPb78 = (gc=='U-Pb' && ($.inArray(format,[7,8])>-1));
 	var PbPb12 = (gc=='Pb-Pb' && ($.inArray(format,[1,2])>-1));
 	var PbPb3 = (gc=='Pb-Pb' && format==3);
 	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
@@ -1844,6 +1845,8 @@ $(function(){
 		   RbSr3 || SmNd3 || ReOs3 || LuHf3 ||
 		   UThHe || ThU12){
 	    cols = [1,3,5];
+	} else if (UPb78){
+	    cols = [1,3,5,7];
 	} else if (UPb6){
 	    cols = [1,3,5,7,9,11];
 	} else if (FT23){
