@@ -5,18 +5,6 @@
     "par": {
 	"cex": 1
     },
-    "data": {
-	"U-Pb": {},
-	"Ar-Ar": {},
-	"Rb-Sr": {},
-	"Sm-Nd": {},
-	"Re-Os": {},
-	"Lu-Hf": {},
-	"U-Th-He": {},
-	"fissiontracks": {},
-	"detritals": {},
-	"other": {}
-    },
     "fissiontracks": {
 	"format": 1,
 	"mineral": "apatite"
@@ -95,7 +83,7 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"alpha": 0.05,
-	"wetherill": "TRUE",
+	"type": 1,
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 0,

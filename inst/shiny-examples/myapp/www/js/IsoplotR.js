@@ -8,16 +8,21 @@ $(function(){
 	var out = {
 	    constants: null,
 	    settings: null,
+	    data: null,
 	    data4server: [],
 	    optionschanged: false
 	}
 	var cfile = './js/constants.json';
 	var sfile = './js/settings.json';
+	var dfile = './js/data.json';
 	$.getJSON(cfile, function(data){
 	    out.constants = data;
 	});
 	$.getJSON(sfile, function(data){
 	    out.settings = data;
+	});
+	$.getJSON(dfile, function(data){
+	    out.data = data;
 	    selectGeochronometer();
 	    out = populate(out,true);
 	    $("#INPUT").handsontable({ // add change handler asynchronously
@@ -42,6 +47,8 @@ $(function(){
 	    case 4: return 11;
 	    case 5: return 11;
 	    case 6: return 14;
+	    case 7:
+	    case 8: return 16;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
@@ -115,10 +122,10 @@ $(function(){
 	return 0;
     }
 
-    function json2handson(settings){
-	var geochronometer = settings.geochronometer;
-	var json = settings.data[geochronometer];
-	var gcsettings = settings[geochronometer];
+    function json2handson(){
+	var geochronometer = IsoplotR.settings.geochronometer;
+	var json = IsoplotR.data[geochronometer];
+	var gcsettings = IsoplotR.settings[geochronometer];
 	switch (geochronometer){
 	case "Ar-Ar":
 	    $("#Jval").val(json.J[0]);
@@ -176,7 +183,7 @@ $(function(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
 	var plotdevice = out.settings.plotdevice;
-	var mydata = out.settings.data[geochronometer];
+	var mydata = out.data[geochronometer];
 	switch (geochronometer){
 	case "Ar-Ar":
 	    mydata.J[0] = $("#Jval").val();
@@ -226,7 +233,7 @@ $(function(){
 		    $("#INPUT").handsontable('getDataAtCol',i++);
 	    });
 	}
-	out.settings.data[geochronometer] = mydata;
+	out.data[geochronometer] = mydata;
 	out.optionschanged = false;
 	IsoplotR = out;
     }
@@ -300,7 +307,7 @@ $(function(){
 	var detrital1 = (geochronometer=='detritals') &
 	    (IsoplotR.settings['detritals'].format==1);
 	var omitters = ["U-Pb","Pb-Pb","Ar-Ar","K-Ca","Rb-Sr","Sm-Nd","Re-Os",
-			 "Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
+		        "Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
 	var omissable = ($.inArray(geochronometer,omitters)>-1);
 	var val = null;
 	var row = [];
@@ -382,11 +389,19 @@ $(function(){
 		break;
 	    case 5:
 		$('.show4UPb5').show();
-		$('.hideUPb5').hide();
+		$('.hide4UPb5').hide();
 		break;
 	    case 6:
 		$('.show4UPb6').show();
 		$('.hide4UPb6').hide();
+		break;
+	    case 7:
+		$(".show4UPb7").show();
+		$('.hide4UPb7').hide();
+		break;
+	    case 8:
+		$(".show4UPb8").show();
+		$('.hide4UPb8').hide();
 		break;
 	    }
 	    switch (set.type){
@@ -648,6 +663,20 @@ $(function(){
 	}
 	switch (plotdevice){
 	case 'concordia':
+	    switch (pd.type){
+	    case 1:
+		$('.show4wetherill').show();
+		$('.hide4wetherill').hide();
+		break;
+	    case 2:
+		$('.show4terawasserburg').show();
+		$('.hide4terawasserburg').hide();
+		break;
+	    case 3:
+		$('.show4UThPbconcordia').show();
+		$('.hide4UThPbconcordia').hide();
+		break;		
+	    }
 	    switch (pd.showage){
 	    case 0:
 		$('.show4noUPbAge').show();
@@ -779,6 +808,8 @@ $(function(){
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
 	    $('#LambdaU235').val(cst.lambda.U235[0]);
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
+	    $('#LambdaTh232').val(cst.lambda.Th232[0]);
+	    $('#errLambdaTh232').val(cst.lambda.Th232[1]);
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
@@ -979,7 +1010,8 @@ $(function(){
 	    }
 	    break;
 	case 'concordia':
-	    $('#tera-wasserburg').prop('checked',set.wetherill!='TRUE');
+	    $('#tera-wasserburg option[value='+set.type+']').
+		prop('selected', 'selected');
 	    $('#conc-age-option option[value='+set.showage+']').
 		prop('selected', 'selected');
 	    $('#anchor-option option[value='+set.anchor+']').
@@ -1153,187 +1185,11 @@ $(function(){
     }
 
     function recordSettings(){
-	var plotdevice = IsoplotR.settings.plotdevice;
 	var geochronometer = IsoplotR.settings.geochronometer;
-	var pdsettings = IsoplotR.settings[plotdevice];
+	var plotdevice = IsoplotR.settings.plotdevice;
 	var gcsettings = IsoplotR.settings[geochronometer];
+	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
-	switch (plotdevice){
-	case 'concordia':
-	    pdsettings.wetherill = falsetrue('#tera-wasserburg');
-	    pdsettings.exterr = truefalse('#exterr');
-	    pdsettings.shownumbers = truefalse('#shownumbers');
-	    pdsettings.showage = getOption('#conc-age-option');
-	    pdsettings.anchor = getOption('#anchor-option');
-	    pdsettings.mint = check($('#mint').val(),'auto');
-	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.minx = check($('#minx').val(),'auto');
-	    pdsettings.maxx = check($('#maxx').val(),'auto');
-	    pdsettings.miny = check($('#miny').val(),'auto');
-	    pdsettings.maxy = check($('#maxy').val(),'auto');
-	    pdsettings.ellipsecol = $('#ellipsecol').val();
-	    pdsettings.clabel = $('#clabel').val();
-	    pdsettings.ticks = $('#ticks').val();
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
-	    pdsettings.anchor = getOption("#anchor-option")
-	    pdsettings.tanchor = getNumber('#tanchor');
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    break;
-	case 'isochron':
-	    pdsettings.type = getOption("#ThU-isochron-types");
-	    pdsettings.exterr = truefalse('#isochron-exterr');
-	    pdsettings.growth = truefalse('#PbPb-growth');
-	    pdsettings.model = getOption("#isochron-models");
-	    inverse(geochronometer);
-	case 'regression':
-	    pdsettings.shownumbers = truefalse('#shownumbers');
-	    pdsettings.model = getOption("#isochron-models");
-	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
-	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
-	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
-	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
-	    pdsettings.ellipsecol = $('#ellipsecol').val();
-	    pdsettings.clabel = $('#clabel').val();
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    break;
-	case 'radial':
-	    pdsettings.shownumbers = truefalse('#shownumbers');
-	    pdsettings.transformation = getOption("#transformation");
-	    pdsettings.numpeaks = getOption("#mixtures");
-	    pdsettings.mint = check($('#mint').val(),'auto');
-	    pdsettings.t0 = check($('#t0').val(),'auto');
-	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
-	    pdsettings.pch = $('#pch').val();
-	    pdsettings.bg = $('#bg').val();
-	    pdsettings.clabel = $('#clabel').val();
-	    pdsettings["cex"] = getNumber('#pcex');
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
-	    break;
-	case 'average':
-	    if (geochronometer != "other"){
-		pdsettings.exterr = truefalse('#exterr');
-	    }
-	    pdsettings["outliers"] = truefalse('#outliers');
-	    pdsettings["randomeffects"] = truefalse('#randomeffects');
-	    pdsettings["ranked"] = truefalse('#ranked');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
-	    pdsettings.mint = check($('#mint').val(),'auto');
-	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.rectcol = $('#rectcol').val();
-	    pdsettings.outliercol = $('#outliercol').val();
-	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
-	    break;
-	case 'spectrum':
-	    if (geochronometer != "other"){
-		pdsettings.exterr = truefalse('#exterr');
-	    }
-	    pdsettings.plateau = truefalse('#plateau');
-	    pdsettings.randomeffects = truefalse('#randomeffects');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
-	    pdsettings.plateaucol = $('#plateaucol').val();
-	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
-	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
-	    break;
-	case 'KDE':
-	    pdsettings["showhist"] = truefalse('#showhist');
-	    pdsettings["adaptive"] = truefalse('#adaptive');
-	    pdsettings["samebandwidth"] = truefalse('#samebandwidth');
-	    pdsettings["normalise"] = truefalse('#normalise');
-	    pdsettings["log"] = truefalse('#log');
-	    pdsettings["minx"] = check($('#minx').val(),'auto');
-	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
-	    pdsettings["bandwidth"] = check($('#bandwidth').val(),'auto');
-	    pdsettings["binwidth"] = check($('#binwidth').val(),'auto');
-	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
-	    pdsettings["pch"] = $('#pch').val();
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
-	    break;
-	case 'CAD':
-	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["verticals"] = truefalse('#verticals');
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
-	    break;
-	case 'set-zeta':
-	    IsoplotR.settings.data.fissiontracks.age[0] =
-		getNumber('#standAgeVal');
-	    IsoplotR.settings.data.fissiontracks.age[1] =
-		getNumber('#standAgeErr');
-	    pdsettings.exterr = truefalse('#exterr');
-	    pdsettings.sigdig = getInt('#sigdig');
-	    break;
-	case 'MDS':
-	    pdsettings["classical"] = truefalse('#classical');
-	    pdsettings["shepard"] = truefalse('#shepard');
-	    pdsettings["nnlines"] = truefalse('#nnlines');
-	    pdsettings["ticks"] = truefalse('#ticks');
-	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["pos"] = getInt('#pos');
-	    pdsettings["col"] = $('#col').val();
-	    pdsettings["bg"] = $('#bg').val();
-	    pdsettings["cex"] = getNumber('#pcex');
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    break;
-	case 'ages':
-	    if (geochronometer == 'U-Pb'){
-		pdsettings.show_p = truefalse('#show_p');
-	    }
-	    if (geochronometer != 'U-Th-He'){
-		pdsettings.exterr = truefalse('#age-exterr');
-	    }
-	    pdsettings.sigdig = getInt('#sigdig');
-	    i2i(geochronometer);
-	    break;
-	case 'helioplot':
-	    pdsettings.logratio = truefalse('#logratio');
-	    pdsettings.shownumbers = truefalse('#shownumbers');
-	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
-	    pdsettings["alpha"] = getNumber('#alpha');
-	    pdsettings["sigdig"] = getInt('#sigdig');
-	    pdsettings["minx"] = check($('#minx').val(),'auto');
-	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
-	    pdsettings["miny"] = check($('#miny').val(),'auto');
-	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
-	    pdsettings["fact"] = check($('#fact').val(),'auto');
-	    pdsettings.ellipsecol = $('#ellipsecol').val();
-	    pdsettings.model = getOption("#helioplot-models");
-	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    break;
-	case 'evolution':
-	    pdsettings.transform = truefalse('#transform-evolution');
-	    pdsettings.isochron = truefalse('#isochron-evolution');
-	    pdsettings.shownumbers = truefalse('#shownumbers');
-	    pdsettings.exterr = truefalse('#exterr');
-	    pdsettings.min08 = check($('#min08').val(),'auto');
-	    pdsettings.max08 = check($('#max08').val(),'auto');
-	    pdsettings.min48 = check($('#min48').val(),'auto');
-	    pdsettings.max48 = check($('#max48').val(),'auto');
-	    pdsettings.mint = check($('#mint').val(),'auto');
-	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
-	    pdsettings.ellipsecol = $('#ellipsecol').val();
-	    pdsettings.model = getOption("#evolution-isochron-models");
-	    pdsettings.clabel = $('#clabel').val();
-	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
-	    break;
-	default:
-	}
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1352,6 +1208,8 @@ $(function(){
 	    gcsettings.fRaU = getNumber('#fRaU');
 	    gcsettings.fPaU = getNumber('#fPaU');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
+	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
+	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    set.iratio.U238U235[0] = getNumber("#U238U235");
@@ -1499,6 +1357,185 @@ $(function(){
 		set.tracklength[set.mineral] = getNumber("#tracklength");
 		set.mindens[set.mineral] = getNumber("#mindens");
 	    }
+	    break;
+	default:
+	}
+	switch (plotdevice){
+	case 'concordia':
+	    pdsettings.type = getOption('#tera-wasserburg');
+	    if (gcsettings.format<7 & pdsettings.type==3){
+		$('#tera-wasserburg option[value=2]').prop('selected', 'selected');
+	    }
+	    pdsettings.exterr = truefalse('#exterr');
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.showage = getOption('#conc-age-option');
+	    pdsettings.anchor = getOption('#anchor-option');
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.minx = check($('#minx').val(),'auto');
+	    pdsettings.maxx = check($('#maxx').val(),'auto');
+	    pdsettings.miny = check($('#miny').val(),'auto');
+	    pdsettings.maxy = check($('#maxy').val(),'auto');
+	    pdsettings.ellipsecol = $('#ellipsecol').val();
+	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings.ticks = $('#ticks').val();
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.anchor = getOption("#anchor-option")
+	    pdsettings.tanchor = getNumber('#tanchor');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    break;
+	case 'isochron':
+	    pdsettings.type = getOption("#ThU-isochron-types");
+	    pdsettings.exterr = truefalse('#isochron-exterr');
+	    pdsettings.growth = truefalse('#PbPb-growth');
+	    pdsettings.model = getOption("#isochron-models");
+	    inverse(geochronometer);
+	case 'regression':
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.model = getOption("#isochron-models");
+	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
+	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
+	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
+	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
+	    pdsettings.ellipsecol = $('#ellipsecol').val();
+	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    break;
+	case 'radial':
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.transformation = getOption("#transformation");
+	    pdsettings.numpeaks = getOption("#mixtures");
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.t0 = check($('#t0').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.pch = $('#pch').val();
+	    pdsettings.bg = $('#bg').val();
+	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings["cex"] = getNumber('#pcex');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    i2i(geochronometer);
+	    break;
+	case 'average':
+	    if (geochronometer != "other"){
+		pdsettings.exterr = truefalse('#exterr');
+	    }
+	    pdsettings["outliers"] = truefalse('#outliers');
+	    pdsettings["randomeffects"] = truefalse('#randomeffects');
+	    pdsettings["ranked"] = truefalse('#ranked');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.rectcol = $('#rectcol').val();
+	    pdsettings.outliercol = $('#outliercol').val();
+	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    i2i(geochronometer);
+	    break;
+	case 'spectrum':
+	    if (geochronometer != "other"){
+		pdsettings.exterr = truefalse('#exterr');
+	    }
+	    pdsettings.plateau = truefalse('#plateau');
+	    pdsettings.randomeffects = truefalse('#randomeffects');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.plateaucol = $('#plateaucol').val();
+	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
+	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    i2i(geochronometer);
+	    break;
+	case 'KDE':
+	    pdsettings["showhist"] = truefalse('#showhist');
+	    pdsettings["adaptive"] = truefalse('#adaptive');
+	    pdsettings["samebandwidth"] = truefalse('#samebandwidth');
+	    pdsettings["normalise"] = truefalse('#normalise');
+	    pdsettings["log"] = truefalse('#log');
+	    pdsettings["minx"] = check($('#minx').val(),'auto');
+	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
+	    pdsettings["bandwidth"] = check($('#bandwidth').val(),'auto');
+	    pdsettings["binwidth"] = check($('#binwidth').val(),'auto');
+	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
+	    pdsettings["pch"] = $('#pch').val();
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    i2i(geochronometer);
+	    break;
+	case 'CAD':
+	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["verticals"] = truefalse('#verticals');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    i2i(geochronometer);
+	    break;
+	case 'set-zeta':
+	    IsoplotR.data.fissiontracks.age[0] =
+		getNumber('#standAgeVal');
+	    IsoplotR.data.fissiontracks.age[1] =
+		getNumber('#standAgeErr');
+	    pdsettings.exterr = truefalse('#exterr');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    break;
+	case 'MDS':
+	    pdsettings["classical"] = truefalse('#classical');
+	    pdsettings["shepard"] = truefalse('#shepard');
+	    pdsettings["nnlines"] = truefalse('#nnlines');
+	    pdsettings["ticks"] = truefalse('#ticks');
+	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["pos"] = getInt('#pos');
+	    pdsettings["col"] = $('#col').val();
+	    pdsettings["bg"] = $('#bg').val();
+	    pdsettings["cex"] = getNumber('#pcex');
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    break;
+	case 'ages':
+	    if (geochronometer == 'U-Pb'){
+		pdsettings.show_p = truefalse('#show_p');
+	    }
+	    if (geochronometer != 'U-Th-He'){
+		pdsettings.exterr = truefalse('#age-exterr');
+	    }
+	    pdsettings.sigdig = getInt('#sigdig');
+	    i2i(geochronometer);
+	    break;
+	case 'helioplot':
+	    pdsettings.logratio = truefalse('#logratio');
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
+	    pdsettings["alpha"] = getNumber('#alpha');
+	    pdsettings["sigdig"] = getInt('#sigdig');
+	    pdsettings["minx"] = check($('#minx').val(),'auto');
+	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
+	    pdsettings["miny"] = check($('#miny').val(),'auto');
+	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
+	    pdsettings["fact"] = check($('#fact').val(),'auto');
+	    pdsettings.ellipsecol = $('#ellipsecol').val();
+	    pdsettings.model = getOption("#helioplot-models");
+	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    break;
+	case 'evolution':
+	    pdsettings.transform = truefalse('#transform-evolution');
+	    pdsettings.isochron = truefalse('#isochron-evolution');
+	    pdsettings.shownumbers = truefalse('#shownumbers');
+	    pdsettings.exterr = truefalse('#exterr');
+	    pdsettings.min08 = check($('#min08').val(),'auto');
+	    pdsettings.max08 = check($('#max08').val(),'auto');
+	    pdsettings.min48 = check($('#min48').val(),'auto');
+	    pdsettings.max48 = check($('#max48').val(),'auto');
+	    pdsettings.mint = check($('#mint').val(),'auto');
+	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.sigdig = getInt('#sigdig');
+	    pdsettings.ellipsecol = $('#ellipsecol').val();
+	    pdsettings.model = getOption("#evolution-isochron-models");
+	    pdsettings.clabel = $('#clabel').val();
+	    IsoplotR.settings.par.cex = getNumber('#cex');
+	    i2i(geochronometer);
 	    break;
 	default:
 	}
@@ -1681,7 +1718,7 @@ $(function(){
     function populate(prefs,forcedefaults){
 	var geochronometer = prefs.settings.geochronometer;
 	var plotdevice = prefs.settings.plotdevice;
-	var data = prefs.settings.data[geochronometer];
+	var data = prefs.data[geochronometer];
 	if (forcedefaults | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
@@ -1696,15 +1733,15 @@ $(function(){
 	    case "other":
 	    case "fissiontracks":
 		var format = prefs.settings[geochronometer].format;
-		prefs.settings.data[geochronometer] =
+		prefs.data[geochronometer] =
 		    example(geochronometer,plotdevice,format);
 		break;
 	    default:
-		prefs.settings.data[geochronometer] =
+		prefs.data[geochronometer] =
 		    example(geochronometer,plotdevice);
 	    }
 	}
-	json2handson(prefs.settings);
+	json2handson();
 	return prefs;
     }
 
@@ -1735,7 +1772,7 @@ $(function(){
     function multiply(num,vec,divide){
 	var gc = IsoplotR.settings.geochronometer;
 	var pd = IsoplotR.settings.plotdevice;
-	var data = IsoplotR.settings.data[gc].data;
+	var data = IsoplotR.data[gc].data;
 	var headers = $("#INPUT").handsontable("getColHeader");
 	var format = (gc=='U-Th-He') ? 0 : IsoplotR.settings[gc].format;
 	var cols = getErrCols(gc,pd,format);
@@ -1748,26 +1785,26 @@ $(function(){
 	    for (var j=0; j<data[errname].length; j++){
 		pair[0] = data[muname][j];
 		pair[1] = data[errname][j];
-		IsoplotR.settings.data[gc].data[errname][j] =
+		IsoplotR.data[gc].data[errname][j] =
 		    multiplytwo(pair,num,vec,divide);
 	    }
 	}
 	if (gc=='Ar-Ar'){
-	    var J = IsoplotR.settings.data[gc].J;
-	    IsoplotR.settings.data[gc].J[1] =
+	    var J = IsoplotR.data[gc].J;
+	    IsoplotR.data[gc].J[1] =
 		multiplytwo(J,num,vec,divide);
 	} else if (gc=='fissiontracks'){
-	    var age = IsoplotR.settings.data[gc].age;
-	    IsoplotR.settings.data[gc].age[1] =
+	    var age = IsoplotR.data[gc].age;
+	    IsoplotR.data[gc].age[1] =
 		multiplytwo(age,num,vec,divide);
 	    if (format<3){
-		var zeta = IsoplotR.settings.data[gc].zeta;
-		IsoplotR.settings.data[gc].zeta[1] =
+		var zeta = IsoplotR.data[gc].zeta;
+		IsoplotR.data[gc].zeta[1] =
 		    multiplytwo(zeta,num,vec,divide);
 	    }
 	    if (format==1){
-		var rhoD = IsoplotR.settings.data[gc].rhoD;
-		IsoplotR.settings.data[gc].rhoD[1] =
+		var rhoD = IsoplotR.data[gc].rhoD;
+		IsoplotR.data[gc].rhoD[1] =
 		    multiplytwo(rhoD,num,vec,divide);
 	    }
 	}
@@ -1777,6 +1814,7 @@ $(function(){
 	var UPb12 = (gc=='U-Pb' && ($.inArray(format,[1,2])>-1));
 	var UPb345 = (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1));
 	var UPb6 = (gc=='U-Pb' && format==6);
+	var UPb78 = (gc=='U-Pb' && ($.inArray(format,[7,8])>-1));
 	var PbPb12 = (gc=='Pb-Pb' && ($.inArray(format,[1,2])>-1));
 	var PbPb3 = (gc=='Pb-Pb' && format==3);
 	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
@@ -1807,6 +1845,8 @@ $(function(){
 		   RbSr3 || SmNd3 || ReOs3 || LuHf3 ||
 		   UThHe || ThU12){
 	    cols = [1,3,5];
+	} else if (UPb78){
+	    cols = [1,3,5,7];
 	} else if (UPb6){
 	    cols = [1,3,5,7,9,11];
 	} else if (FT23){
@@ -1823,7 +1863,7 @@ $(function(){
     
     function errconvert(){
 	var gc = IsoplotR.settings.geochronometer;
-	var from = IsoplotR.settings.data[gc].ierr;
+	var from = IsoplotR.data[gc].ierr;
 	var to = IsoplotR.settings.ierr;
 	if (to == from){
 	    // do nothing
@@ -1853,8 +1893,8 @@ $(function(){
 	    } else if (from==4 && to==3){
 		multiply(0.5,false,false);
 	    }
-	    IsoplotR.settings.data[gc].ierr = to;
-	    json2handson(IsoplotR.settings);
+	    IsoplotR.data[gc].ierr = to;
+	    json2handson();
 	    showOrHide();
 	}
     }
@@ -1953,7 +1993,7 @@ $(function(){
 	    $("#" + set.geochronometer ).prop("selected",true);
 	    $("#geochronometer").selectmenu("refresh");
 	    selectGeochronometer()
-	    json2handson(set);
+	    json2handson();
 	}
 	reader.readAsText(file);
     });
@@ -2012,7 +2052,16 @@ $(function(){
 	$.getJSON(cfile, function(data){
 	    IsoplotR.constants = data;
 	});
-	IsoplotR = populate(IsoplotR,true);
+	var sfile = './js/settings.json';
+	$.getJSON(sfile, function(data){
+	    var chronometer = IsoplotR.settings.geochronometer;
+	    var plotdevice = IsoplotR.settings.plotdevice;
+	    var format = IsoplotR.settings[chronometer].format;
+	    IsoplotR.settings[plotdevice] = data[plotdevice];
+	    IsoplotR.settings[chronometer] = data[chronometer];
+	    IsoplotR.settings[chronometer].format = format;
+	});
+	IsoplotR = populate(IsoplotR,false);
     });
 
     $("#CLEAR").click(function(){

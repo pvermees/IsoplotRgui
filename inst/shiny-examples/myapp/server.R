@@ -35,6 +35,20 @@ shiny::shinyServer(function(input,output,session){
                              'Pb207Pb206','errPb207Pb206',
                              'Pb204Pb207','errPb204Pb207',
                              'Pb204Pb206','errPb204Pb206')
+        } else if (identical(method,"U-Pb") & format==7) {
+            mat[1,1:14] <- c('Pb207U235','errPb207U235',
+                             'Pb206U238','errPb206U238',
+                             'Pb208Th232','errPb208Th232',
+                             'Th232U238','errTh232U238',
+                             'rhoXY','rhoXZ','rhoXW',
+                             'rhoYZ','rhoYW','rhoZW')
+        } else if (identical(method,"U-Pb") & format==8) {
+            mat[1,1:14] <- c('U238Pb206','errU238Pb206',
+                             'Pb207Pb206','errPb207Pb206',
+                             'Pb208Pb206','errPb208Pb206',
+                             'Th232U238','errTh232U238',
+                             'rhoXY','rhoXZ','rhoXW',
+                             'rhoYZ','rhoYW','rhoZW')
         } else if (identical(method,"Pb-Pb") & format==1) {
             mat[1,1:5] <- c('Pb206Pb204','errPb206Pb204',
                             'Pb207Pb204','errPb207Pb204','rho')

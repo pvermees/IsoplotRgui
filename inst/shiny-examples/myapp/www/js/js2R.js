@@ -26,7 +26,7 @@ function getOptions(prefs){
 	    out += ",ticks=c(" + pdsettings.ticks + ")";
 	}
 	out += ",alpha=" + pdsettings.alpha;
-	out += ",wetherill=" + pdsettings.wetherill;
+	out += ",type=" + pdsettings.type;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",show.age=" + pdsettings.showage;
@@ -451,6 +451,9 @@ function getRcommand(prefs){
     case 'U-Pb':
 	out += "IsoplotR::settings('iratio','Pb207Pb206'," +
 	    prefs.constants.iratio.Pb207Pb206[0] + ");"
+	out += "IsoplotR::settings('lambda','Th232'," +
+	    prefs.constants.lambda.Th232[0] + "," +
+	    prefs.constants.lambda.Th232[1] + ");"
     case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','Pb206Pb204'," +
 	    prefs.constants.iratio.Pb206Pb204[0] + ");"
