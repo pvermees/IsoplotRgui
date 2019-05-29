@@ -23,7 +23,7 @@ $(function(){
 		$.getJSON(dfile, function(data){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
-		    IsoplotR = populate(out,true);
+		    IsoplotR = populate(IsoplotR,true);
 		    $("#INPUT").handsontable({ // add change handler asynchronously
 			afterChange: function(changes,source){
 			    getData4Server(); // placed here because we don't want to
