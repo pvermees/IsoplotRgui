@@ -181,9 +181,7 @@ shiny::shinyServer(function(input,output,session){
     # return index of the first isotope measurement
     getbi <- function(method="U-Pb",format=1){
         out <- 3
-        if (identical(method,"Ar-Ar") & format<2){
-            out <- 5
-        } else if (identical(method,"Ar-Ar") & format>1) {
+        if (identical(method,"Ar-Ar")){
             out <- 5
         } else if (identical(method,"fissiontracks") & format==1){
             out <- 7
