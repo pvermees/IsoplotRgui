@@ -5,34 +5,34 @@ $(function(){
 	$('#RUN').hide();
 	$('#CSV').hide();
 	$('#myplot').load('welcome.html')
-	var out = {
+	IsoplotR = {
 	    constants: null,
 	    settings: null,
 	    data: null,
 	    data4server: [],
 	    optionschanged: false
 	}
+	// three nested file readers:
 	var cfile = './js/constants.json';
-	var sfile = './js/settings.json';
-	var dfile = './js/data.json';
 	$.getJSON(cfile, function(data){
-	    out.constants = data;
-	});
-	$.getJSON(sfile, function(data){
-	    out.settings = data;
-	});
-	$.getJSON(dfile, function(data){
-	    out.data = data;
-	    selectGeochronometer();
-	    out = populate(out,true);
-	    $("#INPUT").handsontable({ // add change handler asynchronously
-		afterChange: function(changes,source){
-		    getData4Server(); // placed here because we don't want to
-		    handson2json();   // call the change handler until after
-		}                     // IsoplotR has been initialised
+	    IsoplotR.constants = data;
+	    var sfile = './js/settings.json';
+	    $.getJSON(sfile, function(data){
+		IsoplotR.settings = data;
+		var dfile = './js/data.json';
+		$.getJSON(dfile, function(data){
+		    IsoplotR.data = data;
+		    selectGeochronometer();
+		    IsoplotR = populate(out,true);
+		    $("#INPUT").handsontable({ // add change handler asynchronously
+			afterChange: function(changes,source){
+			    getData4Server(); // placed here because we don't want to
+			    handson2json();   // call the change handler until after
+			}                     // IsoplotR has been initialised
+		    });
+		});
 	    });
 	});
-	return out;
     };
 
     function dnc(){
@@ -2090,6 +2090,7 @@ $(function(){
 	$("#RUNNER").click();
     });
 
-    var IsoplotR = initialise();
+    var IsoplotR;
+    initialise();
 
 });
