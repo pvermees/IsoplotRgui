@@ -92,10 +92,10 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc==1){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "TRUE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
 	    } else if (gcsettings.cutoffdisc==2){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "FALSE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
 	    } else {
 		out += ",cutoff.disc=NA";
 	    }
@@ -200,10 +200,10 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc==1){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "TRUE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
 	    } else if (gcsettings.cutoffdisc==2){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "FALSE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
 	    } else {
 		out += ",cutoff.disc=NA";
 	    }
@@ -293,10 +293,10 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc==1){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "TRUE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
 	    } else if (gcsettings.cutoffdisc==2){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "FALSE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
 	    } else {
 		out += ",cutoff.disc=NA";
 	    }
@@ -348,10 +348,10 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc==1){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "TRUE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
 	    } else if (gcsettings.cutoffdisc==2){
 		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + "FALSE)";
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
 	    } else {
 		out += ",cutoff.disc=NA";
 	    }
