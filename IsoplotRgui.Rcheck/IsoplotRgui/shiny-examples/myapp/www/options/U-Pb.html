@@ -1,23 +1,36 @@
 <p></p>
 
 &nbsp;<help id="help-UPb-formats">Input format:</help>
-<select id="UPb-formats" onchange="$.chooseFormat('#UPb-formats','U-Pb');">
-  <option value=1>[7/5], [6/8]</option>
-  <option value=2>[8/6], [7/6]</option>
-  <option value=3>[7/5], [6/8], [7/6]</option>
-  <option value=4>[7/5], [6/8], [4/8]</option>
-  <option value=5>[8/6], [7/6], [4/6]</option>
-  <option value=6>[7/5], [6/8], [4/8], [7/6], [4/7], [4/6]</option>
+<select id="UPb-formats" onchange="$.chooseFormat('#UPb-formats','U-Pb'); $.register();">
+  <option value=1>[07/35], [06/38]</option>
+  <option value=2>[38/06], [07/06]</option>
+  <option value=3>[07/35], [06/38], [07/06]</option>
+  <option value=4>[07/35], [06/38], [04/38]</option>
+  <option value=5>[38/06], [07/06], [04/06]</option>
+  <option value=6>[07/35], [06/38], [04/38], [07/06], [04/07], [04/06]</option>
+  <option value=7>[07/35], [06/38], [08/32], [32/38]</option>
+  <option value=8>[38/06], [07/06], [08/06], [32/38]</option>
 </select>
 
 <p></p>
 
-&nbsp;<help id="help-common-Pb-option">Common Pb correction:</help>
-<select id="common-Pb-option" onchange="$.register();">
+<div class="show4wetherill show4terawasserburg hide4UThPbconcordia">
+  &nbsp;<help id="help-common-Pb-option">Common Pb correction:</help>
+  <select id="common-Pb-option" onchange="$.register();">
+    <option value=0>none</option>
+    <option value=1>Stacey-Kramers</option>
+    <option value=2>isochron</option>
+    <option value=3>nominal</option>
+  </select>
+  <p></p>
+</div>
+
+&nbsp;<help id="help-diseq">Disequilibrium correction:</help>
+<select id="diseq" onchange="$.register();">
   <option value=0>none</option>
-  <option value=1>Stacey-Kramers</option>
-  <option value=2>isochron</option>
-  <option value=3>nominal</option>
+  <option value=1>initial activity ratios</option>
+  <option value=2>measured activity ratios</option>
+  <option value=3>fractionation factors</option>
 </select>
 
 <p></p>
@@ -35,6 +48,11 @@
   <td><input type="text" id="LambdaU235"> &plusmn;</td>
   <td><input type="text" id="errLambdaU235">Myr<sup>-1</sup></td>
 </tr>
+<tr hidden class="hideUPb1 hide4UPb2 hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8">
+  <td>&nbsp;<help id="help-LambdaTh232"><sup>232</sup>Th decay constant</help>:</td>
+  <td><input type="text" id="LambdaTh232"> &plusmn;</td>
+  <td><input type="text" id="errLambdaTh232">Myr<sup>-1</sup></td>
+</tr>
 <tr hidden class="show4commonPbwithout204">
   <td>&nbsp;<help id="help-Pb207Pb206">Initial <sup>207</sup>Pb/<sup>206</sup>Pb ratio</help>:</td>
   <td><input type="text" id="Pb207Pb206"></td>
@@ -47,29 +65,36 @@
   <td>&nbsp;<help id="help-Pb207Pb204">Initial <sup>207</sup>Pb/<sup>204</sup>Pb ratio</help>:</td>
   <td><input type="text" id="Pb207Pb204"></td>
 </tr>
-<tr hidden class="show4diseq">
+<tr hidden class="show4diseq12">
   <td>&nbsp;<help id="help-U48-UPb">
-      Initial <sup>234</sup>U/<sup>238</sup>U activity ratio</help>:</td>
+      <sup>234</sup>U/<sup>238</sup>U activity ratio</help>:</td>
   <td><input type="text" id="U48"></td>
 </tr>
-<tr hidden class="show4diseq">
+<tr hidden class="show4diseq12">
   <td>&nbsp;<help id="help-Th0U8-UPb">
-      Initial <sup>230</sup>Th/<sup>238</sup>U activity ratio</help>:</td>
+      <sup>230</sup>Th/<sup>238</sup>U activity ratio</help>:</td>
   <td><input type="text" id="Th0U8"></td>
 </tr>
-<tr hidden class="show4diseq">
+<tr hidden class="show4diseq12">
   <td>&nbsp;<help id="help-Ra6U8-UPb">
-      Initial <sup>226</sup>Ra/<sup>238</sup>U activity ratio</help>:</td>
+      <sup>226</sup>Ra/<sup>238</sup>U activity ratio</help>:</td>
   <td><input type="text" id="Ra6U8"></td>
 </tr>
-<tr hidden class="show4diseq">
+<tr hidden class="show4diseq12">
   <td>&nbsp;<help id="help-Pa1U5-UPb">
-      Initial <sup>231</sup>Pa/<sup>235</sup>U activity ratio</help>:</td>
+      <sup>231</sup>Pa/<sup>235</sup>U activity ratio</help>:</td>
   <td><input type="text" id="Pa1U5"></td>
 </tr>
+<tr hidden class="show4diseq3">
+  <td>&nbsp;<help id="help-fThU">f(Th/U)</help>:</td>
+  <td><input type="text" id="fThU"></td>
+</tr>
+<tr hidden class="show4diseq3">
+  <td>&nbsp;<help id="help-fRaU">f(Ra/U)</sub></help>:</td>
+  <td><input type="text" id="fRaU"></td>
+</tr>
+<tr hidden class="show4diseq3">
+  <td>&nbsp;<help id="help-fPaU">f(Pa/U)</help>:</td>
+  <td><input type="text" id="fPaU"></td>
+</tr>
 </table>
-
-<p></p>
-
-&nbsp;<input type="checkbox" id="diseq" onchange="$.register();"> 
-<help id="help-diseq">Apply a U-series disequilibrium correction</help>?

@@ -1,31 +1,36 @@
 <p></p>
 
-&nbsp;<input type="checkbox" id="tera-wasserburg">
-<help id="help-tera-wasserburg">Plot as Tera-Wasserburg</help>?
+&nbsp;<help id="help-tera-wasserburg">Concordia type:</help>
+<select id="tera-wasserburg" onchange="$.register();">
+  <option value=1>Wetherill</option>
+  <option value=2>Tera-Wasserburg</option>
+  <option value=3 class='hide4UPb1 hide4UPb2 hide4UPb3 hide4UPb4
+	  hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>U-Th-Pb</option>
+</select>
 
 <p></p>
 
-&nbsp;<help id="help-conc-age-option">Calculate</help>
-<select id="conc-age-option" onchange="$.register();">
-  <option value=0>no</option>
-  <option value=1>concordia</option>
-  <option value=2>discordia (model-1)</option>
-  <option value=3>discordia (model-2)</option>
-  <option value=4>discordia (model-3)</option>
-</select>
-age
-
-<div hidden class="hide4noUPbAge hide4concordiaAge show4discordia">
+<div class="show4wetherill show4terawasserburg hide4UThPbconcordia">
+  &nbsp;<help id="help-conc-age-option">Calculate</help>
+  <select id="conc-age-option" onchange="$.register();">
+    <option value=0>no</option>
+    <option value=1>concordia</option>
+    <option value=2>discordia (model-1)</option>
+    <option value=3>discordia (model-2)</option>
+    <option value=4>discordia (model-3)</option>
+  </select>
+  age
+  <div hidden class="hide4noUPbAge hide4concordia show4discordia">
+    <p></p>
+    &nbsp;<help id="help-anchor-option">Anchored discordia line?</help>
+    <select id="anchor-option" onchange="$.register();">
+      <option value=0>no</option>
+      <option value=1>age</option>
+      <option value=2>Pb</option>
+    </select>
+  </div>
 <p></p>
-&nbsp;<help id="help-anchor-option">Anchored discordia line?</help>
-<select id="anchor-option" onchange="$.register();">
-  <option value=0>no</option>
-  <option value=1>age</option>
-  <option value=2>Pb</option>
-</select>
 </div>
-
-<p></p>
 
 <table>
   <tr hidden class="show4tanchor">
@@ -65,12 +70,8 @@ age
     <td><input type="text" id="sigdig"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-ellipse-col1">Ellipse colour 1:</help></td>
-    <td><input type="text" id="bg1"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;<help id="help-ellipse-col2">Ellipse colour 2:</help></td>
-    <td><input type="text" id="bg2"></td>
+    <td>&nbsp;<help id="help-ellipse-col">Ellipse colour:</help></td>
+    <td><input type="text" id="ellipsecol"></td>
   </tr>
   <tr>
     <td>&nbsp;<help id="help-cex">Font magnification</help>:</td>

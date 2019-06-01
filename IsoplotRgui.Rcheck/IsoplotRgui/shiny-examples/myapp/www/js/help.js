@@ -10,10 +10,13 @@ function help(id){
 	    "</ol>";
 	break;
     case "help-tera-wasserburg":
-	text = "Tick this box to plot the <sup>207</sup>Pb/<sup>206</sup>Pb- " +
-	    "vs. the <sup>238</sup>U/<sup>206</sup>Pb-ratio. Untick to " +
-	    "plot the <sup>207</sup>Pb/<sup>235</sup>U- vs. " +
-	    "<sup>206</sup>Pb/<sup>238</sup>U-ratio (Wetherill concordia).";
+	text = "<ol><li>Wetherill: <sup>206</sup>Pb/<sup>238</sup>U vs." +
+	    "<sup>207</sup>Pb/<sup>235</sup>U</li>" +
+	    "<li>Tera-Wasserburg: <sup>207</sup>Pb/<sup>206</sup>Pb " +
+	    "vs. <sup>238</sup>U/<sup>206</sup>Pb</li>" +
+	    "<li hidden class='show4UPb7 show4UPb8'>U-Th-Pb concordia: " +
+	    "<sup>208</sup>Pb/<sup>232</sup>Th vs. " +
+	    "<sup>206</sup>Pb/<sup>238</sup>U</li></ol>";
 	break;
     case "help-conc-age-option":
 	text = "Select the option to either <ul> " +
@@ -148,30 +151,50 @@ function help(id){
 	    "<sup>238</sup>U activity ratio of the detritus and its standard error.";
 	break;
     case "help-U48-UPb":
-	text = "Specify the assumed initial <sup>234</sup>U/" +
+	text = "Specify the (initial or measured) <sup>234</sup>U/" +
 	    "<sup>238</sup>U activity ratio of the sample. " +
 	    "1.15 is the canonical value for modern sea water.";
 	break;
     case "help-Th0U8-UPb":
-	text = "Specify the assumed initial <sup>230</sup>Th/" +
+	text = "Specify the (initial or measured) <sup>230</sup>Th/" +
 	    "<sup>238</sup>U activity ratio of the sample. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-Ra6U8-UPb":
-	text = "Specify the assumed initial <sup>226</sup>Ra/" +
+	text = "Specify the (initial or measured) <sup>226</sup>Ra/" +
 	    "<sup>238</sup>U activity ratio of the sample. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-Pa1U5-UPb":
-	text = "Specify the assumed initial <sup>231</sup>Pa/" +
+	text = "Specify the (initial or measured) <sup>231</sup>Pa/" +
 	    "<sup>235</sup>U activity ratio of the sample. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
+    case "help-fThU":
+	text = "Specify the Th/U fractionation between the mineral (m)" +
+	    "and the magma (M): f(Th/U) = (Th/U)<sub>m</sub>/(Th/U)<sub>M</sub>. " +
+	    "Set to 1 for secular equilibrium.";
+	break;
+    case "help-fRaU":
+	text = "Specify the Ra/U fractionation between the mineral (m)" +
+	    "and the magma (M): f(Ra/U) = (Ra/U)<sub>m</sub>/(Ra/U)<sub>M</sub>. " +
+	    "Set to 1 for secular equilibrium.";
+	break;
+    case "help-fPaU":
+	text = "Specify the Pa/U fractionation between the mineral (m)" +
+	    "and the magma (M): f(Pa/U) = (Pa/U)<sub>m</sub>/(Pa/U)<sub>M</sub>. " +
+	    "Set to 1 for secular equilibrium.";
+	break;
     case "help-diseq":
-	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
-	    "initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on: <ol>" +
+	    "<li> the initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
 	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
-	    "ratios of the sample.";
+	    "ratios of the sample.</li>" +
+	    "<li> the current <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
+	    "ratios of the sample.</li>" +
+	    "<li> the fractionation factors of Th/U, Ra/U and Pa/U between the mineral "+
+	    "and the magma from which the sample formed.</li></ol>";
 	break;
     case "help-rXY-detritus":
 	text = "Specify the error correlation between the measured " +
@@ -754,57 +777,48 @@ function help(id){
 	text = "Outline colour for the plot symbols (e.g., " +
 	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
 	break;
-    case "help-ellipse-col1":
-	text = "Fill colour for the error ellipses. Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>...<br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
+    case "help-ellipse-col":
+	text = "Fill colour for the error ellipses. This can either be " +
+	    "a single colour or multiple colours to form a colour ramp:" +
+	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, " +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>, ... </li>" +
+	    "<li>multiple colours: <tt>c('#FF000080','#00FF0080')</tt>, " +
+	    "<tt>c(rbg(1,0,0,0.5),rgb(0,1,0,0.5))</tt>, " +
+	    "<tt>c('blue','red')</tt>, <tt>c('blue','yellow','red','white')</tt>, ... </li>" +
+	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
+	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, " +
+	    "<tt>terrain.colors(n=256)</tt>, " +
+	    "<tt>heat.colors(n=10,alpha=0.8)</tt>, " +
+	    "<tt>cm.colors(n=10,alpha=0.5)</tt>, ...</li>" +
+	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
+	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
+	    "Enter <tt>NA</tt> for empty error ellipses.";
 	break;
-    case "help-ellipse-col2":
-	text = 	"Second ellipse colour to be used to build a graded " +
-	    "colour scale to display the optional input column labeled '(C)'. " +
-	    "Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)<p></p>" +
-	    "If '(C)' is empty, then only one colour is used.";
+    case "help-bg":
+	text = "Fill colour for the plot symbols. This can either be " +
+	    "a single colour or multiple colours to form a colour ramp:" +
+	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
+	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>" +
+	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>, ... </li>" +
+	    "<li>multiple colours: <tt>c('#FF000080','#00FF0080')</tt>, " +
+	    "<tt>c(rbg(1,0,0,0.5),rgb(0,1,0,0.5))</tt>, " +
+	    "<tt>c('blue','red')</tt>, <tt>c('blue','yellow','red','white')</tt>, ... </li>" +
+	    "<li>a colour palette: <tt>rainbow(n=100)</tt>, " +
+	    "<tt>topo.colors(n=100,alpha=0.5)</tt>, " +
+	    "<tt>terrain.colors(n=256)</tt>, " +
+	    "<tt>heat.colors(n=10,alpha=0.8)</tt>, " +
+	    "<tt>cm.colors(n=10,alpha=0.5)</tt>, ...</li>" +
+	    "<li>reversed palettes: <tt>rev(rainbow(n=100))</tt>, " +
+	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
+	    "Enter <tt>NA</tt> for empty plot symbols.";
 	break;
-    case "help-bg1":
-	text = "Fill colour for the plot symbols. Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt>...<br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
-	break;
-    case "help-bg2":
-	text = 	"Second fill colour to be used to build a graded " +
-	    "colour scale to display the optional input column labeled '(C)'. " +
-	    "Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)<p></p>" +
-	    "If '(C)' is empty, then only one colour is used.";
-	break;
-    case "help-bg3":
+    case "help-outlier-col":
 	text = 	"Fill colour used to mark the outliers. Examples:<p></p>" +
 	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
 	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
-	break;
-    case "help-bg3-plateau":
-	text = 	"Fill colour used to mark the age plateau. Examples:<p></p>" +
-	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
-	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
-	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
-	    "(please note the apostrophes!)";
-	break;
-    case "help-bg":
-	text = "Fill colour for the plot symbols (e.g., " +
-	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
+	    "Enter <tt>NA</tt> for empty plot symbols.";
 	break;
     case "help-concordia-ticks":
 	text = "Comma-separated list of custom age ticks for the concordia line.";
@@ -850,23 +864,33 @@ function help(id){
 	    "concentration from ppm to atoms per unit volume.";
 	break;
     case "help-UPb-formats":
-	text = "Choose one of six input formats:<ol>" +
-	    "<li><tt>7/5 err[7/5] 6/8 err[6/8] rho</tt><br>" +
-	    "where <tt>rho</tt> is the error correlation between " +
-	    "<tt>7/5</tt> and <tt>6/8</tt></li>" +
-	    "<li><tt>8/6 err[8/6] 7/6 err[7/6] (rho)</tt><br>" +
+	text = "Choose one of eight input formats:<ol>" +
+	    "<li><tt>X=07/35 err[X] Y=06/38 err[Y] rho</tt><br>" +
+	    "where <tt>07/35</tt> stands for the " +
+	    "<sup>207</sup>Pb/<sup>235</sup>U ratio, <tt>06/38</tt> " +
+	    "for the <sup>206</sup>Pb/<sup>235</sup>U ratio and " +
+	    "<tt>rho</tt> is the error correlation between " +
+	    "<tt>X</tt> and <tt>Y</tt></li>" +
+	    "<li><tt>X=38/06 err[X] Y=07/06 err[Y] (rho)</tt><br>" +
 	    "where the error correlation is optional</li>" +
-	    "<li><tt>7/6 err[7/6] 6/8 err[6/8] 7/5 err[7/5]</tt><br>" +
+	    "<li><tt>X=07/06 err[X] Y=06/38 err[Y] Z=07/35 err[Z]</tt><br>" +
 	    "in which the error correlations are calculated from the " +
 	    "redundancies between the three sets of uncertainties.</li>" +
-	    "<li><tt>X=7/5 err[7/5] Y=6/8 err[6/8] Z=4/8 err[4/8] " +
+	    "<li><tt>X=07/35 err[X] Y=06/38 err[Y] Z=04/38 err[Z] " +
 	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
-	    "<li><tt>X=8/6 err[8/6] Y=7/6 err[7/6] Z=4/6 err[4/6] " +
+	    "<li><tt>X=38/06 err[38/06] Y=07/06 err[Y] Z=04/06 err[Z] " +
 	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
-	    "<li><tt>7/5 err[7/5] 6/8 err[6/8] 4/8 err[4/8]" +
-	    "7/6 err[7/6] 4/7 err[4/7] 4/6 err[4/6]</tt><br>" +
+	    "<li><tt>U=07/35 err[U] V=06/38 err[V] W=04/38 err[W]" +
+	    "X=07/06 err[X] Y=04/07 err[Y] Z=04/06 err[Z]</tt><br>" +
 	    "in which the error correlations are calculated from the " +
-	    "redundancies between the six sets of uncertainties.</li></ol>";
+	    "redundancies between the six sets of uncertainties.</li>" +
+	    "<li><tt>W=07/35 err[W] X=06/38 err[X] Y=08/32 err[Y] " +
+	    "Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt><br>" +
+	    "where <tt>32</tt> stands for <sup>232</sup>Th and " +
+	    "<tt>08</tt> for <sup>208</sup>Pb </li>" +
+	    "<li><tt>W=38/06 err[W] X=07/06 err[X] Y=08/06 err[Y] " +
+	    "Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt>" +
+	    "</li></ol>";
 	break;
     case "help-PbPb-formats":
 	text = "Choose one of three input formats:<ol>" +

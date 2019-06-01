@@ -5,18 +5,6 @@
     "par": {
 	"cex": 1
     },
-    "data": {
-	"U-Pb": {},
-	"Ar-Ar": {},
-	"Rb-Sr": {},
-	"Sm-Nd": {},
-	"Re-Os": {},
-	"Lu-Hf": {},
-	"U-Th-He": {},
-	"fissiontracks": {},
-	"detritals": {},
-	"other": {}
-    },
     "fissiontracks": {
 	"format": 1,
 	"mineral": "apatite"
@@ -29,14 +17,18 @@
 	"format": 2,
 	"type": 4,
 	"cutoff76": 1100,
+	"cutoffdisc": 0,
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,
-	"diseq": "FALSE",
-	"U48": 1.15,
-	"Th0U8": 0,
-	"Ra6U8": 0,
-	"Pa1U5": 0
+	"diseq": 0,
+	"U48": 1,
+	"Th0U8": 1,
+	"Ra6U8": 1,
+	"Pa1U5": 1,
+	"fThU": 1,
+	"fRaU": 1,
+	"fPaU": 1
     },
     "Th-U": {
 	"format": 2,
@@ -92,15 +84,14 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"alpha": 0.05,
-	"wetherill": "TRUE",
+	"type": 1,
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 0,
 	"anchor":0,
 	"tanchor":0,
 	"sigdig": 2,
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"clabel": "",
 	"ticks": "auto"
     },
@@ -117,8 +108,7 @@
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",
 	"sigdig": 2,
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"model": 1,
 	"clabel": ""
     },
@@ -133,8 +123,7 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"growth": "FALSE",
 	"clabel": ""
     },
@@ -147,8 +136,7 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"clabel": ""
     },
     "radial": {
@@ -158,13 +146,11 @@
 	"maxt": "auto",
 	"pch": 21,
 	"cex": 1,
-	"bg": "c('yellow','red')",
+	"bg": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"sigdig": 2,
 	"alpha": 0.05,
 	"shownumbers": "FALSE",
 	"numpeaks": 0,
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)",
 	"clabel": ""
     },
     "average": {
@@ -176,9 +162,8 @@
 	"mint": "auto",
 	"maxt": "auto",
 	"ranked": "FALSE",
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)",
-	"bg3": "rgb(0,1,1,0.5)",
+	"rectcol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"outliercol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "spectrum": {
@@ -187,9 +172,8 @@
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": "FALSE",
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(1,0,0,0.5)",
-	"bg3": "rgb(0,1,1,0.5)",
+	"plateaucol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"nonplateaucol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "KDE": {
@@ -239,8 +223,7 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"fact": "auto",
-	"bg1": "rgb(0,1,0,0.5)",
-	"bg2": "rgb(0,0,1,0.5)",
+	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"model": 1,
 	"clabel": ""
     },
