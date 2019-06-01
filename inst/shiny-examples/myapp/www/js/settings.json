@@ -17,6 +17,7 @@
 	"format": 2,
 	"type": 4,
 	"cutoff76": 1100,
+	"cutoffdisc": 0,
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,
