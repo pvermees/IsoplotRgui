@@ -1123,6 +1123,7 @@ $(function(){
 	    $('#verticals').prop('checked',set.verticals=='TRUE');
 	    $('#pch').val(set.pch);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#colmap').val(set.colmap);
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
@@ -1478,6 +1479,7 @@ $(function(){
 	    break;
 	case 'CAD':
 	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["colmap"] = $('#colmap').val();
 	    pdsettings["verticals"] = truefalse('#verticals');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);

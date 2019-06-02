@@ -251,6 +251,11 @@ function help(id){
 	text = "When this box is ticked, the horizontal steps " +
 	    "are connected with vertical lines";
 	break;
+    case "help-colmap":
+	text = "Specify one of the following colour palettes: " +
+	    "<tt>rainbow</tt>, <tt>cm.colors</tt>, <tt>topo.colors</tt>, " +
+	    "<tt>terrain.colors</tt>, or <tt>heat.colors</tt>.";
+	break;
     case "help-shownumbers":
 	text = "Add labels to the data points or error ellipses marking " +
 	    "the corresponding aliquot (i.e., the row number in the input table)."

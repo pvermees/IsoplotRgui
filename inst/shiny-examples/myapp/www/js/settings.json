@@ -195,7 +195,8 @@
     },
     "CAD": {
 	"pch": "none",
-	"verticals": "TRUE"
+	"verticals": "TRUE",
+	"colmap": "heat.colors"
     },
     "set-zeta": {
 	"sigdig": 2,
