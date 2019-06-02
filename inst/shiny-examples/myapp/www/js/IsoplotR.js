@@ -415,6 +415,15 @@ $(function(){
 		$(".show4UPbType4").show();
 		break;
 	    }
+	    switch (set.cutoffdisc){
+	    case 0:
+		$(".show4cutoffdisc").hide();
+		break;
+	    case 1:
+	    case 2:
+		$(".show4cutoffdisc").show();
+		break;
+	    }
 	    switch (set.diseq){
 	    case 0:
 		$(".show4diseq12").hide();
@@ -796,7 +805,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#common-Pb-option option[value='+set.commonPb+']').
 		prop('selected', 'selected');
-	    $('#diseq option[value='+set.diseq+']').
+	    $('#discordance-filter option[value='+set.cutoffdisc+']').
 		prop('selected', 'selected');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
@@ -1114,6 +1123,7 @@ $(function(){
 	    $('#verticals').prop('checked',set.verticals=='TRUE');
 	    $('#pch').val(set.pch);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#colmap').val(set.colmap);
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
@@ -1196,6 +1206,7 @@ $(function(){
 		plotdevice == 'CAD' | plotdevice == 'radial'){
 		gcsettings.type = getOption("#UPb-age-type");
 		gcsettings.cutoff76 = getNumber('#cutoff76');
+		gcsettings.cutoffdisc = getOption("#discordance-filter");
 		gcsettings.mindisc = getNumber('#mindisc');
 		gcsettings.maxdisc = getNumber('#maxdisc');
 	    }
@@ -1468,6 +1479,7 @@ $(function(){
 	    break;
 	case 'CAD':
 	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["colmap"] = $('#colmap').val();
 	    pdsettings["verticals"] = truefalse('#verticals');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);

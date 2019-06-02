@@ -251,6 +251,11 @@ function help(id){
 	text = "When this box is ticked, the horizontal steps " +
 	    "are connected with vertical lines";
 	break;
+    case "help-colmap":
+	text = "Specify one of the following colour palettes: " +
+	    "<tt>rainbow</tt>, <tt>cm.colors</tt>, <tt>topo.colors</tt>, " +
+	    "<tt>terrain.colors</tt>, or <tt>heat.colors</tt>.";
+	break;
     case "help-shownumbers":
 	text = "Add labels to the data points or error ellipses marking " +
 	    "the corresponding aliquot (i.e., the row number in the input table)."
@@ -597,27 +602,28 @@ function help(id){
 	    "which the <sup>206</sup>Pb/<sup>238</sup>U-method, and above which " +
 	    "the <sup>207</sup>Pb/<sup>206</sup>Pb-method should be used.";
 	break;
-    case "help-mindisc":
+    case "help-discordance-filter":
 	text = "One of the great strengths of the U-Pb method is its ability to " +
 	    "to detect disruptions of the isotopic clock by Pb-loss by comparing " +
 	    "the degree of concordance between the <sup>206</sup>Pb/<sup>238</sup>U- " +
 	    "and <sup>207</sup>Pb/<sup>235</sup>U-clocks , or between the " +
 	    "<sup>206</sup>Pb/<sup>238</sup>U- and " +
-	    "<sup>207</sup>Pb/<sup>206</sup>Pb-clocks. <tt>IsoplotR</tt> applies " +
-	    "a discordance filter to the U-Pb data in which, by default, the former " +
-	    "ages are allowed to be up to 15% younger than the latter. " +
+	    "<sup>207</sup>Pb/<sup>206</sup>Pb-clocks. " +
+	    "A discordance filter can be applied either before or after the " +
+	    "common-Pb correction (in any). The former option is particularly " +
+	    "useful for datasets lacking <sup>204</sup>Pb.";
+	break;
+    case "help-mindisc":
+	text = "By default, the <sup>206</sup>Pb/<sup>238</sup>U-age " +
+	    "is allowed to be 15% younger than the <sup>207</sup>Pb/<sup>206</sup>Pb- " +
+	    "(or <sup>207</sup>Pb/<sup>235</sup>U)-age. " +
 	    "Different values can be set in this box." ;
 	break;
     case "help-maxdisc":
-	text = "One of the great strengths of the U-Pb method is its ability to " +
-	    "to detect disruptions of the isotopic clock by Pb-loss by comparing " +
-	    "the degree of concordance between the <sup>206</sup>Pb/<sup>238</sup>U- " +
-	    "and <sup>207</sup>Pb/<sup>235</sup>U-clocks , or between the " +
-	    "<sup>206</sup>Pb/<sup>238</sup>U- and " +
-	    "<sup>207</sup>Pb/<sup>206</sup>Pb-clocks.  <tt>IsoplotR</tt> applies " +
-	    "a discordance filter to the U-Pb data in which, by default, the former " +
-	    "ages are allowed to be up to 5% older (reverse discordance) than the " +
-	    "latter. Different values can be set in this box." ;
+	text = "By default, the <sup>206</sup>Pb/<sup>238</sup>U-age " +
+	    "is allowed to be 5% older than the <sup>207</sup>Pb/<sup>206</sup>Pb- " +
+	    "(or <sup>207</sup>Pb/<sup>235</sup>U)-age. " +
+	    "Different values can be set in this box." ;
 	break;
     case "help-log":
 	text = "Kernel Density Estimates are constructed by arranging all the ages " +

@@ -1,7 +1,7 @@
 Package: IsoplotRgui
 Title: Web interface to IsoplotR
 Version: 2.7
-Date: 2019-05-03
+Date: 2019-06-01
 Authors@R: person("Pieter", "Vermeesch", , "p.vermeesch@ucl.ac.uk", role = c("aut", "cre"))
 Description: Implements the fuctionality of the popular Isoplot Excel Add-In for Isotope Geology.
 Author: Pieter Vermeesch [aut, cre]
@@ -11,5 +11,5 @@ Suggests: shiny, IsoplotR
 License: GPL-3
 URL: http://isoplotr.london-geochron.com
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Encoding: UTF-8

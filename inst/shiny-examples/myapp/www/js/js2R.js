@@ -87,8 +87,18 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
-	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    if (type==4) {
+		out += ",cutoff.76=" + gcsettings.cutoff76;
+	    }
+	    if (gcsettings.cutoffdisc==1){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
+	    } else if (gcsettings.cutoffdisc==2){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
+	    } else {
+		out += ",cutoff.disc=NA";
+	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	default:
@@ -185,8 +195,18 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
-	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    if (type==4) {
+		out += ",cutoff.76=" + gcsettings.cutoff76;
+	    }
+	    if (gcsettings.cutoffdisc==1){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
+	    } else if (gcsettings.cutoffdisc==2){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
+	    } else {
+		out += ",cutoff.disc=NA";
+	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
@@ -268,8 +288,18 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
-	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    if (type==4) {
+		out += ",cutoff.76=" + gcsettings.cutoff76;
+	    }
+	    if (gcsettings.cutoffdisc==1){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
+	    } else if (gcsettings.cutoffdisc==2){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
+	    } else {
+		out += ",cutoff.disc=NA";
+	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
@@ -313,8 +343,18 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) { out += ",cutoff.76=" + gcsettings.cutoff76; }
-	    out += ",cutoff.disc=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + ")";
+	    if (type==4) {
+		out += ",cutoff.76=" + gcsettings.cutoff76;
+	    }
+	    if (gcsettings.cutoffdisc==1){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
+	    } else if (gcsettings.cutoffdisc==2){
+		out += ",cutoff.disc=list(" +
+		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
+	    } else {
+		out += ",cutoff.disc=NA";
+	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
@@ -323,6 +363,7 @@ function getOptions(prefs){
 	if (geochronometer=='U-Th-He'){
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
 	} else if (geochronometer=='detritals'){
+	    out += ",colmap='" + pdsettings.colmap + "'";
 	    out += ",hide=c(" + gcsettings.hide + ')';
 	} else {
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
