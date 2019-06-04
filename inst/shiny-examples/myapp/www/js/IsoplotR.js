@@ -404,17 +404,6 @@ $(function(){
 		$('.hide4UPb8').hide();
 		break;
 	    }
-	    switch (set.type){
-	    case 1:
-	    case 2:
-	    case 3:
-	    case 5:
-		$(".show4UPbType4").hide();
-		break;
-	    case 4:
-		$(".show4UPbType4").show();
-		break;
-	    }
 	    switch (set.cutoffdisc){
 	    case 0:
 		$(".show4cutoffdisc").hide();
@@ -1209,6 +1198,9 @@ $(function(){
 		gcsettings.cutoffdisc = getOption("#discordance-filter");
 		gcsettings.mindisc = getNumber('#mindisc');
 		gcsettings.maxdisc = getNumber('#maxdisc');
+	    }
+	    if (gcsettings.format<7 & gcsettings.type==6){
+		$('#UPb-age-type option[value=4]').prop('selected', 'selected');
 	    }
 	    gcsettings.diseq = getOption('#diseq');
 	    gcsettings.U48 = getNumber('#U48');
