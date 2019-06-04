@@ -363,7 +363,7 @@ function getOptions(prefs){
 	if (geochronometer=='U-Th-He'){
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
 	} else if (geochronometer=='detritals'){
-	    out += ",colmap='" + pdsettings.colmap + "'";
+	    out += ",col='" + pdsettings.colmap + "'";
 	    out += ",hide=c(" + gcsettings.hide + ')';
 	} else {
 	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";

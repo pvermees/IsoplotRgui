@@ -1081,7 +1081,9 @@ function help(id){
 	    "<li>Plot the <sup>207</sup>Pb/<sup>206</sup>Pb-ages</li>" +
 	    "<li>Plot young grains as <sup>206</sup>Pb/<sup>238</sup>U " +
 	    "and old grains as <sup>207</sup>Pb/<sup>206</sup>Pb</li>" +
-	    "<li>Plot the single-grain concordia ages.</li></ol>";
+	    "<li>Plot the single-grain concordia ages.</li>" +
+	    "<li class='hide4UPb1 hide4UPb2 hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>" +
+	    "Plot the <sup>208</sup>Pb/<sup>232</sup>Th-ages</li></ol>";
 	break;
     case "help-mixtures":
 	text = "Peak fitting using the algorithms of Galbraith and Green (1990). " +
