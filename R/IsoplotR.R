@@ -10,7 +10,7 @@
 IsoplotR <- function(){
     appDir <- system.file("shiny-examples","myapp", package = "IsoplotRgui")
     if (appDir == "") {
-        stop("Could not find shinyApp directory. Try re-installing `IsoplotR`.", call. = FALSE)
+        stop("Could not find shinyApp directory. Try re-installing `IsoplotRgui`.", call. = FALSE)
     }
     shiny::runApp(appDir, display.mode = "normal")
 }

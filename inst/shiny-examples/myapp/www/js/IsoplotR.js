@@ -24,6 +24,7 @@ $(function(){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
 		    IsoplotR = populate(IsoplotR,true);
+		    showOrHide();
 		    $("#INPUT").handsontable({ // add change handler asynchronously
 			afterChange: function(changes,source){
 			    getData4Server(); // placed here because we don't want to
@@ -348,6 +349,16 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
 	var pd = IsoplotR.settings[plotdevice];
+	switch (IsoplotR.settings.language){
+	case "en":
+	    $('en').show();
+	    $('cn').css('display','none');
+	    break;
+	case "cn":
+	    $('en').hide();
+	    $('cn').css('display','inline');
+	    break;
+	}
 	switch (IsoplotR.settings.ierr){
 	case 1:
 	    $('.show4ierr1').show();
@@ -784,6 +795,8 @@ $(function(){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
 	showOrHide();
+	$('#language option[value='+IsoplotR.settings.language+']').
+	    prop('selected', 'selected');
 	$('#ierr option[value='+IsoplotR.settings.ierr+']').
 	    prop('selected', 'selected');
 	switch (option){
@@ -1189,6 +1202,7 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
+	IsoplotR.settings.language = $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1990,7 +2004,6 @@ $(function(){
 	var file = e.target.files[0];
 	var reader = new FileReader();
 	reader.onload = function(e){
-	    //IsoplotR = JSON.parse(this.result);
 	    var newIsoplotR = JSON.parse(this.result);
 	    IsoplotR = patchJSON(newIsoplotR,IsoplotR);
 	    var set = IsoplotR.settings;

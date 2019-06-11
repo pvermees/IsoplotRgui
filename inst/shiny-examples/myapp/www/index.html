@@ -12,7 +12,7 @@
 <script src="js/js2R.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/handsontable.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
-<link rel="stylesheet" type="text/css" href="css/mystyle.css"/>
+<link rel="stylesheet" type="text/css" href="css/IsoplotR.css"/>
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 <link rel="shortcut icon" href="images/myfavicon.ico" type="image/x-icon"/>
@@ -27,7 +27,9 @@
 <main>
 
   <header>
-    <a class="ulcorner" href="http://ucl.ac.uk/~ucfbpve/isoplotr">Home</a>
+    <a class="ulcorner" href="http://ucl.ac.uk/~ucfbpve/isoplotr">
+      <en>Home</en><cn>官方网站</cn>
+    </a>
     <select id="geochronometer">
       <option id="U-Pb">U-Pb</option>
       <option id="Pb-Pb">Pb-Pb</option>
@@ -44,8 +46,8 @@
       <option id="other">other</option>
     </select>
     <select id="plotdevice"></select>
-    <div id="OPTIONS" class="button">Options</div>
-    <div id="HELP" class="button">Help</div>
+    <div id="OPTIONS" class="button"><en>Options</en><cn>选项</cn></div>
+    <div id="HELP" class="button"><en>Help</en><cn>帮助</cn></div>
     <tit>IsoplotR</tit>
   </header>
 
@@ -108,17 +110,18 @@
 </right>
 
 <footer>
-  <div id="DEFAULTS" class="button">Defaults</div>
-  <div id="CLEAR" class="button">Clear</div>
+  <div id="DEFAULTS" class="button"><en>Defaults</en><cn>重置设置</cn></div>
+  <div id="CLEAR" class="button"><en>Clear</en><cn>清空数据</cn></div>
   <!-- hacked file upload button -->
   <div class="ui-button" role="button">
-    <input id="OPEN" type="file" class="filestyle" data-buttonText="Open" 
+    <input id="OPEN" type="file" class="filestyle"
+	   data-buttonText="<en>Open</en><cn hidden>打开</cn>" 
 	   data-input="false" data-badge="false" />
   </div>
-  <div id="SAVE" class="button">Save</div>
-  <div id="PLOT" class="button">PLOT</div>
+  <div id="SAVE" class="button"><en>Save</en><cn>保存文件</cn></div>
+  <div id="PLOT" class="button"><en>PLOT</en><cn>生成投图</cn></div>
   <div id="PLOTTER" hidden class="action-button"></div>
-  <div id="RUN" class="button">RUN</div>
+  <div id="RUN" class="button"><en>RUN</en><cn>运行</cn></div>
   <div id="RUNNER" hidden class="action-button"></div>
   <a id="PDF" target="_blank" class="button shiny-download-link">PDF</a>
   <a id="CSV" target="_blank" class="button shiny-download-link">CSV</a>

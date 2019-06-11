@@ -147,3 +147,7 @@ right {
 @keyframes blinker {  
   50% { opacity: 0; }
 }
+
+cn {
+    display: none;
+}
