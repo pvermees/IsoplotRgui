@@ -303,5 +303,10 @@ shiny::shinyServer(function(input,output,session){
             write.csv(results,file)
         }
     )
+
+    output$version <- renderText({
+        source('git.R')
+        paste0('version ',IsoplotR::commit(),'.',git())
+    })
     
 })
