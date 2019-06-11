@@ -795,8 +795,6 @@ $(function(){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
 	showOrHide();
-	$('#language option[value='+IsoplotR.settings.language+']').
-	    prop('selected', 'selected');
 	$('#ierr option[value='+IsoplotR.settings.ierr+']').
 	    prop('selected', 'selected');
 	switch (option){
@@ -1637,6 +1635,12 @@ $(function(){
 	showOrHide();
     }
 
+    function changeLanguage(){
+	IsoplotR.settings.language =
+	    $('option:selected', $("#language")).attr('id');
+	showOrHide();
+    }
+    
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -1926,6 +1930,12 @@ $(function(){
 	recordSettings();
 	showOrHide();
     }
+
+    $.tutorial = function(){
+	$("#myplot").load( "tutorial.html", function() {
+	    showOrHide();
+	});
+    }
     
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
@@ -1989,6 +1999,9 @@ $(function(){
     });
     $("#plotdevice").selectmenu({
 	change: function( event, ui ) { changePlotDevice(); }
+    });
+    $("#language").selectmenu({
+	change: function( event, ui ) { changeLanguage(); }
     });
     
     $("#helpmenu").dialog({ autoOpen: false, width: 500 });

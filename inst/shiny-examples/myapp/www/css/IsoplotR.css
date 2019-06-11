@@ -18,10 +18,6 @@ a {
     border: 0;
     color: black;
 }
-#tutorial {
-    text-decoration: underline;
-    color: black;
-}
 a:hover {
     color:red;
 }
