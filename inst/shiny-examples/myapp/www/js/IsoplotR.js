@@ -4,7 +4,9 @@ $(function(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
-	$('#myplot').load('welcome.html')
+	$('#myplot').load('welcome.html',function(){
+	    $('#version').load('version.txt');
+	});
 	IsoplotR = {
 	    constants: null,
 	    settings: null,

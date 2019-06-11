@@ -45,6 +45,11 @@ a:hover {
     float: left;
     left: 0;
 }
+.lrcorner {
+    position: absolute;
+    float: right;
+    right: 0;
+}
 
 tit {
     position: absolute;
