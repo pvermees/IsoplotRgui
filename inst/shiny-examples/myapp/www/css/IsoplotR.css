@@ -52,6 +52,7 @@ a:hover {
 }
 
 tit {
+    cursor: pointer;
     position: absolute;
     float: right;
     top:0;

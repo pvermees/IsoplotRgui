@@ -4,9 +4,7 @@ $(function(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
-	$('#myplot').load('welcome.html',function(){
-	    $('#version').load('version.txt');
-	});
+	welcome();
 	IsoplotR = {
 	    constants: null,
 	    settings: null,
@@ -1942,6 +1940,12 @@ $(function(){
 	}
     }
 
+    function welcome(){
+	$('#myplot').load('welcome.html',function(){
+	    $('#version').load('version.txt');
+	});
+    }
+    
     $.switchErr = function(){
 	IsoplotR.settings.ierr = getInt("#ierr");
 	errconvert();
@@ -2026,6 +2030,10 @@ $(function(){
     });
     
     $("#helpmenu").dialog({ autoOpen: false, width: 500 });
+    
+    $('tit').click(function(){
+	welcome();
+    });
     
     $('body').on('click', 'help', function(){
 	var text = help($(this).attr('id'));
