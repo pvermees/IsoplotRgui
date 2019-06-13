@@ -171,19 +171,25 @@ function help(id){
 	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-fThU":
-	text = "Specify the Th/U fractionation between the mineral (m)" +
+	text = "Specify the Th/U fractionation between the mineral (m) " +
 	    "and the magma (M): f(Th/U) = (Th/U)<sub>m</sub>/(Th/U)<sub>M</sub>. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-fRaU":
-	text = "Specify the Ra/U fractionation between the mineral (m)" +
+	text = "Specify the Ra/U fractionation between the mineral (m) " +
 	    "and the magma (M): f(Ra/U) = (Ra/U)<sub>m</sub>/(Ra/U)<sub>M</sub>. " +
 	    "Set to 1 for secular equilibrium.";
 	break;
     case "help-fPaU":
-	text = "Specify the Pa/U fractionation between the mineral (m)" +
+	text = "Specify the Pa/U fractionation between the mineral (m) " +
 	    "and the magma (M): f(Pa/U) = (Pa/U)<sub>m</sub>/(Pa/U)<sub>M</sub>. " +
 	    "Set to 1 for secular equilibrium.";
+	break;
+    case "help-ThU-magma":
+	text = "Specify the Th/U-ratio of the magma (M), e.g. measured in the whole " +
+	    "rock or in a volcanic glass. This ratio is combined with the " +
+	    "<sup>232</sup>Th/<sup>238</sup>U-ratio of the mineral (m) to compute " +
+	    "the Th/U fractionation factor f(Th/U) = (Th/U)<sub>m</sub>/(Th/U)<sub>M</sub>.";
 	break;
     case "help-diseq":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on: <ol>" +
@@ -193,8 +199,13 @@ function help(id){
 	    "<li> the current <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
 	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
 	    "ratios of the sample.</li>" +
-	    "<li> the fractionation factors of Th/U, Ra/U and Pa/U between the mineral "+
-	    "and the magma from which the sample formed.</li></ol>";
+	    "<li> the fractionation factors of Th/U, Ra/U and Pa/U between the mineral " +
+	    "and the magma from which the sample formed.</li>" +
+	    "<li class='hide4UPb1 hide4UPb2 hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 " +
+	    "show4UPb7 show4UPb8'> the measured Th/U-ratio of the magma, determined by geochemical " +
+	    "analysis of the whole rock or volcanic glass. This measured ratio is combined with " +
+	    "the <sup>232</sup>Th/<sup>238</sup>U-ratio of the minerals to compute the " +
+	    "Th/U fractionation factor.</li></ol>";
 	break;
     case "help-rXY-detritus":
 	text = "Specify the error correlation between the measured " +

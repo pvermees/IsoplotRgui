@@ -430,15 +430,27 @@ $(function(){
 	    case 0:
 		$(".show4diseq12").hide();
 		$(".show4diseq3").hide();
+		$(".show4diseq34").hide();
+		$(".show4diseq4").hide();
 		break;
 	    case 1:
 	    case 2:
 		$(".show4diseq12").show();
 		$(".show4diseq3").hide();
+		$(".show4diseq34").hide();
+		$(".show4diseq4").hide();
 		break;
 	    case 3:
 		$(".show4diseq12").hide();
 		$(".show4diseq3").show();
+		$(".show4diseq34").show();
+		$(".show4diseq4").hide();
+		break;
+	    case 4:
+		$(".show4diseq12").hide();
+		$(".show4diseq3").hide();
+		$(".show4diseq34").show();
+		$(".show4diseq4").show();
 		break;
 	    }
 	    if (set.commonPb!=3){
@@ -809,6 +821,8 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#discordance-filter option[value='+set.cutoffdisc+']').
 		prop('selected', 'selected');
+	    $('#diseq option[value='+set.diseq+']').
+		prop('selected', 'selected');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
@@ -831,6 +845,7 @@ $(function(){
 	    $('#fThU').val(set.fThU);
 	    $('#fRaU').val(set.fRaU);
 	    $('#fPaU').val(set.fPaU);
+	    $('#ThU').val(set.ThU);
 	    break;
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
@@ -1214,9 +1229,12 @@ $(function(){
 		gcsettings.maxdisc = getNumber('#maxdisc');
 	    }
 	    if (gcsettings.format<7 & gcsettings.type==6){
-		$('#UPb-age-type option[value=4]').prop('selected', 'selected');
+		gcsettings.type = 4;
 	    }
 	    gcsettings.diseq = getOption('#diseq');
+	    if (gcsettings.format<7 & gcsettings.diseq==4){
+		gcsettings.diseq = 3;
+	    }
 	    gcsettings.U48 = getNumber('#U48');
 	    gcsettings.Th0U8 = getNumber('#Th0U8');
 	    gcsettings.Ra6U8 = getNumber('#Ra6U8');
@@ -1224,6 +1242,7 @@ $(function(){
 	    gcsettings.fThU = getNumber('#fThU');
 	    gcsettings.fRaU = getNumber('#fRaU');
 	    gcsettings.fPaU = getNumber('#fPaU');
+	    gcsettings.ThU = getNumber('#ThU');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
 	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
