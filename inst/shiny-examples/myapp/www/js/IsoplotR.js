@@ -4,7 +4,6 @@ $(function(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
-	welcome();
 	IsoplotR = {
 	    constants: null,
 	    settings: null,
@@ -24,7 +23,7 @@ $(function(){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
 		    IsoplotR = populate(IsoplotR,true);
-		    showOrHide();
+		    welcome();
 		    $("#INPUT").handsontable({ // add change handler asynchronously
 			afterChange: function(changes,source){
 			    getData4Server(); // placed here because we don't want to
@@ -1943,6 +1942,7 @@ $(function(){
     function welcome(){
 	$('#myplot').load('welcome.html',function(){
 	    $('#version').load('version.txt');
+	    showOrHide();
 	});
     }
     

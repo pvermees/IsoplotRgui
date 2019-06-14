@@ -62,6 +62,9 @@ tit {
     font-weight: bold;
     font-size: 24;
 }
+tit:hover {
+    color:red;
+}
 
 header {
     position:fixed;
