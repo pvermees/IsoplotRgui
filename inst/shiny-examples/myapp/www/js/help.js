@@ -777,7 +777,7 @@ function help(id){
 	text = "The disparity transformation used by the (non-metric) MDS algorithm " +
 	    "produces normalised values with no physical meaning. The " +
 	    "axes of the MDS configuration can therefore safely be removed, " +
-	    "which improves the ink-to-information ratio (sensu <i>Tufte</t>) " +
+	    "which improves the ink-to-information ratio (sensu <i>Tufte</i>) " +
 	    "of the graphical output.";
 	break;
     case "help-cex":
