@@ -1659,7 +1659,7 @@ $(function(){
 	showOrHide();
     }
     
-    function selectGeochronometer(option){
+    function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
 	$("#Jdiv").hide();
@@ -1669,7 +1669,7 @@ $(function(){
 	switch (geochronometer){
 	case 'U-Pb':
 	    var tools = ['concordia','radial','average','KDE','CAD','ages'];
-	    if (option){ tools.splice(1, 0,'isochron'); }
+	    if (IsoplotR.settings["U-Pb"].format>3){ tools.splice(1, 0,'isochron'); }
 	    setSelectedMenus(tools);
 	    break;
 	case 'Ar-Ar':
@@ -1964,8 +1964,12 @@ $(function(){
     }
 
     $.chooseUPbFormat = function(ID){
-	if (getInt(ID)<4){ selectGeochronometer(0); }
-	else { selectGeochronometer(1); }
+	var oldformat = IsoplotR.settings["U-Pb"].format;
+	var newformat = getInt(ID);
+	if ((oldformat<4 & newformat>3) | (oldformat>3 & newformat<4)){
+	    IsoplotR.settings["U-Pb"].format = newformat;
+	    selectGeochronometer();
+	}
 	$.chooseFormat(ID,'U-Pb');
     }
     
