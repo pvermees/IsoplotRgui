@@ -134,8 +134,10 @@ function getOptions(prefs){
 	    out += ",inverse=" + gcsettings.inverse;
 	if (geochronometer=='Pb-Pb')
 	    out += ",growth=" + pdsettings.growth;
+	if (geochronometer=='U-Pb')
+	    out += ",type=" + pdsettings.UPbtype;
 	if (geochronometer=='Th-U')
-	    out += ",type=" + pdsettings.type;
+	    out += ",type=" + pdsettings.ThUtype;
 	if (geochronometer!='U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
     case 'regression':

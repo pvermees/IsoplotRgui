@@ -1056,7 +1056,9 @@ $(function(){
 	    $('#tanchor').val(set.tanchor);
 	    break;
 	case 'isochron':
-	    $('#ThU-isochron-types option[value='+set.type+']').
+	    $('#ThU-isochron-types option[value='+set.ThUtype+']').
+		prop('selected', 'selected');
+	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
 	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
@@ -1418,7 +1420,8 @@ $(function(){
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'isochron':
-	    pdsettings.type = getOption("#ThU-isochron-types");
+	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
+	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.model = getOption("#isochron-models");
@@ -1615,7 +1618,7 @@ $(function(){
     function changePlotDevice(){
 	var gc = IsoplotR.settings.geochronometer;
 	var opd = IsoplotR.settings.plotdevice; // old plot device
-	var npd = $('option:selected', $("#plotdevice")).attr('id');
+	var npd = $('option:selected', $("#plotdevice")).attr('value');
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
 	$("#myplot").empty();
@@ -1751,7 +1754,7 @@ $(function(){
 	$('#plotdevice').html(html);
 	$(options[0]).prop('selected',true);
 	IsoplotR.settings.plotdevice = 
-	    $('option:selected', $("#plotdevice")).attr('id');
+	    $('option:selected', $("#plotdevice")).attr('value');
     }
 
     // populate the handsontable with stored data
@@ -1967,20 +1970,21 @@ $(function(){
 	var newformat = getInt(ID);
 	var upgrade = (oldformat<4 & newformat>3);
 	var downgrade = (oldformat>3 & newformat<4);
-	var opd = IsoplotR.settings.plotdevice;
+	var pd = IsoplotR.settings.plotdevice;
 	if (upgrade | downgrade){
 	    IsoplotR.settings["U-Pb"].format = newformat;
 	    selectGeochronometer();
-	    if (opd=="isochron"){
+	    if (pd=="isochron"){
 		IsoplotR.settings.plotdevice = "concordia";
 	    } else {
-		IsoplotR.settings.plotdevice = opd;
+		IsoplotR.settings.plotdevice = pd;
 	    }
 	    changePlotDevice();
 	    IsoplotR = populate(IsoplotR,true);
 	    errconvert();
 	} else {
 	    $.chooseFormat(ID,"U-Pb");
+	    showSettings(pd);
 	}
     }
     

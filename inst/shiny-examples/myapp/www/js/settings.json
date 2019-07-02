@@ -115,7 +115,8 @@
 	"clabel": ""
     },
     "isochron": {
-	"type": 2,
+	"UPbtype": 1,
+	"ThUtype": 2,
 	"model": 1,
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
