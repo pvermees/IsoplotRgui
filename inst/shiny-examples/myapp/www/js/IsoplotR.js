@@ -1402,7 +1402,6 @@ $(function(){
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showage = getOption('#conc-age-option');
-	    pdsettings.anchor = getOption('#anchor-option');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.minx = check($('#minx').val(),'auto');
@@ -1724,31 +1723,31 @@ $(function(){
     function setSelectedMenus(options){
 	var html = '';
 	if ($.inArray('concordia',options)>-1)
-	    html += '<option id="concordia">concordia</option>';
+	    html += '<option id="concordia" value="concordia">concordia</option>';
 	if ($.inArray('helioplot',options)>-1)
-	    html += '<option id="helioplot">helioplot</option>';
+	    html += '<option id="helioplot" value="helioplot">helioplot</option>';
 	if ($.inArray('evolution',options)>-1)
-	    html += '<option id="evolution">evolution</option>';
+	    html += '<option id="evolution" value="evolution">evolution</option>';
 	if ($.inArray('isochron',options)>-1)
-	    html += '<option id="isochron">isochron</option>';
+	    html += '<option id="isochron" value="isochron">isochron</option>';
 	if ($.inArray('radial',options)>-1)
-	    html += '<option id="radial">radial plot</option>';
+	    html += '<option id="radial" value="radial">radial plot</option>';
 	if ($.inArray('regression',options)>-1)
-	    html += '<option id="regression">regression</option>';
+	    html += '<option id="regression" value="regression">regression</option>';
 	if ($.inArray('spectrum',options)>-1)
-	    html += '<option id="spectrum">age spectrum</option>';
+	    html += '<option id="spectrum" value="spectrum">age spectrum</option>';
 	if ($.inArray('average',options)>-1)
-	    html += '<option id="average">weighted mean</option>';
+	    html += '<option id="average" value="average">weighted mean</option>';
 	if ($.inArray('KDE',options)>-1)
-	    html += '<option id="KDE">KDE</option>';
+	    html += '<option id="KDE" value="KDE">KDE</option>';
 	if ($.inArray('CAD',options)>-1)
-	    html += '<option id="CAD">CAD</option>';
+	    html += '<option id="CAD" value="CAD">CAD</option>';
 	if ($.inArray('set-zeta',options)>-1)
-	    html += '<option id="set-zeta">get &zeta;</option>';
+	    html += '<option id="set-zeta" value="set-zeta">get &zeta;</option>';
 	if ($.inArray('MDS',options)>-1)
-	    html += '<option id="MDS">MDS</option>';
+	    html += '<option id="MDS" value="MDS">MDS</option>';
 	if ($.inArray('ages',options)>-1)
-	    html += '<option id="ages">ages</option>';
+	    html += '<option id="ages" value="ages">ages</option>';
 	$('#plotdevice').html(html);
 	$(options[0]).prop('selected',true);
 	IsoplotR.settings.plotdevice = 
@@ -1966,11 +1965,23 @@ $(function(){
     $.chooseUPbFormat = function(ID){
 	var oldformat = IsoplotR.settings["U-Pb"].format;
 	var newformat = getInt(ID);
-	if ((oldformat<4 & newformat>3) | (oldformat>3 & newformat<4)){
+	var upgrade = (oldformat<4 & newformat>3);
+	var downgrade = (oldformat>3 & newformat<4);
+	var opd = IsoplotR.settings.plotdevice;
+	if (upgrade | downgrade){
 	    IsoplotR.settings["U-Pb"].format = newformat;
 	    selectGeochronometer();
+	    if (opd=="isochron"){
+		IsoplotR.settings.plotdevice = "concordia";
+	    } else {
+		IsoplotR.settings.plotdevice = opd;
+	    }
+	    changePlotDevice();
+	    IsoplotR = populate(IsoplotR,true);
+	    errconvert();
+	} else {
+	    $.chooseFormat(ID,"U-Pb");
 	}
-	$.chooseFormat(ID,'U-Pb');
     }
     
     $.chooseFormat = function(ID,chronometer){

@@ -130,7 +130,7 @@ function getOptions(prefs){
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
     case 'isochron':
-	if (geochronometer!='Th-U' & geochronometer!='U-Th-He')
+	if (geochronometer!='U-Pb' & geochronometer!='Th-U' & geochronometer!='U-Th-He')
 	    out += ",inverse=" + gcsettings.inverse;
 	if (geochronometer=='Pb-Pb')
 	    out += ",growth=" + pdsettings.growth;
