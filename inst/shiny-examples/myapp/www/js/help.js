@@ -1021,6 +1021,22 @@ function help(id){
 	    "efficiency factor and uranium concentrations are known with " +
 	    "sufficient accuracy.</li></ol>";
 	break;
+    case "help-UPb-isochron-types":
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><span class='show4UPb4 show4UPb5 show4UPb6 hide4UPb7 hide4UPb8'>" +
+	    "<sup>204</sup>Pb/<sup>206</sup>Pb</span>" +
+	    "<span class='hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>" +
+	    "<sup>208</sup>Pb<sub>o</sub>/<sup>206</sup>Pb</span>" +
+	    " vs. <sup>238</sup>U/<sup>206</sup>Pb</li>" +
+	    "<li><span class='show4UPb4 show4UPb5 show4UPb6 hide4UPb7 hide4UPb8'>" +
+	    "<sup>204</sup>Pb/<sup>207</sup>Pb</span>" +
+	    "<span class='hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>" +
+	    "<sup>208</sup>Pb<sub>o</sub>/<sup>207</sup>Pb</span>" +
+	    " vs. <sup>235</sup>U/<sup>207</sup>Pb</li></ol>" +
+	    "<span class='hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>"
+	    "Where <sup>208</sup>Pb<sub>o</sub> is the (inferred) " +
+	    "non-radiogenic <sup>208</sup>Pb-component.</span>";
+	break;
     case "help-ThU-isochron-types":
 	text = "Choose one of four input formats:<ol>" +
 	    "<li><sup>230</sup>Th/<sup>232</sup>Th vs. " +
