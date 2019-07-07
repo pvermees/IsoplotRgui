@@ -283,6 +283,18 @@ function help(id){
 	    "line regression. The default value corresponds to the troilite " +
 	    "composition of Stacey and Kramers (1975).";
 	break;
+    case "help-Pb208Pb206":
+	text = "Specify the initial <sup>208</sup>Pb/<sup>206</sup>Pb-ratio " +
+	    "to be used in a nominal common Pb correction or anchored discordia " +
+	    "line regression. The default value corresponds to the troilite " +
+	    "composition of Stacey and Kramers (1975).";
+	break;
+    case "help-Pb208Pb207":
+	text = "Specify the initial <sup>208</sup>Pb/<sup>206</sup>Pb-ratio " +
+	    "to be used in a nominal common Pb correction or anchored discordia " +
+	    "line regression. The default value corresponds to the troilite " +
+	    "composition of Stacey and Kramers (1975).";
+	break;
     case "help-Pb206Pb204":
 	text = "Specify the initial <sup>206</sup>Pb/<sup>204</sup>Pb-ratio " +
 	    "to be used in a nominal common Pb correction. The default value " +

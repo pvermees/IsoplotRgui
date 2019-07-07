@@ -452,13 +452,20 @@ $(function(){
 	    }
 	    if (set.commonPb!=3){
 		$('.show4commonPbwithout204').hide();
-		$('.show4commonPbwith204').hide();		
+		$('.show4commonPbwith204').hide();
+		$('.show4commonPbwith208').hide();
 	    } else if (set.format<4){
 		$('.show4commonPbwithout204').show();
 		$('.show4commonPbwith204').hide();
-	    } else {
+		$('.show4commonPbwith208').hide();
+	    } else if (set.format<7){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').show();
+		$('.show4commonPbwith208').hide();
+	    } else {
+		$('.show4commonPbwithout204').hide();
+		$('.show4commonPbwith204').hide();
+		$('.show4commonPbwith208').show();
 	    }
 	    break;
 	case 'Pb-Pb':
@@ -822,9 +829,11 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
-	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
+	    $('#Pb208Pb206').val(cst.iratio.Pb208Pb206[0]);
+	    $('#Pb208Pb207').val(cst.iratio.Pb208Pb207[0]);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
@@ -1243,6 +1252,8 @@ $(function(){
 	    gcsettings.fPaU = getNumber('#fPaU');
 	    gcsettings.ThU = getNumber('#ThU');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
+	    set.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
+	    set.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
 	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
 	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	case 'Pb-Pb':
