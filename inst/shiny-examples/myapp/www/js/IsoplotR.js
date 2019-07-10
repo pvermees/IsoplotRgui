@@ -423,32 +423,33 @@ $(function(){
 		$(".show4cutoffdisc").show();
 		break;
 	    }
-	    switch (set.diseq){
-	    case 0:
-		$(".show4diseq12").hide();
-		$(".show4diseq3").hide();
-		$(".show4diseq34").hide();
-		$(".show4diseq4").hide();
-		break;
-	    case 1:
-	    case 2:
-		$(".show4diseq12").show();
-		$(".show4diseq3").hide();
-		$(".show4diseq34").hide();
-		$(".show4diseq4").hide();
-		break;
-	    case 3:
-		$(".show4diseq12").hide();
-		$(".show4diseq3").show();
-		$(".show4diseq34").show();
-		$(".show4diseq4").hide();
-		break;
-	    case 4:
-		$(".show4diseq12").hide();
-		$(".show4diseq3").hide();
-		$(".show4diseq34").show();
-		$(".show4diseq4").show();
-		break;
+	    if (set.U48[1]>0){
+		$(".show4U48diseq").show();
+	    } else {
+		$(".show4U48diseq").hide();
+	    }
+	    if (set.ThU[1]<1){
+		$(".show4ThUdiseq").hide();
+		$(".show4ThUdiseq12").hide();
+		$(".show4ThUdiseq3").hide();
+	    } else if (set.ThU[1]<3){
+		$(".show4ThUdiseq").show();
+		$(".show4ThUdiseq12").show();
+		$(".show4ThUdiseq3").hide();
+	    } else {
+		$(".show4ThUdiseq").show();
+		$(".show4ThUdiseq12").hide();
+		$(".show4ThUdiseq3").show();
+	    }
+	    if (set.RaU[1]>0){
+		$(".show4RaUdiseq").show();
+	    } else {
+		$(".show4RaUdiseq").hide();
+	    }
+	    if (set.PaU[1]>0){
+		$(".show4PaUdiseq").show();
+	    } else {
+		$(".show4PaUdiseq").hide();
 	    }
 	    if (set.commonPb!=3){
 		$('.show4commonPbwithout204').hide();
@@ -825,7 +826,13 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#discordance-filter option[value='+set.cutoffdisc+']').
 		prop('selected', 'selected');
-	    $('#diseq option[value='+set.diseq+']').
+	    $('#U48-diseq option[value='+set.U48[1]+']').
+		prop('selected', 'selected');
+	    $('#ThU-diseq option[value='+set.ThU[1]+']').
+		prop('selected', 'selected');
+	    $('#RaU-diseq option[value='+set.RaU[1]+']').
+		prop('selected', 'selected');
+	    $('#PaU-diseq option[value='+set.PaU[1]+']').
 		prop('selected', 'selected');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
@@ -844,14 +851,10 @@ $(function(){
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
-	    $('#U48').val(set.U48);
-	    $('#Th0U8').val(set.Th0U8);
-	    $('#Ra6U8').val(set.Ra6U8);
-	    $('#Pa1U5').val(set.Pa1U5);
-	    $('#fThU').val(set.fThU);
-	    $('#fRaU').val(set.fRaU);
-	    $('#fPaU').val(set.fPaU);
-	    $('#ThU').val(set.ThU);
+	    $('#U48').val(set.U48[0]);
+	    $('#ThU').val(set.ThU[0]);
+	    $('#RaU').val(set.RaU[0]);
+	    $('#PaU').val(set.PaU[0]);
 	    break;
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
@@ -1239,18 +1242,17 @@ $(function(){
 	    if (gcsettings.format<7 & gcsettings.type==6){
 		gcsettings.type = 4;
 	    }
-	    gcsettings.diseq = getOption('#diseq');
-	    if (gcsettings.format<7 & gcsettings.diseq==4){
-		gcsettings.diseq = 3;
+	    gcsettings.U48[1] = getOption('#U48-diseq');
+	    gcsettings.ThU[1] = getOption('#ThU-diseq');
+	    gcsettings.RaU[1] = getOption('#RaU-diseq');
+	    gcsettings.PaU[1] = getOption('#PaU-diseq');
+	    if (gcsettings.format<7 & gcsettings.ThU[1]==3){
+		gcsettings.ThU[1] = 2;
 	    }
-	    gcsettings.U48 = getNumber('#U48');
-	    gcsettings.Th0U8 = getNumber('#Th0U8');
-	    gcsettings.Ra6U8 = getNumber('#Ra6U8');
-	    gcsettings.Pa1U5 = getNumber('#Pa1U5');
-	    gcsettings.fThU = getNumber('#fThU');
-	    gcsettings.fRaU = getNumber('#fRaU');
-	    gcsettings.fPaU = getNumber('#fPaU');
-	    gcsettings.ThU = getNumber('#ThU');
+	    gcsettings.U48[0] = getNumber('#U48');
+	    gcsettings.ThU[0] = getNumber('#ThU');
+	    gcsettings.RaU[0] = getNumber('#RaU');
+	    gcsettings.PaU[0] = getNumber('#PaU');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	    set.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
 	    set.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');

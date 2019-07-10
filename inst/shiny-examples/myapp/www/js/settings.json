@@ -22,15 +22,10 @@
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,
-	"diseq": 0,
-	"U48": 1,
-	"Th0U8": 1,
-	"Ra6U8": 1,
-	"Pa1U5": 1,
-	"fThU": 1,
-	"fRaU": 1,
-	"fPaU": 1,
-	"ThU": 1
+	"U48": [1,0],
+	"ThU": [1,0],
+	"RaU": [1,0],
+	"PaU": [1,0]
     },
     "Th-U": {
 	"format": 2,

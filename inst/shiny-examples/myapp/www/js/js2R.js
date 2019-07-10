@@ -475,15 +475,11 @@ function getRcommand(prefs){
 	out += ",format='" + plotdevice + "'";
     }
     if (geochronometer=='U-Pb'){
-	out += ",d=IsoplotR::diseq(option=" + gcsettings.diseq;
-	out += ",U48=" + gcsettings.U48;
-	out += ",Th0U8=" + gcsettings.Th0U8;
-	out += ",Ra6U8=" + gcsettings.Ra6U8;
-	out += ",Pa1U5=" + gcsettings.Pa1U5;
-	out += ",fThU=" + gcsettings.fThU;
-	out += ",fRaU=" + gcsettings.fRaU;
-	out += ",fPaU=" + gcsettings.fPaU;
-	out += ",ThU=" + gcsettings.ThU;
+	out += ",d=IsoplotR::diseq(";
+	out += "U48=list(x=" + gcsettings.U48[0] + ",option=" + gcsettings.U48[1] + ")";
+	out += ",ThU=list(x=" + gcsettings.ThU[0] + ",option=" + gcsettings.ThU[1] + ")";
+	out += ",RaU=list(x=" + gcsettings.RaU[0] + ",option=" + gcsettings.RaU[1] + ")";
+	out += ",PaU=list(x=" + gcsettings.PaU[0] + ",option=" + gcsettings.PaU[1] + ")";
 	out += ")";
     } else if (geochronometer=='Th-U'){
 	out += ",Th02=" + concatenate(gcsettings.Th02);
