@@ -474,7 +474,7 @@ function getRcommand(prefs){
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
     }
-    if (geochronometer=='U-Pb'){
+    if (geochronometer=='U-Pb' & gcsettings.diseq=='TRUE'){
 	out += ",d=IsoplotR::diseq(";
 	out += "U48=list(x=" + gcsettings.U48[0] + ",option=" + gcsettings.U48[1] + ")";
 	out += ",ThU=list(x=" + gcsettings.ThU[0] + ",option=" + gcsettings.ThU[1] + ")";
