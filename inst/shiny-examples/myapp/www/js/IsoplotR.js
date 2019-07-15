@@ -848,6 +848,14 @@ $(function(){
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    $('#LambdaTh232').val(cst.lambda.Th232[0]);
 	    $('#errLambdaTh232').val(cst.lambda.Th232[1]);
+	    $('#LambdaU234').val(cst.lambda.U234[0]);
+	    $('#errLambdaU234').val(cst.lambda.U234[1]);
+	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
+	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
+	    $('#LambdaRa226').val(cst.lambda.Ra226[0]);
+	    $('#errLambdaRa226').val(cst.lambda.Ra226[1]);
+	    $('#LambdaPa231').val(cst.lambda.Pa231[0]);
+	    $('#errLambdaPa231').val(cst.lambda.Pa231[1]);
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
@@ -1258,6 +1266,14 @@ $(function(){
 	    set.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
 	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
 	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
+	    set.lambda.U234[0] = getNumber("#LambdaU234");
+	    set.lambda.U234[1] = getNumber("#errLambdaU234");
+	    set.lambda.Th230[0] = getNumber("#LambdaTh230");
+	    set.lambda.Th230[1] = getNumber("#errLambdaTh230");
+	    set.lambda.Ra226[0] = getNumber("#LambdaRa226");
+	    set.lambda.Ra226[1] = getNumber("#errLambdaRa226");
+	    set.lambda.Pa231[0] = getNumber("#LambdaPa231");
+	    set.lambda.Pa231[1] = getNumber("#errLambdaPa231");
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    set.iratio.U238U235[0] = getNumber("#U238U235");

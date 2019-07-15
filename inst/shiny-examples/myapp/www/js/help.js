@@ -219,7 +219,9 @@ function help(id){
     case "help-exterr-UPb":
 	text = "When this box is ticked, the thickness of the concordia line " + 
 	    "will be adjusted to show the analytical uncertainty associated " +
-	    "with the <sup>235</sup>U and <sup>238</sup>U decay constants.";
+	    "with the <sup>235</sup>U and <sup>238</sup>U decay constants. " +
+	    "This uncertainty will also be propagated into any concordia or " +
+	    "discordia age calculations.";
 	break;
     case "help-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
@@ -280,15 +282,23 @@ function help(id){
 	text = "The default values of the <sup>235</sup>U decay constant " +
 	    "and its standard error are taken from Jaffey et al. (1971).";
 	break;
+    case "help-LambdaU234":
+	text = "The default value of the <sup>234</sup>U decay constant " +
+	    "is taken from Cheng et al. (2013). Its standard error excludes " +
+	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
+	break;
     case "help-LambdaTh230":
 	text = "The default value of the <sup>230</sup>Th decay constant " +
 	    "is taken from Cheng et al. (2013). Its standard error excludes " +
 	    "all covariant sources of analytical uncertainty with <sup>234</sup>U.";
 	break;
-    case "help-LambdaU234":
-	text = "The default value of the <sup>234</sup>U decay constant " +
-	    "is taken from Cheng et al. (2013). Its standard error excludes " +
-	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
+    case "help-LambdaRa226":
+	text = "The default value of the <sup>226</sup>Ra decay constant " +
+	    "is taken from Audi et al. (2003).";
+	break;
+    case "help-LambdaPa231":
+	text = "The default value of the <sup>231</sup>Pa decay constant " +
+	    "is taken from Audi et al. (2003).";
 	break;
     case "help-PbPb-inverse":
 	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +

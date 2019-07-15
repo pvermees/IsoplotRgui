@@ -498,6 +498,18 @@ function getRcommand(prefs){
 	out += "IsoplotR::settings('lambda','Th232'," +
 	    prefs.constants.lambda.Th232[0] + "," +
 	    prefs.constants.lambda.Th232[1] + ");"
+	out += "IsoplotR::settings('lambda','U234'," +
+	    prefs.constants.lambda.U234[0] + "," +
+	    prefs.constants.lambda.U234[1] + ");"
+	out += "IsoplotR::settings('lambda','Th230'," +
+	    prefs.constants.lambda.Th230[0] + "," +
+	    prefs.constants.lambda.Th230[1] + ");"
+	out += "IsoplotR::settings('lambda','Ra226'," +
+	    prefs.constants.lambda.Ra226[0] + "," +
+	    prefs.constants.lambda.Ra226[1] + ");"
+	out += "IsoplotR::settings('lambda','Pa231'," +
+	    prefs.constants.lambda.Pa231[0] + "," +
+	    prefs.constants.lambda.Pa231[1] + ");"
     case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','Pb206Pb204'," +
 	    prefs.constants.iratio.Pb206Pb204[0] + ");"
