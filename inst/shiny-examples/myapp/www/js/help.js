@@ -9,7 +9,7 @@ function help(id){
 	    "<li>relative uncertainties (in %) at 2&sigma;</li>" +
 	    "</ol>";
 	break;
-    case "help-tera-wasserburg":
+    case "help-concordia-type":
 	text = "<ol><li>Wetherill: <sup>206</sup>Pb/<sup>238</sup>U vs." +
 	    "<sup>207</sup>Pb/<sup>235</sup>U</li>" +
 	    "<li>Tera-Wasserburg: <sup>207</sup>Pb/<sup>206</sup>Pb " +

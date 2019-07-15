@@ -1045,7 +1045,7 @@ $(function(){
 	    }
 	    break;
 	case 'concordia':
-	    $('#tera-wasserburg option[value='+set.type+']').
+	    $('#concordia-type option[value='+set.type+']').
 		prop('selected', 'selected');
 	    $('#conc-age-option option[value='+set.showage+']').
 		prop('selected', 'selected');
@@ -1410,10 +1410,7 @@ $(function(){
 	}
 	switch (plotdevice){
 	case 'concordia':
-	    pdsettings.type = getOption('#tera-wasserburg');
-	    if (gcsettings.format<7 & pdsettings.type==3){
-		$('#tera-wasserburg option[value=2]').prop('selected', 'selected');
-	    }
+	    pdsettings.type = getOption('#concordia-type');
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showage = getOption('#conc-age-option');
@@ -1984,6 +1981,13 @@ $(function(){
 	var upgrade = (oldformat<4 & newformat>3);
 	var downgrade = (oldformat>3 & newformat<4);
 	var pd = IsoplotR.settings.plotdevice;
+	if (pd=='concordia'){
+	    IsoplotR.settings.concordia.type = getOption('#concordia-type');
+	    if (newformat<7 & IsoplotR.settings.concordia.type==3){
+		IsoplotR.settings.concordia.type = 2;
+		$('#concordia-type option[value=2]').prop('selected', 'selected');
+	    }
+	}
 	if (upgrade | downgrade){
 	    IsoplotR.settings["U-Pb"].format = newformat;
 	    selectGeochronometer();
