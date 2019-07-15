@@ -423,33 +423,38 @@ $(function(){
 		$(".show4cutoffdisc").show();
 		break;
 	    }
-	    if (set.U48[1]>0){
-		$(".show4U48diseq").show();
+	    if (set.diseq=='TRUE'){
+		$(".show4diseq").show();
+		if (set.U48[1]>0){
+		    $(".show4U48diseq").show();
+		} else {
+		    $(".show4U48diseq").hide();
+		}
+		if (set.ThU[1]<1){
+		    $(".show4ThUdiseq").hide();
+		    $(".show4ThUdiseq12").hide();
+		    $(".show4ThUdiseq3").hide();
+		} else if (set.ThU[1]<3){
+		    $(".show4ThUdiseq").show();
+		    $(".show4ThUdiseq12").show();
+		    $(".show4ThUdiseq3").hide();
+		} else {
+		    $(".show4ThUdiseq").show();
+		    $(".show4ThUdiseq12").hide();
+		    $(".show4ThUdiseq3").show();
+		}
+		if (set.RaU[1]>0){
+		    $(".show4RaUdiseq").show();
+		} else {
+		    $(".show4RaUdiseq").hide();
+		}
+		if (set.PaU[1]>0){
+		    $(".show4PaUdiseq").show();
+		} else {
+		    $(".show4PaUdiseq").hide();
+		}
 	    } else {
-		$(".show4U48diseq").hide();
-	    }
-	    if (set.ThU[1]<1){
-		$(".show4ThUdiseq").hide();
-		$(".show4ThUdiseq12").hide();
-		$(".show4ThUdiseq3").hide();
-	    } else if (set.ThU[1]<3){
-		$(".show4ThUdiseq").show();
-		$(".show4ThUdiseq12").show();
-		$(".show4ThUdiseq3").hide();
-	    } else {
-		$(".show4ThUdiseq").show();
-		$(".show4ThUdiseq12").hide();
-		$(".show4ThUdiseq3").show();
-	    }
-	    if (set.RaU[1]>0){
-		$(".show4RaUdiseq").show();
-	    } else {
-		$(".show4RaUdiseq").hide();
-	    }
-	    if (set.PaU[1]>0){
-		$(".show4PaUdiseq").show();
-	    } else {
-		$(".show4PaUdiseq").hide();
+		$(".show4diseq").hide();
 	    }
 	    if (set.commonPb!=3){
 		$('.show4commonPbwithout204').hide();
@@ -834,6 +839,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#PaU-diseq option[value='+set.PaU[1]+']').
 		prop('selected', 'selected');
+	    $('#diseq').prop('checked',set.diseq=='TRUE');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
@@ -1250,6 +1256,7 @@ $(function(){
 	    if (gcsettings.format<7 & gcsettings.type==6){
 		gcsettings.type = 4;
 	    }
+	    gcsettings.diseq = truefalse('#diseq');
 	    gcsettings.U48[1] = getOption('#U48-diseq');
 	    gcsettings.ThU[1] = getOption('#ThU-diseq');
 	    gcsettings.RaU[1] = getOption('#RaU-diseq');

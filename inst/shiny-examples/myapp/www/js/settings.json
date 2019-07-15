@@ -22,6 +22,7 @@
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,
+	"diseq": "FALSE",
 	"U48": [1,0],
 	"ThU": [1,0],
 	"RaU": [1,0],

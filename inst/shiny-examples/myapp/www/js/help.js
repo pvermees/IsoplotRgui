@@ -124,6 +124,18 @@ function help(id){
 	text = "Fit an isochron through the data using the algorithm " +
 	    "of Ludwig and Titterington (1994)?";
 	break;
+    case "help-diseq":
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on: <ol>" +
+	    "<li> the initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
+	    "ratios of the sample; or</li>" +
+	    "<li> the current <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
+	    "ratios of the sample.</li>" +
+	    "<li class='show4ThUdiseq'> the <sup>230</sup>Th/<sup>238</sup>U ratio can " +
+	    "also be determined from the measured Th/U ratio of the magma. This can be " +
+	    "determined from the whole rock and or volcanic glass.</li></ol>";
+	break;
     case "help-detritus":
 	text = "Choose one of four ways of dealing with detrital " +
 	    "<sup>230</sup>Th (and <sup>234</sup>U):" +
