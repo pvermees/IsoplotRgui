@@ -233,9 +233,14 @@ function help(id){
     case "help-exterr-UPb":
 	text = "When this box is ticked, the thickness of the concordia line " + 
 	    "will be adjusted to show the analytical uncertainty associated " +
-	    "with the <sup>235</sup>U and <sup>238</sup>U decay constants. " +
+	    "with the decay constants and <sup>238</sup>U/<sup>235</sup>U-ratio. " +
 	    "This uncertainty will also be propagated into any concordia or " +
 	    "discordia age calculations.";
+	break;
+    case "help-exterr-radial":
+	text = "When this box is ticked, the analytical uncertainty associated " +
+	    "with decay constants, calibration factors, etc. will be propagated into " +
+	    "the central age and mixture models.";
 	break;
     case "help-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +

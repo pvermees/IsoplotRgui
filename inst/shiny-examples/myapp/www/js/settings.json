@@ -150,7 +150,8 @@
 	"alpha": 0.05,
 	"shownumbers": "FALSE",
 	"numpeaks": 0,
-	"clabel": ""
+	"clabel": "",
+	"exterr": "FALSE"
     },
     "average": {
 	"outliers": "TRUE",

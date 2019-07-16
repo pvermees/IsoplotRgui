@@ -73,6 +73,11 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",clabel='" + pdsettings.clabel + "'";
+	if (geochronometer != "other" &
+	    geochronometer != "Th-U" &
+	    geochronometer != 'U-Th-He'){
+	    out += ",exterr=" + pdsettings.exterr;
+	}
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;

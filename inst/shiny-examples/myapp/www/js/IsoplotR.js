@@ -1121,6 +1121,7 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    break;
 	case 'average':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -1485,13 +1486,12 @@ $(function(){
 	    pdsettings.bg = $('#bg').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings["cex"] = getNumber('#pcex');
+	    pdsettings.exterr = truefalse('#exterr');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
 	case 'average':
-	    if (geochronometer != "other"){
-		pdsettings.exterr = truefalse('#exterr');
-	    }
+	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings["outliers"] = truefalse('#outliers');
 	    pdsettings["randomeffects"] = truefalse('#randomeffects');
 	    pdsettings["ranked"] = truefalse('#ranked');
@@ -1506,9 +1506,7 @@ $(function(){
 	    i2i(geochronometer);
 	    break;
 	case 'spectrum':
-	    if (geochronometer != "other"){
-		pdsettings.exterr = truefalse('#exterr');
-	    }
+	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.plateau = truefalse('#plateau');
 	    pdsettings.randomeffects = truefalse('#randomeffects');
 	    pdsettings.alpha = getNumber('#alpha');
