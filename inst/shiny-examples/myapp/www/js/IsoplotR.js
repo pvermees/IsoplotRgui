@@ -1678,10 +1678,8 @@ $(function(){
 	}
 	if (gc == 'fissiontracks' & npd == 'set-zeta'){
 	    $(".show4zeta").show();
-	    $(".hide4zeta").hide();
-	} else if (gc == 'fissiontracks' & opd == 'set-zeta'){
+	} else {
 	    $(".show4zeta").hide();
-	    $(".hide4zeta").show();
 	}
 	showOrHide();
     }
