@@ -210,9 +210,7 @@ $(function(){
 	default:
 	}
 	if (geochronometer=='detritals'){
-	    $.each(mydata.data, function(k, v) {
-		mydata.data[k] = null;
-	    });
+	    mydata.data = {}; // clear the object
 	    var labels = ['A','B','C','D','E','F','G','H','I','J',
 			  'K','L','M','N','O','P','Q','R','S','T',
 			  'U','V','W','X','Y','Z'];
