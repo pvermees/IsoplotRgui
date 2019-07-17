@@ -378,7 +378,7 @@ function getOptions(prefs){
 	}
 	break;
     case 'set-zeta':
-	var data = prefs.settings.data[geochronometer];
+	var data = prefs.data.fissiontracks;
 	out += ",tst=c(" + data.age[0] +
 	             "," + data.age[1] + ")";
 	out += ",exterr=" + pdsettings.exterr;
