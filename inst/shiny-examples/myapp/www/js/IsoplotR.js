@@ -2168,16 +2168,17 @@ $(function(){
     $("#DEFAULTS").click(function(){
 	$("#myplot").empty();
 	var cfile = './js/constants.json';
-	$.getJSON(cfile, function(data){
-	    IsoplotR.constants = data;
+	$.getJSON(cfile, function(constants){
+	    IsoplotR.constants = constants;
 	    var sfile = './js/settings.json';
-	    $.getJSON(sfile, function(data){
+	    $.getJSON(sfile, function(settings){
 		var chronometer = IsoplotR.settings.geochronometer;
 		var plotdevice = IsoplotR.settings.plotdevice;
 		var format = IsoplotR.settings[chronometer].format;
-		IsoplotR.settings[plotdevice] = data[plotdevice];
-		IsoplotR.settings[chronometer] = data[chronometer];
-		IsoplotR.settings[chronometer].format = format;
+		IsoplotR.settings[plotdevice] = settings[plotdevice];
+		IsoplotR.settings[chronometer] = settings[chronometer];
+		IsoplotR.settings[chronometer].format = format; // restore
+		IsoplotR.settings.par = settings.par;
 		IsoplotR = populate(IsoplotR,false);
 	    });
 	});
