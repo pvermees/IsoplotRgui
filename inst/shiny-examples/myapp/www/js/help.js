@@ -130,9 +130,8 @@ function help(id){
 	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
 	    "ratios of the sample or (equivalently) the Th/U, Ra/U and Pa/U fractionation " +
 	    "factors between the sample and the parent magma; or</li>" +
-	    "<li> the current <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
-	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
-	    "ratios of the sample.</li>" +
+	    "<li> the current <sup>234</sup>U/<sup>238</sup>U or <sup>230</sup>Th/<sup>238</sup>U " +
+	    "activity ratios of the sample.</li>" +
 	    "<li class='hide4UPb1 hide4UPb2 hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 " +
 	    "show4UPb7 show4UPb8'> alternatively, the Th/U fractionation factor " +
 	    "can also be calculated from the measured Th/U ratio of the magma. This " +
@@ -182,11 +181,11 @@ function help(id){
 	break;
     case "help-RaU-UPb":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
-	    "the initial or measured <sup>226</sup>Ra/<sup>238</sup>U activity ratio";
+	    "the initial <sup>226</sup>Ra/<sup>238</sup>U activity ratio";
 	break;
     case "help-PaU-UPb":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
-	    "the initial or measured <sup>231</sup>Pa/<sup>235</sup>U activity ratio";
+	    "the initial <sup>231</sup>Pa/<sup>235</sup>U activity ratio";
 	break;
     case "help-rXY-detritus":
 	text = "Specify the error correlation between the measured " +
