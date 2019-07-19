@@ -2170,17 +2170,17 @@ $(function(){
 	var cfile = './js/constants.json';
 	$.getJSON(cfile, function(data){
 	    IsoplotR.constants = data;
+	    var sfile = './js/settings.json';
+	    $.getJSON(sfile, function(data){
+		var chronometer = IsoplotR.settings.geochronometer;
+		var plotdevice = IsoplotR.settings.plotdevice;
+		var format = IsoplotR.settings[chronometer].format;
+		IsoplotR.settings[plotdevice] = data[plotdevice];
+		IsoplotR.settings[chronometer] = data[chronometer];
+		IsoplotR.settings[chronometer].format = format;
+	    });
+	    IsoplotR = populate(IsoplotR,false);
 	});
-	var sfile = './js/settings.json';
-	$.getJSON(sfile, function(data){
-	    var chronometer = IsoplotR.settings.geochronometer;
-	    var plotdevice = IsoplotR.settings.plotdevice;
-	    var format = IsoplotR.settings[chronometer].format;
-	    IsoplotR.settings[plotdevice] = data[plotdevice];
-	    IsoplotR.settings[chronometer] = data[chronometer];
-	    IsoplotR.settings[chronometer].format = format;
-	});
-	IsoplotR = populate(IsoplotR,false);
     });
 
     $("#CLEAR").click(function(){
