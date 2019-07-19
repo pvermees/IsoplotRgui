@@ -1785,11 +1785,11 @@ $(function(){
     }
 
     // populate the handsontable with stored data
-    function populate(prefs,forcedefaults){
+    function populate(prefs,refreshdata){
 	var geochronometer = prefs.settings.geochronometer;
 	var plotdevice = prefs.settings.plotdevice;
 	var data = prefs.data[geochronometer];
-	if (forcedefaults | $.isEmptyObject(data)){
+	if (refreshdata | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
 	    case "Pb-Pb":
@@ -2178,8 +2178,8 @@ $(function(){
 		IsoplotR.settings[plotdevice] = data[plotdevice];
 		IsoplotR.settings[chronometer] = data[chronometer];
 		IsoplotR.settings[chronometer].format = format;
+		IsoplotR = populate(IsoplotR,false);
 	    });
-	    IsoplotR = populate(IsoplotR,false);
 	});
     });
 
