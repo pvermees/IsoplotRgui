@@ -4,7 +4,6 @@ $(function(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
-	$('#myplot').load('welcome.html')
 	IsoplotR = {
 	    constants: null,
 	    settings: null,
@@ -24,6 +23,7 @@ $(function(){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
 		    IsoplotR = populate(IsoplotR,true);
+		    welcome();
 		    $("#INPUT").handsontable({ // add change handler asynchronously
 			afterChange: function(changes,source){
 			    getData4Server(); // placed here because we don't want to
@@ -210,9 +210,7 @@ $(function(){
 	default:
 	}
 	if (geochronometer=='detritals'){
-	    $.each(mydata.data, function(k, v) {
-		mydata.data[k] = null;
-	    });
+	    mydata.data = {}; // clear the object
 	    var labels = ['A','B','C','D','E','F','G','H','I','J',
 			  'K','L','M','N','O','P','Q','R','S','T',
 			  'U','V','W','X','Y','Z'];
@@ -348,6 +346,16 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
 	var pd = IsoplotR.settings[plotdevice];
+	switch (IsoplotR.settings.language){
+	case "en":
+	    $('en').show();
+	    $('cn').css('display','none');
+	    break;
+	case "cn":
+	    $('en').hide();
+	    $('cn').css('display','inline');
+	    break;
+	}
 	switch (IsoplotR.settings.ierr){
 	case 1:
 	    $('.show4ierr1').show();
@@ -413,30 +421,55 @@ $(function(){
 		$(".show4cutoffdisc").show();
 		break;
 	    }
-	    switch (set.diseq){
-	    case 0:
-		$(".show4diseq12").hide();
-		$(".show4diseq3").hide();
-		break;
-	    case 1:
-	    case 2:
-		$(".show4diseq12").show();
-		$(".show4diseq3").hide();
-		break;
-	    case 3:
-		$(".show4diseq12").hide();
-		$(".show4diseq3").show();
-		break;
+	    if (set.diseq=='TRUE'){
+		$(".show4diseq").show();
+		if (set.U48[1]>0){
+		    $(".show4U48diseq").show();
+		} else {
+		    $(".show4U48diseq").hide();
+		}
+		if (set.ThU[1]<1){
+		    $(".show4ThUdiseq").hide();
+		    $(".show4ThUdiseq12").hide();
+		    $(".show4ThUdiseq3").hide();
+		} else if (set.ThU[1]<3){
+		    $(".show4ThUdiseq").show();
+		    $(".show4ThUdiseq12").show();
+		    $(".show4ThUdiseq3").hide();
+		} else {
+		    $(".show4ThUdiseq").show();
+		    $(".show4ThUdiseq12").hide();
+		    $(".show4ThUdiseq3").show();
+		}
+		if (set.RaU[1]>0){
+		    $(".show4RaUdiseq").show();
+		} else {
+		    $(".show4RaUdiseq").hide();
+		}
+		if (set.PaU[1]>0){
+		    $(".show4PaUdiseq").show();
+		} else {
+		    $(".show4PaUdiseq").hide();
+		}
+	    } else {
+		$(".show4diseq").hide();
 	    }
-	    if (set.commonPb!=3){
+	    if (set.commonPb!=3 & pd.anchor!=2){
 		$('.show4commonPbwithout204').hide();
-		$('.show4commonPbwith204').hide();		
+		$('.show4commonPbwith204').hide();
+		$('.show4commonPbwith208').hide();
 	    } else if (set.format<4){
 		$('.show4commonPbwithout204').show();
 		$('.show4commonPbwith204').hide();
-	    } else {
+		$('.show4commonPbwith208').hide();
+	    } else if (set.format<7){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').show();
+		$('.show4commonPbwith208').hide();
+	    } else {
+		$('.show4commonPbwithout204').hide();
+		$('.show4commonPbwith204').hide();
+		$('.show4commonPbwith208').show();
 	    }
 	    break;
 	case 'Pb-Pb':
@@ -708,14 +741,6 @@ $(function(){
 	    } else {
 		$('.show4tanchor').hide();
 	    }
-	    if (pd.anchor==2 & set.format<4){
-		$('.show4commonPbwithout204').show();
-	    } else if (pd.anchor==2){
-		$('.show4commonPbwith204').show();
-	    } else if (set.commonPb!=3){
-		$('.show4commonPbwithout204').hide();
-		$('.show4commonPbwith204').hide();
-	    }
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
@@ -796,11 +821,22 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#discordance-filter option[value='+set.cutoffdisc+']').
 		prop('selected', 'selected');
+	    $('#U48-diseq option[value='+set.U48[1]+']').
+		prop('selected', 'selected');
+	    $('#ThU-diseq option[value='+set.ThU[1]+']').
+		prop('selected', 'selected');
+	    $('#RaU-diseq option[value='+set.RaU[1]+']').
+		prop('selected', 'selected');
+	    $('#PaU-diseq option[value='+set.PaU[1]+']').
+		prop('selected', 'selected');
+	    $('#diseq').prop('checked',set.diseq=='TRUE');
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
-	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
+	    $('#Pb208Pb206').val(cst.iratio.Pb208Pb206[0]);
+	    $('#Pb208Pb207').val(cst.iratio.Pb208Pb207[0]);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
@@ -808,16 +844,21 @@ $(function(){
 	    $('#errLambdaU235').val(cst.lambda.U235[1]);
 	    $('#LambdaTh232').val(cst.lambda.Th232[0]);
 	    $('#errLambdaTh232').val(cst.lambda.Th232[1]);
+	    $('#LambdaU234').val(cst.lambda.U234[0]);
+	    $('#errLambdaU234').val(cst.lambda.U234[1]);
+	    $('#LambdaTh230').val(cst.lambda.Th230[0]);
+	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
+	    $('#LambdaRa226').val(cst.lambda.Ra226[0]);
+	    $('#errLambdaRa226').val(cst.lambda.Ra226[1]);
+	    $('#LambdaPa231').val(cst.lambda.Pa231[0]);
+	    $('#errLambdaPa231').val(cst.lambda.Pa231[1]);
 	    $('#cutoff76').val(set.cutoff76);
 	    $('#mindisc').val(set.mindisc);
 	    $('#maxdisc').val(set.maxdisc);
-	    $('#U48').val(set.U48);
-	    $('#Th0U8').val(set.Th0U8);
-	    $('#Ra6U8').val(set.Ra6U8);
-	    $('#Pa1U5').val(set.Pa1U5);
-	    $('#fThU').val(set.fThU);
-	    $('#fRaU').val(set.fRaU);
-	    $('#fPaU').val(set.fPaU);
+	    $('#U48').val(set.U48[0]);
+	    $('#ThU').val(set.ThU[0]);
+	    $('#RaU').val(set.RaU[0]);
+	    $('#PaU').val(set.PaU[0]);
 	    break;
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
@@ -1008,7 +1049,7 @@ $(function(){
 	    }
 	    break;
 	case 'concordia':
-	    $('#tera-wasserburg option[value='+set.type+']').
+	    $('#concordia-type option[value='+set.type+']').
 		prop('selected', 'selected');
 	    $('#conc-age-option option[value='+set.showage+']').
 		prop('selected', 'selected');
@@ -1031,7 +1072,9 @@ $(function(){
 	    $('#tanchor').val(set.tanchor);
 	    break;
 	case 'isochron':
-	    $('#ThU-isochron-types option[value='+set.type+']').
+	    $('#ThU-isochron-types option[value='+set.ThUtype+']').
+		prop('selected', 'selected');
+	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
 	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
@@ -1068,6 +1111,7 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
+	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    break;
 	case 'average':
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
@@ -1189,6 +1233,7 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
+	IsoplotR.settings.language = $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1200,19 +1245,33 @@ $(function(){
 		gcsettings.maxdisc = getNumber('#maxdisc');
 	    }
 	    if (gcsettings.format<7 & gcsettings.type==6){
-		$('#UPb-age-type option[value=4]').prop('selected', 'selected');
+		gcsettings.type = 4;
 	    }
-	    gcsettings.diseq = getOption('#diseq');
-	    gcsettings.U48 = getNumber('#U48');
-	    gcsettings.Th0U8 = getNumber('#Th0U8');
-	    gcsettings.Ra6U8 = getNumber('#Ra6U8');
-	    gcsettings.Pa1U5 = getNumber('#Pa1U5');
-	    gcsettings.fThU = getNumber('#fThU');
-	    gcsettings.fRaU = getNumber('#fRaU');
-	    gcsettings.fPaU = getNumber('#fPaU');
+	    gcsettings.diseq = truefalse('#diseq');
+	    gcsettings.U48[1] = getOption('#U48-diseq');
+	    gcsettings.ThU[1] = getOption('#ThU-diseq');
+	    gcsettings.RaU[1] = getOption('#RaU-diseq');
+	    gcsettings.PaU[1] = getOption('#PaU-diseq');
+	    if (gcsettings.format<7 & gcsettings.ThU[1]==3){
+		gcsettings.ThU[1] = 2;
+	    }
+	    gcsettings.U48[0] = getNumber('#U48');
+	    gcsettings.ThU[0] = getNumber('#ThU');
+	    gcsettings.RaU[0] = getNumber('#RaU');
+	    gcsettings.PaU[0] = getNumber('#PaU');
 	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
+	    set.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
+	    set.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
 	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
 	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
+	    set.lambda.U234[0] = getNumber("#LambdaU234");
+	    set.lambda.U234[1] = getNumber("#errLambdaU234");
+	    set.lambda.Th230[0] = getNumber("#LambdaTh230");
+	    set.lambda.Th230[1] = getNumber("#errLambdaTh230");
+	    set.lambda.Ra226[0] = getNumber("#LambdaRa226");
+	    set.lambda.Ra226[1] = getNumber("#errLambdaRa226");
+	    set.lambda.Pa231[0] = getNumber("#LambdaPa231");
+	    set.lambda.Pa231[1] = getNumber("#errLambdaPa231");
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    set.iratio.U238U235[0] = getNumber("#U238U235");
@@ -1365,14 +1424,10 @@ $(function(){
 	}
 	switch (plotdevice){
 	case 'concordia':
-	    pdsettings.type = getOption('#tera-wasserburg');
-	    if (gcsettings.format<7 & pdsettings.type==3){
-		$('#tera-wasserburg option[value=2]').prop('selected', 'selected');
-	    }
+	    pdsettings.type = getOption('#concordia-type');
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showage = getOption('#conc-age-option');
-	    pdsettings.anchor = getOption('#anchor-option');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.minx = check($('#minx').val(),'auto');
@@ -1389,7 +1444,8 @@ $(function(){
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'isochron':
-	    pdsettings.type = getOption("#ThU-isochron-types");
+	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
+	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.model = getOption("#isochron-models");
@@ -1420,13 +1476,12 @@ $(function(){
 	    pdsettings.bg = $('#bg').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings["cex"] = getNumber('#pcex');
+	    pdsettings.exterr = truefalse('#exterr');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;
 	case 'average':
-	    if (geochronometer != "other"){
-		pdsettings.exterr = truefalse('#exterr');
-	    }
+	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings["outliers"] = truefalse('#outliers');
 	    pdsettings["randomeffects"] = truefalse('#randomeffects');
 	    pdsettings["ranked"] = truefalse('#ranked');
@@ -1441,9 +1496,7 @@ $(function(){
 	    i2i(geochronometer);
 	    break;
 	case 'spectrum':
-	    if (geochronometer != "other"){
-		pdsettings.exterr = truefalse('#exterr');
-	    }
+	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.plateau = truefalse('#plateau');
 	    pdsettings.randomeffects = truefalse('#randomeffects');
 	    pdsettings.alpha = getNumber('#alpha');
@@ -1586,7 +1639,7 @@ $(function(){
     function changePlotDevice(){
 	var gc = IsoplotR.settings.geochronometer;
 	var opd = IsoplotR.settings.plotdevice; // old plot device
-	var npd = $('option:selected', $("#plotdevice")).attr('id');
+	var npd = $('option:selected', $("#plotdevice")).attr('value');
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
 	$("#myplot").empty();
@@ -1615,14 +1668,18 @@ $(function(){
 	}
 	if (gc == 'fissiontracks' & npd == 'set-zeta'){
 	    $(".show4zeta").show();
-	    $(".hide4zeta").hide();
-	} else if (gc == 'fissiontracks' & opd == 'set-zeta'){
+	} else {
 	    $(".show4zeta").hide();
-	    $(".hide4zeta").show();
 	}
 	showOrHide();
     }
 
+    function changeLanguage(){
+	IsoplotR.settings.language =
+	    $('option:selected', $("#language")).attr('id');
+	showOrHide();
+    }
+    
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -1632,8 +1689,9 @@ $(function(){
 	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus(['concordia','radial','average',
-			      'KDE','CAD','ages']);
+	    var tools = ['concordia','radial','average','KDE','CAD','ages'];
+	    if (IsoplotR.settings["U-Pb"].format>3){ tools.splice(1, 0,'isochron'); }
+	    setSelectedMenus(tools);
 	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus(['isochron','radial','spectrum',
@@ -1687,43 +1745,43 @@ $(function(){
     function setSelectedMenus(options){
 	var html = '';
 	if ($.inArray('concordia',options)>-1)
-	    html += '<option id="concordia">concordia</option>';
+	    html += '<option id="concordia" value="concordia">concordia</option>';
 	if ($.inArray('helioplot',options)>-1)
-	    html += '<option id="helioplot">helioplot</option>';
+	    html += '<option id="helioplot" value="helioplot">helioplot</option>';
 	if ($.inArray('evolution',options)>-1)
-	    html += '<option id="evolution">evolution</option>';
+	    html += '<option id="evolution" value="evolution">evolution</option>';
 	if ($.inArray('isochron',options)>-1)
-	    html += '<option id="isochron">isochron</option>';
+	    html += '<option id="isochron" value="isochron">isochron</option>';
 	if ($.inArray('radial',options)>-1)
-	    html += '<option id="radial">radial plot</option>';
+	    html += '<option id="radial" value="radial">radial plot</option>';
 	if ($.inArray('regression',options)>-1)
-	    html += '<option id="regression">regression</option>';
+	    html += '<option id="regression" value="regression">regression</option>';
 	if ($.inArray('spectrum',options)>-1)
-	    html += '<option id="spectrum">age spectrum</option>';
+	    html += '<option id="spectrum" value="spectrum">age spectrum</option>';
 	if ($.inArray('average',options)>-1)
-	    html += '<option id="average">weighted mean</option>';
+	    html += '<option id="average" value="average">weighted mean</option>';
 	if ($.inArray('KDE',options)>-1)
-	    html += '<option id="KDE">KDE</option>';
+	    html += '<option id="KDE" value="KDE">KDE</option>';
 	if ($.inArray('CAD',options)>-1)
-	    html += '<option id="CAD">CAD</option>';
+	    html += '<option id="CAD" value="CAD">CAD</option>';
 	if ($.inArray('set-zeta',options)>-1)
-	    html += '<option id="set-zeta">get &zeta;</option>';
+	    html += '<option id="set-zeta" value="set-zeta">get &zeta;</option>';
 	if ($.inArray('MDS',options)>-1)
-	    html += '<option id="MDS">MDS</option>';
+	    html += '<option id="MDS" value="MDS">MDS</option>';
 	if ($.inArray('ages',options)>-1)
-	    html += '<option id="ages">ages</option>';
+	    html += '<option id="ages" value="ages">ages</option>';
 	$('#plotdevice').html(html);
 	$(options[0]).prop('selected',true);
 	IsoplotR.settings.plotdevice = 
-	    $('option:selected', $("#plotdevice")).attr('id');
+	    $('option:selected', $("#plotdevice")).attr('value');
     }
 
     // populate the handsontable with stored data
-    function populate(prefs,forcedefaults){
+    function populate(prefs,refreshdata){
 	var geochronometer = prefs.settings.geochronometer;
 	var plotdevice = prefs.settings.plotdevice;
 	var data = prefs.data[geochronometer];
-	if (forcedefaults | $.isEmptyObject(data)){
+	if (refreshdata | $.isEmptyObject(data)){
 	    switch (geochronometer){
 	    case "U-Pb":
 	    case "Pb-Pb":
@@ -1903,6 +1961,13 @@ $(function(){
 	}
     }
 
+    function welcome(){
+	$('#myplot').load('welcome.html',function(){
+	    $('#version').load('version.txt');
+	    showOrHide();
+	});
+    }
+    
     $.switchErr = function(){
 	IsoplotR.settings.ierr = getInt("#ierr");
 	errconvert();
@@ -1911,6 +1976,42 @@ $(function(){
     $.register = function(){
 	recordSettings();
 	showOrHide();
+    }
+
+    $.tutorial = function(){
+	$("#myplot").load( "tutorial.html", function() {
+	    showOrHide();
+	});
+    }
+
+    $.chooseUPbFormat = function(ID){
+	var oldformat = IsoplotR.settings["U-Pb"].format;
+	var newformat = getInt(ID);
+	var upgrade = (oldformat<4 & newformat>3);
+	var downgrade = (oldformat>3 & newformat<4);
+	var pd = IsoplotR.settings.plotdevice;
+	if (pd=='concordia'){
+	    IsoplotR.settings.concordia.type = getOption('#concordia-type');
+	    if (newformat<7 & IsoplotR.settings.concordia.type==3){
+		IsoplotR.settings.concordia.type = 2;
+		$('#concordia-type option[value=2]').prop('selected', 'selected');
+	    }
+	}
+	if (upgrade | downgrade){
+	    IsoplotR.settings["U-Pb"].format = newformat;
+	    selectGeochronometer();
+	    if (pd=="isochron"){
+		IsoplotR.settings.plotdevice = "concordia";
+	    } else {
+		IsoplotR.settings.plotdevice = pd;
+	    }
+	    changePlotDevice();
+	    IsoplotR = populate(IsoplotR,true);
+	    errconvert();
+	} else {
+	    $.chooseFormat(ID,"U-Pb");
+	    showSettings(pd);
+	}
     }
     
     $.chooseFormat = function(ID,chronometer){
@@ -1976,8 +2077,15 @@ $(function(){
     $("#plotdevice").selectmenu({
 	change: function( event, ui ) { changePlotDevice(); }
     });
+    $("#language").selectmenu({
+	change: function( event, ui ) { changeLanguage(); }
+    });
     
     $("#helpmenu").dialog({ autoOpen: false, width: 500 });
+    
+    $('tit').click(function(){
+	welcome();
+    });
     
     $('body').on('click', 'help', function(){
 	var text = help($(this).attr('id'));
@@ -1990,7 +2098,6 @@ $(function(){
 	var file = e.target.files[0];
 	var reader = new FileReader();
 	reader.onload = function(e){
-	    //IsoplotR = JSON.parse(this.result);
 	    var newIsoplotR = JSON.parse(this.result);
 	    IsoplotR = patchJSON(newIsoplotR,IsoplotR);
 	    var set = IsoplotR.settings;
@@ -2053,19 +2160,20 @@ $(function(){
     $("#DEFAULTS").click(function(){
 	$("#myplot").empty();
 	var cfile = './js/constants.json';
-	$.getJSON(cfile, function(data){
-	    IsoplotR.constants = data;
+	$.getJSON(cfile, function(constants){
+	    IsoplotR.constants = constants;
+	    var sfile = './js/settings.json';
+	    $.getJSON(sfile, function(settings){
+		var chronometer = IsoplotR.settings.geochronometer;
+		var plotdevice = IsoplotR.settings.plotdevice;
+		var format = IsoplotR.settings[chronometer].format;
+		IsoplotR.settings[plotdevice] = settings[plotdevice];
+		IsoplotR.settings[chronometer] = settings[chronometer];
+		IsoplotR.settings[chronometer].format = format; // restore
+		IsoplotR.settings.par = settings.par;
+		IsoplotR = populate(IsoplotR,false);
+	    });
 	});
-	var sfile = './js/settings.json';
-	$.getJSON(sfile, function(data){
-	    var chronometer = IsoplotR.settings.geochronometer;
-	    var plotdevice = IsoplotR.settings.plotdevice;
-	    var format = IsoplotR.settings[chronometer].format;
-	    IsoplotR.settings[plotdevice] = data[plotdevice];
-	    IsoplotR.settings[chronometer] = data[chronometer];
-	    IsoplotR.settings[chronometer].format = format;
-	});
-	IsoplotR = populate(IsoplotR,false);
     });
 
     $("#CLEAR").click(function(){

@@ -1,4 +1,5 @@
 {
+    "language": "en",
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
@@ -21,14 +22,11 @@
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,
-	"diseq": 0,
-	"U48": 1,
-	"Th0U8": 1,
-	"Ra6U8": 1,
-	"Pa1U5": 1,
-	"fThU": 1,
-	"fRaU": 1,
-	"fPaU": 1
+	"diseq": "FALSE",
+	"U48": [1,0],
+	"ThU": [1,0],
+	"RaU": [1,0],
+	"PaU": [1,0]
     },
     "Th-U": {
 	"format": 2,
@@ -113,7 +111,8 @@
 	"clabel": ""
     },
     "isochron": {
-	"type": 2,
+	"UPbtype": 1,
+	"ThUtype": 2,
 	"model": 1,
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
@@ -151,7 +150,8 @@
 	"alpha": 0.05,
 	"shownumbers": "FALSE",
 	"numpeaks": 0,
-	"clabel": ""
+	"clabel": "",
+	"exterr": "FALSE"
     },
     "average": {
 	"outliers": "TRUE",

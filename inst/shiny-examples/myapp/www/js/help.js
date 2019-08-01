@@ -9,7 +9,7 @@ function help(id){
 	    "<li>relative uncertainties (in %) at 2&sigma;</li>" +
 	    "</ol>";
 	break;
-    case "help-tera-wasserburg":
+    case "help-concordia-type":
 	text = "<ol><li>Wetherill: <sup>206</sup>Pb/<sup>238</sup>U vs." +
 	    "<sup>207</sup>Pb/<sup>235</sup>U</li>" +
 	    "<li>Tera-Wasserburg: <sup>207</sup>Pb/<sup>206</sup>Pb " +
@@ -124,6 +124,19 @@ function help(id){
 	text = "Fit an isochron through the data using the algorithm " +
 	    "of Ludwig and Titterington (1994)?";
 	break;
+    case "help-diseq":
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on: <ol>" +
+	    "<li> the initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
+	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
+	    "ratios of the sample or (equivalently) the Th/U, Ra/U and Pa/U fractionation " +
+	    "factors between the sample and the parent magma; or</li>" +
+	    "<li> the current <sup>234</sup>U/<sup>238</sup>U or <sup>230</sup>Th/<sup>238</sup>U " +
+	    "activity ratios of the sample.</li>" +
+	    "<li class='hide4UPb1 hide4UPb2 hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 " +
+	    "show4UPb7 show4UPb8'> alternatively, the Th/U fractionation factor " +
+	    "can also be calculated from the measured Th/U ratio of the magma. This " +
+	    "can be determined from the whole rock and or volcanic glass.</li></ol>";
+	break;
     case "help-detritus":
 	text = "Choose one of four ways of dealing with detrital " +
 	    "<sup>230</sup>Th (and <sup>234</sup>U):" +
@@ -151,50 +164,28 @@ function help(id){
 	    "<sup>238</sup>U activity ratio of the detritus and its standard error.";
 	break;
     case "help-U48-UPb":
-	text = "Specify the (initial or measured) <sup>234</sup>U/" +
-	    "<sup>238</sup>U activity ratio of the sample. " +
-	    "1.15 is the canonical value for modern sea water.";
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
+	    "the initial or measured <sup>234</sup>U/<sup>238</sup>U activity ratio";
 	break;
-    case "help-Th0U8-UPb":
-	text = "Specify the (initial or measured) <sup>230</sup>Th/" +
-	    "<sup>238</sup>U activity ratio of the sample. " +
-	    "Set to 1 for secular equilibrium.";
+    case "help-ThU-UPb":
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
+	    "initial or measured <sup>230</sup>Th/<sup>238</sup>U activity ratio, " +
+	    "where the initial activity ratio is equivalent to the Th/U-fractionation " +
+	    "factor between the sample and the magma. <span class='hide4UPb1 hide4UPb2 " +
+	    "hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>Alternatively, " +
+	    "the initial <sup>230</sup>Th/<sup>238</sup>U activity ratio " +
+	    "can also be determined from the measured Th/U-ratio of the magma, determined " +
+	    "by geochemical analysis of the whole rock or volcanic glass. " +
+	    "This measured ratio is combined with the <sup>232</sup>Th/<sup>238</sup>U-ratio " +
+	    "of the minerals to compute the Th/U fractionation factor.</span>";
 	break;
-    case "help-Ra6U8-UPb":
-	text = "Specify the (initial or measured) <sup>226</sup>Ra/" +
-	    "<sup>238</sup>U activity ratio of the sample. " +
-	    "Set to 1 for secular equilibrium.";
+    case "help-RaU-UPb":
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
+	    "the initial <sup>226</sup>Ra/<sup>238</sup>U activity ratio";
 	break;
-    case "help-Pa1U5-UPb":
-	text = "Specify the (initial or measured) <sup>231</sup>Pa/" +
-	    "<sup>235</sup>U activity ratio of the sample. " +
-	    "Set to 1 for secular equilibrium.";
-	break;
-    case "help-fThU":
-	text = "Specify the Th/U fractionation between the mineral (m)" +
-	    "and the magma (M): f(Th/U) = (Th/U)<sub>m</sub>/(Th/U)<sub>M</sub>. " +
-	    "Set to 1 for secular equilibrium.";
-	break;
-    case "help-fRaU":
-	text = "Specify the Ra/U fractionation between the mineral (m)" +
-	    "and the magma (M): f(Ra/U) = (Ra/U)<sub>m</sub>/(Ra/U)<sub>M</sub>. " +
-	    "Set to 1 for secular equilibrium.";
-	break;
-    case "help-fPaU":
-	text = "Specify the Pa/U fractionation between the mineral (m)" +
-	    "and the magma (M): f(Pa/U) = (Pa/U)<sub>m</sub>/(Pa/U)<sub>M</sub>. " +
-	    "Set to 1 for secular equilibrium.";
-	break;
-    case "help-diseq":
-	text = "Apply a secular disequilibrium correction to the U-Pb data, based on: <ol>" +
-	    "<li> the initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
-	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
-	    "ratios of the sample.</li>" +
-	    "<li> the current <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
-	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
-	    "ratios of the sample.</li>" +
-	    "<li> the fractionation factors of Th/U, Ra/U and Pa/U between the mineral "+
-	    "and the magma from which the sample formed.</li></ol>";
+    case "help-PaU-UPb":
+	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
+	    "the initial <sup>231</sup>Pa/<sup>235</sup>U activity ratio";
 	break;
     case "help-rXY-detritus":
 	text = "Specify the error correlation between the measured " +
@@ -241,7 +232,14 @@ function help(id){
     case "help-exterr-UPb":
 	text = "When this box is ticked, the thickness of the concordia line " + 
 	    "will be adjusted to show the analytical uncertainty associated " +
-	    "with the <sup>235</sup>U and <sup>238</sup>U decay constants.";
+	    "with the decay constants and <sup>238</sup>U/<sup>235</sup>U-ratio. " +
+	    "This uncertainty will also be propagated into any concordia or " +
+	    "discordia age calculations.";
+	break;
+    case "help-exterr-radial":
+	text = "When this box is ticked, the analytical uncertainty associated " +
+	    "with decay constants, calibration factors, etc. will be propagated into " +
+	    "the central age and mixture models.";
 	break;
     case "help-exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
@@ -272,6 +270,18 @@ function help(id){
 	    "line regression. The default value corresponds to the troilite " +
 	    "composition of Stacey and Kramers (1975).";
 	break;
+    case "help-Pb208Pb206":
+	text = "Specify the initial <sup>208</sup>Pb/<sup>206</sup>Pb-ratio " +
+	    "to be used in a nominal common Pb correction or anchored discordia " +
+	    "line regression. The default value corresponds to the troilite " +
+	    "composition of Stacey and Kramers (1975).";
+	break;
+    case "help-Pb208Pb207":
+	text = "Specify the initial <sup>208</sup>Pb/<sup>206</sup>Pb-ratio " +
+	    "to be used in a nominal common Pb correction or anchored discordia " +
+	    "line regression. The default value corresponds to the troilite " +
+	    "composition of Stacey and Kramers (1975).";
+	break;
     case "help-Pb206Pb204":
 	text = "Specify the initial <sup>206</sup>Pb/<sup>204</sup>Pb-ratio " +
 	    "to be used in a nominal common Pb correction. The default value " +
@@ -290,15 +300,23 @@ function help(id){
 	text = "The default values of the <sup>235</sup>U decay constant " +
 	    "and its standard error are taken from Jaffey et al. (1971).";
 	break;
+    case "help-LambdaU234":
+	text = "The default value of the <sup>234</sup>U decay constant " +
+	    "is taken from Cheng et al. (2013). Its standard error excludes " +
+	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
+	break;
     case "help-LambdaTh230":
 	text = "The default value of the <sup>230</sup>Th decay constant " +
 	    "is taken from Cheng et al. (2013). Its standard error excludes " +
 	    "all covariant sources of analytical uncertainty with <sup>234</sup>U.";
 	break;
-    case "help-LambdaU234":
-	text = "The default value of the <sup>234</sup>U decay constant " +
-	    "is taken from Cheng et al. (2013). Its standard error excludes " +
-	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
+    case "help-LambdaRa226":
+	text = "The default value of the <sup>226</sup>Ra decay constant " +
+	    "is taken from Audi et al. (2003).";
+	break;
+    case "help-LambdaPa231":
+	text = "The default value of the <sup>231</sup>Pa decay constant " +
+	    "is taken from Audi et al. (2003).";
 	break;
     case "help-PbPb-inverse":
 	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +
@@ -766,7 +784,7 @@ function help(id){
 	text = "The disparity transformation used by the (non-metric) MDS algorithm " +
 	    "produces normalised values with no physical meaning. The " +
 	    "axes of the MDS configuration can therefore safely be removed, " +
-	    "which improves the ink-to-information ratio (sensu <i>Tufte</t>) " +
+	    "which improves the ink-to-information ratio (sensu <i>Tufte</i>) " +
 	    "of the graphical output.";
 	break;
     case "help-cex":
@@ -1009,6 +1027,22 @@ function help(id){
 	    "standards, assuming that the fission decay constant, etch " +
 	    "efficiency factor and uranium concentrations are known with " +
 	    "sufficient accuracy.</li></ol>";
+	break;
+    case "help-UPb-isochron-types":
+	text = "Choose one of two input formats:<ol>" +
+	    "<li><span class='show4UPb4 show4UPb5 show4UPb6 hide4UPb7 hide4UPb8'>" +
+	    "<sup>204</sup>Pb/<sup>206</sup>Pb</span>" +
+	    "<span class='hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>" +
+	    "<sup>208</sup>Pb<sub>o</sub>/<sup>206</sup>Pb</span>" +
+	    " vs. <sup>238</sup>U/<sup>206</sup>Pb</li>" +
+	    "<li><span class='show4UPb4 show4UPb5 show4UPb6 hide4UPb7 hide4UPb8'>" +
+	    "<sup>204</sup>Pb/<sup>207</sup>Pb</span>" +
+	    "<span class='hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>" +
+	    "<sup>208</sup>Pb<sub>o</sub>/<sup>207</sup>Pb</span>" +
+	    " vs. <sup>235</sup>U/<sup>207</sup>Pb</li></ol>" +
+	    "<span class='hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>"
+	    "Where <sup>208</sup>Pb<sub>o</sub> is the (inferred) " +
+	    "non-radiogenic <sup>208</sup>Pb-component.</span>";
 	break;
     case "help-ThU-isochron-types":
 	text = "Choose one of four input formats:<ol>" +

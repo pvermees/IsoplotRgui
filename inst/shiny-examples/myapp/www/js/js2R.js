@@ -73,6 +73,11 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",clabel='" + pdsettings.clabel + "'";
+	if (geochronometer != "other" &
+	    geochronometer != "Th-U" &
+	    geochronometer != 'U-Th-He'){
+	    out += ",exterr=" + pdsettings.exterr;
+	}
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
@@ -130,12 +135,14 @@ function getOptions(prefs){
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
     case 'isochron':
-	if (geochronometer!='Th-U' & geochronometer!='U-Th-He')
+	if (geochronometer!='U-Pb' & geochronometer!='Th-U' & geochronometer!='U-Th-He')
 	    out += ",inverse=" + gcsettings.inverse;
 	if (geochronometer=='Pb-Pb')
 	    out += ",growth=" + pdsettings.growth;
+	if (geochronometer=='U-Pb')
+	    out += ",type=" + pdsettings.UPbtype;
 	if (geochronometer=='Th-U')
-	    out += ",type=" + pdsettings.type;
+	    out += ",type=" + pdsettings.ThUtype;
 	if (geochronometer!='U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
     case 'regression':
@@ -472,15 +479,12 @@ function getRcommand(prefs){
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
     }
-    if (geochronometer=='U-Pb'){
-	out += ",d=IsoplotR::diseq(option=" + gcsettings.diseq;
-	out += ",U48=" + gcsettings.U48;
-	out += ",Th0U8=" + gcsettings.Th0U8;
-	out += ",Ra6U8=" + gcsettings.Ra6U8;
-	out += ",Pa1U5=" + gcsettings.Pa1U5;
-	out += ",fThU=" + gcsettings.fThU;
-	out += ",fRaU=" + gcsettings.fRaU;
-	out += ",fPaU=" + gcsettings.fPaU;
+    if (geochronometer=='U-Pb' & gcsettings.diseq=='TRUE'){
+	out += ",d=IsoplotR::diseq(";
+	out += "U48=list(x=" + gcsettings.U48[0] + ",option=" + gcsettings.U48[1] + ")";
+	out += ",ThU=list(x=" + gcsettings.ThU[0] + ",option=" + gcsettings.ThU[1] + ")";
+	out += ",RaU=list(x=" + gcsettings.RaU[0] + ",option=" + gcsettings.RaU[1] + ")";
+	out += ",PaU=list(x=" + gcsettings.PaU[0] + ",option=" + gcsettings.PaU[1] + ")";
 	out += ")";
     } else if (geochronometer=='Th-U'){
 	out += ",Th02=" + concatenate(gcsettings.Th02);
@@ -492,9 +496,25 @@ function getRcommand(prefs){
     case 'U-Pb':
 	out += "IsoplotR::settings('iratio','Pb207Pb206'," +
 	    prefs.constants.iratio.Pb207Pb206[0] + ");"
+	out += "IsoplotR::settings('iratio','Pb208Pb206'," +
+	    prefs.constants.iratio.Pb208Pb206[0] + ");"
+	out += "IsoplotR::settings('iratio','Pb208Pb207'," +
+	    prefs.constants.iratio.Pb208Pb207[0] + ");"
 	out += "IsoplotR::settings('lambda','Th232'," +
 	    prefs.constants.lambda.Th232[0] + "," +
 	    prefs.constants.lambda.Th232[1] + ");"
+	out += "IsoplotR::settings('lambda','U234'," +
+	    prefs.constants.lambda.U234[0] + "," +
+	    prefs.constants.lambda.U234[1] + ");"
+	out += "IsoplotR::settings('lambda','Th230'," +
+	    prefs.constants.lambda.Th230[0] + "," +
+	    prefs.constants.lambda.Th230[1] + ");"
+	out += "IsoplotR::settings('lambda','Ra226'," +
+	    prefs.constants.lambda.Ra226[0] + "," +
+	    prefs.constants.lambda.Ra226[1] + ");"
+	out += "IsoplotR::settings('lambda','Pa231'," +
+	    prefs.constants.lambda.Pa231[0] + "," +
+	    prefs.constants.lambda.Pa231[1] + ");"
     case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','Pb206Pb204'," +
 	    prefs.constants.iratio.Pb206Pb204[0] + ");"
