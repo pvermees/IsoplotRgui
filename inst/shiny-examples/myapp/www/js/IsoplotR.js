@@ -454,7 +454,7 @@ $(function(){
 	    } else {
 		$(".show4diseq").hide();
 	    }
-	    if (set.commonPb!=3){
+	    if (set.commonPb!=3 & pd.anchor!=2){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').hide();
@@ -740,14 +740,6 @@ $(function(){
 		$('.show4tanchor').show();
 	    } else {
 		$('.show4tanchor').hide();
-	    }
-	    if (pd.anchor==2 & set.format<4){
-		$('.show4commonPbwithout204').show();
-	    } else if (pd.anchor==2){
-		$('.show4commonPbwith204').show();
-	    } else if (set.commonPb!=3){
-		$('.show4commonPbwithout204').hide();
-		$('.show4commonPbwith204').hide();
 	    }
 	    break;
 	case 'evolution':
