@@ -35,11 +35,13 @@ at the command prompt. Alternatively, the program can also be accessed online vi
 
 ## Setting up your own online mirror
 
-The following instructions assume that you have access to a **Linux** server with **git** installed on it.
+The following instructions assume that you have access to a **Linux**
+server with **git** and **nginx** installed on it.
 
 1. Install **R** and **shiny-server** using the instructions provided at [https://www.rstudio.com/products/shiny/download-server](https://www.rstudio.com/products/shiny/download-server)
 
-2. Save the following code in a file called ``/srv/shiny-server/IsoplotR.sh``:
+2. Save the following code in a file called
+``/srv/shiny-server/IsoplotR.sh``:
 
 ```
 # i. update IsoplotR from GitHub:
