@@ -54,7 +54,7 @@ for quantitative inference.
   <li>
     Includes x% of the
     <span hidden class="show4ArAr"><sup>39</sup>Ar</span>
-    <span hidden class="show4other">spectrum</span>
+    <span hidden class="show4other">spectrum</span>, MSWD = y
     <p></p>
     where:
     <p></p>
@@ -65,6 +65,18 @@ for quantitative inference.
 	</td>
 	<td>
 	  the sum of all the steps that are included in the plateau.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>
+	  the mean square of the weighted deviates (aka 'reduced
+	  chi-square statistic') of the plateau. <tt>IsoplotR</tt>'s
+	  plateau definition allows the MSWD to exceed 1, as long as
+	  the overdispersion does not violate Chauvenet's outlier
+	  criterion.
 	</td>
       </tr>
     </table>
