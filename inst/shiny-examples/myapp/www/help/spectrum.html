@@ -10,7 +10,10 @@ pass a modified Chauvenet criterion.  This definition is different
 (and simpler) than the one used by <tt>Isoplot</tt> (Ludwig,
 2003). However, it is important to mention that all definitions of an
 age plateau are heuristic by nature and should therefore not be used
-for quantitative inference.
+for quantitative inference.  It is possible (and likely) that the
+plateau exhibits significant overdispersion. This overdispersion can
+be manually reduced by removing individual heating steps using the
+optional <tt>omit</tt> column.
 
 <p></p>
 <u>Legend:</u>
@@ -52,9 +55,41 @@ for quantitative inference.
     </table>
   </li>
   <li>
+    MSWD = x, p-value = y
+    <p></p>
+    where:
+    <p></p>
+    <table>
+      <tr>
+	<td>
+	  x:
+	</td>
+	<td>
+	  the mean square of the weighted deviates (aka 'reduced
+	  chi-square statistic') of the plateau. <tt>IsoplotR</tt>'s
+	  plateau definition allows the MSWD to exceed 1, as long as
+	  the overdispersion does not violate Chauvenet's outlier
+	  criterion.
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  y:
+	</td>
+	<td>
+	  p-value of a chi-square test of
+	  homogeneity. <tt>IsoplotR</tt>'s plateau definition allow
+	  the p-value to fall below the &alpha; cutoff, as long as the
+	  overdispersion does not violate Chauvenet's outlier
+	  criterion.
+	</td>
+      </tr>
+    </table>
+  </li>
+  <li>
     Includes x% of the
     <span hidden class="show4ArAr"><sup>39</sup>Ar</span>
-    <span hidden class="show4other">spectrum</span>, MSWD = y
+    <span hidden class="show4other">spectrum</span>
     <p></p>
     where:
     <p></p>
@@ -65,18 +100,6 @@ for quantitative inference.
 	</td>
 	<td>
 	  the sum of all the steps that are included in the plateau.
-	</td>
-      </tr>
-      <tr>
-	<td>
-	  y:
-	</td>
-	<td>
-	  the mean square of the weighted deviates (aka 'reduced
-	  chi-square statistic') of the plateau. <tt>IsoplotR</tt>'s
-	  plateau definition allows the MSWD to exceed 1, as long as
-	  the overdispersion does not violate Chauvenet's outlier
-	  criterion.
 	</td>
       </tr>
     </table>
