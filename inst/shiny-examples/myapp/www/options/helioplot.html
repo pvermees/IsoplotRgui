@@ -1,68 +1,77 @@
 <p></p>
 
 &nbsp;<input type="checkbox" id="logratio">
-      <help id="help-logratio">Logratio plot</help>?
+      <help id="help-logratio"><en>Logratio plot</en><cn>对数图形</cn></help>?
 
 <p></p>
 
 &nbsp;<input type="checkbox" id="shownumbers"> 
-<help id="help-shownumbers">Show sample numbers</help>?
+<help id="help-shownumbers"><en>Show sample numbers</en><cn>显示样品编号</cn></help>?
 
 <p></p>
 
 &nbsp;<input type="checkbox" id="showcentralcomp"> 
-<help id="help-showcentralcomp">Show central composition</help>?
+<help id="help-showcentralcomp"><en>Show central composition</en><cn>显示中央组成</cn></help>?
 
 <p></p>
 
-&nbsp;<help id="help-helioplot-models">Model:</help>
-<select id="helioplot-models">
-  <option value=1>1. Weighted mean</option>
-  <option value=2>2. Unweighted mean</option>
-  <option value=3>3. Weighted mean with overdispersion</option>
-</select>
+&nbsp;<help id="help-helioplot-models"><en>Model</en><cn>模型</cn>:</help>
+<en>
+  <select id="helioplot-models">
+    <option value=1>1. Weighted mean</option>
+    <option value=2>2. Unweighted mean</option>
+    <option value=3>3. Weighted mean with overdispersion</option>
+  </select>
+</en>
+<cn>
+  <select id="helioplot-models">
+    <option value=1>1. 加权平均</option>
+    <option value=2>2. 非加权平均</option>
+    <option value=3>3. 过度离散的加权平均</option>
+  </select>  
+</cn>
 
 <p></p>
 
 <table>
   <tr>
-    <td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
+    <td>&nbsp;<help id="help-alpha"><en>Probability cutoff</en><cn>概率截止</cn>:</help></td>
     <td><input type="text" id="alpha"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-sigdig">Significant digits:</help></td>
+    <td>&nbsp;<help id="help-sigdig"><en>Significant digits</en><cn>有效数字</cn>:</help></td>
     <td><input type="text" id="sigdig"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-minx-helioplot">Minimum log[U/He] limit</help>:</td>
+    <td>&nbsp;<help id="help-minx-helioplot"><en>Minimum </en>log[U/He] <en>limit</en><cn>下限</cn></help>:</td>
     <td><input type="text" id="minx"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxx-helioplot">Maximum log[U/He] limit</help>:</td>
+    <td>&nbsp;<help id="help-maxx-helioplot"><en>Maximum </en>log[U/He] <en>limit</en><cn>上限</cn></help>:</td>
     <td><input type="text" id="maxx"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-miny-helioplot">Minimum log[Th/He] limit</help>:</td>
+    <td>&nbsp;<help id="help-miny-helioplot"><en>Minimum </en>log[Th/He] <en>limit</en><cn>下限</cn></help>:</td>
     <td><input type="text" id="miny"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxy-helioplot">Maximum log[Th/He] limit</help>:</td>
+    <td>&nbsp;<help id="help-maxy-helioplot"><en>Maximum </en>log[Th/He] <en>limit</en><cn>上限</cn></help>:</td>
     <td><input type="text" id="maxy"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-fact">Scaling factors</help>:</td>
+    <td>&nbsp;<help id="help-fact"><en>Scaling factors</en><cn>比例因子</cn></help>:</td>
     <td><input type="text" id="fact"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-ellipse-col">Ellipse colour:</help></td>
+    <td>&nbsp;<help id="help-ellipse-col"><en>Ellipse colour</en><cn>椭圆颜色</cn>:</help></td>
     <td><input type="text" id="ellipsecol"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-cex">Font magnification</help>:</td>
+    <td>&nbsp;<help id="help-cex"><en>Font magnification</en><cn>字体放大</cn></help>:</td>
     <td><input type="text" id="cex"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+    <td>&nbsp;<help id="help-clabel"><en>Colour label</en><cn>颜色标签</cn></help>:</td>
     <td><input type="text" id="clabel"></td>
   </tr>
 </table>
