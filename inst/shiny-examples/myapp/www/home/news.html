@@ -1,0 +1,128 @@
+<p></p>
+
+IsoplotR is incrementally updated on <a
+href='http://github.com/pvermees/IsoplotR'>GitHub</a>, as detailed in
+the change log there. Updates to the <a
+href='https://CRAN.R-project.org/package=IsoplotR'>CRAN</a> version
+are less frequent and are reported below.
+
+<p></p>
+
+The program has benefited from feedback by Rog&eacute;rio Azzone, Sky
+Beard, P.H. Blard, Shelby Bowden, Bradley Cave, Cyril Chelle-Michou,
+Bob Cliff, Nathan Cogn&eacute;, John Cottle, Matthew Di Giovine, Sergi
+Esteve i Girb&eacute;s, Stijn Glorie, Drew Goodfellow, Peter Hallas,
+Gregory Herzog, Danny Hnatyshin, Guilhelm Hoareau, Carl Hoiland,
+Jeremy Hourigan, Xiangtong Huang, Simon Kelley, Rich Ketcham, Jacob
+Klug, Alfred Kr&ouml;ner; Martin Lindner, Ian Miller, Sean Mulcahy,
+Simon Nachtergaele, Jessica Oster, Nicholas Perez, Jesse Reimink, Nick
+Roberts, Urs Schaltegger, Peter Scott, Warren Sharp, Brad Singer,
+Katie Smart, Luigi Solari, Tobias Stephan, Roelant van der Lelij,
+Gerben Van Ranst, Paul Sylvester, Isabelle Therriault, Shang Yan,
+Qiuye Yu and Renjie Zhou.
+
+<h3>Update history and other events</h3>
+
+<p></p>
+
+<span class="stamp">June 6, 2019</span> (v2.7): Adds new input format
+for U-Pb data that include <sup>208</sup>Pb and <sup>232</sup>Th;
+option to perform discordance filter before common Pb correction.
+This update changes the <tt>.json</tt> format, which may cause problems
+for data saved in previous <tt>IsoplotR</tt> versions.
+
+<p></p>
+
+<span class="stamp">May 24, 2019</span>: Addition of an American
+<tt>IsoplotR</tt> mirror at UC Santa Barbara:<br>
+<a href="http://isoplotr.geol.ucsb.edu:3838/IsoplotR/">
+http://isoplotr.geol.ucsb.edu:3838/IsoplotR/</a><br>
+
+<p></p>
+
+<span class="stamp">May 4, 2019</span> (v2.6): Adds inverse isochron
+  option to K-Ca, Rb-Sr, Sm-Nd, Lu-Hf and Re-Os data. Improved
+  dispersion estimates in model-3 regression.
+
+<p></p>
+
+<span class="stamp">April 11, 2019</span>: Two new
+mirror <tt>IsoplotR</tt> sites come online:<br>
+
+UK (BGS): <a href="http://shiny.bgs.ac.uk/shiny/IsoplotR/">
+http://shiny.bgs.ac.uk/shiny/IsoplotR/</a><br>
+
+China (Qiuye Yu): <a href="http://labof.me:3838/IsoplotRshiny/">
+http://labof.me:3838/IsoplotRshiny/</a>
+
+<p></p>
+
+<span class="stamp">April 3, 2019</span> (v2.5): Several improvements, especially for the
+common-Pb corrections, which improve <tt>IsoplotR</tt>'s robustness to
+very discordant data. Prepared in the run-up to the detrital zircon
+U-Pb dating workshop at the Beijing SHRIMP centre.
+
+<p></p>
+
+<span class="stamp">March 4, 2019</span> (v2.4): Implements initial
+disequilibrium corrections for U-Pb data, improved common
+Pb-corrections and initial ('common') non-radiogenic isotope
+compositions for other chronometers; increases robustness of the
+mixture modelling functions.
+
+<p></p>
+
+<span class="stamp">December 8, 2018</span> (v2.3): Allows input
+uncertainties to be specified as absolute and relative errors at 1 or
+2&sigma;.
+
+<p></p>
+
+<span class="stamp">November 9, 2018</span> (v2.2): Adds ability to
+  hide or omit samples from plots and calculations.
+
+<p></p>
+
+<span class="stamp">October 20, 2018</span> (v2.1): Rewrote discordia
+regression function, which now uses the same maximum likelihood
+approach for 2D and 3D regression.  Added option to anchor the
+discordia line to the concordia line, or to a specificy common Pb
+composition.
+
+<p></p>
+
+<span class="stamp">September 10, 2018</span> (v2.0): Adds K-Ca
+geochronology to the toolbox.
+
+<p></p>
+
+<span class="stamp">August 13, 2018</span> (v1.4): Adds options for
+detrital <sup>230</sup>Th-corrections from assumed or measured
+detritus; more flexible weighted mean plots.
+
+<p></p>
+
+<span class="stamp">June 4, 2018</span> (v1.3): Includes bug fixes
+relating to the 'York fit' algorithm and error formatting, and added
+functionality for Stacey-Kramers evolution curves and ordinary
+weighted mean calculation.
+
+<p></p>
+
+<span class="stamp">May 1, 2018</span> (v1.2): Includes bug fixes
+relating to the MSWD of isochrons, and discordia lines in
+Tera-Wasserburg space. Improved flexibility for loading data from R
+matrices and data frames.
+
+<p></p>
+
+<span class="stamp">April 11, 2018</span>: IsoplotR formally
+introduced to the Geoscience community
+at <a href="https://meetingorganizer.copernicus.org/EGU2018/EGU2018-3088.pdf">EGU</a>
+(Vienna).
+
+<p></p>
+
+<span class="stamp">April 3, 2018</span>:
+IsoplotR <a href="http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018">paper</a>
+accepted for publication in <i>Geoscience Frontiers</i>.
