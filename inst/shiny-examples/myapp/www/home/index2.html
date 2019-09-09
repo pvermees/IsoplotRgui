@@ -2,48 +2,48 @@
 <html>
   <head>
     <title>IsoplotR</title>
-    <link href="../css/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+    <link href="../css/jquery-ui.min.css" rel="stylesheet" type="text/css"/> 
     <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/> 
-    <link href="../css/prettify.css" rel="stylesheet" type="text/css"/> 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/prettify.js"></script>
-    <script src="../js/lang-r.js"></script>
+    <script src="../js/run_prettify.js?lang=r"></script>
     <script>
       $(document).ready(function() {
 
-          var mytimer
+      var mytimer
       
-          function countdown(){
-              var counter = 12;
-              var mytimer = setInterval(function(){
-                  counter--;
-                  if (counter<0) {
-                      window.location = "http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/";
-                  } else {
-                      document.getElementById("count").innerHTML = counter;
-	          }
-   	      },1000);
+      function countdown(){
+          var counter = 10;
+          var mytimer = setInterval(function(){
+              counter--;
+              if (counter<0) {
+                  window.location = "http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/";
+              } else {
+                  document.getElementById("count").innerHTML = counter;
+	      }
+   	   },1000);
 	      return(mytimer);
-           }
+      }
 
-           $("#tabs").tabs({selected: 0});
-           $('#tab-0').load('intro.html');
-           $('#tab-2').load('offline.html');
-           $('#tab-3').load('commandline.html');
-           $('#tab-4').load('news.html');
-           $('#tab-5').load('contribute.html');
-           $("#tabs").tabs({
-               select: function(event, ui){
-                    if (ui.index==1){
-	                $('#tab-1').load("map.html");
-                        mytimer = countdown();
-                    } else {
-                        clearInterval(mytimer);
-                    }
-               }
-           });    
+      $("#tabs").tabs({selected: 0});
+      $( "#tabs" ).tabs({beforeActivate:
+          function(event, ui){
+	      if (ui.newPanel.is("#tab-1")){
+	          $('#tab-1').load("map.html");
+		  mytimer = countdown();
+	      } else {
+	  	  clearInterval(mytimer);
+	      }
+	  }
+			     
       });
+      $('#tab-0').load('intro.html');
+      $('#tab-2').load('offline.html');
+      $('#tab-3').load('commandline.html');
+      $('#tab-4').load('news.html');
+      $('#tab-5').load('contribute.html');
+
+    });
     </script>
   </head>
   <body>

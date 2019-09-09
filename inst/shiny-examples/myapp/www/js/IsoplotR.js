@@ -1964,6 +1964,7 @@ $(function(){
     function welcome(){
 	$('#myplot').load('welcome.html',function(){
 	    $('#version').load('version.txt');
+	    $('#latestversion').load('https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt');
 	    showOrHide();
 	});
     }

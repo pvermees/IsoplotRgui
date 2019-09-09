@@ -29,8 +29,12 @@
       $( "#tabs" ).tabs({beforeActivate:
           function(event, ui){
 	      if (ui.newPanel.is("#tab-1")){
-	          $('#tab-1').load("map.html");
-		  mytimer = countdown();
+	          $('#tab-1').load("map.html",function(){
+		      $.get("http://shiny.bgs.ac.uk/shiny/IsoplotR/version.txt", function( data ) {
+		          $("#BGSversion").html( data );
+		      });
+		  });
+   	          mytimer = countdown();
 	      } else {
 	  	  clearInterval(mytimer);
 	      }
