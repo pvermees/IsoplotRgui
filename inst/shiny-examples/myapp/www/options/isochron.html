@@ -33,12 +33,21 @@
 </div>
 
 <div>
-&nbsp;<help id="help-isochron-models">Model:</help>
-<select id="isochron-models" onchange="$.register();">
-  <option value=1>1. Maximum likelihood</option>
-  <option value=2>2. Ordinary least squares</option>
-  <option value=3>3. Maximum likelihood with overdispersion</option>
-</select>
+  &nbsp;<help id="help-isochron-models"><en>Model</en><cn>模型</cn>:</help>
+  <en>
+    <select id="isochron-models" onchange="$.register();">
+      <option value=1>1. Maximum likelihood</option>
+      <option value=2>2. Ordinary least squares</option>
+      <option value=3>3. Maximum likelihood with overdispersion</option>
+    </select>
+  </en>
+  <cn>
+    <select id="isochron-models" onchange="$.register();">
+      <option value=1>1. 最大似然法</option>
+      <option value=2>2. 普通最小二乘法</option>
+      <option value=3>3. 最大似然法（过度离散）</option>
+    </select>
+  </cn>
 </div>
 
 <p></p>
@@ -64,32 +73,32 @@
 
 <div class="hide4UThHe">
 &nbsp;<input type="checkbox" id="isochron-exterr"> 
-<help id="help-exterr">Propagate systematic uncertainties</help>?
+<help id="help-exterr"><en>Propagate systematic uncertainties</en><cn>传播系统的不确定性</cn></help>?
 <p></p>
 </div>
 
 &nbsp;<input type="checkbox" id="shownumbers"> 
-<help id="help-shownumbers">Show sample numbers</help>?
+<help id="help-shownumbers"><en>Show sample numbers</en><cn>显示样品编号</cn></help>?
 
 <p></p>
 
 <table>
-  <tr><td>&nbsp;<help id="help-isochron-minx">Minimum X:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-minx"><en>Minimum </en>X<cn> 最小值</cn>:</help></td>
     <td><input type="text" id="isochron-minx"></td></tr>
-  <tr><td>&nbsp;<help id="help-isochron-maxx">Maximum X:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-maxx"><en>Maximum </en>X<cn> 最大值</cn>:</help></td>
     <td><input type="text" id="isochron-maxx"></td></tr>
-  <tr><td>&nbsp;<help id="help-isochron-miny">Minimum Y:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-miny"><en>Minimum </en>Y<cn>最小值</cn>:</help></td>
     <td><input type="text" id="isochron-miny"></td></tr>
-  <tr><td>&nbsp;<help id="help-isochron-maxy">Maximum Y:</help></td>
+  <tr><td>&nbsp;<help id="help-isochron-maxy"><en>Maximum </en>Y<cn>最大值</cn>:</help></td>
     <td><input type="text" id="isochron-maxy"></td></tr>
-  <tr><td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
+  <tr><td>&nbsp;<help id="help-alpha"><en>Probability cutoff</en><cn>概率截止</cn>:</help></td>
     <td><input type="text" id="alpha"></td></tr>
-  <tr><td>&nbsp;<help id="help-sigdig">Significant digits:</help></td>
+  <tr><td>&nbsp;<help id="help-sigdig"><en>Significant digits</en><cn>有效数字</cn>:</help></td>
     <td><input type="text" id="sigdig"></td></tr>
-  <tr><td>&nbsp;<help id="help-ellipse-col">Ellipse colour:</help></td>
+  <tr><td>&nbsp;<help id="help-ellipse-col"><en>Ellipse colour</en><cn>椭圆颜色</cn>:</help></td>
     <td><input type="text" id="ellipsecol"></td></tr>
-  <tr><td>&nbsp;<help id="help-cex">Font magnification</help>:</td>
+  <tr><td>&nbsp;<help id="help-cex"><en>Font magnification</en><cn>字体放大</cn></help>:</td>
     <td><input type="text" id="cex"></td></tr>
-  <tr><td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+  <tr><td>&nbsp;<help id="help-clabel"><en>Colour label</en><cn>颜色标签</cn></help>:</td>
     <td><input type="text" id="clabel"></td></tr>
 </table>
