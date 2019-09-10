@@ -9,7 +9,7 @@
     <script src="../js/run_prettify.js?lang=r"></script>
     <script>
       $(document).ready(function() {
-
+      
       var mytimer
       
       function countdown(){
@@ -17,29 +17,26 @@
           var mytimer = setInterval(function(){
               counter--;
               if (counter<0) {
-                  window.location = "http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/";
+                 window.location = "http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/";
               } else {
-                  document.getElementById("count").innerHTML = counter;
-	      }
-   	   },1000);
-	      return(mytimer);
+                 document.getElementById("count").innerHTML = counter;
+              }
+          },1000);
+          return(mytimer);
       }
 
-      $("#tabs").tabs({selected: 0});
-      $( "#tabs" ).tabs({beforeActivate:
-          function(event, ui){
-	      if (ui.newPanel.is("#tab-1")){
-	          $('#tab-1').load("map.html",function(){
-		      $.get("http://shiny.bgs.ac.uk/shiny/IsoplotR/version.txt", function( data ) {
-		          $("#BGSversion").html( data );
-		      });
-		  });
-   	          mytimer = countdown();
-	      } else {
-	  	  clearInterval(mytimer);
+      $("#tabs").tabs({
+          selected: 0,
+          beforeActivate:
+	      function(event, ui){
+	           if (ui.newPanel.is("#tab-1")){
+		        $('#tab-1').load("map.html",function(){
+    		             mytimer = countdown();
+		        });
+		   } else {
+	  	        clearInterval(mytimer);
+		   }
 	      }
-	  }
-			     
       });
       $('#tab-0').load('intro.html');
       $('#tab-2').load('offline.html');
