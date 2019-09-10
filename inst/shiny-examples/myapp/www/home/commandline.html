@@ -1,0 +1,76 @@
+The full functionality of <i>IsoplotR</i> can be accessed from the
+command line. This includes all the functions and options that are
+available through the GUI, and more. After installing <i>R</i>
+on your system from <a href="http://r-project.org">http://r-project.org</a>,
+the command line functionality can be installed from <a href="https://github.com/pvermees/IsoplotR">Github</a> 
+as described under the <i>Offline</i> tab. Alternatively, <i>IsoplotR</i>
+can also be installed from the Comprehensive R Archive Network (CRAN) by
+typing:
+
+<pre class="prettyprint">
+install.packages('IsoplotR')
+</pre>
+
+Example code to reproduce the figures in the <a href="http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018">paper</a>:
+
+<pre class="prettyprint">
+# load the IsoplotR package:  
+library(IsoplotR)  
+
+# navigate to the system directory that stores the built-in data files:  
+setwd(system.file(package='IsoplotR'))  
+
+# Rb-Sr isochron:
+RbSr <- read.data('RbSr1.csv',method='Rb-Sr',format=1)  
+isochron(RbSr)  
+
+# Weighted mean plot:
+meandat <- read.data('LudwigMean.csv',method='other')  
+weightedmean(meandat)  
+
+# Cumulative Age Distribution:
+densdat <- read.data('LudwigKDE.csv',method='other')  
+cad(densdat)  
+
+# Kernel Density Estimate:
+mixture <- read.data('LudwigMixture.csv',method='other')  
+kde(densdat,pch='|')  
+
+# Radial plot with minimum age estimate:
+radialplot(mixture,k='min',bg='yellow')  
+
+# 40Ar/39Ar release spectrum:
+ArAr <- read.data('ArAr3.csv',method='Ar-Ar',format=3)  
+agespectrum(ArAr)  
+
+# Concordia diagram of common-Pb corrected data with concordia age:
+UPb <- read.data('UPb6.csv',method='U-Pb',format=6)  
+concordia(UPb,common.Pb=2,show.age=1,exterr=TRUE)
+
+# U-series evolution diagram:
+ThU <- read.data('ThU1.csv',method='Th-U',format=1)  
+evolution(ThU,levels=ThU$x[,'U238Th232'],  
+          clabel=expression(paste(""^"238","U/"^"232","Th")))  
+
+# U-series age vs. initial 234U/238U diagram:
+evolution(ThU,transform=TRUE,detrital=TRUE,  
+          ellipse.col=rgb(1,0,0,0.2),  
+          show.numbers=TRUE,isochron=TRUE)  
+
+# Logratio plot of U-Th-Sm-He data:
+UThSmHe <- read.data('UThSmHe.csv',method='U-Th-He')  
+helioplot(UThSmHe,model=3,  
+          levels=log10(UThSmHe[,'Sm']),  
+          clabel=expression("log[Sm]"))  
+
+# Ternary diagram of U-Th-Sm-He data: 
+helioplot(UThSmHe,model=1,logratio=FALSE,ellipse.col='lightblue')  
+
+# Multidimensional Scaling (MDS) configuration of detrital ages:
+DZ <- read.data('DZ.csv',method='detritals')  
+mds(DZ)
+</pre>
+
+Full documentation with additional examples can be viewed <a
+href="https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf">on
+CRAN</a>.

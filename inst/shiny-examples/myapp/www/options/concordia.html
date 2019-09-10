@@ -1,6 +1,6 @@
 <p></p>
 
-&nbsp;<help id="help-concordia-type">Concordia type:</help>
+&nbsp;<help id="help-concordia-type"><en>Concordia type</en><cn>谐和线类型</cn></help>:
 <select id="concordia-type" onchange="$.register();">
   <option value=1>Wetherill</option>
   <option value=2>Tera-Wasserburg</option>
@@ -11,15 +11,26 @@
 <p></p>
 
 <div>
-  &nbsp;<help id="help-conc-age-option">Calculate</help>
-  <select id="conc-age-option" onchange="$.register();">
+  &nbsp;<help id="help-conc-age-option"><en>Calculate</en><cn>计算</cn></help>
+  <en>
+    <select id="conc-age-option" onchange="$.register();">
     <option value=0>no</option>
     <option value=1>concordia</option>
     <option value=2>discordia (model-1)</option>
     <option value=3>discordia (model-2)</option>
     <option value=4>discordia (model-3)</option>
-  </select>
-  age
+    </select>
+  </en>
+  <cn>
+    <select id="conc-age-option" onchange="$.register();">
+    <option value=0>空</option>
+    <option value=1>谐和</option>
+    <option value=2>非谐和（模型1）</option>
+    <option value=3>非谐和（模型2）</option>
+    <option value=4>非谐和（模型3）</option>
+    </select>
+  </cn>
+  <en>age</en><cn>年龄</cn>
   <div hidden class="hide4noUPbAge hide4concordia show4discordia">
     <p></p>
     &nbsp;<help id="help-anchor-option">Anchored discordia line?</help>
@@ -38,51 +49,51 @@
     <td><input type="text" id="tanchor"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-mint-concordia">Minimum t:</help></td>
+    <td>&nbsp;<help id="help-mint-concordia"><en>Minimum</en><cn>最小值</cn> t:</help></td>
     <td><input type="text" id="mint"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxt-concordia">Maximum t:</help></td>
+    <td>&nbsp;<help id="help-maxt-concordia"><en>Maximum</en><cn>最大值</cn> t:</help></td>
     <td><input type="text" id="maxt"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-minx-concordia">Minimum X:</help></td>
+    <td>&nbsp;<help id="help-minx-concordia"><en>Minimum</en><cn>最小值</cn> X:</help></td>
     <td><input type="text" id="minx"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxx-concordia">Maximum X:</help></td>
+    <td>&nbsp;<help id="help-maxx-concordia"><en>Maximum</en><cn>最大值</cn> X:</help></td>
     <td><input type="text" id="maxx"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-miny-concordia">Minimum Y:</help></td>
+    <td>&nbsp;<help id="help-miny-concordia"><en>Minimum</en><cn>最小值</cn> Y:</help></td>
     <td><input type="text" id="miny"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxy-concordia">Maximum Y:</help></td>
+    <td>&nbsp;<help id="help-maxy-concordia"><en>Maximum</en><cn>最大值</cn> Y:</help></td>
     <td><input type="text" id="maxy"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
+    <td>&nbsp;<help id="help-alpha"><en>Probability cutoff</en><cn>概率截止</cn>:</help></td>
     <td><input type="text" id="alpha"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-sigdig">Significant digits:</help></td>
+    <td>&nbsp;<help id="help-sigdig"><en>Significant digits</en><cn>有效数字</cn>:</help></td>
     <td><input type="text" id="sigdig"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-ellipse-col">Ellipse colour:</help></td>
+    <td>&nbsp;<help id="help-ellipse-col"><en>Ellipse colour</en><cn>椭圆颜色</cn>:</help></td>
     <td><input type="text" id="ellipsecol"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-cex">Font magnification</help>:</td>
+    <td>&nbsp;<help id="help-cex"><en>Font magnification</en><cn>字体放大</cn></help>:</td>
     <td><input type="text" id="cex"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+    <td>&nbsp;<help id="help-clabel"><en>Colour label</en><cn>颜色标签</cn></help>:</td>
     <td><input type="text" id="clabel"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-concordia-ticks">Age ticks</help>:</td>
+    <td>&nbsp;<help id="help-concordia-ticks"><en>Age ticks</en><cn>年龄限制</cn></help>:</td>
     <td><input type="text" id="ticks"></td>
   </tr>
 </table>
@@ -90,11 +101,11 @@
 <p></p>
 
 &nbsp;<input type="checkbox" id="exterr"> 
-<help id="help-exterr-UPb">Propagate systematic uncertainties</help>?
+<help id="help-exterr-UPb"><en>Propagate systematic uncertainties</en><cn>传播系统的不确定性</cn></help>?
 
 <p></p>
 
 &nbsp;<input type="checkbox" id="shownumbers"> 
-<help id="help-shownumbers">Show sample numbers</help>?
+<help id="help-shownumbers"><en>Show sample numbers</en><cn>显示样品编号</cn></help>?
 
 <p></p>

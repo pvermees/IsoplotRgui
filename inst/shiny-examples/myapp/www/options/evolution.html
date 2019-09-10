@@ -2,59 +2,68 @@
 
 <div class="show4ThU1 show4ThU2 hide4ThU3 hide4ThU4">
 &nbsp;<input type="checkbox" id="transform-evolution" onchange="$.register();">
-<help id="help-transform-evolution">Plot as <sup>234</sup>U/<sup>238</sup>U vs. age</help>?
+<help id="help-transform-evolution"><en>Plot as</en><cn>绘图为</cn> <sup>234</sup>U/<sup>238</sup>U vs. age</help>?
 <p></p>
 </div>
 
 &nbsp;<input type="checkbox" id="isochron-evolution" onclick="$.register();">
-<help id="help-isochron-evolution">Calculate isochron age</help>?
+<help id="help-isochron-evolution"><en>Calculate isochron age</en><cn>计算等时线年龄</cn></help>?
 
 <div class="show4evolutionIsochron">
 <p></p>
 &nbsp;<input type="checkbox" id="exterr"> 
-<help id="help-exterr">Propagate decay constant uncertainties</help>?
+<help id="help-exterr"><en>Propagate decay constant uncertainties</en><cn>传播系统的不确定性</cn></help>?
 <p></p>
-&nbsp;<help id="help-isochron-models">Regression model:</help>
+&nbsp;<help id="help-isochron-models"><en>Regression model</en><cn>回归模型</cn>:</help>
+<en>
 <select id="evolution-isochron-models" onchange="$.chooseThUisochronModel();">
   <option value=1>1. maximum likelihood</option>
   <option value=2>2. ordinary least squares</option>
   <option value=3>3. maximum likelihood (with overdispersion)</option>
 </select>
+</en>
+<cn>
+<select id="evolution-isochron-models" onchange="$.chooseThUisochronModel();">
+  <option value=1>1. 最大似然法</option>
+  <option value=2>2. 普通最小二乘法</option>
+  <option value=3>3. 最大似然法（过度离散）</option>
+</select>  
+</cn>
 </div>
 
 <p></p>
 
 &nbsp;<input type="checkbox" id="shownumbers">
-<help id="help-shownumbers">Show sample numbers</help>?
+<help id="help-shownumbers"><en>Show sample numbers</en><cn>显示样品编号</cn></help>?
 
 <p></p>
 
 <table>
   <tr class="show4evotrans">
-    <td>&nbsp;<help id="help-mint-evolution">Minimum age:</help></td>
+    <td>&nbsp;<help id="help-mint-evolution"><en>Minimum age</en><cn>年龄最小值</cn>:</help></td>
     <td><input type="text" id="mint"></td></tr>
   <tr class="show4evotrans">
-    <td>&nbsp;<help id="help-maxt-evolution">Maximum age:</help></td>
+    <td>&nbsp;<help id="help-maxt-evolution"><en>Maximum age</en><cn>年龄最大值</cn>:</help></td>
     <td><input type="text" id="maxt"></td></tr>
   <tr class="hide4evotrans">
-    <td>&nbsp;<help id="help-min08">Minimum <sup>230</sup>Th/<sup>238</sup>U:</help></td>
+    <td>&nbsp;<help id="help-min08"><en>Minimum</en><cn>最小值</cn> <sup>230</sup>Th/<sup>238</sup>U:</help></td>
     <td><input type="text" id="min08"></td></tr>
   <tr class="hide4evotrans">
-    <td>&nbsp;<help id="help-max08">Maximum <sup>230</sup>Th/<sup>238</sup>U:</help></td>
+    <td>&nbsp;<help id="help-max08"><en>Maximum</en><cn>最大值</cn> <sup>230</sup>Th/<sup>238</sup>U:</help></td>
     <td><input type="text" id="max08"></td></tr>
-  <tr><td>&nbsp;<help id="help-min48">Minimum <sup>234</sup>U/<sup>238</sup>U:</help></td>
+  <tr><td>&nbsp;<help id="help-min48"><en>Minimum</en><cn>最小值</cn> <sup>234</sup>U/<sup>238</sup>U:</help></td>
     <td><input type="text" id="min48"></td></tr>
-  <tr><td>&nbsp;<help id="help-max48">Maximum <sup>234</sup>U/<sup>238</sup>U:</help></td>
+  <tr><td>&nbsp;<help id="help-max48"><en>Maximum</en><cn>最大值</cn> <sup>234</sup>U/<sup>238</sup>U:</help></td>
     <td><input type="text" id="max48"></td></tr>
-  <tr><td>&nbsp;<help id="help-alpha">Probability cutoff:</help></td>
+  <tr><td>&nbsp;<help id="help-alpha"><en>Probability cutoff</en><cn>概率截止</cn>:</help></td>
     <td><input type="text" id="alpha"></td></tr>
-  <tr><td>&nbsp;<help id="help-sigdig">Significant digits:</help></td>
+  <tr><td>&nbsp;<help id="help-sigdig"><en>Significant digits</en><cn>有效数字</cn>:</help></td>
     <td><input type="text" id="sigdig"></td></tr>
-  <tr><td>&nbsp;<help id="help-ellipse-col">Ellipse colour:</help></td>
+  <tr><td>&nbsp;<help id="help-ellipse-col"><en>Ellipse colour</en><cn>椭圆颜色</cn>:</help></td>
     <td><input type="text" id="ellipsecol"></td></tr>
-  <tr><td>&nbsp;<help id="help-cex">Font magnification</help>:</td>
+  <tr><td>&nbsp;<help id="help-cex"><en>Font magnification</en><cn>字体放大</cn></help>:</td>
     <td><input type="text" id="cex"></td></tr>
-  <tr><td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+  <tr><td>&nbsp;<help id="help-clabel"><en>Colour label</en><cn>颜色标签</cn></help>:</td>
     <td><input type="text" id="clabel"></td></tr>
 </table>
 

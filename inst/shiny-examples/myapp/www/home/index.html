@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IsoplotR</title>
+    <link href="../css/jquery-ui.min.css" rel="stylesheet" type="text/css"/> 
+    <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/> 
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/run_prettify.js?lang=r"></script>
+    <script>
+      $(document).ready(function() {
+      
+      var mytimer
+      
+      function countdown(){
+          var counter = 10;
+          var mytimer = setInterval(function(){
+              counter--;
+              if (counter<0) {
+                 window.location = "http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/";
+              } else {
+                 document.getElementById("count").innerHTML = counter;
+              }
+          },1000);
+          return(mytimer);
+      }
+
+      $("#tabs").tabs({
+          selected: 0,
+          beforeActivate:
+	      function(event, ui){
+	           if (ui.newPanel.is("#tab-1")){
+		        $('#tab-1').load("map.html",function(){
+    		             mytimer = countdown();
+		        });
+		   } else {
+	  	        clearInterval(mytimer);
+		   }
+	      }
+      });
+      $('#tab-0').load('intro.html');
+      $('#tab-2').load('offline.html');
+      $('#tab-3').load('commandline.html');
+      $('#tab-4').load('news.html');
+      $('#tab-5').load('contribute.html');
+
+    });
+    </script>
+  </head>
+  <body>
+
+    <div class="main">
+
+      <center><h2><i>IsoplotR</i>: a free and extendable toolbox for geochronology</h2></center>
+
+      <div id="tabs">
+	<ul>
+          <li><a href="#tab-0"><span>Introduction</span></a></li>
+          <li><a href="#tab-1"><span>Online</span></a></li>
+          <li><a href="#tab-2"><span>Offline</span></a></li>
+          <li><a href="#tab-3"><span>Command Line</span></a></li>
+	  <li><a href="#tab-4"><span>News</span></a></li>
+	  <li><a href="#tab-5"><span>Contribute</span></a></li>
+	</ul>
+	<div id="tab-0" class="tab"></div>
+	<div id="tab-1" class="tab"></div>
+	<div id="tab-2" class="tab"></div>
+	<div id="tab-3" class="tab"></div>
+	<div id="tab-4" class="tab"></div>
+	<div id="tab-5" class="tab"></div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

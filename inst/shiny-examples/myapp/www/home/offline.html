@@ -1,0 +1,22 @@
+The Graphical User Interface (GUI) can be obtained from <a
+href="https://github.com/pvermees/IsoplotRgui">GitHub</a>. To run the
+offline version of the program, please install
+<i>R</i> from <a href="http://r-project.org">http://r-project.org</a>
+and enter the following commands at the prompt:
+
+<pre class="prettyprint">
+install.packages('devtools')
+install.packages('shiny')
+library(devtools)
+install_github('pvermees/IsoplotR')
+install_github('pvermees/IsoplotRgui')
+</pre>
+
+<p></p>
+Once all these packages have been installed, you can run the
+browser-based graphical user interface by typing:
+
+<code class="prettyprint">
+library(IsoplotRgui)
+IsoplotR()
+</code>
