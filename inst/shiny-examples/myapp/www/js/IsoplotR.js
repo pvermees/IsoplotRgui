@@ -18,6 +18,10 @@ $(function(){
 	    var sfile = './js/settings.json';
 	    $.getJSON(sfile, function(data){
 		IsoplotR.settings = data;
+		IsoplotR.settings.geochronometer =
+		    $('option:selected', $("#geochronometer")).attr('id');
+		IsoplotR.settings.language =
+		    $('option:selected', $("#language")).attr('id');
 		var dfile = './js/data.json';
 		$.getJSON(dfile, function(data){
 		    IsoplotR.data = data;
