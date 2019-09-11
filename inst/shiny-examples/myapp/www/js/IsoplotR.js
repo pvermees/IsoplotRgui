@@ -20,8 +20,8 @@ $(function(){
 		IsoplotR.settings = data;
 		IsoplotR.settings.geochronometer =
 		    $('option:selected', $("#geochronometer")).attr('id');
-		IsoplotR.settings.language =
-		    $('option:selected', $("#language")).attr('id');
+		//IsoplotR.settings.language =
+		//    $('option:selected', $("#language")).attr('id');
 		var dfile = './js/data.json';
 		$.getJSON(dfile, function(data){
 		    IsoplotR.data = data;
@@ -1237,7 +1237,7 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
-	IsoplotR.settings.language = $('option:selected', $('#language')).attr('value');
+	//IsoplotR.settings.language = $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
