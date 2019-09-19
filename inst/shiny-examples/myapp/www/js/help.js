@@ -259,7 +259,7 @@ function help(id){
 	    "the corresponding aliquot (i.e., the row number in the input table)."
 	break;
     case "help-U238U235":
-	text = "The natural isotopic abundance ratio of uranium and it standard error." +
+	text = "The natural isotopic abundance ratio of uranium and it standard error. " +
 	    "Default values are taken from Hiess et al. (2012). " +
 	    "To use the IUGS-recommended value of Steiger and J&auml;ger (1977), " +
 	    "change this to 137.88 &plusmn; 0.";
