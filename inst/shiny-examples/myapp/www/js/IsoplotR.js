@@ -458,7 +458,7 @@ $(function(){
 	    } else {
 		$(".show4diseq").hide();
 	    }
-	    if (set.commonPb!=3 & pd.anchor!=2){
+	    if (set.commonPb!=1 & pd.anchor!=2){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').hide();
@@ -493,10 +493,10 @@ $(function(){
 		$('.hide4PbPb3').hide();
 		break;
 	    }
-	    if (set.commonPb==3){
-		$('.show4commonPb3').show();
+	    if (set.commonPb==1){
+		$('.show4nominalCommonPb').show();
 	    } else {
-		$('.show4commonPb3').hide();
+		$('.show4nominalCommonPb').hide();
 	    }
 	    break;
 	case 'Th-U':

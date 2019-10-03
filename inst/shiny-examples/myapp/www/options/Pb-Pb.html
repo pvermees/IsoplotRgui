@@ -13,9 +13,8 @@
 &nbsp;<help id="help-common-Pb-option">Common Pb correction:</help>
 <select id="common-Pb-option" onchange="$.register();">
   <option value=0>none</option>
-  <option value=1>Stacey-Kramers</option>
+  <option value=1>nominal</option>
   <option value=2>isochron</option>
-  <option value=3>nominal</option>
 </select>
 <p></p>
 <div>
@@ -30,10 +29,10 @@
 <tr><td>&nbsp;<help id="help-LambdaU235"><sup>235</sup>U decay constant</help>:</td>
     <td><input id="LambdaU235"> &plusmn;</td>
     <td><input id="errLambdaU235">Myr<sup>-1</sup></td></tr>
-<tr hidden class="show4commonPb3">
+<tr hidden class="show4nominalCommonPb">
   <td>&nbsp;<help id="help-Pb206Pb204">Initial <sup>206</sup>Pb/<sup>204</sup>Pb ratio</help>:</td>
   <td><input id="Pb206Pb204"></td></tr>
-<tr hidden class="show4commonPb3">
+<tr hidden class="show4nominalCommonPb">
   <td>&nbsp;<help id="help-Pb207Pb204">Initial <sup>207</sup>Pb/<sup>204</sup>Pb ratio</help>:</td>
   <td><input id="Pb207Pb204"></td></tr>
 </table>

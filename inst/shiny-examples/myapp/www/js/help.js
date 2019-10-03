@@ -47,11 +47,11 @@ function help(id){
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
     case "help-common-Pb-option":
-	text = "apply a common lead correction with one of three methods:" +
-	    "<ol><li>infer the initial Pb-composition from the Stacey & Kramers " +
-	    "two stage isotope evolution model</li>" +
+	text = "apply a common lead correction with one of three methods:<ol>" +
+	    "<li>use a nominal initial Pb-composition</li>" +
 	    "<li>use the isochron intercept as the initial Pb-composition</li>" +
-	    "<li>use a nominal initial Pb-composition</li></ol>";
+	    "<li class='hide4PbPb'>infer the initial Pb-composition from the Stacey & Kramers " +
+	    "two stage isotope evolution model</li></ol>";
 	break;
     case "help-anchor-option":
 	text = "Select an option to either <ol> " +
