@@ -1,0 +1,210 @@
+{
+    "help-alpha": {
+	"en": "Probability cutoff",
+	"cn": "概率截止"
+    },
+    "help-bg": {
+	"en": "Fill colour",
+	"cn": "填充颜色"
+    },
+    "help-cex": {
+	"en": "Font magnification",
+	"cn": "字体放大"
+    },
+    "help-clabel": {
+	"en": "Colour label",
+	"cn": "颜色标签"
+    },
+    "help-clabel": {
+	"en": "Colour label",
+	"cn": "颜色标签"
+    },
+    "help-conc-age-option": {
+	"en": "Calculate",
+	"cn": "计算"
+    },
+    "help-concordia-ticks": {
+	"en": "Age ticks",
+	"cn": "年龄限制"
+    },
+    "help-concordia-type": {
+	"en": "Concordia type",
+	"cn": "谐和线类型"
+    },
+    "help-ellipse-col": {
+	"en": "Ellipse colour",
+	"cn": "椭圆颜色"
+    },
+    "help-evolution-isochron-models": {
+	"en": "Regression model",
+	"cn": "回归模型"
+    },
+    "help-exterr": {
+	"en": "Propagate systematic uncertainties",
+	"cn": "传播系统的不确定性"
+    },
+    "help-exterr-UPb": {
+	"en": "Propagate systematic uncertainties",
+	"cn": "传播系统的不确定性"
+    },
+    "help-fact": {
+	"en": "Scaling factors",
+	"cn": "比例因子"
+    },
+    "help-FT-formats": {
+	"en": "Method",
+	"cn": "方法"
+    },
+    "help-headers-on": {
+	"en": "Sample names on first row",
+	"cn": "第一行样品名称"
+    },
+    "help-helioplot-models": {
+	"en": "Model",
+	"cn": "模型"
+    },
+    "help-hide-detritals": {
+	"en": "Samples to omit",
+	"cn": "忽略样品"
+    },
+    "help-ierr": {
+	"en": "Input errors",
+	"cn": "输入误差"
+    },
+    "help-isochron-evolution": {
+	"en": "Calculate isochron age",
+	"cn": "计算等时线年龄"
+    },
+    "help-isochron-models": {
+	"en": "Model",
+	"cn": "模型"
+    },
+    "help-isochron-minx": {
+	"en": "Minimum",
+	"cn": "最小值"
+    },
+    "help-logratio": {
+	"en": "Logratio plot",
+	"cn": "对数图形"
+    },
+    "help-maxt-concordia": {
+	"en": "Maximum",
+	"cn": "最大值"
+    },
+    "help-maxt-average": {
+	"en": "Maximum age limit",
+	"cn": "年龄上限"
+    },
+    "help-maxt-evolution": {
+	"en": "Maximum age",
+	"cn": "年龄最大值"
+    },
+    "help-maxx-concordia": {
+	"en": "Maximum",
+	"cn": "最大值"
+    },
+    "help-maxy-concordia": {
+	"en": "Maximum",
+	"cn": "最大值"
+    },
+    "help-mint-average": {
+	"en": "Minimum age limit",
+	"cn": "年龄下限"
+    },
+    "help-mint-concordia": {
+	"en": "Minimum",
+	"cn": "最小值"
+    },
+    "help-mint-evolution": {
+	"en": "Minimum age",
+	"cn": "年龄最小值"
+    },
+    "help-minx-concordia": {
+	"en": "Minimum",
+	"cn": "最小值"
+    },
+    "help-miny-concordia": {
+	"en": "Minimum",
+	"cn": "最小值"
+    },
+    "help-outlier-col": {
+	"en": "Outlier colour",
+	"cn": "异常值颜色"
+    },
+    "help-outliers": {
+	"en": "Reject outliers",
+	"cn": "拒绝异常值"
+    },
+    "help-pch-cad": {
+	"en": "Plot character",
+	"cn": "图形特性"
+    },
+    "help-randomeffects": {
+	"en": "Random effects model",
+	"cn": "随机效应模型"
+    },
+    "help-ranked": {
+	"en": "Rank the ages",
+	"cn": "年龄排序"
+    },
+    "help-showcentralcomp": {
+	"en": "Show central composition",
+	"cn": "显示中央组成"
+    },
+    "help-shownumbers": {
+	"en": "Show sample numbers",
+	"cn": "显示样品编号"
+    },
+    "help-sigdig": {
+	"en": "Significant digits",
+	"cn": "有效数字"
+    },
+    "help-verticals": {
+	"en": "Draw vertical lines at steps",
+	"cn": "步骤中画垂直线"
+    },
+    "ArAr-format-1": {
+	"en": "1. Normal",
+	"cn": "1.正常"
+    },
+    "ArAr-format-2": {
+	"en": "2. Inverse",
+	"cn": "2.相反"
+    },
+    "ArAr-format-3": {
+	"en": "3. Three ratios",
+	"cn": "3个比值"
+    },
+    "formats": {
+	"en": "Input format",
+	"cn": "输入格式"
+    },
+    "intro": {
+	"en": "IsoplotR is an R package for geochronology that was designed to be free, flexible and future-proof. The package was named after but is not based on Ken Ludwig's popular Isoplot add-in to Microsoft Excel. It implements functions for U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, fission track and U-series disequilibrium dating as well as detrital geochronology. <p></p> This website provides easy to use point-and-click access to IsoplotR's most commonly used functions (see the <a href='#' onclick='$.tutorial();'>TUTORIAL</a> for details).  Alternatively, the same functions (and more) can also be accessed from the command-line through the IsoplotR package on <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a> and <a href='https://github.com/pvermees/IsoplotR/'>GitHub</a>. <p></p> This is IsoplotR/IsoplotRgui GitHub version <span id='version'></span> ( <en>the latest stable version is </en><span id='latestversion'></span>) <p></p> Citable reference:",
+	"cn": "IsoplotR 是由 Pieter Vermeesch 使用 R 语言编写的开源软件,致敬了 Ken Ludwig 当年编写的 Excel 插件 Isoplot. 本程序支持如下的同位素组 合: U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, 裂变径迹(fission track)以及U系列元素 的不平衡定年(U-series disequilibrium dating),还有碎屑锆石的年代学 数据(detrital geochronology). <p></p> 这个翻译是由<a href='https://github.com/cycleuser'>CycleUser</a> 编写的. 目的是为中文用户提供一个简单易用的图形界面, 以使用 IsoplotR 所提供的基本功能 (更多简介请点击 <a href='#' onclick='$.tutorial();'>这里来访问简单指南</a> 获取更多 信息). 其实这里的图形界面所包含的功能以及更多可定制的功能都可以通过 命令行版本的 IsoplotR 包来实现, 现已托管 在 <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a>. <p></p> 这是 IsoplotR/IsoplotRgui GitHub 版本 <p></p> 如果使用本软件,请引用软件开发者 Pieter Vermeesch 所发表的这篇相关文章"
+    },
+    "tutorial-title": {
+	"en": "Tutorial",
+	"cn": "简单指南"
+    },
+    "tutorial-gui": {
+	"en": "1. <tt>IsoplotR</tt>'s graphical user interface (GUI) has four components: a top bar with selection menus for the various chronometers and plot devices, optional settings and documentation; an input table into which data can be pasted from spreadsheet applications; an output window displaying the graphical or numerical results; and a lower bar to import and export data and results.",
+	"cn": "1. <tt>IsoplotR</tt>的图形界面有四个主要的控制部分: 顶部菜单可以来选择所使用的同位素组合以及投图的设置选项, 还有帮助文档. 底部的输入和存储菜单, 可以打开本地文件进行数据导入,还可以将做好的图保存下来. 右侧的是投图输出的界面, 生成的图像就在这部分县市. 左侧的是表格化的数据显示界面, 导入的数据就在这里面."
+    },
+    "tutorial-alternative-formats": {
+	"en": "2. Alternative input formats are available through the <tt>Options</tt> menu.",
+	"cn": "2. 点击 <tt>Options</tt> 按钮可以调整所用的文档格式."
+    },
+    "tutorial-contextual-help": {
+	"en": "3. Contextual help can be accessed by clicking on any text within the <tt>Options</tt> menu.",
+	"cn": "3. 在 <tt>Options</tt>菜单内有很多内置的上下文帮助文档对一 些概念做了简要的解释."
+    },
+    "tutorial-further-documentation": {
+	"en": "4. Further documentation is provided under the <tt>Help</tt> menu. This includes information about the input and output parameters, and a brief summary of the theoretical background with essential references.",
+	"cn": "4. 点击<tt>Help</tt>菜单可以看到详细的文档.其中包括输入输 出的参数,还包含本软件所用的理论基础的概要总结,以及相关的参 考文献出处."
+    },
+    "tutorial-saving": {
+	"en": "5. Data and settings can be saved in a <tt>.json</tt>  database format for future use.",
+	"cn": "5. 数据以及投图设置等等都可以用<tt>.json</tt> 的格式来保存,这 种保存好的文件还可以随时加载到程序中去."
+    }
+}
