@@ -28,7 +28,7 @@
 
   <header>
     <a class="ulcorner" href="home/index.html">
-      <en>Home</en><cn>官方网站</cn>
+      <span id="en-home">Home</span>
     </a>
     <select id="geochronometer">
       <option id="U-Pb">U-Pb</option>
@@ -46,8 +46,8 @@
       <option id="other">other</option>
     </select>
     <select id="plotdevice"></select>
-    <div id="OPTIONS" class="button"><en>Options</en><cn>选项</cn></div>
-    <div id="HELP" class="button"><en>Help</en><cn>帮助</cn></div>
+    <div id="OPTIONS" class="button"><span id="en-options">Options</span></div>
+    <div id="HELP" class="button"><span id="en-help">Help</span></div>
 <!--    <select id="language">
       <option id="en">English</option>
       <option id="cn">中文</option>
@@ -114,18 +114,18 @@
 </right>
 
 <footer>
-  <div id="DEFAULTS" class="button"><en>Defaults</en><cn>重置设置</cn></div>
-  <div id="CLEAR" class="button"><en>Clear</en><cn>清空数据</cn></div>
+  <div id="DEFAULTS" class="button"><span id="en-defaults">Defaults</span></div>
+  <div id="CLEAR" class="button"><span id="en-clear">Clear</span></div>
   <!-- hacked file upload button -->
   <div class="ui-button" role="button">
     <input id="OPEN" type="file" class="filestyle"
-	   data-buttonText="<en>Open</en><cn hidden>打开</cn>" 
+	   data-buttonText="<span id='en-open'>Open</span>" 
 	   data-input="false" data-badge="false" />
   </div>
-  <div id="SAVE" class="button"><en>Save</en><cn>保存文件</cn></div>
-  <div id="PLOT" class="button"><en>PLOT</en><cn>生成投图</cn></div>
+  <div id="SAVE" class="button"><span id="en-save">Save</span></div>
+  <div id="PLOT" class="button"><span id="en-plot">PLOT</span></div>
   <div id="PLOTTER" hidden class="action-button"></div>
-  <div id="RUN" class="button"><en>RUN</en><cn>运行</cn></div>
+  <div id="RUN" class="button"><span id="en-run">RUN</span></div>
   <div id="RUNNER" hidden class="action-button"></div>
   <a id="PDF" target="_blank" class="button shiny-download-link">PDF</a>
   <a id="CSV" target="_blank" class="button shiny-download-link">CSV</a>

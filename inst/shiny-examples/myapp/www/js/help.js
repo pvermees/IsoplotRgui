@@ -1,13 +1,25 @@
-function help(id){
+function help(id,lang){
     var text = ""
     switch (id){
     case "help-ierr":
-	text = "Choose one of the following four options:<ol>" +
-	    "<li>absolute uncertainties at 1&sigma;</li>" +
-	    "<li>absolute uncertainties at 2&sigma;</li>" +
-	    "<li>relative uncertainties (in %) at 1&sigma;</li>" +
-	    "<li>relative uncertainties (in %) at 2&sigma;</li>" +
-	    "</ol>";
+	switch(lang){
+	case "en":
+	    text = "Choose one of the following four options:<ol>" +
+		"<li>absolute uncertainties at 1&sigma;</li>" +
+		"<li>absolute uncertainties at 2&sigma;</li>" +
+		"<li>relative uncertainties (in %) at 1&sigma;</li>" +
+		"<li>relative uncertainties (in %) at 2&sigma;</li>" +
+		"</ol>";
+	    break;
+	case "cn":
+	    text = "选择以下四个选项之一<ol>" +
+		"<li>绝对不确定度为1&sigma;</li>" +
+		"<li>绝对不确定度为2&sigma;</li>" +
+		"<li>相对不确定度(%)为1&sigma;</li>" +
+		"<li>相对不确定度(%)为2&sigma;</li>" +
+		"</ol>";
+	    break;
+	}
 	break;
     case "help-concordia-type":
 	text = "<ol><li>Wetherill: <sup>206</sup>Pb/<sup>238</sup>U vs." +

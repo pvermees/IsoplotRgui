@@ -350,16 +350,6 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
 	var pd = IsoplotR.settings[plotdevice];
-	switch (IsoplotR.settings.language){
-	case "en":
-	    $('en').show();
-	    $('cn').css('display','none');
-	    break;
-	case "cn":
-	    $('en').hide();
-	    $('cn').css('display','inline');
-	    break;
-	}
 	switch (IsoplotR.settings.ierr){
 	case 1:
 	    $('.show4ierr1').show();
@@ -1237,7 +1227,8 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
-	//IsoplotR.settings.language = $('option:selected', $('#language')).attr('value');
+	//IsoplotR.settings.language =
+	//    $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1681,7 +1672,11 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
-	showOrHide();
+	var dictionaryfile = './js/dictionary.json';
+	$.getJSON(dictionaryfile, function(data){
+	    IsoplotR.dictionary = data;
+	    showOrHide();
+	});
     }
     
     function selectGeochronometer(){
@@ -1975,6 +1970,13 @@ $(function(){
 	    
 	});
     }
+
+    function translate(){
+	$(".translate").each(function(i){
+	    var text = IsoplotR.dictionary[this.id][IsoplotR.settings.language];
+	    this.innerHTML = text;
+	});
+    }
     
     $.switchErr = function(){
 	IsoplotR.settings.ierr = getInt("#ierr");
@@ -2096,7 +2098,7 @@ $(function(){
     });
     
     $('body').on('click', 'help', function(){
-	var text = help($(this).attr('id'));
+	var text = help($(this).attr('id'),IsoplotR.settings.language);
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
 	showOrHide();
@@ -2139,6 +2141,9 @@ $(function(){
 	    $("#geochronometer-options").load(fname,function(){
 		fname = "options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
+		    if (IsoplotR.settings.language!='en'){
+			translate();
+		    }
 		    showSettings(geochronometer);
 		    showSettings(plotdevice);
 		    IsoplotR.optionschanged = true;
