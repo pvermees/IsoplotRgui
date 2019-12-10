@@ -20,23 +20,19 @@ $(function(){
 		IsoplotR.settings = data;
 		IsoplotR.settings.geochronometer =
 		    $('option:selected', $("#geochronometer")).attr('id');
-		IsoplotR.settings.language =
-		    $('option:selected', $("#language")).attr('id');
-		var dictionaryfile = './js/dictionary.json';
-		$.getJSON(dictionaryfile, function(data){
-		    IsoplotR.dictionary = data;
-		    var dfile = './js/data.json';
-		    $.getJSON(dfile, function(data){
-			IsoplotR.data = data;
-			selectGeochronometer();
-			IsoplotR = populate(IsoplotR,true);
-			welcome();
-			$("#INPUT").handsontable({ // add change handler asynchronously
-			    afterChange: function(changes,source){
-				getData4Server(); // placed here because we don't want to
-				handson2json();   // call the change handler until after
-			    }                     // IsoplotR has been initialised
-			});
+		//IsoplotR.settings.language =
+		//    $('option:selected', $("#language")).attr('id');
+		var dfile = './js/data.json';
+		$.getJSON(dfile, function(data){
+		    IsoplotR.data = data;
+		    selectGeochronometer();
+		    IsoplotR = populate(IsoplotR,true);
+		    welcome();
+		    $("#INPUT").handsontable({ // add change handler asynchronously
+			afterChange: function(changes,source){
+			    getData4Server(); // placed here because we don't want to
+			    handson2json();   // call the change handler until after
+			}                     // IsoplotR has been initialised
 		    });
 		});
 	    });
@@ -1231,8 +1227,8 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
-	IsoplotR.settings.language =
-	    $('option:selected', $('#language')).attr('value');
+	//IsoplotR.settings.language =
+	//    $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1676,7 +1672,11 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
-	showOrHide();
+	var dictionaryfile = './js/dictionary.json';
+	$.getJSON(dictionaryfile, function(data){
+	    IsoplotR.dictionary = data;
+	    showOrHide();
+	});
     }
     
     function selectGeochronometer(){
@@ -2141,7 +2141,9 @@ $(function(){
 	    $("#geochronometer-options").load(fname,function(){
 		fname = "options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
-		    translate();
+		    if (IsoplotR.settings.language!='en'){
+			translate();
+		    }
 		    showSettings(geochronometer);
 		    showSettings(plotdevice);
 		    IsoplotR.optionschanged = true;
