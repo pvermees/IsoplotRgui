@@ -1,6 +1,6 @@
 <p></p>
 
-&nbsp;<help id="help-UPb-formats"><en>Input format</en><cn>输入格式</cn>:</help>
+&nbsp;<help id="help-UPb-formats">Input format</help>:
 <select id="UPb-formats" onchange="$.chooseUPbFormat('#UPb-formats');">
   <option value=1>[07/35], [06/38]</option>
   <option value=2>[38/06], [07/06]</option>
@@ -15,7 +15,7 @@
 <p></p>
 
 <div class="hide4isochron">
-  &nbsp;<help id="help-common-Pb-option"><en>Common Pb correction</en><cn>常规铅校正</cn>:</help>
+  &nbsp;<help id="help-common-Pb-option">Common Pb correction</help>:
   <select id="common-Pb-option" onchange="$.register();">
     <option value=0>none</option>
     <option value=1>nominal</option>
@@ -28,7 +28,7 @@
 <p></p>
 
 &nbsp;<input type="checkbox" id="diseq" onchange="$.register();">
-<help id="help-diseq"><en>Apply disequilibrium correction</en><cn>不平衡校正</cn></help>?
+<help id="help-diseq">Apply disequilibrium correction</help>?
 
 <p></p>
 
@@ -99,40 +99,40 @@
 </table>
 
 <table>
-<tr><td>&nbsp;<help id="help-U238U235"><sup>238</sup>U/<sup>235</sup>U <en>ratio</en><cn>比</cn></help>:</td>
+<tr><td>&nbsp;<help id="help-U238U235"><sup>238</sup>U/<sup>235</sup>U <span id="en-ratio">ratio</span></help>:</td>
   <td><input type="text" id="U238U235"> &plusmn;</td>
   <td><input type="text" id="errU238U235"></td>
 </tr>
-<tr><td>&nbsp;<help id="help-LambdaU238"><sup>238</sup>U <en>decay constant</en><cn>裂变常数</cn></help>:</td>
+<tr><td>&nbsp;<help id="help-LambdaU238"><sup>238</sup>U <span id="en-decay-constant">decay constant</span></help>:</td>
   <td><input type="text" id="LambdaU238"> &plusmn;</td>
   <td><input type="text" id="errLambdaU238">Myr<sup>-1</sup></td>
 </tr>
-<tr><td>&nbsp;<help id="help-LambdaU235"><sup>235</sup>U <en>decay constant</en><cn>裂变常数</cn></help>:</td>
+<tr><td>&nbsp;<help id="help-LambdaU235"><sup>235</sup>U <span id="en-decay-constant">decay constant</span></help>:</td>
   <td><input type="text" id="LambdaU235"> &plusmn;</td>
   <td><input type="text" id="errLambdaU235">Myr<sup>-1</sup></td>
 </tr>
 <tr hidden class="hideUPb1 hide4UPb2 hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8">
-  <td>&nbsp;<help id="help-LambdaTh232"><sup>232</sup>Th decay constant</help>:</td>
+  <td>&nbsp;<help id="help-LambdaTh232"><sup>232</sup>Th <span id="en-decay-constant">decay constant</en></help>:</td>
   <td><input type="text" id="LambdaTh232"> &plusmn;</td>
   <td><input type="text" id="errLambdaTh232">Myr<sup>-1</sup></td>
 </tr>
 <tr class="show4diseq">
-  <td>&nbsp;<help id="help-LambdaU234"><sup>234</sup>U decay constant</help>:</td>
+  <td>&nbsp;<help id="help-LambdaU234"><sup>234</sup>U <span id="en-decay-constant">decay constant</span></help>:</td>
   <td><input type="text" id="LambdaU234"> &plusmn;</td>
   <td><input type="text" id="errLambdaU234">kyr<sup>-1</sup></td>
 </tr>
 <tr class="show4diseq">
-  <td>&nbsp;<help id="help-LambdaTh230"><sup>230</sup>Th decay constant</help>:</td>
+  <td>&nbsp;<help id="help-LambdaTh230"><sup>230</sup>Th <span id="en-decay-constant">decay constant</span></help>:</td>
   <td><input type="text" id="LambdaTh230"> &plusmn;</td>
   <td><input type="text" id="errLambdaTh230">kyr<sup>-1</sup></td>
 </tr>
 <tr class="show4diseq">
-  <td>&nbsp;<help id="help-LambdaRa226"><sup>226</sup>Ra decay constant</help>:</td>
+  <td>&nbsp;<help id="help-LambdaRa226"><sup>226</sup>Ra <span id="en-decay-constant">decay constant</span></help>:</td>
   <td><input type="text" id="LambdaRa226"> &plusmn;</td>
   <td><input type="text" id="errLambdaRa226">kyr<sup>-1</sup></td>
 </tr>
 <tr class="show4diseq">
-  <td>&nbsp;<help id="help-LambdaPa231"><sup>231</sup>Pa decay constant</help>:</td>
+  <td>&nbsp;<help id="help-LambdaPa231"><sup>231</sup>Pa <span id="en-decay-constant">decay constant</span></help>:</td>
   <td><input type="text" id="LambdaPa231"> &plusmn;</td>
   <td><input type="text" id="errLambdaPa231">kyr<sup>-1</sup></td>
 </tr>
