@@ -2098,7 +2098,7 @@ $(function(){
     });
     
     $('body').on('click', 'help', function(){
-	var text = help($(this).attr('id'),IsoplotR.settings.language);
+	var text = help($(this).attr('id'));
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
 	showOrHide();
