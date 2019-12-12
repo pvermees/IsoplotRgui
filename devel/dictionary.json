@@ -35,8 +35,38 @@
         "id": "tutorial-saving"
     },
     {
-        "cn": "传播系统的不确定性",
-        "en": "Propagate systematic uncertainties",
+        "cn": "传播系统的不确定性?",
+        "en": "Propagate systematic uncertainties?",
         "id": "help-exterr"
+    },
+    {
+        "cn": "1.正常",
+        "en": "1. Normal",
+        "id": "ArAr-format-1"
+    },
+    {
+        "cn": "2.相反",
+        "en": "2. Inverse",
+        "id": "ArAr-format-2"
+    },
+    {
+        "cn": "输入格式",
+        "en": "Input format",
+        "id": "help-ArAr-formats"
+    },
+    {
+        "cn": "3.个比值",
+        "en": "3. Three ratios",
+        "id": "ArAr-format-3"
+    },
+    {
+        "cn": "大气<sup>40</sup>Ar/<sup>36</sup>Ar 比值",
+        "en": "Atmospheric <sup>40</sup>Ar/<sup>36</sup>Ar ratio",
+        "id": "help-Ar40Ar36"
+    },
+    {
+        "cn": "<sup>40</sup>K 衰变常数",
+        "en": "<sup>40</sup>K decay constant",
+        "id": "help-LambdaK40"
     }
 ]

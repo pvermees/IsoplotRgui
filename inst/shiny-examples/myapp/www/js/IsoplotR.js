@@ -20,8 +20,8 @@ $(function(){
 		IsoplotR.settings = data;
 		IsoplotR.settings.geochronometer =
 		    $('option:selected', $("#geochronometer")).attr('id');
-		//IsoplotR.settings.language =
-		//    $('option:selected', $("#language")).attr('id');
+		IsoplotR.settings.language =
+		    $('option:selected', $("#language")).attr('id');
 		var dfile = './js/data.json';
 		$.getJSON(dfile, function(data){
 		    IsoplotR.data = data;
@@ -42,7 +42,7 @@ $(function(){
 	    contextual_help = data;
 	});
 	var dfile = './js/dictionary.json';
-	$.getJSON(tfile, function(data){
+	$.getJSON(dfile, function(data){
 	    dictionary = data;
 	});
     };
@@ -1235,8 +1235,8 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
-	//IsoplotR.settings.language =
-	//    $('option:selected', $('#language')).attr('value');
+	IsoplotR.settings.language =
+	    $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1680,11 +1680,6 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
-	var dictionaryfile = './js/dictionary.json';
-	$.getJSON(dictionaryfile, function(data){
-	    IsoplotR.dictionary = data;
-	    showOrHide();
-	});
     }
     
     function selectGeochronometer(){
@@ -1981,7 +1976,7 @@ $(function(){
 
     function translate(){
 	$(".translate").each(function(i){
-	    var text = IsoplotR.dictionary[this.id][IsoplotR.settings.language];
+	    var text = dictionary[this.id][IsoplotR.settings.language];
 	    this.innerHTML = text;
 	});
     }
@@ -2149,9 +2144,7 @@ $(function(){
 	    $("#geochronometer-options").load(fname,function(){
 		fname = "options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
-		    if (IsoplotR.settings.language!='en'){
-			translate();
-		    }
+		    translate();
 		    showSettings(geochronometer);
 		    showSettings(plotdevice);
 		    IsoplotR.optionschanged = true;
