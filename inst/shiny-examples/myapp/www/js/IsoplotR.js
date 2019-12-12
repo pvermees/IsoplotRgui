@@ -12,18 +12,15 @@ $(function(){
 	    optionschanged: false
 	}
 	// three nested file readers:
-	var cfile = './js/constants.json';
-	$.getJSON(cfile, function(data){
+	$.getJSON('./js/constants.json', function(data){
 	    IsoplotR.constants = data;
-	    var sfile = './js/settings.json';
-	    $.getJSON(sfile, function(data){
+	    $.getJSON('./js/settings.json', function(data){
 		IsoplotR.settings = data;
 		IsoplotR.settings.geochronometer =
 		    $('option:selected', $("#geochronometer")).attr('id');
 		IsoplotR.settings.language =
 		    $('option:selected', $("#language")).attr('id');
-		var dfile = './js/data.json';
-		$.getJSON(dfile, function(data){
+		$.getJSON('./js/data.json', function(data){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
 		    IsoplotR = populate(IsoplotR,true);
@@ -37,12 +34,10 @@ $(function(){
 		});
 	    });
 	});
-	var hfile = './js/contextual-help.json';
-	$.getJSON(hfile, function(data){
+	$.getJSON('./js/contextual-help.json', function(data){
 	    contextual_help = data;
 	});
-	var dfile = './js/dictionary.json';
-	$.getJSON(dfile, function(data){
+	$.getJSON('./js/dictionary.json', function(data){
 	    dictionary = data;
 	});
     };
@@ -1680,6 +1675,7 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
+	translate();
     }
     
     function selectGeochronometer(){
