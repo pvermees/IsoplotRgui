@@ -37,6 +37,14 @@ $(function(){
 		});
 	    });
 	});
+	var hfile = './js/contextual-help.json';
+	$.getJSON(hfile, function(data){
+	    contextual_help = data;
+	});
+	var dfile = './js/dictionary.json';
+	$.getJSON(tfile, function(data){
+	    dictionary = data;
+	});
     };
 
     function dnc(){
@@ -2216,6 +2224,8 @@ $(function(){
     });
 
     var IsoplotR;
+    var contextual_help;
+    var dictionary;
     initialise();
 
 });

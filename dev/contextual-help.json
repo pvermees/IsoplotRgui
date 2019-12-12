@@ -1,0 +1,22 @@
+[
+    {
+        "cn": "选择以下四个选项之一\n<ol>\n<li>绝对不确定度为1&sigma;</li>\n<li>绝对不确定度为2&sigma;</li>\n<li>相对不确定度(%)为1&sigma;</li>\n<li>相对不确定度(%)为2&sigma;</li>\n</ol>",
+        "en": "Choose one of the following four options:\n<ol>\n<li>absolute uncertainties at 1&sigma;</li>\n<li>absolute uncertainties at 2&sigma;</li>\n<li>relative uncertainties (in %) at 1&sigma;</li>\n<li>relative uncertainties (in %) at 2&sigma;</li>\n</ol>",
+        "id": "help-ierr"
+    },
+    {
+        "cn": "<ul>\n<li>在不计算年龄的情况下绘制数据</li>\n<li>拟合谐和曲线组成和年龄</li>\n<li>使用Ludwig (1998)的最大似然算法拟合数据的不一致线，该算法假设数据的分散仅仅是由于分析的不确定性导致。IsoplotR将计算上下截距年龄（对于Wetheril谐和曲线），或者较低截距年龄和常见(207Pb/206Pb)O比率截距（对于Tera-Wasserburg）。如果MSWD>0，则通过√MSWD系数增加分析不确定性。</li>\n<li>拟合不协和线时忽略分析不确定度</li>\n<li>使用修改的最大似然算法拟合不和谐线，该算法包括通过添加地质（协）方差项来解释任何过度离散。</li>\n</ul>",
+        "en": "Select the option to either <ul>\n<li>plot the data without calculating an age</i>\n<li>fit a concordia composition and age</li>\n<li>fit a discordia line through the data using the maximum likelihood algorithm of Ludwig (1998), which assumes that the scatter of the data is solely due to the analytical uncertainties. In this case, <tt>IsoplotR</tt> will either calculate an upper and lower intercept age (for Wetherill concordia), or a lower intercept age and common (<sup>207</sup>Pb/<sup>206</sup>Pb)<sub>o</sub>-ratio intercept (for Tera-Wasserburg). If MSWD>0, then the analytical uncertainties are augmented by a <i>factor</i> &radic;MSWD.</li>\n<li>fit a discordia line ignoring the analytical uncertainties</li>\n<li>fit a discordia line using a modified maximum likelihood algorithm that includes accounts for any overdispersion by adding a geological (co)variance <i>term</i>.</li>\n</ul>",
+        "id": "help-conc-age-option"
+    },
+    {
+        "cn": "<ol>\n<li>Wetherill谐和曲线: <sup>206</sup>Pb/<sup>238</sup>U vs. <sup>207</sup>Pb/<sup>235</sup>U</li>\n<li>Tera-Wasserburg谐和曲线: <sup>207</sup>Pb/<sup>206</sup>Pb vs. <sup>238</sup>U/<sup>206</sup>Pb</li>\n<li hidden class='show4UPb7 show4UPb8'>U-Th-Pb谐和曲线: <sup>208</sup>Pb/<sup>232</sup>Th vs. <sup>206</sup>Pb/<sup>238</sup>U</li>\n</ol>",
+        "en": "<ol>\n<li>Wetherill: <sup>206</sup>Pb/<sup>238</sup>U vs. <sup>207</sup>Pb/<sup>235</sup>U</li>\n<li>Tera-Wasserburg: <sup>207</sup>Pb/<sup>206</sup>Pb vs. <sup>238</sup>U/<sup>206</sup>Pb</li>\n<li hidden class='show4UPb7 show4UPb8'>U-Th-Pb concordia: <sup>208</sup>Pb/<sup>232</sup>Th vs. <sup>206</sup>Pb/<sup>238</sup>U</li>\n</ol>",
+        "id": "help-concordia-type"
+    },
+    {
+        "cn": "设置谐和曲线图的最小年龄限制（0到4568 Ma之间的数字）。输入 (auto) 使IsoplotR自动设置合适的值。",
+        "en": "Set the minimum age limit for the concordia diagram (a number between 0 and 4568 Ma). Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
+        "id": "help-mint-concordia"
+    }
+]
