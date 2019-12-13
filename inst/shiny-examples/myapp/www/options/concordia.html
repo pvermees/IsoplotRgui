@@ -1,6 +1,6 @@
 <p></p>
 
-&nbsp;<help id="help-concordia-type">Concordia type</help>:
+&nbsp;<help class="translate" id="help-concordia-type"></help>
 <select id="concordia-type" onchange="$.register();">
   <option value=1>Wetherill</option>
   <option value=2>Tera-Wasserburg</option>
@@ -11,21 +11,21 @@
 <p></p>
 
 <div>
-  &nbsp;<help id="help-conc-age-option">Calculate</help>
+  &nbsp;<help class="translate" id="help-conc-age-option"></help>
   <select id="conc-age-option" onchange="$.register();">
-    <option value=0>no</option>
-    <option value=1>concordia</option>
-    <option value=2>discordia (model-1)</option>
-    <option value=3>discordia (model-2)</option>
-    <option value=4>discordia (model-3)</option>
+    <option class="translate" id="conc-age-option-0" value=0></option>
+    <option class="translate" id="conc-age-option-1" value=1></option>
+    <option class="translate" id="conc-age-option-2" value=2></option>
+    <option class="translate" id="conc-age-option-3" value=3></option>
+    <option class="translate" id="conc-age-option-4" value=4></option>
   </select>
   age
   <div hidden class="hide4noUPbAge hide4concordia show4discordia">
     <p></p>
-    &nbsp;<help id="help-anchor-option">Anchored discordia line?</help>
+    &nbsp;<help class="translate" id="help-anchor-option"></help>
     <select id="anchor-option" onchange="$.register();">
-      <option value=0>no</option>
-      <option value=1>age</option>
+      <option class="translate" id="no-discordia-anchor" value=0></option>
+      <option class="translate" id="discordia-age-anchor" value=1></option>
       <option value=2>Pb</option>
     </select>
   </div>
@@ -34,55 +34,55 @@
 
 <table>
   <tr hidden class="show4tanchor">
-    <td>&nbsp;<help id="help-tanchor">Discordia anchor:</td>
+    <td>&nbsp;<help class="translate" id="help-tanchor"></td>
     <td><input type="text" id="tanchor"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-mint-concordia">Minimum</help> t:</td>
+    <td>&nbsp;<help class="translate" id="help-mint-concordia"></help></td>
     <td><input type="text" id="mint"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxt-concordia">Maximum</help> t:</td>
+    <td>&nbsp;<help class="translate" id="help-maxt-concordia"></help></td>
     <td><input type="text" id="maxt"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-minx-concordia">Minimum</help> X:</td>
+    <td>&nbsp;<help class="translate" id="help-minx-concordia"></help></td>
     <td><input type="text" id="minx"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxx-concordia">Maximum</help> X:</td>
+    <td>&nbsp;<help class="translate" id="help-maxx-concordia"></help></td>
     <td><input type="text" id="maxx"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-miny-concordia">Minimum</help> Y:</td>
+    <td>&nbsp;<help class="translate" id="help-miny-concordia"></help></td>
     <td><input type="text" id="miny"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-maxy-concordia">Maximum</help> Y:</td>
+    <td>&nbsp;<help class="translate" id="help-maxy-concordia"></help></td>
     <td><input type="text" id="maxy"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-alpha">Probability cutoff</help>:</td>
+    <td>&nbsp;<help class="translate" id="help-alpha"></help></td>
     <td><input type="text" id="alpha"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-sigdig">Significant digits</help>:</td>
+    <td>&nbsp;<help class="translate" id="help-sigdig"></help></td>
     <td><input type="text" id="sigdig"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-ellipse-col">Ellipse colour</help>:</td>
+    <td>&nbsp;<help class="translate" id="help-ellipse-col"></help></td>
     <td><input type="text" id="ellipsecol"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-cex">Font magnification</help>:</td>
+    <td>&nbsp;<help class="translate" id="help-cex"></help></td>
     <td><input type="text" id="cex"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+    <td>&nbsp;<help class="translate" id="help-clabel"></help></td>
     <td><input type="text" id="clabel"></td>
   </tr>
   <tr>
-    <td>&nbsp;<help id="help-concordia-ticks">Age ticks</help>:</td>
+    <td>&nbsp;<help class="translate" id="help-concordia-ticks"></help></td>
     <td><input type="text" id="ticks"></td>
   </tr>
 </table>
@@ -90,13 +90,11 @@
 <p></p>
 
 &nbsp;<input type="checkbox" id="exterr"> 
-<help id="help-exterr-UPb">
-  Propagate systematic uncertainties
-</help>?
+<help class="translate" id="help-exterr-UPb"></help>
 
 <p></p>
 
 &nbsp;<input type="checkbox" id="shownumbers"> 
-<help id="help-shownumbers">Show sample numbers</help>?
+<help class="translate" id="help-shownumbers"></help>
 
 <p></p>

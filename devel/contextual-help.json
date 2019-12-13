@@ -18,5 +18,10 @@
         "cn": "设置谐和曲线图的最小年龄限制（0到4568 Ma之间的数字）。输入 (auto) 使IsoplotR自动设置合适的值。",
         "en": "Set the minimum age limit for the concordia diagram (a number between 0 and 4568 Ma). Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
         "id": "help-mint-concordia"
+    },
+    {
+        "cn": "设置谐和曲线图的最大年龄限制（0到4568 Ma之间的数字）。输入 (auto) 使IsoplotR自动设置合适的值。",
+        "en": "Set the maximum age limit for the concordia diagram (a number between 0 and 4568 Ma). Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
+        "id": "help-maxt-concordia"
     }
 ]
