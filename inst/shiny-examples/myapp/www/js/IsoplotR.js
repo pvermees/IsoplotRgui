@@ -11,7 +11,7 @@ $(function(){
 	    data4server: [],
 	    optionschanged: false
 	}
-	// three nested file readers:
+	// four nested asynchronous file readers:
 	$.getJSON('./js/constants.json', function(data){
 	    IsoplotR.constants = data;
 	    $.getJSON('./js/settings.json', function(data){
@@ -24,7 +24,10 @@ $(function(){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
 		    IsoplotR = populate(IsoplotR,true);
-		    welcome();
+		    $.getJSON('./js/dictionary.json', function(data){
+			dictionary = data;
+			welcome();
+		    });
 		    $("#INPUT").handsontable({ // add change handler asynchronously
 			afterChange: function(changes,source){
 			    getData4Server(); // placed here because we don't want to
@@ -36,9 +39,6 @@ $(function(){
 	});
 	$.getJSON('./js/contextual-help.json', function(data){
 	    contextual_help = data;
-	});
-	$.getJSON('./js/dictionary.json', function(data){
-	    dictionary = data;
 	});
     };
 
@@ -800,12 +800,12 @@ $(function(){
 	    }
 	    break;
 	}
+	translate();
     }
 
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
-	translate();
 	showOrHide();
 	$('#ierr option[value='+IsoplotR.settings.ierr+']').
 	    prop('selected', 'selected');

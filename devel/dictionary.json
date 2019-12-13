@@ -50,12 +50,12 @@
         "id": "ArAr-format-2"
     },
     {
-        "cn": "输入格式",
+        "cn": "输入格式:",
         "en": "Input format",
         "id": "help-ArAr-formats"
     },
     {
-        "cn": "3.个比值",
+        "cn": "",
         "en": "3. Three ratios",
         "id": "ArAr-format-3"
     },
@@ -65,8 +65,8 @@
         "id": "help-Ar40Ar36"
     },
     {
-        "cn": "<sup>40</sup>K 衰变常数",
-        "en": "<sup>40</sup>K decay constant",
+        "cn": "<sup>40</sup>K 衰变常数:",
+        "en": "<sup>40</sup>K decay constant:",
         "id": "help-LambdaK40"
     },
     {
@@ -83,11 +83,6 @@
         "cn": "",
         "en": "Use isochron intercept as initial <sup>40</sup>Ca/<sup>44</sup>Ca-ratio",
         "id": "help-KCa-i2i"
-    },
-    {
-        "cn": "",
-        "en": "Use isochron intercept as initial <sup>187</sup>Os/<sup>187</sup>Os-ratio",
-        "id": "i2iReOs"
     },
     {
         "cn": "",
@@ -280,32 +275,32 @@
         "id": "help-tanchor"
     },
     {
-        "cn": "",
+        "cn": "最小量 t:",
         "en": "Minimum t:",
         "id": "help-mint-concordia"
     },
     {
-        "cn": "",
+        "cn": "最大量 t:",
         "en": "Maximum t:",
         "id": "help-maxt-concordia"
     },
     {
-        "cn": "",
+        "cn": "最小量 X:",
         "en": "Minimum X:",
         "id": "help-minx-concordia"
     },
     {
-        "cn": "",
+        "cn": "最大量 X:",
         "en": "Maximum X:",
         "id": "help-maxx-concordia"
     },
     {
-        "cn": "",
+        "cn": "最小量 Y:",
         "en": "Minimum Y:",
         "id": "help-miny-concordia"
     },
     {
-        "cn": "",
+        "cn": "最大量 Y:",
         "en": "Maximum Y:",
         "id": "help-maxy-concordia"
     },
@@ -335,7 +330,7 @@
         "id": "help-concordia-ticks"
     },
     {
-        "cn": "",
+        "cn": "传播系统的不确定性?",
         "en": "Propagate systematic uncertainties?",
         "id": "help-exterr-UPb"
     },
@@ -380,22 +375,22 @@
         "id": "help-FT-formats"
     },
     {
-        "cn": "",
+        "cn": "最大量 <sup>234</sup>U/<sup>238</sup>U:",
         "en": "Maximum <sup>234</sup>U/<sup>238</sup>U:",
         "id": "help-max48"
     },
     {
-        "cn": "",
+        "cn": "最小量 <sup>234</sup>U/<sup>238</sup>U:",
         "en": "Minimum <sup>234</sup>U/<sup>238</sup>U:",
         "id": "help-min48"
     },
     {
-        "cn": "",
+        "cn": "最大量 <sup>230</sup>Th/<sup>238</sup>U:",
         "en": "Maximum <sup>230</sup>Th/<sup>238</sup>U:",
         "id": "help-max08"
     },
     {
-        "cn": "",
+        "cn": "最小量 <sup>230</sup>Th/<sup>238</sup>U:",
         "en": "Minimum <sup>230</sup>Th/<sup>238</sup>U:",
         "id": "help-min08"
     },
@@ -435,12 +430,12 @@
         "id": "zircon"
     },
     {
-        "cn": "",
+        "cn": "<sup>238</sup>U/<sup>235</sup>U 比率:",
         "en": "<sup>238</sup>U/<sup>235</sup>U ratio:",
         "id": "help-U238U235"
     },
     {
-        "cn": "",
+        "cn": "<sup>238</sup>U 衰变常数:",
         "en": "<sup>238</sup>U decay constant:",
         "id": "help-LambdaU238"
     },
@@ -635,22 +630,22 @@
         "id": "help-PbPb-growth"
     },
     {
-        "cn": "",
+        "cn": "最小量 X:",
         "en": "Minimum X:",
         "id": "help-isochron-minx"
     },
     {
-        "cn": "",
+        "cn": "最大量 X:",
         "en": "Maximum X:",
         "id": "help-isochron-maxx"
     },
     {
-        "cn": "",
+        "cn": "最小量 Y:",
         "en": "Minimum Y:",
         "id": "help-isochron-miny"
     },
     {
-        "cn": "",
+        "cn": "最大量 Y:",
         "en": "Maximum Y:",
         "id": "help-isochron-maxy"
     },
@@ -675,7 +670,7 @@
         "id": "help-bandwidth"
     },
     {
-        "cn": "",
+        "cn": "<sup>40</sup>Ca/<sup>44</sup>Ca 比率:",
         "en": "<sup>40</sup>Ca/<sup>44</sup>Ca ratio:",
         "id": "help-Ca40Ca44"
     },
@@ -685,17 +680,17 @@
         "id": "KCa-format-3"
     },
     {
-        "cn": "",
+        "cn": "2.相反",
         "en": "2. Inverse",
         "id": "KCa-format-2"
     },
     {
-        "cn": "",
+        "cn": "1.正常",
         "en": "1. Normal",
         "id": "KCa-format-1"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-KCa-formats"
     },
@@ -720,37 +715,37 @@
         "id": "help-normalise"
     },
     {
-        "cn": "",
+        "cn": "<sup>176</sup>Lu/<sup>175</sup>Lu 比率:",
         "en": "<sup>176</sup>Lu/<sup>175</sup>Lu ratio:",
         "id": "help-Lu176Lu175"
     },
     {
-        "cn": "",
+        "cn": "<sup>174</sup>Hf/<sup>177</sup>Hf 比率:",
         "en": "<sup>174</sup>Hf/<sup>177</sup>Hf ratio:",
         "id": "help-Hf174Hf177"
     },
     {
-        "cn": "",
+        "cn": "<sup>176</sup>Hf/<sup>177</sup>Hf 比率:",
         "en": "<sup>176</sup>Hf/<sup>177</sup>Hf ratio:",
         "id": "help-Hf176Hf177"
     },
     {
-        "cn": "",
+        "cn": "<sup>178</sup>Hf/<sup>177</sup>Hf 比率:",
         "en": "<sup>178</sup>Hf/<sup>177</sup>Hf ratio:",
         "id": "help-Hf178Hf177"
     },
     {
-        "cn": "",
+        "cn": "<sup>179</sup>Hf/<sup>177</sup>Hf 比率:",
         "en": "<sup>179</sup>Hf/<sup>177</sup>Hf ratio:",
         "id": "help-Hf179Hf177"
     },
     {
-        "cn": "",
+        "cn": "<sup>180</sup>Hf/<sup>177</sup>Hf 比率:",
         "en": "<sup>180</sup>Hf/<sup>177</sup>Hf ratio:",
         "id": "help-Hf180Hf177"
     },
     {
-        "cn": "",
+        "cn": "<sup>176</sup>Lu 衰变常数:",
         "en": "<sup>176</sup>Lu decay constant:",
         "id": "help-LambdaLu176"
     },
@@ -780,8 +775,8 @@
         "id": "help-pcex"
     },
     {
-        "cn": "",
-        "en": "<sup>186</sup>Os/<sup>192</sup>Os ratio",
+        "cn": "<sup>186</sup>Os/<sup>192</sup>Os 比率:",
+        "en": "<sup>186</sup>Os/<sup>192</sup>Os ratio:",
         "id": "help-Os186Os192"
     },
     {
@@ -795,22 +790,22 @@
         "id": "help-col"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-regression-format"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-PbPb-formats"
     },
     {
-        "cn": "",
+        "cn": "1.正常",
         "en": "1. Normal",
         "id": "PbPb-format-1"
     },
     {
-        "cn": "",
+        "cn": "2.相反",
         "en": "2. Inverse",
         "id": "PbPb-format-2"
     },
@@ -840,7 +835,7 @@
         "id": "common-Pb-correction-isochron"
     },
     {
-        "cn": "",
+        "cn": "<sup>235</sup>U 衰变常数:",
         "en": "<sup>235</sup>U decay constant:",
         "id": "help-LambdaU235"
     },
@@ -855,7 +850,7 @@
         "id": "help-Pb207Pb204"
     },
     {
-        "cn": "",
+        "cn": "传播系统的不确定性?",
         "en": "Propagate systematic uncertainties?",
         "id": "help-exterr-radial"
     },
@@ -930,17 +925,17 @@
         "id": "help-radial-pch"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-RbSr-formats"
     },
     {
-        "cn": "",
+        "cn": "1.正常",
         "en": "1. Normal",
         "id": "PD-format-1"
     },
     {
-        "cn": "",
+        "cn": "2.相反",
         "en": "2. Inverse",
         "id": "PD-format-2"
     },
@@ -950,142 +945,142 @@
         "id": "PD-format-3"
     },
     {
-        "cn": "",
+        "cn": "<sup>85</sup>Rb/<sup>87</sup>Rb 比率:",
         "en": "<sup>85</sup>Rb/<sup>87</sup>Rb ratio:",
         "id": "help-Rb85Rb87"
     },
     {
-        "cn": "",
+        "cn": "<sup>84</sup>Sr/<sup>86</sup>Sr 比率:",
         "en": "<sup>84</sup>Sr/<sup>86</sup>Sr ratio:",
         "id": "help-Sr84Sr86"
     },
     {
-        "cn": "",
+        "cn": "<sup>87</sup>Sr/<sup>86</sup>Sr 比率:",
         "en": "<sup>87</sup>Sr/<sup>86</sup>Sr ratio:",
         "id": "help-Sr87Sr86"
     },
     {
-        "cn": "",
+        "cn": "<sup>88</sup>Sr/<sup>86</sup>Sr 比率:",
         "en": "<sup>88</sup>Sr/<sup>86</sup>Sr ratio",
         "id": "help-Sr88Sr86"
     },
     {
-        "cn": "",
+        "cn": "<sup>87</sup>Rb 衰变常数:",
         "en": "<sup>87</sup>Rb decay constant:",
         "id": "help-LambdaRb87"
     },
     {
-        "cn": "",
+        "cn": "<sup>184</sup>Os/<sup>192</sup>Os 比率:",
         "en": "<sup>184</sup>Os/<sup>192</sup>Os ratio:",
         "id": "help-Os184Os192"
     },
     {
-        "cn": "",
+        "cn": "<sup>185</sup>Re/<sup>187</sup>Re 比率:",
         "en": "<sup>185</sup>Re/<sup>187</sup>Re ratio:",
         "id": "help-Re185Re187"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-LuHf-formats"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-ReOs-formats"
     },
     {
-        "cn": "",
+        "cn": "<sup>187</sup>Os/<sup>192</sup>Os 比率:",
         "en": "<sup>187</sup>Os/<sup>192</sup>Os ratio:",
         "id": "help-Os187Os192"
     },
     {
-        "cn": "",
+        "cn": "<sup>188</sup>Os/<sup>192</sup>Os 比率:",
         "en": "<sup>188</sup>Os/<sup>192</sup>Os ratio:",
         "id": "help-Os188Os192"
     },
     {
-        "cn": "",
+        "cn": "<sup>189</sup>Os/<sup>192</sup>Os 比率:",
         "en": "<sup>189</sup>Os/<sup>192</sup>Os ratio:",
         "id": "help-Os189Os192"
     },
     {
-        "cn": "",
+        "cn": "<sup>190</sup>Os/<sup>192</sup>Os 比率:",
         "en": "<sup>190</sup>Os/<sup>192</sup>Os ratio:",
         "id": "help-Os190Os192"
     },
     {
-        "cn": "",
+        "cn": "<sup>187</sup>Re 衰变常数:",
         "en": "<sup>187</sup>Re decay constant:",
         "id": "help-LambdaRe187"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-SmNd-formats"
     },
     {
-        "cn": "",
+        "cn": "<sup>144</sup>Sm/<sup>152</sup>Sm 比率:",
         "en": "<sup>144</sup>Sm/<sup>152</sup>Sm ratio:",
         "id": "help-Sm144Sm152"
     },
     {
-        "cn": "",
+        "cn": "<sup>147</sup>Sm/<sup>152</sup>Sm 比率:",
         "en": "<sup>147</sup>Sm/<sup>152</sup>Sm ratio:",
         "id": "help-Sm147Sm152"
     },
     {
-        "cn": "",
+        "cn": "<sup>148</sup>Sm/<sup>152</sup>Sm 比率:",
         "en": "<sup>148</sup>Sm/<sup>152</sup>Sm ratio:",
         "id": "help-Sm148Sm152"
     },
     {
-        "cn": "",
+        "cn": "<sup>149</sup>Sm/<sup>152</sup>Sm 比率:",
         "en": "<sup>149</sup>Sm/<sup>152</sup>Sm ratio:",
         "id": "help-Sm149Sm152"
     },
     {
-        "cn": "",
+        "cn": "<sup>150</sup>Sm/<sup>152</sup>Sm 比率:",
         "en": "<sup>150</sup>Sm/<sup>152</sup>Sm ratio:",
         "id": "help-Sm150Sm152"
     },
     {
-        "cn": "",
+        "cn": "<sup>154</sup>Sm/<sup>152</sup>Sm 比率:",
         "en": "<sup>154</sup>Sm/<sup>152</sup>Sm ratio:",
         "id": "help-Sm154Sm152"
     },
     {
-        "cn": "",
+        "cn": "<sup>142</sup>Nd/<sup>144</sup>Nd 比率:",
         "en": "<sup>142</sup>Nd/<sup>144</sup>Nd ratio:",
         "id": "help-Nd142Nd144"
     },
     {
-        "cn": "",
+        "cn": "<sup>143</sup>Nd/<sup>144</sup>Nd 比率:",
         "en": "<sup>143</sup>Nd/<sup>144</sup>Nd ratio:",
         "id": "help-Nd143Nd144"
     },
     {
-        "cn": "",
+        "cn": "<sup>145</sup>Nd/<sup>144</sup>Nd 比率:",
         "en": "<sup>145</sup>Nd/<sup>144</sup>Nd ratio:",
         "id": "help-Nd145Nd144"
     },
     {
-        "cn": "",
+        "cn": "<sup>146</sup>Nd/<sup>144</sup>Nd 比率:",
         "en": "<sup>146</sup>Nd/<sup>144</sup>Nd ratio:",
         "id": "help-Nd146Nd144"
     },
     {
-        "cn": "",
+        "cn": "<sup>148</sup>Nd/<sup>144</sup>Nd 比率:",
         "en": "<sup>148</sup>Nd/<sup>144</sup>Nd ratio:",
         "id": "help-Nd148Nd144"
     },
     {
-        "cn": "",
+        "cn": "<sup>150</sup>Nd/<sup>144</sup>Nd 比率:",
         "en": "<sup>150</sup>Nd/<sup>144</sup>Nd ratio:",
         "id": "help-Nd150Nd144"
     },
     {
-        "cn": "",
+        "cn": "<sup>147</sup>Sm 衰变常数:",
         "en": "<sup>147</sup>Sm decay constant:",
         "id": "help-LambdaSm147"
     },
@@ -1100,22 +1095,17 @@
         "id": "help-detritus"
     },
     {
-        "cn": "",
-        "en": "<sup>230</sup>Th/<sup>232</sup>Th:",
-        "id": "help-Th02-ThU"
-    },
-    {
-        "cn": "",
+        "cn": "<sup>234</sup>U 衰变常数:",
         "en": "<sup>234</sup>U decay constant:",
         "id": "help-LambdaU234"
     },
     {
-        "cn": "",
+        "cn": "<sup>230</sup>Th 衰变常数:",
         "en": "<sup>230</sup>Th decay constant:",
         "id": "help-LambdaTh230"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-ThU-formats"
     },
@@ -1140,7 +1130,7 @@
         "id": "detrital-correction-measured"
     },
     {
-        "cn": "",
+        "cn": "输入格式:",
         "en": "Input format:",
         "id": "help-UPb-formats"
     },
@@ -1185,17 +1175,17 @@
         "id": "help-PaU-UPb"
     },
     {
-        "cn": "",
+        "cn": "<sup>232</sup>Th 衰变常数:",
         "en": "<sup>232</sup>Th decay constant:",
         "id": "help-LambdaTh232"
     },
     {
-        "cn": "",
+        "cn": "<sup>226</sup>Ra 衰变常数:",
         "en": "<sup>226</sup>Ra decay constant:",
         "id": "help-LambdaRa226"
     },
     {
-        "cn": "",
+        "cn": "<sup>231</sup>Pa 衰变常数:",
         "en": "<sup>231</sup>Pa decay constant:",
         "id": "help-LambdaPa231"
     },
@@ -1238,5 +1228,275 @@
         "cn": "",
         "en": "Plot character:",
         "id": "help-pch"
+    },
+    {
+        "cn": "",
+        "en": "The <sup>207</sup>Pb/<sup>235</sup>U-ages.",
+        "id": "ages-75"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>207</sup>Pb/<sup>235</sup>U-ratios.",
+        "id": "UPb-75"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>207</sup>Pb/<sup>235</sup>U-ratios.",
+        "id": "UPb-err75"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>206</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-68"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty\n      (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)\n      of the <sup>206</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-err68"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>238</sup>U/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-86"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>238</sup>U/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-err86"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-76"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-err76"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-rho7568"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).",
+        "id": "UPb-rho8676"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>204</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-48"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>204</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-err48"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.",
+        "id": "UPb-47"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.",
+        "id": "UPb-err47"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-46"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-err46"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-rhoXZ-8646"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-rhoYZ-8676"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-rhoYZ-6848"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-rhoXZ-7548"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-rhoXY-7568"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-rhoYZ-7646"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>208</sup>Pb/<sup>232</sup>Th-ratios.",
+        "id": "UPb-82"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>208</sup>Pb/<sup>232</sup>Th-ratios.",
+        "id": "UPb-err82"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-0806"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-err0806"
+    },
+    {
+        "cn": "",
+        "en": "Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.",
+        "id": "UPb-3238"
+    },
+    {
+        "cn": "",
+        "en": "Analytical uncertainty (<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>) of the <sup>232</sup>Th/<sup>238</sup>U-ratios.",
+        "id": "UPb-err3238"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.",
+        "id": "UPb-rhoWX-7568"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.",
+        "id": "UPb-rhoWY-7582"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.",
+        "id": "UPb-rhoWZ-753238"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.",
+        "id": "UPb-rhoXY-680832"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.",
+        "id": "UPb-rhoXZ-683238"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>208</sup>Pb/<sup>232</sup>Th- and <sup>232</sup>Th/<sup>238</sup>U-ratios.",
+        "id": "UPb-rhowYZ-08323238"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).",
+        "id": "UPb-rhoWX-8676"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).",
+        "id": "UPb-rhoWY-38060806"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).",
+        "id": "UPb-rhoWZ-38063238"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).",
+        "id": "UPb-rhoXY-7686"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).",
+        "id": "UPb-rhoXZ-763238"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>208</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).",
+        "id": "UPb-rhoYZ-08063238"
+    },
+    {
+        "cn": "",
+        "en": "Optional variable to be used as fill colours in concordia and radial plots.",
+        "id": "UPb-C"
+    },
+    {
+        "cn": "",
+        "en": "Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.",
+        "id": "UPb-omit"
+    },
+    {
+        "cn": "",
+        "en": "If <tt>rhoXY</tt>, <tt>rhoXZ</tt> or <tt>rhoYZ</tt> are omitted, then their value will be inferred from the redundancy between the three sets of standard errors (<tt>s[X]</tt>, <tt>s[Y]</tt> and <tt>s[Z]</tt>). This inference assumes that these errors are based on the same number of data points. If some data has been rejected from one ratio but not another, because of isobaric interferences, instrument issues, outlier rejection, or any other reason, then this method will not work.",
+        "id": "UPb-redundancy"
+    },
+    {
+        "cn": "",
+        "en": "Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.",
+        "id": "UPb-rhoXY-8676"
+    },
+    {
+        "cn": "主页",
+        "en": "Home",
+        "id": "home"
+    },
+    {
+        "cn": "选项",
+        "en": "Options",
+        "id": "options"
+    },
+    {
+        "cn": "帮助",
+        "en": "Help",
+        "id": "help"
+    },
+    {
+        "cn": "重置设置",
+        "en": "Defaults",
+        "id": "defaults"
+    },
+    {
+        "cn": "清空数据",
+        "en": "Clear",
+        "id": "clear"
+    },
+    {
+        "cn": "打开",
+        "en": "Open",
+        "id": "open"
+    },
+    {
+        "cn": "保存文件",
+        "en": "Save",
+        "id": "save"
+    },
+    {
+        "cn": "生成投图",
+        "en": "PLOT",
+        "id": "plot"
+    },
+    {
+        "cn": "运行",
+        "en": "RUN",
+        "id": "run"
     }
 ]
