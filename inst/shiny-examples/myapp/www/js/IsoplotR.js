@@ -801,10 +801,11 @@ $(function(){
 	    break;
 	}
     }
-    
+
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
+	translate();
 	showOrHide();
 	$('#ierr option[value='+IsoplotR.settings.ierr+']').
 	    prop('selected', 'selected');
@@ -1230,8 +1231,6 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
-	IsoplotR.settings.language =
-	    $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -2140,7 +2139,6 @@ $(function(){
 	    $("#geochronometer-options").load(fname,function(){
 		fname = "options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
-		    translate();
 		    showSettings(geochronometer);
 		    showSettings(plotdevice);
 		    IsoplotR.optionschanged = true;

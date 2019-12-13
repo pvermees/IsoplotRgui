@@ -167,17 +167,17 @@
     {
         "cn": "",
         "en": "none",
-        "id": "common-Pb-filter-none"
+        "id": "discordance-filter-none"
     },
     {
         "cn": "",
         "en": "before common Pb correction",
-        "id": "common-Pb-filter-before"
+        "id": "discordance-filter-before-common-Pb"
     },
     {
         "cn": "",
         "en": "after common Pb correction",
-        "id": "common-Pb-filter-after"
+        "id": "discordance-filter-after-common-Pb"
     },
     {
         "cn": "",
@@ -548,5 +548,695 @@
         "cn": "",
         "en": "Anchored discordia line?",
         "id": "help-anchor-option"
+    },
+    {
+        "cn": "",
+        "en": "Type:",
+        "id": "help-ThU-isochron-types"
+    },
+    {
+        "cn": "",
+        "en": "Type:",
+        "id": "help-UPb-isochron-types"
+    },
+    {
+        "cn": "",
+        "en": "1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A)",
+        "id": "Rosholt-A"
+    },
+    {
+        "cn": "",
+        "en": "3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B)",
+        "id": "Rosholt-B"
+    },
+    {
+        "cn": "",
+        "en": "2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A)",
+        "id": "Osmond-A"
+    },
+    {
+        "cn": "",
+        "en": "4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B)",
+        "id": "Osmond-B"
+    },
+    {
+        "cn": "",
+        "en": "1. <tt>(04 or 08c)/06</tt> vs. <tt>38/06</tt>",
+        "id": "UPb-isochron-type-1"
+    },
+    {
+        "cn": "",
+        "en": "2. <tt>(04 or 08c)/07</tt> vs. <tt>35/07</tt>",
+        "id": "UPb-isochron-type-2"
+    },
+    {
+        "cn": "",
+        "en": "Model:",
+        "id": "help-isochron-models"
+    },
+    {
+        "cn": "",
+        "en": "Inverse isochron",
+        "id": "help-SmNd-inverse"
+    },
+    {
+        "cn": "",
+        "en": "Inverse isochron",
+        "id": "help-RbSr-inverse"
+    },
+    {
+        "cn": "",
+        "en": "Inverse isochron",
+        "id": "help-KCa-inverse"
+    },
+    {
+        "cn": "",
+        "en": "Inverse isochron",
+        "id": "help-ArAr-inverse"
+    },
+    {
+        "cn": "",
+        "en": "Inverse isochron",
+        "id": "help-PbPb-inverse"
+    },
+    {
+        "cn": "",
+        "en": "Inverse isochron",
+        "id": "help-ReOs-inverse"
+    },
+    {
+        "cn": "",
+        "en": "Inverse isochron",
+        "id": "help-LuHf-inverse"
+    },
+    {
+        "cn": "",
+        "en": "Add Stacey-Kramers Pb-Pb growth curve?",
+        "id": "help-PbPb-growth"
+    },
+    {
+        "cn": "",
+        "en": "Minimum X:",
+        "id": "help-isochron-minx"
+    },
+    {
+        "cn": "",
+        "en": "Maximum X:",
+        "id": "help-isochron-maxx"
+    },
+    {
+        "cn": "",
+        "en": "Minimum Y:",
+        "id": "help-isochron-miny"
+    },
+    {
+        "cn": "",
+        "en": "Maximum Y:",
+        "id": "help-isochron-maxy"
+    },
+    {
+        "cn": "",
+        "en": "Take logarithms?",
+        "id": "help-log"
+    },
+    {
+        "cn": "",
+        "en": "Plot character:",
+        "id": "help-pchdetritals"
+    },
+    {
+        "cn": "",
+        "en": "Histogram binwidth:",
+        "id": "help-binwidth"
+    },
+    {
+        "cn": "",
+        "en": "Kernel bandwidth:",
+        "id": "help-bandwidth"
+    },
+    {
+        "cn": "",
+        "en": "<sup>40</sup>Ca/<sup>44</sup>Ca ratio:",
+        "id": "help-Ca40Ca44"
+    },
+    {
+        "cn": "",
+        "en": "3. Three ratios",
+        "id": "KCa-format-3"
+    },
+    {
+        "cn": "",
+        "en": "2. Inverse",
+        "id": "KCa-format-2"
+    },
+    {
+        "cn": "",
+        "en": "1. Normal",
+        "id": "KCa-format-1"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-KCa-formats"
+    },
+    {
+        "cn": "",
+        "en": "Show histogram?",
+        "id": "help-showhist"
+    },
+    {
+        "cn": "",
+        "en": "Adaptive KDE?",
+        "id": "help-adaptive"
+    },
+    {
+        "cn": "",
+        "en": "Same bandwidth for all samples?",
+        "id": "help-samebandwidth"
+    },
+    {
+        "cn": "",
+        "en": "Normalise area under the KDEs?",
+        "id": "help-normalise"
+    },
+    {
+        "cn": "",
+        "en": "<sup>176</sup>Lu/<sup>175</sup>Lu ratio:",
+        "id": "help-Lu176Lu175"
+    },
+    {
+        "cn": "",
+        "en": "<sup>174</sup>Hf/<sup>177</sup>Hf ratio:",
+        "id": "help-Hf174Hf177"
+    },
+    {
+        "cn": "",
+        "en": "<sup>176</sup>Hf/<sup>177</sup>Hf ratio:",
+        "id": "help-Hf176Hf177"
+    },
+    {
+        "cn": "",
+        "en": "<sup>178</sup>Hf/<sup>177</sup>Hf ratio:",
+        "id": "help-Hf178Hf177"
+    },
+    {
+        "cn": "",
+        "en": "<sup>179</sup>Hf/<sup>177</sup>Hf ratio:",
+        "id": "help-Hf179Hf177"
+    },
+    {
+        "cn": "",
+        "en": "<sup>180</sup>Hf/<sup>177</sup>Hf ratio:",
+        "id": "help-Hf180Hf177"
+    },
+    {
+        "cn": "",
+        "en": "<sup>176</sup>Lu decay constant:",
+        "id": "help-LambdaLu176"
+    },
+    {
+        "cn": "",
+        "en": "Classical MDS",
+        "id": "help-classical"
+    },
+    {
+        "cn": "",
+        "en": "Shepard plot?",
+        "id": "help-shepard"
+    },
+    {
+        "cn": "",
+        "en": "Add nearest neighbour lines?",
+        "id": "help-nnlines"
+    },
+    {
+        "cn": "",
+        "en": "Show axes",
+        "id": "help-ticks"
+    },
+    {
+        "cn": "",
+        "en": "Plot symbol magnification:",
+        "id": "help-pcex"
+    },
+    {
+        "cn": "",
+        "en": "<sup>186</sup>Os/<sup>192</sup>Os ratio",
+        "id": "help-Os186Os192"
+    },
+    {
+        "cn": "",
+        "en": "Label position:",
+        "id": "help-pos"
+    },
+    {
+        "cn": "",
+        "en": "Outline colour:",
+        "id": "help-col"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-regression-format"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-PbPb-formats"
+    },
+    {
+        "cn": "",
+        "en": "1. Normal",
+        "id": "PbPb-format-1"
+    },
+    {
+        "cn": "",
+        "en": "2. Inverse",
+        "id": "PbPb-format-2"
+    },
+    {
+        "cn": "",
+        "en": "3. Three ratios",
+        "id": "PbPb-format-3"
+    },
+    {
+        "cn": "",
+        "en": "Common Pb correction:",
+        "id": "help-common-Pb-option"
+    },
+    {
+        "cn": "",
+        "en": "none",
+        "id": "common-Pb-correction-none"
+    },
+    {
+        "cn": "",
+        "en": "nominal",
+        "id": "common-Pb-correction-nominal"
+    },
+    {
+        "cn": "",
+        "en": "isochron",
+        "id": "common-Pb-correction-isochron"
+    },
+    {
+        "cn": "",
+        "en": "<sup>235</sup>U decay constant:",
+        "id": "help-LambdaU235"
+    },
+    {
+        "cn": "",
+        "en": "Initial <sup>206</sup>Pb/<sup>204</sup>Pb:",
+        "id": "help-Pb206Pb204"
+    },
+    {
+        "cn": "",
+        "en": "Initial <sup>207</sup>Pb/<sup>204</sup>Pb:",
+        "id": "help-Pb207Pb204"
+    },
+    {
+        "cn": "",
+        "en": "Propagate systematic uncertainties?",
+        "id": "help-exterr-radial"
+    },
+    {
+        "cn": "",
+        "en": "Transformation:",
+        "id": "help-transformation"
+    },
+    {
+        "cn": "",
+        "en": "logarithmic",
+        "id": "radial-log"
+    },
+    {
+        "cn": "",
+        "en": "linear",
+        "id": "radial-lin"
+    },
+    {
+        "cn": "",
+        "en": "arcsin",
+        "id": "radial-arcsin"
+    },
+    {
+        "cn": "",
+        "en": "Finite mixtures:",
+        "id": "help-mixtures"
+    },
+    {
+        "cn": "",
+        "en": "0 (none)",
+        "id": "peakfit-none"
+    },
+    {
+        "cn": "",
+        "en": "auto",
+        "id": "peakfit-auto"
+    },
+    {
+        "cn": "",
+        "en": "minimum",
+        "id": "peakfit-min"
+    },
+    {
+        "cn": "",
+        "en": "Discordance filter:",
+        "id": "help-discordance-filter"
+    },
+    {
+        "cn": "",
+        "en": "Draw vertical lines at steps?",
+        "id": "help-verticals"
+    },
+    {
+        "cn": "",
+        "en": "Minimum value:",
+        "id": "help-mint-radial"
+    },
+    {
+        "cn": "",
+        "en": "Central value:",
+        "id": "help-t0"
+    },
+    {
+        "cn": "",
+        "en": "Maximum value:",
+        "id": "help-maxt-radial"
+    },
+    {
+        "cn": "",
+        "en": "Plot character:",
+        "id": "help-radial-pch"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-RbSr-formats"
+    },
+    {
+        "cn": "",
+        "en": "1. Normal",
+        "id": "PD-format-1"
+    },
+    {
+        "cn": "",
+        "en": "2. Inverse",
+        "id": "PD-format-2"
+    },
+    {
+        "cn": "",
+        "en": "3. Concentrations",
+        "id": "PD-format-3"
+    },
+    {
+        "cn": "",
+        "en": "<sup>85</sup>Rb/<sup>87</sup>Rb ratio:",
+        "id": "help-Rb85Rb87"
+    },
+    {
+        "cn": "",
+        "en": "<sup>84</sup>Sr/<sup>86</sup>Sr ratio:",
+        "id": "help-Sr84Sr86"
+    },
+    {
+        "cn": "",
+        "en": "<sup>87</sup>Sr/<sup>86</sup>Sr ratio:",
+        "id": "help-Sr87Sr86"
+    },
+    {
+        "cn": "",
+        "en": "<sup>88</sup>Sr/<sup>86</sup>Sr ratio",
+        "id": "help-Sr88Sr86"
+    },
+    {
+        "cn": "",
+        "en": "<sup>87</sup>Rb decay constant:",
+        "id": "help-LambdaRb87"
+    },
+    {
+        "cn": "",
+        "en": "<sup>184</sup>Os/<sup>192</sup>Os ratio:",
+        "id": "help-Os184Os192"
+    },
+    {
+        "cn": "",
+        "en": "<sup>185</sup>Re/<sup>187</sup>Re ratio:",
+        "id": "help-Re185Re187"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-LuHf-formats"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-ReOs-formats"
+    },
+    {
+        "cn": "",
+        "en": "<sup>187</sup>Os/<sup>192</sup>Os ratio:",
+        "id": "help-Os187Os192"
+    },
+    {
+        "cn": "",
+        "en": "<sup>188</sup>Os/<sup>192</sup>Os ratio:",
+        "id": "help-Os188Os192"
+    },
+    {
+        "cn": "",
+        "en": "<sup>189</sup>Os/<sup>192</sup>Os ratio:",
+        "id": "help-Os189Os192"
+    },
+    {
+        "cn": "",
+        "en": "<sup>190</sup>Os/<sup>192</sup>Os ratio:",
+        "id": "help-Os190Os192"
+    },
+    {
+        "cn": "",
+        "en": "<sup>187</sup>Re decay constant:",
+        "id": "help-LambdaRe187"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-SmNd-formats"
+    },
+    {
+        "cn": "",
+        "en": "<sup>144</sup>Sm/<sup>152</sup>Sm ratio:",
+        "id": "help-Sm144Sm152"
+    },
+    {
+        "cn": "",
+        "en": "<sup>147</sup>Sm/<sup>152</sup>Sm ratio:",
+        "id": "help-Sm147Sm152"
+    },
+    {
+        "cn": "",
+        "en": "<sup>148</sup>Sm/<sup>152</sup>Sm ratio:",
+        "id": "help-Sm148Sm152"
+    },
+    {
+        "cn": "",
+        "en": "<sup>149</sup>Sm/<sup>152</sup>Sm ratio:",
+        "id": "help-Sm149Sm152"
+    },
+    {
+        "cn": "",
+        "en": "<sup>150</sup>Sm/<sup>152</sup>Sm ratio:",
+        "id": "help-Sm150Sm152"
+    },
+    {
+        "cn": "",
+        "en": "<sup>154</sup>Sm/<sup>152</sup>Sm ratio:",
+        "id": "help-Sm154Sm152"
+    },
+    {
+        "cn": "",
+        "en": "<sup>142</sup>Nd/<sup>144</sup>Nd ratio:",
+        "id": "help-Nd142Nd144"
+    },
+    {
+        "cn": "",
+        "en": "<sup>143</sup>Nd/<sup>144</sup>Nd ratio:",
+        "id": "help-Nd143Nd144"
+    },
+    {
+        "cn": "",
+        "en": "<sup>145</sup>Nd/<sup>144</sup>Nd ratio:",
+        "id": "help-Nd145Nd144"
+    },
+    {
+        "cn": "",
+        "en": "<sup>146</sup>Nd/<sup>144</sup>Nd ratio:",
+        "id": "help-Nd146Nd144"
+    },
+    {
+        "cn": "",
+        "en": "<sup>148</sup>Nd/<sup>144</sup>Nd ratio:",
+        "id": "help-Nd148Nd144"
+    },
+    {
+        "cn": "",
+        "en": "<sup>150</sup>Nd/<sup>144</sup>Nd ratio:",
+        "id": "help-Nd150Nd144"
+    },
+    {
+        "cn": "",
+        "en": "<sup>147</sup>Sm decay constant:",
+        "id": "help-LambdaSm147"
+    },
+    {
+        "cn": "",
+        "en": "Extract plateau?",
+        "id": "help-plateau"
+    },
+    {
+        "cn": "",
+        "en": "detrital <sup>230</sup>Th correction:",
+        "id": "help-detritus"
+    },
+    {
+        "cn": "",
+        "en": "<sup>230</sup>Th/<sup>232</sup>Th:",
+        "id": "help-Th02-ThU"
+    },
+    {
+        "cn": "",
+        "en": "<sup>234</sup>U decay constant:",
+        "id": "help-LambdaU234"
+    },
+    {
+        "cn": "",
+        "en": "<sup>230</sup>Th decay constant:",
+        "id": "help-LambdaTh230"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-ThU-formats"
+    },
+    {
+        "cn": "",
+        "en": "none",
+        "id": "detrital-correction-none"
+    },
+    {
+        "cn": "",
+        "en": "isochron",
+        "id": "detrital-correction-isochron"
+    },
+    {
+        "cn": "",
+        "en": "assumed",
+        "id": "detrital-correction-assumed"
+    },
+    {
+        "cn": "",
+        "en": "measured",
+        "id": "detrital-correction-measured"
+    },
+    {
+        "cn": "",
+        "en": "Input format:",
+        "id": "help-UPb-formats"
+    },
+    {
+        "cn": "",
+        "en": "none",
+        "id": "diseq-none"
+    },
+    {
+        "cn": "",
+        "en": "<sup>234</sup>U disequilibrium:",
+        "id": "help-U48-UPb"
+    },
+    {
+        "cn": "",
+        "en": "Apply disequilibrium correction?",
+        "id": "help-diseq"
+    },
+    {
+        "cn": "",
+        "en": "initial",
+        "id": "diseq-initial"
+    },
+    {
+        "cn": "",
+        "en": "measured",
+        "id": "diseq-measured"
+    },
+    {
+        "cn": "",
+        "en": "<sup>230</sup>Th disequilibrium:",
+        "id": "help-ThU-UPb"
+    },
+    {
+        "cn": "",
+        "en": "magma",
+        "id": "diseq-magma"
+    },
+    {
+        "cn": "",
+        "en": "<sup>231</sup>Pa disequilibrium:",
+        "id": "help-PaU-UPb"
+    },
+    {
+        "cn": "",
+        "en": "<sup>232</sup>Th decay constant:",
+        "id": "help-LambdaTh232"
+    },
+    {
+        "cn": "",
+        "en": "<sup>226</sup>Ra decay constant:",
+        "id": "help-LambdaRa226"
+    },
+    {
+        "cn": "",
+        "en": "<sup>231</sup>Pa decay constant:",
+        "id": "help-LambdaPa231"
+    },
+    {
+        "cn": "",
+        "en": "Initial <sup>207</sup>Pb/<sup>206</sup>Pb ratio:",
+        "id": "help-Pb207Pb206"
+    },
+    {
+        "cn": "",
+        "en": "Initial <sup>208</sup>Pb/<sup>206</sup>Pb ratio:",
+        "id": "help-Pb208Pb206"
+    },
+    {
+        "cn": "",
+        "en": "Initial <sup>208</sup>Pb/<sup>207</sup>Pb ratio:",
+        "id": "help-Pb208Pb207"
+    },
+    {
+        "cn": "",
+        "en": "<sup>226</sup>Ra disequilibrium:",
+        "id": "help-RaU-UPb"
+    },
+    {
+        "cn": "",
+        "en": "Use isochron intercept as initial <sup>187</sup>Os/<sup>187</sup>Os-ratio",
+        "id": "help-ReOs-i2i"
+    },
+    {
+        "cn": "",
+        "en": "Maximum value:",
+        "id": "help-maxx"
+    },
+    {
+        "cn": "",
+        "en": "Minimum value:",
+        "id": "help-minx"
+    },
+    {
+        "cn": "",
+        "en": "Plot character:",
+        "id": "help-pch"
     }
 ]

@@ -788,7 +788,11 @@ function help(id){
 	    "of the graphical output.";
 	break;
     case "help-cex":
-	text = "The factor by which text labels and plotting symbols " +
+	text = "The factor by which text labels " +
+	    "should be magnified relative to the default (which is 1)";
+	break;
+    case "help-pcex":
+	text = "The factor by which plotting symbols " +
 	    "should be magnified relative to the default (which is 1)";
 	break;
     case "help-pos":
