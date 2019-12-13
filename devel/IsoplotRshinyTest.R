@@ -2,6 +2,7 @@ rm(list=ls())
 
 if (TRUE){ # sync?
     setwd('~/Documents/Programming/R/IsoplotRgui/devel/')
+    source('db.R')
     # comment out next line if you don't want to update version number:
     #system('IsoplotRgit.sh')
     setwd('~/Documents/Programming/R')

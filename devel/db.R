@@ -1,7 +1,3 @@
-library(IsoplotR)
-
-setwd('~/Documents/Programming/R/IsoplotRgui/devel/')
-
 translate <- function(fname,odir='.'){
     dict <- IsoplotR:::fromJSON(file=fname)
     out <- list()

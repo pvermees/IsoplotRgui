@@ -425,18 +425,18 @@ $(function(){
 		} else {
 		    $(".show4U48diseq").hide();
 		}
-		if (set.ThU[1]<1){
-		    $(".show4ThUdiseq").hide();
+		if (set.ThU[1]==3){
+		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").hide();
-		    $(".show4ThUdiseq3").hide();
-		} else if (set.ThU[1]<3){
+		    $(".show4ThUdiseq3").show();
+		} else if (set.ThU[1]>0){
 		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").show();
 		    $(".show4ThUdiseq3").hide();
 		} else {
-		    $(".show4ThUdiseq").show();
+		    $(".show4ThUdiseq").hide();
 		    $(".show4ThUdiseq12").hide();
-		    $(".show4ThUdiseq3").show();
+		    $(".show4ThUdiseq3").hide();
 		}
 		if (set.RaU[1]>0){
 		    $(".show4RaUdiseq").show();
@@ -2019,6 +2019,10 @@ $(function(){
 	} else {
 	    $.chooseFormat(ID,"U-Pb");
 	    showSettings(pd);
+	}
+	if (IsoplotR.settings["U-Pb"].ThU[1]==3 &
+	    IsoplotR.settings["U-Pb"].format<7){
+	    IsoplotR.settings["U-Pb"].ThU[1] = 0;
 	}
     }
     
