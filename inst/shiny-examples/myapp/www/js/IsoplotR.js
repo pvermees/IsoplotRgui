@@ -1960,10 +1960,9 @@ $(function(){
 
     function welcome(){
 	$('#myplot').load('welcome.html',function(){
+	    showOrHide();
 	    $('#version').load('version.txt',function(){
-		$('#latestversion').load('https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt',function(){
-		    showOrHide();
-		});
+		$('#latestversion').load('https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt');
 	    });
 	    
 	});
