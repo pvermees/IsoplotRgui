@@ -1959,12 +1959,26 @@ $(function(){
     }
 
     function welcome(){
-	$('#myplot').load('welcome.html',function(){
+	$("#myplot").load('welcome.html',function(){
 	    showOrHide();
-	    $('#version').load('version.txt',function(){
-		$('#latestversion').load('https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt');
+	    $("#version").load('version.txt',function(){
+		$.ajax({
+		    url: 'https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt',
+		    error: function(){
+			$('#behind').hide();
+		    },
+		    success: function(data){
+			var curr = $('#version').html();
+			if (curr!=data){
+			    $('#latestversion').html(data);
+			    $('#behind').show();
+			} else {
+			    $('#behind').hide();
+			}
+		    },
+		    timeout: 3000 // sets timeout to 3 seconds
+		});
 	    });
-	    
 	});
     }
 
