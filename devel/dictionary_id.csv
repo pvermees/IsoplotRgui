@@ -1,0 +1,390 @@
+id,en,cn
+intro,"IsoplotR is an R package for geochronology that was designed to be free, flexible and future-proof. The package was named after but is not based on Ken Ludwig's popular Isoplot add-in to Microsoft Excel. It implements functions for U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, fission track and U-series disequilibrium dating as well as detrital geochronology.
+<p></p>
+This website provides easy to use point-and-click access to IsoplotR's most commonly used functions (see the <a href='#' onclick='$.tutorial();'>TUTORIAL</a> for details).  Alternatively, the same functions (and more) can also be accessed from the command-line through the IsoplotR package on <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a> and <a href='https://github.com/pvermees/IsoplotR/'>GitHub</a>.
+<p></p>","IsoplotR 是由 Pieter Vermeesch 使用 R 语言编写的开源软件,致敬了 Ken Ludwig 当年编写的 Excel 插件 Isoplot. 本程序支持如下的同位素组 合: U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, 裂变径迹(fission track)以及U系列元素 的不平衡定年(U-series disequilibrium dating),还有碎屑锆石的年代学 数据(detrital geochronology).
+<p></p>
+这个翻译是由<a href='https://github.com/cycleuser'>CycleUser</a> 编写的. 目的是为中文用户提供一个简单易用的图形界面, 以使用 IsoplotR 所提供的基本功能 (更多简介请点击 <a href='#' onclick='$.tutorial();'>这里来访问简单指南</a> 获取更多 信息). 其实这里的图形界面所包含的功能以及更多可定制的功能都可以通过 命令行版本的 IsoplotR 包来实现, 现已托管 在 <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a>.
+<p></p>"
+tutorial-title,Tutorial,简单指南
+tutorial-gui,"1. <tt>IsoplotR</tt>'s graphical user interface (GUI) has four components: a top bar with selection menus for the various chronometers and plot devices, optional settings and documentation; an input table into which data can be pasted from spreadsheet applications; an output window displaying the graphical or numerical results; and a lower bar to import and export data and results.","1. <tt>IsoplotR</tt>的图形界面有四个主要的控制部分: 顶部菜单可以来选择所使用的同位素组合以及投图的设置选项, 还有帮助文档. 底部的输入和存储菜单, 可以打开本地文件进行数据导入,还可以将做好的图保存下来. 右侧的是投图输出的界面, 生成的图像就在这部分县市. 左侧的是表格化的数据显示界面, 导入的数据就在这里面."
+tutorial-alternative-formats,2. Alternative input formats are available through the <tt>Options</tt> menu.,2. 点击 <tt>Options</tt> 按钮可以调整所用的文档格式.
+tutorial-contextual-help,3. Contextual help can be accessed by clicking on any text within the <tt>Options</tt> menu.,3. 在 <tt>Options</tt>菜单内有很多内置的上下文帮助文档对一 些概念做了简要的解释.
+tutorial-further-documentation,"4. Further documentation is provided under the <tt>Help</tt> menu. This includes information about the input and output parameters, and a brief summary of the theoretical background with essential references.","4. 点击<tt>Help</tt>菜单可以看到详细的文档.其中包括输入输 出的参数,还包含本软件所用的理论基础的概要总结,以及相关的参 考文献出处."
+tutorial-saving,5. Data and settings can be saved in a <tt>.json</tt>  database format for future use.,"5. 数据以及投图设置等等都可以用<tt>.json</tt> 的格式来保存,这 种保存好的文件还可以随时加载到程序中去."
+help-exterr,Propagate systematic uncertainties?,传播系统的不确定性?
+ArAr-format-1,1. Normal,1.正常
+ArAr-format-2,2. Inverse,2.相反
+help-ArAr-formats,Input format,输入格式:
+ArAr-format-3,3. Three ratios,
+help-Ar40Ar36,Atmospheric <sup>40</sup>Ar/<sup>36</sup>Ar ratio:,大气<sup>40</sup>Ar/<sup>36</sup>Ar 比值
+help-LambdaK40,<sup>40</sup>K decay constant:,<sup>40</sup>K 衰变常数:
+help-show_p,Show p-value for concordance,
+help-ArAr-i2i,Use isochron intercept as initial <sup>40</sup>Ar/<sup>36</sup>Ar-ratio,
+help-KCa-i2i,Use isochron intercept as initial <sup>40</sup>Ca/<sup>44</sup>Ca-ratio,
+help-SmNd-i2i,Use isochron intercept as initial <sup>143</sup>Nd/<sup>144</sup>Nd-ratio,
+help-RbSr-i2i,Use isochron intercept as initial <sup>87</sup>Sr/<sup>86</sup>Sr-ratio,
+help-LuHf-i2i,Use isochron intercept as initial <sup>176</sup>Hf/<sup>177</sup>Hf-ratio,
+help-ThU-i2i,Use the isochron intercept to estimate the initial <sup>230</sup>Th/<sup>238</sup>U-ratio,
+help-sigdig,Significant digits:,
+help-randomeffects,Random effects model?,
+help-outliers,Reject outliers?,
+help-ranked,Rank the ages?,
+help-UPb-age-type,Type of U-Pb age:,
+UPb-age-type-1,1: 07/35 age,
+UPb-age-type-2,2: 06/38 age,
+UPb-age-type-3,3: 07/06 age,
+UPb-age-type-4,4: 7/6/8 age,
+UPb-age-type-5,5: concordia age,
+UPb-age-type-6,6: 08/32 age,
+discordance-filter-none,none,
+discordance-filter-before-common-Pb,before common Pb correction,
+discordance-filter-after-common-Pb,after common Pb correction,
+help-mindisc,Minimum discordance:,
+help-maxdisc,Maximum discordance:,
+help-mint-average,Minimum age limit,
+help-maxt-average,Maximum age limit:,
+help-alpha,Probability cutoff:,
+help-clabel,Colour label:,
+help-outlier-col,Outlier colour:,
+help-bg,Fill colour:,
+help-cex,Font magnification:,
+help-colmap,Colour map:,
+help-pch-cad,Plot character:,
+help-concordia-type,Concordia type:,
+conc-age-option-0,no,
+conc-age-option-1,concordia,
+conc-age-option-2,discordia (model-1),
+conc-age-option-3,discordia (model-2),
+conc-age-option-4,discordia (model-3),
+no-discordia-anchor,no,
+discordia-age-anchor,age,
+help-tanchor,Discordia anchor:,
+help-mint-concordia,Minimum t:,最小量 t:
+help-maxt-concordia,Maximum t:,最大量 t:
+help-minx-concordia,Minimum X:,最小量 X:
+help-maxx-concordia,Maximum X:,最大量 X:
+help-miny-concordia,Minimum Y:,最小量 Y:
+help-maxy-concordia,Maximum Y:,最大量 Y:
+help-mineral-option,Mineral:,
+FT-ICP-absolute,ICP (absolute),
+FT-ICP-zeta,ICP (&zeta;),
+help-ellipse-col,Ellipse colour:,
+help-concordia-ticks,Age ticks:,
+help-exterr-UPb,Propagate systematic uncertainties?,传播系统的不确定性?
+help-shownumbers,Show sample numbers?,
+help-headers-on,Sample names on first row?,
+help-hide-detritals,Samples to omit:,
+help-transform-evolution,Plot as <sup>234</sup>U/<sup>238</sup>U vs. age?,
+help-isochron-evolution,Calculate isochron age?,
+help-evolution-isochron-models,Regression model:,
+FT-EDM,EDM,
+help-FT-formats,Method:,
+help-max48,Maximum <sup>234</sup>U/<sup>238</sup>U:,最大量 <sup>234</sup>U/<sup>238</sup>U:
+help-min48,Minimum <sup>234</sup>U/<sup>238</sup>U:,最小量 <sup>234</sup>U/<sup>238</sup>U:
+help-max08,Maximum <sup>230</sup>Th/<sup>238</sup>U:,最大量 <sup>230</sup>Th/<sup>238</sup>U:
+help-min08,Minimum <sup>230</sup>Th/<sup>238</sup>U:,最小量 <sup>230</sup>Th/<sup>238</sup>U:
+help-maxt-evolution,Maximum age:,
+help-mint-evolution,Minimum age:,
+isochron-model-3,3. maximum likelihood (with overdispersion),
+isochron-model-2,2. ordinary least squares,
+isochron-model-1,1. maximum likelihood,
+apatite,apatite,
+zircon,zircon,
+help-U238U235,<sup>238</sup>U/<sup>235</sup>U ratio:,<sup>238</sup>U/<sup>235</sup>U 比率:
+help-LambdaU238,<sup>238</sup>U decay constant:,<sup>238</sup>U 衰变常数:
+help-LambdaFission,<sup>238</sup>U fission decay constant:,
+help-etchfact,efficiency factor:,
+help-tracklength,equivalent isotropic track length:,
+help-mindens,mineral density:,
+help-logratio,Logratio plot:,
+help-showcentralcomp,Show central composition?,
+helioplot-model-1,1. Weighted mean,
+helioplot-model-2,2. Unweighted mean,
+helioplot-model-3,3. Weighted mean with overdispersion,
+help-minx-helioplot,Minimum log[U/He] limit:,
+help-maxx-helioplot,Maximum log[U/He] limit:,
+help-miny-helioplot,Minimum log[Th/He] limit:,
+help-maxy-helioplot,Maximum log[Th/He] limit:,
+help-fact,Scaling factors:,
+help-ierr,Input errors:,
+1se-abs,1se (abs),
+2se-abs,2se (abs),
+1se-rel,1se (%),
+2se-rel,2se (%),
+help-conc-age-option,Calculate,
+help-anchor-option,Anchored discordia line?,
+help-ThU-isochron-types,Type:,
+help-UPb-isochron-types,Type:,
+Rosholt-A,1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A),
+Rosholt-B,3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B),
+Osmond-A,2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A),
+Osmond-B,4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B),
+UPb-isochron-type-1,1. <tt>(04 or 08c)/06</tt> vs. <tt>38/06</tt>,
+UPb-isochron-type-2,2. <tt>(04 or 08c)/07</tt> vs. <tt>35/07</tt>,
+help-isochron-models,Model:,
+help-SmNd-inverse,Inverse isochron,
+help-RbSr-inverse,Inverse isochron,
+help-KCa-inverse,Inverse isochron,
+help-ArAr-inverse,Inverse isochron,
+help-PbPb-inverse,Inverse isochron,
+help-ReOs-inverse,Inverse isochron,
+help-LuHf-inverse,Inverse isochron,
+help-PbPb-growth,Add Stacey-Kramers Pb-Pb growth curve?,
+help-isochron-minx,Minimum X:,最小量 X:
+help-isochron-maxx,Maximum X:,最大量 X:
+help-isochron-miny,Minimum Y:,最小量 Y:
+help-isochron-maxy,Maximum Y:,最大量 Y:
+help-log,Take logarithms?,
+help-pchdetritals,Plot character:,
+help-binwidth,Histogram binwidth:,
+help-bandwidth,Kernel bandwidth:,
+help-Ca40Ca44,<sup>40</sup>Ca/<sup>44</sup>Ca ratio:,<sup>40</sup>Ca/<sup>44</sup>Ca 比率:
+KCa-format-3,3. Three ratios,
+KCa-format-2,2. Inverse,2.相反
+KCa-format-1,1. Normal,1.正常
+help-KCa-formats,Input format:,输入格式:
+help-showhist,Show histogram?,
+help-adaptive,Adaptive KDE?,
+help-samebandwidth,Same bandwidth for all samples?,
+help-normalise,Normalise area under the KDEs?,
+help-Lu176Lu175,<sup>176</sup>Lu/<sup>175</sup>Lu ratio:,<sup>176</sup>Lu/<sup>175</sup>Lu 比率:
+help-Hf174Hf177,<sup>174</sup>Hf/<sup>177</sup>Hf ratio:,<sup>174</sup>Hf/<sup>177</sup>Hf 比率:
+help-Hf176Hf177,<sup>176</sup>Hf/<sup>177</sup>Hf ratio:,<sup>176</sup>Hf/<sup>177</sup>Hf 比率:
+help-Hf178Hf177,<sup>178</sup>Hf/<sup>177</sup>Hf ratio:,<sup>178</sup>Hf/<sup>177</sup>Hf 比率:
+help-Hf179Hf177,<sup>179</sup>Hf/<sup>177</sup>Hf ratio:,<sup>179</sup>Hf/<sup>177</sup>Hf 比率:
+help-Hf180Hf177,<sup>180</sup>Hf/<sup>177</sup>Hf ratio:,<sup>180</sup>Hf/<sup>177</sup>Hf 比率:
+help-LambdaLu176,<sup>176</sup>Lu decay constant:,<sup>176</sup>Lu 衰变常数:
+help-classical,Classical MDS,
+help-shepard,Shepard plot?,
+help-nnlines,Add nearest neighbour lines?,
+help-ticks,Show axes,
+help-pcex,Plot symbol magnification:,
+help-Os186Os192,<sup>186</sup>Os/<sup>192</sup>Os ratio:,<sup>186</sup>Os/<sup>192</sup>Os 比率:
+help-pos,Label position:,
+help-col,Outline colour:,
+help-regression-format,Input format:,输入格式:
+help-PbPb-formats,Input format:,输入格式:
+PbPb-format-1,1. Normal,1.正常
+PbPb-format-2,2. Inverse,2.相反
+PbPb-format-3,3. Three ratios,
+help-common-Pb-option,Common Pb correction:,
+common-Pb-correction-none,none,
+common-Pb-correction-nominal,nominal,
+common-Pb-correction-isochron,isochron,
+help-LambdaU235,<sup>235</sup>U decay constant:,<sup>235</sup>U 衰变常数:
+help-Pb206Pb204,Initial <sup>206</sup>Pb/<sup>204</sup>Pb:,
+help-Pb207Pb204,Initial <sup>207</sup>Pb/<sup>204</sup>Pb:,
+help-exterr-radial,Propagate systematic uncertainties?,传播系统的不确定性?
+help-transformation,Transformation:,
+radial-log,logarithmic,
+radial-lin,linear,
+radial-arcsin,arcsin,
+help-mixtures,Finite mixtures:,
+peakfit-none,0 (none),
+peakfit-auto,auto,
+peakfit-min,minimum,
+help-discordance-filter,Discordance filter:,
+help-verticals,Draw vertical lines at steps?,
+help-mint-radial,Minimum value:,
+help-t0,Central value:,
+help-maxt-radial,Maximum value:,
+help-radial-pch,Plot character:,
+help-RbSr-formats,Input format:,输入格式:
+PD-format-1,1. Normal,1.正常
+PD-format-2,2. Inverse,2.相反
+PD-format-3,3. Concentrations,
+help-Rb85Rb87,<sup>85</sup>Rb/<sup>87</sup>Rb ratio:,<sup>85</sup>Rb/<sup>87</sup>Rb 比率:
+help-Sr84Sr86,<sup>84</sup>Sr/<sup>86</sup>Sr ratio:,<sup>84</sup>Sr/<sup>86</sup>Sr 比率:
+help-Sr87Sr86,<sup>87</sup>Sr/<sup>86</sup>Sr ratio:,<sup>87</sup>Sr/<sup>86</sup>Sr 比率:
+help-Sr88Sr86,<sup>88</sup>Sr/<sup>86</sup>Sr ratio,<sup>88</sup>Sr/<sup>86</sup>Sr 比率:
+help-LambdaRb87,<sup>87</sup>Rb decay constant:,<sup>87</sup>Rb 衰变常数:
+help-Os184Os192,<sup>184</sup>Os/<sup>192</sup>Os ratio:,<sup>184</sup>Os/<sup>192</sup>Os 比率:
+help-Re185Re187,<sup>185</sup>Re/<sup>187</sup>Re ratio:,<sup>185</sup>Re/<sup>187</sup>Re 比率:
+help-LuHf-formats,Input format:,输入格式:
+help-ReOs-formats,Input format:,输入格式:
+help-Os187Os192,<sup>187</sup>Os/<sup>192</sup>Os ratio:,<sup>187</sup>Os/<sup>192</sup>Os 比率:
+help-Os188Os192,<sup>188</sup>Os/<sup>192</sup>Os ratio:,<sup>188</sup>Os/<sup>192</sup>Os 比率:
+help-Os189Os192,<sup>189</sup>Os/<sup>192</sup>Os ratio:,<sup>189</sup>Os/<sup>192</sup>Os 比率:
+help-Os190Os192,<sup>190</sup>Os/<sup>192</sup>Os ratio:,<sup>190</sup>Os/<sup>192</sup>Os 比率:
+help-LambdaRe187,<sup>187</sup>Re decay constant:,<sup>187</sup>Re 衰变常数:
+help-SmNd-formats,Input format:,输入格式:
+help-Sm144Sm152,<sup>144</sup>Sm/<sup>152</sup>Sm ratio:,<sup>144</sup>Sm/<sup>152</sup>Sm 比率:
+help-Sm147Sm152,<sup>147</sup>Sm/<sup>152</sup>Sm ratio:,<sup>147</sup>Sm/<sup>152</sup>Sm 比率:
+help-Sm148Sm152,<sup>148</sup>Sm/<sup>152</sup>Sm ratio:,<sup>148</sup>Sm/<sup>152</sup>Sm 比率:
+help-Sm149Sm152,<sup>149</sup>Sm/<sup>152</sup>Sm ratio:,<sup>149</sup>Sm/<sup>152</sup>Sm 比率:
+help-Sm150Sm152,<sup>150</sup>Sm/<sup>152</sup>Sm ratio:,<sup>150</sup>Sm/<sup>152</sup>Sm 比率:
+help-Sm154Sm152,<sup>154</sup>Sm/<sup>152</sup>Sm ratio:,<sup>154</sup>Sm/<sup>152</sup>Sm 比率:
+help-Nd142Nd144,<sup>142</sup>Nd/<sup>144</sup>Nd ratio:,<sup>142</sup>Nd/<sup>144</sup>Nd 比率:
+help-Nd143Nd144,<sup>143</sup>Nd/<sup>144</sup>Nd ratio:,<sup>143</sup>Nd/<sup>144</sup>Nd 比率:
+help-Nd145Nd144,<sup>145</sup>Nd/<sup>144</sup>Nd ratio:,<sup>145</sup>Nd/<sup>144</sup>Nd 比率:
+help-Nd146Nd144,<sup>146</sup>Nd/<sup>144</sup>Nd ratio:,<sup>146</sup>Nd/<sup>144</sup>Nd 比率:
+help-Nd148Nd144,<sup>148</sup>Nd/<sup>144</sup>Nd ratio:,<sup>148</sup>Nd/<sup>144</sup>Nd 比率:
+help-Nd150Nd144,<sup>150</sup>Nd/<sup>144</sup>Nd ratio:,<sup>150</sup>Nd/<sup>144</sup>Nd 比率:
+help-LambdaSm147,<sup>147</sup>Sm decay constant:,<sup>147</sup>Sm 衰变常数:
+help-plateau,Extract plateau?,
+help-detritus,detrital <sup>230</sup>Th correction:,
+help-LambdaU234,<sup>234</sup>U decay constant:,<sup>234</sup>U 衰变常数:
+help-LambdaTh230,<sup>230</sup>Th decay constant:,<sup>230</sup>Th 衰变常数:
+help-ThU-formats,Input format:,输入格式:
+detrital-correction-none,none,
+detrital-correction-isochron,isochron,
+detrital-correction-assumed,assumed,
+detrital-correction-measured,measured,
+help-UPb-formats,Input format:,输入格式:
+diseq-none,none,
+help-U48-UPb,<sup>234</sup>U disequilibrium:,
+help-diseq,Apply disequilibrium correction?,
+diseq-initial,initial,
+diseq-measured,measured,
+help-ThU-UPb,<sup>230</sup>Th disequilibrium:,
+diseq-magma,magma,
+help-PaU-UPb,<sup>231</sup>Pa disequilibrium:,
+help-LambdaTh232,<sup>232</sup>Th decay constant:,<sup>232</sup>Th 衰变常数:
+help-LambdaRa226,<sup>226</sup>Ra decay constant:,<sup>226</sup>Ra 衰变常数:
+help-LambdaPa231,<sup>231</sup>Pa decay constant:,<sup>231</sup>Pa 衰变常数:
+help-Pb207Pb206,Initial <sup>207</sup>Pb/<sup>206</sup>Pb ratio:,
+help-Pb208Pb206,Initial <sup>208</sup>Pb/<sup>206</sup>Pb ratio:,
+help-Pb208Pb207,Initial <sup>208</sup>Pb/<sup>207</sup>Pb ratio:,
+help-RaU-UPb,<sup>226</sup>Ra disequilibrium:,
+help-ReOs-i2i,Use isochron intercept as initial <sup>187</sup>Os/<sup>187</sup>Os-ratio,
+help-maxx,Maximum value:,
+help-minx,Minimum value:,
+help-pch,Plot character:,
+ages-75,The <sup>207</sup>Pb/<sup>235</sup>U-ages.,
+UPb-75,Measured <sup>207</sup>Pb/<sup>235</sup>U-ratios.,
+UPb-err75,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>207</sup>Pb/<sup>235</sup>U-ratios.",
+UPb-68,Measured <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb-err68,"Analytical uncertainty
+      (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>)
+      of the <sup>206</sup>Pb/<sup>238</sup>U-ratios.",
+UPb-86,Measured <sup>238</sup>U/<sup>206</sup>Pb-ratios.,
+UPb-err86,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>238</sup>U/<sup>206</sup>Pb-ratios.",
+UPb-76,Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb-err76,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.",
+UPb-rho7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb-rho8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb-48,Measured <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
+UPb-err48,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>204</sup>Pb/<sup>238</sup>U-ratios.",
+UPb-47,Measured <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.,
+UPb-err47,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.",
+UPb-46,Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb-err46,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.",
+UPb-rhoXZ-8646,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb-rhoYZ-8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb-rhoYZ-6848,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
+UPb-rhoXZ-7548,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
+UPb-rhoXY-7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb-rhoYZ-7646,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb-82,Measured <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
+UPb-err82,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>208</sup>Pb/<sup>232</sup>Th-ratios.",
+UPb-0806,Measured <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb-err0806,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.",
+UPb-3238,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb-err3238,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>232</sup>Th/<sup>238</sup>U-ratios.",
+UPb-rhoWX-7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb-rhoWY-7582,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
+UPb-rhoWZ-753238,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb-rhoXY-680832,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
+UPb-rhoXZ-683238,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb-rhowYZ-08323238,Error correlation between the <sup>208</sup>Pb/<sup>232</sup>Th- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb-rhoWX-8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb-rhoWY-38060806,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb-rhoWZ-38063238,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
+UPb-rhoXY-7686,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb-rhoXZ-763238,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
+UPb-rhoYZ-08063238,Error correlation between the <sup>208</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
+UPb-C,Optional variable to be used as fill colours in concordia and radial plots.,
+UPb-omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
+UPb-redundancy,"If <tt>rhoXY</tt>, <tt>rhoXZ</tt> or <tt>rhoYZ</tt> are omitted, then their value will be inferred from the redundancy between the three sets of standard errors (<tt>s[X]</tt>, <tt>s[Y]</tt> and <tt>s[Z]</tt>). This inference assumes that these errors are based on the same number of data points. If some data has been rejected from one ratio but not another, because of isobaric interferences, instrument issues, outlier rejection, or any other reason, then this method will not work.",
+UPb-rhoXY-8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
+home,Home,主页
+options,Options,选项
+help,Help,帮助
+defaults,Defaults,重置设置
+clear,Clear,清空数据
+open,Open,打开
+save,Save,保存文件
+plot,PLOT,生成投图
+run,RUN,运行
+IsoplotR-version,This is IsoplotR/IsoplotRgui GitHub version,这是 IsoplotR/IsoplotRgui GitHub 版本
+GitHub-version,the latest stable version is,最新的稳定版本是
+reference,Citable reference:,"如果使用本软件,请引用软件开发者 Pieter Vermeesch 所发表的这篇相关文章:"
+ages-err-75,The estimated uncertainty (standard error) of the <sup>207</sup>Pb/<sup>235</sup>U-ages.,
+ages-68,The <sup>206</sup>Pb/<sup>238</sup>U-ages.,
+ages-err-68,The estimated uncertainty (standard error) of the <sup>206</sup>Pb/<sup>238</sup>U-ages.,
+ages-76,The <sup>207</sup>Pb/<sup>206</sup>Pb-ages.,
+ages-err-76,The estimated uncertainty (standard error) of the <sup>207</sup>Pb/<sup>206</sup>Pb-ages.,
+ages-82,The <sup>208</sup>Pb/<sup>232</sup>Th-ages.,
+ages-err-82,The estimated uncertainty (standard error) of the <sup>208</sup>Pb/<sup>232</sup>Th-ages.,
+ages-tconc,The single-grain concordia age. This is the maximum likelihood intersection between the (Wetherill) concordia line and the (<sup>207</sup>Pb/<sup>235</sup>U-<sup>206</sup>Pb/<sup>238</sup>U) error ellipse.,
+ages-err-tconc,The estimated uncertainty (standard error) of the single-grain.,
+ages-pconc,"The p-value for concordance. Note: it would be unwise to use the p-value value as a concordance filter. Doing so would 'punish' high precision measurements, which are more likely to fail the Chi-square test than low precision measurements. The latter would therefore be 'rewarded' by such a criterion.",
+the,The,
+ages,ages,
+ages-se,The estimated uncertainty (standard error) of the,
+ages-se-48_0,Estimated uncertainty (standard error) of the initial <sup>234</sup>U/<sup>230</sup>Th-ratio.,
+ages-corr-t-48_0,Correlation coefficient between the <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U age and the initial <sup>234</sup>U/<sup>230</sup>Th-ratio uncertainties.,
+ArAr-J,Irradiation constant and its analytical uncertainty,
+ArAr-3940,Measured <sup>39</sup>Ar/<sup>40</sup>Ar-ratios.,
+ArAr-err-3940,Analytical uncertainty of the <sup>39</sup>Ar/<sup>40</sup>Ar-ratios ,
+ArAr-3640,Measured <sup>36</sup>Ar/<sup>40</sup>Ar-ratios.,
+12sigma,"(<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>)","(<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>)"
+ArAr-err-3640,Analytical uncertainty of the <sup>36</sup>Ar/<sup>40</sup>Ar-ratios ,
+ArAr-3936,Measured <sup>39</sup>Ar/<sup>36</sup>Ar-ratios.,
+ArAr-err-3936,Analytical uncertainty of the <sup>39</sup>Ar/<sup>36</sup>Ar-ratios ,
+ArAr-4036,Measured <sup>40</sup>Ar/<sup>36</sup>Ar-ratios.,
+ArAr-err-4036,Analytical uncertainty of the <sup>40</sup>Ar/<sup>36</sup>Ar-ratios ,
+ArAr-rho-0696,Error correlation between the <sup>40</sup>Ar/<sup>36</sup>Ar- and <sup>39</sup>Ar/<sup>36</sup>Ar-ratios.,
+ArAr-rho-6090,Error correlation between the <sup>36</sup>Ar/<sup>40</sup>Ar- and <sup>39</sup>Ar/<sup>40</sup>Ar-ratios (optional).,
+ArAr-39,"Amount of <sup>39</sup>Ar in each heating step, which will be normalised to form the X-axis of the age spectrum (optional).",
+ArAr-C,Optional variable to be used as fill colours in isochron and radial plots.,
+ArAr-omit,"Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.
+    ",
+ArAr-redundancy,<tt>IsoplotR</tt> uses the redundancy of the three ratios to calculate the correlation between their respective analytical uncertainties.,
+average-intro,"Let t = {t<sub>1</sub>, ..., t<sub>n</sub>} be a set of n age estimates determined on different aliquots of the same sample, and let s[t<sub>1</sub>], ..., s[t<sub>n</sub>]} be their analytical uncertainties (standard errors). <tt>IsoplotR</tt> implements two ways to compute the average of these data:
+
+<ol>
+<li>
+  A random effects model with two sources of variance:
+<p></p>
+t<sub>i</sub> ~ <i>N</i>( &mu;, &sigma;<sup>2</sup> = s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup> ) <span class=""alignright"">(eq. 1a)</span>
+<p></p>
+where &mu; is the mean, &sigma;<sup>2</sup> is the total variance and &omega; is the 'overdispersion'. Equation 1a can be solved for &mu; and &omega; by the method of maximum likelihood.
+</li><li>
+A weighted mean algorithm that assumes that any dispersion between the different aliquots is only due to the analytical uncertainty:
+<p></p>
+<span style=""text-decoration: overline"">t</span> = &Sigma;(t<sub>i</sub>/s[t<sub>i</sub>]<sup>2</sup>)/&Sigma;(1/s[t<sub>i</sub>]<sup>2</sup>)<span class=""alignright"">(eq. 1b)</span>
+<p></p>
+</li>
+</ol>
+
+<tt>IsoplotR</tt> uses a modified version of Chauvenet's criterion for outlier detection:
+
+<ol>
+<li> Compute the error-weighted mean of the n age determinations t<sub>i</sub> using their analytical uncertainties s[t<sub>i</sub>] using one of the aforementioned two approaches.
+</li><li>
+For each t<sub>i</sub>, compute the probability p<sub>i</sub> that that |t-&mu;|>|t<sub>i</sub>-&mu;| for
+<p> t ~ <i>N</i>(0,&Xi;<sup>2</sup>) <span class=""alignright"">(eq. 2)</span></p>
+where &Xi; = &radic;<span style=""text-decoration: overline;"">s[t<sub>i</sub>]<sup>2</sup>+&omega;<sup>2</sup></span> if the random effects model is used; or &Xi; = s[<span style=""text-decoration: overline"">t</span>]&radic; <span style=""text-decoration: overline;"">MSWD</span> if the ordinary weighted mean is used.
+</li>
+<li>
+Let p<sub>j</sub> &equiv; min(p<sub>1</sub>,&hellip;,p<sub>n</sub>). If p<sub>j</sub><0.05/n, then reject the j<sup>th</sup> date, reduce n by one (i.e., n &rarr; (n-1) and repeat steps 1 through 3 until the surviving dates pass the third step. </li>
+</ol>
+
+If the analytical uncertainties are small compared to the scatter between the dates, then this generalised algorithm reduces to the conventional Chauvenet criterion. If the analytical uncertainties are large and the data do not exhibit any overdispersion, then the heuristic outlier detection method is equivalent to Ludwig (2003)'s 'modified 2-sigma' method.",
+legend,Legend:,
+where,where:,
+average-mu,the weighted mean age.,
+average-mu-x,the standard error (&sigma;) of &mu;.,
+average-mu-y,"the width of the 100(1-&alpha;)% confidence interval for &mu;. This is also shown as a grey band on the plot. The uncertainties associated with the random uncertainties are shown in dark grey, whereas the systematic uncertainties (i.e. J-factor and decay constant) are shown in light grey.",
+average-mu-z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&Sqrt;MSWD (not reported for random effects models).",
+average-mswd-x,the Mean Square of the Weighted Deviates (MSWD) for age homogeneity.  MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
+average-mswd-y,the Chi-squared p-value for the age homogeneity test. p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
+average-dispersion,(only reported for random effects models),
+average-omega,"the standard deviation of the true ages after removal of the analytical uncertainties. The dispersion is significantly greater than zero if the MSWD is significantly greater than one. The 100(1-&alpha;)% Normal confidence region for the dispersion (e.g., 1.96 &times; &omega; if &alpha; = 0.05) is shown as a set of dashed lines.",
+average-omega-u,width of the upper half of a (1-&alpha;)% confidence interval for &omega;.,
+average-omega-l,width of the lower half of the (1-&alpha;)% confidence interval for &omega;.,
+references,References:,
+input,Input:,
+output,Output:,

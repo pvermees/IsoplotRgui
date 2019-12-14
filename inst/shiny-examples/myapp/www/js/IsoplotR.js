@@ -24,8 +24,8 @@ $(function(){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
 		    IsoplotR = populate(IsoplotR,true);
-		    $.getJSON('./js/dictionary.json', function(data){
-			dictionary = data;
+		    $.getJSON('./js/dictionary_id.json', function(data){
+			dictionary_id = data;
 			welcome();
 		    });
 		    $("#INPUT").handsontable({ // add change handler asynchronously
@@ -37,7 +37,10 @@ $(function(){
 		});
 	    });
 	});
-	$.getJSON('./js/contextual-help.json', function(data){
+	$.getJSON('./js/dictionary_class.json', function(data){
+	    dictionary_class = data;
+	});
+	$.getJSON('./js/contextual_help.json', function(data){
 	    contextual_help = data;
 	});
     };
@@ -353,6 +356,7 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
 	var pd = IsoplotR.settings[plotdevice];
+	translate();
 	switch (IsoplotR.settings.ierr){
 	case 1:
 	    $('.show4ierr1').show();
@@ -800,7 +804,6 @@ $(function(){
 	    }
 	    break;
 	}
-	translate();
     }
 
     function showSettings(option){
@@ -1984,7 +1987,11 @@ $(function(){
 
     function translate(){
 	$(".translate").each(function(i){
-	    var text = dictionary[this.id][IsoplotR.settings.language];
+	    var text = dictionary_id[this.id][IsoplotR.settings.language];
+	    this.innerHTML = text;
+	});
+	$("translate").each(function(i){
+	    var text = dictionary_class[this.className][IsoplotR.settings.language];
 	    this.innerHTML = text;
 	});
     }
@@ -2181,7 +2188,7 @@ $(function(){
 	    });
 	});
     });
-    
+
     $("#DEFAULTS").click(function(){
 	$("#myplot").empty();
 	var cfile = './js/constants.json';
@@ -2229,7 +2236,8 @@ $(function(){
 
     var IsoplotR;
     var contextual_help;
-    var dictionary;
+    var dictionary_id;
+    var dictionary_class;
     initialise();
 
 });
