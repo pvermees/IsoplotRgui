@@ -1,34 +1,7 @@
-Radial plots are bivariate (x<sub>i</sub>,y<sub>i</sub>) scatterplots where:
+<div class="translate" id="radial-intro"></div>
 
 <p></p>
-
-x<sub>i</sub>
-= 1∕&sigma;(z<sub>i</sub>) and y<sub>i</sub>
-= (z<sub>i</sub> - z<sub>o</sub>)∕&sigma;(z<sub>i</sub>)
-(for 1 &le; i &le; n)
-
-<p></p>
-
-with z<sub>i</sub> a transformation of some data and
-&sigma;(z<sub>i</sub>) the corresponding measurement uncertainty. For
-example, if z<sub>i</sub> = log(t<sub>i</sub>) then
-&sigma;(z<sub>i</sub>) =
-&sigma;(t<sub>i</sub>)∕t<sub>i</sub>. z<sub>o</sub> is a convenient
-central value such as the weighted mean. The slope of a line
-connecting the origin (x=0,y=0) of a radial plot with a data point
-(x<sub>i</sub>,y<sub>i</sub>) equals z<sub>i</sub>, and the horizontal
-distance along x-axis is a measure if its precision. Thus, the radial
-plot simultaneously visualises a measurement’s value and precision. No
-other graphical method achieves this goal with the same elegance
-(Galbraith, 1988). This makes the radial plot the method of choice for
-visualising heteroscedastic data, i.e. data with variable measurement
-uncertainties. Traditional applications in the Earth Sciences are
-fission track and luminescence dating (e.g., Galbraith, 1990;
-Galbraith et al., 1999). <tt>IsoplotR</tt> generalises it to all other
-geochronometers as well.
-
-<p></p>
-<u>Legend:</u>
+<translate class="legend"></translate>
 <p></p>
 
 <ol>
@@ -40,25 +13,15 @@ geochronometers as well.
     <table>
       <tr>
 	<td>t:</td>
-	<td>the central age, which is defined as e<sup>&mu;</sup> where
-	  &mu; is the mean of the following log-normal distribution:
-	  <br>
-	  t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup>)
-	  <span class="alignright">(eq. 1)</span>
-	  <br>
-	  with s[t<sub>i</sub>] the standard error of the i<sup>th</sup>
-	  (out of n) measurements, and &omega; the <i>overdispersion</i>.
-	</td>
+	<td class="translate" id="radial_t"></td>
       </tr>
       <tr>
 	<td>x:</td>
-	<td>the estimated standard deviation of t, estimated by the
-	  method of maximum likelihood.</td>
+	<td class="translate" id="radial_x"></td>
       </tr>
       <tr>
 	<td>y:</td>
-	<td>the 100(1-&alpha;)% confidence interval for t.
-	</td>
+	<td class="translate" id="radial_y"></td>
       </tr>
     </table>
   </li>
@@ -71,17 +34,11 @@ geochronometers as well.
     <table>
       <tr>
 	<td>m:</td>
-	<td>the Mean Square of the Weighted Deviates a.k.a.  the
-	  reduced Chi-squared statistic. MSWD values greater than
-	  unity suggest that the dataset under consideration is
-	  overdispersed with respect to the analyical
-	  uncertainties.</td>
+	<td class="translate" id="radial_m"></td>
       </tr>
       <tr>
 	<td>p:</td>
-	<td>the p-value of a Chi-square probability for homogeneity.
-	  High values of p (>0.05, say) indicate that there is not
-	  enough evidence for overdispersion.</td>
+	<td class="translate" id="radial_p"></td>
       </tr>
     </table>
   </li>
@@ -94,17 +51,15 @@ geochronometers as well.
     <table>
       <tr>
 	<td>&omega;:</td>
-	<td>the dispersion defined by eq. 1.</td>
+	<td class="translate" id="radial-omega"></td>
       </tr>
       <tr>
 	<td>u:</td>
-	<td>width of the upper half of a (1-&alpha;)% confidence
-	  interval for &omega;.</td>
+	<td class="translate" id="radial-omega_u"></td>
       </tr>
       <tr>
 	<td>l:</td>
-	<td>width of the lower half of the (1-&alpha;)% confidence
-	  interval for &omega;.</td>
+	<td class="translate" id="radial-omega_l"></td>
       </tr>
     </table>
   </li>
@@ -113,7 +68,7 @@ geochronometers as well.
 </ol>
 
 <p></p>
-<u>References:</u>
+<translate class="references"></translate>
 <p></p>
 
 Galbraith, R.F., 1988.

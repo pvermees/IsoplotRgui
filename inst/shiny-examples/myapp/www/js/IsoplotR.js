@@ -1677,7 +1677,7 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
-	translate();
+	showOrHide();
     }
     
     function selectGeochronometer(){

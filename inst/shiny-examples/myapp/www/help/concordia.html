@@ -1,53 +1,34 @@
-The concordia diagram is a graphical means of assessing the internal
-consistency of U-Pb data. It sets out the measured
-<sup>206</sup>Pb/<sup>238</sup>U- and <sup>207</sup>Pb/<sup>235</sup>-ratios
-against each other ('Wetherill' diagram) or, equivalently, the
-<sup>207</sup>Pb/<sup>206</sup>Pb-
-and <sup>207</sup>Pb/<sup>235</sup>U-ratios ('Tera-Wasserburg'
-diagram). The space of concordant isotopic compositions is marked by
-a curve, the 'concordia line'. Isotopic ratio measurements are shown
-as 100(1-&alpha;)% confidence ellipses, where &alpha; is set in the
-<tt>Options</tt> menu.  Concordant samples plot near to, or overlap
-with, the concordia line.  They represent the pinnacle of
-geochronological robustness. Samples that plot away from the concordia
-line but are aligned along a linear trend form an isochron (or
-'discordia' line) that can be used to infer the composition of the
-non-radiogenic ('common') lead or to constrain the timing of prior
-lead loss.
+<div class="translate" id="concordia-intro"></div>
 
 <div hidden class="show4concordia hide4discordia hide4noUPbAge">
   <p></p>
-  <u>Legend:</u>
+  <translate class="legend"></translate>
   <p></p>
 
   <ol>
     <li>
       concordia age = t &plusmn; x | y | z
       <p></p>
-      where:
+      <translate class="where"></translate>
       <p></p>
       <table>
 	<tr>
 	  <td>t:</td>
-	  <td>the Maximum Likelihood estimate of the age using the
-	    algorithm of Ludwig (1998).</td>
+	  <td class="translate" id="conc-t"></td>
 	</tr>
 	<tr>
 	  <td>x:</td>
-	  <td>the analytical uncertainty (&sigma;) of t.</td>
+	  <td class="translate" id="conc-t-x"></td>
 	</tr>
 	<tr>
 	  <td>y:</td>
-	  <td>the studentised 100(1-&alpha;)% confidence interval for
-	    t using the appropriate number of degrees of freedom.
-	  </td>
+	  <td class="translate" id="conc-t-y"></td>
 	</tr>
 	<tr>
 	  <td>
 	    z:
 	  </td>
-	  <td>the approximate 100(1-&alpha;)% confidence interval for t
-	    with overdispersion, calculated as z = y&radic;MSWD.</td>
+	  <td class="translate" id="conc-t-z"></td>
 	</tr>
       </table>
     </li>
@@ -55,39 +36,38 @@ lead loss.
     <li>
       MSWD = u | v | w, p(&chi;<sup>2</sup>) = x | y | z 
       <p></p>
-      where:
+      <translate class="where"></translate>
       <p></p>
       <table>
 	<tr>
 	  <td>u:</td>
-	  <td>the Mean Square of the Weighted Deviates (MSWD)
-	    for concordance.</td>
+	  <td class="translate" id="conc-mswd-u"></td>
 	</tr>
 	<tr>
 	  <td>v:</td>
-	  <td>the MSWD for equivalence.</td>
+	  <td class="translate" id="conc-mswd-v"></td>
 	</tr>
 	<tr>
 	  <td>w:</td>
-	  <td>the MSWD for concordance + equivalence.</td>
+	  <td class="translate" id="conc-mswd-w"></td>
 	</tr>
 	<tr>
 	  <td>
 	    x:
 	  </td>
-	  <td>the Chi-squared p-value for concordance.</td>
+	  <td class="translate" id="conc-mswd-x"></td>
 	</tr>
 	<tr>
 	  <td>
 	    y:
 	  </td>
-	  <td>the Chi-squared p-value for equivalence.</td>
+	  <td class="translate" id="conc-mswd-y"></td>
 	</tr>
 	<tr>
 	  <td>
 	    z:
 	  </td>
-	  <td>the Chi-squared p-value for concordance + equivalence.</td>
+	  <td class="translate" id="conc-mswd-z"></td>
 	</tr>
       </table>
     </li>
@@ -148,42 +128,26 @@ lead loss.
 	</span>
       </span>
       <p></p>
-      where:
+      <translate class="where"></translate>
       <p></p>
       <table>
 	<tr>
 	  <td>t:</td>
-	  <td>the
-	    <span hidden class="show4model1 hide4model2 show4model3">
-	      Maximum Likelihood
-	    </span>
-	    <span hidden class="hide4model1 show4model2 hide4model3">
-	      least squares
-	    </span>
-	    estimate of the age or initial Pb-ratio
-	    <span hidden class="show4model1 hide4model2 show4model3">
-	      using the algorithm of Ludwig (1998)</span>.
-	  </td>
+	  <td class="translate" id="disc-t"></td>
 	</tr>
 	<tr>
 	  <td>x:</td>
-	  <td>the analytical uncertainty (&sigma;) of t.</td>
+	  <td class="translate" id="disc-x"></td>
 	</tr>
 	<tr>
 	  <td>y:</td>
-	  <td>the <span hidden class="show4model1 show4model2
-	    hide4model3">studentised</span> 100(1-&alpha;)% confidence
-	    interval for t<span hidden class="show4model1 show4model2
-	    hide4model3"> using the appropriate number of degrees of
-	    freedom</span>.</td>
+	  <td class="translate" id="disc-y"></td>
 	</tr>
 	<tr class="show4model1 hide4model2 hide4model3">
 	  <td>
 	    z:
 	  </td>
-	  <td>the approximate 100(1-&alpha;)% confidence interval for
-	    t with overdispersion, calculated as z =
-	    y&radic;MSWD. (only reported if MSWD > 1)</td>
+	  <td class="translate" id="disc-z"></td>
 	</tr>
       </table>
     </li>
@@ -191,17 +155,16 @@ lead loss.
     <li class="show4model1 hide4model2 hide4model3">
       MSWD = u, p(&chi;<sup>2</sup>) = v
       <p></p>
-      where:
+      <translate class="where"></translate>
       <p></p>
       <table>
 	<tr>
 	  <td>u:</td>
-	  <td>the Mean Square of the Weighted Deviates (MSWD) for the
-	  isochron fit.</td>
+	  <td class="translate" id="disc-u"></td>
 	</tr>
 	<tr>
 	  <td>v:</td>
-	  <td>the Chi-squared p-value for the isochron fit.</td>
+	  <td class="translate" id="disc-v"></td>
 	</tr>
       </table>
     </li>
@@ -209,23 +172,20 @@ lead loss.
     <li class="hide4model1 hide4model2 show4model3">
       overdispersion = &omega; + u /- l Ma</p>
       <p></p>
-      where:
+      <translate class="where"></translate>
       <p></p>
       <table>
 	<tr>
 	  <td>&omega;:</td>
-	  <td>the estimated standard deviation of the assumedly
-	    Gaussian geological scatter of the true intercept ages.</td>
+	  <td class="translate" id="disc-omega"></td>
 	</tr>
 	<tr>
 	  <td>u:</td>
-	  <td>width of the upper half of a (1-&alpha;)% confidence
-	  interval for &omega;.</td>
+	  <td class="translate" id="disc-omega-u"></td>
 	</tr>
 	<tr>
 	  <td>l:</td>
-	  <td>width of the lower half of the (1-&alpha;)% confidence
-	  interval for &omega;.</td>
+	  <td class="translate" id="disc-omega-l"></td>
 	</tr>
       </table>
     </li>
@@ -234,7 +194,7 @@ lead loss.
 </div>
 
 <p></p>
-<u>References:</u>
+<translate class="references"></translate>
 <p></p>
 
 Ludwig, K.R., 1998. On the treatment of concordant uranium-lead ages.

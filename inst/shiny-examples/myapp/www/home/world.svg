@@ -42,7 +42,7 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="1.0085051"
-     inkscape:cx="704.41092"
+     inkscape:cx="497.66928"
      inkscape:cy="477.93649"
      inkscape:window-x="0"
      inkscape:window-y="24"
@@ -1487,10 +1487,11 @@
 
 
 
+
 </a>
 <a
    id="a4890"
-   xlink:href="http://shiny.bgs.ac.uk/shiny/IsoplotR"
+   xlink:href="https://shiny.bgs.ac.uk/IsoplotR/"
    xlink:title="BGS"><rect
      y="121.28786"
      x="545.12048"
@@ -1499,8 +1500,9 @@
      id="rect11871-5"
      style="fill:#fffb00;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /></a><a
    id="a5693"
-   xlink:href="http://shiny.bgs.ac.uk/shiny/IsoplotR"
-   xlink:title="BGS"><text
+   xlink:href="https://shiny.bgs.ac.uk/IsoplotR/"
+   xlink:title="BGS"
+   transform="translate(0,-2.0000001)"><text
    id="text11927-3"
    y="146.60785"
    x="550.21259"
@@ -1511,6 +1513,7 @@
      x="550.21259"
      id="tspan11925-5"
      sodipodi:role="line">Keyworth</tspan></text>
+
 
 
 
@@ -1539,6 +1542,7 @@
      x="570.47192"
      id="tspan11925-5-9"
      sodipodi:role="line">London</tspan></text>
+
 
 
 
@@ -1587,6 +1591,7 @@
      sodipodi:role="line">Changchun</tspan></text>
 
 
+
 </a><path
    style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
    d="m 1049.5642,145.96442 31.7759,13.40366"
@@ -1594,7 +1599,7 @@
    inkscape:connector-curvature="0"
    sodipodi:nodetypes="cc" /><a
    xlink:title="Chinese Academy of Sciences"
-   xlink:href="http://isoplotr.ngrok.ibanzhuan.cn/IsoplotR/"
+   xlink:href="http://isoplotr.com/IsoplotR/"
    id="a1190"
    transform="translate(388.9123,81.342628)"><rect
      style="fill:#fffb00;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -1604,7 +1609,7 @@
      x="562.96869"
      y="109.28786" /></a><a
    xlink:title="Chinese Academy of Sciences"
-   xlink:href="http://isoplotr.ngrok.ibanzhuan.cn/IsoplotR/"
+   xlink:href="http://isoplotr.com/IsoplotR/"
    id="a1196"
    transform="translate(389.86042,78.852439)"><text
    xml:space="preserve"
@@ -1617,6 +1622,7 @@
      x="580.21259"
      y="134.60785"
      style="text-align:start;text-anchor:start">Beijing</tspan></text>
+
 
 
 </a><path

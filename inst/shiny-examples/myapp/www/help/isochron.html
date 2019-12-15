@@ -1,46 +1,7 @@
-Isochrons are an important instrument of high precision, high accuracy
-geochronology.  Given several aliquots from a single sample, they
-allow the non-radiogenic component of the daughter nuclide to be
-quantified and separated from the radiogenic component. In its
-simplest form, the isochron is obtrained by setting out the radiogenic
-daughter isotope against the radioactive parent isotope, both
-normalised to a non-radiogenic isotope of the daughter element, and
-fitting a straight line through these points by least squares
-regression Nicolaysen (1961). The slope and intercept then yield the
-radiogenic daughter-parent ratio and the non-radiogenic daughter
-composition, respectively. <tt>IsoplotR</tt> offers three ways to fit
-an isochron:
-
-<ol>
-  <li>Model-1: maximum Likelihood regression, using the
-    <span class="hide4ThU1 hide4ThU2">
-      modified error weighted least squares algorithm of York et
-      al. (2004)
-    </span>
-    <span hidden class="show4ThU1 show4ThU2">
-    Maximum Likelihood formulation of Ludwig and Titterington (1994)
-    </span>.
-    This algorithm takes into account the analytical uncertainties and
-    error correlations, under the assumption that the scatter between
-    the data points is solely caused by the analytical uncertainty. If
-    the assumption is correct, then the MSWD value should be
-    approximately equal to one. If MSWD > 1, then model-1 regression
-    assumes that the analytical uncertainties have been underestimated
-    by a factor &radic;MSWD.
-  </li>
-  <li>Model-2: ordinary least squares regression, ignoring the
-  analytical uncertainties.
-  </li>
-  <li>Model-3: maximum likelihood regression with
-  overdispersion. Instead of attributing any overdispersion (MSWD > 1)
-  to underestimated analytical uncertainties, one can also attribute
-  it to the presence of geological uncertainty, which manifests itself
-  as an added (co)variance term.
-  </li>
-</ol>
+<div class="translate" id="isochron-intro"></div>
 
 <p></p>
-<u>Legend:</u>
+<translate class="legend"></translate>
 <p></p>
 
 <ol>
@@ -55,37 +16,30 @@ an isochron:
     <table>
       <tr>
 	<td>t:</td>
-	<td>the isochron age.
-	</td>
+	<td class="translate" id="isochron-t"></td>
       </tr>
       <tr>
 	<td>x:</td>
-	<td>the estimated uncertainty (&sigma;) of t.</td>
+	<td class="translate" id="isochron-t-x"></td>
       </tr>
       <tr>
 	<td>y:</td>
-	<td>
-	  the <span hidden class="show4model1 show4model2
-	  hide4model3">studentised </span>100(1-&alpha;)% confidence
-	  interval for t<span hidden class="show4model1 show4model2
-	  hide4model3"> using the appropriate number of degrees of
-	  freedom</span>.</td>
+	<td class="translate" id="isochron-t-y"></td>
       </tr>
       <tr class="show4model1 hide4model2 hide4model3">
 	<td>
 	  z:
 	</td>
-	<td>
-	  the approximate 100(1-&alpha;)% confidence interval for t
-	  with overdispersion, calculated as z = y&radic;MSWD.
-	</td>
+	<td class="translate" id="isochron-t-z"></td>
       </tr>
     </table>
   </li>
   
   <li>
-    <span hidden class="show4PbPb">(<sup>207</sup>Pb/<sup>204</sup>Pb)<sub>0</sub></span>
-    <span hidden class="show4ArAr">(<sup>40</sup>Ar/<sup>36</sup>Ar)<sub>0</sub></span>
+    <span hidden class="show4PbPb">
+      (<sup>207</sup>Pb/<sup>204</sup>Pb)<sub>0</sub></span>
+    <span hidden class="show4ArAr">
+      (<sup>40</sup>Ar/<sup>36</sup>Ar)<sub>0</sub></span>
     <span hidden class="show4ThU1 show4ThU2">
       (<sup>234</sup>U/<sup>238</sup>U)<sub>0</sub>
     </span>
@@ -103,52 +57,25 @@ an isochron:
     <table>
       <tr>
 	<td>u:</td>
-	<td>
-	  the initial
-	  <span hidden class="show4PbPb">
-	    (<sup>207</sup>Pb/<sup>204</sup>Pb)
-	  </span>
-	  <span hidden class="show4ArAr">
-	    (<sup>40</sup>Ar/<sup>36</sup>Ar)
-	  </span>
-	  <span hidden class="show4ThU1 show4ThU2">
-	    (<sup>234</sup>U/<sup>238</sup>U)
-	  </span>
-	  <span hidden class="show4ThU3 show4ThU4">
-	    excess (<sup>230</sup>Th/<sup>232</sup>Th)
-	  </span>
-	  <span class="hide3PbPb hide4ArAr hide4ThU">
-	    isotope
-	  </span>-ratio obtained by linear regression.
-	</td>
+	<td class="translate" id="isochron-i"></td>
       </tr>
       <tr>
 	<td>
 	  x:
 	</td>
-	<td>the estimated uncertainty (&sigma;) of u.
-	</td>
+	<td class="translate" id="isochron-i-x"></td>
       </tr>
       <tr>
 	<td>
 	  y:
 	</td>
-	<td>
-	  the<span hidden class="show4model1 show4model2 hide4model3">
-	  studentised</span> 100(1-&alpha;)% confidence interval for
-	  u<span hidden class="show4model1 show4model2 hide4model3">
-	  using the appropriate number of degrees of freedom</span>.
-	</td>
+	<td class="translate" id="isochron-i-y"></td>
       </tr>
       <tr class="show4model1 hide4model2 hide4model3">
 	<td>
 	  z:
 	</td>
-	<td>
-	  the approximate 100(1-&alpha;)% confidence interval for u
-	  with overdispersion, calculated as z = y&radic;MSWD.
-	  (only reported if MSWD > 1)
-	</td>
+	<td class="translate" id="isochron-i-z"></td>
       </tr>
     </table>
   </li>
@@ -161,20 +88,13 @@ an isochron:
     <table>
       <tr>
 	<td>x:</td>
-	<td>the Mean Square of the Weighted Deviates (MSWD) for the
-	  linear fit.  MSWD values >> 1 indicate that the ages are
-	  overdispersed with respect to the stated analytical
-	  uncertainties.
-	</td>
+	<td class="translate" id="isochron-mswd-x"></td>
       </tr>
       <tr>
 	<td>
 	  y:
 	</td>
-	<td>the Chi-squared p-value for the linear fit.  p-values <<
-	  0.05 indicate that the ages are overdispersed with respect
-	  to the stated analytical uncertainties.
-	</td>
+	<td class="translate" id="isochron-mswd-y"></td>
       </tr>
     </table>
   </li>
@@ -187,38 +107,24 @@ an isochron:
     <table>
       <tr>
 	<td>&omega;:</td>
-	<td class="hide4UPb show4PbPb show4ArAr show4KCa show4RbSr 
-		   show4SmNd show4ReOs show4LuHf show4UThHe show4ThU">
-	  the excess ('geological') dispersion of the y-intercept,
-	  i.e. the standard deviation of the assumedly Gaussian
-	  distribution that describes the true non-radiogenic
-	  component.
-	</td>
-	<td class="show4UPb hide4PbPb hide4ArAr hide4KCa hide4RbSr 
-		   hide4SmNd hide4ReOs hide4LuHf hide4UThHe hide4ThU">
-	  the excess ('geological') dispersion of the concordia
-	  intercept age, i.e. the standard deviation of the assumedly
-	  Gaussian distribution that describes the variability of the
-	  true ages.
-	</td>
+	<td class="translate hide4UPb show4PbPb show4ArAr show4KCa show4RbSr 
+		   show4SmNd show4ReOs show4LuHf show4UThHe show4ThU",
+	    id="isochron-omega-a"></td>
+	<td class="translate show4UPb hide4PbPb hide4ArAr hide4KCa hide4RbSr 
+		   hide4SmNd hide4ReOs hide4LuHf hide4UThHe hide4ThU"
+	    id="isochron-omega-b"></td>
       </tr>
       <tr>
 	<td>
 	  u:
 	</td>
-	<td>
-	  width of the upper half of a (1-&alpha;)% confidence
-	  interval for &omega;.
-	</td>
+	<td class="translate" id="isochron-omega-u"></td>
       </tr>
       <tr>
 	<td>
 	  l:
 	</td>
-	<td>
-	  width of the lower half of a (1-&alpha;)% confidence
-	  interval for &omega;.
-	</td>
+	<td class="translate" id="isochron-omega-l"></td>
       </tr>
     </table>
   </li>
@@ -226,7 +132,7 @@ an isochron:
 </ol>
 
 <p></p>
-<u>References:</u>
+<translate class="references"></translate>
 <p></p>
 
 Nicolaysen, L. Graphic interpretation of discordant age measurements
