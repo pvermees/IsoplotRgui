@@ -1,27 +1,4 @@
-<tt>IsoplotR</tt> offers three ways to fit a straight line through
-2-dimensional data with measurement uncertainties:
-
-<ol>
-  <li>Model-1: maximum Likelihood regression, using the modified error
-      weighted least squares algorithm of York et al. (2004) This
-      algorithm takes into account the analytical uncertainties and
-      error correlations, under the assumption that the scatter
-      between the data points is solely caused by the analytical
-      uncertainty. If the assumption is correct, then the MSWD value
-      should be approximately equal to one. If MSWD > 1, then model-1
-      regression assumes that the analytical uncertainties have been
-      underestimated by a factor &radic;MSWD.
-  </li>
-  <li>Model-2: ordinary least squares regression, ignoring the
-  analytical uncertainties.
-  </li>
-  <li>Model-3: maximum likelihood regression with
-  overdispersion. Instead of attributing any overdispersion (MSWD > 1)
-  to underestimated analytical uncertainties, one can also attribute
-  it to the presence of geological uncertainty, which manifests itself
-  as an added (co)variance term.
-  </li>
-</ol>
+<div class="translate" id="regression-intro"></div>
 
 <p></p>
 <u>Legend:</u>
@@ -36,27 +13,21 @@
     <table>
       <tr>
 	<td>s:</td>
-	<td>the slope of the best fit line.
-	</td>
+	<td class="translate" id="regression_s"></td>
       </tr>
       <tr>
 	<td>x:</td>
-	<td>the estimated uncertainty (&sigma;) of s.</td>
+	<td class="translate" id="regression_s_x"></td>
       </tr>
       <tr>
 	<td>y:</td>
-	<td>
-	  the 100(1-&alpha;)% confidence interval for s
-	  using the appropriate number of degrees of freedom.</td>
+	<td class="translate" id="regression_s_y"></td>
       </tr>
       <tr>
 	<td>
 	  z:
 	</td>
-	<td>
-	  the approximate 100(1-&alpha;)% confidence interval for s
-	  with overdispersion, calculated as z = y&radic;MSWD.
-	</td>
+	<td class="translate" id="regression_s_z"></td>
       </tr>
     </table>
   </li>
@@ -69,35 +40,25 @@
     <table>
       <tr>
 	<td>i:</td>
-	<td>
-	  the y-intercept obtained by linear regression.
-	</td>
+	<td class="translate" id="regression_i"></td>
       </tr>
       <tr>
 	<td>
 	  x:
 	</td>
-	<td>the estimated uncertainty (&sigma;) of i.
-	</td>
+	<td class="translate" id="regression_i_x"></td>
       </tr>
       <tr>
 	<td>
 	  y:
 	</td>
-	<td>
-	  the 100(1-&alpha;)% confidence interval for i using the
-	  appropriate number of degrees of freedom.
-	</td>
+	<td class="translate" id="regression_i_y"></td>
       </tr>
       <tr>
 	<td>
 	  z:
 	</td>
-	<td>
-	  the approximate 100(1-&alpha;)% confidence interval for i
-	  with overdispersion, calculated as z = y&radic;MSWD.
-	  (only reported if MSWD > 1)
-	</td>
+	<td class="translate" id="regression_i_z"></td>
       </tr>
     </table>
   </li>
@@ -110,20 +71,13 @@
     <table>
       <tr>
 	<td>x:</td>
-	<td>the Mean Square of the Weighted Deviates (MSWD) for the
-	  linear fit.  MSWD values >> 1 indicate that the data are
-	  overdispersed with respect to the stated analytical
-	  uncertainties.
-	</td>
+	<td class="translate" id="regression_mswd_x"></td>
       </tr>
       <tr>
 	<td>
 	  y:
 	</td>
-	<td>the Chi-squared p-value for the linear fit.  p-values <<
-	  0.05 indicate that the data are overdispersed with respect
-	  to the stated analytical uncertainties.
-	</td>
+	<td class="translate" id="regression_mswd_y"></td>
       </tr>
     </table>
   </li>
@@ -131,7 +85,7 @@
 
 
 <p></p>
-<u>References:</u>
+<translate class="references"></translate>
 <p></p>
 
 York, D., Evensen, N.M., Martinez, M.L. and De Basabe Delgado, J., 2004.

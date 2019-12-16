@@ -252,50 +252,50 @@ help-maxx,Maximum value:,
 help-minx,Minimum value:,
 help-pch,Plot character:,
 ages-75,The <sup>207</sup>Pb/<sup>235</sup>U-ages.,
-UPb-75,Measured <sup>207</sup>Pb/<sup>235</sup>U-ratios.,
-UPb-err75,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>207</sup>Pb/<sup>235</sup>U-ratios.",
-UPb-68,Measured <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb-err68,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>206</sup>Pb/<sup>238</sup>U-ratios.",
-UPb-86,Measured <sup>238</sup>U/<sup>206</sup>Pb-ratios.,
-UPb-err86,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>238</sup>U/<sup>206</sup>Pb-ratios.",
-UPb-76,Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb-err76,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.",
-UPb-rho7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb-rho8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb-48,Measured <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
-UPb-err48,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>204</sup>Pb/<sup>238</sup>U-ratios.",
-UPb-47,Measured <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.,
-UPb-err47,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.",
-UPb-46,Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb-err46,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.",
-UPb-rhoXZ-8646,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb-rhoYZ-8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb-rhoYZ-6848,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
-UPb-rhoXZ-7548,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
-UPb-rhoXY-7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb-rhoYZ-7646,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb-82,Measured <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
-UPb-err82,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>208</sup>Pb/<sup>232</sup>Th-ratios.",
-UPb-0806,Measured <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb-err0806,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.",
-UPb-3238,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb-err3238,"Analytical uncertainty (<span class=""show4ierr1 show4ierr3 hide4ierr2 hide4ierr4"">1</span><span class=""show4ierr2 show4ierr4 hide4ierr1 hide4ierr3"">2</span>&sigma;<span class=""show4ierr3 show4ierr4 hide4ierr1 hide4ierr2"">%</span>) of the <sup>232</sup>Th/<sup>238</sup>U-ratios.",
-UPb-rhoWX-7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb-rhoWY-7582,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
-UPb-rhoWZ-753238,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb-rhoXY-680832,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
-UPb-rhoXZ-683238,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb-rhowYZ-08323238,Error correlation between the <sup>208</sup>Pb/<sup>232</sup>Th- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb-rhoWX-8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb-rhoWY-38060806,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb-rhoWZ-38063238,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
-UPb-rhoXY-7686,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb-rhoXZ-763238,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
-UPb-rhoYZ-08063238,Error correlation between the <sup>208</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
-UPb-C,Optional variable to be used as fill colours in concordia and radial plots.,
-UPb-omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
-UPb-redundancy,"If <tt>rhoXY</tt>, <tt>rhoXZ</tt> or <tt>rhoYZ</tt> are omitted, then their value will be inferred from the redundancy between the three sets of standard errors (<tt>s[X]</tt>, <tt>s[Y]</tt> and <tt>s[Z]</tt>). This inference assumes that these errors are based on the same number of data points. If some data has been rejected from one ratio but not another, because of isobaric interferences, instrument issues, outlier rejection, or any other reason, then this method will not work.",
-UPb-rhoXY-8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb_75,Measured <sup>207</sup>Pb/<sup>235</sup>U-ratios.,
+UPb_err_75,Analytical uncertainty of the <sup>207</sup>Pb/<sup>235</sup>U-ratios,
+UPb_68,Measured <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb_err_68,Analytical uncertainty of the <sup>206</sup>Pb/<sup>238</sup>U-ratios,
+UPb_86,Measured <sup>238</sup>U/<sup>206</sup>Pb-ratios.,
+UPb_err_86,Analytical uncertainty of the <sup>238</sup>U/<sup>206</sup>Pb-ratios,
+UPb_76,Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb_err_76,Analytical uncertainty of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios,
+UPb_rho_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb_rho_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb_48,Measured <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
+UPb_err_48,Analytical uncertainty of the <sup>204</sup>Pb/<sup>238</sup>U-ratios,
+UPb_47,Measured <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.,
+UPb_err_47,Analytical uncertainty of the <sup>204</sup>Pb/<sup>207</sup>Pb-ratios,
+UPb_46,Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb_err_46,Analytical uncertainty of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios,
+UPb_rhoXZ_8646,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb_rhoYZ_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb_rhoYZ_6848,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
+UPb_rhoXZ_7548,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
+UPb_rhoXY_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb_rhoYZ_7646,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb_82,Measured <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
+UPb_err_82,Analytical uncertainty of the <sup>208</sup>Pb/<sup>232</sup>Th-ratios,
+UPb_0806,Measured <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.,
+UPb_err_0806,Analytical uncertainty of the <sup>208</sup>Pb/<sup>206</sup>Pb-ratios,
+UPb_3238,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb_err_3238,Analytical uncertainty of the <sup>232</sup>Th/<sup>238</sup>U-ratios,
+UPb_rhoWX_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
+UPb_rhoWY_7582,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
+UPb_rhoWZ_753238,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb_rhoXY_680832,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
+UPb_rhoXZ_683238,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb_rhowYZ_08323238,Error correlation between the <sup>208</sup>Pb/<sup>232</sup>Th- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+UPb_rhoWX_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb_rhoWY_38060806,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb_rhoWZ_38063238,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
+UPb_rhoXY_7686,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
+UPb_rhoXZ_763238,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
+UPb_rhoYZ_08063238,Error correlation between the <sup>208</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
+UPb_C,Optional variable to be used as fill colours in concordia and radial plots.,
+UPb_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
+UPb_redundancy,"If <tt>rhoXY</tt>, <tt>rhoXZ</tt> or <tt>rhoYZ</tt> are omitted, then their value will be inferred from the redundancy between the three sets of standard errors (<tt>s[X]</tt>, <tt>s[Y]</tt> and <tt>s[Z]</tt>). This inference assumes that these errors are based on the same number of data points. If some data has been rejected from one ratio but not another, because of isobaric interferences, instrument issues, outlier rejection, or any other reason, then this method will not work.",
+UPb_rhoXY_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
 home,Home,主页
 options,Options,选项
 help,Help,帮助
@@ -623,3 +623,127 @@ RbSr-8786,Measured <sup>87</sup>Sr/<sup>86</sup>Sr-ratios.,
 RbSr-err-8786,Analytical uncertainty of the <sup>87</sup>Sr/<sup>86</sup>Sr-ratios,
 RbSr-C,Optional variable to be used as fill colours in isochron and radial plots.,
 RbSr-omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
+regression-intro,"<tt>IsoplotR</tt> offers three ways to fit a straight line through 2-dimensional data with measurement uncertainties:
+
+<ol>
+  <li>Model-1: maximum Likelihood regression, using the modified error weighted least squares algorithm of York et al. (2004) This algorithm takes into account the analytical uncertainties and error correlations, under the assumption that the scatter between the data points is solely caused by the analytical uncertainty. If the assumption is correct, then the MSWD value should be approximately equal to one. If MSWD > 1, then model-1 regression assumes that the analytical uncertainties have been underestimated by a factor &radic;MSWD.
+  </li>
+  <li>Model-2: ordinary least squares regression, ignoring the analytical uncertainties.
+  </li>
+  <li>Model-3: maximum likelihood regression with overdispersion. Instead of attributing any overdispersion (MSWD > 1) to underestimated analytical uncertainties, one can also attribute it to the presence of geological uncertainty, which manifests itself as an added (co)variance term.
+  </li>
+</ol>",
+regression_s,the slope of the best fit line.,
+regression_s_x,the estimated uncertainty (&sigma;) of s.,
+regression_s_y,the 100(1-&alpha;)% confidence interval for s using the appropriate number of degrees of freedom.,
+regression_s_z,"the approximate 100(1-&alpha;)% confidence interval for s with overdispersion, calculated as z = y&radic;MSWD.",
+regression_i,the y-intercept obtained by linear regression.,
+regression_i_x,the estimated uncertainty (&sigma;) of i.,
+regression_i_y,the 100(1-&alpha;)% confidence interval for i using the appropriate number of degrees of freedom.,
+regression_i_z,"the approximate 100(1-&alpha;)% confidence interval for i with overdispersion, calculated as z = y&radic;MSWD (only reported if MSWD > 1).",
+regression_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for the linear fit.  MSWD values >> 1 indicate that the data are overdispersed with respect to the stated analytical uncertainties.,
+regression_mswd_y,the Chi-squared p-value for the linear fit.  p-values << 0.05 indicate that the data are overdispersed with respect to the stated analytical uncertainties.,
+ReOs_redundancy,"<p></p>
+<tt>IsoplotR</tt> uses these data to calculate the <sup>187</sup>Re/<sup>188</sup>Os-ratios and the correlation between the <sup>187</sup>Os/<sup>188</sup>Os- and the <sup>187</sup>Re/<sup>188</sup>Os-uncertainties.",
+ReOs_Re187Os188,<sup>187</sup>Re/<sup>188</sup>Os-ratios.,
+ReOs_err_Re187Os188,Analytical uncertainty of the <sup>187</sup>Re/<sup>188</sup>Os-ratios,
+ReOs_Os187Os188,Measured <sup>187</sup>Os/<sup>188</sup>Os-ratios.,
+ReOs_err_Os187Os188,Analytical uncertainty of the <sup>187</sup>Os/<sup>188</sup>Os-ratios,
+ReOs_rho_Re187Os188Os187Os188,Error correlations between the <sup>187</sup>Re/<sup>188</sup>Os and <sup>187</sup>Os/<sup>188</sup>Os-ratios (optional).,
+ReOs_Re,"Re concentration, in ppm.",
+ReOs_err_Re,"Analytical uncertainty of the Re concentration, in ppm ",
+ReOs_Os,"Os concentration, in ppm.",
+ReOs_err_Os,"Analytical uncertainty of the Os concentration, in ppm",
+ReOs_187188,Measured <sup>187</sup>Os/<sup>188</sup>Os-ratios.,
+ReOs_err_187188,Analytical uncertainty of the <sup>187</sup>Os/<sup>188</sup>Os-ratios ,
+ReOs_C,Optional variable to be used as fill colours in isochron and radial plots.,
+ReOs_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
+zeta,"The fission track age is given by:
+
+<p></p>
+t = ln[1 + 
+{2 N<sub>s</sub>&lambda;<sub>238</sub>&lambda;<sub>f</sub>}/
+{[<sup>238</sup>U]A<sub>s</sub>L}] / &lambda;<sub>238</sub>
+<span class=""alignright"">(eq. 1)</span>
+<p></p>
+
+where N<sub>s</sub> is the number of spontaneous fission tracks measured over an area A<sub>s</sub>, [<sup>238</sup>U] is the <sup>238</sup>U-concentration in atoms per unit volume, &lambda;<sub>f</sub> is the fission decay constant, L is the etchable fission track length, and the factor 2 is a geometric factor
+accounting for the fact that etching reveals tracks from both above and below the internal crystal surface.
+
+<p></p>
+
+<div class=""show4EDM hide4absolute hide4ICP"">
+[<sup>238</sup>U] can be measured indirectly using the induced fission of neutron-irradiated <sup>235</sup>U as a proxy for the <sup>238</sup>U. In the most common implementation of this approach, the induced fission tracks are recorded by an external detector made of mica or plastic that is attached to the polished grain surface (Fleischer and Hart, 1972; Hurford and Green, 1983). The
+fission track age equation then becomes:
+
+<p></p>
+t = ln[
+1 + {&lambda;<sub>238</sub>&zeta;&rho;<sub>d</sub>N<sub>s</sub>}/
+{2 N<sub>i</sub>}] /
+&lambda;<sub>238</sub>
+<span class=""alignright"">(eq. 2)</span>
+<p></p>
+
+where N<sub>i</sub> is the number of induced fission tracks counted in the external detector over the same area as the spontaneous tracks, &zeta; is a 'zeta'-calibration factor that incorporates both the fission decay constant and the etchable fission track length, and &rho;<sub>d</sub> is the number of induced fission tracks per unit area counted in a co-irradiated glass of known U-concentration. &rho;<sub>d</sub> allows the &zeta;-factor to be 'recycled' between irradiations.
+</div>
+
+<div class=""hide4EDM hide4absolute show4ICP"">
+The <sup>238</sup>U-concentration can also be measured directly by LAICPMS. Unfortunately the accuracy of LAICPMS-based age estimates is compromised by the absence of matrix-matched concentrations standards, and uncertainies associated with the fission track decay constant and the etching and counting efficiencies.  These systematic errors can be removed by normalising to a standard of known fission track age and defining a new 'zeta' calibration constant &zeta;<sub>icp</sub>:
+
+<p></p>
+t =
+ln( 1 + {2 &zeta;<sub>icp</sub> &lambda;<sub>238</sub>N<sub>2</sub>}/
+{[<sub>238</sub>U] A<sub>s</sub>})/
+&lambda;<sub>238</sub>
+<span class=""alignright"">(eq. 2)</span>
+<p></p>
+
+where [<sup>238</sup>U] may either stand for the <sup>238</sup>U-concentration (in ppm) <i>or</i> for the U/Ca (for apatite) or U/Si (for zircon) ratio measurement, and A<sub>s</sub> is the spontaneous track counting area, which may either correspond to one laser spot or to a larger area (if multiple U-measurements were made).
+</div>",
+SmNd_redundancy,"<p></p>
+<tt>IsoplotR</tt> uses these data to calculate the <sup>147</sup>Sm/<sup>144</sup>Nd-ratios and the correlation between the <sup>147</sup>Sm/<sup>144</sup>Nd- and the <sup>143</sup>Nd/<sup>144</sup>Nd-uncertainties.",
+SmNd_Sm143Nd144,<sup>143</sup>Sm/<sup>144</sup>Nd-ratios.,
+SmNd_err_Sm143Nd144,Analytical uncertainty of the <sup>143</sup>Sm/<sup>144</sup>Nd-ratios.,
+SmNd_Nd143Nd144,Measured <sup>143</sup>Nd/<sup>144</sup>Nd-ratios.,
+SmNd_err_Nd143Nd144,Analytical uncertainty of the <sup>143</sup>Nd/<sup>144</sup>Nd-ratios,
+SmNd_rho_Sm143Sm144Nd143Nd144,Error correlations between the <sup>143</sup>Sm/<sup>144</sup>Nd and <sup>143</sup>Nd/<sup>144</sup>Nd-ratios (optional).,
+SmNd_Sm,"Sm concentration, in ppm.",
+SmNd_err_Sm,"Analytical uncertainty of the Sm concentration, in ppm ",
+SmNd_Nd,"Nd concentration, in ppm.",
+SmNd_err_Nd,"Analytical uncertainty of the Nd concentration, in ppm ",
+SmNd_143144,Measured <sup>143</sup>Nd/<sup>144</sup>Nd-ratios.,
+SmNd_err-143144,Analytical uncertainty of the <sup>143</sup>Nd/<sup>144</sup>Nd-ratios ,
+SmNd_C,Optional variable to be used as fill colours in isochron and radial plots.,
+SmNd_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
+spectrum_intro,"The <sup>40</sup>Ar/<sup>39</sup>Ar-age spectrum is a useful tool to visualise stepwise heating measurements. Its appearance is based on the weighted mean plot with the different heating steps arranged in order of increasing temperature along the horizontal axis, and the width of the different sample boxes proportional to the corresponding amounts of <sup>39</sup>Ar. <tt>IsoplotR</tt> defines the 'plateau age' as the weighted mean age of the longest sequence (in terms of cumulative <sup>39</sup>Ar content) of consecutive heating steps that pass a modified Chauvenet criterion.  This definition is different (and simpler) than the one used by <tt>Isoplot</tt> (Ludwig, 2003). However, it is important to mention that all definitions of an age plateau are heuristic by nature and should therefore not be used for quantitative inference.  It is possible (and likely) that the plateau exhibits significant overdispersion. This overdispersion can be manually reduced by removing individual heating steps using the optional <tt>omit</tt> column.
+",
+spectrum_t,"the plateau age, which is defined as the weighted mean age of the largest consecutive set of steps that survive the modified Chauvenet's Criterion used for the ordinary weighted mean.",
+spectrum_t_x,"the estimated standard deviation of <tt>t</tt>, estimated by the method of maximum likelihood.",
+spectrum_t_y,"the 100(1-&alpha;)% confidence interval for <tt>t</tt>. This is also shown as a grey band on the plot. The uncertainties associated with the random uncertainties are shown in dark grey, whereas the systematic uncertainties (i.e. J-factor and decay constant) are shown in light grey.",
+spectrum_mswd_x,"the mean square of the weighted deviates (aka 'reduced chi-square statistic') of the plateau. <tt>IsoplotR</tt>'s plateau definition allows the MSWD to exceed 1, as long as the overdispersion does not violate Chauvenet's outlier criterion.",
+spectrum_mswd_y,"p-value of a chi-square test of homogeneity. <tt>IsoplotR</tt>'s plateau definition allow the p-value to fall below the &alpha; cutoff, as long as the overdispersion does not violate Chauvenet's outlier criterion.",
+spectrum_pct_39,the sum of all the steps that are included in the plateau.,
+ThU_3832,Measured <sup>238</sup>U/<sup>232</sup>Th-ratios.,
+ThU_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
+ThU_err_3832,Analytical uncertainty of the <sup>238</sup>U/<sup>232</sup>Th-ratios,
+ThU_42,Measured <sup>234</sup>U/<sup>232</sup>Th-ratios.,
+ThU_err_42,Analytical uncertainty of the <sup>234</sup>U/<sup>232</sup>Th-ratios,
+ThU_02,Measured <sup>230</sup>Th/<sup>232</sup>Th-ratios.,
+ThU_err_02,Analytical uncertainty of the <sup>230</sup>Th/<sup>232</sup>Th-ratios,
+ThU_rho-8242,Error correlation between the <sup>238</sup>U/<sup>232</sup>Th- and <sup>234</sup>U/<sup>232</sup>Th-ratios.,
+ThU_rho_8202,"Error correlation between the <sup>238</sup>U/<sup>232</sup>Th- and <sup>230</sup>Th/<sup>232</sup>Th-ratios <span hidden class=""show4ThU3"">(optional)</span>",
+ThU_rho_4202,Error correlation between the <sup>234</sup>U/<sup>232</sup>Th- and <sup>230</sup>Th/<sup>232</sup>Th-ratios.,
+ThU_28,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,
+ThU_err_28,Analytical uncertainty of the <sup>232</sup>Th/<sup>238</sup>U-ratios,
+ThU_48,Measured <sup>234</sup>U/<sup>238</sup>U-ratios.,
+ThU_err_48,Analytical uncertainty of the <sup>234</sup>U/<sup>238</sup>U-ratios,
+ThU_08,Measured <sup>230</sup>Th/<sup>238</sup>U-ratios.,
+ThU_err_08,Analytical uncertainty of the <sup>230</sup>Th/<sup>238</sup>U-ratios,
+ThU_3238,Error correlation between the <sup>232</sup>Th/<sup>238</sup>U- and <sup>234</sup>U/<sup>238</sup>U-ratios.,
+ThU_rho_2808,"Error correlation between the <sup>232</sup>Th/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U-ratios <span class=""show4ThU4"">(optional)</span>",
+ThU_rho_4808,Error correlation between the <sup>234</sup>U/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U-ratios.,
+ThU_C,"Optional variable to be used as fill colours in evolution diagrams, isochrons and radial plots.",
+UThHe,"Measured He, U, Th and (optionally) Sm abundance or concentration, in any kind of atomic units (fmol, mol/g, atoms, ...).",
+UThHe_err,"Analytical uncertainty of the He, U, Th and (optionally) Sm measurements",
+UThHe_C,"Optional variable to be used as fill colours in radial plots, ternary diagrams and logratio plots.",
+UThHe_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
