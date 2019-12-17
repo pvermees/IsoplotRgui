@@ -743,25 +743,19 @@ $(function(){
 		$('.show4tanchor').hide();
 	    }
 	    break;
-	case 'evolution':
-	    $(".hide4evolution").hide();
-	    if (pd.transform=='TRUE'){
-		$('.show4evotrans').show();
-		$('.hide4evotrans').hide();
+	case 'average':
+	    if (pd.randomeffects=='TRUE'){
+		$('.show4randomeffects').show();
+		$('.hide4randomeffects').hide();
 	    } else {
-		$('.show4evotrans').hide();
-		$('.hide4evotrans').show();
-	    }
-	    if (pd.isochron=='TRUE'){
-		$('.show4evolutionIsochron').show();
-	    } else {
-		$('.show4evolutionIsochron').hide();
+		$('.show4randomeffects').hide();
+		$('.hide4randomeffects').show();		
 	    }
 	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
 	    $(".show4Th230corr").hide();
-	    break;
+	case 'regression':
 	case 'helioplot':
 	    switch (pd.model){
 	    case 1:
@@ -790,6 +784,35 @@ $(function(){
 		$('.show4show_p').show();
 	    } else {
 		$('.show4show_p').hide();
+	    }
+	    break;
+	case 'evolution':
+	    $(".hide4evolution").hide();
+	    if (pd.transform=='TRUE'){
+		$('.show4evotrans').show();
+		$('.hide4evotrans').hide();
+	    } else {
+		$('.show4evotrans').hide();
+		$('.hide4evotrans').show();
+	    }
+	    if (pd.isochron=='TRUE'){
+		switch (pd.model){
+		case 1:
+		    $('.show4model1').show();
+		    $('.hide4model1').hide();
+		    break;
+		case 2:
+		    $('.show4model2').show();
+		    $('.hide4model2').hide();
+		    break;
+		case 3:
+		    $('.show4model3').show();
+		    $('.hide4model3').hide();
+		    break;
+		}
+		$('.show4evolutionIsochron').show();
+	    } else {
+		$('.show4evolutionIsochron').hide();
 	    }
 	    break;
 	case 'set-zeta':

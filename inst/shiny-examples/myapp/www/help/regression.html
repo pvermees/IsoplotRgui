@@ -6,9 +6,9 @@
 
 <ol>
   <li>
-    slope  = s &plusmn; x | y | z
+    slope  = s &plusmn; x | y <span class="show4model1 hide4model2 hide4model3">| z</span>
     <p></p>
-    where:
+    <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
@@ -23,7 +23,7 @@
 	<td>y:</td>
 	<td class="translate" id="regression_s_y"></td>
       </tr>
-      <tr>
+      <tr class="show4model1 hide4model2 hide4model3">
 	<td>
 	  z:
 	</td>
@@ -33,9 +33,9 @@
   </li>
   
   <li>
-    intercept = i &plusmn; x | y | z
+    intercept = i &plusmn; x | y <span class="show4model1 hide4model2 hide4model3">| z</span>
     <p></p>
-    where:
+    <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
@@ -54,7 +54,7 @@
 	</td>
 	<td class="translate" id="regression_i_y"></td>
       </tr>
-      <tr>
+      <tr class="show4model1 hide4model2 hide4model3">
 	<td>
 	  z:
 	</td>
@@ -63,10 +63,10 @@
     </table>
   </li>
 
-  <li>
+  <li class="show4model1 hide4model2 hide4model3">
     MSWD = x, p(&chi;<sup>2</sup>) = y 
     <p></p>
-    where:
+    <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
@@ -81,6 +81,32 @@
       </tr>
     </table>
   </li>
+
+  <li class="hide4model1 hide4model2 show4model3">
+    y-dispersion = &omega; + u /- l
+    <p></p>
+    <translate class="where"></translate>
+    <p></p>
+    <table>
+      <tr>
+	<td>&omega;:</td>
+	<td class="translate", id="regression-omega"></td>
+      </tr>
+      <tr>
+	<td>
+	  u:
+	</td>
+	<td class="translate" id="isochron-omega-u"></td>
+      </tr>
+      <tr>
+	<td>
+	  l:
+	</td>
+	<td class="translate" id="isochron-omega-l"></td>
+      </tr>
+    </table>
+  </li>
+
 </ol>
 
 
