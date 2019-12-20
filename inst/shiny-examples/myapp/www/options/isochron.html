@@ -1,43 +1,31 @@
 <p></p>
 
 <div hidden class="show4ThU">
-  &nbsp;<help id="help-ThU-isochron-types">Type:</help>
+  &nbsp;<help class="translate" id="help_ThU_isochron_types"></help>
   <select id="ThU-isochron-types" onchange="$.register();">
-    <option value=1>
-      1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A)
-    </option>
-    <option value=2>
-      2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A)
-    </option>
-    <option class="hide4ThU3 hide4ThU4" value=3>
-      3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B)
-    </option>
-    <option class="hide4ThU3 hide4ThU4" value=4>
-      4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B)
-    </option>
+    <option class="translate" id="Rosholt_A" value=1></option>
+    <option class="translate" id="Osmond_A" value=2></option>
+    <option class="translate hide4ThU3 hide4ThU4" id="Rosholt_B" value=3></option>
+    <option class="translate hide4ThU3 hide4ThU4" id="Osmond_B" value=4></option>
   </select>
   <p></p>
 </div>
 
 <div hidden class="show4UPb">
-  &nbsp;<help id="help-UPb-isochron-types">Type:</help>
+  &nbsp;<help class="translate" id="help_UPb_isochron_types"></help>
   <select id="UPb-isochron-types" onchange="$.register();">
-    <option value=1>
-      1. <tt>(04 or 08c)/06</tt> vs. <tt>38/06</tt>
-    </option>
-    <option value=2>
-      2. <tt>(04 or 08c)/07</tt> vs. <tt>35/07</tt>
-    </option>
+    <option class="translate" id="UPb_isochron_type_1" value=1></option>
+    <option class="translate" id="UPb_isochron_type_2" value=2></option>
   </select>
   <p></p>
 </div>
 
 <div>
-  &nbsp;<help id="help-isochron-models">Model</help>:
+  &nbsp;<help class="translate" id="help_isochron_models"></help>
   <select id="isochron-models" onchange="$.register();">
-    <option value=1>1. Maximum likelihood</option>
-    <option value=2>2. Ordinary least squares</option>
-    <option value=3>3. Maximum likelihood with overdispersion</option>
+    <option class="translate" id="isochron_model_1" value=1></option>
+    <option class="translate" id="isochron_model_2" value=2></option>
+    <option class="translate" id="isochron_model_3" value=3></option>
   </select>
 </div>
 
@@ -46,50 +34,64 @@
 <div class="hide4UThHe hide4ThU show4ArAr show4KCa show4PbPb 
             show4RbSr show4SmNd show4ReOs show4LuHf hide4UPb">
 &nbsp;<input type="checkbox" id="inverse">
-<help id="help-PbPb-inverse" hidden class="show4PbPb">Inverse isochron</help>
-<help id="help-ArAr-inverse" hidden class="show4ArAr">Inverse isochron</help>
-<help id="help-KCa-inverse" hidden class="show4KCa">Inverse isochron</help>
-<help id="help-RbSr-inverse" hidden class="show4RbSr">Inverse isochron</help>
-<help id="help-SmNd-inverse" hidden class="show4SmNd">Inverse isochron</help>
-<help id="help-ReOs-inverse" hidden class="show4ReOs">Inverse isochron</help>
-<help id="help-LuHf-inverse" hidden class="show4LuHf">Inverse isochron</help>?
+<help id="help_PbPb_inverse" hidden class="show4PbPb">
+  <translate class="inverse"></translate>
+</help>
+<help id="help_ArAr_inverse" hidden class="show4ArAr">
+  <translate class="inverse"></translate>
+</help>
+<help id="help_KCa_inverse" hidden class="show4KCa">
+  <translate class="inverse"></translate>
+</help>
+<help id="help_RbSr_inverse" hidden class="show4RbSr">
+  <translate class="inverse"></translate>
+</help>
+<help id="help_SmNd_inverse" hidden class="show4SmNd">
+  <translate class="inverse"></translate>
+</help>
+<help id="help_ReOs_inverse" hidden class="show4ReOs">
+  <translate class="inverse"></translate>
+</help>
+<help id="help_LuHf_inverse" hidden class="show4LuHf">
+  <translate class="inverse"></translate>
+</help>
 <p></p>
 </div>
 
 <div hidden class="show4PbPb">
 &nbsp;<input type="checkbox" id="PbPb-growth"> 
-<help id="help-PbPb-growth">Add Stacey-Kramers Pb-Pb growth curve</help>?
+<help class="translate" id="help_PbPb_growth"></help>
 <p></p>
 </div>
 
 <div class="hide4UThHe">
-&nbsp;<input type="checkbox" id="isochron-exterr"> 
-<help id="help-exterr">Propagate systematic uncertainties</help>?
+&nbsp;<input type="checkbox" id="isochron-exterr">
+<help id="help_exterr"><translate class="exterr"></translate></help>
 <p></p>
 </div>
 
 &nbsp;<input type="checkbox" id="shownumbers"> 
-<help id="help-shownumbers">Show sample numbers</help>?
+<help class="translate" id="help_shownumbers"></help>
 
 <p></p>
 
 <table>
-  <tr><td>&nbsp;<help id="help-isochron-minx">Minimum X</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_isochron_minx"></help></td>
     <td><input type="text" id="isochron-minx"></td></tr>
-  <tr><td>&nbsp;<help id="help-isochron-maxx">Maximum X</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_isochron_maxx"></help></td>
     <td><input type="text" id="isochron-maxx"></td></tr>
-  <tr><td>&nbsp;<help id="help-isochron-miny">Minimum Y</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_isochron_miny"></help></td>
     <td><input type="text" id="isochron-miny"></td></tr>
-  <tr><td>&nbsp;<help id="help-isochron-maxy">Maximum Y</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_isochron_maxy"></help></td>
     <td><input type="text" id="isochron-maxy"></td></tr>
-  <tr><td>&nbsp;<help id="help-alpha">Probability cutoff</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_alpha"></help></td>
     <td><input type="text" id="alpha"></td></tr>
-  <tr><td>&nbsp;<help id="help-sigdig">Significant digits</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_sigdig"></help></td>
     <td><input type="text" id="sigdig"></td></tr>
-  <tr><td>&nbsp;<help id="help-ellipse-col">Ellipse colour</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_ellipse_col"></help></td>
     <td><input type="text" id="ellipsecol"></td></tr>
-  <tr><td>&nbsp;<help id="help-cex">Font magnification</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_cex"></help></td>
     <td><input type="text" id="cex"></td></tr>
-  <tr><td>&nbsp;<help id="help-clabel">Colour label</help>:</td>
+  <tr><td>&nbsp;<help class="translate" id="help_clabel"></help></td>
     <td><input type="text" id="clabel"></td></tr>
 </table>

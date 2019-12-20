@@ -11,23 +11,23 @@ $(function(){
 	    data4server: [],
 	    optionschanged: false
 	}
-	// three nested file readers:
-	var cfile = './js/constants.json';
-	$.getJSON(cfile, function(data){
+	// four nested asynchronous file readers:
+	$.getJSON('./js/constants.json', function(data){
 	    IsoplotR.constants = data;
-	    var sfile = './js/settings.json';
-	    $.getJSON(sfile, function(data){
+	    $.getJSON('./js/settings.json', function(data){
 		IsoplotR.settings = data;
 		IsoplotR.settings.geochronometer =
 		    $('option:selected', $("#geochronometer")).attr('id');
-		//IsoplotR.settings.language =
-		//    $('option:selected', $("#language")).attr('id');
-		var dfile = './js/data.json';
-		$.getJSON(dfile, function(data){
+		IsoplotR.settings.language =
+		    $('option:selected', $("#language")).attr('id');
+		$.getJSON('./js/data.json', function(data){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
 		    IsoplotR = populate(IsoplotR,true);
-		    welcome();
+		    $.getJSON('./js/dictionary_id.json', function(data){
+			dictionary_id = data;
+			welcome();
+		    });
 		    $("#INPUT").handsontable({ // add change handler asynchronously
 			afterChange: function(changes,source){
 			    getData4Server(); // placed here because we don't want to
@@ -36,6 +36,12 @@ $(function(){
 		    });
 		});
 	    });
+	});
+	$.getJSON('./js/dictionary_class.json', function(data){
+	    dictionary_class = data;
+	});
+	$.getJSON('./js/contextual_help.json', function(data){
+	    contextual_help = data;
 	});
     };
 
@@ -350,6 +356,7 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var set = IsoplotR.settings[geochronometer];
 	var pd = IsoplotR.settings[plotdevice];
+	translate();
 	switch (IsoplotR.settings.ierr){
 	case 1:
 	    $('.show4ierr1').show();
@@ -422,18 +429,18 @@ $(function(){
 		} else {
 		    $(".show4U48diseq").hide();
 		}
-		if (set.ThU[1]<1){
-		    $(".show4ThUdiseq").hide();
+		if (set.ThU[1]==3){
+		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").hide();
-		    $(".show4ThUdiseq3").hide();
-		} else if (set.ThU[1]<3){
+		    $(".show4ThUdiseq3").show();
+		} else if (set.ThU[1]>0){
 		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").show();
 		    $(".show4ThUdiseq3").hide();
 		} else {
-		    $(".show4ThUdiseq").show();
+		    $(".show4ThUdiseq").hide();
 		    $(".show4ThUdiseq12").hide();
-		    $(".show4ThUdiseq3").show();
+		    $(".show4ThUdiseq3").hide();
 		}
 		if (set.RaU[1]>0){
 		    $(".show4RaUdiseq").show();
@@ -736,25 +743,19 @@ $(function(){
 		$('.show4tanchor').hide();
 	    }
 	    break;
-	case 'evolution':
-	    $(".hide4evolution").hide();
-	    if (pd.transform=='TRUE'){
-		$('.show4evotrans').show();
-		$('.hide4evotrans').hide();
+	case 'average':
+	    if (pd.randomeffects=='TRUE'){
+		$('.show4randomeffects').show();
+		$('.hide4randomeffects').hide();
 	    } else {
-		$('.show4evotrans').hide();
-		$('.hide4evotrans').show();
-	    }
-	    if (pd.isochron=='TRUE'){
-		$('.show4evolutionIsochron').show();
-	    } else {
-		$('.show4evolutionIsochron').hide();
+		$('.show4randomeffects').hide();
+		$('.hide4randomeffects').show();		
 	    }
 	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
 	    $(".show4Th230corr").hide();
-	    break;
+	case 'regression':
 	case 'helioplot':
 	    switch (pd.model){
 	    case 1:
@@ -785,6 +786,35 @@ $(function(){
 		$('.show4show_p').hide();
 	    }
 	    break;
+	case 'evolution':
+	    $(".hide4evolution").hide();
+	    if (pd.transform=='TRUE'){
+		$('.show4evotrans').show();
+		$('.hide4evotrans').hide();
+	    } else {
+		$('.show4evotrans').hide();
+		$('.hide4evotrans').show();
+	    }
+	    if (pd.isochron=='TRUE'){
+		switch (pd.model){
+		case 1:
+		    $('.show4model1').show();
+		    $('.hide4model1').hide();
+		    break;
+		case 2:
+		    $('.show4model2').show();
+		    $('.hide4model2').hide();
+		    break;
+		case 3:
+		    $('.show4model3').show();
+		    $('.hide4model3').hide();
+		    break;
+		}
+		$('.show4evolutionIsochron').show();
+	    } else {
+		$('.show4evolutionIsochron').hide();
+	    }
+	    break;
 	case 'set-zeta':
 	    $(".show4zeta").show();
 	    $(".hide4zeta").hide();
@@ -798,7 +828,7 @@ $(function(){
 	    break;
 	}
     }
-    
+
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
@@ -1227,8 +1257,6 @@ $(function(){
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
 	var set = IsoplotR.constants;
-	//IsoplotR.settings.language =
-	//    $('option:selected', $('#language')).attr('value');
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1672,11 +1700,7 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
-	var dictionaryfile = './js/dictionary.json';
-	$.getJSON(dictionaryfile, function(data){
-	    IsoplotR.dictionary = data;
-	    showOrHide();
-	});
+	showOrHide();
     }
     
     function selectGeochronometer(){
@@ -1961,19 +1985,36 @@ $(function(){
     }
 
     function welcome(){
-	$('#myplot').load('welcome.html',function(){
-	    $('#version').load('version.txt',function(){
-		$('#latestversion').load('https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt',function(){
-		    showOrHide();
+	$("#myplot").load('welcome.html',function(){
+	    showOrHide();
+	    $("#version").load('version.txt',function(){
+		$.ajax({
+		    url: 'https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt',
+		    error: function(){
+			$('#behind').hide();
+		    },
+		    success: function(data){
+			var curr = $('#version').html();
+			if (curr!=data){
+			    $('#latestversion').html(data);
+			    $('#behind').show();
+			} else {
+			    $('#behind').hide();
+			}
+		    },
+		    timeout: 3000 // sets timeout to 3 seconds
 		});
 	    });
-	    
 	});
     }
 
     function translate(){
 	$(".translate").each(function(i){
-	    var text = IsoplotR.dictionary[this.id][IsoplotR.settings.language];
+	    var text = dictionary_id[this.id][IsoplotR.settings.language];
+	    this.innerHTML = text;
+	});
+	$("translate").each(function(i){
+	    var text = dictionary_class[this.className][IsoplotR.settings.language];
 	    this.innerHTML = text;
 	});
     }
@@ -2021,6 +2062,10 @@ $(function(){
 	} else {
 	    $.chooseFormat(ID,"U-Pb");
 	    showSettings(pd);
+	}
+	if (IsoplotR.settings["U-Pb"].ThU[1]==3 &
+	    IsoplotR.settings["U-Pb"].format<7){
+	    IsoplotR.settings["U-Pb"].ThU[1] = 0;
 	}
     }
     
@@ -2098,7 +2143,7 @@ $(function(){
     });
     
     $('body').on('click', 'help', function(){
-	var text = help($(this).attr('id'),IsoplotR.settings.language);
+	var text = help($(this).attr('id'));
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
 	showOrHide();
@@ -2141,9 +2186,6 @@ $(function(){
 	    $("#geochronometer-options").load(fname,function(){
 		fname = "options/" + plotdevice + ".html";
 		$("#plotdevice-options").load(fname,function(){
-		    if (IsoplotR.settings.language!='en'){
-			translate();
-		    }
 		    showSettings(geochronometer);
 		    showSettings(plotdevice);
 		    IsoplotR.optionschanged = true;
@@ -2169,7 +2211,7 @@ $(function(){
 	    });
 	});
     });
-    
+
     $("#DEFAULTS").click(function(){
 	$("#myplot").empty();
 	var cfile = './js/constants.json';
@@ -2216,6 +2258,9 @@ $(function(){
     });
 
     var IsoplotR;
+    var contextual_help;
+    var dictionary_id;
+    var dictionary_class;
     initialise();
 
 });

@@ -1,27 +1,15 @@
-function help(id,lang){
+function help(id){
     var text = ""
     switch (id){
-    case "help-ierr":
-	switch(lang){
-	case "en":
-	    text = "Choose one of the following four options:<ol>" +
-		"<li>absolute uncertainties at 1&sigma;</li>" +
-		"<li>absolute uncertainties at 2&sigma;</li>" +
-		"<li>relative uncertainties (in %) at 1&sigma;</li>" +
-		"<li>relative uncertainties (in %) at 2&sigma;</li>" +
-		"</ol>";
-	    break;
-	case "cn":
-	    text = "选择以下四个选项之一<ol>" +
-		"<li>绝对不确定度为1&sigma;</li>" +
-		"<li>绝对不确定度为2&sigma;</li>" +
-		"<li>相对不确定度(%)为1&sigma;</li>" +
-		"<li>相对不确定度(%)为2&sigma;</li>" +
-		"</ol>";
-	    break;
-	}
+    case "help_ierr":
+	text = "Choose one of the following four options:<ol>" +
+	    "<li>absolute uncertainties at 1&sigma;</li>" +
+	    "<li>absolute uncertainties at 2&sigma;</li>" +
+	    "<li>relative uncertainties (in %) at 1&sigma;</li>" +
+	    "<li>relative uncertainties (in %) at 2&sigma;</li>" +
+	    "</ol>";
 	break;
-    case "help-concordia-type":
+    case "help_concordia_type":
 	text = "<ol><li>Wetherill: <sup>206</sup>Pb/<sup>238</sup>U vs." +
 	    "<sup>207</sup>Pb/<sup>235</sup>U</li>" +
 	    "<li>Tera-Wasserburg: <sup>207</sup>Pb/<sup>206</sup>Pb " +
@@ -30,7 +18,7 @@ function help(id,lang){
 	    "<sup>208</sup>Pb/<sup>232</sup>Th vs. " +
 	    "<sup>206</sup>Pb/<sup>238</sup>U</li></ol>";
 	break;
-    case "help-conc-age-option":
+    case "help_conc_age_option":
 	text = "Select the option to either <ul> " +
 	    "<li>plot the data without calculating an age</i> " +
 	    "<li>fit a concordia composition and age</li> " +
@@ -48,95 +36,95 @@ function help(id,lang){
 	    "algorithm that includes accounts for any overdispersion by adding a " +
 	    "geological (co)variance <i>term</i>.</li></ul>";
 	break;
-    case "help-mint-concordia":
+    case "help_mint_concordia":
 	text = "Set the minimum age limit for the concordia diagram " + 
 	    "(a number between 0 and 4568 Ma). Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-maxt-concordia":
+    case "help_maxt_concordia":
 	text = "Set the maximum age limit for the concordia diagram " + 
 	    "(a number between 0 and 4568 Ma). Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-common-Pb-option":
+    case "help_common_Pb_option":
 	text = "apply a common lead correction with one of three methods:<ol>" +
 	    "<li>use a nominal initial Pb-composition</li>" +
 	    "<li>use the isochron intercept as the initial Pb-composition</li>" +
 	    "<li class='hide4PbPb'>infer the initial Pb-composition from the Stacey & Kramers " +
 	    "two stage isotope evolution model</li></ol>";
 	break;
-    case "help-anchor-option":
+    case "help_anchor_option":
 	text = "Select an option to either <ol> " +
 	    "<li>Fit the discordia line without external constraints</li>" +
 	    "<li>Anchor the discordia line to a particular age</li>" +
 	    "<li>Anchor the discordia line to a particular common Pb composition</li></ol>";
 	break;
-    case "help-tanchor":
+    case "help_tanchor":
 	text = "Anchor the discordia line fit to a specific concordia age.";
 	break;
-    case "help-mint-average":
+    case "help_mint_average":
 	text = "Set the minimum age limit for the y-axis of the " + 
 	    "weighted mean plot. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-maxt-average":
+    case "help_maxt_average":
 	text = "Set the maximum age limit for the y-axis of the " +
 	    "weighted mean plot. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-ranked":
+    case "help_ranked":
 	text = "Arrange the measurements in order of increasing value?";
 	break;
-    case "help-mint-radial":
+    case "help_mint_radial":
 	text = "Set the minimum age limit for the radial scale. " + 
 	    "Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-maxt-radial":
+    case "help_maxt_radial":
 	text = "Set the maximum age limit for the radial scale." +
 	    "Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-transform-evolution":
+    case "help_transform_evolution":
 	text = "Ticking this box plots <sup>234</sup>U/<sup>238</sup>U vs. age. " +
 	    "Unticking it plots <sup>234</sup>U/<sup>238</sup>U vs. " +
 	    "<sup>230</sup>Th/<sup>238</sup>U.";
 	break;
-    case "help-mint-evolution":
+    case "help_mint_evolution":
 	text = "Set the minimum Th-U age limit for the evolution diagram. " + 
 	    "Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-maxt-evolution":
+    case "help_maxt_evolution":
 	text = "Set the maximum Th-U age limit for the evolution diagram. " + 
 	    "Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-min08":
+    case "help_min08":
 	text = "Set the minimum <sup>230</sup>Th/<sup>238</sup>U ratio " +
 	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-max08":
+    case "help_max08":
 	text = "Set the maximum <sup>230</sup>Th/<sup>238</sup>U ratio " +
 	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-min48":
+    case "help_min48":
 	text = "Set the minimum <sup>234</sup>U/<sup>238</sup>U ratio " +
 	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-max48":
+    case "help_max48":
 	text = "Set the maximum <sup>234</sup>U/<sup>238</sup>U ratio " +
 	    "limit for the evolution diagram. Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-isochron-evolution":
+    case "help_isochron_evolution":
 	text = "Fit an isochron through the data using the algorithm " +
 	    "of Ludwig and Titterington (1994)?";
 	break;
-    case "help-diseq":
+    case "help_diseq":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on: <ol>" +
 	    "<li> the initial <sup>234</sup>U/<sup>238</sup>U, <sup>230</sup>Th/<sup>238</sup>U, " +
 	    "<sup>226</sup>Ra/<sup>238</sup>U and <sup>231</sup>Pa/<sup>235</sup>U activity " +
@@ -149,7 +137,7 @@ function help(id,lang){
 	    "can also be calculated from the measured Th/U ratio of the magma. This " +
 	    "can be determined from the whole rock and or volcanic glass.</li></ol>";
 	break;
-    case "help-detritus":
+    case "help_detritus":
 	text = "Choose one of four ways of dealing with detrital " +
 	    "<sup>230</sup>Th (and <sup>234</sup>U):" +
 	    "<ol><li>Do not apply a detrital <sup>230</sup>Th correction</li>" +
@@ -159,27 +147,27 @@ function help(id,lang){
 	    "<sup>234</sup>U-<sup>238</sup>U composition of the detritus</li>";
 	    "</ol>";
 	break;
-    case "help-Th02-ThU":
+    case "help_Th02_ThU":
 	text = "Specify the assumed initial <sup>230</sup>Th/" +
 	    "<sup>232</sup>Th activity ratio of the detritus and its standard error.";
 	break;
-    case "help-Th0U8-ThU":
+    case "help_Th0U8_ThU":
 	text = "Specify the measured present day <sup>230</sup>Th/" +
 	    "<sup>238</sup>U activity ratio of the detritus and its standard error.";
 	break;
-    case "help-Th2U8-ThU":
+    case "help_Th2U8_ThU":
 	text = "Specify the measured present day <sup>232</sup>Th/" +
 	    "<sup>238</sup> activity ratio of the detritus and its standard error.";
 	break;
-    case "help-U48-ThU":
+    case "help_U48_ThU":
 	text = "Specify the measured present day <sup>234</sup>U/" +
 	    "<sup>238</sup>U activity ratio of the detritus and its standard error.";
 	break;
-    case "help-U48-UPb":
+    case "help_U48_UPb":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
 	    "the initial or measured <sup>234</sup>U/<sup>238</sup>U activity ratio";
 	break;
-    case "help-ThU-UPb":
+    case "help_ThU_UPb":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
 	    "initial or measured <sup>230</sup>Th/<sup>238</sup>U activity ratio, " +
 	    "where the initial activity ratio is equivalent to the Th/U-fractionation " +
@@ -191,38 +179,38 @@ function help(id,lang){
 	    "This measured ratio is combined with the <sup>232</sup>Th/<sup>238</sup>U-ratio " +
 	    "of the minerals to compute the Th/U fractionation factor.</span>";
 	break;
-    case "help-RaU-UPb":
+    case "help_RaU_UPb":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
 	    "the initial <sup>226</sup>Ra/<sup>238</sup>U activity ratio";
 	break;
-    case "help-PaU-UPb":
+    case "help_PaU_UPb":
 	text = "Apply a secular disequilibrium correction to the U-Pb data, based on the " +
 	    "the initial <sup>231</sup>Pa/<sup>235</sup>U activity ratio";
 	break;
-    case "help-rXY-detritus":
+    case "help_rXY_detritus":
 	text = "Specify the error correlation between the measured " +
 	    "present day <sup>230</sup>Th/<sup>238</sup>U and " +
 	    "<sup>232</sup>Th/<sup>238</sup>U-ratios of the detritus.";
 	break;
-    case "help-rXZ-detritus":
+    case "help_rXZ_detritus":
 	text = "Specify the error correlation between the measured " +
 	    "present day <sup>230</sup>Th/<sup>238</sup>U and " +
 	    "<sup>234</sup>U/<sup>238</sup>U-ratios of the detritus.";
 	break;
-    case "help-rYZ-detritus":
+    case "help_rYZ_detritus":
 	text = "Specify the error correlation between the measured " +
 	    "present day <sup>232</sup>Th/<sup>238</sup>U and " +
 	    "<sup>234</sup>U/<sup>238</sup>U-ratios of the detritus.";
 	break;
-    case "help-alpha":
+    case "help_alpha":
 	text = "Set the probability cutoff (&alpha;) for error ellipses, " + 
 	    "and 100(1-&alpha;)% confidence intervals. ";
 	break;
-    case "help-outliers":
+    case "help_outliers":
 	text = "If checked, applies a generalised Chauvenet Criterion to " +
 	    "reject outliers and remove them from the weighted mean.";
 	break;
-    case "help-randomeffects":
+    case "help_randomeffects":
 	text = "<ul><li>If checked, computes the weighted mean using a random " +
 	    "effects model with two sources of uncertainty: the analytical " +
 	    "uncertainty and an overdispersion term.</li>" +
@@ -230,301 +218,301 @@ function help(id,lang){
 	    "excess scatter to an underestimation of the analytical uncertainties." +
 	    "The latter approach is the one taken by <tt>Isoplot</tt></li></ul>.";
 	break;
-    case "help-plateau":
+    case "help_plateau":
 	text = "If checked, <tt>IsoplotR</tt> computes the weighted mean of " +
 	    "the longest succession of steps that pass the generalised " +
 	    "Chauvenet Criterion for outliers, and marks the steps " +
 	    "belonging to this plateau in a different colour.";
 	break;
-    case "help-sigdig":
+    case "help_sigdig":
 	text = "The number of significant digits to which the numerical output should " +
 	    "be rounded. For example, if this number is 2, then 1.23456 &plusmn; " +
 	    "0.01234 is rounded to 1.234 &plusmn; 0.012.";
 	break;
-    case "help-exterr-UPb":
+    case "help_exterr_UPb":
 	text = "When this box is ticked, the thickness of the concordia line " + 
 	    "will be adjusted to show the analytical uncertainty associated " +
 	    "with the decay constants and <sup>238</sup>U/<sup>235</sup>U-ratio. " +
 	    "This uncertainty will also be propagated into any concordia or " +
 	    "discordia age calculations.";
 	break;
-    case "help-exterr-radial":
+    case "help_exterr_radial":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	    "with decay constants, calibration factors, etc. will be propagated into " +
 	    "the central age and mixture models.";
 	break;
-    case "help-exterr":
+    case "help_exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	    "with decay constants, calibration factors, etc. will be propagated into the age.";
 	break;
-    case "help-verticals":
+    case "help_verticals":
 	text = "When this box is ticked, the horizontal steps " +
 	    "are connected with vertical lines";
 	break;
-    case "help-colmap":
+    case "help_colmap":
 	text = "Specify one of the following colour palettes: " +
 	    "<tt>rainbow</tt>, <tt>cm.colors</tt>, <tt>topo.colors</tt>, " +
 	    "<tt>terrain.colors</tt>, or <tt>heat.colors</tt>.";
 	break;
-    case "help-shownumbers":
+    case "help_shownumbers":
 	text = "Add labels to the data points or error ellipses marking " +
 	    "the corresponding aliquot (i.e., the row number in the input table)."
 	break;
-    case "help-U238U235":
+    case "help_U238U235":
 	text = "The natural isotopic abundance ratio of uranium and it standard error. " +
 	    "Default values are taken from Hiess et al. (2012). " +
 	    "To use the IUGS-recommended value of Steiger and J&auml;ger (1977), " +
 	    "change this to 137.88 &plusmn; 0.";
 	break;
-    case "help-Pb207Pb206":
+    case "help_Pb207Pb206":
 	text = "Specify the initial <sup>207</sup>Pb/<sup>206</sup>Pb-ratio " +
 	    "to be used in a nominal common Pb correction or anchored discordia " +
 	    "line regression. The default value corresponds to the troilite " +
 	    "composition of Stacey and Kramers (1975).";
 	break;
-    case "help-Pb208Pb206":
+    case "help_Pb208Pb206":
 	text = "Specify the initial <sup>208</sup>Pb/<sup>206</sup>Pb-ratio " +
 	    "to be used in a nominal common Pb correction or anchored discordia " +
 	    "line regression. The default value corresponds to the troilite " +
 	    "composition of Stacey and Kramers (1975).";
 	break;
-    case "help-Pb208Pb207":
+    case "help_Pb208Pb207":
 	text = "Specify the initial <sup>208</sup>Pb/<sup>206</sup>Pb-ratio " +
 	    "to be used in a nominal common Pb correction or anchored discordia " +
 	    "line regression. The default value corresponds to the troilite " +
 	    "composition of Stacey and Kramers (1975).";
 	break;
-    case "help-Pb206Pb204":
+    case "help_Pb206Pb204":
 	text = "Specify the initial <sup>206</sup>Pb/<sup>204</sup>Pb-ratio " +
 	    "to be used in a nominal common Pb correction. The default value " +
 	    "corresponds to the troilite composition of Stacey and Kramers (1975).";
 	break;
-    case "help-Pb207Pb204":
+    case "help_Pb207Pb204":
 	text = "Specify the initial <sup>207</sup>Pb/<sup>204</sup>Pb-ratio " +
 	    "to be used in a nominal common Pb correction. The default value " +
 	    "corresponds to the troilite composition of Stacey and Kramers (1975).";
 	break;
-    case "help-LambdaU238":
+    case "help_LambdaU238":
 	text = "The default values of the <sup>238</sup>U decay constant " +
 	    "and its standard error are taken from Jaffey et al. (1971).";
 	break;
-    case "help-LambdaU235":
+    case "help_LambdaU235":
 	text = "The default values of the <sup>235</sup>U decay constant " +
 	    "and its standard error are taken from Jaffey et al. (1971).";
 	break;
-    case "help-LambdaU234":
+    case "help_LambdaU234":
 	text = "The default value of the <sup>234</sup>U decay constant " +
 	    "is taken from Cheng et al. (2013). Its standard error excludes " +
 	    "all covariant sources of analytical uncertainty with <sup>230</sup>Th.";
 	break;
-    case "help-LambdaTh230":
+    case "help_LambdaTh230":
 	text = "The default value of the <sup>230</sup>Th decay constant " +
 	    "is taken from Cheng et al. (2013). Its standard error excludes " +
 	    "all covariant sources of analytical uncertainty with <sup>234</sup>U.";
 	break;
-    case "help-LambdaRa226":
+    case "help_LambdaRa226":
 	text = "The default value of the <sup>226</sup>Ra decay constant " +
 	    "is taken from Audi et al. (2003).";
 	break;
-    case "help-LambdaPa231":
+    case "help_LambdaPa231":
 	text = "The default value of the <sup>231</sup>Pa decay constant " +
 	    "is taken from Audi et al. (2003).";
 	break;
-    case "help-PbPb-inverse":
+    case "help_PbPb_inverse":
 	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +
 	    "against <sup>204</sup>Pb/<sup>206</sup>Pb. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>207</sup>Pb/<sup>204</sup>Pb " +
 	    "against <sup>206</sup>Pb/<sup>204</sup>Pb.";
 	break;
-    case "help-ArAr-inverse":
+    case "help_ArAr_inverse":
 	text = "Selecting this box plots <sup>36</sup>Ar/<sup>40</sup>Ar " +
 	    "against <sup>39</sup>Ar/<sup>40</sup>Ar. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>40</sup>Ar/<sup>39</sup>Ar " +
 	    "against <sup>36</sup>Ar/<sup>39</sup>Ar.";
 	break;
-    case "help-KCa-inverse":
+    case "help_KCa_inverse":
 	text = "Selecting this box plots <sup>44</sup>Ca/<sup>40</sup>Ca " +
 	    "against <sup>40</sup>K/<sup>40</sup>Ca. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>40</sup>Ca/<sup>44</sup>Ca " +
 	    "against <sup>40</sup>K/<sup>44</sup>Ca.";
 	break;
-    case "help-RbSr-inverse":
+    case "help_RbSr_inverse":
 	text = "Selecting this box plots <sup>86</sup>Sr/<sup>87</sup>Sr " +
 	    "against <sup>87</sup>Rb/<sup>87</sup>Sr. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>87</sup>Sr/<sup>86</sup>Sr " +
 	    "against <sup>87</sup>Rb/<sup>86</sup>Sr.";
 	break;
-    case "help-SmNd-inverse":
+    case "help_SmNd_inverse":
 	text = "Selecting this box plots <sup>144</sup>Nd/<sup>143</sup>Nd " +
 	    "against <sup>147</sup>Sm/<sup>143</sup>Nd. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>143</sup>Nd/<sup>144</sup>Nd " +
 	    "against <sup>147</sup>Sm/<sup>144</sup>Nd.";
 	break;
-    case "help-LuHf-inverse":
+    case "help_LuHf_inverse":
 	text = "Selecting this box plots <sup>177</sup>Hf/<sup>176</sup>Hf " +
 	    "against <sup>176</sup>Lu/<sup>176</sup>Hf. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>176</sup>Hf/<sup>177</sup>Hf " +
 	    "against <sup>176</sup>Lu/<sup>177</sup>Hf.";
 	break;
-    case "help-ReOs-inverse":
+    case "help_ReOs_inverse":
 	text = "Selecting this box plots <sup>188</sup>Os/<sup>187</sup>Os " +
 	    "against <sup>187</sup>Re/<sup>187</sup>Os. Otherwise, " +
 	    "<tt>IsoplotR</tt> plots <sup>187</sup>Os/<sup>188</sup>Os " +
 	    "against <sup>187</sup>Re/<sup>188</sup>Os.";
 	break;
-    case "help-isochron-minx":
-    case "help-minx-concordia":
+    case "help_isochron_minx":
+    case "help_minx_concordia":
 	text = "Minimum limit of the horizontal axis. " +
 	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
 	    "automatically set a suitable value.";
 	break;
-    case "help-isochron-maxx":
-    case "help-maxx-concordia":
+    case "help_isochron_maxx":
+    case "help_maxx_concordia":
 	text = "Maximum limit of the horizontal axis." +
 	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
 	    "automatically set a suitable value.";
 	break;
-    case "help-isochron-miny":
-    case "help-miny-concordia":
+    case "help_isochron_miny":
+    case "help_miny_concordia":
 	text = "Minimum limit of the vertical axis." +
 	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
 	    "automatically set a suitable value.";
 	break;
-    case "help-isochron-maxy":
-    case "help-maxy-concordia":
+    case "help_isochron_maxy":
+    case "help_maxy_concordia":
 	text = "Maximum limit of the vertical axis." +
 	    "Type <tt>auto</tt> to have <tt>IsoplotR</tt> " +
 	    "automatically set a suitable value.";
 	break;
-    case "help-isochron-exterr":
+    case "help_isochron_exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	    "with the radioactive decay constant and the non-radiogenic " +
 	    "isotope composition is propagated into the age.";
 	break;
-    case "help-PbPb-growth":
+    case "help_PbPb_growth":
 	text = "When this box is ticked, <tt>IsoplotR</tt> adds " +
 	    "Stacey & Kramer (1975)'s two-stage Pb growth curve to the plot. " +
 	    "This shows the evolution of the Pb isotopic composition for a " +
 	    "hypothesised Earth reservoir with a fixed U/Pb ratio.";
 	break;
-    case "help-Ar40Ar36":
+    case "help_Ar40Ar36":
 	text = "The default values for the atmospheric ('excess') argon ratio " +
 	    "and its standard error are taken from Lee et al. (2006).";
 	break;
-    case "help-LambdaK40":
+    case "help_LambdaK40":
 	text = "The default values for the decay constant of <sup>40</sup>K " +
 	    "and its standard error are taken from Renne et al. (2011).";
 	break;
-    case "help-Ca40Ca44":
+    case "help_Ca40Ca44":
 	text = ratioMessage("<sup>40</sup>Ca/<sup>44</sup>Ca","Moore and Machlan (1972)");
 	break;
-    case "help-Re185Re187":
+    case "help_Re185Re187":
 	text = ratioMessage("<sup>185</sup>Re/<sup>187</sup>Re","Gramlich et al. (1973)");
 	break;
-    case "help-Os184Os192":
+    case "help_Os184Os192":
 	text = ratioMessage("<sup>184</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
-    case "help-Os186Os192":
+    case "help_Os186Os192":
 	text = ratioMessage("<sup>186</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
-    case "help-Os187Os192":
+    case "help_Os187Os192":
 	text = "Change the initial <sup>187</sup>Os/<sup>192</sup>Os ratio " +
 	    "and its standard error. This value is only used to calculate ages " +
 	    "if the isochron option has been switched off. The default ratio is " +
 	    "taken from Voelkening et al. (1991).";
 	break;
-    case "help-Os188Os192":
+    case "help_Os188Os192":
 	text = ratioMessage("<sup>188</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
-    case "help-Os189Os192":
+    case "help_Os189Os192":
 	text = ratioMessage("<sup>189</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
-    case "help-Os190Os192":
+    case "help_Os190Os192":
 	text = ratioMessage("<sup>190</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
-    case "help-LambdaRe187":
+    case "help_LambdaRe187":
 	text = "The default values of the <sup>187</sup>Re decay constant " +
 	    "and its standard error are taken from Selby et al. (2007).";
 	break;
-    case "help-Sm144Sm152":
+    case "help_Sm144Sm152":
 	text = ratioMessage("<sup>144</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
-    case "help-Sm147Sm152":
+    case "help_Sm147Sm152":
 	text = ratioMessage("<sup>147</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
-    case "help-Sm148Sm152":
+    case "help_Sm148Sm152":
 	text = ratioMessage("<sup>148</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
-    case "help-Sm149Sm152":
+    case "help_Sm149Sm152":
 	text = ratioMessage("<sup>149</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
-    case "help-Sm150Sm152":
+    case "help_Sm150Sm152":
 	text = ratioMessage("<sup>150</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
-    case "help-Sm154Sm152":
+    case "help_Sm154Sm152":
 	text = ratioMessage("<sup>154</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
 	break;
-    case "help-Nd142Nd144":
+    case "help_Nd142Nd144":
 	text = ratioMessage("<sup>142</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
-    case "help-Nd143Nd144":
+    case "help_Nd143Nd144":
 	text = ratioMessage("<sup>143</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
-    case "help-Nd145Nd144":
+    case "help_Nd145Nd144":
 	text = ratioMessage("<sup>145</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
-    case "help-Nd146Nd144":
+    case "help_Nd146Nd144":
 	text = ratioMessage("<sup>146</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
-    case "help-Nd148Nd144":
+    case "help_Nd148Nd144":
 	text = ratioMessage("<sup>148</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
-    case "help-Nd150Nd144":
+    case "help_Nd150Nd144":
 	text = ratioMessage("<sup>150</sup>Sm/<sup>144</sup>Nd","Zhao et al. (2005)");
 	break;
-    case "help-Rb85Rb87":
+    case "help_Rb85Rb87":
 	text = ratioMessage("<sup>85</sup>Rb/<sup>87</sup>Rb","Catanzaro et al. (1969)");
 	break;
-    case "help-Sr84Sr86":
+    case "help_Sr84Sr86":
 	text = ratioMessage("<sup>84</sup>Sr/<sup>86</sup>Sr","Moore et al. (1982)");
 	break;
-    case "help-Sr87Sr86":
+    case "help_Sr87Sr86":
 	text = ratioMessage("<sup>87</sup>Sr/<sup>86</sup>Sr","Compston et al. (1971)");
 	break;
-    case "help-Sr88Sr86":
+    case "help_Sr88Sr86":
 	text = ratioMessage("<sup>88</sup>Sr/<sup>86</sup>Sr","Moore et al. (1982)");
 	break;
-    case "help-Lu176Lu175":
+    case "help_Lu176Lu175":
 	text = ratioMessage("<sup>176</sup>Lu/<sup>175</sup>Lu","De Laeter and Bukilich (2006)");
 	break;
-    case "help-Hf174Hf177":
+    case "help_Hf174Hf177":
 	text = ratioMessage("<sup>174</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
-    case "help-Hf176Hf177":
+    case "help_Hf176Hf177":
 	text = ratioMessage("<sup>176</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
-    case "help-Hf178Hf177":
+    case "help_Hf178Hf177":
 	text = ratioMessage("<sup>178</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
-    case "help-Hf179Hf177":
+    case "help_Hf179Hf177":
 	text = ratioMessage("<sup>179</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
-    case "help-Hf180Hf177":
+    case "help_Hf180Hf177":
 	text = ratioMessage("<sup>180</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
-    case "help-LambdaLu176":
+    case "help_LambdaLu176":
 	text = ratioMessage("","");
 	text = "The default values of the <sup>176</sup>Lu decay constant " +
 	    "and its standard error are taken from S&ouml;derlund et al. (2004).";
 	break;
-    case "help-show_p":
+    case "help_show_p":
 	text = "Show the p-value for concordance for each aliquot to the output " +
 	    "table. Note: it would be unwise to use the p-value value as a " +
 	    "concordance filter. Doing so would 'punish' high precision measurements, " +
 	    "which are more likely to fail the Chi-square test than low precision " +
 	    "measurements. The latter would therefore be 'rewarded' by such a criterion.";
 	break;
-    case "help-ReOs-i2i":
+    case "help_ReOs_i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Re-Os data as an initial " +
 	    "<sup>187</sup>Os/<sup>188</sup>Os-ratio for the age calculations. " +
@@ -532,51 +520,51 @@ function help(id,lang){
 	    "<sup>187</sup>Os/<sup>192</sup>Os- and " +
 	    "<sup>188</sup>Os/<sup>192</sup>Os-ratios above.";
 	break;
-    case "help-SmNd-i2i":
+    case "help_SmNd_i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Sm-Nd data as an initial " +
 	    "<sup>143</sup>Nd/<sup>144</sup>Nd-ratio for the age calculations. " +
 	    "Unticking it uses the ratio given above.";
 	break;
-    case "help-RbSr-i2i":
+    case "help_RbSr_i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Rb-Sr data as an initial " +
 	    "<sup>87</sup>Sr/<sup>86</sup>Sr-ratio for the age calculations. " +
 	    "Unticking it uses the ratio given above.";
 	break;
-    case "help-LuHf-i2i":
+    case "help_LuHf_i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Lu-Hf data as an initial " +
 	    "<sup>176</sup>Hf/<sup>177</sup>Hf-ratio for the age calculations. " +
 	    "Unticking it uses the ratio given above.";
 	break;
-    case "help-ArAr-i2i":
+    case "help_ArAr_i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the Ar data as an initial " +
 	    "<sup>40</sup>Ar/<sup>36</sup>Ar-ratio for the age calculations. " +
 	    "Unticking it uses the atmospheric ratio specified above.";
 	break;
-    case "help-KCa-i2i":
+    case "help_KCa_i2i":
 	text = "Ticking this box uses the y-intercept of an isochron fit " +
 	    "through all the K-Ca data as an initial " +
 	    "<sup>40</sup>Ca/<sup>44</sup>Ca-ratio for the age calculations. " +
 	    "Unticking it uses the <sup>40</sup>Ca/<sup>44</sup>Ca-ratio above.";
 	break;
-    case "help-ThU-i2i":
+    case "help_ThU_i2i":
 	text = "Ticking this box uses and isochron fit " +
 	    "to estimate the initial <sup>230</sup>Th-component.";
 	break;
-    case "help-minx":
+    case "help_minx":
 	text = "Minimum age constraint of the KDE. " +
             "Setting this to <tt>auto</tt> automatically sets this " +
             "value to include the smallest value in the dataset.";
 	break;
-    case "help-maxx":
+    case "help_maxx":
 	text = "Maximum age constraint of the KDE. " +
             "Setting this to <tt>auto</tt> automatically sets this " +
             "value to include the smallest value in the dataset.";
 	break;
-    case "help-bandwidth":
+    case "help_bandwidth":
 	text = "The bandwidth of the KDE affects the smoothness of the " +
             "density estimate. On linear scales, this value has units of age " +
 	    "(in Ma). On a log-scale, the bandwidth is a fractional value. " +
@@ -585,7 +573,7 @@ function help(id,lang){
 	    "to <tt>auto</tt> automatically selects a value based on the " +
             "algorithm of Botev et al. (2010).";
 	break;
-    case "help-binwidth":
+    case "help_binwidth":
 	text = "On linear scales, the histogram binwidth has units of age " +
 	    "(in Ma). On a log-scale, the binwidth is a fractional value. " +
             "For example, in the latter case, a value of 0.1 indicates " +
@@ -594,45 +582,41 @@ function help(id,lang){
             "according to to Sturges' Rule, i.e. N=log<sub>2</sub>(n)+1, " +
             "where n is the number of ages and N is the number of bins.";
 	break;
-    case "help-binwidth":
-	text = "On linear scales, the histogram binwidth has units of age " +
-	    "(in Ma). On a log-scale, the binwidth is a fractional value. " +
-            "For example, in the latter case, a value of 0.1 indicates " +
-            "a histogram binwidth that is 10% of the age. Setting the binwidth " +
-	    "to <tt>auto</tt> automatically sets the number of bins " +
-            "according to to Sturges' Rule, i.e. N=log<sub>2</sub>(n)+1, " +
-            "where n is the number of ages and N is the number of bins.";
-	break;
-    case "help-pch":
+    case "help_pch":
 	text = "The single-grain ages may be shown under the KDE plot " +
 	    "This can either be a number (1-25) or a single character such as " +
 	    "'|', 'o', '*', '+', or '.'. Alternatively, enter <tt>none</tt> " +
 	    "to omit the plot character.";
 	break;
-    case "help-radial-pch":
+    case "help_pch_MDS":
+	text = "The plot symbols can either be set by a number (1-25), " +
+	    "or by a single character such as '|', 'o', '*', '+', or '.'. " +
+	    "Alternatively, enter <tt>none</tt> to omit the plot character.";
+	break;
+    case "help_radial_pch":
 	text = "The plot character can either be a number (1-25) or a " +
 	    "single character such as '|', 'o', '*', '+', or '.'.";
 	break;
-    case "help-pchdetritals":
+    case "help_pchdetritals":
 	text = "The single-grain ages may be shown under the KDE plot " +
 	    "This can either be a number (1-25) or a single character such as " +
 	    "'|','o', '*', '+', '.'. Alternatively, enter <tt>none</tt> " +
 	    "to omit the plot character.";
 	break;
-    case "help-pch-cad":
+    case "help_pch-cad":
 	text = "The beginning of each CAD step may be marked by a plot character. " +
 	    "This can either be a number (1-25) or a single character such as " +
 	    "'o', '*', or '+'. Alternatively, enter <tt>none</tt> " +
 	    "to omit the plot character.";
 	break;
-    case "help-cutoff76":
+    case "help_cutoff76":
 	text = "The <sup>206</sup>Pb/<sup>238</sup>U-method is more precise than " +
 	    "the <sup>207</sup>Pb/<sup>206</sup>Pb-method for young ages, while " +
 	    "the opposite is true for old ages. This box sets the cutoff age below " +
 	    "which the <sup>206</sup>Pb/<sup>238</sup>U-method, and above which " +
 	    "the <sup>207</sup>Pb/<sup>206</sup>Pb-method should be used.";
 	break;
-    case "help-discordance-filter":
+    case "help_discordance_filter":
 	text = "One of the great strengths of the U-Pb method is its ability to " +
 	    "to detect disruptions of the isotopic clock by Pb-loss by comparing " +
 	    "the degree of concordance between the <sup>206</sup>Pb/<sup>238</sup>U- " +
@@ -643,19 +627,19 @@ function help(id,lang){
 	    "common-Pb correction (in any). The former option is particularly " +
 	    "useful for datasets lacking <sup>204</sup>Pb.";
 	break;
-    case "help-mindisc":
+    case "help_mindisc":
 	text = "By default, the <sup>206</sup>Pb/<sup>238</sup>U-age " +
 	    "is allowed to be 15% younger than the <sup>207</sup>Pb/<sup>206</sup>Pb- " +
 	    "(or <sup>207</sup>Pb/<sup>235</sup>U)-age. " +
 	    "Different values can be set in this box." ;
 	break;
-    case "help-maxdisc":
+    case "help_maxdisc":
 	text = "By default, the <sup>206</sup>Pb/<sup>238</sup>U-age " +
 	    "is allowed to be 5% older than the <sup>207</sup>Pb/<sup>206</sup>Pb- " +
 	    "(or <sup>207</sup>Pb/<sup>235</sup>U)-age. " +
 	    "Different values can be set in this box." ;
 	break;
-    case "help-log":
+    case "help_log":
 	text = "Kernel Density Estimates are constructed by arranging all the ages " +
 	    "along the x-axis and stacking a Gaussian bell curve on top of each of " +
 	    "these, the standard deviation of which referred to as the 'bandwidth'. " +
@@ -665,11 +649,11 @@ function help(id,lang){
 	    "to avoid this problem is to apply a log-transformation to the data " +
 	    "before constructing the KDE. Simply tick this box to do so.";
 	break;
-    case "help-showhist":
+    case "help_showhist":
 	text = "Ticking this box adds a histogram to the KDE, whose area equals " +
 	    "that of the KDE itself, and adds a y-axis with the bin counts. ";
 	break;
-    case "help-adaptive":
+    case "help_adaptive":
 	text = "Adaptive KDEs allow the bandwidth of the kernels to vary along the " +
 	    "time axis, so that the 'resolution' of the density estimate is high " +
 	    "(and the bandwidth small) in densely sampled areas, and the resolution " +
@@ -677,7 +661,7 @@ function help(id,lang){
 	    "uses a simple algorithm developed by Abramson (1984) to modify the " +
 	    "bandwidth proportionally to the square root of a non-adaptive 'pilot' KDE."
 	break;
-    case "help-samebandwidth":
+    case "help_samebandwidth":
 	text = "To facilitate the visual comparison of multiple KDEs, it is useful to " +
 	    "use a common bandwidth. This can either be inforced by forcing the " +
 	    "the bandwidth using the appropriate text box or, if the bandwidth is set " +
@@ -685,23 +669,23 @@ function help(id,lang){
 	    "will use the median of all the automatically calculated bandwidths, " +
 	    "obtained using the Botev et al. (2010) algorithm.";
 	break;
-    case "help-normalise":
+    case "help_normalise":
 	text = "When this box is ticked, the area under each of the KDEs (and histograms) " +
 	    "will be normalised to a common value. Otherwise, the KDE will use the " +
 	    "entire range of y-values available.";
 	break;
-    case "help-headers-on":
+    case "help_headers_on":
 	text = "The names of the detrital samples can be specified on the first row of " +
 	    "the input table. Otherwise, the corresponding plots will be labeled with " +
 	    "the column headers of the table, i.e. the letters <tt>A</tt>, <tt>B</tt>, " +
 	    "... <tt>ZZ</tt>";
 	break;
-    case "help-hide-detritals":
+    case "help_hide_detritals":
 	text = "A comma-separated list of sample names or column numbers " +
 	    "that should be omitted from the plot. Examples: " +
 	    "<tt>1,2,15</tt> or <tt>'N1','N2','T8'</tt>";
 	break;
-    case "help-age-exterr":
+    case "help_age_exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	    "with the <sup>235</sup>U and <sup>238</sup>U decay constants will " +
 	    "be propagated into the age calculations. This is recommended if " +
@@ -711,56 +695,56 @@ function help(id,lang){
 	    "output table. <tt>IsoplotR</tt>'s concordia and radial plot functions " +
 	    "were designed to take into account this correlation.";
 	break;
-    case "help-zeta-exterr":
+    case "help_zeta_exterr":
 	text = "When this box is ticked, the analytical uncertainty associated " +
 	    "with the standard age and dosimeter glass will be propagated into the " +
 	    "&zeta;-calibration factor.";
 	break;
-    case "help-U238U235":
+    case "help_U238U235":
 	text = "Change the <sup>238</sup>U/<sup>235</sup>U ratio and its standard error. " +
             "Default values are taken from Hiess et al. (2012). To use Steiger " +
 	    "and Jaeger (1997), change to 137.88 &plusmn; 0";
 	break;
-    case "help-LambdaTh232":
+    case "help_LambdaTh232":
 	text = "The default values of the <sup>232</sup>Th decay constant " +
 	    "and its standard error are taken from Le Roux and Glendenin (1963).";
 	break;
-    case "help-LambdaSm147":
+    case "help_LambdaSm147":
 	text = "The default values of the <sup>147</sup>Sm decay constant " +
 	    "and its standard error are taken from Lugmair and Marti (1978).";
 	break;
-    case "help-LambdaRb87":
+    case "help_LambdaRb87":
 	text = "The default values of the <sup>87</sup>Rb decay constant " +
 	    "and its standard error are taken from Villa et al. (2015). To " +
 	    "use the old IUGS recommended values of Steiger and Jaeger (1977), " +
 	    "change to 0.000013972 &plusmn; 0.";
 	break;
-    case "help-logratio":
+    case "help_logratio":
 	text = "Ticking this box plots the U-Th-He data on a bivariate " +
 	    "log[Th/He] vs. log[U/He] diagram. Unticking this box produces " +
 	    "a U-Th-He ternary diagram.";
 	break;
-    case "help-showcentralcomp":
+    case "help_showcentralcomp":
 	text = "Ticking this box plots the geometric mean ('central') U-Th-He " +
 	    "composition and its standard error as a white ellipse.";
 	break;
-    case "help-minx-helioplot":
+    case "help_minx-helioplot":
 	text = "Minimum log[U/He] limit. Setting this to <tt>auto</tt> " +
 	    "automatically sets this value to fit all the data.";
 	break;
-    case "help-maxx-helioplot":
+    case "help_maxx-helioplot":
 	text = "Maximum log[U/He] limit. Setting this to <tt>auto</tt> " +
 	    "automatically sets this value to fit all the data.";
 	break;
-    case "help-miny-helioplot":
+    case "help_miny_helioplot":
 	text = "Minimum log[Th/He] limit. Setting this to <tt>auto</tt> " +
 	    "automatically sets this value to fit all the data.";
 	break;
-    case "help-maxy-helioplot":
+    case "help_maxy_helioplot":
 	text = "Maximum log[Th/He] limit. Setting this to <tt>auto</tt> " +
 	    "automatically sets this value to fit all the data.";
 	break;
-    case "help-fact":
+    case "help_fact":
 	text = "Three element vector of scaling factors for the He-Th-U ternary " +
 	    "diagram. For example, entering <tt>c(100,10,5)</tt> will multiply the " +
 	    "He abundance with 100, the Th abundance with 10 and the He abundance " +
@@ -769,12 +753,12 @@ function help(id,lang){
 	    "Entering <tt>auto</tt> automatically selects scaling factors that place the " +
 	    "geometric mean composition of the data at the barycentre of the diagram.";
 	break;
-    case "help-classical":
+    case "help_classical":
 	text = "This box controls whether to use classical (Torgerson/Gower) " +
 	    "or non-metric MDS. The latter is recommended except if it leads to " +
 	    "degenerate configurations, which may be the case for small datasets.";
 	break;
-    case "help-shepard":
+    case "help_shepard":
 	text = "Ticking this box replaces the MDS configuration with a 'Shepard plot', " +
 	    "in which the goodness-of-fit of a (non-metric) MDS configuration is " +
 	    "evaluated by plotting the fitted distances/disparities against the " +
@@ -783,7 +767,7 @@ function help(id,lang){
 	    "0, 0.025, 0.05, 0.1 and 0.2 indicate 'perfect', 'excellent', 'good', "+
 	    "'fair' and 'poor' fits, respectively.";
 	break;
-    case "help-nnlines":
+    case "help_nnlines":
 	text = "To help identify groups of samples on the MDS configuration whilst " +
 	    "simultaneously assessing the goodness-of-fit, it is sometimes useful " +
 	    "to add 'nearest neighbour lines', in which each sample is connected " +
@@ -792,28 +776,32 @@ function help(id,lang){
             "If the nearest neighbour lines cause too much clutter, it is " +
             "better to omit them.";
 	break;
-    case "help-ticks":
+    case "help_ticks":
 	text = "The disparity transformation used by the (non-metric) MDS algorithm " +
 	    "produces normalised values with no physical meaning. The " +
 	    "axes of the MDS configuration can therefore safely be removed, " +
 	    "which improves the ink-to-information ratio (sensu <i>Tufte</i>) " +
 	    "of the graphical output.";
 	break;
-    case "help-cex":
-	text = "The factor by which text labels and plotting symbols " +
+    case "help_cex":
+	text = "The factor by which text labels " +
 	    "should be magnified relative to the default (which is 1)";
 	break;
-    case "help-pos":
+    case "help_pcex":
+	text = "The factor by which plotting symbols " +
+	    "should be magnified relative to the default (which is 1)";
+	break;
+    case "help_pos":
 	text = "A position specifier for the labels. Values " +
 	    "of 1, 2, 3 and 4 indicate positions below, " +
 	    "to the left of, above and to the right of the " +
 	    "MDS coordinates, respectively.";
 	break;
-    case "help-col":
+    case "help_col":
 	text = "Outline colour for the plot symbols (e.g., " +
 	    "<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).";
 	break;
-    case "help-ellipse-col":
+    case "help_ellipse_col":
 	text = "Fill colour for the error ellipses. This can either be " +
 	    "a single colour or multiple colours to form a colour ramp:" +
 	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
@@ -831,7 +819,7 @@ function help(id,lang){
 	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
 	    "Enter <tt>NA</tt> for empty error ellipses.";
 	break;
-    case "help-bg":
+    case "help_bg":
 	text = "Fill colour for the plot symbols. This can either be " +
 	    "a single colour or multiple colours to form a colour ramp:" +
 	    "<ol><li>single colour: <tt>'#FF000080'</tt>, <tt>'#808080'</tt>, " +
@@ -849,25 +837,25 @@ function help(id,lang){
 	    "<tt>rev(topo.colors(n=100,alpha=0.5))</tt>, ...</li></ol>" +
 	    "Enter <tt>NA</tt> for empty plot symbols.";
 	break;
-    case "help-outlier-col":
+    case "help_outlier_col":
 	text = 	"Fill colour used to mark the outliers. Examples:<p></p>" +
 	    "<tt>'white'</tt>, <tt>'red'</tt>, <tt>'blue'</tt> ... <br>" +
 	    "<tt>'#FF000080'</tt>, <tt>'#808080'</tt>, ...<br>" +
 	    "<tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...<p></p>" +
 	    "Enter <tt>NA</tt> for empty plot symbols.";
 	break;
-    case "help-concordia-ticks":
+    case "help_concordia_ticks":
 	text = "Comma-separated list of custom age ticks for the concordia line.";
 	break;
-    case "help-clabel":
+    case "help_clabel":
 	text = "Text label for the (optional) colour scale";
 	break;
-    case "help-t0":
+    case "help_t0":
 	text = "Set the central value of the radial scale. " + 
 	    "Type <tt>auto</tt> to have " +
 	    "<tt>IsoplotR</tt> automatically set a suitable value.";
 	break;
-    case "help-transformation":
+    case "help_transformation":
 	text = "The radial scale of a radial plot displays transformed " +
 	    "values. For fission track data using the external detector method " +
 	    "the <tt>arcsin</tt> transformation is recommended. For other data " +
@@ -875,31 +863,31 @@ function help(id,lang){
 	    "appropriate one, although a <tt>linear</tt> options is also " +
 	    "available.";
 	break;
-    case "help-mineral-option":
+    case "help_mineral_option":
 	text = "Selecting a mineral (apatite or zircon) loads a set of suggested " +
 	    "values for the density, track length and efficiency factor. It is, " +
 	    "of course, possible to change these if necessary.";
 	break;
-    case "help-LambdaFission":
+    case "help_LambdaFission":
 	text = "The default value for the fission decay constant is the " +
 	    "consensus value of Holden and Hoffman (2000). ";
 	break;
-    case "help-etchfact":
+    case "help_etchfact":
 	text = "The efficiency factor corrects the bias caused by the " +
 	    "etching process. The default value for apatite is based on " +
 	    "the mean of 3 measurements by Iwano & Danhara (1998) and " +
 	    "1 measurement by Jonckheere (2003).";
 	break;
-    case "help-tracklength":
+    case "help_tracklength":
 	text = "The initial track length is needed to convert the surface " +
 	    "density (tracks per unit area) into a volume density " +
 	    "(tracks per unit volume).";
 	break;
-    case "help-mindens":
+    case "help_mindens":
 	text = "The mineral density is needed to convert the uranium " +
 	    "concentration from ppm to atoms per unit volume.";
 	break;
-    case "help-UPb-formats":
+    case "help_UPb_formats":
 	text = "Choose one of eight input formats:<ol>" +
 	    "<li><tt>X=07/35 err[X] Y=06/38 err[Y] rho</tt><br>" +
 	    "where <tt>07/35</tt> stands for the " +
@@ -928,7 +916,7 @@ function help(id,lang){
 	    "Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt>" +
 	    "</li></ol>";
 	break;
-    case "help-PbPb-formats":
+    case "help_PbPb_formats":
 	text = "Choose one of three input formats:<ol>" +
 	    "<li><tt>6/4 err[6/4] 7/4 err[7/4] rho</tt><br>" +
 	    "where <tt>rho</tt> is the error correlation between " +
@@ -939,7 +927,7 @@ function help(id,lang){
 	    "in which the error correlations are calculated from the " +
 	    "redundancies between the three sets of uncertainties.</li></ol>";
 	break;
-    case "help-ThU-formats":
+    case "help_ThU_formats":
 	text = "Choose one of four input formats:<ol>" +
 	    "<li><tt>X=8/2 err[8/2] Y=4/2 err[4/2] Z=0/2 err[0/2] " +
 	    "rho[X,Y] rho[X,Z] rho[Y,Z]</tt></li>" +
@@ -950,7 +938,7 @@ function help(id,lang){
 	    "<li><tt>2/8 err[2/8] 0/8 err[0/8] (rho)</tt><br>" +
 	    "where the error correlation is optional</li></ol>";
 	break;
-    case "help-KCa-formats":
+    case "help_KCa_formats":
 	text = "Choose one of three input formats:<ol>" +
 	    "<li><tt>X err[X] Y err[Y] rho</tt><br>" +
 	    "where <tt>X</tt> is the <sup>40</sup>K/<sup>44</sup>Ca ratio, " +
@@ -970,7 +958,7 @@ function help(id,lang){
 	    "three ratio uncertainties allows the covariance to be determined implicitly." +
 	    "</li></ol>";
 	break;
-    case "help-ArAr-formats":
+    case "help_ArAr_formats":
 	text = "Choose one of three input formats:<ol>" +
 	    "<li><tt>39/36 err[39/36] 40/36 err[40/36] rho (39)</tt><br>" +
 	    "where <tt>rho</tt> is the error correlation between " +
@@ -982,7 +970,7 @@ function help(id,lang){
 	    "in which the error correlations are calculated from the" +
 	    "redundancies between the three sets of uncertainties.</li></ol>";
 	break;
-    case "help-RbSr-formats":
+    case "help_RbSr_formats":
 	text = "Choose one of three input formats:<ol>" +
 	    "<li><tt>X=Rb87/Sr86 err[X] Y=Sr87/Sr86 err[Y] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
@@ -993,7 +981,7 @@ function help(id,lang){
 	    "<li><tt>Rb err[Rb] Sr err[Sr] 87/86 err[87/86]</tt><br>" +
 	    "where <tt>Rb</tt> and <tt>Sr</tt> are in ppm.</li></ol>";
 	break;
-    case "help-LuHf-formats":
+    case "help_LuHf_formats":
 	text = "Choose one of three input formats:<ol>" +
 	    "<li><tt>X=Lu176/Hf177 err[X] Y=Hf176/Hf177 err[Y] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
@@ -1004,7 +992,7 @@ function help(id,lang){
 	    "<li><tt>Lu err[Lu] Hf err[Hf] 176/177 err[176/177]</tt><br>" +
 	    "where <tt>Lu</tt> and <tt>Hf</tt> are in ppm.</li></ol>";
 	break;
-    case "help-ReOs-formats":
+    case "help_ReOs_formats":
 	text = "Choose one of three input formats:<ol>" +
 	    "<li><tt>X=Re187/Os188 err[X] Y=Os187/Os188 err[Y] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
@@ -1015,7 +1003,7 @@ function help(id,lang){
 	    "<li><tt>Re err[Re] Os err[Os] 187/188 err[187/188]</tt><br>" +
 	    "where <tt>Re</tt> and <tt>Os</tt> are in ppm.</li></ol>";
 	break;
-    case "help-SmNd-formats":
+    case "help_SmNd_formats":
 	text = "Choose one of three input formats:<ol>" +
 	    "<li><tt>X=Sm147/Nd144 err[X] Y=Nd143/Nd144 err[Y] (rho)</tt><br>" +
 	    "where <tt>rho</tt> is the (optional) error correlation between " +
@@ -1026,7 +1014,7 @@ function help(id,lang){
 	    "<li><tt>Sm err[Sm] Nd err[Nd] 143/144 err[143/144]</tt><br>" +
 	    "where <tt>Sm</tt> and <tt>Nd</tt> are in ppm.</li></ol>";
 	break;
-    case "help-FT-formats":
+    case "help_FT_formats":
 	text = "Choose one of three fission track dating methods:<ol>" +
 	    "<li>'EDM' = the External Detector Method: determines the " +
 	    "sample's uranium content by proxy, using neutron-induced tracks " +
@@ -1040,7 +1028,7 @@ function help(id,lang){
 	    "efficiency factor and uranium concentrations are known with " +
 	    "sufficient accuracy.</li></ol>";
 	break;
-    case "help-UPb-isochron-types":
+    case "help_UPb_isochron_types":
 	text = "Choose one of two input formats:<ol>" +
 	    "<li><span class='show4UPb4 show4UPb5 show4UPb6 hide4UPb7 hide4UPb8'>" +
 	    "<sup>204</sup>Pb/<sup>206</sup>Pb</span>" +
@@ -1056,7 +1044,7 @@ function help(id,lang){
 	    "Where <sup>208</sup>Pb<sub>o</sub> is the (inferred) " +
 	    "non-radiogenic <sup>208</sup>Pb-component.</span>";
 	break;
-    case "help-ThU-isochron-types":
+    case "help_ThU_isochron_types":
 	text = "Choose one of four input formats:<ol>" +
 	    "<li><sup>230</sup>Th/<sup>232</sup>Th vs. " +
 	    "<sup>238</sup>U/<sup>232</sup>Th (Rosholt type 2a)</li>" +
@@ -1067,7 +1055,7 @@ function help(id,lang){
 	    "<li><sup>234</sup>U/<sup>238</sup>U vs. " +
 	    "<sup>232</sup>Th/<sup>238</sup>U (Osmond type 2b)</li></ol>";
 	break;
-    case "help-regression-format":
+    case "help_regression_format":
 	text = "Choose one of two input formats:<ol>" +
 	    "<li><tt>X, err[X], Y, err[Y], rho</tt><br> where <tt>X</tt> and " +
 	    "<tt>Y</tt> are two sets of measurements, <tt>err[X]</tt> and " +
@@ -1078,7 +1066,7 @@ function help(id,lang){
 	    "allows the correlation coefficient between <tt>X/Z</tt> and " +
 	    "<tt>Y/Z</tt> to be computed.</li></ol>";
 	break;
-    case "help-helioplot-models":
+    case "help_helioplot_models":
 	text = "Choose one of the following statistical models:<ol>" +
 	    "<li>Weighted mean: This model assumes that the scatter between " +
 	    "the data points is solely caused by the analytical uncertainty. " +
@@ -1095,7 +1083,7 @@ function help(id,lang){
 	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>." +
 	    "</li></ol>";
 	break;
-    case "help-isochron-models":
+    case "help_isochron_models":
 	text = "Choose one of three regression models:<ol>" +
 	    "<li>Maximum Likelihood regression, using either the modified error weighted " +
 	    "least squares algorithm of York et al. (2004) for 2-dimensional data, " +
@@ -1120,7 +1108,7 @@ function help(id,lang){
 	    "uncertainty, which manifests itself as an added (co)variance <i>term</i>." +
 	    "</li></ol>";
 	break;
-    case "help-UPb-age-type":
+    case "help_UPb_age_type":
 	text = "Choose one of five options:<ol>" +
 	    "<li>Plot the <sup>207</sup>Pb/<sup>235</sup>U-ages</li>" +
 	    "<li>Plot the <sup>206</sup>Pb/<sup>238</sup>U-ages</li>" +
@@ -1131,7 +1119,7 @@ function help(id,lang){
 	    "<li class='hide4UPb1 hide4UPb2 hide4UPb3 hide4UPb4 hide4UPb5 hide4UPb6 show4UPb7 show4UPb8'>" +
 	    "Plot the <sup>208</sup>Pb/<sup>232</sup>Th-ages</li></ol>";
 	break;
-    case "help-mixtures":
+    case "help_mixtures":
 	text = "Peak fitting using the algorithms of Galbraith and Green (1990). " +
 	    "Assumes that the data are underlain by a true age distribution " +
 	    "consisting of a finite number (1-5) of discrete age peaks. " +

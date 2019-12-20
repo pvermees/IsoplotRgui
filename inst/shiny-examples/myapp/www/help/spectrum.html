@@ -1,19 +1,4 @@
-The <sup>40</sup>Ar/<sup>39</sup>Ar-age spectrum is a useful tool to
-visualise stepwise heating measurements. Its appearance is based on
-the weighted mean plot with the different heating steps arranged in
-order of increasing temperature along the horizontal axis, and the
-width of the different sample boxes proportional to the corresponding
-amounts of <sup>39</sup>Ar. <tt>IsoplotR</tt> defines the 'plateau
-age' as the weighted mean age of the longest sequence (in terms of
-cumulative <sup>39</sup>Ar content) of consecutive heating steps that
-pass a modified Chauvenet criterion.  This definition is different
-(and simpler) than the one used by <tt>Isoplot</tt> (Ludwig,
-2003). However, it is important to mention that all definitions of an
-age plateau are heuristic by nature and should therefore not be used
-for quantitative inference.  It is possible (and likely) that the
-plateau exhibits significant overdispersion. This overdispersion can
-be manually reduced by removing individual heating steps using the
-optional <tt>omit</tt> column.
+<div class="translate" id="spectrum_intro"></div>
 
 <p></p>
 <u>Legend:</u>
@@ -23,66 +8,40 @@ optional <tt>omit</tt> column.
   <li>
     mean = t &plusmn; x | y
     <p></p>
-    where:
+    <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
 	<td>t:</td>
-	<td>
-	  the plateau age, which is defined as the weighted mean age
-	  of the largest consecutive set of steps that survive the
-	  modified Chauvenet's Criterion used for the ordinary
-	  weighted mean.
-	</td>
+	<td class="translate" id="spectrum_t"></td>
       </tr>
       <tr>
 	<td>x:</td>
-	<td>
-	  the estimated standard deviation of <tt>t</tt>, estimated by
-	  the method of maximum likelihood.
-	</td>
+	<td class="translate" id="spectrum_t_x"></td>
       </tr>
       <tr>
 	<td>y:</td>
-	<td>
-	  the 100(1-&alpha;)% confidence interval for <tt>t</tt>. This
-	  is also shown as a grey band on the plot. The uncertainties
-	  associated with the random uncertainties are shown in dark
-	  grey, whereas the systematic uncertainties (i.e. J-factor
-	  and decay constant) are shown in light grey.
-	</td>
+	<td class="translate" id="spectrum_t_y"></td>
       </tr>      
     </table>
   </li>
   <li>
     MSWD = x, p(&chi;<sup>2</sup>) = y
     <p></p>
-    where:
+    <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
 	<td>
 	  x:
 	</td>
-	<td>
-	  the mean square of the weighted deviates (aka 'reduced
-	  chi-square statistic') of the plateau. <tt>IsoplotR</tt>'s
-	  plateau definition allows the MSWD to exceed 1, as long as
-	  the overdispersion does not violate Chauvenet's outlier
-	  criterion.
-	</td>
+	<td class="translate" id="spectrum_mswd_x"></td>
       </tr>
       <tr>
 	<td>
 	  y:
 	</td>
-	<td>
-	  p-value of a chi-square test of
-	  homogeneity. <tt>IsoplotR</tt>'s plateau definition allow
-	  the p-value to fall below the &alpha; cutoff, as long as the
-	  overdispersion does not violate Chauvenet's outlier
-	  criterion.
-	</td>
+	<td class="translate" id="spectrum_mswd_y"></td>
       </tr>
     </table>
   </li>
@@ -91,23 +50,21 @@ optional <tt>omit</tt> column.
     <span hidden class="show4ArAr"><sup>39</sup>Ar</span>
     <span hidden class="show4other">spectrum</span>
     <p></p>
-    where:
+    <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
 	<td>
 	  x:
 	</td>
-	<td>
-	  the sum of all the steps that are included in the plateau.
-	</td>
+	<td class="translate" id="spectrum_pct_39"></td>
       </tr>
     </table>
   </li>
 </ol>
 
 <p></p>
-<u>References:</u>
+<translate class="references"></translate>
 <p></p>
 
 Vermeesch, P. <tt>IsoplotR</tt>: a free and open toolbox for
