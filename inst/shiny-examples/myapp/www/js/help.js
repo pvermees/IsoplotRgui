@@ -293,12 +293,10 @@ function help(id){
 	    "corresponds to the troilite composition of Stacey and Kramers (1975).";
 	break;
     case "help_LambdaU238":
-	text = "The default values of the <sup>238</sup>U decay constant " +
-	    "and its standard error are taken from Jaffey et al. (1971).";
+	text = lambdaMessage("<sup>238</sup>U","Jaffey et al. (1971)");
 	break;
     case "help_LambdaU235":
-	text = "The default values of the <sup>235</sup>U decay constant " +
-	    "and its standard error are taken from Jaffey et al. (1971).";
+	text = lambdaMessage("<sup>235</sup>U","Jaffey et al. (1971)");
 	break;
     case "help_LambdaU234":
 	text = "The default value of the <sup>234</sup>U decay constant " +
@@ -311,12 +309,10 @@ function help(id){
 	    "all covariant sources of analytical uncertainty with <sup>234</sup>U.";
 	break;
     case "help_LambdaRa226":
-	text = "The default value of the <sup>226</sup>Ra decay constant " +
-	    "is taken from Audi et al. (2003).";
+	text = lambdaMessage("<sup>226</sup>Ra","Audi et al. (2003)");
 	break;
     case "help_LambdaPa231":
-	text = "The default value of the <sup>231</sup>Pa decay constant " +
-	    "is taken from Audi et al. (2003).";
+	text = lambdaMessage("<sup>231</sup>Pa","Audi et al. (2003)");
 	break;
     case "help_PbPb_inverse":
 	text = "Selecting this box plots <sup>207</sup>Pb/<sup>206</sup>Pb " +
@@ -400,8 +396,7 @@ function help(id){
 	    "and its standard error are taken from Lee et al. (2006).";
 	break;
     case "help_LambdaK40":
-	text = "The default values for the decay constant of <sup>40</sup>K " +
-	    "and its standard error are taken from Renne et al. (2011).";
+	text = lambdaMessage("<sup>40</sup>K","Renne et al. (2011)");
 	break;
     case "help_Ca40Ca44":
 	text = ratioMessage("<sup>40</sup>Ca/<sup>44</sup>Ca","Moore and Machlan (1972)");
@@ -431,8 +426,7 @@ function help(id){
 	text = ratioMessage("<sup>190</sup>Os/<sup>192</sup>Os","Voelkening et al. (1991)");
 	break;
     case "help_LambdaRe187":
-	text = "The default values of the <sup>187</sup>Re decay constant " +
-	    "and its standard error are taken from Selby et al. (2007).";
+	text = lambdaMessage("<sup>187</sup>Re","Selby et al. (2007)");
 	break;
     case "help_Sm144Sm152":
 	text = ratioMessage("<sup>144</sup>Sm/<sup>152</sup>Sm","Chang et al. (2002)");
@@ -501,9 +495,7 @@ function help(id){
 	text = ratioMessage("<sup>180</sup>Hf/<sup>177</sup>Hf","Patchett (1983)");
 	break;
     case "help_LambdaLu176":
-	text = ratioMessage("","");
-	text = "The default values of the <sup>176</sup>Lu decay constant " +
-	    "and its standard error are taken from S&ouml;derlund et al. (2004).";
+	text = lambdaMessage("<sup>176</sup>Lu","S&ouml;derlund et al. (2004)");
 	break;
     case "help_show_p":
 	text = "Show the p-value for concordance for each aliquot to the output " +
@@ -706,12 +698,10 @@ function help(id){
 	    "and Jaeger (1997), change to 137.88 &plusmn; 0";
 	break;
     case "help_LambdaTh232":
-	text = "The default values of the <sup>232</sup>Th decay constant " +
-	    "and its standard error are taken from Le Roux and Glendenin (1963).";
+	text = lambdaMessage("<sup>232</sup>Th","Le Roux and Glendenin (1963)");
 	break;
     case "help_LambdaSm147":
-	text = "The default values of the <sup>147</sup>Sm decay constant " +
-	    "and its standard error are taken from Lugmair and Marti (1978).";
+	text = lambdaMessage("<sup>147</sup>Sm","Lugmair and Marti (1978)");
 	break;
     case "help_LambdaRb87":
 	text = "The default values of the <sup>87</sup>Rb decay constant " +
@@ -1136,5 +1126,12 @@ function help(id){
 function ratioMessage(ratio,reference){
     var msg = "The default values for the natural " + ratio +
 	" ratio and its standard error are taken from " + reference + "."
+    return msg;
+}
+
+function lambdaMessage(nuclide,reference){
+    var msg = "The default values for the " + nuclide +
+	" decay constant and its standard error are taken from " +
+	reference + ".";
     return msg;
 }
