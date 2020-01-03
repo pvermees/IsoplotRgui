@@ -121,35 +121,35 @@ help_anchor_option,"Select an option to either <ol>
 </li><li>
 将不和谐线固定到特定的普通Pb组成上
 </li></ol>"
-help_Sr88Sr86,"The default values for the <sup>88</sup>Sr/<sup>86</sup>Sr decay constant and its standard error are taken from Moore et al. (1982)",
-help_Sr87Sr86,"The default values for the <sup>87</sup>Sr/<sup>86</sup>Sr decay constant and its standard error are taken from Compston et al. (1971)",
-help_Rb85Rb87,"The default values for the <sup>85</sup>Rb/<sup>87</sup>Rb decay constant and its standard error are taken from Catanzaro et al. (1969)",
-help_Sr84Sr86,"The default values for the <sup>84</sup>Sr/<sup>86</sup>Sr decay constant and its standard error are taken from Moore et al. (1982)",
-help_Ca40Ca44,"The default values for the <sup>40</sup>Ca/<sup>44</sup>Ca decay constant and its standard error are taken from Moore and Machlan (1972)",
-help_Os190Os192,"The default values for the <sup>190</sup>Os/<sup>192</sup>Os decay constant and its standard error are taken from Voelkening et al. (1991)",
-help_Os189Os192,"The default values for the <sup>189</sup>Os/<sup>192</sup>Os decay constant and its standard error are taken from Voelkening et al. (1991)",
-help_Os188Os192,"The default values for the <sup>188</sup>Os/<sup>192</sup>Os decay constant and its standard error are taken from Voelkening et al. (1991)",
-help_Os186Os192,"The default values for the <sup>186</sup>Os/<sup>192</sup>Os decay constant and its standard error are taken from Voelkening et al. (1991)",
-help_Re185Re187,"The default values for the <sup>185</sup>Re/<sup>187</sup>Re decay constant and its standard error are taken from Gramlich et al. (1973)",
-help_Os184Os192,"The default values for the <sup>184</sup>Os/<sup>192</sup>Os decay constant and its standard error are taken from Voelkening et al. (1991)",
-help_Hf180Hf177,"The default values for the <sup>180</sup>Hf/<sup>177</sup>Hf decay constant and its standard error are taken from Patchett (1983)",
-help_Hf179Hf177,"The default values for the <sup>179</sup>Hf/<sup>177</sup>Hf decay constant and its standard error are taken from Patchett (1983)",
-help_Hf178Hf177,"The default values for the <sup>178</sup>Hf/<sup>177</sup>Hf decay constant and its standard error are taken from Patchett (1983)",
-help_Lu176Lu175,"The default values for the <sup>176</sup>Lu/<sup>175</sup>Lu decay constant and its standard error are taken from De Laeter and Bukilich (2006)",
-help_Hf176Hf177,"The default values for the <sup>176</sup>Hf/<sup>177</sup>Hf decay constant and its standard error are taken from Patchett (1983)",
-help_Hf174Hf177,"The default values for the <sup>174</sup>Hf/<sup>177</sup>Hf decay constant and its standard error are taken from Patchett (1983)",
-help_Sm154Sm152,"The default values for the <sup>154</sup>Sm/<sup>152</sup>Sm decay constant and its standard error are taken from Chang et al. (2002)",
-help_Sm150Sm152,"The default values for the <sup>150</sup>Sm/<sup>152</sup>Sm decay constant and its standard error are taken from Chang et al. (2002)",
-help_Nd150Nd144,"The default values for the <sup>150</sup>Sm/<sup>144</sup>Nd decay constant and its standard error are taken from Zhao et al. (2005)",
-help_Sm149Sm152,"The default values for the <sup>149</sup>Sm/<sup>152</sup>Sm decay constant and its standard error are taken from Chang et al. (2002)",
-help_Sm148Sm152,"The default values for the <sup>148</sup>Sm/<sup>152</sup>Sm decay constant and its standard error are taken from Chang et al. (2002)",
-help_Nd148Nd144,"The default values for the <sup>148</sup>Sm/<sup>144</sup>Nd decay constant and its standard error are taken from Zhao et al. (2005)",
-help_Sm147Sm152,"The default values for the <sup>147</sup>Sm/<sup>152</sup>Sm decay constant and its standard error are taken from Chang et al. (2002)",
-help_Nd146Nd144,"The default values for the <sup>146</sup>Sm/<sup>144</sup>Nd decay constant and its standard error are taken from Zhao et al. (2005)",
-help_Nd145Nd144,"The default values for the <sup>145</sup>Sm/<sup>144</sup>Nd decay constant and its standard error are taken from Zhao et al. (2005)",
-help_Sm144Sm152,"The default values for the <sup>144</sup>Sm/<sup>152</sup>Sm decay constant and its standard error are taken from Chang et al. (2002)",
-help_Nd143Nd144,"The default values for the <sup>143</sup>Sm/<sup>144</sup>Nd decay constant and its standard error are taken from Zhao et al. (2005)",
-help_Nd142Nd144,"The default values for the <sup>142</sup>Sm/<sup>144</sup>Nd decay constant and its standard error are taken from Zhao et al. (2005)",
+help_Sr88Sr86,The default values for the <sup>88</sup>Sr/<sup>86</sup>Sr ratio and its standard error are taken from Moore et al. (1982),<sup>88</sup>Sr/<sup>86</sup>Sr 比的默认值及其标准误差取自 Moore et al. (1982)
+help_Sr87Sr86,The default values for the <sup>87</sup>Sr/<sup>86</sup>Sr ratio and its standard error are taken from Compston et al. (1971),<sup>87</sup>Sr/<sup>86</sup>Sr 比的默认值及其标准误差取自 Compston et al. (1971)
+help_Rb85Rb87,The default values for the <sup>85</sup>Rb/<sup>87</sup>Rb ratio and its standard error are taken from Catanzaro et al. (1969),<sup>85</sup>Rb/<sup>87</sup>Rb 比的默认值及其标准误差取自 Catanzaro et al. (1969)
+help_Sr84Sr86,The default values for the <sup>84</sup>Sr/<sup>86</sup>Sr ratio and its standard error are taken from Moore et al. (1982),<sup>84</sup>Sr/<sup>86</sup>Sr 比的默认值及其标准误差取自 Moore et al. (1982)
+help_Ca40Ca44,The default values for the <sup>40</sup>Ca/<sup>44</sup>Ca ratio and its standard error are taken from Moore and Machlan (1972),<sup>40</sup>Ca/<sup>44</sup>Ca 比的默认值及其标准误差取自 Moore and Machlan (1972)
+help_Os190Os192,The default values for the <sup>190</sup>Os/<sup>192</sup>Os ratio and its standard error are taken from Voelkening et al. (1991),<sup>190</sup>Os/<sup>192</sup>Os 比的默认值及其标准误差取自 Voelkening et al. (1991)
+help_Os189Os192,The default values for the <sup>189</sup>Os/<sup>192</sup>Os ratio and its standard error are taken from Voelkening et al. (1991),<sup>189</sup>Os/<sup>192</sup>Os 比的默认值及其标准误差取自 Voelkening et al. (1991)
+help_Os188Os192,The default values for the <sup>188</sup>Os/<sup>192</sup>Os ratio and its standard error are taken from Voelkening et al. (1991),<sup>188</sup>Os/<sup>192</sup>Os 比的默认值及其标准误差取自 Voelkening et al. (1991)
+help_Os186Os192,The default values for the <sup>186</sup>Os/<sup>192</sup>Os ratio and its standard error are taken from Voelkening et al. (1991),<sup>186</sup>Os/<sup>192</sup>Os 比的默认值及其标准误差取自 Voelkening et al. (1991)
+help_Re185Re187,The default values for the <sup>185</sup>Re/<sup>187</sup>Re ratio and its standard error are taken from Gramlich et al. (1973),<sup>185</sup>Re/<sup>187</sup>Re 比的默认值及其标准误差取自 Gramlich et al. (1973)
+help_Os184Os192,The default values for the <sup>184</sup>Os/<sup>192</sup>Os ratio and its standard error are taken from Voelkening et al. (1991),<sup>184</sup>Os/<sup>192</sup>Os 比的默认值及其标准误差取自 Voelkening et al. (1991)
+help_Hf180Hf177,The default values for the <sup>180</sup>Hf/<sup>177</sup>Hf ratio and its standard error are taken from Patchett (1983),<sup>180</sup>Hf/<sup>177</sup>Hf 比的默认值及其标准误差取自 Patchett (1983)
+help_Hf179Hf177,The default values for the <sup>179</sup>Hf/<sup>177</sup>Hf ratio and its standard error are taken from Patchett (1983),<sup>179</sup>Hf/<sup>177</sup>Hf 比的默认值及其标准误差取自 Patchett (1983)
+help_Hf178Hf177,The default values for the <sup>178</sup>Hf/<sup>177</sup>Hf ratio and its standard error are taken from Patchett (1983),<sup>178</sup>Hf/<sup>177</sup>Hf 比的默认值及其标准误差取自 Patchett (1983)
+help_Lu176Lu175,The default values for the <sup>176</sup>Lu/<sup>175</sup>Lu ratio and its standard error are taken from De Laeter and Bukilich (2006),<sup>176</sup>Lu/<sup>175</sup>Lu 比的默认值及其标准误差取自 De Laeter and Bukilich (2006)
+help_Hf176Hf177,The default values for the <sup>176</sup>Hf/<sup>177</sup>Hf ratio and its standard error are taken from Patchett (1983),<sup>176</sup>Hf/<sup>177</sup>Hf 比的默认值及其标准误差取自 Patchett (1983)
+help_Hf174Hf177,The default values for the <sup>174</sup>Hf/<sup>177</sup>Hf ratio and its standard error are taken from Patchett (1983),<sup>174</sup>Hf/<sup>177</sup>Hf 比的默认值及其标准误差取自 Patchett (1983)
+help_Sm154Sm152,The default values for the <sup>154</sup>Sm/<sup>152</sup>Sm ratio and its standard error are taken from Chang et al. (2002),<sup>154</sup>Sm/<sup>152</sup>Sm 比的默认值及其标准误差取自 Chang et al. (2002)
+help_Sm150Sm152,The default values for the <sup>150</sup>Sm/<sup>152</sup>Sm ratio and its standard error are taken from Chang et al. (2002),<sup>150</sup>Sm/<sup>152</sup>Sm 比的默认值及其标准误差取自 Chang et al. (2002)
+help_Nd150Nd144,The default values for the <sup>150</sup>Sm/<sup>144</sup>Nd ratio and its standard error are taken from Zhao et al. (2005),<sup>150</sup>Sm/<sup>144</sup>Nd 比的默认值及其标准误差取自 Zhao et al. (2005)
+help_Sm149Sm152,The default values for the <sup>149</sup>Sm/<sup>152</sup>Sm ratio and its standard error are taken from Chang et al. (2002),<sup>149</sup>Sm/<sup>152</sup>Sm 比的默认值及其标准误差取自 Chang et al. (2002)
+help_Sm148Sm152,The default values for the <sup>148</sup>Sm/<sup>152</sup>Sm ratio and its standard error are taken from Chang et al. (2002),<sup>148</sup>Sm/<sup>152</sup>Sm 比的默认值及其标准误差取自 Chang et al. (2002)
+help_Nd148Nd144,The default values for the <sup>148</sup>Sm/<sup>144</sup>Nd ratio and its standard error are taken from Zhao et al. (2005),<sup>148</sup>Sm/<sup>144</sup>Nd 比的默认值及其标准误差取自 Zhao et al. (2005)
+help_Sm147Sm152,The default values for the <sup>147</sup>Sm/<sup>152</sup>Sm ratio and its standard error are taken from Chang et al. (2002),<sup>147</sup>Sm/<sup>152</sup>Sm 比的默认值及其标准误差取自 Chang et al. (2002)
+help_Nd146Nd144,The default values for the <sup>146</sup>Sm/<sup>144</sup>Nd ratio and its standard error are taken from Zhao et al. (2005),<sup>146</sup>Sm/<sup>144</sup>Nd 比的默认值及其标准误差取自 Zhao et al. (2005)
+help_Nd145Nd144,The default values for the <sup>145</sup>Sm/<sup>144</sup>Nd ratio and its standard error are taken from Zhao et al. (2005),<sup>145</sup>Sm/<sup>144</sup>Nd 比的默认值及其标准误差取自 Zhao et al. (2005)
+help_Sm144Sm152,The default values for the <sup>144</sup>Sm/<sup>152</sup>Sm ratio and its standard error are taken from Chang et al. (2002),<sup>144</sup>Sm/<sup>152</sup>Sm 比的默认值及其标准误差取自 Chang et al. (2002)
+help_Nd143Nd144,The default values for the <sup>143</sup>Sm/<sup>144</sup>Nd ratio and its standard error are taken from Zhao et al. (2005),<sup>143</sup>Sm/<sup>144</sup>Nd 比的默认值及其标准误差取自 Zhao et al. (2005)
+help_Nd142Nd144,The default values for the <sup>142</sup>Sm/<sup>144</sup>Nd ratio and its standard error are taken from Zhao et al. (2005),<sup>142</sup>Sm/<sup>144</sup>Nd 比的默认值及其标准误差取自 Zhao et al. (2005)
 help_mixtures,"Peak fitting using the algorithms of Galbraith and Green (1990). Assumes that the data are underlain by a true age distribution consisting of a finite number (1-5) of discrete age peaks. 'auto'-setting uses the Bayes Information Criterion (BIC) to pick a parsimonous number of components. Note that the number of peaks tends to increase with sample size! The 'minimum'-setting assumes that the true age distribution is a truncated Normal with a discrete component at its lowest, truncated end.",Galbraith and Green (1990)的算法进行峰拟合。假设数据由真实的年龄分布承担，该年龄分布由有限数量（1-5）的离散年龄峰组成。'auto'-设置使用贝叶斯信息准则（BIC）来挑选大量的组件。请注意，随着样本量的增加，峰的数量会增加！'minimum'-设置假设真实年龄分布是截断的正态，其最低截断端具有离散分量。
 help_col,"Outline colour for the plot symbols (e.g.,<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).",绘图符号的轮廓颜色（例如，<tt>black</tt>，<tt>red</tt>，<tt>green</tt>）。
 help_discordance_filter,"One of the great strengths of the U-Pb method is its ability to detect disruptions of the isotopic clock by Pb-loss by comparing the degree of concordance between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>207</sup>Pb/<sup>235</sup>U-clocks , or between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>207</sup>Pb/<sup>206</sup>Pb-clocks. A discordance filter can be applied either before or after the common-Pb correction (in any). The former option is particularly useful for datasets lacking <sup>204</sup>Pb.",U-Pb方法的一大优势是它能够通过比较<sup>206</sup>Pb/<sup>238</sup>U-时钟和<sup>207</sup>Pb/<sup>235</sup>U-时钟之间或<sup>206</sup>Pb/<sup>238</sup>U-时钟和<sup>207</sup>Pb/<sup>206</sup>Pb-时钟之间的一致性程度来检测Pb损失对同位素时钟的破坏。可以在普通Pb校正之前或之后（在任何情况下）应用不一致滤波器。前一个选项对缺少<sup>204</sup>Pb的数据集特别有用。
