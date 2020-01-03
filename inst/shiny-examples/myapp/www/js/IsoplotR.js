@@ -2143,7 +2143,7 @@ $(function(){
     });
     
     $('body').on('click', 'help', function(){
-	var text = help($(this).attr('id'));
+	var text = contextual_help[this.id][IsoplotR.settings.language];
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
 	showOrHide();
