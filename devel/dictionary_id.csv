@@ -1,274 +1,268 @@
 id,en,cn
-intro,"IsoplotR is an R package for geochronology that was designed to be free, flexible and future-proof. The package was named after but is not based on Ken Ludwig's popular Isoplot add-in to Microsoft Excel. It implements functions for U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, fission track and U-series disequilibrium dating as well as detrital geochronology.
-<p></p>
-This website provides easy to use point-and-click access to IsoplotR's most commonly used functions (see the <a href='#' onclick='$.tutorial();'>TUTORIAL</a> for details).  Alternatively, the same functions (and more) can also be accessed from the command-line through the IsoplotR package on <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a> and <a href='https://github.com/pvermees/IsoplotR/'>GitHub</a>.
-<p></p>","IsoplotR 是由 Pieter Vermeesch 使用 R 语言编写的开源软件,致敬了 Ken Ludwig 当年编写的 Excel 插件 Isoplot. 本程序支持如下的同位素组 合: U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, 裂变径迹(fission track)以及U系列元素 的不平衡定年(U-series disequilibrium dating),还有碎屑锆石的年代学 数据(detrital geochronology).
-<p></p>
-这个翻译是由<a href='https://github.com/cycleuser'>CycleUser</a> 编写的. 目的是为中文用户提供一个简单易用的图形界面, 以使用 IsoplotR 所提供的基本功能 (更多简介请点击 <a href='#' onclick='$.tutorial();'>这里来访问简单指南</a> 获取更多 信息). 其实这里的图形界面所包含的功能以及更多可定制的功能都可以通过 命令行版本的 IsoplotR 包来实现, 现已托管 在 <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a>.
-<p></p>"
+intro,"IsoplotR is an R package for geochronology that was designed to be free, flexible and future-proof. The package was named after but is not based on Ken Ludwig's popular Isoplot add-in to Microsoft Excel. It implements functions for U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, fission track and U-series disequilibrium dating as well as detrital geochronology. <p></p> This website provides easy to use point-and-click access to IsoplotR's most commonly used functions (see the <a href='#' onclick='$.tutorial();'>TUTORIAL</a> for details). Alternatively, the same functions (and more) can also be accessed from the command-line through the IsoplotR package on <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a> and <a href='https://github.com/pvermees/IsoplotR/'>GitHub</a>. <p></p>","IsoplotR 是由 Pieter Vermeesch 使用 R 语言编写的开源软件,致敬了 Ken Ludwig 当年编写的 Excel 插件 Isoplot. 本程序支持如下的同位素组 合: U-Pb, Pb-Pb, <sup>40</sup>Ar/<sup>39</sup>Ar, K-Ca, Rb-Sr, Sm-Nd, Lu-Hf, Re-Os, U-Th-He, 裂变径迹(fission track)以及U系列元素 的不平衡定年(U-series disequilibrium dating),还有碎屑锆石的年代学 数据(detrital geochronology). <p></p> 这个翻译是由<a href='https://github.com/cycleuser'>CycleUser</a> 编写的. 目的是为中文用户提供一个简单易用的图形界面, 以使用 IsoplotR 所提供的基本功能 (更多简介请点击 <a href='#' onclick='$.tutorial();'>这里来访问简单指南</a> 获取更多 信息). 其实这里的图形界面所包含的功能以及更多可定制的功能都可以通过 命令行版本的 IsoplotR 包来实现, 现已托管 在 <a href='https://cran.r-project.org/package=IsoplotR'>CRAN</a>. <p></p>"
 tutorial_title,Tutorial:,简单指南
 tutorial_gui,"1. <tt>IsoplotR</tt>'s graphical user interface (GUI) has four components: a top bar with selection menus for the various chronometers and plot devices, optional settings and documentation; an input table into which data can be pasted from spreadsheet applications; an output window displaying the graphical or numerical results; and a lower bar to import and export data and results.","1. <tt>IsoplotR</tt>的图形界面有四个主要的控制部分: 顶部菜单可以来选择所使用的同位素组合以及投图的设置选项, 还有帮助文档. 底部的输入和存储菜单, 可以打开本地文件进行数据导入,还可以将做好的图保存下来. 右侧的是投图输出的界面, 生成的图像就在这部分县市. 左侧的是表格化的数据显示界面, 导入的数据就在这里面."
 tutorial_alternative_formats,2. Alternative input formats are available through the <tt>Options</tt> menu.,2. 点击 <tt>Options</tt> 按钮可以调整所用的文档格式.
 tutorial_contextual_help,3. Contextual help can be accessed by clicking on any text within the <tt>Options</tt> menu.,3. 在 <tt>Options</tt>菜单内有很多内置的上下文帮助文档对一 些概念做了简要的解释.
 tutorial_further_documentation,"4. Further documentation is provided under the <tt>Help</tt> menu. This includes information about the input and output parameters, and a brief summary of the theoretical background with essential references.","4. 点击<tt>Help</tt>菜单可以看到详细的文档.其中包括输入输 出的参数,还包含本软件所用的理论基础的概要总结,以及相关的参 考文献出处."
-tutorial_saving,5. Data and settings can be saved in a <tt>.json</tt>  database format for future use.,"5. 数据以及投图设置等等都可以用<tt>.json</tt> 的格式来保存,这 种保存好的文件还可以随时加载到程序中去."
+tutorial_saving,5. Data and settings can be saved in a <tt>.json</tt> database format for future use.,"5. 数据以及投图设置等等都可以用<tt>.json</tt> 的格式来保存,这 种保存好的文件还可以随时加载到程序中去."
 ArAr_format_1,1. Normal,1.正常
 ArAr_format_2,2. Inverse,2.相反
-ArAr_format_3,3. Three ratios,
+ArAr_format_3,3. Three ratios,3.三组比值
 help_Ar40Ar36,Atmospheric <sup>40</sup>Ar/<sup>36</sup>Ar ratio:,大气<sup>40</sup>Ar/<sup>36</sup>Ar 比值
 help_LambdaK40,<sup>40</sup>K decay constant:,<sup>40</sup>K 衰变常数:
-help_show_p,Show p-value for concordance?,
-help_ArAr_i2i,Use isochron intercept as initial <sup>40</sup>Ar/<sup>36</sup>Ar-ratio?,
-help_KCa_i2i,Use isochron intercept as initial <sup>40</sup>Ca/<sup>44</sup>Ca-ratio?,
-help_SmNd_i2i,Use isochron intercept as initial <sup>143</sup>Nd/<sup>144</sup>Nd-ratio?,
-help_RbSr_i2i,Use isochron intercept as initial <sup>87</sup>Sr/<sup>86</sup>Sr-ratio?,
-help_LuHf_i2i,Use isochron intercept as initial <sup>176</sup>Hf/<sup>177</sup>Hf-ratio?,
-help_ThU_i2i,Use the isochron intercept to estimate the initial <sup>230</sup>Th/<sup>238</sup>U-ratio?,
-help_sigdig,Significant digits:,
-help_randomeffects,Random effects model?,
-help_outliers,Reject outliers?,
-help_ranked,Rank the ages?,
-help_UPb_age_type,Type of U-Pb age:,
-UPb_age_type_1,1: 07/35 age,
-UPb_age_type_2,2: 06/38 age,
-UPb_age_type_3,3: 07/06 age,
-UPb_age_type_4,4: 7/6/8 age,
-UPb_age_type_5,5: concordia age,
-UPb_age_type_6,6: 08/32 age,
-discordance_filter_before_common_Pb,before common Pb correction,
-discordance_filter_after_common_Pb,after common Pb correction,
-help_mindisc,Minimum discordance:,
-help_maxdisc,Maximum discordance:,
-help_mint_average,Minimum age limit:,
-help_maxt_average,Maximum age limit:,
-help_alpha,Probability cutoff:,
-help_clabel,Colour label:,
-help_outlier_col,Outlier colour:,
-help_bg,Fill colour:,
-help_cex,Font magnification:,
-help_colmap,Colour map:,
-help_concordia_type,Concordia type:,
-conc_age_option_0,no,
-conc_age_option_1,concordia,
-conc_age_option_2,discordia (model-1),
-conc_age_option_3,discordia (model-2),
-conc_age_option_4,discordia (model-3),
-no_discordia_anchor,no,
-discordia_age_anchor,age,
-help_tanchor,Discordia anchor:,
-help_mint_concordia,Minimum t:,最小量 t:
-help_maxt_concordia,Maximum t:,最大量 t:
-help_minx_concordia,Minimum X:,最小量 X:
-help_maxx_concordia,Maximum X:,最大量 X:
-help_miny_concordia,Minimum Y:,最小量 Y:
-help_maxy_concordia,Maximum Y:,最大量 Y:
-help_mineral_option,Mineral:,
-FT_ICP_absolute,ICP (absolute),
-FT_ICP_zeta,ICP (&zeta;),
-help_ellipse_col,Ellipse colour:,
-help_concordia_ticks,Age ticks:,
-help_shownumbers,Show sample numbers?,
-help_headers_on,Sample names on first row?,
-help_hide_detritals,Samples to omit:,
-help_transform_evolution,Plot as <sup>234</sup>U/<sup>238</sup>U vs. age?,
-help_isochron_evolution,Calculate isochron age?,
-help_evolution_isochron_models,Regression model:,
-FT_EDM,EDM,
-help_FT_formats,Method:,
-help_max48,Maximum <sup>234</sup>U/<sup>238</sup>U:,最大量 <sup>234</sup>U/<sup>238</sup>U:
-help_min48,Minimum <sup>234</sup>U/<sup>238</sup>U:,最小量 <sup>234</sup>U/<sup>238</sup>U:
-help_max08,Maximum <sup>230</sup>Th/<sup>238</sup>U:,最大量 <sup>230</sup>Th/<sup>238</sup>U:
-help_min08,Minimum <sup>230</sup>Th/<sup>238</sup>U:,最小量 <sup>230</sup>Th/<sup>238</sup>U:
-help_maxt_evolution,Maximum age:,
-help_mint_evolution,Minimum age:,
-isochron_model_3,3. Maximum likelihood with overdispersion,
-isochron_model_2,2. Ordinary least squares,
-isochron_model_1,1. Maximum likelihood,
-apatite,apatite,
-zircon,zircon,
-help_U238U235,<sup>238</sup>U/<sup>235</sup>U ratio:,<sup>238</sup>U/<sup>235</sup>U 比率:
-help_LambdaU238,<sup>238</sup>U decay constant:,<sup>238</sup>U 衰变常数:
-help_LambdaFission,<sup>238</sup>U fission decay constant:,
-help_etchfact,efficiency factor:,
-help_tracklength,equivalent isotropic track length:,
-help_mindens,mineral density:,
-help_logratio,Logratio plot?,
-help_showcentralcomp,Show central composition?,
-helioplot_model_1,1. Weighted mean,
-helioplot_model_2,2. Unweighted mean,
-helioplot_model_3,3. Weighted mean with overdispersion,
-help_minx_helioplot,Minimum log[U/He] limit:,
-help_maxx_helioplot,Maximum log[U/He] limit:,
-help_miny_helioplot,Minimum log[Th/He] limit:,
-help_maxy_helioplot,Maximum log[Th/He] limit:,
-help_fact,Scaling factors:,
-help_ierr,Input errors:,
-1se_abs,1se (abs),
-2se_abs,2se (abs),
-1se_rel,1se (%),
-2se_rel,2se (%),
-help_conc_age_option,Calculate,
-help_anchor_option,Anchored discordia line?,
-help_ThU_isochron_types,Type:,
-help_UPb_isochron_types,Type:,
-Rosholt_A,1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A),
-Rosholt_B,3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B),
-Osmond_A,2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A),
-Osmond_B,4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B),
-UPb_isochron_type_1,1. <tt>(04 or 08c)/06</tt> vs. <tt>38/06</tt>,
-UPb_isochron_type_2,2. <tt>(04 or 08c)/07</tt> vs. <tt>35/07</tt>,
-help_isochron_models,Model:,
-help_PbPb_growth,Add Stacey-Kramers Pb-Pb growth curve?,
-help_isochron_minx,Minimum X:,最小量 X:
-help_isochron_maxx,Maximum X:,最大量 X:
-help_isochron_miny,Minimum Y:,最小量 Y:
-help_isochron_maxy,Maximum Y:,最大量 Y:
-help_log,Take logarithms?,
-help_binwidth,Histogram binwidth:,
-help_bandwidth,Kernel bandwidth:,
+help_show_p,Show p-value for concordance?, 
+help_ArAr_i2i,Use isochron intercept as initial <sup>40</sup>Ar/<sup>36</sup>Ar-ratio?,使用等时线截距作为初始<sup>40</sup>Ar/<sup>36</sup>Ar比值
+help_KCa_i2i,Use isochron intercept as initial <sup>40</sup>Ca/<sup>44</sup>Ca-ratio?,使用等时线截距作为初始<sup>40</sup>Ca/<sup>44</sup>Ca比值
+help_SmNd_i2i,Use isochron intercept as initial <sup>143</sup>Nd/<sup>144</sup>Nd-ratio?,使用等时线截距作为初始<sup>143</sup>Nd/<sup>144</sup>Nd比值？
+help_RbSr_i2i,Use isochron intercept as initial <sup>87</sup>Sr/<sup>86</sup>Sr-ratio?,使用等时线截距作为初始<sup>87</sup>Sr/<sup>86</sup>Sr比值？
+help_LuHf_i2i,Use isochron intercept as initial <sup>176</sup>Hf/<sup>177</sup>Hf-ratio?,使用等时线截距作为初始 <sup>176</sup>Hf/<sup>177</sup>Hf比值？
+help_ThU_i2i,Use the isochron intercept to estimate the initial <sup>230</sup>Th/<sup>238</sup>U-ratio?,使用等时线截距估算初始<sup>230</sup>Th/<sup>238</sup>U比值？
+help_sigdig,Significant digits:,有效数字：
+help_randomeffects,Random effects model?,随机效应模型？
+help_outliers,Reject outliers?,回避异常值？
+help_ranked,Rank the ages?,年龄排序？
+help_UPb_age_type,Type of U-Pb age:,U-Pb年龄类型：
+UPb_age_type_1,1: 07/35 age,1：07/35年龄
+UPb_age_type_2,2: 06/38 age,2：06/38年龄
+UPb_age_type_3,3: 07/06 age,3：07/06年龄
+UPb_age_type_4,4: 7/6/8 age,4：7/6/8年龄
+UPb_age_type_5,5: concordia age,5：协和年龄
+UPb_age_type_6,6: 08/32 age,6：08/32年龄
+discordance_filter_before_common_Pb,before common Pb correction,普通铅校正前
+discordance_filter_after_common_Pb,after common Pb correction,普通铅校正后
+help_mindisc,Minimum discordance:,最小不协和度 
+help_maxdisc,Maximum discordance:,最大不协和度
+help_mint_average,Minimum age limit:,最小年龄限制
+help_maxt_average,Maximum age limit:,最大年龄限制
+help_alpha,Probability cutoff:,概率断开点：
+help_clabel,Colour label:,标注颜色：
+help_outlier_col,Outlier colour:,异常值颜色：
+help_bg,Fill colour:,充填颜色：
+help_cex,Font magnification:,字体放大倍数：
+help_colmap,Colour map:,颜色表：
+help_concordia_type,Concordia type:,协和类型：
+conc_age_option_0,no,否
+conc_age_option_1,concordia,协和
+conc_age_option_2,discordia (model-1),不协和（模式一）
+conc_age_option_3,discordia (model-2),不协和（模式二）
+conc_age_option_4,discordia (model-3),不协和（模式三）
+no_discordia_anchor,no,否
+discordia_age_anchor,age,年龄
+help_tanchor,Discordia anchor:,指定的不协和度
+help_mint_concordia,Minimum t:,t最小值：
+help_maxt_concordia,Maximum t:,t最大值：
+help_minx_concordia,Minimum X:,X轴最小值：
+help_maxx_concordia,Maximum X:,X轴最大值：
+help_miny_concordia,Minimum Y:,Y轴最小值：
+help_maxy_concordia,Maximum Y:,Y轴最大值：
+help_mineral_option,Mineral:,矿物：
+FT_ICP_absolute,ICP (absolute),ICP (绝对值)
+FT_ICP_zeta,ICP (&zeta;),ICP (&zeta;)
+help_ellipse_col,Ellipse colour:,误差椭圆颜色：
+help_concordia_ticks,Age ticks:,年龄刻度个数：
+help_shownumbers,Show sample numbers?,显示样品序号？
+help_headers_on,Sample names on first row?,样品名位于第一排？
+help_hide_detritals,Samples to omit:,需要忽略的样品：
+help_transform_evolution,Plot as <sup>234</sup>U/<sup>238</sup>U vs. age?,投图为<sup>234</sup>U/<sup>238</sup>U vs. 年龄？
+help_isochron_evolution,Calculate isochron age?,计算等时线年龄？
+help_evolution_isochron_models,Regression model:,回归模型：
+FT_EDM,EDM,外部检测法（EDM）
+help_FT_formats,Method:,方法：
+help_max48,Maximum <sup>234</sup>U/<sup>238</sup>U:,最大 <sup>234</sup>U/<sup>238</sup>U:
+help_min48,Minimum <sup>234</sup>U/<sup>238</sup>U:,最小 <sup>234</sup>U/<sup>238</sup>U:
+help_max08,Maximum <sup>230</sup>Th/<sup>238</sup>U:,最大 <sup>230</sup>Th/<sup>238</sup>U:
+help_min08,Minimum <sup>230</sup>Th/<sup>238</sup>U:,最小 <sup>230</sup>Th/<sup>238</sup>U:
+help_maxt_evolution,Maximum age:,最大年龄
+help_mint_evolution,Minimum age:,最小年龄
+isochron_model_3,3. Maximum likelihood with overdispersion,3.过度离散的极大似然估计
+isochron_model_2,2. Ordinary least squares,2.普通最小二乘法
+isochron_model_1,1. Maximum likelihood,1.极大似然估计
+apatite,apatite,磷灰石
+zircon,zircon,锆石
+help_U238U235,<sup>238</sup>U/<sup>235</sup>U ratio:,<sup>238</sup>U/<sup>235</sup>U 比率：
+help_LambdaU238,<sup>238</sup>U decay constant:,<sup>238</sup>U 衰变常数：
+help_LambdaFission,<sup>238</sup>U fission decay constant:,<sup>238</sup>U 裂变衰变常数：
+help_etchfact,efficiency factor:,效率因子
+help_tracklength,equivalent isotropic track length:,等效各向同性径迹长度：
+help_mindens,mineral density:,矿物密度：
+help_logratio,Logratio plot?,对数比率投图？
+help_showcentralcomp,Show central composition?,显示中心的组成
+helioplot_model_1,1. Weighted mean,1.加权平均
+helioplot_model_2,2. Unweighted mean,2.非加权平均
+helioplot_model_3,3. Weighted mean with overdispersion,3. 过度离散的加权平均
+help_minx_helioplot,Minimum log[U/He] limit:, log[U/He]下限：
+help_maxx_helioplot,Maximum log[U/He] limit:, log[U/He]上限：
+help_miny_helioplot,Minimum log[Th/He] limit:, log[Th/He]下限：
+help_maxy_helioplot,Maximum log[Th/He] limit:, log[Th/He]上限：
+help_fact,Scaling factors:,比例因子：
+help_ierr,Input errors:,输入误差类型：
+1se_abs,1se (abs),1se (绝对值)
+2se_abs,2se (abs),2se (绝对值)
+1se_rel,1se (%),1se (百分比)
+2se_rel,2se (%),2se (百分比)
+help_conc_age_option,Calculate,计算
+help_anchor_option,Anchored discordia line?,固定不谐和曲线
+help_ThU_isochron_types,Type:, 类型：
+help_UPb_isochron_types,Type:, 类型：
+Rosholt_A,1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A),1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A)
+Rosholt_B,3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B),3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B)
+Osmond_A,2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A),2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A)
+Osmond_B,4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B),4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B)
+UPb_isochron_type_1,1. <tt>(04 or 08c)/06</tt> vs. <tt>38/06</tt>,1. <tt>(04 or 08c)/06</tt> vs. <tt>38/06</tt>
+UPb_isochron_type_2,2. <tt>(04 or 08c)/07</tt> vs. <tt>35/07</tt>,2. <tt>(04 or 08c)/07</tt> vs. <tt>35/07</tt>
+help_isochron_models,Model:,模型：
+help_PbPb_growth,Add Stacey-Kramers Pb-Pb growth curve?,添加Stacey-KramersPb-Pb增长曲线？
+help_isochron_minx,Minimum X:,X轴最小值：
+help_isochron_maxx,Maximum X:,X轴最大值：
+help_isochron_miny,Minimum Y:,Y轴最小值：
+help_isochron_maxy,Maximum Y:,Y轴最大值：
+help_log,Take logarithms?,取对数？
+help_binwidth,Histogram binwidth:, 直方图组距宽度
+help_bandwidth,Kernel bandwidth:,内核带宽 
 help_Ca40Ca44,<sup>40</sup>Ca/<sup>44</sup>Ca ratio:,<sup>40</sup>Ca/<sup>44</sup>Ca 比率:
-KCa_format_3,3. Three ratios,
+KCa_format_3,3. Three ratios,3.三组比值
 KCa_format_2,2. Inverse,2.相反
 KCa_format_1,1. Normal,1.正常
-help_showhist,Show histogram?,
-help_adaptive,Adaptive KDE?,
-help_samebandwidth,Same bandwidth for all samples?,
-help_normalise,Normalise area under the KDEs?,
-help_Lu176Lu175,<sup>176</sup>Lu/<sup>175</sup>Lu ratio:,<sup>176</sup>Lu/<sup>175</sup>Lu 比率:
-help_Hf174Hf177,<sup>174</sup>Hf/<sup>177</sup>Hf ratio:,<sup>174</sup>Hf/<sup>177</sup>Hf 比率:
-help_Hf176Hf177,<sup>176</sup>Hf/<sup>177</sup>Hf ratio:,<sup>176</sup>Hf/<sup>177</sup>Hf 比率:
-help_Hf178Hf177,<sup>178</sup>Hf/<sup>177</sup>Hf ratio:,<sup>178</sup>Hf/<sup>177</sup>Hf 比率:
-help_Hf179Hf177,<sup>179</sup>Hf/<sup>177</sup>Hf ratio:,<sup>179</sup>Hf/<sup>177</sup>Hf 比率:
-help_Hf180Hf177,<sup>180</sup>Hf/<sup>177</sup>Hf ratio:,<sup>180</sup>Hf/<sup>177</sup>Hf 比率:
+help_showhist,Show histogram?, 显示直方图？
+help_adaptive,Adaptive KDE?,自适应核密度估计？
+help_samebandwidth,Same bandwidth for all samples?,所有样品相同的带宽？
+help_normalise,Normalise area under the KDEs?,核密度估计下的标准化面积？
+help_Lu176Lu175,<sup>176</sup>Lu/<sup>175</sup>Lu ratio:,<sup>176</sup>Lu/<sup>175</sup>Lu 比值：
+help_Hf174Hf177,<sup>174</sup>Hf/<sup>177</sup>Hf ratio:,<sup>174</sup>Hf/<sup>177</sup>Hf 比值：
+help_Hf176Hf177,<sup>176</sup>Hf/<sup>177</sup>Hf ratio:,<sup>176</sup>Hf/<sup>177</sup>Hf 比值：
+help_Hf178Hf177,<sup>178</sup>Hf/<sup>177</sup>Hf ratio:,<sup>178</sup>Hf/<sup>177</sup>Hf 比值：
+help_Hf179Hf177,<sup>179</sup>Hf/<sup>177</sup>Hf ratio:,<sup>179</sup>Hf/<sup>177</sup>Hf 比值：
+help_Hf180Hf177,<sup>180</sup>Hf/<sup>177</sup>Hf ratio:,<sup>180</sup>Hf/<sup>177</sup>Hf 比值：
 help_LambdaLu176,<sup>176</sup>Lu decay constant:,<sup>176</sup>Lu 衰变常数:
-help_classical,Classical MDS?,
-help_shepard,Shepard plot?,
-help_nnlines,Add nearest neighbour lines?,
-help_ticks,Show axes?,
-help_pcex,Plot symbol magnification:,
-help_Os186Os192,<sup>186</sup>Os/<sup>192</sup>Os ratio:,<sup>186</sup>Os/<sup>192</sup>Os 比率:
-help_pos,Label position:,
-help_col,Outline colour:,
+help_classical,Classical MDS?,古典多维尺度分析？
+help_shepard,Shepard plot?,Shepard投图？
+help_nnlines,Add nearest neighbour lines?,添加近邻线？
+help_ticks,Show axes?,显示坐标轴？
+help_pcex,Plot symbol magnification:,图标放大倍数：
+help_Os186Os192,<sup>186</sup>Os/<sup>192</sup>Os ratio:,<sup>186</sup>Os/<sup>192</sup>Os 比值:
+help_pos,Label position:,标注位置：
+help_col,Outline colour:,轮廓颜色：
 PbPb_format_1,1. Normal,1.正常
 PbPb_format_2,2. Inverse,2.相反
-PbPb_format_3,3. Three ratios,
-help_common_Pb_option,Common Pb correction:,
-common_Pb_correction_none,none,
-common_Pb_correction_nominal,nominal,
-common_Pb_correction_isochron,isochron,
+PbPb_format_3,3. Three ratios,3.三组比值
+help_common_Pb_option,Common Pb correction:, 普通铅校正类型
+common_Pb_correction_none,none,不作普通铅校正
+common_Pb_correction_nominal,nominal,指定普通铅值校正
+common_Pb_correction_isochron,isochron,等时线型普通铅校正
 help_LambdaU235,<sup>235</sup>U decay constant:,<sup>235</sup>U 衰变常数:
-help_Pb206Pb204,Initial <sup>206</sup>Pb/<sup>204</sup>Pb:,
-help_Pb207Pb204,Initial <sup>207</sup>Pb/<sup>204</sup>Pb:,
-help_transformation,Transformation:,
-radial_log,logarithmic,
-radial_lin,linear,
-radial_arcsin,arcsin,
-help_mixtures,Finite mixtures:,
-peakfit_none,0 (none),
-peakfit_auto,auto,
-peakfit_min,minimum,
-help_discordance_filter,Discordance filter:,
-help_verticals,Draw vertical lines at steps?,
-help_mint_radial,Minimum value:,
-help_t0,Central value:,
-help_maxt_radial,Maximum value:,
+help_Pb206Pb204,Initial <sup>206</sup>Pb/<sup>204</sup>Pb:,初始<sup>206</sup>Pb/<sup>204</sup>Pb：
+help_Pb207Pb204,Initial <sup>207</sup>Pb/<sup>204</sup>Pb:,初始<sup>207</sup>Pb/<sup>204</sup>Pb：
+help_transformation,Transformation:,转换
+radial_log,logarithmic,对数形式
+radial_lin,linear,线性形式
+radial_arcsin,arcsin,反正弦形式
+help_mixtures,Finite mixtures:,有限混合：
+peakfit_none,0 (none), 0（无）
+peakfit_auto,auto,自动
+peakfit_min,minimum,最小值
+help_discordance_filter,Discordance filter:,不谐和过滤：
+help_verticals,Draw vertical lines at steps?,画各阶纵线？
+help_mint_radial,Minimum value:,最小值:
+help_t0,Central value:,中值年龄：
+help_maxt_radial,Maximum value:,最大值：
 PD_format_1,1. Normal,1.正常
 PD_format_2,2. Inverse,2.相反
-PD_format_3,3. Concentrations,
-help_Rb85Rb87,<sup>85</sup>Rb/<sup>87</sup>Rb ratio:,<sup>85</sup>Rb/<sup>87</sup>Rb 比率:
-help_Sr84Sr86,<sup>84</sup>Sr/<sup>86</sup>Sr ratio:,<sup>84</sup>Sr/<sup>86</sup>Sr 比率:
-help_Sr87Sr86,<sup>87</sup>Sr/<sup>86</sup>Sr ratio:,<sup>87</sup>Sr/<sup>86</sup>Sr 比率:
-help_Sr88Sr86,<sup>88</sup>Sr/<sup>86</sup>Sr ratio,<sup>88</sup>Sr/<sup>86</sup>Sr 比率:
+PD_format_3,3. Concentrations,3. 浓度
+help_Rb85Rb87,<sup>85</sup>Rb/<sup>87</sup>Rb ratio:,<sup>85</sup>Rb/<sup>87</sup>Rb 比值：
+help_Sr84Sr86,<sup>84</sup>Sr/<sup>86</sup>Sr ratio:,<sup>84</sup>Sr/<sup>86</sup>Sr 比值：
+help_Sr87Sr86,<sup>87</sup>Sr/<sup>86</sup>Sr ratio:,<sup>87</sup>Sr/<sup>86</sup>Sr 比值：
+help_Sr88Sr86,<sup>88</sup>Sr/<sup>86</sup>Sr ratio,<sup>88</sup>Sr/<sup>86</sup>Sr 比值：
 help_LambdaRb87,<sup>87</sup>Rb decay constant:,<sup>87</sup>Rb 衰变常数:
-help_Os184Os192,<sup>184</sup>Os/<sup>192</sup>Os ratio:,<sup>184</sup>Os/<sup>192</sup>Os 比率:
-help_Re185Re187,<sup>185</sup>Re/<sup>187</sup>Re ratio:,<sup>185</sup>Re/<sup>187</sup>Re 比率:
-help_Os187Os192,<sup>187</sup>Os/<sup>192</sup>Os ratio:,<sup>187</sup>Os/<sup>192</sup>Os 比率:
-help_Os188Os192,<sup>188</sup>Os/<sup>192</sup>Os ratio:,<sup>188</sup>Os/<sup>192</sup>Os 比率:
-help_Os189Os192,<sup>189</sup>Os/<sup>192</sup>Os ratio:,<sup>189</sup>Os/<sup>192</sup>Os 比率:
-help_Os190Os192,<sup>190</sup>Os/<sup>192</sup>Os ratio:,<sup>190</sup>Os/<sup>192</sup>Os 比率:
+help_Os184Os192,<sup>184</sup>Os/<sup>192</sup>Os ratio:,<sup>184</sup>Os/<sup>192</sup>Os 比值：
+help_Re185Re187,<sup>185</sup>Re/<sup>187</sup>Re ratio:,<sup>185</sup>Re/<sup>187</sup>Re 比值：
+help_Os187Os192,<sup>187</sup>Os/<sup>192</sup>Os ratio:,<sup>187</sup>Os/<sup>192</sup>Os 比值：
+help_Os188Os192,<sup>188</sup>Os/<sup>192</sup>Os ratio:,<sup>188</sup>Os/<sup>192</sup>Os 比值：
+help_Os189Os192,<sup>189</sup>Os/<sup>192</sup>Os ratio:,<sup>189</sup>Os/<sup>192</sup>Os 比值：
+help_Os190Os192,<sup>190</sup>Os/<sup>192</sup>Os ratio:,<sup>190</sup>Os/<sup>192</sup>Os 比值：
 help_LambdaRe187,<sup>187</sup>Re decay constant:,<sup>187</sup>Re 衰变常数:
-help_Sm144Sm152,<sup>144</sup>Sm/<sup>152</sup>Sm ratio:,<sup>144</sup>Sm/<sup>152</sup>Sm 比率:
-help_Sm147Sm152,<sup>147</sup>Sm/<sup>152</sup>Sm ratio:,<sup>147</sup>Sm/<sup>152</sup>Sm 比率:
-help_Sm148Sm152,<sup>148</sup>Sm/<sup>152</sup>Sm ratio:,<sup>148</sup>Sm/<sup>152</sup>Sm 比率:
-help_Sm149Sm152,<sup>149</sup>Sm/<sup>152</sup>Sm ratio:,<sup>149</sup>Sm/<sup>152</sup>Sm 比率:
-help_Sm150Sm152,<sup>150</sup>Sm/<sup>152</sup>Sm ratio:,<sup>150</sup>Sm/<sup>152</sup>Sm 比率:
-help_Sm154Sm152,<sup>154</sup>Sm/<sup>152</sup>Sm ratio:,<sup>154</sup>Sm/<sup>152</sup>Sm 比率:
-help_Nd142Nd144,<sup>142</sup>Nd/<sup>144</sup>Nd ratio:,<sup>142</sup>Nd/<sup>144</sup>Nd 比率:
-help_Nd143Nd144,<sup>143</sup>Nd/<sup>144</sup>Nd ratio:,<sup>143</sup>Nd/<sup>144</sup>Nd 比率:
-help_Nd145Nd144,<sup>145</sup>Nd/<sup>144</sup>Nd ratio:,<sup>145</sup>Nd/<sup>144</sup>Nd 比率:
-help_Nd146Nd144,<sup>146</sup>Nd/<sup>144</sup>Nd ratio:,<sup>146</sup>Nd/<sup>144</sup>Nd 比率:
-help_Nd148Nd144,<sup>148</sup>Nd/<sup>144</sup>Nd ratio:,<sup>148</sup>Nd/<sup>144</sup>Nd 比率:
-help_Nd150Nd144,<sup>150</sup>Nd/<sup>144</sup>Nd ratio:,<sup>150</sup>Nd/<sup>144</sup>Nd 比率:
+help_Sm144Sm152,<sup>144</sup>Sm/<sup>152</sup>Sm ratio:,<sup>144</sup>Sm/<sup>152</sup>Sm 比值：
+help_Sm147Sm152,<sup>147</sup>Sm/<sup>152</sup>Sm ratio:,<sup>147</sup>Sm/<sup>152</sup>Sm 比值：
+help_Sm148Sm152,<sup>148</sup>Sm/<sup>152</sup>Sm ratio:,<sup>148</sup>Sm/<sup>152</sup>Sm 比值：
+help_Sm149Sm152,<sup>149</sup>Sm/<sup>152</sup>Sm ratio:,<sup>149</sup>Sm/<sup>152</sup>Sm 比值：
+help_Sm150Sm152,<sup>150</sup>Sm/<sup>152</sup>Sm ratio:,<sup>150</sup>Sm/<sup>152</sup>Sm 比值：
+help_Sm154Sm152,<sup>154</sup>Sm/<sup>152</sup>Sm ratio:,<sup>154</sup>Sm/<sup>152</sup>Sm 比值：
+help_Nd142Nd144,<sup>142</sup>Nd/<sup>144</sup>Nd ratio:,<sup>142</sup>Nd/<sup>144</sup>Nd 比值：
+help_Nd143Nd144,<sup>143</sup>Nd/<sup>144</sup>Nd ratio:,<sup>143</sup>Nd/<sup>144</sup>Nd 比值：
+help_Nd145Nd144,<sup>145</sup>Nd/<sup>144</sup>Nd ratio:,<sup>145</sup>Nd/<sup>144</sup>Nd 比值：
+help_Nd146Nd144,<sup>146</sup>Nd/<sup>144</sup>Nd ratio:,<sup>146</sup>Nd/<sup>144</sup>Nd 比值：
+help_Nd148Nd144,<sup>148</sup>Nd/<sup>144</sup>Nd ratio:,<sup>148</sup>Nd/<sup>144</sup>Nd 比值：
+help_Nd150Nd144,<sup>150</sup>Nd/<sup>144</sup>Nd ratio:,<sup>150</sup>Nd/<sup>144</sup>Nd 比值：
 help_LambdaSm147,<sup>147</sup>Sm decay constant:,<sup>147</sup>Sm 衰变常数:
-help_plateau,Extract plateau?,
-help_detritus,detrital <sup>230</sup>Th correction:,
+help_plateau,Extract plateau?,显示年龄坪？
+help_detritus,detrital <sup>230</sup>Th correction:,碎屑成因<sup>230</sup>Th校正：
 help_LambdaU234,<sup>234</sup>U decay constant:,<sup>234</sup>U 衰变常数:
 help_LambdaTh230,<sup>230</sup>Th decay constant:,<sup>230</sup>Th 衰变常数:
-detrital_correction_isochron,isochron,
-detrital_correction_assumed,assumed,
-detrital_correction_measured,measured,
-diseq_none,none,
-help_U48_UPb,<sup>234</sup>U disequilibrium:,
-help_diseq,Apply disequilibrium correction?,
-diseq_initial,initial,
-diseq_measured,measured,
-help_ThU_UPb,<sup>230</sup>Th disequilibrium:,
-diseq_magma,magma,
-help_PaU_UPb,<sup>231</sup>Pa disequilibrium:,
+detrital_correction_isochron,isochron,等时线
+detrital_correction_assumed,assumed,假定值
+detrital_correction_measured,measured,测量值
+diseq_none,none,无
+help_U48_UPb,<sup>234</sup>U disequilibrium:,<sup>234</sup>U不平衡：
+help_diseq,Apply disequilibrium correction?,使用不平衡校正？
+diseq_initial,initial,初始
+diseq_measured,measured,测量
+help_ThU_UPb,<sup>230</sup>Th disequilibrium:,'<sup>230</sup>Th不平衡：
+diseq_magma,magma,岩浆
+help_PaU_UPb,<sup>231</sup>Pa disequilibrium:,<sup>231</sup>Pa不平衡：
 help_LambdaTh232,<sup>232</sup>Th decay constant:,<sup>232</sup>Th 衰变常数:
 help_LambdaRa226,<sup>226</sup>Ra decay constant:,<sup>226</sup>Ra 衰变常数:
 help_LambdaPa231,<sup>231</sup>Pa decay constant:,<sup>231</sup>Pa 衰变常数:
-help_Pb207Pb206,Initial <sup>207</sup>Pb/<sup>206</sup>Pb ratio:,
-help_Pb208Pb206,Initial <sup>208</sup>Pb/<sup>206</sup>Pb ratio:,
-help_Pb208Pb207,Initial <sup>208</sup>Pb/<sup>207</sup>Pb ratio:,
-help_RaU_UPb,<sup>226</sup>Ra disequilibrium:,
-help_ReOs_i2i,Use isochron intercept as initial <sup>187</sup>Os/<sup>187</sup>Os-ratio?,
-help_maxx,Maximum value:,
-help_minx,Minimum value:,
-ages_75,The <sup>207</sup>Pb/<sup>235</sup>U-ages.,
-UPb_75,Measured <sup>207</sup>Pb/<sup>235</sup>U-ratios.,
-UPb_err_75,Analytical uncertainty of the <sup>207</sup>Pb/<sup>235</sup>U-ratios,
-UPb_68,Measured <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb_err_68,Analytical uncertainty of the <sup>206</sup>Pb/<sup>238</sup>U-ratios,
-UPb_86,Measured <sup>238</sup>U/<sup>206</sup>Pb-ratios.,
-UPb_err_86,Analytical uncertainty of the <sup>238</sup>U/<sup>206</sup>Pb-ratios,
-UPb_76,Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb_err_76,Analytical uncertainty of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios,
-UPb_rho_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb_rho_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb_48,Measured <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
-UPb_err_48,Analytical uncertainty of the <sup>204</sup>Pb/<sup>238</sup>U-ratios,
-UPb_47,Measured <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.,
-UPb_err_47,Analytical uncertainty of the <sup>204</sup>Pb/<sup>207</sup>Pb-ratios,
-UPb_46,Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb_err_46,Analytical uncertainty of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios,
-UPb_rhoXZ_8646,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb_rhoYZ_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb_rhoYZ_6848,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
-UPb_rhoXZ_7548,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,
-UPb_rhoXY_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb_rhoYZ_7646,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb_82,Measured <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
-UPb_err_82,Analytical uncertainty of the <sup>208</sup>Pb/<sup>232</sup>Th-ratios,
-UPb_0806,Measured <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.,
-UPb_err_0806,Analytical uncertainty of the <sup>208</sup>Pb/<sup>206</sup>Pb-ratios,
-UPb_3238,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb_err_3238,Analytical uncertainty of the <sup>232</sup>Th/<sup>238</sup>U-ratios,
-UPb_rhoWX_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,
-UPb_rhoWY_7582,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
-UPb_rhoWZ_753238,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb_rhoXY_680832,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,
-UPb_rhoXZ_683238,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb_rhoYZ_08323238,Error correlation between the <sup>208</sup>Pb/<sup>232</sup>Th- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-UPb_rhoWX_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb_rhoWY_38060806,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb_rhoWZ_38063238,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
-UPb_rhoXY_7686,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,
-UPb_rhoXZ_763238,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
-UPb_rhoYZ_08063238,Error correlation between the <sup>208</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,
-UPb_C,Optional variable to be used as fill colours in concordia and radial plots.,
-UPb_redundancy,"If <tt>rhoXY</tt>, <tt>rhoXZ</tt> or <tt>rhoYZ</tt> are omitted, then their value will be inferred from the redundancy between the three sets of standard errors (<tt>s[X]</tt>, <tt>s[Y]</tt> and <tt>s[Z]</tt>). This inference assumes that these errors are based on the same number of data points. If some data has been rejected from one ratio but not another, because of isobaric interferences, instrument issues, outlier rejection, or any other reason, then this method will not work.",
-UPb_rhoXY_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
+help_Pb207Pb206,Initial <sup>207</sup>Pb/<sup>206</sup>Pb ratio:,<sup>207</sup>Pb/<sup>206</sup>Pb初始比值：
+help_Pb208Pb206,Initial <sup>208</sup>Pb/<sup>206</sup>Pb ratio:,<sup>208</sup>Pb/<sup>206</sup>Pb初始比值：
+help_Pb208Pb207,Initial <sup>208</sup>Pb/<sup>207</sup>Pb ratio:,'<sup>208</sup>Pb/<sup>207</sup>Pb初始比值：
+help_RaU_UPb,<sup>226</sup>Ra disequilibrium:,<sup>226</sup>Ra不平衡：
+help_ReOs_i2i,Use isochron intercept as initial <sup>187</sup>Os/<sup>187</sup>Os-ratio?,使用等时线截距作为<sup>187</sup>Os/<sup>187</sup>Os初始比值？
+help_maxx,Maximum value:,最大值
+help_minx,Minimum value:,最小值 
+ages_75,The <sup>207</sup>Pb/<sup>235</sup>U-ages.,<sup>207</sup>Pb/<sup>235</sup>U年龄。
+UPb_75,Measured <sup>207</sup>Pb/<sup>235</sup>U-ratios.,<sup>207</sup>Pb/<sup>235</sup>U测量值。
+UPb_err_75,Analytical uncertainty of the <sup>207</sup>Pb/<sup>235</sup>U-ratios,<sup>207</sup>Pb/<sup>235</sup>U测量误差
+UPb_68,Measured <sup>206</sup>Pb/<sup>238</sup>U-ratios.,<sup>206</sup>Pb/<sup>238</sup>U测量值。
+UPb_err_68,Analytical uncertainty of the <sup>206</sup>Pb/<sup>238</sup>U-ratios, <sup>206</sup>Pb/<sup>238</sup>U测量误差
+UPb_86,Measured <sup>238</sup>U/<sup>206</sup>Pb-ratios.,<sup>238</sup>U/<sup>206</sup>Pb测量值。
+UPb_err_86,Analytical uncertainty of the <sup>238</sup>U/<sup>206</sup>Pb-ratios,<sup>238</sup>U/<sup>206</sup>Pb测量误差
+UPb_76,Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>207</sup>Pb/<sup>206</sup>Pb测量值。
+UPb_err_76,Analytical uncertainty of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios,<sup>207</sup>Pb/<sup>206</sup>Pb测量误差
+UPb_rho_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,<sup>207</sup>Pb/<sup>235</sup>U和<sup>206</sup>Pb/<sup>238</sup>U的误差相关性。
+UPb_rho_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,<sup>238</sup>U/<sup>206</sup>Pb和<sup>207</sup>Pb/<sup>206</sup>Pb误差相关性（可选择的）。
+UPb_48,Measured <sup>204</sup>Pb/<sup>238</sup>U-ratios.,<sup>204</sup>Pb/<sup>238</sup>U测量值。
+UPb_err_48,Analytical uncertainty of the <sup>204</sup>Pb/<sup>238</sup>U-ratios,<sup>204</sup>Pb/<sup>238</sup>U测量误差
+UPb_47,Measured <sup>204</sup>Pb/<sup>207</sup>Pb-ratios.,<sup>204</sup>Pb/<sup>207</sup>Pb测量值。
+UPb_err_47,Analytical uncertainty of the <sup>204</sup>Pb/<sup>207</sup>Pb-ratios,<sup>204</sup>Pb/<sup>207</sup>Pb测量误差
+UPb_46,Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>204</sup>Pb/<sup>206</sup>Pb测量值。
+UPb_err_46,Analytical uncertainty of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios,<sup>204</sup>Pb/<sup>206</sup>Pb测量误差
+UPb_rhoXZ_8646,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>238</sup>U/<sup>206</sup>Pb和<sup>204</sup>Pb/<sup>206</sup>Pb误差先关性。
+UPb_rhoYZ_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>238</sup>U/<sup>206</sup>Pb和<sup>207</sup>Pb/<sup>206</sup>Pb误差相关性。
+UPb_rhoYZ_6848,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,<sup>206</sup>Pb/<sup>238</sup>U和<sup>204</sup>Pb/<sup>238</sup>U误差相关性。
+UPb_rhoXZ_7548,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>204</sup>Pb/<sup>238</sup>U-ratios.,<sup>207</sup>Pb/<sup>235</sup>U和<sup>204</sup>Pb/<sup>238</sup>U误差相关性。
+UPb_rhoXY_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,<sup>207</sup>Pb/<sup>235</sup>U和<sup>206</sup>Pb/<sup>238</sup>U误差相关性。
+UPb_rhoYZ_7646,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>207</sup>Pb/<sup>206</sup>Pb和<sup>204</sup>Pb/<sup>206</sup>Pb误差相关性。
+UPb_82,Measured <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,<sup>208</sup>Pb/<sup>232</sup>Th测量值。
+UPb_err_82,Analytical uncertainty of the <sup>208</sup>Pb/<sup>232</sup>Th-ratios,<sup>208</sup>Pb/<sup>232</sup>Th测量误差
+UPb_0806,Measured <sup>208</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>208</sup>Pb/<sup>206</sup>Pb测量值。
+UPb_err_0806,Analytical uncertainty of the <sup>208</sup>Pb/<sup>206</sup>Pb-ratios,<sup>208</sup>Pb/<sup>206</sup>Pb测量误差
+UPb_3238,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,<sup>232</sup>Th/<sup>238</sup>U测量值。
+UPb_err_3238,Analytical uncertainty of the <sup>232</sup>Th/<sup>238</sup>U-ratios,<sup>232</sup>Th/<sup>238</sup>U测量误差
+UPb_rhoWX_7568,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>206</sup>Pb/<sup>238</sup>U-ratios.,<sup>207</sup>Pb/<sup>235</sup>U和<sup>206</sup>Pb/<sup>238</sup>U误差相关性。
+UPb_rhoWY_7582,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,<sup>207</sup>Pb/<sup>235</sup>U和<sup>208</sup>Pb/<sup>232</sup>Th误差相关性。
+UPb_rhoWZ_753238,Error correlation between the <sup>207</sup>Pb/<sup>235</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,<sup>207</sup>Pb/<sup>235</sup>U和<sup>232</sup>Th/<sup>238</sup>U误差相关性。
+UPb_rhoXY_680832,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>208</sup>Pb/<sup>232</sup>Th-ratios.,<sup>206</sup>Pb/<sup>238</sup>U和<sup>208</sup>Pb/<sup>232</sup>Th误差相关性。
+UPb_rhoXZ_683238,Error correlation between the <sup>206</sup>Pb/<sup>238</sup>U- and <sup>232</sup>Th/<sup>238</sup>U-ratios., <sup>206</sup>Pb/<sup>238</sup>U和<sup>232</sup>Th/<sup>238</sup>U误差相关性。
+UPb_rhoYZ_08323238,Error correlation between the <sup>208</sup>Pb/<sup>232</sup>Th- and <sup>232</sup>Th/<sup>238</sup>U-ratios.,<sup>208</sup>Pb/<sup>232</sup>Th和<sup>232</sup>Th/<sup>238</sup>U误差相关性。
+UPb_rhoWX_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios (optional).,<sup>238</sup>U/<sup>206</sup>Pb和<sup>207</sup>Pb/<sup>206</sup>Pb误差相关性（可选择的）。
+UPb_rhoWY_38060806,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,<sup>238</sup>U/<sup>206</sup>Pb和<sup>208</sup>Pb/<sup>206</sup>Pb误差相关性（可选择的）。
+UPb_rhoWZ_38063238,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,<sup>238</sup>U/<sup>206</sup>Pb和<sup>232</sup>Th/<sup>238</sup>U误差相关性（可选择的）。
+UPb_rhoXY_7686,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>208</sup>Pb/<sup>206</sup>Pb-ratios (optional).,<sup>207</sup>Pb/<sup>206</sup>Pb和<sup>208</sup>Pb/<sup>206</sup>Pb误差相关性（可选择的）。
+UPb_rhoXZ_763238,Error correlation between the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,<sup>207</sup>Pb/<sup>206</sup>Pb和<sup>232</sup>Th/<sup>238</sup>U误差相关性（可选择的）。
+UPb_rhoYZ_08063238,Error correlation between the <sup>208</sup>Pb/<sup>206</sup>Pb- and <sup>232</sup>Th/<sup>238</sup>U-ratios (optional).,<sup>208</sup>Pb/<sup>206</sup>Pb和<sup>232</sup>Th/<sup>238</sup>U误差相关性（可选择的）。
+UPb_C,Optional variable to be used as fill colours in concordia and radial plots.,协和图和星状图充填颜色的可选择变量。
+UPb_redundancy,"If <tt>rhoXY</tt>, <tt>rhoXZ</tt> or <tt>rhoYZ</tt> are omitted, then their value will be inferred from the redundancy between the three sets of standard errors (<tt>s[X]</tt>, <tt>s[Y]</tt> and <tt>s[Z]</tt>). This inference assumes that these errors are based on the same number of data points. If some data has been rejected from one ratio but not another, because of isobaric interferences, instrument issues, outlier rejection, or any other reason, then this method will not work.","如果<tt>rhoXY</tt>, <tt>rhoXZ</tt> 和<tt>rhoYZ</tt> 被遗漏，那么它们的值将参考这三组标准误差(<tt>s[X]</tt>, <tt>s[Y]</tt> and <tt>s[Z]</tt>)之间的冗余。该推断假定这些误差是基于相同数量的数据点。假如因为同质异位素干扰、仪器问题、异常值剔除或者其它原因导致某些数据不服从其中一个比值但是俯冲另外一个，那么这个方法将不起作用。"
+UPb_rhoXY_8676,Error correlation between the <sup>238</sup>U/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>238</sup>U/<sup>206</sup>Pb和<sup>207</sup>Pb/<sup>206</sup>Pb误差相关性。
 home,Home,主页
 options,Options,选项
 help,Help,帮助
@@ -281,442 +275,258 @@ run,RUN,运行
 IsoplotR_version,This is IsoplotR/IsoplotRgui GitHub version,这是 IsoplotR/IsoplotRgui GitHub 版本
 GitHub_version,the latest stable version is,最新的稳定版本是
 reference,Citable reference:,"如果使用本软件,请引用软件开发者 Pieter Vermeesch 所发表的这篇相关文章:"
-ages_err_75,The estimated uncertainty (standard error) of the <sup>207</sup>Pb/<sup>235</sup>U-ages.,
-ages_68,The <sup>206</sup>Pb/<sup>238</sup>U-ages.,
-ages_err_68,The estimated uncertainty (standard error) of the <sup>206</sup>Pb/<sup>238</sup>U-ages.,
-ages_76,The <sup>207</sup>Pb/<sup>206</sup>Pb-ages.,
-ages_err_76,The estimated uncertainty (standard error) of the <sup>207</sup>Pb/<sup>206</sup>Pb-ages.,
-ages_82,The <sup>208</sup>Pb/<sup>232</sup>Th-ages.,
-ages_err_82,The estimated uncertainty (standard error) of the <sup>208</sup>Pb/<sup>232</sup>Th-ages.,
-ages_tconc,The single-grain concordia age. This is the maximum likelihood intersection between the (Wetherill) concordia line and the (<sup>207</sup>Pb/<sup>235</sup>U-<sup>206</sup>Pb/<sup>238</sup>U) error ellipse.,
-ages_err_tconc,The estimated uncertainty (standard error) of the single-grain concordia age.,
-ages_pconc,"The p-value for concordance. Note: it would be unwise to use the p-value value as a concordance filter. Doing so would 'punish' high precision measurements, which are more likely to fail the Chi-square test than low precision measurements. The latter would therefore be 'rewarded' by such a criterion.",
-ages_err,"The estimated uncertainty (standard error) of the 
-<span hidden class=""show4PbPb""> Pb-Pb </span>
-<span hidden class=""show4ArAr""> Ar-Ar </span>
-<span hidden class=""show4RbSr""> Rb-Sr </span>
-<span hidden class=""show4SmNd""> Sm-Nd </span>
-<span hidden class=""show4ReOs""> Re-Os </span>
-<span hidden class=""show4LuHf""> Lu-Hf </span>
-<span hidden class=""show4UThHe""> U-Th-He </span>
-<span hidden class=""show4fissiontracks""> fission track </span>
-<span hidden class=""show4ThU1 show4ThU2""> <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U</span>
-<span hidden class=""show4ThU3 show4ThU4""> <sup>230</sup>Th-<sup>238</sup>U</span> 
-ages.",
-ages_err_48_0,Estimated uncertainty (standard error) of the initial <sup>234</sup>U/<sup>230</sup>Th-ratio.,
-ages_corr_t_48_0,Correlation coefficient between the <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U age and the initial <sup>234</sup>U/<sup>230</sup>Th-ratio uncertainties.,
-ArAr_J,Irradiation constant and its analytical uncertainty,
-ArAr_3940,Measured <sup>39</sup>Ar/<sup>40</sup>Ar-ratios.,
-ArAr_err_3940,Analytical uncertainty of the <sup>39</sup>Ar/<sup>40</sup>Ar-ratios ,
-ArAr_3640,Measured <sup>36</sup>Ar/<sup>40</sup>Ar-ratios.,
-ArAr_err_3640,Analytical uncertainty of the <sup>36</sup>Ar/<sup>40</sup>Ar-ratios ,
-ArAr_3936,Measured <sup>39</sup>Ar/<sup>36</sup>Ar-ratios.,
-ArAr_err_3936,Analytical uncertainty of the <sup>39</sup>Ar/<sup>36</sup>Ar-ratios ,
-ArAr_4036,Measured <sup>40</sup>Ar/<sup>36</sup>Ar-ratios.,
-ArAr_err_4036,Analytical uncertainty of the <sup>40</sup>Ar/<sup>36</sup>Ar-ratios ,
-ArAr_rho_0696,Error correlation between the <sup>40</sup>Ar/<sup>36</sup>Ar- and <sup>39</sup>Ar/<sup>36</sup>Ar-ratios.,
-ArAr_rho_6090,Error correlation between the <sup>36</sup>Ar/<sup>40</sup>Ar- and <sup>39</sup>Ar/<sup>40</sup>Ar-ratios (optional).,
-ArAr_39,"Amount of <sup>39</sup>Ar in each heating step, which will be normalised to form the X-axis of the age spectrum (optional).",
-ArAr_redundancy,<tt>IsoplotR</tt> uses the redundancy of the three ratios to calculate the correlation between their respective analytical uncertainties.,
-average_intro,"Let t = {t<sub>1</sub>, ..., t<sub>n</sub>} be a set of n age estimates determined on different aliquots of the same sample, and let s[t<sub>1</sub>], ..., s[t<sub>n</sub>]} be their analytical uncertainties (standard errors). <tt>IsoplotR</tt> implements two ways to compute the average of these data:
-
-<ol>
-<li>
-  A random effects model with two sources of variance:
-<p></p>
-t<sub>i</sub> ~ <i>N</i>( &mu;, &sigma;<sup>2</sup> = s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup> ) <span class=""alignright"">(eq. 1a)</span>
-<p></p>
-where &mu; is the mean, &sigma;<sup>2</sup> is the total variance and &omega; is the 'overdispersion'. Equation 1a can be solved for &mu; and &omega; by the method of maximum likelihood.
-</li><li>
-A weighted mean algorithm that assumes that any dispersion between the different aliquots is only due to the analytical uncertainty:
-<p></p>
-<span style=""text-decoration: overline"">t</span> = &Sigma;(t<sub>i</sub>/s[t<sub>i</sub>]<sup>2</sup>)/&Sigma;(1/s[t<sub>i</sub>]<sup>2</sup>)<span class=""alignright"">(eq. 1b)</span>
-<p></p>
-</li>
-</ol>
-
-<tt>IsoplotR</tt> uses a modified version of Chauvenet's criterion for outlier detection:
-
-<ol>
-<li> Compute the error-weighted mean of the n age determinations t<sub>i</sub> using their analytical uncertainties s[t<sub>i</sub>] using one of the aforementioned two approaches.
-</li><li>
-For each t<sub>i</sub>, compute the probability p<sub>i</sub> that that |t-&mu;|>|t<sub>i</sub>-&mu;| for
-<p> t ~ <i>N</i>(0,&Xi;<sup>2</sup>) <span class=""alignright"">(eq. 2)</span></p>
-where &Xi; = &radic;<span style=""text-decoration: overline;"">s[t<sub>i</sub>]<sup>2</sup>+&omega;<sup>2</sup></span> if the random effects model is used; or &Xi; = s[<span style=""text-decoration: overline"">t</span>]&radic; <span style=""text-decoration: overline;"">MSWD</span> if the ordinary weighted mean is used.
-</li>
-<li>
-Let p<sub>j</sub> &equiv; min(p<sub>1</sub>,&hellip;,p<sub>n</sub>). If p<sub>j</sub><0.05/n, then reject the j<sup>th</sup> date, reduce n by one (i.e., n &rarr; (n-1) and repeat steps 1 through 3 until the surviving dates pass the third step. </li>
-</ol>
-
-If the analytical uncertainties are small compared to the scatter between the dates, then this generalised algorithm reduces to the conventional Chauvenet criterion. If the analytical uncertainties are large and the data do not exhibit any overdispersion, then the heuristic outlier detection method is equivalent to Ludwig (2003)'s 'modified 2-sigma' method.",
-average_mu,the weighted mean age.,
-average_mu_x,the standard error (&sigma;) of &mu;.,
-average_mu_y,"the width of the 100(1-&alpha;)% confidence interval for &mu;. This is also shown as a grey band on the plot. The uncertainties associated with the random uncertainties are shown in dark grey, whereas the systematic uncertainties (i.e. J-factor and decay constant) are shown in light grey.",
-average_mu_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD (not reported for random effects models).",
-average_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for age homogeneity.  MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-average_mswd_y,the Chi-squared p-value for the age homogeneity test. p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-average_omega,"the standard deviation of the true ages after removal of the analytical uncertainties. The dispersion is significantly greater than zero if the MSWD is significantly greater than one. The 100(1-&alpha;)% Normal confidence region for the dispersion (e.g., 1.96 &times; &omega; if &alpha; = 0.05) is shown as a set of dashed lines.",
+ages_err_75,The estimated uncertainty (standard error) of the <sup>207</sup>Pb/<sup>235</sup>U-ages.,<sup>207</sup>Pb/<sup>235</sup>U年龄估算误差（标准误差）。
+ages_68,The <sup>206</sup>Pb/<sup>238</sup>U-ages.,<sup>206</sup>Pb/<sup>238</sup>U年龄。
+ages_err_68,The estimated uncertainty (standard error) of the <sup>206</sup>Pb/<sup>238</sup>U-ages.,<sup>206</sup>Pb/<sup>238</sup>U年龄估算误差（标准误差）。
+ages_76,The <sup>207</sup>Pb/<sup>206</sup>Pb-ages.,<sup>207</sup>Pb/<sup>206</sup>Pb年龄。
+ages_err_76,The estimated uncertainty (standard error) of the <sup>207</sup>Pb/<sup>206</sup>Pb-ages.,<sup>207</sup>Pb/<sup>206</sup>Pb年龄估算误差（标准误差）。
+ages_82,The <sup>208</sup>Pb/<sup>232</sup>Th-ages.,<sup>208</sup>Pb/<sup>232</sup>Th年龄。
+ages_err_82,The estimated uncertainty (standard error) of the <sup>208</sup>Pb/<sup>232</sup>Th-ages.,<sup>208</sup>Pb/<sup>232</sup>Th年龄估算误差（标准误差）。
+ages_tconc,The single-grain concordia age. This is the maximum likelihood intersection between the (Wetherill) concordia line and the (<sup>207</sup>Pb/<sup>235</sup>U-<sup>206</sup>Pb/<sup>238</sup>U) error ellipse.,单颗粒协和年龄。这是协和线与(<sup>207</sup>Pb/<sup>235</sup>U-<sup>206</sup>Pb/<sup>238</sup>U) 误差椭圆的极大似然交叉点。
+ages_err_tconc,The estimated uncertainty (standard error) of the single-grain concordia age.,单颗粒协和年龄估算误差（标准误差）。
+ages_pconc,"The p-value for concordance. Note: it would be unwise to use the p-value value as a concordance filter. Doing so would 'punish' high precision measurements, which are more likely to fail the Chi-square test than low precision measurements. The latter would therefore be 'rewarded' by such a criterion.",p值表示协和性。注意：采用p值筛选协和性是不明智的做法。采用p值作为误差传递算法的会导致高精度的数据通常难以通过chi sauqre检验，因此最终年龄的误差被放大，受到”惩罚”。p值作为协和性检验的标准的问题
+ages_err,"The estimated uncertainty (standard error) of the  <span hidden class=""show4PbPb""> Pb-Pb </span> <span hidden class=""show4ArAr""> Ar-Ar </span> <span hidden class=""show4RbSr""> Rb-Sr </span> <span hidden class=""show4SmNd""> Sm-Nd </span> <span hidden class=""show4ReOs""> Re-Os </span> <span hidden class=""show4LuHf""> Lu-Hf </span> <span hidden class=""show4UThHe""> U-Th-He </span> <span hidden class=""show4fissiontracks""> fission track </span> <span hidden class=""show4ThU1 show4ThU2""> <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U</span> <span hidden class=""show4ThU3 show4ThU4""> <sup>230</sup>Th-<sup>238</sup>U</span>  ages."," <span hidden class=""show4PbPb""> Pb-Pb </span> <span hidden class=""show4ArAr""> Ar-Ar </span> <span hidden class=""show4RbSr""> Rb-Sr </span> <span hidden class=""show4SmNd""> Sm-Nd </span> <span hidden class=""show4ReOs""> Re-Os </span> <span hidden class=""show4LuHf""> Lu-Hf </span> <span hidden class=""show4UThHe""> U-Th-He </span> <span hidden class=""show4fissiontracks"">裂变径迹</span> <span hidden class=""show4ThU1 show4ThU2""> <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U</span> <span hidden class=""show4ThU3 show4ThU4""> <sup>230</sup>Th-<sup>238</sup>U</span> 年龄的估算误差（标准误差）。"
+ages_err_48_0,Estimated uncertainty (standard error) of the initial <sup>234</sup>U/<sup>230</sup>Th-ratio.,初始<sup>234</sup>U/<sup>230</sup>Th比值估算误差（标准误差）。
+ages_corr_t_48_0,Correlation coefficient between the <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U age and the initial <sup>234</sup>U/<sup>230</sup>Th-ratio uncertainties.,<sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U年龄和初始<sup>234</sup>U/<sup>230</sup>Th标准误差之间的相关系数。
+ArAr_J,Irradiation constant and its analytical uncertainty,辐射常数和它的分析误差
+ArAr_3940,Measured <sup>39</sup>Ar/<sup>40</sup>Ar-ratios.,<sup>39</sup>Ar/<sup>40</sup>Ar测量值。
+ArAr_err_3940,Analytical uncertainty of the <sup>39</sup>Ar/<sup>40</sup>Ar-ratios,<sup>39</sup>Ar/<sup>40</sup>Ar测量误差
+ArAr_3640,Measured <sup>36</sup>Ar/<sup>40</sup>Ar-ratios.,<sup>36</sup>Ar/<sup>40</sup>Ar测量值。
+ArAr_err_3640,Analytical uncertainty of the <sup>36</sup>Ar/<sup>40</sup>Ar-ratios,<sup>36</sup>Ar/<sup>40</sup>Ar测量误差
+ArAr_3936,Measured <sup>39</sup>Ar/<sup>36</sup>Ar-ratios.,<sup>39</sup>Ar/<sup>36</sup>Ar测量值。
+ArAr_err_3936,Analytical uncertainty of the <sup>39</sup>Ar/<sup>36</sup>Ar-ratios,<sup>39</sup>Ar/<sup>36</sup>Ar测量误差
+ArAr_4036,Measured <sup>40</sup>Ar/<sup>36</sup>Ar-ratios.,<sup>40</sup>Ar/<sup>36</sup>Ar测量值。
+ArAr_err_4036,Analytical uncertainty of the <sup>40</sup>Ar/<sup>36</sup>Ar-ratios,<sup>40</sup>Ar/<sup>36</sup>Ar测量误差
+ArAr_rho_0696,Error correlation between the <sup>40</sup>Ar/<sup>36</sup>Ar- and <sup>39</sup>Ar/<sup>36</sup>Ar-ratios.,<sup>40</sup>Ar/<sup>36</sup>Ar和<sup>39</sup>Ar/<sup>36</sup>Ar误差相关性。
+ArAr_rho_6090,Error correlation between the <sup>36</sup>Ar/<sup>40</sup>Ar- and <sup>39</sup>Ar/<sup>40</sup>Ar-ratios (optional).,<sup>36</sup>Ar/<sup>40</sup>Ar和<sup>39</sup>Ar/<sup>40</sup>Ar误差相关性（可选择的）。
+ArAr_39,"Amount of <sup>39</sup>Ar in each heating step, which will be normalised to form the X-axis of the age spectrum (optional).",各阶段的<sup>39</sup>Ar 数量，标准化为X轴的年龄谱（可选择的）。
+ArAr_redundancy,<tt>IsoplotR</tt> uses the redundancy of the three ratios to calculate the correlation between their respective analytical uncertainties.,<tt>IsoplotR</tt>使用三组比值的冗余来计算它们各自分析误差的相关性。
+average_intro,"Let t = {t<sub>1</sub>, ..., t<sub>n</sub>} be a set of n age estimates determined on different aliquots of the same sample, and let s[t<sub>1</sub>], ..., s[t<sub>n</sub>]} be their analytical uncertainties (standard errors). <tt>IsoplotR</tt> implements two ways to compute the average of these data:  <ol> <li> A random effects model with two sources of variance: <p></p> t<sub>i</sub> ~ <i>N</i>( &mu;, &sigma;<sup>2</sup> = s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup> ) <span class=""alignright"">(eq. 1a)</span> <p></p> where &mu; is the mean, &sigma;<sup>2</sup> is the total variance and &omega; is the 'overdispersion'. Equation 1a can be solved for &mu; and &omega; by the method of maximum likelihood. </li><li> A weighted mean algorithm that assumes that any dispersion between the different aliquots is only due to the analytical uncertainty: <p></p> <span style=""text-decoration: overline"">t</span> = &Sigma;(t<sub>i</sub>/s[t<sub>i</sub>]<sup>2</sup>)/&Sigma;(1/s[t<sub>i</sub>]<sup>2</sup>)<span class=""alignright"">(eq. 1b)</span> <p></p> </li> </ol>  <tt>IsoplotR</tt> uses a modified version of Chauvenet's criterion for outlier detection:  <ol> <li> Compute the error-weighted mean of the n age determinations t<sub>i</sub> using their analytical uncertainties s[t<sub>i</sub>] using one of the aforementioned two approaches. </li><li> For each t<sub>i</sub>, compute the probability p<sub>i</sub> that that |t-&mu;|>|t<sub>i</sub>-&mu;| for <p> t ~ <i>N</i>(0,&Xi;<sup>2</sup>) <span class=""alignright"">(eq. 2)</span></p> where &Xi; = &radic;<span style=""text-decoration: overline;"">s[t<sub>i</sub>]<sup>2</sup>+&omega;<sup>2</sup></span> if the random effects model is used; or &Xi; = s[<span style=""text-decoration: overline"">t</span>]&radic; <span style=""text-decoration: overline;"">MSWD</span> if the ordinary weighted mean is used. </li> <li> Let p<sub>j</sub> &equiv; min(p<sub>1</sub>,&hellip;,p<sub>n</sub>). If p<sub>j</sub><0.05/n, then reject the j<sup>th</sup> date, reduce n by one (i.e., n &rarr; (n-1) and repeat steps 1 through 3 until the surviving dates pass the third step. </li> </ol>  If the analytical uncertainties are small compared to the scatter between the dates, then this generalised algorithm reduces to the conventional Chauvenet criterion. If the analytical uncertainties are large and the data do not exhibit any overdispersion, then the heuristic outlier detection method is equivalent to Ludwig (2003)'s 'modified 2-sigma' method.", 
+average_mu,the weighted mean age., 
+average_mu_x,the standard error (&sigma;) of &mu;., 
+average_mu_y,"the width of the 100(1-&alpha;)% confidence interval for &mu;. This is also shown as a grey band on the plot. The uncertainties associated with the random uncertainties are shown in dark grey, whereas the systematic uncertainties (i.e. J-factor and decay constant) are shown in light grey.", 
+average_mu_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD (not reported for random effects models).", 
+average_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for age homogeneity. MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+average_mswd_y,the Chi-squared p-value for the age homogeneity test. p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+average_omega,"the standard deviation of the true ages after removal of the analytical uncertainties. The dispersion is significantly greater than zero if the MSWD is significantly greater than one. The 100(1-&alpha;)% Normal confidence region for the dispersion (e.g., 1.96 &times; &omega; if &alpha; = 0.05) is shown as a set of dashed lines.", 
 output,Output:,输出:
-CAD_intro,"Empirical cumulative distribution functions or cumulative age distributions CADs (Vermeesch, 2007) are the most straightforward way to visualise the probability distribution of multiple dates. A CAD is a step function that sets out the rank order of the dates against their numerical value:
-
-<p></p>
-  CAD(t) = &sum;<sub>i</sub> 1(t &lt; t<sub>i</sub>)/n
-<span class=""alignright"">(eq. 1)</span>
-<p></p>
-
-where 1(*) = 1 if * is true and 1(*) = 0 if * is false. CADs have two desirable properties. First, they do not require any pre-treatment or smoothing of the data. This is not the case for histograms or kernel density estimates.  Second, it is easy to superimpose several CADs on the same plot.  This facilitates the intercomparison of multiple samples. The interpretation of CADs is straightforward but not very intuitive. The prominence of individual age components is proportional to the steepness of the CAD. This is different from probability density estimates such as histograms, in which such components stand out as peaks. It is arguably easier to identify peaks than inflection points and this probably why CADs are not as widely used as probability density estimates. But the ease of interpretation of density estimates comes at a cost, as they require smoothing and cannot as easily be combined as CADs.",
-concordia_intro,"The concordia diagram is a graphical means of assessing the internal consistency of U-Pb data. It sets out the measured <sup>206</sup>Pb/<sup>238</sup>U- and <sup>207</sup>Pb/<sup>235</sup>-ratios against each other ('Wetherill' diagram) or, equivalently, the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>235</sup>U-ratios ('Tera-Wasserburg' diagram). The space of concordant isotopic compositions is marked by a curve, the 'concordia line'. Isotopic ratio measurements are shown as 100(1-&alpha;)% confidence ellipses, where &alpha; is set in the <tt>Options</tt> menu.  Concordant samples plot near to, or overlap with, the concordia line.  They represent the pinnacle of geochronological robustness. Samples that plot away from the concordia line but are aligned along a linear trend form an isochron (or 'discordia' line) that can be used to infer the composition of the non-radiogenic ('common') lead or to constrain the timing of prior lead loss.",
-conc_t,the Maximum Likelihood estimate of the age using the algorithm of Ludwig (1998).,
-conc_t_x,the analytical uncertainty (&sigma;) of t.,
-conc_t_y,the studentised 100(1-&alpha;)% confidence interval for t using the appropriate number of degrees of freedom.,
-conc_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.",
-conc_mswd_u,the Mean Square of the Weighted Deviates (MSWD) for concordance.,
-conc_mswd_v,the MSWD for equivalence.,
-conc_mswd_w,the MSWD for concordance + equivalence.,
-conc_mswd_x,the Chi-squared p-value for concordance.,
-conc_mswd_y,the Chi-squared p-value for equivalence.,
-conc_mswd_z,the Chi-squared p-value for concordance + equivalence.,
-disc_x,the analytical uncertainty (&sigma;) of t.,
-disc_y,"the <span hidden class=""show4model1 show4model2 hide4model3"">studentised</span> 100(1-&alpha;)% confidence interval for t<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.",
-disc_t,"the <span hidden class=""show4model1 hide4model2 show4model3"">Maximum Likelihood</span>
-<span hidden class=""hide4model1 show4model2 hide4model3"">least squares</span> estimate of the age or initial Pb-ratio <span hidden class=""show4model1 hide4model2 show4model3""> using the algorithm of Ludwig (1998)</span>.",
-disc_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD. (only reported if MSWD > 1)",
-disc_u,the Mean Square of the Weighted Deviates (MSWD) for the isochron fit.,
-disc_v,the Chi-squared p-value for the isochron fit.,
-disc_omega,the estimated standard deviation of the assumedly Gaussian geological scatter of the true intercept ages.,
-detritals_info,"The detrital ages arranged in columns which may have unequal lengths. Sample names may be provided in the first row. If they are omitted, then please untick the ""Sample names on first row?"" box in the Options menu.",
-evolution_info_ThU12,"The Th-U evolution diagram is a scatter plot that sets out the <sup>234</sup>U/<sup>238</sup>U-activity ratios against the <sup>230</sup>Th/<sup>238</sup>U-activity ratios as error ellipses (drawn at 100[1-&alpha;]% confidence level), and displays the initial <sup>234</sup>U/<sup>238</sup>U-activity ratios and ages as a set of intersecting lines. The Th-U evolution diagram has a similar and purpose and appearance as the U-Pb concordia diagram, which also displays compositions and dates simultaneously. An alternative way of doing so is to plot the <sup>234</sup>U/<sup>238</sup>U-ratios against the <sup>230</sup>Th/<sup>234</sup>U-<sup>238</sup>U-ages. In both types of evolution diagrams, <tt>IsoplotR</tt> provides the option to project the raw measurements along the best fitting isochron line and thereby remove the detrital <sup>230</sup>Th-component. This procedure allows a visual assessment of the degree of homogeneity within a dataset, as is quantified by the MSWD.",
-evolution_info_ThU34,"The Th-U evolution diagram has a similar and purpose and appearance as the U-Pb concordia diagram, which also displays compositions and dates simultaneously. For igneous datasets, in which <sup>234</sup>U and <sup>238</sup>U are in secular equilibrium, <tt>IsoplotR</tt> produces an (Osmond-style) isochron plot that is decorated with a fanning set of isochrone lines.",
-evolution_t,the isochron age.,
-evolution_t_x,the estimated uncertainty (&sigma;) of t.,
-evolution_t_y,the studentised 100(1-&alpha;)% confidence interval for t using the appropriate number of degrees of freedom.,
-evolution_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.",
-evolution_i,"the initial <span hidden class=""show4ThU1 show4ThU2"">(<sup>234</sup>U/<sup>238</sup>U)</span> <span hidden class=""show4ThU3 show4ThU4"">excess (<sup>230</sup>Th/<sup>232</sup>Th)</span>-ratio obtained by linear regression.",
-evolution_i_x,the estimated uncertainty (&sigma;) of i.,
-evolution_i_y,the 100(1-&alpha;)% confidence interval for i using the appropriate number of degrees of freedom.,
-evolution_i_z,"the approximate 100(1-&alpha;)% confidence interval for i with overdispersion, calculated as z = y&radic;MSWD (only reported if MSWD > 1).",
-evolution_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for the linear fit.  MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-evolution_mswd_y,the Chi-squared p-value for the linear fit.  p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-evolution_omega,"the excess ('geological') dispersion of the y-intercept, i.e. the standard deviation of the assumedly Gaussian distribution that describes the true non-radiogenic component.",
-FT_tstand,Standard age and its standard error.,
-FT_zeta,Zeta calibration constant and its analytical uncertainty,
-FT_rho,Induced track density in a co-irradiated dosimeter glass and its analytical uncertainty,
-FT_spot_size,"The diameter of the LA-ICP-MS laser spot, in &mu;m",
-FT_Ns,Number of spontaneous tracks,
-FT_Ni,Number of induced tracks,
-FT_A,"Counting area, in &mu;m<sup>2</sup>",
-FT_U,"Uranium concentration (in ppm, for both the &zeta;-calibration and absolute methods), or U/Ca-ratios (for the &zeta;-calibration method only) measured by LA-ICP-MS",
-FT_err_U_a,Analytical uncertainty,
-FT_err_U_b,"of U1, U2, ... . These should <i>exclude</i>
-  any external sources of uncertainty for the calculation of radial
-  plots or weighted means.",
-FT_C,Optional variable to be used as fill colours in radial plots.,
-helioplot_intro,"The space of all possible U-Th-He compositions fits within the constraints of a ternary diagram or 'helioplot' (Vermeesch, 2008, 2010). If Sm is included as well, then this expands to a three-dimensional tetrahaedral space (Vermeesch, 2008).  Conventional statistical analysis of data that fit within these constrained spaces is fraught with theoretical and practical problems that can be solved by applying a simple logratio transformation (Aitchison, 1982, 1986)
-
-<p></p>
-u &equiv; ln[U/He], &nbsp; v &equiv; ln[Th/He] &nbsp; (, w &equiv; ln[Sm/He]) <span class=""alignright"">(eq. 1)</span>
-<p></p>
-
-and then performing the desired statistical analysis (averaging, uncertainty propagation, ...) on the transformed data (Vermeesch, 2008, 2010). Upon completion of these mathematical operations, the results can then be mapped back to U-Th-(Sm)-He space using an inverse logratio transformation:
-
-<p></p>
-[He] = 1/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
-&nbsp;
-[U] = e<sup>u</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
-&nbsp;<br>
-[Th] = e<sup>v</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
-&nbsp;
-([Sm] = e<sup>w</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1];
-&nbsp;)
-<span class=""alignright"">(eq. 2)</span>
-<p></p>
-
-where [He] + [U] + [Th] (+ [Sm]) = 1. In the context of U-Th-(Sm)-He dating, the <i>central</i> age is defined as the age that corresponds to the arithmetic mean composition in logratio space, which is equivalent to the geometric mean in compositional dataspace (Vermeesch, 2008).  The <tt>helioplot</tt> function visualises U-Th-(Sm)-He data on either a ternary diagram or a bivariate ln[Th/U] vs. ln[U/He] contour plot. These diagrams provide a convenient way to simultaneously display the isotopic composition of samples as well as their chronological meaning. In this respect, they fulfil the same purpose as the U-Pb concordia diagram and the U-series evolution plot.",
-helioplot_t,"the central age, which is defined as the U-Th-He age corresponding to the weighted mean composition in log(U/He)-log(Th/He) space.",
-helioplot_t_x,"the estimated standard deviation of t, estimated by the method of maximum likelihood.",
-helioplot_t_y,"the<span hidden class=""show4model1 show4model2 hide4model3""> studentised</span> 100(1-&alpha;)% confidence interval for t<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.
-	",
-helioplot_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.",
-helioplot_mswd_x,the Mean Square of the Weighted Deviates (MSWD) of compositional equivalence for the U-Th-He measurements. MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-helioplot_mswd_y,the Chi-squared p-value of equivalence for the geometric mean composition.  p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-helioplot_omega,"the estimated standard deviation of the 'geological scatter' of the U/He, Th/He (and Sm/He) ratios required to explain the overdispersion of the U-Th-(Sm)-He compositions with respect to the stated analytical uncertainties.",
-isochron_intro,"Isochrons are an important instrument of high precision, high accuracy geochronology. Given several aliquots from a single sample, they allow the non-radiogenic component of the daughter nuclide to be quantified and separated from the radiogenic component. In its simplest form, the isochron is obtrained by setting out the radiogenic daughter isotope against the radioactive parent isotope, both normalised to a non-radiogenic isotope of the daughter element, and fitting a straight line through these points by least squares regression Nicolaysen (1961). The slope and intercept then yield the radiogenic daughter-parent ratio and the non-radiogenic daughter composition, respectively. <tt>IsoplotR</tt> offers three ways to fit an isochron:
-
-<ol>
-  <li>Model-1: maximum Likelihood regression, using the
-    <span class=""hide4ThU1 hide4ThU2"">
-      modified error weighted least squares algorithm of York et al. (2004)
-    </span>
-    <span hidden class=""show4ThU1 show4ThU2"">
-    Maximum Likelihood formulation of Ludwig and Titterington (1994)
-    </span>. 
-This algorithm takes into account the analytical uncertainties and error correlations, under the assumption that the scatter between the data points is solely caused by the analytical uncertainty. If the assumption is correct, then the MSWD value should be approximately equal to one. If MSWD > 1, then model-1 regression assumes that the analytical uncertainties have been underestimated by a factor &radic;MSWD.
-  </li>
-  <li>Model-2: ordinary least squares regression, ignoring the analytical uncertainties.
-  </li>
-  <li>Model-3: maximum likelihood regression with overdispersion. Instead of attributing any overdispersion (MSWD > 1) to underestimated analytical uncertainties, one can also attribute it to the presence of geological uncertainty, which manifests itself as an added (co)variance term.
-  </li>
-</ol>",
-isochron_t,the isochron age.,
-isochron_t_x,the estimated uncertainty (&sigma;) of t.,
-isochron_t_y,"the <span hidden class=""show4model1 show4model2 hide4model3"">studentised </span>100(1-&alpha;)% confidence interval for t<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.",
-isochron_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.",
-isochron_i,"the initial 
-<span hidden class=""show4PbPb"">(<sup>207</sup>Pb/<sup>204</sup>Pb)</span>
-<span hidden class=""show4ArAr"">(<sup>40</sup>Ar/<sup>36</sup>Ar)</span>
-<span hidden class=""show4ThU1 show4ThU2"">(<sup>234</sup>U/<sup>238</sup>U)</span>
-<span hidden class=""show4ThU3 show4ThU4"">excess (<sup>230</sup>Th/<sup>232</sup>Th)</span>
-<span class=""hide3PbPb hide4ArAr hide4ThU"">isotope</span>-ratio obtained by linear regression.",
-isochron_i_x,the estimated uncertainty (&sigma;) of u.,
-isochron_i_y,"the<span hidden class=""show4model1 show4model2 hide4model3""> studentised</span> 100(1-&alpha;)% confidence interval for u<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.",
-isochron_i_z,"the approximate 100(1-&alpha;)% confidence interval for u with overdispersion, calculated as z = y&radic;MSWD (only reported if MSWD > 1).",
-isochron_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for the linear fit.  MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-isochron_mswd_y,the Chi-squared p-value for the linear fit.  p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties.,
-isochron_omega_a,"the excess ('geological') dispersion of the y-intercept, i.e. the standard deviation of the assumedly Gaussian distribution that describes the true non-radiogenic component.",
-isochron_omega_b,"the excess ('geological') dispersion of the concordia intercept age, i.e. the standard deviation of the assumedly Gaussian distribution that describes the variability of the true ages.",
-KCa_K40Ca44,Measured <sup>40</sup>K/<sup>44</sup>Ca-ratios.,
-KCa_err_K40Ca44,Analytical uncertainty of the <sup>40</sup>K/<sup>44</sup>Ca-ratios,
-KCa_Ca40Ca44,Measured <sup>40</sup>Ca/<sup>44</sup>Ca-ratios.,
-KCa_err_Ca40Ca44,Analytical uncertainty of the <sup>40</sup>Ca/<sup>44</sup>Ca-ratios,
-KCa_rho,Error correlations between the <sup>40</sup>K/<sup>44</sup>Ca and <sup>40</sup>Ca/<sup>44</sup>Ca-ratios.,
-KCa_K40K44,Measured <sup>40</sup>K/<sup>40</sup>Ca-ratios.,
-KCa_err_K40Ca40,Analytical uncertainty of the <sup>40</sup>K/<sup>40</sup>Ca-ratios,
-KCa_redundancy,<p></p><tt>IsoplotR</tt> uses the redundancy of the three ratios to calculate the correlation between their respective analytical uncertainties.,
-KDE_intro,"Histograms smooth data by binning. <tt>IsoplotR</tt> uses Sturges' Rule (log<sub>2</sub>[n]+1, where n is the number of data points) as the default number of histogram bins, but this can be changed to any other natural number by the user. Alternatively, kernel density estimates KDEs (Vermeesch, 2012) smooth data by applying a (Gaussian) kernel:
-
-<p></p>
-KDE(t) = &sum;<sub>i</sub><i>N</i> (t | &mu;=t<sub>i</sub>, &sigma;=h[t]) <span class=""alignright"">(eq. 1)</span>
-<p></p>
-
-where <i>N</i>(&mu;,&sigma;) is the probability of observing a value t under a Normal distribution with mean &mu; and standard deviation &sigma;.  h[t] is the smoothing parameter or 'bandwidth' of the kernel density estimate which may or may not depend on the age t. If h[t] depends on t, then KDE(t) is known as an 'adaptive' KDE.  The default bandwidth used by <tt>IsoplotR</tt> is calculated using the algorithm of Botev et al. (2010) and modulated by the adaptive smoothing approach of Abramson (1982). The rationale behind adaptive kernel density estimation is to use a narrower bandwidth near the peaks of the sampling distribution (where the ordered dates are closely spaced in time), and a wider bandwidth in the distribution's sparsely sampled troughs. Thus, the resolution of the density estimate is optimised according to data availability. Kernel density estimates are not to be confused with <tt>Isoplot</tt>'s 'probability density plots' (PDPs). The mathematical definition of a PDP closely resembles that of the KDE, the only difference being the substitution of the bandwidth h[t] by the analytical uncertainty s[t<sub>i</sub>] in Equation 1. This similarity in appearance and definition is the source of much confusion. PDPs do not stand up to further statistical scrutiny (see counter-examples provided by Vermeesch, 2012), and are not implemented in <tt>IsoplotR</tt>.",
-LuHf_Lu176Hf177,Measured <sup>176</sup>Lu/<sup>177</sup>Hf-ratios.,
-LuHf_err_Lu176Hf177,Analytical uncertainty of the <sup>176</sup>Lu/<sup>177</sup>Hf-ratios.,
-LuHf_Hf176Hf177,Measured <sup>176</sup>Hf/<sup>177</sup>Hf-ratios.,
-LuHf_err_Hf176Hf177,Analytical uncertainty of the <sup>176</sup>Hf/<sup>177</sup>Hf-ratios,
-LuHf_rho_Lu6Hf7Hf6Hf7,Error correlations between the <sup>176</sup>Lu/<sup>177</sup>Hf and <sup>176</sup>Hf/<sup>177</sup>Hf-ratios (optional).,
-LuHf_Lu,"Lu concentration, in ppm.",
-LuHf_err_Lu,"Analytical uncertainty of the Lu concentration, in ppm.",
-LuHf_Hf,"Hf concentration, in ppm.",
-LuHf_err_Hf,"Analytical uncertainty of the Hf concentration, in ppm.",
-LuHf_redundancy,<p></p><tt>IsoplotR</tt> uses these data to calculate the <sup>176</sup>Lu/<sup>177</sup>Hf-ratios and the correlation between the <sup>176</sup>Hf/<sup>177</sup>Hf- and the <sup>176</sup>Lu/<sup>177</sup>Hf-uncertainties.,
-MDS_intro,"Multidimensional Scaling (MDS) is a dimension-reducting technique that takes a matrix of pairwise 'dissimilarities' between objects (e.g., detrital age distributions) as input and produces a configuration of two (or higher-) coordinates as output, so that the Euclidean distance between these coordinates approximates the dissimilarities of the input matrix. Thus, an MDS-configuration serves as a 'map' in which similar samples cluster closely together and dissimilar samples plot far apart. In the context of detrital geochronology, the dissimilarity between samples is given by the statistical distance between age distributions. There are many ways to define this statistical distance. <tt>IsoplotR</tt> uses the Kolmogorov-Smirnov (KS) statistic for this purpose due to its simplicity and the fact that it behaves like a true distance in the mathematical sense of the word (Vermeesch, 2013, 2018). The KS-distance is closely related to the CAD-plot.  It is given by the maximum vertical distance between two CAD step functions. Thus, the KS-distance takes on values between zero (perfect match between two age distributions) and one (no overlap between two distributions).  Calculating the KS-distance between samples two at a time populates a symmetric dissimilarity matrix with positive values and a zero diagonal. <tt>IsoplotR</tt> implements two algorithms to convert this matrix into a configuration. The first ('classical' MDS) approach uses a sequence of basic matrix manipulations to achieve a linear fit between the KS-distances and the fittted distances on the MDS configuration. The second, more sophisticated ('nonmetric' MDS) approach subjects the input distances to a transformation f prior to fitting a configuration:
-
-<p></p>
-&delta;<sub>i,j</sub> = f(KS<sub>i,j</sub>)
-<p></p>
-
-where KS<sub>i,j</sub> is the KS-distance between samples i and j (for 1 &le; i &ne; j &le; n) and &delta;<sub>i,j</sub> is the 'disparity'. Fitting an MDS configuration then involves finding the disparity transformation that maximises the goodness of fit (or minimises the 'stress') between the disparities and the fitted distances. The latter two quantities can also be plotted against each other as a 'Shepard plot'. Additional options and higher order alternatives to these MDS algorithms are provided in a separate <tt>R</tt>-package called <a href=""http://provenance-london-geochron.com"">provenance</a> (Vermeesch et al., 2016).",
-other_radial_t,A column of numerical values (e.g. ages),
-other_radial_err_t,The analytical uncertainty of these values,
-other_radial_C,Optional variable to be used as fill colour.,
-other_radial_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for central age and mixture modelling calculations; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
-other_regression_X,"A column of numerical values (e.g., isotope ratios)",
-other_regression_err_X,The analytical uncertainty of these values,
-other_regression_Y,"A second column of numerical values (e.g., isotope ratios)",
-other_regression_err_Y,The analytical uncertainty of these values,
-other_regression_rXY,The error correlation of X and Y,
-other_regression_C,Optional variable to be used as fill colour in error ellipses.,
-other_regression_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for the regression analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
-other_spectrum_f,"The fraction of 'stuff' in each column, which will be normalised to form the X-axis of the spectrum",
-other_spectrum_X,"Numerical values, which will form the Y-axis of the spectrum",
-other_spectrum_err_X,The analytical uncertainty of these values,
-other_spectrum_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for the plateau calculation; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
-other_average_X,A column of numerical values,
-other_average_err_X,The analytical uncertainty of these values,
-other_average_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for the weighted mean calculation; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,
-other_kde_cad,A column of numerical values,
-other_omit,Optional variable used to ignore aliquots. Aliquots marked as '<tt>x</tt>' or '<tt>X</tt>' are removed from the plot.,
-PbPb_64,Measured <sup>206</sup>Pb/<sup>204</sup>Pb-ratios.,
-PbPb_err_64,Analytical uncertainty of the <sup>206</sup>Pb/<sup>204</sup>Pb-ratios,
-PbPb_74,Measured <sup>207</sup>Pb/<sup>204</sup>Pb-ratios.,
-PbPb_err_74,Analytical uncertainty of the <sup>207</sup>Pb/<sup>204</sup>Pb-ratios,
-PbPb_46,Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,
-PbPb_err_46,Analytical uncertainty of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios,
-PbPb_76,Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
-PbPb_err_76,Analytical uncertainty of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios,
-PbPb_rho_6474,Error correlation between the <sup>206</sup>Pb/<sup>204</sup>Pb- and <sup>207</sup>Pb/<sup>204</sup>Pb-ratios.,
-PbPb_rho_4676,Error correlation between the <sup>204</sup>Pb/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,
-radial_intro,"Radial plots are bivariate (x<sub>i</sub>,y<sub>i</sub>) scatterplots where:
-<p></p>
-x<sub>i</sub> = 1∕&sigma;(z<sub>i</sub>) and y<sub>i</sub> = (z<sub>i</sub> - z<sub>o</sub>)∕&sigma;(z<sub>i</sub>) (for 1 &le; i &le; n)
-<p></p>
-with z<sub>i</sub> a transformation of some data and &sigma;(z<sub>i</sub>) the corresponding measurement uncertainty. For example, if z<sub>i</sub> = log(t<sub>i</sub>) then &sigma;(z<sub>i</sub>) = &sigma;(t<sub>i</sub>)∕t<sub>i</sub>. z<sub>o</sub> is a convenient central value such as the weighted mean. The slope of a line connecting the origin (x=0,y=0) of a radial plot with a data point (x<sub>i</sub>,y<sub>i</sub>) equals z<sub>i</sub>, and the horizontal distance along x-axis is a measure if its precision. Thus, the radial plot simultaneously visualises a measurement’s value and precision. No other graphical method achieves this goal with the same elegance (Galbraith, 1988). This makes the radial plot the method of choice for visualising heteroscedastic data, i.e. data with variable measurement uncertainties. Traditional applications in the Earth Sciences are fission track and luminescence dating (e.g., Galbraith, 1990; Galbraith et al., 1999). <tt>IsoplotR</tt> generalises it to all other geochronometers as well.",
-radial_t,"the central age, which is defined as e<sup>&mu;</sup> where &mu; is the mean of the following log-normal distribution:
-
-<p></p>
-
-t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup>) <span class=""alignright"">(eq. 1)</span>
-
-<p></p>
-
-with s[t<sub>i</sub>] the standard error of the i<sup>th</sup> (out of n) measurements, and &omega; the <i>overdispersion</i>.",
-radial_t_x,"the estimated standard deviation of t, estimated by the method of maximum likelihood.",
-radial_t_y,the 100(1-&alpha;)% confidence interval for t.,
-radial_m,the Mean Square of the Weighted Deviates a.k.a. the reduced Chi-squared statistic. MSWD values greater than unity suggest that the dataset under consideration is overdispersed with respect to the analyical uncertainties.,
-radial_p,"the p-value of a Chi-square probability for homogeneity. High values of p (>0.05, say) indicate that there is not enough evidence for overdispersion.",
-radial_omega,the dispersion defined by eq. 1.,
-RbSr_Rb87Sr86,Measured <sup>87</sup>Rb/<sup>86</sup>Sr-ratios.,
-RbSr_redundancy,"<p></p>
-<tt>IsoplotR</tt> uses these data to calculate the <sup>87</sup>Rb/<sup>86</sup>Sr-ratios and the correlation between the <sup>87</sup>Sr/<sup>86</sup>Sr- and the <sup>87</sup>Rb/<sup>86</sup>Sr-uncertainties.",
-RbSr_Sr87Sr86,Measured <sup>87</sup>Sr/<sup>86</sup>Sr-ratios.,
-RbSr_err_Sr87Sr86,Analytical uncertainty of the <sup>87</sup>Sr/<sup>86</sup>Sr-ratios,
-RbSr_rho_Rb87Sr86_Sr87Sr86,Error correlations between the <sup>87</sup>Rb/<sup>86</sup>Sr and <sup>87</sup>Sr/<sup>86</sup>Sr-ratios (optional).,
-RbSr_Rb87Sr87,Measured <sup>87</sup>Rb/<sup>87</sup>Sr-ratios.,
-RbSr_err_Rb87Sr87,Analytical uncertainty of the <sup>87</sup>Rb/<sup>87</sup>Sr-ratios,
-RbSr_Sr86Sr87,Measured <sup>86</sup>Sr/<sup>87</sup>Sr-ratios.,
-RbSr_err_Sr86Sr87,Analytical uncertainty of the <sup>87</sup>Sr/<sup>86</sup>Sr-ratios,
-RbSr_rho_Rb87Sr87_Sr86Sr87,Error correlations between the <sup>87</sup>Rb/<sup>87</sup>Sr and <sup>86</sup>Sr/<sup>87</sup>Sr-ratios (optional).,
-RbSr_Rb,"Rb concentration, in ppm.",
-RbSr_err_Rb,"Analytical uncertainty of the Rb concentration, in ppm",
-RbSr_Sr,"Sr concentration, in ppm.",
-RbSr_err_Sr,"Analytical uncertainty of the Sr concentration, in ppm",
-RbSr_8786,Measured <sup>87</sup>Sr/<sup>86</sup>Sr-ratios.,
-RbSr_err_8786,Analytical uncertainty of the <sup>87</sup>Sr/<sup>86</sup>Sr-ratios,
-regression_intro,"<tt>IsoplotR</tt> offers three ways to fit a straight line through 2-dimensional data with measurement uncertainties:
-
-<ol>
-  <li>Model-1: maximum Likelihood regression, using the modified error weighted least squares algorithm of York et al. (2004) This algorithm takes into account the analytical uncertainties and error correlations, under the assumption that the scatter between the data points is solely caused by the analytical uncertainty. If the assumption is correct, then the MSWD value should be approximately equal to one. If MSWD > 1, then model-1 regression assumes that the analytical uncertainties have been underestimated by a factor &radic;MSWD.
-  </li>
-  <li>Model-2: ordinary least squares regression, ignoring the analytical uncertainties.
-  </li>
-  <li>Model-3: maximum likelihood regression with overdispersion. Instead of attributing any overdispersion (MSWD > 1) to underestimated analytical uncertainties, one can also attribute it to the presence of geological uncertainty, which manifests itself as an added (co)variance term.
-  </li>
-</ol>",
-regression_s,the slope of the best fit line.,
-regression_s_x,the estimated uncertainty (&sigma;) of s.,
-regression_s_y,the 100(1-&alpha;)% confidence interval for s using the appropriate number of degrees of freedom.,
-regression_s_z,"the approximate 100(1-&alpha;)% confidence interval for s with overdispersion, calculated as z = y&radic;MSWD.",
-regression_i,the y-intercept obtained by linear regression.,
-regression_i_x,the estimated uncertainty (&sigma;) of i.,
-regression_i_y,the 100(1-&alpha;)% confidence interval for i using the appropriate number of degrees of freedom.,
-regression_i_z,"the approximate 100(1-&alpha;)% confidence interval for i with overdispersion, calculated as z = y&radic;MSWD (only reported if MSWD > 1).",
-regression_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for the linear fit.  MSWD values >> 1 indicate that the data are overdispersed with respect to the stated analytical uncertainties.,
-regression_mswd_y,the Chi-squared p-value for the linear fit.  p-values << 0.05 indicate that the data are overdispersed with respect to the stated analytical uncertainties.,
-ReOs_redundancy,"<p></p>
-<tt>IsoplotR</tt> uses these data to calculate the <sup>187</sup>Re/<sup>188</sup>Os-ratios and the correlation between the <sup>187</sup>Os/<sup>188</sup>Os- and the <sup>187</sup>Re/<sup>188</sup>Os-uncertainties.",
-ReOs_Re187Os188,Measured <sup>187</sup>Re/<sup>188</sup>Os-ratios.,
-ReOs_err_Re187Os188,Analytical uncertainty of the <sup>187</sup>Re/<sup>188</sup>Os-ratios,
-ReOs_Os187Os188,Measured <sup>187</sup>Os/<sup>188</sup>Os-ratios.,
-ReOs_err_Os187Os188,Analytical uncertainty of the <sup>187</sup>Os/<sup>188</sup>Os-ratios,
-ReOs_rho_Re187Os188Os187Os188,Error correlations between the <sup>187</sup>Re/<sup>188</sup>Os and <sup>187</sup>Os/<sup>188</sup>Os-ratios (optional).,
-ReOs_Re,"Re concentration, in ppm.",
-ReOs_err_Re,"Analytical uncertainty of the Re concentration, in ppm ",
-ReOs_Os,"Os concentration, in ppm.",
-ReOs_err_Os,"Analytical uncertainty of the Os concentration, in ppm",
-zeta,"The fission track age is given by:
-
-<p></p>
-t = ln[1 + 
-{2 N<sub>s</sub>&lambda;<sub>238</sub>&lambda;<sub>f</sub>}/
-{[<sup>238</sup>U]A<sub>s</sub>L}] / &lambda;<sub>238</sub>
-<span class=""alignright"">(eq. 1)</span>
-<p></p>
-
-where N<sub>s</sub> is the number of spontaneous fission tracks measured over an area A<sub>s</sub>, [<sup>238</sup>U] is the <sup>238</sup>U-concentration in atoms per unit volume, &lambda;<sub>f</sub> is the fission decay constant, L is the etchable fission track length, and the factor 2 is a geometric factor
-accounting for the fact that etching reveals tracks from both above and below the internal crystal surface.
-
-<p></p>
-
-<div class=""show4EDM hide4absolute hide4ICP"">
-[<sup>238</sup>U] can be measured indirectly using the induced fission of neutron-irradiated <sup>235</sup>U as a proxy for the <sup>238</sup>U. In the most common implementation of this approach, the induced fission tracks are recorded by an external detector made of mica or plastic that is attached to the polished grain surface (Fleischer and Hart, 1972; Hurford and Green, 1983). The
-fission track age equation then becomes:
-
-<p></p>
-t = ln[
-1 + {&lambda;<sub>238</sub>&zeta;&rho;<sub>d</sub>N<sub>s</sub>}/
-{2 N<sub>i</sub>}] /
-&lambda;<sub>238</sub>
-<span class=""alignright"">(eq. 2)</span>
-<p></p>
-
-where N<sub>i</sub> is the number of induced fission tracks counted in the external detector over the same area as the spontaneous tracks, &zeta; is a 'zeta'-calibration factor that incorporates both the fission decay constant and the etchable fission track length, and &rho;<sub>d</sub> is the number of induced fission tracks per unit area counted in a co-irradiated glass of known U-concentration. &rho;<sub>d</sub> allows the &zeta;-factor to be 'recycled' between irradiations.
-</div>
-
-<div class=""hide4EDM hide4absolute show4ICP"">
-The <sup>238</sup>U-concentration can also be measured directly by LAICPMS. Unfortunately the accuracy of LAICPMS-based age estimates is compromised by the absence of matrix-matched concentrations standards, and uncertainies associated with the fission track decay constant and the etching and counting efficiencies.  These systematic errors can be removed by normalising to a standard of known fission track age and defining a new 'zeta' calibration constant &zeta;<sub>icp</sub>:
-
-<p></p>
-t =
-ln( 1 + {2 &zeta;<sub>icp</sub> &lambda;<sub>238</sub>N<sub>2</sub>}/
-{[<sub>238</sub>U] A<sub>s</sub>})/
-&lambda;<sub>238</sub>
-<span class=""alignright"">(eq. 2)</span>
-<p></p>
-
-where [<sup>238</sup>U] may either stand for the <sup>238</sup>U-concentration (in ppm) <i>or</i> for the U/Ca (for apatite) or U/Si (for zircon) ratio measurement, and A<sub>s</sub> is the spontaneous track counting area, which may either correspond to one laser spot or to a larger area (if multiple U-measurements were made).
-</div>",
-SmNd_redundancy,"<p></p>
-<tt>IsoplotR</tt> uses these data to calculate the <sup>147</sup>Sm/<sup>144</sup>Nd-ratios and the correlation between the <sup>147</sup>Sm/<sup>144</sup>Nd- and the <sup>143</sup>Nd/<sup>144</sup>Nd-uncertainties.",
-SmNd_Sm147Nd144,Measured <sup>147</sup>Sm/<sup>144</sup>Nd-ratios.,
-SmNd_err_Sm147Nd144,Analytical uncertainty of the <sup>147</sup>Sm/<sup>144</sup>Nd-ratios,
-SmNd_Nd143Nd144,Measured <sup>143</sup>Nd/<sup>144</sup>Nd-ratios.,
-SmNd_err_Nd143Nd144,Analytical uncertainty of the <sup>143</sup>Nd/<sup>144</sup>Nd-ratios,
-SmNd_rho_Sm147Nd144Nd143Nd144,Error correlations between the <sup>147</sup>Sm/<sup>144</sup>Nd and <sup>143</sup>Nd/<sup>144</sup>Nd-ratios (optional).,
-SmNd_Sm,"Sm concentration, in ppm.",
-SmNd_err_Sm,"Analytical uncertainty of the Sm concentration, in ppm ",
-SmNd_Nd,"Nd concentration, in ppm.",
-SmNd_err_Nd,"Analytical uncertainty of the Nd concentration, in ppm ",
-SmNd_Sm147Nd143,Measured <sup>147</sup>Sm/<sup>143</sup>Nd-ratios.,
-spectrum_intro,"The <sup>40</sup>Ar/<sup>39</sup>Ar-age spectrum is a useful tool to visualise stepwise heating measurements. Its appearance is based on the weighted mean plot with the different heating steps arranged in order of increasing temperature along the horizontal axis, and the width of the different sample boxes proportional to the corresponding amounts of <sup>39</sup>Ar. <tt>IsoplotR</tt> defines the 'plateau age' as the weighted mean age of the longest sequence (in terms of cumulative <sup>39</sup>Ar content) of consecutive heating steps that pass a modified Chauvenet criterion.  This definition is different (and simpler) than the one used by <tt>Isoplot</tt> (Ludwig, 2003). However, it is important to mention that all definitions of an age plateau are heuristic by nature and should therefore not be used for quantitative inference.  It is possible (and likely) that the plateau exhibits significant overdispersion. This overdispersion can be manually reduced by removing individual heating steps using the optional <tt>omit</tt> column.
-",
-spectrum_t,"the plateau age, which is defined as the weighted mean age of the largest consecutive set of steps that survive the modified Chauvenet's Criterion used for the ordinary weighted mean.",
-spectrum_t_x,"the estimated standard deviation of <tt>t</tt>, estimated by the method of maximum likelihood.",
-spectrum_t_y,"the 100(1-&alpha;)% confidence interval for <tt>t</tt>. This is also shown as a grey band on the plot. The uncertainties associated with the random uncertainties are shown in dark grey, whereas the systematic uncertainties (i.e. J-factor and decay constant) are shown in light grey.",
-spectrum_mswd_x,"the mean square of the weighted deviates (aka 'reduced chi-square statistic') of the plateau. <tt>IsoplotR</tt>'s plateau definition allows the MSWD to exceed 1, as long as the overdispersion does not violate Chauvenet's outlier criterion.",
-spectrum_mswd_y,"p-value of a chi-square test of homogeneity. <tt>IsoplotR</tt>'s plateau definition allow the p-value to fall below the &alpha; cutoff, as long as the overdispersion does not violate Chauvenet's outlier criterion.",
-spectrum_pct_39,the sum of all the steps that are included in the plateau.,
-ThU_82,Measured <sup>238</sup>U/<sup>232</sup>Th-ratios.,
-ThU_err_82,Analytical uncertainty of the <sup>238</sup>U/<sup>232</sup>Th-ratios,
-ThU_42,Measured <sup>234</sup>U/<sup>232</sup>Th-ratios.,
-ThU_err_42,Analytical uncertainty of the <sup>234</sup>U/<sup>232</sup>Th-ratios,
-ThU_02,Measured <sup>230</sup>Th/<sup>232</sup>Th-ratios.,
-ThU_err_02,Analytical uncertainty of the <sup>230</sup>Th/<sup>232</sup>Th-ratios,
-ThU_rho_8242,Error correlation between the <sup>238</sup>U/<sup>232</sup>Th- and <sup>234</sup>U/<sup>232</sup>Th-ratios.,
-ThU_rho_8202,"Error correlation between the <sup>238</sup>U/<sup>232</sup>Th- and <sup>230</sup>Th/<sup>232</sup>Th-ratios <span hidden class=""show4ThU3"">(optional)</span>",
-ThU_rho_4202,Error correlation between the <sup>234</sup>U/<sup>232</sup>Th- and <sup>230</sup>Th/<sup>232</sup>Th-ratios.,
-ThU_28,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,
-ThU_err_28,Analytical uncertainty of the <sup>232</sup>Th/<sup>238</sup>U-ratios,
-ThU_48,Measured <sup>234</sup>U/<sup>238</sup>U-ratios.,
-ThU_err_48,Analytical uncertainty of the <sup>234</sup>U/<sup>238</sup>U-ratios,
-ThU_08,Measured <sup>230</sup>Th/<sup>238</sup>U-ratios.,
-ThU_err_08,Analytical uncertainty of the <sup>230</sup>Th/<sup>238</sup>U-ratios,
-ThU_rho_2808,"Error correlation between the <sup>232</sup>Th/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U-ratios <span class=""show4ThU4"">(optional)</span>",
-ThU_rho_4808,Error correlation between the <sup>234</sup>U/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U-ratios.,
-ThU_C,"Optional variable to be used as fill colours in evolution diagrams, isochrons and radial plots.",
-UThHe,"Measured He, U, Th and (optionally) Sm abundance or concentration, in any kind of atomic units (fmol, mol/g, atoms, ...).",
-UThHe_err,"Analytical uncertainty of the He, U, Th and (optionally) Sm measurements",
-UThHe_C,"Optional variable to be used as fill colours in radial plots, ternary diagrams and logratio plots.",
-RbSr_err_Rb87Sr86,Analytical uncertainty of the <sup>87</sup>Rb/<sup>86</sup>Sr-ratios,
-ThU_rho_2848,Error correlation between the <sup>232</sup>Th/<sup>238</sup>U- and <sup>234</sup>U/<sup>238</sup>U-ratios.,
-SmNd_rho_Sm147Nd143Nd144Nd143,Error correlations between the <sup>147</sup>Sm/<sup>143</sup>Nd and <sup>144</sup>Nd/<sup>143</sup>Nd-ratios (optional).,
-SmNd_err_Sm147Nd143,Analytical uncertainty of the <sup>147</sup>Sm/<sup>143</sup>Nd-ratios,
-SmNd_err_Nd144Nd143,Analytical uncertainty of the <sup>144</sup>Nd/<sup>143</sup>Nd-ratios,
-SmNd_Nd144Nd143,Measured <sup>143</sup>Nd/<sup>144</sup>Nd-ratios.,
-ReOs_rho_Re187Os187Os188Os187,Error correlations between the <sup>187</sup>Re/<sup>187</sup>Os and <sup>188</sup>Os/<sup>187</sup>Os-ratios (optional).,
-ReOs_err_Re187Os187,Analytical uncertainty of the <sup>187</sup>Re/<sup>187</sup>Os-ratios,
-ReOs_err_Os188Os187,Analytical uncertainty of the <sup>188</sup>Os/<sup>187</sup>Os-ratios,
-ReOs_Re187Os187,Measured <sup>188</sup>Re/<sup>187</sup>Os-ratios.,
-ReOs_Os188Os187,Measured <sup>188</sup>Os/<sup>187</sup>Os-ratios.,
-LuHf_rho_Lu6Hf6Hf7Hf6,Error correlations between the <sup>176</sup>Lu/<sup>176</sup>Hf and <sup>176</sup>Hf/<sup>176</sup>Hf-ratios (optional).,
-LuHf_err_Lu176Hf176,Analytical uncertainty of the <sup>176</sup>Lu/<sup>176</sup>Hf-ratios.,
-LuHf_err_Hf177Hf176,Analytical uncertainty of the <sup>177</sup>Hf/<sup>176</sup>Hf-ratios,
-LuHf_Lu177Hf176,Measured <sup>177</sup>Lu/<sup>176</sup>Hf-ratios.,
-LuHf_Hf177Hf176,Measured <sup>177</sup>Hf/<sup>176</sup>Hf-ratios.,
-regression_omega,"the excess ('geological') dispersion of the y-intercept, i.e. the standard deviation of the assumedly Gaussian distribution that describes the inherited component.",
+CAD_intro,"Empirical cumulative distribution functions or cumulative age distributions CADs (Vermeesch, 2007) are the most straightforward way to visualise the probability distribution of multiple dates. A CAD is a step function that sets out the rank order of the dates against their numerical value:  <p></p> CAD(t) = &sum;<sub>i</sub> 1(t &lt; t<sub>i</sub>)/n <span class=""alignright"">(eq. 1)</span> <p></p>  where 1(*) = 1 if * is true and 1(*) = 0 if * is false. CADs have two desirable properties. First, they do not require any pre-treatment or smoothing of the data. This is not the case for histograms or kernel density estimates. Second, it is easy to superimpose several CADs on the same plot. This facilitates the intercomparison of multiple samples. The interpretation of CADs is straightforward but not very intuitive. The prominence of individual age components is proportional to the steepness of the CAD. This is different from probability density estimates such as histograms, in which such components stand out as peaks. It is arguably easier to identify peaks than inflection points and this probably why CADs are not as widely used as probability density estimates. But the ease of interpretation of density estimates comes at a cost, as they require smoothing and cannot as easily be combined as CADs.", 
+concordia_intro,"The concordia diagram is a graphical means of assessing the internal consistency of U-Pb data. It sets out the measured <sup>206</sup>Pb/<sup>238</sup>U- and <sup>207</sup>Pb/<sup>235</sup>-ratios against each other ('Wetherill' diagram) or, equivalently, the <sup>207</sup>Pb/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>235</sup>U-ratios ('Tera-Wasserburg' diagram). The space of concordant isotopic compositions is marked by a curve, the 'concordia line'. Isotopic ratio measurements are shown as 100(1-&alpha;)% confidence ellipses, where &alpha; is set in the <tt>Options</tt> menu. Concordant samples plot near to, or overlap with, the concordia line. They represent the pinnacle of geochronological robustness. Samples that plot away from the concordia line but are aligned along a linear trend form an isochron (or 'discordia' line) that can be used to infer the composition of the non-radiogenic ('common') lead or to constrain the timing of prior lead loss.", 
+conc_t,the Maximum Likelihood estimate of the age using the algorithm of Ludwig (1998).,使用Ludwig(1998)算法获得年龄的极大似然估算值。
+conc_t_x,the analytical uncertainty (&sigma;) of t.,t的分析误差(&sigma;)。
+conc_t_y,the studentised 100(1-&alpha;)% confidence interval for t using the appropriate number of degrees of freedom.,合适自由度下t的studentised 100(1-&alpha;)% 置信区间。
+conc_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.",过度离散时t的100(1-&alpha;)% 近似置信区间， z = y&radic;MSWD。
+conc_mswd_u,the Mean Square of the Weighted Deviates (MSWD) for concordance.,协和性的MSWD
+conc_mswd_v,the MSWD for equivalence.,等价性的MSWD
+conc_mswd_w,the MSWD for concordance + equivalence.,协和性+等价性的MSWD
+conc_mswd_x,the Chi-squared p-value for concordance.,协和性的卡方检测p值。
+conc_mswd_y,the Chi-squared p-value for equivalence.,等价性的卡方检测p值。
+conc_mswd_z,the Chi-squared p-value for concordance + equivalence.,协和性+等价性的卡方检测p值。
+disc_x,the analytical uncertainty (&sigma;) of t.,t的分析误差 (&sigma;) 。
+disc_y,"the <span hidden class=""show4model1 show4model2 hide4model3"">studentised</span> 100(1-&alpha;)% confidence interval for t<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.","合适自由度</span>下t<span hidden class=""show4model1 show4model2 hide4model3"">studentised</span> 100(1-&alpha;)% 置信区间。"
+disc_t,"the <span hidden class=""show4model1 hide4model2 show4model3"">Maximum Likelihood</span> <span hidden class=""hide4model1 show4model2 hide4model3"">least squares</span> estimate of the age or initial Pb-ratio <span hidden class=""show4model1 hide4model2 show4model3""> using the algorithm of Ludwig (1998)</span>.","使用 Ludwig (1998)</span>算法时年龄和初始Pb比值 <span hidden class=""show4model1 hide4model2 show4model3"">的<span hidden class=""show4model1 hide4model2 show4model3"">极大似然</span> <span hidden class=""hide4model1 show4model2 hide4model3"">最小方差估算。"
+disc_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD. (only reported if MSWD > 1)", 过度离散时t的100(1-&alpha;)% 近似置信区间，z = y&radic;MSWD。（仅当MSWD>1时报道）
+disc_u,the Mean Square of the Weighted Deviates (MSWD) for the isochron fit., 等时线拟合的MSWD
+disc_v,the Chi-squared p-value for the isochron fit., 等时线拟合的卡方检测p值。
+disc_omega,the estimated standard deviation of the assumedly Gaussian geological scatter of the true intercept ages.,真实下交点年龄近似高斯地质散射的估算标准偏差。
+detritals_info,"The detrital ages arranged in columns which may have unequal lengths. Sample names may be provided in the first row. If they are omitted, then please untick the ""Sample names on first row?"" box in the Options menu.", 
+evolution_info_ThU12,"The Th-U evolution diagram is a scatter plot that sets out the <sup>234</sup>U/<sup>238</sup>U-activity ratios against the <sup>230</sup>Th/<sup>238</sup>U-activity ratios as error ellipses (drawn at 100[1-&alpha;]% confidence level), and displays the initial <sup>234</sup>U/<sup>238</sup>U-activity ratios and ages as a set of intersecting lines. The Th-U evolution diagram has a similar and purpose and appearance as the U-Pb concordia diagram, which also displays compositions and dates simultaneously. An alternative way of doing so is to plot the <sup>234</sup>U/<sup>238</sup>U-ratios against the <sup>230</sup>Th/<sup>234</sup>U-<sup>238</sup>U-ages. In both types of evolution diagrams, <tt>IsoplotR</tt> provides the option to project the raw measurements along the best fitting isochron line and thereby remove the detrital <sup>230</sup>Th-component. This procedure allows a visual assessment of the degree of homogeneity within a dataset, as is quantified by the MSWD.", 
+evolution_info_ThU34,"The Th-U evolution diagram has a similar and purpose and appearance as the U-Pb concordia diagram, which also displays compositions and dates simultaneously. For igneous datasets, in which <sup>234</sup>U and <sup>238</sup>U are in secular equilibrium, <tt>IsoplotR</tt> produces an (Osmond-style) isochron plot that is decorated with a fanning set of isochrone lines.", 
+evolution_t,the isochron age.,等时线年龄。
+evolution_t_x,the estimated uncertainty (&sigma;) of t.,t的估算误差（&sigma;）。
+evolution_t_y,the studentised 100(1-&alpha;)% confidence interval for t using the appropriate number of degrees of freedom., 
+evolution_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.", 
+evolution_i,"the initial <span hidden class=""show4ThU1 show4ThU2"">(<sup>234</sup>U/<sup>238</sup>U)</span> <span hidden class=""show4ThU3 show4ThU4"">excess (<sup>230</sup>Th/<sup>232</sup>Th)</span>-ratio obtained by linear regression.", 
+evolution_i_x,the estimated uncertainty (&sigma;) of i.,i的估算误差（&sigma;）。
+evolution_i_y,the 100(1-&alpha;)% confidence interval for i using the appropriate number of degrees of freedom.,合适自由度下i的近似100(1-&alpha;)%置信区间。
+evolution_i_z,"the approximate 100(1-&alpha;)% confidence interval for i with overdispersion, calculated as z = y&radic;MSWD (only reported if MSWD > 1).", 
+evolution_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for the linear fit. MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+evolution_mswd_y,the Chi-squared p-value for the linear fit. p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+evolution_omega,"the excess ('geological') dispersion of the y-intercept, i.e. the standard deviation of the assumedly Gaussian distribution that describes the true non-radiogenic component.", 
+FT_tstand,Standard age and its standard error.,标准年龄和它的标准误差。
+FT_zeta,Zeta calibration constant and its analytical uncertainty,Zeta校正常数和它的分析误差。
+FT_rho,Induced track density in a co-irradiated dosimeter glass and its analytical uncertainty, 
+FT_spot_size,"The diameter of the LA-ICP-MS laser spot, in &mu;m",LA-ICP-MS激光束斑直径（&mu;m）
+FT_Ns,Number of spontaneous tracks,自发裂变径迹数量
+FT_Ni,Number of induced tracks,诱发裂变径迹数量
+FT_A,"Counting area, in &mu;m<sup>2</sup>",计数面积（&mu;m<sup>2</sup>）
+FT_U,"Uranium concentration (in ppm, for both the &zeta;-calibration and absolute methods), or U/Ca-ratios (for the &zeta;-calibration method only) measured by LA-ICP-MS", 
+FT_err_U_a,Analytical uncertainty,测量误差
+FT_err_U_b,"of U1, U2, ... . These should <i>exclude</i> any external sources of uncertainty for the calculation of radial plots or weighted means.", 
+FT_C,Optional variable to be used as fill colours in radial plots.,星状图充填颜色的可选择变量。
+helioplot_intro,"The space of all possible U-Th-He compositions fits within the constraints of a ternary diagram or 'helioplot' (Vermeesch, 2008, 2010). If Sm is included as well, then this expands to a three-dimensional tetrahaedral space (Vermeesch, 2008). Conventional statistical analysis of data that fit within these constrained spaces is fraught with theoretical and practical problems that can be solved by applying a simple logratio transformation (Aitchison, 1982, 1986)  <p></p> u &equiv; ln[U/He], &nbsp; v &equiv; ln[Th/He] &nbsp; (, w &equiv; ln[Sm/He]) <span class=""alignright"">(eq. 1)</span> <p></p>  and then performing the desired statistical analysis (averaging, uncertainty propagation, ...) on the transformed data (Vermeesch, 2008, 2010). Upon completion of these mathematical operations, the results can then be mapped back to U-Th-(Sm)/He space using an inverse logratio transformation:  <p></p> [He] = 1/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1]; &nbsp; [U] = e<sup>u</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1]; &nbsp;<br> [Th] = e<sup>v</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1]; &nbsp; ([Sm] = e<sup>w</sup>/[e<sup>u</sup>+e<sup>v</sup>+(e<sup>w</sup>)+1]; &nbsp;) <span class=""alignright"">(eq. 2)</span> <p></p>  where [He] + [U] + [Th] (+ [Sm]) = 1. In the context of U-Th-(Sm)/He dating, the <i>central</i> age is defined as the age that corresponds to the arithmetic mean composition in logratio space, which is equivalent to the geometric mean in compositional dataspace (Vermeesch, 2008). The <tt>helioplot</tt> function visualises U-Th-(Sm)-He data on either a ternary diagram or a bivariate ln[Th/U] vs. ln[U/He] contour plot. These diagrams provide a convenient way to simultaneously display the isotopic composition of samples as well as their chronological meaning. In this respect, they fulfil the same purpose as the U-Pb concordia diagram and the U-series evolution plot.", 
+helioplot_t,"the central age, which is defined as the U-Th-He age corresponding to the weighted mean composition in log(U/He)-log(Th/He) space.", 
+helioplot_t_x,"the estimated standard deviation of t, estimated by the method of maximum likelihood.", 
+helioplot_t_y,"the<span hidden class=""show4model1 show4model2 hide4model3""> studentised</span> 100(1-&alpha;)% confidence interval for t<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.", 
+helioplot_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.", 
+helioplot_mswd_x,the Mean Square of the Weighted Deviates (MSWD) of compositional equivalence for the U-Th-He measurements. MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+helioplot_mswd_y,the Chi-squared p-value of equivalence for the geometric mean composition. p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+helioplot_omega,"the estimated standard deviation of the 'geological scatter' of the U/He, Th/He (and Sm/He) ratios required to explain the overdispersion of the U-Th-(Sm)-He compositions with respect to the stated analytical uncertainties.", 
+isochron_intro,"Isochrons are an important instrument of high precision, high accuracy geochronology. Given several aliquots from a single sample, they allow the non-radiogenic component of the daughter nuclide to be quantified and separated from the radiogenic component. In its simplest form, the isochron is obtrained by setting out the radiogenic daughter isotope against the radioactive parent isotope, both normalised to a non-radiogenic isotope of the daughter element, and fitting a straight line through these points by least squares regression Nicolaysen (1961). The slope and intercept then yield the radiogenic daughter-parent ratio and the non-radiogenic daughter composition, respectively. <tt>IsoplotR</tt> offers three ways to fit an isochron:  <ol> <li>Model-1: maximum Likelihood regression, using the <span class=""hide4ThU1 hide4ThU2""> modified error weighted least squares algorithm of York et al. (2004) </span> <span hidden class=""show4ThU1 show4ThU2""> Maximum Likelihood formulation of Ludwig and Titterington (1994) </span>.  This algorithm takes into account the analytical uncertainties and error correlations, under the assumption that the scatter between the data points is solely caused by the analytical uncertainty. If the assumption is correct, then the MSWD value should be approximately equal to one. If MSWD > 1, then model-1 regression assumes that the analytical uncertainties have been underestimated by a factor &radic;MSWD. </li> <li>Model-2: ordinary least squares regression, ignoring the analytical uncertainties. </li> <li>Model-3: maximum likelihood regression with overdispersion. Instead of attributing any overdispersion (MSWD > 1) to underestimated analytical uncertainties, one can also attribute it to the presence of geological uncertainty, which manifests itself as an added (co)variance term. </li> </ol>", 
+isochron_t,the isochron age., 
+isochron_t_x,the estimated uncertainty (&sigma;) of t., 
+isochron_t_y,"the <span hidden class=""show4model1 show4model2 hide4model3"">studentised </span>100(1-&alpha;)% confidence interval for t<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.", 
+isochron_t_z,"the approximate 100(1-&alpha;)% confidence interval for t with overdispersion, calculated as z = y&radic;MSWD.", 
+isochron_i,"the initial  <span hidden class=""show4PbPb"">(<sup>207</sup>Pb/<sup>204</sup>Pb)</span> <span hidden class=""show4ArAr"">(<sup>40</sup>Ar/<sup>36</sup>Ar)</span> <span hidden class=""show4ThU1 show4ThU2"">(<sup>234</sup>U/<sup>238</sup>U)</span> <span hidden class=""show4ThU3 show4ThU4"">excess (<sup>230</sup>Th/<sup>232</sup>Th)</span> <span class=""hide3PbPb hide4ArAr hide4ThU"">isotope</span>-ratio obtained by linear regression.", 
+isochron_i_x,the estimated uncertainty (&sigma;) of u.,u的估算误差（&sigma;）。
+isochron_i_y,"the<span hidden class=""show4model1 show4model2 hide4model3""> studentised</span> 100(1-&alpha;)% confidence interval for u<span hidden class=""show4model1 show4model2 hide4model3""> using the appropriate number of degrees of freedom</span>.", 
+isochron_i_z,"the approximate 100(1-&alpha;)% confidence interval for u with overdispersion, calculated as z = y&radic;MSWD (only reported if MSWD > 1).", 
+isochron_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for the linear fit. MSWD values >> 1 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+isochron_mswd_y,the Chi-squared p-value for the linear fit. p-values << 0.05 indicate that the ages are overdispersed with respect to the stated analytical uncertainties., 
+isochron_omega_a,"the excess ('geological') dispersion of the y-intercept, i.e. the standard deviation of the assumedly Gaussian distribution that describes the true non-radiogenic component.", 
+isochron_omega_b,"the excess ('geological') dispersion of the concordia intercept age, i.e. the standard deviation of the assumedly Gaussian distribution that describes the variability of the true ages.", 
+KCa_K40Ca44,Measured <sup>40</sup>K/<sup>44</sup>Ca-ratios.,<sup>40</sup>K/<sup>44</sup>Ca测量值。
+KCa_err_K40Ca44,Analytical uncertainty of the <sup>40</sup>K/<sup>44</sup>Ca-ratios,<sup>40</sup>K/<sup>44</sup>Ca测量误差
+KCa_Ca40Ca44,Measured <sup>40</sup>Ca/<sup>44</sup>Ca-ratios.,<sup>40</sup>Ca/<sup>44</sup>Ca测量值。
+KCa_err_Ca40Ca44,Analytical uncertainty of the <sup>40</sup>Ca/<sup>44</sup>Ca-ratios,<sup>40</sup>Ca/<sup>44</sup>Ca测量误差
+KCa_rho,Error correlations between the <sup>40</sup>K/<sup>44</sup>Ca and <sup>40</sup>Ca/<sup>44</sup>Ca-ratios.,<sup>40</sup>K/<sup>44</sup>Ca和<sup>40</sup>Ca/<sup>44</sup>Ca误差相关性。
+KCa_K40K44,Measured <sup>40</sup>K/<sup>40</sup>Ca-ratios.,<sup>40</sup>K/<sup>40</sup>Ca测量值。
+KCa_err_K40Ca40,Analytical uncertainty of the <sup>40</sup>K/<sup>40</sup>Ca-ratios,<sup>40</sup>K/<sup>40</sup>Ca测量误差
+KCa_redundancy,<p></p><tt>IsoplotR</tt> uses the redundancy of the three ratios to calculate the correlation between their respective analytical uncertainties.,<p></p><tt>IsoplotR</tt>使用三组比值的冗余来计算各自测量误差的相关性。
+KDE_intro,"Histograms smooth data by binning. <tt>IsoplotR</tt> uses Sturges' Rule (log<sub>2</sub>[n]+1, where n is the number of data points) as the default number of histogram bins, but this can be changed to any other natural number by the user. Alternatively, kernel density estimates KDEs (Vermeesch, 2012) smooth data by applying a (Gaussian) kernel:  <p></p> KDE(t) = &sum;<sub>i</sub><i>N</i> (t | &mu;=t<sub>i</sub>, &sigma;=h[t]) <span class=""alignright"">(eq. 1)</span> <p></p>  where <i>N</i>(&mu;,&sigma;) is the probability of observing a value t under a Normal distribution with mean &mu; and standard deviation &sigma;. h[t] is the smoothing parameter or 'bandwidth' of the kernel density estimate which may or may not depend on the age t. If h[t] depends on t, then KDE(t) is known as an 'adaptive' KDE. The default bandwidth used by <tt>IsoplotR</tt> is calculated using the algorithm of Botev et al. (2010) and modulated by the adaptive smoothing approach of Abramson (1982). The rationale behind adaptive kernel density estimation is to use a narrower bandwidth near the peaks of the sampling distribution (where the ordered dates are closely spaced in time), and a wider bandwidth in the distribution's sparsely sampled troughs. Thus, the resolution of the density estimate is optimised according to data availability. Kernel density estimates are not to be confused with <tt>Isoplot</tt>'s 'probability density plots' (PDPs). The mathematical definition of a PDP closely resembles that of the KDE, the only difference being the substitution of the bandwidth h[t] by the analytical uncertainty s[t<sub>i</sub>] in Equation 1. This similarity in appearance and definition is the source of much confusion. PDPs do not stand up to further statistical scrutiny (see counter-examples provided by Vermeesch, 2012), and are not implemented in <tt>IsoplotR</tt>.", 
+LuHf_Lu176Hf177,Measured <sup>176</sup>Lu/<sup>177</sup>Hf-ratios.,<sup>176</sup>Lu/<sup>177</sup>Hf测量值。
+LuHf_err_Lu176Hf177,Analytical uncertainty of the <sup>176</sup>Lu/<sup>177</sup>Hf-ratios.,<sup>176</sup>Lu/<sup>177</sup>Hf测量误差。
+LuHf_Hf176Hf177,Measured <sup>176</sup>Hf/<sup>177</sup>Hf-ratios.,<sup>176</sup>Hf/<sup>177</sup>Hf测量值。
+LuHf_err_Hf176Hf177,Analytical uncertainty of the <sup>176</sup>Hf/<sup>177</sup>Hf-ratios,<sup>176</sup>Hf/<sup>177</sup>Hf测量误差
+LuHf_rho_Lu6Hf7Hf6Hf7,Error correlations between the <sup>176</sup>Lu/<sup>177</sup>Hf and <sup>176</sup>Hf/<sup>177</sup>Hf-ratios (optional).,<sup>176</sup>Lu/<sup>177</sup>Hf和<sup>176</sup>Hf/<sup>177</sup>Hf误差相关性（可选择的）。
+LuHf_Lu,"Lu concentration, in ppm.",Lu含量（ppm）。
+LuHf_err_Lu,"Analytical uncertainty of the Lu concentration, in ppm.",Lu含量测量误差（ppm） 
+LuHf_Hf,"Hf concentration, in ppm.",Hf含量（ppm）。
+LuHf_err_Hf,"Analytical uncertainty of the Hf concentration, in ppm.",Hf含量测量误差（ppm） 
+LuHf_redundancy,<p></p><tt>IsoplotR</tt> uses these data to calculate the <sup>176</sup>Lu/<sup>177</sup>Hf-ratios and the correlation between the <sup>176</sup>Hf/<sup>177</sup>Hf- and the <sup>176</sup>Lu/<sup>177</sup>Hf-uncertainties.,<p></p><tt>IsoplotR</tt>使用这些数据来计算<sup>176</sup>Lu/<sup>177</sup>Hf比值和 <sup>176</sup>Hf/<sup>177</sup>Hf与<sup>176</sup>Lu/<sup>177</sup>Hf的误差相关性。
+MDS_intro,"Multidimensional Scaling (MDS) is a dimension-reducting technique that takes a matrix of pairwise 'dissimilarities' between objects (e.g., detrital age distributions) as input and produces a configuration of two (or higher-) coordinates as output, so that the Euclidean distance between these coordinates approximates the dissimilarities of the input matrix. Thus, an MDS-configuration serves as a 'map' in which similar samples cluster closely together and dissimilar samples plot far apart. In the context of detrital geochronology, the dissimilarity between samples is given by the statistical distance between age distributions. There are many ways to define this statistical distance. <tt>IsoplotR</tt> uses the Kolmogorov-Smirnov (KS) statistic for this purpose due to its simplicity and the fact that it behaves like a true distance in the mathematical sense of the word (Vermeesch, 2013, 2018). The KS-distance is closely related to the CAD-plot. It is given by the maximum vertical distance between two CAD step functions. Thus, the KS-distance takes on values between zero (perfect match between two age distributions) and one (no overlap between two distributions). Calculating the KS-distance between samples two at a time populates a symmetric dissimilarity matrix with positive values and a zero diagonal. <tt>IsoplotR</tt> implements two algorithms to convert this matrix into a configuration. The first ('classical' MDS) approach uses a sequence of basic matrix manipulations to achieve a linear fit between the KS-distances and the fittted distances on the MDS configuration. The second, more sophisticated ('nonmetric' MDS) approach subjects the input distances to a transformation f prior to fitting a configuration:  <p></p> &delta;<sub>i,j</sub> = f(KS<sub>i,j</sub>) <p></p>  where KS<sub>i,j</sub> is the KS-distance between samples i and j (for 1 &le; i &ne; j &le; n) and &delta;<sub>i,j</sub> is the 'disparity'. Fitting an MDS configuration then involves finding the disparity transformation that maximises the goodness of fit (or minimises the 'stress') between the disparities and the fitted distances. The latter two quantities can also be plotted against each other as a 'Shepard plot'. Additional options and higher order alternatives to these MDS algorithms are provided in a separate <tt>R</tt>-package called <a href=""http://provenance-london-geochron.com"">provenance</a> (Vermeesch et al., 2016).", 
+other_radial_t,A column of numerical values (e.g. ages), 
+other_radial_err_t,The analytical uncertainty of these values, 
+other_radial_C,Optional variable to be used as fill colour., 
+other_radial_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for central age and mixture modelling calculations; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations., 
+other_regression_X,"A column of numerical values (e.g., isotope ratios)",一列数值（例如：同位素比值）
+other_regression_err_X,The analytical uncertainty of these values,这些数值的测量误差
+other_regression_Y,"A second column of numerical values (e.g., isotope ratios)",第二列数值（例如：同位素比值）
+other_regression_err_Y,The analytical uncertainty of these values,这些数值的测量误差
+other_regression_rXY,The error correlation of X and Y,X和Y的误差相关性
+other_regression_C,Optional variable to be used as fill colour in error ellipses.,充填误差椭圆颜色的可选择变量
+other_regression_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for the regression analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,用来隐藏或者忽视等分（aliquots）的可选择变量。Aliquots被标记为（小写）'<tt>x</tt>'并投图但忽略回归分析；Aliquots被标注为（大写）并且从投图和计算中剔除。
+other_spectrum_f,"The fraction of 'stuff' in each column, which will be normalised to form the X-axis of the spectrum", 每列中‘stuff’的部分，被标准化形成X轴谱图
+other_spectrum_X,"Numerical values, which will form the Y-axis of the spectrum",数值，形成Y轴谱图
+other_spectrum_err_X,The analytical uncertainty of these values,这些数值的测量误差
+other_spectrum_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for the plateau calculation; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,用来隐藏或者忽视等分（aliquots）的可选择变量。Aliquots被标记为（小写）'<tt>x</tt>'并投图但忽略坪计算；Aliquots被标注为（大写）并且从投图和计算中剔除。
+other_average_X,A column of numerical values,一列数值
+other_average_err_X,The analytical uncertainty of these values,这些数值的测量误差
+other_average_omit,Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted but ignored for the weighted mean calculation; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.,用来隐藏或者忽视等分（aliquots）的可选择变量。Aliquots被标记为（小写）'<tt>x</tt>'并投图但忽略加权平均计算；Aliquots被标注为（大写）并且从投图和计算中剔除。
+other_kde_cad,A column of numerical values,一列数值
+other_omit,Optional variable used to ignore aliquots. Aliquots marked as '<tt>x</tt>' or '<tt>X</tt>' are removed from the plot.,用来忽视等分（aliquots）的可选择变量.Aliquots被标记为'<tt>x</tt>' or '<tt>X</tt>' ，并从投图中剔除。
+PbPb_64,Measured <sup>206</sup>Pb/<sup>204</sup>Pb-ratios.,<sup>206</sup>Pb/<sup>204</sup>Pb测量值。
+PbPb_err_64,Analytical uncertainty of the <sup>206</sup>Pb/<sup>204</sup>Pb-ratios,<sup>206</sup>Pb/<sup>204</sup>Pb测量误差
+PbPb_74,Measured <sup>207</sup>Pb/<sup>204</sup>Pb-ratios.,<sup>207</sup>Pb/<sup>204</sup>Pb测量值。
+PbPb_err_74,Analytical uncertainty of the <sup>207</sup>Pb/<sup>204</sup>Pb-ratios,<sup>207</sup>Pb/<sup>204</sup>Pb测量误差
+PbPb_46,Measured <sup>204</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>204</sup>Pb/<sup>206</sup>Pb测量值。
+PbPb_err_46,Analytical uncertainty of the <sup>204</sup>Pb/<sup>206</sup>Pb-ratios, <sup>204</sup>Pb/<sup>206</sup>Pb测量误差
+PbPb_76,Measured <sup>207</sup>Pb/<sup>206</sup>Pb-ratios., <sup>207</sup>Pb/<sup>206</sup>Pb测量值。
+PbPb_err_76,Analytical uncertainty of the <sup>207</sup>Pb/<sup>206</sup>Pb-ratios,<sup>207</sup>Pb/<sup>206</sup>Pb测量误差
+PbPb_rho_6474,Error correlation between the <sup>206</sup>Pb/<sup>204</sup>Pb- and <sup>207</sup>Pb/<sup>204</sup>Pb-ratios.,<sup>206</sup>Pb/<sup>204</sup>Pb和<sup>207</sup>Pb/<sup>204</sup>Pb误差相关性。
+PbPb_rho_4676,Error correlation between the <sup>204</sup>Pb/<sup>206</sup>Pb- and <sup>207</sup>Pb/<sup>206</sup>Pb-ratios.,<sup>204</sup>Pb/<sup>206</sup>Pb和<sup>207</sup>Pb/<sup>206</sup>Pb误差相关性。
+radial_intro,"Radial plots are bivariate (x<sub>i</sub>,y<sub>i</sub>) scatterplots where: <p></p> x<sub>i</sub> = 1∕&sigma;(z<sub>i</sub>) and y<sub>i</sub> = (z<sub>i</sub> - z<sub>o</sub>)∕&sigma;(z<sub>i</sub>) (for 1 &le; i &le; n) <p></p> with z<sub>i</sub> a transformation of some data and &sigma;(z<sub>i</sub>) the corresponding measurement uncertainty. For example, if z<sub>i</sub> = log(t<sub>i</sub>) then &sigma;(z<sub>i</sub>) = &sigma;(t<sub>i</sub>)∕t<sub>i</sub>. z<sub>o</sub> is a convenient central value such as the weighted mean. The slope of a line connecting the origin (x=0,y=0) of a radial plot with a data point (x<sub>i</sub>,y<sub>i</sub>) equals z<sub>i</sub>, and the horizontal distance along x-axis is a measure if its precision. Thus, the radial plot simultaneously visualises a measurement’s value and precision. No other graphical method achieves this goal with the same elegance (Galbraith, 1988). This makes the radial plot the method of choice for visualising heteroscedastic data, i.e. data with variable measurement uncertainties. Traditional applications in the Earth Sciences are fission track and luminescence dating (e.g., Galbraith, 1990; Galbraith et al., 1999). <tt>IsoplotR</tt> generalises it to all other geochronometers as well.", 
+radial_t,"the central age, which is defined as e<sup>&mu;</sup> where &mu; is the mean of the following log-normal distribution:  <p></p>  t<sub>i</sub> ~ Norm(&mu;, s[t<sub>i</sub>]<sup>2</sup> + &omega;<sup>2</sup>) <span class=""alignright"">(eq. 1)</span>  <p></p>  with s[t<sub>i</sub>] the standard error of the i<sup>th</sup> (out of n) measurements, and &omega; the <i>overdispersion</i>.", 
+radial_t_x,"the estimated standard deviation of t, estimated by the method of maximum likelihood.", 
+radial_t_y,the 100(1-&alpha;)% confidence interval for t., 
+radial_m,the Mean Square of the Weighted Deviates a.k.a. the reduced Chi-squared statistic. MSWD values greater than unity suggest that the dataset under consideration is overdispersed with respect to the analyical uncertainties., 
+radial_p,"the p-value of a Chi-square probability for homogeneity. High values of p (>0.05, say) indicate that there is not enough evidence for overdispersion.", 
+radial_omega,the dispersion defined by eq. 1.,公式一定义的过度离散。
+RbSr_Rb87Sr86,Measured <sup>87</sup>Rb/<sup>86</sup>Sr-ratios.,<sup>87</sup>Rb/<sup>86</sup>Sr测量值。
+RbSr_redundancy,<p></p> <tt>IsoplotR</tt> uses these data to calculate the <sup>87</sup>Rb/<sup>86</sup>Sr-ratios and the correlation between the <sup>87</sup>Sr/<sup>86</sup>Sr- and the <sup>87</sup>Rb/<sup>86</sup>Sr-uncertainties.,<p></p> <tt>IsoplotR</tt>使用这些数据计算<sup>87</sup>Rb/<sup>86</sup>Sr比值和<sup>87</sup>Sr/<sup>86</sup>Sr与<sup>87</sup>Rb/<sup>86</sup>Sr的误差相关性。
+RbSr_Sr87Sr86,Measured <sup>87</sup>Sr/<sup>86</sup>Sr-ratios.,<sup>87</sup>Sr/<sup>86</sup>Sr测量值。
+RbSr_err_Sr87Sr86,Analytical uncertainty of the <sup>87</sup>Sr/<sup>86</sup>Sr-ratios,<sup>87</sup>Sr/<sup>86</sup>Sr测量误差
+RbSr_rho_Rb87Sr86_Sr87Sr86,Error correlations between the <sup>87</sup>Rb/<sup>86</sup>Sr and <sup>87</sup>Sr/<sup>86</sup>Sr-ratios (optional).,<sup>87</sup>Rb/<sup>86</sup>Sr和<sup>87</sup>Sr/<sup>86</sup>Sr误差相关性（可选择的）。
+RbSr_Rb87Sr87,Measured <sup>87</sup>Rb/<sup>87</sup>Sr-ratios.,<sup>87</sup>Rb/<sup>87</sup>Sr测量值。
+RbSr_err_Rb87Sr87,Analytical uncertainty of the <sup>87</sup>Rb/<sup>87</sup>Sr-ratios,<sup>87</sup>Rb/<sup>87</sup>Sr测量误差
+RbSr_Sr86Sr87,Measured <sup>86</sup>Sr/<sup>87</sup>Sr-ratios.,<sup>86</sup>Sr/<sup>87</sup>Sr测量值。
+RbSr_err_Sr86Sr87,Analytical uncertainty of the <sup>87</sup>Sr/<sup>86</sup>Sr-ratios,<sup>87</sup>Sr/<sup>86</sup>Sr测量误差
+RbSr_rho_Rb87Sr87_Sr86Sr87,Error correlations between the <sup>87</sup>Rb/<sup>87</sup>Sr and <sup>86</sup>Sr/<sup>87</sup>Sr-ratios (optional).,<sup>87</sup>Rb/<sup>87</sup>Sr和<sup>86</sup>Sr/<sup>87</sup>Sr误差相关性（可选择的）。
+RbSr_Rb,"Rb concentration, in ppm.",Rb含量（ppm）。
+RbSr_err_Rb,"Analytical uncertainty of the Rb concentration, in ppm",Rb含量测量误差（ppm） 
+RbSr_Sr,"Sr concentration, in ppm.",Sr含量（ppm）。
+RbSr_err_Sr,"Analytical uncertainty of the Sr concentration, in ppm",Sr含量测量误差（ppm） 
+RbSr_8786,Measured <sup>87</sup>Sr/<sup>86</sup>Sr-ratios.,<sup>87</sup>Sr/<sup>86</sup>Sr测量值。
+RbSr_err_8786,Analytical uncertainty of the <sup>87</sup>Sr/<sup>86</sup>Sr-ratios,<sup>87</sup>Sr/<sup>86</sup>Sr测量误差
+regression_intro,"<tt>IsoplotR</tt> offers three ways to fit a straight line through 2-dimensional data with measurement uncertainties:  <ol> <li>Model-1: maximum Likelihood regression, using the modified error weighted least squares algorithm of York et al. (2004) This algorithm takes into account the analytical uncertainties and error correlations, under the assumption that the scatter between the data points is solely caused by the analytical uncertainty. If the assumption is correct, then the MSWD value should be approximately equal to one. If MSWD > 1, then model-1 regression assumes that the analytical uncertainties have been underestimated by a factor &radic;MSWD. </li> <li>Model-2: ordinary least squares regression, ignoring the analytical uncertainties. </li> <li>Model-3: maximum likelihood regression with overdispersion. Instead of attributing any overdispersion (MSWD > 1) to underestimated analytical uncertainties, one can also attribute it to the presence of geological uncertainty, which manifests itself as an added (co)variance term. </li> </ol>", 
+regression_s,the slope of the best fit line.,最优拟合线的斜率。
+regression_s_x,the estimated uncertainty (&sigma;) of s.,s的估算误差(&sigma;)。
+regression_s_y,the 100(1-&alpha;)% confidence interval for s using the appropriate number of degrees of freedom.,合适自由度下s的100(1-&alpha;)%置信区间。
+regression_s_z,"the approximate 100(1-&alpha;)% confidence interval for s with overdispersion, calculated as z = y&radic;MSWD.",过度离散下s的近似100(1-&alpha;)%置信区间，其中z=y&radic;MSWD。
+regression_i,the y-intercept obtained by linear regression.,线性回归获得截距
+regression_i_x,the estimated uncertainty (&sigma;) of i.,i的估算误差(&sigma;)。
+regression_i_y,the 100(1-&alpha;)% confidence interval for i using the appropriate number of degrees of freedom.,合适自由度下i的100(1-&alpha;)%置信区间。
+regression_i_z,"the approximate 100(1-&alpha;)% confidence interval for i with overdispersion, calculated as z = y&radic;MSWD (only reported if MSWD > 1).",过度离散下i的近似100(1-&alpha;)%置信区间，其中z=y&radic;MSWD（当MSWD>1时报道）。
+regression_mswd_x,the Mean Square of the Weighted Deviates (MSWD) for the linear fit. MSWD values >> 1 indicate that the data are overdispersed with respect to the stated analytical uncertainties.,线性拟合的加权平均方差（MSWD）。对于特定的分析误差，MSWD值>>1标明数据过度离散。
+regression_mswd_y,the Chi-squared p-value for the linear fit. p-values << 0.05 indicate that the data are overdispersed with respect to the stated analytical uncertainties., 
+ReOs_redundancy,<p></p> <tt>IsoplotR</tt> uses these data to calculate the <sup>187</sup>Re/<sup>188</sup>Os-ratios and the correlation between the <sup>187</sup>Os/<sup>188</sup>Os- and the <sup>187</sup>Re/<sup>188</sup>Os-uncertainties.,<p></p> <tt>IsoplotR</tt>使用这些数据计算<sup>187</sup>Re/<sup>188</sup>Os比值和<sup>187</sup>Os/<sup>188</sup>Os与<sup>187</sup>Re/<sup>188</sup>Os的误差相关性。
+ReOs_Re187Os188,Measured <sup>187</sup>Re/<sup>188</sup>Os-ratios.,<sup>187</sup>Re/<sup>188</sup>Os测量值。
+ReOs_err_Re187Os188,Analytical uncertainty of the <sup>187</sup>Re/<sup>188</sup>Os-ratios,<sup>187</sup>Re/<sup>188</sup>Os测量误差
+ReOs_Os187Os188,Measured <sup>187</sup>Os/<sup>188</sup>Os-ratios.,<sup>187</sup>Os/<sup>188</sup>Os测量值。
+ReOs_err_Os187Os188,Analytical uncertainty of the <sup>187</sup>Os/<sup>188</sup>Os-ratios,<sup>187</sup>Os/<sup>188</sup>Os测量误差
+ReOs_rho_Re187Os188Os187Os188,Error correlations between the <sup>187</sup>Re/<sup>188</sup>Os and <sup>187</sup>Os/<sup>188</sup>Os-ratios (optional).,<sup>187</sup>Re/<sup>188</sup>Os和<sup>187</sup>Os/<sup>188</sup>Os误差相关性（可选择的）。
+ReOs_Re,"Re concentration, in ppm.",Re含量（ppm）。
+ReOs_err_Re,"Analytical uncertainty of the Re concentration, in ppm",Re含量测量误差（ppm） 
+ReOs_Os,"Os concentration, in ppm.", Os含量（ppm）。
+ReOs_err_Os,"Analytical uncertainty of the Os concentration, in ppm",Os含量测量误差（ppm） 
+zeta,"The fission track age is given by:  <p></p> t = ln[1 +  {2 N<sub>s</sub>&lambda;<sub>238</sub>&lambda;<sub>f</sub>}/ {[<sup>238</sup>U]A<sub>s</sub>L}] / &lambda;<sub>238</sub> <span class=""alignright"">(eq. 1)</span> <p></p>  where N<sub>s</sub> is the number of spontaneous fission tracks measured over an area A<sub>s</sub>, [<sup>238</sup>U] is the <sup>238</sup>U-concentration in atoms per unit volume, &lambda;<sub>f</sub> is the fission decay constant, L is the etchable fission track length, and the factor 2 is a geometric factor accounting for the fact that etching reveals tracks from both above and below the internal crystal surface.  <p></p>  <div class=""show4EDM hide4absolute hide4ICP""> [<sup>238</sup>U] can be measured indirectly using the induced fission of neutron-irradiated <sup>235</sup>U as a proxy for the <sup>238</sup>U. In the most common implementation of this approach, the induced fission tracks are recorded by an external detector made of mica or plastic that is attached to the polished grain surface (Fleischer and Hart, 1972; Hurford and Green, 1983). The fission track age equation then becomes:  <p></p> t = ln[ 1 + {&lambda;<sub>238</sub>&zeta;&rho;<sub>d</sub>N<sub>s</sub>}/ {2 N<sub>i</sub>}] / &lambda;<sub>238</sub> <span class=""alignright"">(eq. 2)</span> <p></p>  where N<sub>i</sub> is the number of induced fission tracks counted in the external detector over the same area as the spontaneous tracks, &zeta; is a 'zeta'-calibration factor that incorporates both the fission decay constant and the etchable fission track length, and &rho;<sub>d</sub> is the number of induced fission tracks per unit area counted in a co-irradiated glass of known U-concentration. &rho;<sub>d</sub> allows the &zeta;-factor to be 'recycled' between irradiations. </div>  <div class=""hide4EDM hide4absolute show4ICP""> The <sup>238</sup>U-concentration can also be measured directly by LAICPMS. Unfortunately the accuracy of LAICPMS-based age estimates is compromised by the absence of matrix-matched concentrations standards, and uncertainies associated with the fission track decay constant and the etching and counting efficiencies. These systematic errors can be removed by normalising to a standard of known fission track age and defining a new 'zeta' calibration constant &zeta;<sub>icp</sub>:  <p></p> t = ln( 1 + {2 &zeta;<sub>icp</sub> &lambda;<sub>238</sub>N<sub>2</sub>}/ {[<sub>238</sub>U] A<sub>s</sub>})/ &lambda;<sub>238</sub> <span class=""alignright"">(eq. 2)</span> <p></p>  where [<sup>238</sup>U] may either stand for the <sup>238</sup>U-concentration (in ppm) <i>or</i> for the U/Ca (for apatite) or U/Si (for zircon) ratio measurement, and A<sub>s</sub> is the spontaneous track counting area, which may either correspond to one laser spot or to a larger area (if multiple U-measurements were made). </div>", 
+SmNd_redundancy,<p></p> <tt>IsoplotR</tt> uses these data to calculate the <sup>147</sup>Sm/<sup>144</sup>Nd-ratios and the correlation between the <sup>147</sup>Sm/<sup>144</sup>Nd- and the <sup>143</sup>Nd/<sup>144</sup>Nd-uncertainties., 
+SmNd_Sm147Nd144,Measured <sup>147</sup>Sm/<sup>144</sup>Nd-ratios.,<sup>147</sup>Sm/<sup>144</sup>Nd测量值。
+SmNd_err_Sm147Nd144,Analytical uncertainty of the <sup>147</sup>Sm/<sup>144</sup>Nd-ratios,<sup>147</sup>Sm/<sup>144</sup>Nd测量误差
+SmNd_Nd143Nd144,Measured <sup>143</sup>Nd/<sup>144</sup>Nd-ratios.,<sup>143</sup>Nd/<sup>144</sup>Nd测量值。
+SmNd_err_Nd143Nd144,Analytical uncertainty of the <sup>143</sup>Nd/<sup>144</sup>Nd-ratios,<sup>143</sup>Nd/<sup>144</sup>Nd测量误差
+SmNd_rho_Sm147Nd144Nd143Nd144,Error correlations between the <sup>147</sup>Sm/<sup>144</sup>Nd and <sup>143</sup>Nd/<sup>144</sup>Nd-ratios (optional).,<sup>147</sup>Sm/<sup>144</sup>Nd和<sup>143</sup>Nd/<sup>144</sup>Nd误差相关性（可选择的）
+SmNd_Sm,"Sm concentration, in ppm.",Sm含量（ppm）。
+SmNd_err_Sm,"Analytical uncertainty of the Sm concentration, in ppm",Sm含量测量误差（ppm） 
+SmNd_Nd,"Nd concentration, in ppm.",Nd含量（ppm）。
+SmNd_err_Nd,"Analytical uncertainty of the Nd concentration, in ppm",Nd含量测量误差（ppm） 
+SmNd_Sm147Nd143,Measured <sup>147</sup>Sm/<sup>143</sup>Nd-ratios.,<sup>147</sup>Sm/<sup>143</sup>Nd测量值。
+spectrum_intro,"The <sup>40</sup>Ar/<sup>39</sup>Ar-age spectrum is a useful tool to visualise stepwise heating measurements. Its appearance is based on the weighted mean plot with the different heating steps arranged in order of increasing temperature along the horizontal axis, and the width of the different sample boxes proportional to the corresponding amounts of <sup>39</sup>Ar. <tt>IsoplotR</tt> defines the 'plateau age' as the weighted mean age of the longest sequence (in terms of cumulative <sup>39</sup>Ar content) of consecutive heating steps that pass a modified Chauvenet criterion. This definition is different (and simpler) than the one used by <tt>Isoplot</tt> (Ludwig, 2003). However, it is important to mention that all definitions of an age plateau are heuristic by nature and should therefore not be used for quantitative inference. It is possible (and likely) that the plateau exhibits significant overdispersion. This overdispersion can be manually reduced by removing individual heating steps using the optional <tt>omit</tt> column.", 
+spectrum_t,"the plateau age, which is defined as the weighted mean age of the largest consecutive set of steps that survive the modified Chauvenet's Criterion used for the ordinary weighted mean.", 
+spectrum_t_x,"the estimated standard deviation of <tt>t</tt>, estimated by the method of maximum likelihood.",极大似然法估计的<tt>t</tt>标准偏差
+spectrum_t_y,"the 100(1-&alpha;)% confidence interval for <tt>t</tt>. This is also shown as a grey band on the plot. The uncertainties associated with the random uncertainties are shown in dark grey, whereas the systematic uncertainties (i.e. J-factor and decay constant) are shown in light grey.",<tt>t</tt>的100(1-&alpha;)置信区间。在投图上显示为灰色条形区。与随机不确定性相关的误差显示为深灰色，系统误差（例如：J因子和衰变常数）显示为浅灰色。
+spectrum_mswd_x,"the mean square of the weighted deviates (aka 'reduced chi-square statistic') of the plateau. <tt>IsoplotR</tt>'s plateau definition allows the MSWD to exceed 1, as long as the overdispersion does not violate Chauvenet's outlier criterion.", 
+spectrum_mswd_y,"p-value of a chi-square test of homogeneity. <tt>IsoplotR</tt>'s plateau definition allow the p-value to fall below the &alpha; cutoff, as long as the overdispersion does not violate Chauvenet's outlier criterion.", 
+spectrum_pct_39,the sum of all the steps that are included in the plateau., 
+ThU_82,Measured <sup>238</sup>U/<sup>232</sup>Th-ratios.,<sup>238</sup>U/<sup>232</sup>Th测量值。
+ThU_err_82,Analytical uncertainty of the <sup>238</sup>U/<sup>232</sup>Th-ratios,<sup>238</sup>U/<sup>232</sup>Th测量误差
+ThU_42,Measured <sup>234</sup>U/<sup>232</sup>Th-ratios.,<sup>234</sup>U/<sup>232</sup>Th测量值。
+ThU_err_42,Analytical uncertainty of the <sup>234</sup>U/<sup>232</sup>Th-ratios,<sup>234</sup>U/<sup>232</sup>Th测量误差
+ThU_02,Measured <sup>230</sup>Th/<sup>232</sup>Th-ratios.,<sup>230</sup>Th/<sup>232</sup>Th测量值。
+ThU_err_02,Analytical uncertainty of the <sup>230</sup>Th/<sup>232</sup>Th-ratios,<sup>230</sup>Th/<sup>232</sup>Th测量误差
+ThU_rho_8242,Error correlation between the <sup>238</sup>U/<sup>232</sup>Th- and <sup>234</sup>U/<sup>232</sup>Th-ratios.,<sup>238</sup>U/<sup>232</sup>Th和<sup>234</sup>U/<sup>232</sup>Th误差相关性。
+ThU_rho_8202,"Error correlation between the <sup>238</sup>U/<sup>232</sup>Th- and <sup>230</sup>Th/<sup>232</sup>Th-ratios <span hidden class=""show4ThU3"">(optional)</span>","<sup>238</sup>U/<sup>232</sup>Th和<sup>230</sup>Th/<sup>232</sup>Th的误差相关性 <span hidden class=""show4ThU3"">(可选择的)</span>"
+ThU_rho_4202,Error correlation between the <sup>234</sup>U/<sup>232</sup>Th- and <sup>230</sup>Th/<sup>232</sup>Th-ratios.,<sup>234</sup>U/<sup>232</sup>Th和<sup>230</sup>Th/<sup>232</sup>Th误差相关性。
+ThU_28,Measured <sup>232</sup>Th/<sup>238</sup>U-ratios.,<sup>232</sup>Th/<sup>238</sup>U测量值。
+ThU_err_28,Analytical uncertainty of the <sup>232</sup>Th/<sup>238</sup>U-ratios,<sup>232</sup>Th/<sup>238</sup>U测量误差
+ThU_48,Measured <sup>234</sup>U/<sup>238</sup>U-ratios.,<sup>234</sup>U/<sup>238</sup>U测量值。
+ThU_err_48,Analytical uncertainty of the <sup>234</sup>U/<sup>238</sup>U-ratios, <sup>234</sup>U/<sup>238</sup>U测量误差
+ThU_08,Measured <sup>230</sup>Th/<sup>238</sup>U-ratios.,<sup>230</sup>Th/<sup>238</sup>U测量值。
+ThU_err_08,Analytical uncertainty of the <sup>230</sup>Th/<sup>238</sup>U-ratios,<sup>230</sup>Th/<sup>238</sup>U测量误差
+ThU_rho_2808,"Error correlation between the <sup>232</sup>Th/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U-ratios <span class=""show4ThU4"">(optional)</span>","<sup>232</sup>Th/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U误差相关性<span class=""show4ThU4"">(可选择的)</span>"
+ThU_rho_4808,Error correlation between the <sup>234</sup>U/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U-ratios.,<sup>234</sup>U/<sup>238</sup>U和<sup>230</sup>Th/<sup>238</sup>U误差相关性。
+ThU_C,"Optional variable to be used as fill colours in evolution diagrams, isochrons and radial plots.",演变图、等时线和星状图中充填颜色的可选择变量
+UThHe,"Measured He, U, Th and (optionally) Sm abundance or concentration, in any kind of atomic units (fmol, mol/g, atoms, ...).",He、U、Th 和(可选择的）Sm丰度或浓度的测量值（可使用各种原子单位，fmol、mol/g、atoms等）
+UThHe_err,"Analytical uncertainty of the He, U, Th and (optionally) Sm measurements",He、U、Th和（可选择的） Sm测量误差
+UThHe_C,"Optional variable to be used as fill colours in radial plots, ternary diagrams and logratio plots.",星状图、三元图和对数比图充填颜色的可选择变量
+RbSr_err_Rb87Sr86,Analytical uncertainty of the <sup>87</sup>Rb/<sup>86</sup>Sr-ratios,<sup>87</sup>Rb/<sup>86</sup>Sr测量误差
+ThU_rho_2848,Error correlation between the <sup>232</sup>Th/<sup>238</sup>U- and <sup>234</sup>U/<sup>238</sup>U-ratios.,<sup>232</sup>Th/<sup>238</sup>U和<sup>234</sup>U/<sup>238</sup>U误差相关性。
+SmNd_rho_Sm147Nd143Nd144Nd143,Error correlations between the <sup>147</sup>Sm/<sup>143</sup>Nd and <sup>144</sup>Nd/<sup>143</sup>Nd-ratios (optional).,<sup>147</sup>Sm/<sup>143</sup>Nd和<sup>144</sup>Nd/<sup>143</sup>Nd误差相关性（可选择的）。
+SmNd_err_Sm147Nd143,Analytical uncertainty of the <sup>147</sup>Sm/<sup>143</sup>Nd-ratios,<sup>147</sup>Sm/<sup>143</sup>Nd测量误差
+SmNd_err_Nd144Nd143,Analytical uncertainty of the <sup>144</sup>Nd/<sup>143</sup>Nd-ratios,<sup>144</sup>Nd/<sup>143</sup>Nd测量误差
+SmNd_Nd144Nd143,Measured <sup>143</sup>Nd/<sup>144</sup>Nd-ratios.,<sup>143</sup>Nd/<sup>144</sup>Nd测量值。
+ReOs_rho_Re187Os187Os188Os187,Error correlations between the <sup>187</sup>Re/<sup>187</sup>Os and <sup>188</sup>Os/<sup>187</sup>Os-ratios (optional).,<sup>187</sup>Re/<sup>187</sup>Os和<sup>188</sup>Os/<sup>187</sup>Os误差相关性（可选择的）。
+ReOs_err_Re187Os187,Analytical uncertainty of the <sup>187</sup>Re/<sup>187</sup>Os-ratios,<sup>187</sup>Re/<sup>187</sup>Os测量误差
+ReOs_err_Os188Os187,Analytical uncertainty of the <sup>188</sup>Os/<sup>187</sup>Os-ratios,<sup>188</sup>Os/<sup>187</sup>Os测量误差
+ReOs_Re187Os187,Measured <sup>188</sup>Re/<sup>187</sup>Os-ratios.,<sup>188</sup>Re/<sup>187</sup>Os测量值。
+ReOs_Os188Os187,Measured <sup>188</sup>Os/<sup>187</sup>Os-ratios.,<sup>188</sup>Os/<sup>187</sup>Os测量值。
+LuHf_rho_Lu6Hf6Hf7Hf6,Error correlations between the <sup>176</sup>Lu/<sup>176</sup>Hf and <sup>176</sup>Hf/<sup>176</sup>Hf-ratios (optional).,<sup>176</sup>Lu/<sup>176</sup>Hf 和<sup>176</sup>Hf/<sup>176</sup>Hf-ratios误差相关性（可选择的）。
+LuHf_err_Lu176Hf176,Analytical uncertainty of the <sup>176</sup>Lu/<sup>176</sup>Hf-ratios.,<sup>176</sup>Lu/<sup>176</sup>Hf测量误差。
+LuHf_err_Hf177Hf176,Analytical uncertainty of the <sup>177</sup>Hf/<sup>176</sup>Hf-ratios,<sup>177</sup>Hf/<sup>176</sup>Hf测量误差。
+LuHf_Lu177Hf176,Measured <sup>177</sup>Lu/<sup>176</sup>Hf-ratios.,<sup>177</sup>Lu/<sup>176</sup>Hf测量值。
+LuHf_Hf177Hf176,Measured <sup>177</sup>Hf/<sup>176</sup>Hf-ratios.,<sup>177</sup>Hf/<sup>176</sup>Hf测量值。
+regression_omega,"the excess ('geological') dispersion of the y-intercept, i.e. the standard deviation of the assumedly Gaussian distribution that describes the inherited component.", 
 input,Input:,输入格式:
-discordance_filter_none,none,
-ages,"The
-<span hidden class=""show4PbPb""> Pb-Pb </span>
-<span hidden class=""show4ArAr""> Ar-Ar </span>
-<span hidden class=""show4RbSr""> Rb-Sr </span>
-<span hidden class=""show4SmNd""> Sm-Nd </span>
-<span hidden class=""show4ReOs""> Re-Os </span>
-<span hidden class=""show4LuHf""> Lu-Hf </span>
-<span hidden class=""show4UThHe""> U-Th-He </span>
-<span hidden class=""show4fissiontracks""> fission track </span>
-<span hidden class=""show4ThU1 show4ThU2"">
-<sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U</span>
-<span hidden class=""show4ThU3 show4ThU4"">
-<sup>230</sup>Th-<sup>238</sup>U</span> 
-ages.",
-detrital_correction_none,none,
+discordance_filter_none,none,无 
+ages,"The <span hidden class=""show4PbPb""> Pb-Pb </span> <span hidden class=""show4ArAr""> Ar-Ar </span> <span hidden class=""show4RbSr""> Rb-Sr </span> <span hidden class=""show4SmNd""> Sm-Nd </span> <span hidden class=""show4ReOs""> Re-Os </span> <span hidden class=""show4LuHf""> Lu-Hf </span> <span hidden class=""show4UThHe""> U-Th-He </span> <span hidden class=""show4fissiontracks""> fission track </span> <span hidden class=""show4ThU1 show4ThU2""> <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U</span> <span hidden class=""show4ThU3 show4ThU4""> <sup>230</sup>Th-<sup>238</sup>U</span>  ages.", 
+,,

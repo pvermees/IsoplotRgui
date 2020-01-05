@@ -546,3 +546,4 @@ Enter <tt>NA</tt> for empty plot symbols.","用于标记异常值的填充颜色
 <tt>rgb(0,1,0,0.5)</tt>, <tt>rgb(0.5,1,0.5)</tt>, ...
 <p></p>
 输入 (<tt>NA</tt>) 则不填充绘图符号。"
+help,help,帮助
