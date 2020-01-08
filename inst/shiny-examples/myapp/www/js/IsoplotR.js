@@ -1700,6 +1700,8 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
+	var helptit = contextual_help['help'][IsoplotR.settings.language];
+	$("#helpmenu").dialog('option','title',helptit);
 	showOrHide();
     }
     
@@ -2143,7 +2145,7 @@ $(function(){
     });
     
     $('body').on('click', 'help', function(){
-	var text = help($(this).attr('id'));
+	var text = contextual_help[this.id][IsoplotR.settings.language];
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
 	showOrHide();

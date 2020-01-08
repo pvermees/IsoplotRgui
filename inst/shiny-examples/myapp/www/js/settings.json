@@ -208,7 +208,7 @@
         "nnlines": "FALSE",
 	"ticks": "TRUE",
 	"pch": 21,
-	"pos": "centre",
+	"pos": 0,
 	"cex": 5,
         "col": "black",
 	"bg": "white"
