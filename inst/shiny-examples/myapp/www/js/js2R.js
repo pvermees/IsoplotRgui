@@ -418,7 +418,8 @@ function getOptions(prefs){
 	if (pdsettings.pch=='none') { out += ",pch=NA"; }
 	else { out += ",pch=" + pdsettings.pch; }
 	out += ",cex=" + pdsettings.cex;
-	if (pdsettings.pos==1 | pdsettings.pos==2 | pdsettings.pos==3 | pdsettings.pos==4) 
+	if (pdsettings.pos==1 | pdsettings.pos==2 |
+	    pdsettings.pos==3 | pdsettings.pos==4) 
 	    out += ",pos=" + pdsettings.pos;
 	out += ",col='" + pdsettings.col + "'";
 	out += ",bg='" + pdsettings.bg + "'";
