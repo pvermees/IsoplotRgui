@@ -13,3 +13,4 @@ odir <- '../inst/shiny-examples/myapp/www/js/'
 translate(fname='dictionary_class',odir=odir,tag='class')
 translate(fname='dictionary_id',odir=odir,tag='id')
 translate(fname='contextual_help',odir=odir,tag='id')
+translate(fname='home_id',odir='../inst/shiny-examples/myapp/www/home/',tag='id')

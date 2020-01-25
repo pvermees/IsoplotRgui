@@ -1,0 +1,33 @@
+id,en,cn
+intro,"<a href=""IsoplotR.png""><img src=""IsoplotR.png"" class=""centered"" width=800></a> 
+
+<p><p/>
+
+<i>IsoplotR</i> is a free and open-source substitute for Kenneth
+Ludwig's popular <i>Isoplot</i> add-in to Microsoft
+<i>Excel</i>. <i>IsoplotR</i> is programmed in <i>R</i> and can
+be run in three different modes:
+
+<ol>
+<li>Online: A user-friendly Graphical User Interface (GUI) that runs
+in a web browser on any internet-connected device.</li> 
+<li>Offline: The GUI can be run natively on any computer that has
+<i>R</i> installed on it. <i>R</i> is free software that is available
+on Windows, Mac and Linux/Unix.</li>
+<li>Command Line: Advanced users can access the full functionality of
+<i>IsoplotR</i> from <i>R</i>'s command line. This enables 
+<i>IsoplotR</i> to be extended and incorporated into automation scripts.</li>
+</ol>","<a href=""IsoplotR.png""><img src=""IsoplotR.png"" class=""centered"" width=800></a> 
+
+<p><p/>
+
+IsoplotR 是一个免费的开源软件，作为由 Kenneth Ludwig 制作的广为人知的 Excel 插件Isoplot 之外的另一选择。IsoplotR 由R 语言开发，有以下三种运行模式：
+
+<p></p>
+
+<ol>
+<li>线上运行：您可以在浏览器或任何联网设备上运行具有图形用户界面（GUI）的 IsoplotR。</li>
+<li>离线运行：GUI可以在任何装载了R 的电脑上以原生软件的形式运行，支持 Windows，Mac，Linux/Unix多个平台且免费。</li>
+<li>命令行运行：熟练的用户可以通过R 语言命令行使用IsoplotR 的所有功能。在此基础上，IsoplotR同时具有二次开发性，您可以通过编写脚本使IsoplotR 的运行自动化。</li>
+</ol>"
+reference,Citable reference:,引用方式：

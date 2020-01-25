@@ -2259,6 +2259,11 @@ $(function(){
 	$("#RUNNER").click();
     });
 
+    $("#home").click(function(){
+	localStorage.setItem("language",IsoplotR.settings.language);
+	$(location).attr('href','home/index.html');
+    });
+
     var IsoplotR;
     var contextual_help;
     var dictionary_id;
