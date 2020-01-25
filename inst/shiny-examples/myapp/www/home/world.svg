@@ -1588,7 +1588,7 @@
      y="136.60785"
      x="550.21259"
      id="tspan11925-5-4"
-     sodipodi:role="line">Changchun</tspan></text>
+     sodipodi:role="line"><tspan class="translate" id="Changchun">Changchun</tspan></tspan></text>
 
 
 
@@ -1621,7 +1621,7 @@
      id="tspan1192"
      x="580.21259"
      y="134.60785"
-     style="text-align:start;text-anchor:start">Beijing</tspan></text>
+     style="text-align:start;text-anchor:start"><tspan class="translate" id="Beijing">Beijing</tspan></tspan></text>
 
 
 

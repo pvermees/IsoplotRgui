@@ -1,6 +1,7 @@
 $(function(){
 
     var language = localStorage.getItem("language");
+    if (language === null){ language = "en"; }
     
     var mytimer
 
@@ -35,6 +36,7 @@ $(function(){
 	    if (ui.newPanel.is("#tab-1")){
 		$('#tab-1').load("map.html",function(){
     		    mytimer = countdown();
+		    translate();
 		});
 	    } else {
 	  	clearInterval(mytimer);
@@ -42,10 +44,10 @@ $(function(){
 	}
     });
     $('#tab-0').load('intro.html',function(){translate();});
-    $('#tab-2').load('offline.html');
-    $('#tab-3').load('commandline.html');
-    $('#tab-4').load('news.html');
-    $('#tab-5').load('contribute.html');
-    $('#tab-6').load('language.html');
+    $('#tab-2').load('offline.html',function(){translate();});
+    $('#tab-3').load('commandline.html',function(){translate();});
+    $('#tab-4').load('news.html',function(){translate();});
+    $('#tab-5').load('contribute.html',function(){translate();});
+    $('#tab-6').load('language.html',function(){translate();});
 
 });

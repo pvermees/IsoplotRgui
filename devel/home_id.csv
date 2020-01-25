@@ -3,20 +3,12 @@ intro,"<a href=""IsoplotR.png""><img src=""IsoplotR.png"" class=""centered"" wid
 
 <p><p/>
 
-<i>IsoplotR</i> is a free and open-source substitute for Kenneth
-Ludwig's popular <i>Isoplot</i> add-in to Microsoft
-<i>Excel</i>. <i>IsoplotR</i> is programmed in <i>R</i> and can
-be run in three different modes:
+<i>IsoplotR</i> is a free and open-source substitute for Kenneth Ludwig's popular <i>Isoplot</i> add-in to Microsoft <i>Excel</i>. <i>IsoplotR</i> is programmed in <i>R</i> and can be run in three different modes:
 
 <ol>
-<li>Online: A user-friendly Graphical User Interface (GUI) that runs
-in a web browser on any internet-connected device.</li> 
-<li>Offline: The GUI can be run natively on any computer that has
-<i>R</i> installed on it. <i>R</i> is free software that is available
-on Windows, Mac and Linux/Unix.</li>
-<li>Command Line: Advanced users can access the full functionality of
-<i>IsoplotR</i> from <i>R</i>'s command line. This enables 
-<i>IsoplotR</i> to be extended and incorporated into automation scripts.</li>
+<li>Online: A user-friendly Graphical User Interface (GUI) that runs in a web browser on any internet-connected device.</li> 
+<li>Offline: The GUI can be run natively on any computer that has <i>R</i> installed on it. <i>R</i> is free software that is available on Windows, Mac and Linux/Unix.</li>
+<li>Command Line: Advanced users can access the full functionality of <i>IsoplotR</i> from <i>R</i>'s command line. This enables <i>IsoplotR</i> to be extended and incorporated into automation scripts.</li>
 </ol>","<a href=""IsoplotR.png""><img src=""IsoplotR.png"" class=""centered"" width=800></a> 
 
 <p><p/>
@@ -31,3 +23,245 @@ IsoplotR 是一个免费的开源软件，作为由 Kenneth Ludwig 制作的广�
 <li>命令行运行：熟练的用户可以通过R 语言命令行使用IsoplotR 的所有功能。在此基础上，IsoplotR同时具有二次开发性，您可以通过编写脚本使IsoplotR 的运行自动化。</li>
 </ol>"
 reference,Citable reference:,引用方式：
+intro_tab,Introduction,简介
+online_tab,Online,在线使用
+online,"An online GUI is hosted by the following international collaborators:
+
+<ol>
+  <li><a href=""http://www.isoplotr.com/IsoplotR/"">Beijing</a>: Yang Li (Chinese Academy of Sciences)</li>
+  <li><a href=""http://chinageology.com:3838/IsoplotR/"">Changchun</a>: Qiuye Yu (Changchun Institute of Technology)</li>
+   <li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a>: Ian Millar (British Geological Survey)</li>
+  <li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
+  <li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a>: John Cottle (University of California)</li>
+</ol>
+
+Click on one of the yellow boxes below to select a nearby
+mirror. Otherwise you will be automatically directed to the London
+server in <b><span id=""count"">10</span> seconds</b> ...","以下合作者提供了图形用户界面（GUI）的托管：
+
+<ol>
+<li><a href=""http://www.isoplotr.com/IsoplotR/"">北京</a>: 李扬 (中科院) </li>
+<li><a href=""http://chinageology.com:3838/IsoplotR/"">长春</a>: 于瘸子 (长春工程学院)</li>
+<li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a>: Ian Millar (British Geological Survey)</li>
+<li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
+<li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a>: John Cottle (University of California)</li>
+</ol>
+
+点击以下任意黄色方框选择一个附近的镜像服务器，或者你将在 <b><span id=""count"">10</span>秒</b>后自动进入伦敦 (London) 服务器。"
+extra_mirrors,"If you would like to make your own <tt>IsoplotR</tt> mirror available to the world via this website, then please get in touch with me at <i>p.vermeesch [at] ucl.ac.uk</i>.",如果您希望托管一个供全球用户使用的IsoplotR镜像服务器，请通过电子邮件联系我 p.vermeesch [at] ucl.ac.uk.
+offline_tab,Offline,离线使用
+offline_1,"The Graphical User Interface (GUI) can be obtained from <a href=""https://github.com/pvermees/IsoplotRgui"">GitHub</a>. To run the offline version of the program, please install <i>R</i> from <a href=""http://r-project.org"">http://r-project.org</a> and enter the following commands at the prompt:","图形用户界面（GUI）可以从<a href=""https://github.com/pvermees/IsoplotRgui"">GitHub</a>获取。如果您希望离线使用，可以从<a href=""http://r-project.org"">http://r-project.org</a> 安装R，执行以下命令即可安装必要的组件。"
+offline_2,"Once all these packages have been installed, you can run the browser-based graphical user interface by typing:",安装好之后，您便可以通过以下命令运行基于浏览器的图形用户界面：
+commandline_tab,Command Line,使用命令行
+news_tab,News,通知
+contribute_tab,Contribute,加入我们
+commandline_1,"The full functionality of <i>IsoplotR</i> can be accessed from the command line. This includes all the functions and options that are available through the GUI, and more. After installing <i>R</i> on your system from <a href=""http://r-project.org"">http://r-project.org</a>, the command line functionality can be installed from <a href=""https://github.com/pvermees/IsoplotR/"">Github</a> as described under the <i>Offline</i> tab. Alternatively, <i>IsoplotR</i> can also be installed from the Comprehensive R Archive Network (CRAN) by typing:","通过命令行可以使用IsoplotR 的所有功能，也就是包括GUI 版本的功能之外您可以有所拓展。从<a href=""http://r-project.org"">http://r=project.org</a> 安装R后，这些全部功能将可以通过 <a href=""https://github.com/pvermees/IsoplotR/"">GitHub</a>安装，具体操作方式可参考“离线”标签。IsoplotR 也可以从 Comprehensive R Archive Network (CRAN) 安装，只需要键入："
+commandline_2,"Example code to reproduce the figures in the <a href=""http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018"">paper</a>:",作为例子，以下可以用来绘制这篇文章中的图片：
+commandline_3,"Full documentation with additional examples can be viewed <a href=""https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf"">on CRAN</a>.","<a
+href=""https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf"">CRAN</a> 上可以找到所有的相关文档以及更多的例子。"
+language_tab,Language,语言
+news_1,"IsoplotR is incrementally updated on <a href='http://github.com/pvermees/IsoplotR'>GitHub</a>, as detailed in the change log there. Updates to the <a href='https://CRAN.R-project.org/package=IsoplotR'>CRAN</a> version are less frequent and are reported below.
+
+<p></p>
+
+The program has benefited from feedback by ","IsoplotR 通过 GitHub 逐渐更新，较为频繁，具体更新可见更新日志。CRAN 上的版本则不那么频繁，本页面记录了更新历史。
+
+<p></p>
+
+本软件的开发得益于"
+news_2,".
+
+<h3>Update history and other events</h3>
+
+<p></p>
+
+<span class=""stamp"">January 22, 2020</span> (v.3.2) Fixes several minor bugs and increases stability.
+
+<p></p>
+
+<span class=""stamp"">October 30, 2019</span>: Yang Li and Liguang Wu host a new <tt>IsoplotR</tt> mirror at the Chinese Academy of Sciences in Beijing: <a href=""http:// www.isoplotr.com/IsoplotR/""> http://isoplotr.com/IsoplotR/<a>
+
+<p></p>
+
+<span class=""stamp"">October 8, 2019</span> (v.3.1): Unified Ludwig regression, including a new model-3 option that redefines the overdispersion parameter in terms of time rather than common Pb
+composition.  Various minor bug fixes.
+
+<p></p>
+
+<span class=""stamp"">August 5, 2019</span> (v.3.0): Adds isochrons for U-(Th-)Pb data, implements U-Pb initial disequilibrium corrections using matrix exponentials, completely rewritten Ludwig regression functions.
+
+<p></p>
+
+<span class=""stamp"">June 6, 2019</span> (v2.7): Adds new input format for U-Pb data that include <sup>208</sup>Pb and <sup>232</sup>Th; option to perform discordance filter before common Pb correction. This update changes the <tt>.json</tt> format, which may cause problems
+for data saved in previous <tt>IsoplotR</tt> versions.
+
+<p></p>
+
+<span class=""stamp"">May 24, 2019</span>: Addition of an American <tt>IsoplotR</tt> mirror at UC Santa Barbara:<br>
+<a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">http://isoplotr.geol.ucsb.edu:3838/IsoplotR/</a>
+
+<p></p>
+
+<span class=""stamp"">May 4, 2019</span> (v2.6): Adds inverse isochron option to K-Ca, Rb-Sr, Sm-Nd, Lu-Hf and Re-Os data. Improved dispersion estimates in model-3 regression.
+
+<p></p>
+
+<span class=""stamp"">April 11, 2019</span>: Two new mirror <tt>IsoplotR</tt> sites come online:<br>
+UK (BGS): <a href=""https://shiny.bgs.ac.uk/IsoplotR/""> https://shiny.bgs.ac.uk/IsoplotR/</a><br>
+China (Qiuye Yu): <a href=""http://chinageology.com:3838/IsoplotRshiny/"">http://chinageology.com:3838/IsoplotRshiny/</a>
+
+<p></p>
+
+<span class=""stamp"">April 3, 2019</span> (v2.5): Several improvements, especially for the common-Pb corrections, which improve <tt>IsoplotR</tt>'s robustness to very discordant data. Prepared in the run-up to the detrital zircon U-Pb dating workshop at the Beijing SHRIMP centre.
+
+<p></p>
+
+<span class=""stamp"">March 4, 2019</span> (v2.4): Implements initial disequilibrium corrections for U-Pb data, improved common Pb-corrections and initial ('common') non-radiogenic isotope compositions for other chronometers; increases robustness of the mixture modelling functions.
+
+<p></p>
+
+<span class=""stamp"">December 8, 2018</span> (v2.3): Allows input uncertainties to be specified as absolute and relative errors at 1 or 2&sigma;.
+
+<p></p>
+
+<span class=""stamp"">November 9, 2018</span> (v2.2): Adds ability to hide or omit samples from plots and calculations.
+
+<p></p>
+
+<span class=""stamp"">October 20, 2018</span> (v2.1): Rewrote discordia regression function, which now uses the same maximum likelihood approach for 2D and 3D regression.  Added option to anchor the discordia line to the concordia line, or to a specificy common Pb composition.
+
+<p></p>
+
+<span class=""stamp"">September 10, 2018</span> (v2.0): Adds K-Ca geochronology to the toolbox.
+
+<p></p>
+
+<span class=""stamp"">August 13, 2018</span> (v1.4): Adds options for detrital <sup>230</sup>Th-corrections from assumed or measured detritus; more flexible weighted mean plots.
+
+<p></p>
+
+<span class=""stamp"">June 4, 2018</span> (v1.3): Includes bug fixes relating to the 'York fit' algorithm and error formatting, and added functionality for Stacey-Kramers evolution curves and ordinary weighted mean calculation.
+
+<p></p>
+
+<span class=""stamp"">May 1, 2018</span> (v1.2): Includes bug fixes relating to the MSWD of isochrons, and discordia lines in Tera-Wasserburg space. Improved flexibility for loading data from R
+matrices and data frames.
+
+<p></p>
+
+<span class=""stamp"">April 11, 2018</span>: IsoplotR formally introduced to the Geoscience community at <a href=""https://meetingorganizer.copernicus.org/EGU2018 EGU2018-3088.pdf"">EGU</a> (Vienna).
+
+<p></p>
+
+<span class=""stamp"">April 3, 2018</span>: IsoplotR <a href=""http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018"">paper</a> accepted for publication in <i>Geoscience Frontiers</i> (a free and open journal for free and open software).","的反馈。
+
+<h3>更新历史及相关</h3>
+
+2019年10月30日：Yang Li 和 Liguang Wu 在北京中科院搭建了一个新的IsoplotR 镜像：<a href=""http://www.isoplotr.com/IsoplotR/"">http://isoplotr.com/IsoplotR/<a>
+
+<p></p>
+
+2019年10月8日（3.1版本）：统一了Ludwig回归，并且包含了一个新的model-3选项，通过这个选项您可以根据时间（而不是普通铅组分）重新定义过度离散的参数。此版本也修复了若干程序小错误。
+
+<p></p>
+
+2019年8月5日（3.0版本）：为U-Pb数据加入了等时线法，实现了基于矩阵指数的U-Pb初始不平衡校正，重新编写了Ludwig回归方程。
+
+<p></p>
+
+2019年6月6日（2.7版本）：为了U-Pb数据加入了包括208Pb和232Th的新的输入格式；此版本可以在普通铅校正前进行不协和过滤。这次更新改变了.json格式，可能会给通过旧版IsoplotR保存的数据带来一些问题。
+2019年5月24日：美国UC Santa Barbara新搭建了一个IsoplotR镜像服务器：<a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">http://isoplotr.geol.ucsb.edu:3838/IsoplotR/</a>
+
+<p></p>
+
+2019年5月4日（2.6版本）：为K-Ca, Rb-Sr, Sm-Nd, 以及Re-Os数据新加入反等时线法。为model-3回归改进了离散估计。
+
+<p></p>
+
+2019年4月11日：我们又有了两个新的的镜像：
+英国（BGS）<a href=""https://shiny.bgs.ac.uk/IsoplotR/"">https://shiny.bgs.ac.uk/IsoplotR/</a><br>
+中国（于瘸子）<a href=""http://chinageology.com:3838/IsoplotRshiny/"">http://chinageology.com:3838/IsoplotRshiny/</a>
+
+<p></p>
+
+2019年4月3日（2.5版本）：多项改进，求其是新版本的IsoplotR可以对非常不协和的数据进行更可靠的普通铅校正。在北京SHRIMP中心举办的碎屑岩锆石U-Pb定年研讨会准备期间制作的更新。
+
+<p></p>
+
+2019年3月4日（2.4版本）：现已可以为U-Pb数据进行初始不平衡校正，改进了普通铅校正以及对其他测年方法的初始非放射成因同位素组分的校正；混合模型功能在此版本更加可靠。
+
+<p></p>
+
+2018年12月8日（2.3版本）：此版本可以为输入数据指定绝对和相对误差（1σ或2σ）。
+
+<p></p>
+
+2018年11月9日（2.2版本）：绘图和计算是可以选择隐藏或忽略制定样品。
+
+<p></p>
+
+2018年10月20日（2.1版本）：重新编写了不协和回归方程，现在的版本使用最大似然法进行2D和3D回归分析。新版本拥有了提供了锚定不协和线与协和线或指定的普通铅含量的选项。
+
+<p></p>
+
+2018年9月10日（2.0版本）：工具箱现一加入K-Ca法。
+
+<p></p>
+
+2018年8月13日（1.4版本）：加入基于假定或测量岩屑的碎屑岩<sup>230</sup>Th校正；此版本也有了更灵活的加权平均绘制选择。
+
+<p></p>
+
+2018年6月4日（1.3版本）：修复了 “York fit” 算法和误差格式的相关错误，加入了两项新功能：Stacey-Kramers演化曲线以及普通的加权平均计算。
+
+<p></p>
+
+2018年5月1日（1.2版本）：修复了等时线以及在Tera-Wasserburg空间里的不协和线的MSWD相关错误。此版本从R矩阵载入数据更加灵活，也更新了更加易用的数据框架。
+
+<p></p>
+
+2018年4月11日：在维也纳EGU，IsoplotR正式亮相地质圈。
+
+<p></p>
+
+2018年4月3日：关于IsoplotR的文章在Geoscience Frontiers发表。"
+and,and,和
+contribute,"<p></p>
+
+Users can contribute to <tt>IsoplotR</tt>'s development in a number of ways:
+
+<ol>
+  <li>Any feedback and bug reports are gratefully accepted. If you encounter any problems, then please send a reproducible example in a <tt>.csv</tt> (if you use the command line) or <tt>.json</tt> (if you use the GUI) format to <i>p.vermeesch [at] ucl.ac.uk</i> and I will get back to you asap.
+  </li>
+
+  <li>If you know how to program in <tt>R</tt>, then feel free to fork <tt>Isoplot</tt>'s <a href=""https://www.github.com/pvermees/IsoplotR"">source code</a> from GitHub and modify or recycle it. Submit a pull request if you have fixed a bug.
+  </li>
+
+  <li>Host a local mirror version of the online GUI. This will increase the responsiveness of the site outside the United Kingdom. <a href=""https://github.com/pvermees/IsoplotRgui#setting-up-your-own-online-mirror"">Installation instructions</a> are provided on GitHub.
+  </li>
+
+  <li>IsoplotR is and always will be free to use. However, the development of the code and maintenance of the server infrastructure do take time and money. If you would like to make a financial contribution, then please click the button below. Cheers!
+
+    <div style=""text-align:center;"">
+      <a href=""https://www.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">GIVE NOW</a>
+    </div>
+  </li>
+
+</ol>
+","<p></p>
+
+用户可以通过以下方式帮助到IsoplotR的开发：
+
+<ol>
+<li>我们乐于了解到您的任何意见反馈或使用过程遇到的错误。如果您遇到了任何问题，请以 .cvs文件（假如您使用命令行）或 .json文件（如果您使用GUI）的格式将可以再现的错误案例发送到 p.vermeesh [at] ucl.ac.uk，我会尽快回复。</li>
+<li>如果您会使用R编程，您可以在<a href=""https://www.github.com/pvermees/IsoplotR"">GitHub</a> Fork IsoplotR的源代码，您可以利用这些源代码做进一步修改。如果您修复了错误，请发起一个Pull Request。</li>
+<li>如果您有能力，请考虑为在线GUI搭建一个本地镜像。这可以帮助提高英国以外地区的响应速度。<a href=""https://github.com/pvermees/IsoplotRgui#setting-up-your-own-online-mirror"">GitHub</a>上提供了安装教程。</li>
+<li>IsoplotR是也将一直是免费的。但对其的开发和维护工具也是需要人力物力的。如果您愿意捐赠，请使用以下按钮。多谢，并祝您使用愉快！
+    <div style=""text-align:center;"">
+      <a href=""https://www.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">捐</a>
+    </div>
+  </li>
+</li>
+</ol>"
+Beijing,Beijing,&nbsp;&nbsp;北京
+Changchun,Changchun,&nbsp;&nbsp;&nbsp;&nbsp;长春市
