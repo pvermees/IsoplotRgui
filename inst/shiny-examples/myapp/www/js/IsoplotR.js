@@ -18,8 +18,9 @@ $(function(){
 		IsoplotR.settings = data;
 		IsoplotR.settings.geochronometer =
 		    $('option:selected', $("#geochronometer")).attr('id');
-		IsoplotR.settings.language =
-		    $('option:selected', $("#language")).attr('id');
+		if (localStorage.getItem("language") !== null){
+		    IsoplotR.settings.language = localStorage.getItem("language");
+		}
 		$.getJSON('./js/data.json', function(data){
 		    IsoplotR.data = data;
 		    selectGeochronometer();
@@ -185,6 +186,9 @@ $(function(){
 	    data: handson.data,
 	    colHeaders: handson.headers
 	});
+	
+	$("#language").val(IsoplotR.settings.language);
+	$("#language").selectmenu("refresh");
     }
     
     // overwrites the data in the IsoplotR 
@@ -1700,6 +1704,7 @@ $(function(){
     function changeLanguage(){
 	IsoplotR.settings.language =
 	    $('option:selected', $("#language")).attr('id');
+	localStorage.setItem("language",IsoplotR.settings.language);
 	var helptit = contextual_help['help'][IsoplotR.settings.language];
 	$("#helpmenu").dialog('option','title',helptit);
 	showOrHide();

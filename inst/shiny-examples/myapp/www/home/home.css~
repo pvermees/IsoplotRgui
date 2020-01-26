@@ -26,13 +26,3 @@ img.centered {
 .stamp {
     font-style: italic;
 }
-
-#languages {
-    position: relative;
-    float: right;
-    left: 0;
-}
-
-.clickable {
-    cursor: pointer;
-}

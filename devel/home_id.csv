@@ -28,26 +28,25 @@ online_tab,Online,在线使用
 online,"An online GUI is hosted by the following international collaborators:
 
 <ol>
+  <li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
   <li><a href=""http://www.isoplotr.com/IsoplotR/"">Beijing</a>: Yang Li (Chinese Academy of Sciences)</li>
   <li><a href=""http://chinageology.com:3838/IsoplotR/"">Changchun</a>: Qiuye Yu (Changchun Institute of Technology)</li>
    <li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a>: Ian Millar (British Geological Survey)</li>
-  <li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
   <li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a>: John Cottle (University of California)</li>
 </ol>
 
 Click on one of the yellow boxes below to select a nearby
-mirror. Otherwise you will be automatically directed to the London
-server in <b><span id=""count"">10</span> seconds</b> ...","以下合作者提供了图形用户界面（GUI）的托管：
+mirror:","以下合作者提供了图形用户界面（GUI）的托管：
 
 <ol>
+<li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
 <li><a href=""http://www.isoplotr.com/IsoplotR/"">北京</a>: 李扬 (中科院) </li>
 <li><a href=""http://chinageology.com:3838/IsoplotR/"">长春</a>: 于瘸子 (长春工程学院)</li>
 <li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a>: Ian Millar (British Geological Survey)</li>
-<li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
 <li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a>: John Cottle (University of California)</li>
 </ol>
 
-点击以下任意黄色方框选择一个附近的镜像服务器，或者你将在 <b><span id=""count"">10</span>秒</b>后自动进入伦敦 (London) 服务器。"
+点击以下任意黄色方框选择一个附近的镜像服务器:"
 extra_mirrors,"If you would like to make your own <tt>IsoplotR</tt> mirror available to the world via this website, then please get in touch with me at <i>p.vermeesch [at] ucl.ac.uk</i>.",如果您希望托管一个供全球用户使用的IsoplotR镜像服务器，请通过电子邮件联系我 p.vermeesch [at] ucl.ac.uk.
 offline_tab,Offline,离线使用
 offline_1,"The Graphical User Interface (GUI) can be obtained from <a href=""https://github.com/pvermees/IsoplotRgui"">GitHub</a>. To run the offline version of the program, please install <i>R</i> from <a href=""http://r-project.org"">http://r-project.org</a> and enter the following commands at the prompt:","图形用户界面（GUI）可以从<a href=""https://github.com/pvermees/IsoplotRgui"">GitHub</a>获取。如果您希望离线使用，可以从<a href=""http://r-project.org"">http://r-project.org</a> 安装R，执行以下命令即可安装必要的组件。"
@@ -59,7 +58,6 @@ commandline_1,"The full functionality of <i>IsoplotR</i> can be accessed from th
 commandline_2,"Example code to reproduce the figures in the <a href=""http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018"">paper</a>:",作为例子，以下可以用来绘制这篇文章中的图片：
 commandline_3,"Full documentation with additional examples can be viewed <a href=""https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf"">on CRAN</a>.","<a
 href=""https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf"">CRAN</a> 上可以找到所有的相关文档以及更多的例子。"
-language_tab,Language,语言
 news_1,"IsoplotR is incrementally updated on <a href='http://github.com/pvermees/IsoplotR'>GitHub</a>, as detailed in the change log there. Updates to the <a href='https://CRAN.R-project.org/package=IsoplotR'>CRAN</a> version are less frequent and are reported below.
 
 <p></p>
@@ -258,10 +256,11 @@ Users can contribute to <tt>IsoplotR</tt>'s development in a number of ways:
 <li>如果您有能力，请考虑为在线GUI搭建一个本地镜像。这可以帮助提高英国以外地区的响应速度。<a href=""https://github.com/pvermees/IsoplotRgui#setting-up-your-own-online-mirror"">GitHub</a>上提供了安装教程。</li>
 <li>IsoplotR是也将一直是免费的。但对其的开发和维护工具也是需要人力物力的。如果您愿意捐赠，请使用以下按钮。多谢，并祝您使用愉快！
     <div style=""text-align:center;"">
-      <a href=""https://www.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">捐</a>
+      <a href=""https://www.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">捐赠</a>
     </div>
   </li>
 </li>
 </ol>"
 Beijing,Beijing,&nbsp;&nbsp;北京
 Changchun,Changchun,&nbsp;&nbsp;&nbsp;&nbsp;长春市
+title,a free and extendable toolbox for geochronology,免费，可扩展的地质年代学软件
