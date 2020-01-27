@@ -26,9 +26,7 @@
 <main>
 
   <header>
-    <a class="ulcorner" href="home/index.html">
-      <span class="translate" id="home">Home</span>
-    </a>
+    <a id="home" class="ulcorner translate" href="#">Home</a>
     <select id="geochronometer">
       <option id="U-Pb">U-Pb</option>
       <option id="Pb-Pb">Pb-Pb</option>
@@ -51,10 +49,10 @@
     <div id="HELP" class="button">
       <span class="translate" id="help">Help</span>
     </div>
-    <span hidden>
+    <span>
       <select id="language">
-	<option id="en">English</option>
-	<option id="cn">中文</option>
+	<option id="en" value="en">English</option>
+	<option id="cn" value="cn">中文</option>
       </select>
     </span>
     <tit>IsoplotR</tit>
@@ -104,7 +102,8 @@
   </div>
   
   <div hidden class="centerme hide4EDM show4ICP show4absolute" id="spotSizeDiv">
-    spot size: <input type="text" id="spotSizeVal"> &mu;m
+    <span class="translate" id="spotsize"></span>:
+    <input type="text" id="spotSizeVal"> &mu;m
     <div style="line-height:50%;"><br></div>
   </div>
   
