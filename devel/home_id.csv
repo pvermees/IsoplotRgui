@@ -54,7 +54,7 @@ offline_2,"Once all these packages have been installed, you can run the browser-
 commandline_tab,Command Line,使用命令行
 news_tab,News,通知
 contribute_tab,Contribute,加入我们
-commandline_1,"The full functionality of <i>IsoplotR</i> can be accessed from the command line. This includes all the functions and options that are available through the GUI, and more. After installing <i>R</i> on your system from <a href=""http://r-project.org"">http://r-project.org</a>, the command line functionality can be installed from <a href=""https://github.com/pvermees/IsoplotR/"">Github</a> as described under the <i>Offline</i> tab. Alternatively, <i>IsoplotR</i> can also be installed from the Comprehensive R Archive Network (CRAN) by typing:","通过命令行可以使用IsoplotR 的所有功能，也就是包括GUI 版本的功能之外您可以有所拓展。从<a href=""http://r-project.org"">http://r=project.org</a> 安装R后，这些全部功能将可以通过 <a href=""https://github.com/pvermees/IsoplotR/"">GitHub</a>安装，具体操作方式可参考“离线”标签。IsoplotR 也可以从 Comprehensive R Archive Network (CRAN) 安装，只需要键入："
+commandline_1,"The full functionality of <i>IsoplotR</i> can be accessed from the command line. This includes all the functions and options that are available through the GUI, and more. After installing <i>R</i> on your system from <a href=""http://r-project.org"">http://r-project.org</a>, the command line functionality can be installed from <a href=""https://github.com/pvermees/IsoplotR/"">Github</a> as described under the <i>Offline</i> tab. Alternatively, <i>IsoplotR</i> can also be installed from the Comprehensive R Archive Network (CRAN) by typing:","通过命令行可以使用IsoplotR 的所有功能，也就是包括GUI 版本的功能之外您可以有所拓展。从<a href=""http://r-project.org"">http://r=project.org</a> 安装R后，这些全部功能将可以通过 <a href=""https://github.com/pvermees/IsoplotR/"">GitHub</a>安装，具体操作方式可参考“离线使用”标签。IsoplotR 也可以从 Comprehensive R Archive Network (CRAN) 安装，只需要键入："
 commandline_2,"Example code to reproduce the figures in the <a href=""http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018"">paper</a>:",作为例子，以下可以用来绘制这篇文章中的图片：
 commandline_3,"Full documentation with additional examples can be viewed <a href=""https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf"">on CRAN</a>.","<a
 href=""https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf"">CRAN</a> 上可以找到所有的相关文档以及更多的例子。"
@@ -155,7 +155,7 @@ matrices and data frames.
 
 <h3>更新历史及相关</h3>
 
-2019年10月30日：Yang Li 和 Liguang Wu 在北京中科院搭建了一个新的IsoplotR 镜像：<a href=""http://www.isoplotr.com/IsoplotR/"">http://isoplotr.com/IsoplotR/<a>
+2019年10月30日：李杨 和 吴黎光 在北京中科院搭建了一个新的IsoplotR 镜像：<a href=""http://www.isoplotr.com/IsoplotR/"">http://isoplotr.com/IsoplotR/<a>
 
 <p></p>
 
@@ -202,7 +202,7 @@ matrices and data frames.
 
 <p></p>
 
-2018年9月10日（2.0版本）：工具箱现一加入K-Ca法。
+2018年9月10日（2.0版本）：工具箱现已加入K-Ca法。
 
 <p></p>
 
@@ -238,10 +238,13 @@ Users can contribute to <tt>IsoplotR</tt>'s development in a number of ways:
   <li>Host a local mirror version of the online GUI. This will increase the responsiveness of the site outside the United Kingdom. <a href=""https://github.com/pvermees/IsoplotRgui#setting-up-your-own-online-mirror"">Installation instructions</a> are provided on GitHub.
   </li>
 
+  <li>Translate the user interface into a new language. Contact <i>p.vermeesch [at] ucl.ac.uk</i> to get started.
+  </li>
+
   <li>IsoplotR is and always will be free to use. However, the development of the code and maintenance of the server infrastructure do take time and money. If you would like to make a financial contribution, then please click the button below. Cheers!
 
     <div style=""text-align:center;"">
-      <a href=""https://www.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">GIVE NOW</a>
+      <a href=""https://aoc.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">GIVE NOW</a>
     </div>
   </li>
 
@@ -251,12 +254,13 @@ Users can contribute to <tt>IsoplotR</tt>'s development in a number of ways:
 用户可以通过以下方式帮助到IsoplotR的开发：
 
 <ol>
-<li>我们乐于了解到您的任何意见反馈或使用过程遇到的错误。如果您遇到了任何问题，请以 .cvs文件（假如您使用命令行）或 .json文件（如果您使用GUI）的格式将可以再现的错误案例发送到 p.vermeesh [at] ucl.ac.uk，我会尽快回复。</li>
-<li>如果您会使用R编程，您可以在<a href=""https://www.github.com/pvermees/IsoplotR"">GitHub</a> Fork IsoplotR的源代码，您可以利用这些源代码做进一步修改。如果您修复了错误，请发起一个Pull Request。</li>
+<li>我们乐于了解到您的任何意见反馈或使用过程遇到的错误。如果您遇到了任何问题，请以 .cvs文件（假如您使用命令行）或 .json文件（如果您使用GUI）的格式将可以再现的错误案例发送到 p.vermeesch [at] ucl.ac.uk，我会尽快回复。</li>
+<li>如果您会使用R编程，您可以在<a href=""https://www.github.com/pvermees/IsoplotR"">GitHub</a> fork IsoplotR的源代码，您可以利用这些源代码做进一步修改。如果您修复了错误，请发起一个Pull Request。</li>
 <li>如果您有能力，请考虑为在线GUI搭建一个本地镜像。这可以帮助提高英国以外地区的响应速度。<a href=""https://github.com/pvermees/IsoplotRgui#setting-up-your-own-online-mirror"">GitHub</a>上提供了安装教程。</li>
+<li>如果您可协助检查中文翻译，或发现中文翻译有需要改进的地方，请联系p.vermeesch@ucl.ac.uk。</li>
 <li>IsoplotR是也将一直是免费的。但对其的开发和维护工具也是需要人力物力的。如果您愿意捐赠，请使用以下按钮。多谢，并祝您使用愉快！
     <div style=""text-align:center;"">
-      <a href=""https://www.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">捐赠</a>
+      <a href=""https://aoc.ucl.ac.uk/alumni/donations-gbp-single?id=cb52e5e1-431e-41bd-b21c-f9615f9b88b1"" class=""ui-button ui-widget ui-corner-all"">捐赠</a>
     </div>
   </li>
 </li>
