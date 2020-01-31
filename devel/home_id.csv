@@ -1,5 +1,5 @@
 id,en,cn
-intro,"<a href=""IsoplotR.png""><img src=""IsoplotR.png"" class=""centered"" width=800></a> 
+intro,"<a href=""IsoplotR_en.png""><img src=""IsoplotR_en.png"" class=""centered"" width=800></a> 
 
 <p><p/>
 
@@ -9,7 +9,7 @@ intro,"<a href=""IsoplotR.png""><img src=""IsoplotR.png"" class=""centered"" wid
 <li>Online: A user-friendly Graphical User Interface (GUI) that runs in a web browser on any internet-connected device.</li> 
 <li>Offline: The GUI can be run natively on any computer that has <i>R</i> installed on it. <i>R</i> is free software that is available on Windows, Mac and Linux/Unix.</li>
 <li>Command Line: Advanced users can access the full functionality of <i>IsoplotR</i> from <i>R</i>'s command line. This enables <i>IsoplotR</i> to be extended and incorporated into automation scripts.</li>
-</ol>","<a href=""IsoplotR.png""><img src=""IsoplotR.png"" class=""centered"" width=800></a> 
+</ol>","<a href=""IsoplotR_cn.png""><img src=""IsoplotR_cn.png"" class=""centered"" width=800></a> 
 
 <p><p/>
 
@@ -73,11 +73,15 @@ news_2,".
 
 <p></p>
 
-<span class=""stamp"">January 22, 2020</span> (v.3.2) Fixes several minor bugs and increases stability.
+<span class=""stamp"">January 25, 2020</span>: Release of a Chinese language version of the graphical user interface. Thanks to Shuan Yan (Guangzhou), Pei Zhang and Hao Fang (Beijing), Qiuye Yu (Changchun), Hongcheng Guo (Lehigh), and Shihu Li (Lancaster) for the translation!
 
 <p></p>
 
-<span class=""stamp"">October 30, 2019</span>: Yang Li and Liguang Wu host a new <tt>IsoplotR</tt> mirror at the Chinese Academy of Sciences in Beijing: <a href=""http:// www.isoplotr.com/IsoplotR/""> http://isoplotr.com/IsoplotR/<a>
+<span class=""stamp"">January 22, 2020</span> (v.3.2): Fixes several minor bugs and increases stability.
+
+<p></p>
+
+<span class=""stamp"">October 30, 2019</span>: Yang Li and Liguang Wu host a new <tt>IsoplotR</tt> mirror at the Chinese Academy of Sciences in Beijing: <a href=""http:// www.isoplotr.com/IsoplotR/""> http://www.isoplotr.com/IsoplotR/<a>
 
 <p></p>
 

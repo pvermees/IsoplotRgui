@@ -2037,7 +2037,8 @@ $(function(){
     }
 
     $.tutorial = function(){
-	$("#myplot").load( "tutorial.html", function() {
+	$("#myplot").load( "tutorial.html" , function() {
+	    translate();
 	    showOrHide();
 	});
     }
