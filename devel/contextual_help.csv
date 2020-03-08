@@ -306,7 +306,7 @@ help_KCa_formats,"Choose one of three input formats:<ol><li>
 <tt>X err[X] Y err[Y] rho</tt><br>
  其中X是<sup>40</sup>K/<sup>44</sup>Ca比值，Y是<sup>40</sup>Ca/<sup>44</sup>Ca比值，并且<tt>err[X]，err[Y]</tt>和<tt>rho</tt>分别是不确定性和误差相关性。
 </li><li><tt>X err[X] Y err[Y] rho</tt><br>
-其中X是40K/40Ca比值，Y是44Ca/40Ca比值，并且err[X]，err[Y]和rho分别是不确定性和误差相关性。
+其中X是<sup>40</sup>K/<sup>40</sup>Ca比值，Y是<sup>44</sup>Ca/<sup>40</sup>Ca比值，并且err[X]，err[Y]和rho分别是不确定性和误差相关性。
 <li></li>
 <tt>X err[X] Y err[Y] Z err[Z]</tt><br>
 其中<tt>X，err[X]，Y</tt>和<tt>err[Y]</tt>定义如选项1，<tt>Z</tt>是<sup>40</sup>K/<sup>40</sup>Ca比率，<tt>err[Z]</tt>是其不确定性。在这里三个比值不确定性之间的冗余允许暗中确定协方差。
@@ -316,7 +316,7 @@ help_PbPb_formats,"Choose one of three input formats:
 where <tt>rho</tt> is the error correlation between <tt>6/4</tt> and <tt>7/4</tt>.
 </li><li><tt>4/6 err[4/6] 7/6 err[7/6] (rho)</tt><br>
 where the error correlation is optional.
-</li><li><tt>6/4 err[6/4] 7/4 err[7/4] 7/6 err[7/6]</tt><br>
+</li><li><tt>6/4 err[6/4] 7/4 err[7/4] 6/7 err[6/7]</tt><br>
 in which the error correlations are calculated from the redundancies between the three sets of uncertainties.
 </li></ol>","选择以下三种输入格式之一：
 <ol><li>
@@ -326,7 +326,7 @@ in which the error correlations are calculated from the redundancies between the
 <tt>4/6 err[4/6] 7/6 err[7/6] (rho)</tt><br>
 其中误差相关性是可选的。
 </li><li>
-<tt>6/4 err[6/4] 7/4 err[7/4] 7/6 err[7/6]</tt><br>
+<tt>6/4 err[6/4] 7/4 err[7/4] 6/7 err[6/7]</tt><br>
 其中误差相关性是根据三组不确定性之间的冗余计算的。
 </li></ol>"
 help_ArAr_formats,"Choose one of three input formats:
@@ -547,3 +547,18 @@ Enter <tt>NA</tt> for empty plot symbols.","用于标记异常值的填充颜色
 <p></p>
 输入 (<tt>NA</tt>) 则不填充绘图符号。"
 help,help,帮助
+help_ThPb_formats,"Choose one of three input formats:<ol><li>
+<tt>X err[X] Y err[Y] rho</tt><br> where <tt>X</tt> is the <sup>232</sup>Th/<sup>204</sup>Pb ratio, <tt>Y</tt> is the <sup>208</sup>Pb/<sup>204</sup>Pb ratio, and <tt>err[X], err[Y]</tt> and <tt>rho</tt> are the uncertainties and error correlations, respectively.</li>
+<li><tt>X err[X] Y err[Y] rho</tt><br> where <tt>X</tt> is the <sup>232</sup>Th/<sup>208</sup>Pb ratio, <tt>Y</tt> is the <sup>204</sup>Pb/<sup>208</sup>Pb ratio, and <tt>err[X], err[Y]</tt> and <tt>rho</tt> are the uncertainties and (optional) error correlations, respectively.</li>
+<li><tt>X err[X] Y err[Y] Z err[Z]</tt><br> where <tt>X, err[X], Y,</tt> and <tt>err[Y]</tt> are defined as in option 1, <tt>Z</tt> is the <sup>232</sup>Th/<sup>208</sup>Pb ratio, and <tt>err[Z]</tt> is its uncertainty. Here the redundancy between three ratio uncertainties allows the covariance to be determined implicitly.</li>
+</ol>","选择以下三种输入格式之一：
+<ol><li>
+<tt>X err[X] Y err[Y] rho</tt><br>
+ 其中X是<sup>232</sup>Th/<sup>204</sup>Pb比值，Y是<sup>208</sup>Pb/<sup>204</sup>Pb比值，并且<tt>err[X]，err[Y]</tt>和<tt>rho</tt>分别是不确定性和误差相关性。
+</li><li><tt>X err[X] Y err[Y] rho</tt><br>
+其中X是<sup>232</sup>Th/<sup>208</sup>Pb比值，Y是<sup>204</sup>Pb/<sup>208</sup>Pb比值，并且err[X]，err[Y]和rho分别是不确定性和误差相关性。
+<li></li>
+<tt>X err[X] Y err[Y] Z err[Z]</tt><br>
+其中<tt>X，err[X]，Y</tt>和<tt>err[Y]</tt>定义如选项1，<tt>Z</tt>是<sup>232</sup>Th/<sup>208</sup>Pb比率，<tt>err[Z]</tt>是其不确定性。在这里三个比值不确定性之间的冗余允许暗中确定协方差。
+</li></ol>"
+help_Pb208Pb204,The default values for the <sup>208</sup>Pb/<sup>204</sup>Pb ratio and its standard error are taken from Stacey and Kramers (1975),<sup>208</sup>Pb/<sup>204</sup>Pb 比的默认值及其标准误差取自 Stacey and Kramers (1975)

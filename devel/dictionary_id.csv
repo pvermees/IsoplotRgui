@@ -766,3 +766,4 @@ ThPb_0408,Measured <sup>204</sup>Pb/<sup>208</sup>Pb-ratios.,<sup>204</sup>Pb/<s
 ThPb_err_0408,Analytical uncertainty of the <sup>204</sup>Pb/<sup>208</sup>Pb-ratios,<sup>208</sup>Pb/<sup>204</sup>Pb测量误差.
 ThPb_rho_3208_0408,Error correlations between the <sup>232</sup>Th/<sup>208</sup>Pb and <sup>204</sup>Pb/<sup>208</sup>Pb-ratios.,<sup>232</sup>Th/<sup>208</sup>Pb和<sup>204</sup>Pb/<sup>208</sup>Pb误差相关性 (可选).
 ThPb_redundancy,<p></p><tt>IsoplotR</tt> uses the redundancy of the three ratios to calculate the correlation between their respective analytical uncertainties.,<p></p><tt>IsoplotR</tt>使用三组比值的冗余来计算各自测量误差的相关性.
+help_ThPb_i2i,Use the isochron intercept to estimate the initial <sup>208</sup>Pb/<sup>204</sup>Pb-ratio?,使用等时线截距估算初始<sup>208</sup>Pb/<sup>204</sup>Pb比值？

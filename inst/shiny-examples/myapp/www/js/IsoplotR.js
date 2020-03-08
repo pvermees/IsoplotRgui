@@ -965,7 +965,7 @@ $(function(){
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Th-Pb':
-	    $('#Th-Pb-formats option[value='+set.format+']').
+	    $('#ThPb-formats option[value='+set.format+']').
 		prop('selected', 'selected');
 	    $('#Pb208Pb204').val(cst.iratio.Pb208Pb204[0]);
 	    $('#errPb208Pb204').val(cst.iratio.Pb208Pb204[1]);
