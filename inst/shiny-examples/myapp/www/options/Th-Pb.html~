@@ -1,0 +1,22 @@
+<p></p>
+
+&nbsp;<help id="help_KCa_formats"><translate class="input"></translate></help>
+<select id="KCa-formats" onchange="$.chooseFormat('#KCa-formats','K-Ca');">
+  <option class="translate" id="KCa_format_1" value=1></option>
+  <option class="translate" id="KCa_format_2" value=2></option>
+  <option class="translate" id="KCa_format_3" value=3></option>
+</select>
+
+<p></p>
+
+<table>
+  <tr class="hide4isochron">
+    <td>&nbsp;<help class="translate" id="help_Ca40Ca44"></help></td>
+    <td><input type="text" id="Ca40Ca44"> &plusmn;</td>
+    <td><input type="text" id="errCa40Ca44"></td></tr>
+  <tr><td>&nbsp;<help class="translate" id="help_LambdaK40"></help></td>
+    <td><input type="text" id="LambdaK40"> &plusmn;</td>
+    <td><input type="text" id="errLambdaK40"> Myr<sup>-1</sup></td></tr>
+</table>
+
+<p></p>
