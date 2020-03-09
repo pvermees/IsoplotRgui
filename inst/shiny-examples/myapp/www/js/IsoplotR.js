@@ -58,8 +58,7 @@ $(function(){
 	    case 4: return 11;
 	    case 5: return 11;
 	    case 6: return 14;
-	    case 7:
-	    case 8: return 16;
+	    case 7: return 16;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
