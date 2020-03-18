@@ -73,6 +73,10 @@ news_2,".
 
 <p></p>
 
+<span class=""stamp"">March 18, 2020</span> (v.3.3): Adds Th-Pb geochronology to the toolbox.
+
+<p></p>
+
 <span class=""stamp"">January 25, 2020</span>: Release of a Chinese language version of the graphical user interface. Thanks to Shuan Yan (Guangzhou), Pei Zhang and Hao Fang (Beijing), Qiuye Yu (Changchun), Hongcheng Guo (Lehigh), and Shihu Li (Lancaster) for the translation!
 
 <p></p>
@@ -158,6 +162,20 @@ matrices and data frames.
 <span class=""stamp"">April 3, 2018</span>: IsoplotR <a href=""http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018"">paper</a> accepted for publication in <i>Geoscience Frontiers</i> (a free and open journal for free and open software).","的反馈。
 
 <h3>更新历史及相关</h3>
+
+<p></p>
+
+2020年3月18日（3.3版本）：工具箱现已加入Th-Pb法。
+
+<p></p>
+
+2020年1月25日：创建了中文用户界面。这个翻译是由严爽, 于瘸子, 郭宏程, 张培, 方浩 和 李四 完成的。
+
+<p></p>
+
+2020年1月22日（3.2版本）：修复了几个小错误并提高了稳定性。
+
+<p></p>
 
 2019年10月30日：李杨 和 吴黎光 在北京中科院搭建了一个新的IsoplotR 镜像：<a href=""http://www.isoplotr.com/IsoplotR/"">http://isoplotr.com/IsoplotR/<a>
 
