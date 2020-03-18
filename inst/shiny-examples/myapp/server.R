@@ -87,6 +87,16 @@ shiny::shinyServer(function(input,output,session){
             mat[1,1:6] <- c('K40Ca44','errK40Ca44',
                             'Ca40Ca44','errCa40Ca44',
                             'K40Ca40','errK40Ca40')
+        } else if (identical(method,"Th-Pb") & format==1){
+            mat[1,1:5] <- c('Th232Pb204','errTh232Pb204',
+                            'Pb208Pb204','errPb208Pb204','rho')
+        } else if (identical(method,"Th-Pb") & format==2){
+            mat[1,1:5] <- c('Th232Pb208','errTh232Pb208',
+                            'Pb204Pb208','errPb204Pb208','rho')
+        } else if (identical(method,"Th-Pb") & format==3){
+            mat[1,1:6] <- c('Th232Pb204','errTh232Pb204',
+                            'Pb208Pb204','errPb208Pb204',
+                            'Th232Pb208','errTh232Pb208')
         } else if (identical(method,"Th-U") & format==1) {
             mat[1,1:9] <- c('U238Th232','errU238Th232',
                             'U234Th232','errU234Th232',

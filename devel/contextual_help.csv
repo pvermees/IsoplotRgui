@@ -559,3 +559,4 @@ help_ThPb_formats,"Choose one of three input formats:<ol><li>
 其中<tt>X，err[X]，Y</tt>和<tt>err[Y]</tt>定义如选项1，<tt>Z</tt>是<sup>232</sup>Th/<sup>208</sup>Pb比率，<tt>err[Z]</tt>是其不确定性。在这里三个比值不确定性之间的冗余允许暗中确定协方差。
 </li></ol>"
 help_Pb208Pb204,The default values for the <sup>208</sup>Pb/<sup>204</sup>Pb ratio and its standard error are taken from Stacey and Kramers (1975),<sup>208</sup>Pb/<sup>204</sup>Pb 比的默认值及其标准误差取自 Stacey and Kramers (1975)
+help_ThPb_inverse,"Selecting this box plots <sup>204</sup>Pb/<sup>208</sup>Pb against <sup>232</sup>Th/<sup>208</sup>Pb. Otherwise, <tt>IsoplotR</tt> plots <sup>208</sup>Pb/<sup>204</sup>Pb against <sup>232</sup>Th/<sup>204</sup>Pb.",选择此框将绘制<sup>204</sup>Pb/<sup>208</sup>Pb vs. <sup>232</sup>Th/<sup>208</sup>Pb图。否则，<tt>IsoplotR</tt>将绘制<sup>208</sup>Pb/<sup>204</sup>Pb vs. <sup>232</sup>Th/<sup>204</sup>Pb图。
