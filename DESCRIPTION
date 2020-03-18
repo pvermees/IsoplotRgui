@@ -1,7 +1,7 @@
 Package: IsoplotRgui
 Title: Web interface to IsoplotR
-Version: 3.2
-Date: 2020-01-23
+Version: 4.0
+Date: 2020-03-08
 Authors@R: person("Pieter", "Vermeesch", , "p.vermeesch@ucl.ac.uk", role = c("aut", "cre"))
 Description: Implements the fuctionality of the popular Isoplot Excel Add-In for Isotope Geology.
 Author: Pieter Vermeesch [aut, cre]

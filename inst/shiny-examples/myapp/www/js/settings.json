@@ -45,6 +45,11 @@
 	"i2i": "FALSE",
 	"inverse": "TRUE"
     },
+    "Th-Pb": {
+	"format": 2,
+	"i2i": "TRUE",
+	"inverse": "TRUE"
+    },
     "K-Ca": {
 	"format": 1,
 	"i2i": "TRUE",

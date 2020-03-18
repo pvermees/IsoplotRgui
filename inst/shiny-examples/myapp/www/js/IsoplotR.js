@@ -58,8 +58,7 @@ $(function(){
 	    case 4: return 11;
 	    case 5: return 11;
 	    case 6: return 14;
-	    case 7:
-	    case 8: return 16;
+	    case 7: return 16;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
@@ -74,6 +73,13 @@ $(function(){
 	    case 1: return 8;
 	    case 2: return 8;
 	    case 3: return 9;
+	    }
+	case 'Th-Pb':
+	    var format = IsoplotR.settings["Th-Pb"].format;
+	    switch (format){
+	    case 1: return 7;
+	    case 2: return 7;
+	    case 3: return 8;
 	    }
 	case 'K-Ca':
 	    var format = IsoplotR.settings["K-Ca"].format;
@@ -318,8 +324,8 @@ $(function(){
 	var ThU34 = (geochronometer=='Th-U') & (IsoplotR.settings['Th-U'].format>2);
 	var detrital1 = (geochronometer=='detritals') &
 	    (IsoplotR.settings['detritals'].format==1);
-	var omitters = ["U-Pb","Pb-Pb","Ar-Ar","K-Ca","Rb-Sr","Sm-Nd","Re-Os",
-		        "Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
+	var omitters = ["U-Pb","Pb-Pb","Th-Pb","Ar-Ar","K-Ca","Rb-Sr","Sm-Nd",
+			"Re-Os","Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
 	var omissable = ($.inArray(geochronometer,omitters)>-1);
 	var val = null;
 	var row = [];
@@ -551,6 +557,24 @@ $(function(){
 	    case 3:
 		$('.show4ArAr3').show();
 		$('.hide4ArAr3').hide();
+		break;
+	    }
+	    break;
+	case 'Th-Pb':
+	    $('.show4ThPb').show();
+	    $('.hide4ThPb').hide();
+	    switch (set.format){
+	    case 1:
+		$('.show4ThPb1').show();
+		$('.hide4ThPb1').hide();
+		break;
+	    case 2:
+		$('.show4ThPb2').show();
+		$('.hide4ThPb2').hide();
+		break;
+	    case 3:
+		$('.show4ThPb3').show();
+		$('.hide4ThPb3').hide();
 		break;
 	    }
 	    break;
@@ -937,6 +961,16 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
+	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    break;
+	case 'Th-Pb':
+	    $('#ThPb-formats option[value='+set.format+']').
+		prop('selected', 'selected');
+	    $('#Pb208Pb204').val(cst.iratio.Pb208Pb204[0]);
+	    $('#errPb208Pb204').val(cst.iratio.Pb208Pb204[1]);
+	    $('#LambdaTh232').val(cst.lambda.Th232[0]),
+	    $('#errLambdaTh232').val(cst.lambda.Th232[1]),
+	    $('#i2iThPb').prop('checked',set.i2i=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'K-Ca':
@@ -1338,6 +1372,12 @@ $(function(){
 	    set.lambda.K40[0] = getNumber("#LambdaK40");
 	    set.lambda.K40[1] = getNumber("#errLambdaK40");
 	    break;
+	case 'Th-Pb':
+	    set.iratio.Pb208Pb204[0] = getNumber('#Pb208Pb204');
+	    set.iratio.Pb208Pb204[1] = getNumber('#errPb208Pb204');
+	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
+	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
+	    break;
 	case 'K-Ca':
 	    set.iratio.Ca40Ca44[0] = getNumber('#Ca40Ca44');
 	    set.iratio.Ca40Ca44[1] = getNumber('#errCa40Ca44');
@@ -1627,8 +1667,8 @@ $(function(){
 
     function inverse(geochronometer){
 	var gcsettings = IsoplotR.settings[geochronometer];
-	if ($.inArray(geochronometer,['Pb-Pb','Ar-Ar','K-Ca','Rb-Sr',
-				      'Sm-Nd','Lu-Hf','Re-Os'])>-1){
+	if ($.inArray(geochronometer,['Pb-Pb','Ar-Ar','Th-Pb','K-Ca',
+				      'Rb-Sr','Sm-Nd','Lu-Hf','Re-Os'])>-1){
 	    gcsettings.inverse = truefalse('#inverse');
 	}
     }
@@ -1638,6 +1678,9 @@ $(function(){
 	switch (geochronometer){
 	case 'Ar-Ar':
 	    gcsettings.i2i = truefalse("#i2iArAr");
+	    break;
+	case 'Th-Pb':
+	    gcsettings.i2i = truefalse("#i2iThPb");
 	    break;
 	case 'K-Ca':
 	    gcsettings.i2i = truefalse("#i2iKCa");
@@ -1729,6 +1772,7 @@ $(function(){
 	    $("#Jdiv").show();
 	    $(".helioplot").hide()
 	    break;
+	case 'Th-Pb':
 	case 'K-Ca':
 	case 'Pb-Pb':
 	case 'Rb-Sr':
@@ -1815,6 +1859,7 @@ $(function(){
 	    switch (geochronometer){
 	    case "U-Pb":
 	    case "Pb-Pb":
+	    case "Th-Pb":
 	    case "Ar-Ar":
 	    case "K-Ca":
 	    case "Rb-Sr":
@@ -1911,6 +1956,8 @@ $(function(){
 	var PbPb3 = (gc=='Pb-Pb' && format==3);
 	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
 	var ArAr3 = (gc=='Ar-Ar' && format==3);
+	var ThPb12 = (gc=='Th-Pb' && format<3);
+	var ThPb3 = (gc=='Th-Pb' && format==3);
 	var KCa12 = (gc=='K-Ca' && format<3);
 	var KCa3 = (gc=='K-Ca' && format==3);
 	var RbSr12 = (gc=='Rb-Sr' && format<3);
@@ -1929,13 +1976,13 @@ $(function(){
 	var regression = (gc=='other' && pd=='regression');
 	var spectrum = (gc=='other' && pd=='spectrum');
 	var average = (gc=='other' && pd=='average');
-	if (UPb12 || PbPb12 || ArAr12 || KCa12 ||
-	    RbSr12 || SmNd12 || ReOs12 || LuHf12 ||
-	    ThU34 || regression){
+	if (UPb12 || PbPb12 || ArAr12 || ThPb12 ||
+	    KCa12 || RbSr12 || SmNd12 || ReOs12 ||
+	    LuHf12 || ThU34 || regression){
 	    cols = [1,3];
-	} else if (UPb345 || PbPb3 || ArAr3 || KCa3 ||
-		   RbSr3 || SmNd3 || ReOs3 || LuHf3 ||
-		   UThHe || ThU12){
+	} else if (UPb345 || PbPb3 || ArAr3 || ThPb3 ||
+		   KCa3 || RbSr3 || SmNd3 || ReOs3 ||
+		   LuHf3 || UThHe || ThU12){
 	    cols = [1,3,5];
 	} else if (UPb78){
 	    cols = [1,3,5,7];

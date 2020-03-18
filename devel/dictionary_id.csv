@@ -751,3 +751,21 @@ discordance_filter_none,none,无 
 ages,"The <span hidden class=""show4PbPb""> Pb-Pb </span> <span hidden class=""show4ArAr""> Ar-Ar </span> <span hidden class=""show4RbSr""> Rb-Sr </span> <span hidden class=""show4SmNd""> Sm-Nd </span> <span hidden class=""show4ReOs""> Re-Os </span> <span hidden class=""show4LuHf""> Lu-Hf </span> <span hidden class=""show4UThHe""> U-Th-He </span> <span hidden class=""show4fissiontracks""> fission track </span> <span hidden class=""show4ThU1 show4ThU2""> <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U</span> <span hidden class=""show4ThU3 show4ThU4""> <sup>230</sup>Th-<sup>238</sup>U</span>  ages.","<span hidden class=""show4PbPb""> Pb-Pb </span> <span hidden class=""show4ArAr""> Ar-Ar </span> <span hidden class=""show4RbSr""> Rb-Sr </span> <span hidden class=""show4SmNd""> Sm-Nd </span> <span hidden class=""show4ReOs""> Re-Os </span> <span hidden class=""show4LuHf""> Lu-Hf </span> <span hidden class=""show4UThHe""> U-Th-He </span> <span hidden class=""show4fissiontracks""> 裂变径迹</span> <span hidden class=""show4ThU1 show4ThU2""> <sup>230</sup>Th-<sup>234</sup>U-<sup>238</sup>U</span> <span hidden class=""show4ThU3 show4ThU4""> <sup>230</sup>Th-<sup>238</sup>U</span> 年龄。"
 detrital_correction_none,none,无
 spotsize,spot size,坑尺寸
+ThPb_format_1,1. Normal,1. 正常
+ThPb_format_2,2. Inverse,2. 相反
+ThPb_format_3,3. Three ratios,3. 三组比值
+help_Pb208Pb204,Initial <sup>208</sup>Pb/<sup>204</sup>Pb ratio:,初始<sup>208</sup>Pb/<sup>204</sup>Pb：
+ThPb_3204,Measured <sup>232</sup>Th/<sup>204</sup>Pb-ratios.,<sup>232</sup>Th/<sup>204</sup>Pb测量值.
+ThPb_err_3204,Analytical uncertainty of the <sup>232</sup>Th/<sup>204</sup>Pb-ratios,<sup>232</sup>Th/<sup>204</sup>Pb测量误差.
+ThPb_0804,Measured <sup>208</sup>Pb/<sup>204</sup>Pb-ratios.,<sup>208</sup>Pb/<sup>204</sup>Pb测量值.
+ThPb_err_0804,Analytical uncertainty of the <sup>208</sup>Pb/<sup>204</sup>Pb-ratios,<sup>208</sup>Pb/<sup>204</sup>Pb测量误差.
+ThPb_rho_3204_0804,Error correlations between the <sup>232</sup>Th/<sup>204</sup>Pb and <sup>208</sup>Pb/<sup>204</sup>Pb-ratios.,<sup>232</sup>Th/<sup>204</sup>Pb和<sup>208</sup>Pb/<sup>204</sup>Pb误差相关性.
+ThPb_3208,Measured <sup>232</sup>Th/<sup>204</sup>Pb-ratios.,<sup>232</sup>Th/<sup>208</sup>Pb测量值.
+ThPb_err_3208,Analytical uncertainty of the <sup>232</sup>Th/<sup>208</sup>Pb-ratios,<sup>232</sup>Th/<sup>208</sup>Pb测量误差.
+ThPb_0408,Measured <sup>204</sup>Pb/<sup>208</sup>Pb-ratios.,<sup>204</sup>Pb/<sup>208</sup>Pb测量值.
+ThPb_err_0408,Analytical uncertainty of the <sup>204</sup>Pb/<sup>208</sup>Pb-ratios,<sup>208</sup>Pb/<sup>204</sup>Pb测量误差.
+ThPb_rho_3208_0408,Error correlations between the <sup>232</sup>Th/<sup>208</sup>Pb and <sup>204</sup>Pb/<sup>208</sup>Pb-ratios.,<sup>232</sup>Th/<sup>208</sup>Pb和<sup>204</sup>Pb/<sup>208</sup>Pb误差相关性 (可选).
+ThPb_redundancy,<p></p><tt>IsoplotR</tt> uses the redundancy of the three ratios to calculate the correlation between their respective analytical uncertainties.,<p></p><tt>IsoplotR</tt>使用三组比值的冗余来计算各自测量误差的相关性.
+help_ThPb_i2i,Use the isochron intercept to estimate the initial <sup>208</sup>Pb/<sup>204</sup>Pb-ratio?,使用等时线截距估算初始<sup>208</sup>Pb/<sup>204</sup>Pb比值？
+PbPb_67,Measured <sup>206</sup>Pb/<sup>207</sup>Pb-ratios., <sup>206</sup>Pb/<sup>207</sup>Pb测量值。
+PbPb_err_67,Analytical uncertainty of the <sup>206</sup>Pb/<sup>207</sup>Pb-ratios,<sup>206</sup>Pb/<sup>207</sup>Pb测量误差
