@@ -560,3 +560,4 @@ help_ThPb_formats,"Choose one of three input formats:<ol><li>
 </li></ol>"
 help_Pb208Pb204,The default values for the <sup>208</sup>Pb/<sup>204</sup>Pb ratio and its standard error are taken from Stacey and Kramers (1975),<sup>208</sup>Pb/<sup>204</sup>Pb 比的默认值及其标准误差取自 Stacey and Kramers (1975)
 help_ThPb_inverse,"Selecting this box plots <sup>204</sup>Pb/<sup>208</sup>Pb against <sup>232</sup>Th/<sup>208</sup>Pb. Otherwise, <tt>IsoplotR</tt> plots <sup>208</sup>Pb/<sup>204</sup>Pb against <sup>232</sup>Th/<sup>204</sup>Pb.",选择此框将绘制<sup>204</sup>Pb/<sup>208</sup>Pb vs. <sup>232</sup>Th/<sup>208</sup>Pb图。否则，<tt>IsoplotR</tt>将绘制<sup>208</sup>Pb/<sup>204</sup>Pb vs. <sup>232</sup>Th/<sup>204</sup>Pb图。
+help_ThPb_i2i,Ticking this box uses and isochron fit to estimate the initial <sup>208</sup>Pb-component.,选中此框使用和等时线拟合估计初始<sup>208</sup>Pb分量。
