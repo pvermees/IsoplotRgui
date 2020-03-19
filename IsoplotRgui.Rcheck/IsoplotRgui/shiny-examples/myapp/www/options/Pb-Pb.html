@@ -1,0 +1,41 @@
+<p></p>
+
+&nbsp;<help id="help_PbPb_formats"><translate class="input"></translate></help>
+<select id="PbPb-formats" onchange="$.chooseFormat('#PbPb-formats','Pb-Pb');">
+  <option class="translate" id="PbPb_format_1" value=1></option>
+  <option class="translate" id="PbPb_format_2" value=2></option>
+  <option class="translate" id="PbPb_format_3" value=3></option>
+</select>
+
+<p></p>
+
+<div class="hide4isochron">
+  &nbsp;<help class="translate" id="help_common_Pb_option"></help>
+  <select id="common-Pb-option" onchange="$.register();">
+    <option class="translate" id="common_Pb_correction_none" value=0></option>
+    <option class="translate" id="common_Pb_correction_nominal" value=1></option>
+    <option class="translate" id="common_Pb_correction_isochron" value=2></option>
+  </select>
+  <p></p>
+</div>
+
+<table>
+  <tr><td>&nbsp;<help class="translate" id="help_U238U235"></help></td>
+    <td><input id="U238U235"> &plusmn;</td>
+    <td><input id="errU238U235"></td>
+  </tr><tr>
+    <td>&nbsp;<help class="translate" id="help_LambdaU238"></help></td>
+    <td><input id="LambdaU238"> &plusmn;</td>
+    <td><input id="errLambdaU238">Myr<sup>-1</sup></td>
+  </tr><tr>
+    <td>&nbsp;<help class="translate" id="help_LambdaU235"></help></td>
+    <td><input id="LambdaU235"> &plusmn;</td>
+    <td><input id="errLambdaU235">Myr<sup>-1</sup></td>
+  </tr><tr hidden class="show4nominalCommonPb">
+    <td>&nbsp;<help class="translate" id="help_Pb206Pb204"></help></td>
+    <td><input id="Pb206Pb204"></td>
+  </tr><tr hidden class="show4nominalCommonPb">
+    <td>&nbsp;<help class="translate" id="help_Pb207Pb204"></help></td>
+    <td><input id="Pb207Pb204"></td>
+  </tr>
+</table>

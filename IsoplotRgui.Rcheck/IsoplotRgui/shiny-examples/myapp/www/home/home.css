@@ -1,0 +1,38 @@
+body {
+    font-family: Verdana,Arial,sans-serif/*{ffDefault}*/; 
+}
+
+a {
+    border: 0;
+    color: black;
+}
+
+a:hover {
+    color:red;
+}
+
+.main {
+    width:900px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+img.centered {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.stamp {
+    font-style: italic;
+}
+
+#languages {
+    position: relative;
+    float: right;
+    left: 0;
+}
+
+.clickable {
+    cursor: pointer;
+}
