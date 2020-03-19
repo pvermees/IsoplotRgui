@@ -1,0 +1,158 @@
+body {
+    font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
+}
+
+td {
+    vertical-align: top;
+}
+
+u {
+    text-decoration: underline;
+}
+
+.alignright {
+    float: right;
+}
+
+a {
+    border: 0;
+    color: black;
+}
+a:hover {
+    color:red;
+}
+
+#loader {
+    position:absolute;
+    left:50%;
+    top:50%
+}
+
+#myplot {
+    position: absolute;
+    top: 0;
+    bottom: 15;
+    right: 0;
+    left: 0;
+}
+
+.centerme {
+    text-align: center;
+}
+
+.ulcorner {
+    position: absolute;
+    float: left;
+    left: 0;
+}
+.lrcorner {
+    position: absolute;
+    float: right;
+    right: 0;
+}
+
+tit {
+    cursor: pointer;
+    position: absolute;
+    float: right;
+    top:0;
+    right: 10;
+    color:black;
+    font-family: Courier, monospace;
+    font-weight: bold;
+    font-size: 24;
+}
+tit:hover {
+    color:red;
+}
+
+header {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    line-heigth:50px;
+    background-color:lightblue;
+    vertical-align:middle;
+    text-align:center;
+    padding:0;
+    z-index:4;
+}
+
+footer {
+    position:fixed;
+    bottom:0;
+    left:0;
+    line-height:50px;
+    width:100%;
+    background-color:lightblue;
+    text-align:center;
+    padding:0;
+    z-index:1;
+}
+
+left {
+    overflow:hidden;
+    position:fixed;
+    left:0;
+    right:50%;
+    top:50px; 
+    bottom:50px; 
+    padding:0;
+    z-index:2;
+}
+
+right {
+    overflow:auto;
+    position:fixed;
+    left:50%;
+    width:50%;
+    top:50px; 
+    bottom:50px; 
+    padding:0;
+    z-index:2;
+}
+
+.result {
+    position:relative;
+    display:inline-block;
+    left:0;
+    width:100%;
+    top:0; 
+    bottom:0;
+    padding:0;
+    z-index:3;
+}
+
+.handsontable table th {
+    background: white;
+    color: black;
+}
+
+#OPEN, help {
+    cursor: pointer;
+}
+
+.middle {
+    position: relative;
+    width: 800;
+    margin: 0 auto;
+}
+
+.thumbnail {
+    max-width:100%;
+    width:600px;
+    border:2px solid;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+cn {
+    display: none;
+}
