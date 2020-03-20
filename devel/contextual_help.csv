@@ -434,7 +434,7 @@ help_UPb_age_type,"Choose one of five options:
 </li><li>绘制单颗粒的谐和年龄
 </li><li>绘制<sup>208</sup>Pb/<sup>232</sup>Th年龄
 </li></ol>"
-help_UPb_formats,"Choose one of eight input formats:
+help_UPb_formats,"Choose one of seven input formats:
 <ol><li><tt>X=07/35 err[X] Y=06/38 err[Y] rho</tt><br>
 where <tt>07/35</tt> stands for the <sup>207</sup>Pb/<sup>235</sup>U ratio, <tt>06/38</tt> for the <sup>206</sup>Pb/<sup>235</sup>U ratio and <tt>rho</tt> is the error correlation between <tt>X</tt> and <tt>Y</tt>
 </li><li>
