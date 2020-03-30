@@ -52,48 +52,49 @@ $(function(){
 	case 'U-Pb':
 	    var format = IsoplotR.settings["U-Pb"].format;
 	    switch (format){
-	    case 1: return 7;
+	    case 1:
 	    case 2: return 7;
 	    case 3: return 10;
-	    case 4: return 11;
+	    case 4:
 	    case 5: return 11;
 	    case 6: return 14;
-	    case 7: return 16;
+	    case 7:
+	    case 8: return 16;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
 	    switch (format){
-	    case 1: return 7;
+	    case 1:
 	    case 2: return 7;
 	    case 3: return 8;
 	    }
 	case 'Ar-Ar':
 	    var format = IsoplotR.settings["Ar-Ar"].format;
 	    switch (format){
-	    case 1: return 8;
+	    case 1:
 	    case 2: return 8;
 	    case 3: return 9;
 	    }
 	case 'Th-Pb':
 	    var format = IsoplotR.settings["Th-Pb"].format;
 	    switch (format){
-	    case 1: return 7;
+	    case 1:
 	    case 2: return 7;
 	    case 3: return 8;
 	    }
 	case 'K-Ca':
 	    var format = IsoplotR.settings["K-Ca"].format;
 	    switch (format){
-	    case 1: return 7;
+	    case 1:
 	    case 2: return 7;
 	    case 3: return 8;
 	    }
 	case 'Th-U':
 	    var format = IsoplotR.settings["Th-U"].format;
 	    switch (format){
-	    case 1: return 11;
+	    case 1:
 	    case 2: return 11;
-	    case 3: return 7;
+	    case 3:
 	    case 4: return 7;
 	    }
 	case 'fissiontracks':
@@ -109,7 +110,7 @@ $(function(){
 	case 'Lu-Hf':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
-	    case 1: return 7;
+	    case 1:
 	    case 2: return 7;
 	    case 3: return 8;
 	    }
