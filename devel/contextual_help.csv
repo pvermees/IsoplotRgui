@@ -451,6 +451,8 @@ in which the error correlations are calculated from the redundancies between the
 <tt>U=07/35 err[U] V=06/38 err[V] W=04/38 err[W] X=07/06 err[X] Y=04/07 err[Y] Z=04/06 err[Z]</tt><br>
 in which the error correlations are calculated from the redundancies between the six sets of uncertainties.
 </li><li>
+<tt>W=07/35 err[W] X=06/38 err[X] Y=08/32 err[Y] Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt><br>
+</li><li>
 <tt>W=38/06 err[W] X=07/06 err[X] Y=08/06 err[Y] Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt><br>
 where <tt>32</tt> stands for <sup>232</sup>Th and <tt>08</tt> for <sup>208</sup>Pb 
 </li>
@@ -469,6 +471,8 @@ where <tt>32</tt> stands for <sup>232</sup>Th and <tt>08</tt> for <sup>208</sup>
 </li><li>
 <tt>U=07/35 err[U] V=06/38 err[V] W=04/38 err[W] X=07/06 err[X] Y=04/07 err[Y] Z=04/06 err[Z]</tt><br>
 其中误差相关性是根据六组不确定性之间的冗余计算的。
+</li><li>
+<tt>W=07/35 err[W] X=06/38 err[X] Y=08/32 err[Y] Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt><br>
 </li><li>
 <tt>W=38/06 err[W] X=07/06 err[X] Y=08/06 err[Y] Z=32/38 err[Z] rhoWX rhoWY rhoWZ rhoXY rhoXZ rhoYZ</tt><br>
 其中<tt>32</tt>代表<sup>232</sup>Th，<tt>08</tt>代表<sup>208</sup>Pb
