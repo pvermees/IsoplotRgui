@@ -4,7 +4,7 @@ if (TRUE){ # sync?
     setwd('~/Documents/Programming/R/IsoplotRgui/devel/')
     source('db.R')
     # comment out next line if you don't want to update version number:
-    system('./IsoplotRgit.sh')
+    #system('./IsoplotRgit.sh')
     setwd('~/Documents/Programming/R')
     system(paste0('cp IsoplotR/inst/constants.json ',
                   'IsoplotRgui/inst/shiny-examples/myapp/www/js'))
