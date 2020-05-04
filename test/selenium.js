@@ -20,19 +20,21 @@ describe('IsoplotRgui', function testGui() {
         driver = new Builder().forBrowser('firefox').build();
     });
 
-    after(function() {
+    after(async function() {
+        // unbelievably this has to be async to make Mocha wait until
+        // all the tests have resolved before it calls it
         rProcess.kill('SIGHUP');
         driver.quit();
     })
 
-    it('Undo', async function testUndo() {
+    it('Undo', async function () {
         this.timeout(20000);
         await driver.get('http://localhost:50054');
         await testUndoInTable(driver);
     });
 
     it('Ages', async function testAges() {
-        this.timeout(10000);
+        this.timeout(20000);
         await driver.get('http://localhost:50054');
         await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
         await driver.wait(driver => tryToClearGrid(driver), 3000);
@@ -51,7 +53,7 @@ describe('IsoplotRgui', function testGui() {
             [248.92, 0.88, 248.93, 0.19, 248.81, 8.99, 248.93, 0.19],
             [235.59, 0.22, 233.591, 0.085, 255.54, 2.24, 233.619, 0.085]
         ];
-        return chainWithIndex(expectedResults, (row, rowNumber) =>
+        await chainWithIndex(expectedResults, (row, rowNumber) =>
             chainWithIndex(row, (value, columnNumber) => {
             return driver.findElement(
                     cellInTable('OUTPUT', rowNumber + 1, columnNumber + 1)
