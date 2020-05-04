@@ -13,18 +13,20 @@ mocha.run(function(failures) {process.exitCode = failures? 1 : 0});
 
 describe('IsoplotRgui', function testConcordia() {
     let rProcess;
+    let driver;
 
     before(function() {
         rProcess = spawn('R', ['CMD', 'BATCH', 'test/start-gui.R', 'test/test.Rbatch']);
+        driver = new Builder().forBrowser('firefox').build();
     });
 
     after(function() {
         rProcess.kill('SIGHUP');
+        driver.quit();
     })
 
     it('Concordia', async function testConcordia() {
         this.timeout(10000);
-        let driver = new Builder().forBrowser('firefox').build();
         await driver.get('http://localhost:50054');
         await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
         await driver.wait(driver => tryToClearGrid(driver), 3000);
@@ -43,19 +45,23 @@ describe('IsoplotRgui', function testConcordia() {
             [248.92, 0.88, 248.93, 0.19, 248.81, 8.99, 248.93, 0.19],
             [235.59, 0.22, 233.591, 0.085, 255.54, 2.24, 233.619, 0.085]
         ];
-        let row = 0;
-        expectedResults.forEach(async rowData => {
-            row += 1;
-            let column = 0;
-            rowData.forEach(async value => {
-                column += 1;
-                const actual = await driver.findElement(cellInTable('OUTPUT', row, column)).getText();
+        return chainWithIndex(expectedResults, (row, rowNumber) =>
+            chainWithIndex(row, (value, columnNumber) => {
+            return driver.findElement(
+                    cellInTable('OUTPUT', rowNumber + 1, columnNumber + 1)
+                    ).getText().then(actual => {
                 assertNearlyEqual(Number(actual), value);
             });
-        });
-        driver.quit();
+        }));
     });
 });
+
+function chainWithIndex(arr, callback, first=0, end=arr.length) {
+    if (first < end) {
+        return callback(arr[first], first).then(chainWithIndex(arr, callback, first + 1, end));
+    }
+    return new Promise(x => x, r => { throw r; });
+}
 
 function assertNearlyEqual(a, b) {
     const db = Math.abs(b * 1e-6) + 1e-12;
@@ -70,8 +76,8 @@ async function choosePlotDevice(driver, choiceId) {
         .press()
         .release()
         .perform();
-    const choice = driver.findElement(By.id(choiceId));
-    driver.wait(until.elementIsVisible(choice));
+    const choice = await driver.findElement(By.id(choiceId));
+    await driver.wait(until.elementIsVisible(choice));
     await driver.actions()
         .move({ origin: choice })
         .press()
