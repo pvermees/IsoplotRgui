@@ -27,13 +27,23 @@ describe('IsoplotRgui', function testGui() {
         driver.quit();
     })
 
-    it('Undo', async function () {
+    it('undoes mistakes', async function() {
         this.timeout(20000);
         await driver.get('http://localhost:50054');
         await testUndoInTable(driver);
     });
 
-    it('Ages', async function testAges() {
+    it('resists script injection attempts', async function() {
+        this.timeout(20000);
+        await driver.get('http://localhost:50054');
+        await goToCell(driver, 'INPUT', 1, 1);
+        const box = await driver.switchTo().activeElement();
+        const text = "<script>alert('bad!')</script>";
+        await box.sendKeys(text, Key.TAB);
+        await driver.wait(until.elementTextContains(box, text));
+        });
+
+    it('calculates ages', async function() {
         this.timeout(20000);
         await driver.get('http://localhost:50054');
         await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
