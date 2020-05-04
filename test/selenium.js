@@ -11,7 +11,7 @@ const mocha = new Mocha();
 mocha.addFile('test/selenium.js');
 mocha.run(function(failures) {process.exitCode = failures? 1 : 0});
 
-describe('IsoplotRgui', function testConcordia() {
+describe('IsoplotRgui', function testGui() {
     let rProcess;
     let driver;
 
@@ -25,7 +25,13 @@ describe('IsoplotRgui', function testConcordia() {
         driver.quit();
     })
 
-    it('Concordia', async function testConcordia() {
+    it('Undo', async function testUndo() {
+        this.timeout(20000);
+        await driver.get('http://localhost:50054');
+        await testUndoInTable(driver);
+    });
+
+    it('Ages', async function testAges() {
         this.timeout(10000);
         await driver.get('http://localhost:50054');
         await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
@@ -91,6 +97,20 @@ async function tryToClearGrid(driver) {
     clickButton(driver, 'clear');
     const homeCell = driver.findElement(cellInTable('INPUT', 1, 1));
     return await homeCell.getText() === '';
+}
+
+async function testUndoInTable(driver) {
+    await goToCell(driver, 'INPUT', 1, 1);
+    const box = await driver.switchTo().activeElement();
+    await box.sendKeys('13.2', Key.TAB);
+    await driver.wait(until.elementTextContains(box,'13.2'));
+    await goToCell(driver, 'INPUT', 1, 1);
+    await box.sendKeys('7.54', Key.TAB);
+    await driver.wait(until.elementTextContains(box,'7.54'));
+    await box.sendKeys(Key.CONTROL, 'z');
+    await driver.wait(until.elementTextContains(box,'13.2'));
+    await box.sendKeys(Key.CONTROL, Key.SHIFT, 'z');
+    await driver.wait(until.elementTextContains(box,'7.54'));
 }
 
 async function inputTestData(driver, testData) {
