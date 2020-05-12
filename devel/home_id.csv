@@ -1,7 +1,7 @@
 id,en,cn
 intro,"<a href=""IsoplotR_en.png""><img src=""IsoplotR_en.png"" class=""centered"" width=800></a> 
 
-<p><p/>
+<p></p>
 
 <i>IsoplotR</i> is a free and open-source substitute for Kenneth Ludwig's popular <i>Isoplot</i> add-in to Microsoft <i>Excel</i>. <i>IsoplotR</i> is programmed in <i>R</i> and can be run in three different modes:
 
@@ -11,7 +11,7 @@ intro,"<a href=""IsoplotR_en.png""><img src=""IsoplotR_en.png"" class=""centered
 <li>Command Line: Advanced users can access the full functionality of <i>IsoplotR</i> from <i>R</i>'s command line. This enables <i>IsoplotR</i> to be extended and incorporated into automation scripts.</li>
 </ol>","<a href=""IsoplotR_cn.png""><img src=""IsoplotR_cn.png"" class=""centered"" width=800></a> 
 
-<p><p/>
+<p></p>
 
 IsoplotR 是一个免费的开源软件，作为由 Kenneth Ludwig 制作的广为人知的 Excel 插件Isoplot 之外的另一选择。IsoplotR 由R 语言开发，有以下三种运行模式：
 
