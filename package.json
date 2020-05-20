@@ -3,7 +3,7 @@
     "description": "Front end for IsoplotR",
     "private": true,
     "scripts": {
-        "test": "node test/selenium.js"
+        "test": "mocha test"
     },
     "devDependencies": {
         "selenium-webdriver": "^4.0.0-alpha.7",
