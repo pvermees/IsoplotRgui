@@ -33,9 +33,10 @@ describe('IsoplotRgui', function() {
             this.timeout(20000);
             await driver.get('http://localhost:50054');
             await goToCell(driver, 'INPUT', 1, 1);
-            const box = await driver.switchTo().activeElement();
+            const input = await driver.switchTo().activeElement();
             const text = "<script>alert('bad!')</script>";
-            await box.sendKeys(text, Key.TAB);
+            await input.sendKeys(text, Key.TAB);
+            const box = await driver.findElement(cellInTable('INPUT', 1,1));
             await driver.wait(until.elementTextContains(box, text));
         });
 
@@ -43,7 +44,7 @@ describe('IsoplotRgui', function() {
             this.timeout(20000);
             await driver.get('http://localhost:50054');
             await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
-            await driver.wait(driver => tryToClearGrid(driver), 3000);
+            await driver.wait(() => tryToClearGrid(driver));
             const u235toU238 = 137.818;
             const testData = [
                 ['25.2', '0.03', '0.0513', '0.0001'],
@@ -141,7 +142,7 @@ async function chooseLanguage(driver, languageText) {
 
 // to be used when normal clicks mysteriously don't work
 async function performClick(driver, element) {
-    driver.actions()
+    await driver.actions()
         .move({origin: element})
         .press()
         .release()
@@ -151,22 +152,26 @@ async function performClick(driver, element) {
 // Clicks 'Clear' button then reports if the grid (or at least the home cell)
 // did get cleared.
 async function tryToClearGrid(driver) {
-    clickButton(driver, 'clear');
-    const homeCell = driver.findElement(cellInTable('INPUT', 1, 1));
-    return await homeCell.getText() === '';
+    await clickButton(driver, 'clear');
+    const homeCell = await driver.findElement(cellInTable('INPUT', 1, 1));
+    const text = await homeCell.getText();
+    return text === '';
 }
 
 async function testUndoInTable(driver) {
     await goToCell(driver, 'INPUT', 1, 1);
-    const box = await driver.switchTo().activeElement();
-    await box.sendKeys('13.2', Key.TAB);
+    let input = await driver.switchTo().activeElement();
+    await input.sendKeys('13.2', Key.TAB);
+    const box = await driver.findElement(cellInTable('INPUT', 1, 1));
     await driver.wait(until.elementTextContains(box,'13.2'));
     await goToCell(driver, 'INPUT', 1, 1);
-    await box.sendKeys('7.54', Key.TAB);
+    input = await driver.switchTo().activeElement();
+    await input.sendKeys(Key.CONTROL, 'a');
+    await input.sendKeys('7.54', Key.TAB);
     await driver.wait(until.elementTextContains(box,'7.54'));
-    await box.sendKeys(Key.CONTROL, 'z');
+    await input.sendKeys(Key.CONTROL, 'z');
     await driver.wait(until.elementTextContains(box,'13.2'));
-    await box.sendKeys(Key.CONTROL, Key.SHIFT, 'z');
+    await input.sendKeys(Key.CONTROL, Key.SHIFT, 'z');
     await driver.wait(until.elementTextContains(box,'7.54'));
 }
 
@@ -184,7 +189,7 @@ async function inputTestData(driver, testData) {
 
 async function findMenuItem(driver, text) {
     const uiMenuItemLocator = By.className('ui-menu-item-wrapper');
-    driver.wait(until.elementLocated(uiMenuItemLocator));
+    await driver.wait(until.elementLocated(uiMenuItemLocator));
     const menuItems = await driver.findElements(uiMenuItemLocator);
     for (const index in menuItems) {
         const item = menuItems[index];
@@ -201,8 +206,7 @@ async function clickButton(driver, id) {
 }
 
 async function goToCell(driver, tableId, row, column) {
-    let cell = await driver.wait(until.elementLocated(cellInTable(tableId, row, column)));
-    cell.click();
+    await driver.wait(until.elementLocated(cellInTable(tableId, row, column))).click();
 }
 
 function cellInTable(tableId, row, column) {
