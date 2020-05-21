@@ -41,9 +41,6 @@ $(function(){
 	$.getJSON('./js/dictionary_class.json', function(data){
 	    dictionary_class = data;
 	});
-	$.getJSON('./js/contextual_help.json', function(data){
-	    contextual_help = data;
-	});
     };
 
     function dnc(){
@@ -1746,14 +1743,18 @@ $(function(){
     }
 
     function changeLanguage(){
-	IsoplotR.settings.language =
-	    $('option:selected', $("#language")).attr('id');
-	localStorage.setItem("language",IsoplotR.settings.language);
-	var helptit = contextual_help['help'][IsoplotR.settings.language];
-	$("#helpmenu").dialog('option','title',helptit);
-	showOrHide();
+		const language = $('option:selected', $("#language")).attr('id');
+		IsoplotR.settings.language = language;
+		localStorage.setItem("language", language);
+		const filename = '../locales/' + language + '/contextual_help.json';
+		$.getJSON(filename, function(data){
+			contextual_help = data;
+		});
+		var helptit = data['help'];
+		$("#helpmenu").dialog('option','title',helptit);
+		showOrHide();
     }
-    
+
     function selectGeochronometer(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -2199,7 +2200,7 @@ $(function(){
     });
     
     $('body').on('click', 'help', function(){
-	var text = contextual_help[this.id][IsoplotR.settings.language];
+	var text = contextual_help[this.id];
 	$("#helpmenu").html(text);
 	$("#helpmenu").dialog('open');
 	showOrHide();
