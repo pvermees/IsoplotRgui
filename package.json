@@ -1,0 +1,14 @@
+{
+    "name": "isoplotrgui",
+    "description": "Front end for IsoplotR",
+    "private": true,
+    "scripts": {
+        "test": "mocha test",
+        "generate-translation-files": "node build/degather_translations.js"
+    },
+    "devDependencies": {
+        "selenium-webdriver": "^4.0.0-alpha.7",
+        "mocha": "^7.1.1",
+        "clipboardy": "^2.3.0"
+    }
+}
