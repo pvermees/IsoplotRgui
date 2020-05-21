@@ -1,7 +1,7 @@
 id,en,cn
 intro,"<a href=""IsoplotR_en.png""><img src=""IsoplotR_en.png"" class=""centered"" width=800></a> 
 
-<p><p/>
+<p></p>
 
 <i>IsoplotR</i> is a free and open-source substitute for Kenneth Ludwig's popular <i>Isoplot</i> add-in to Microsoft <i>Excel</i>. <i>IsoplotR</i> is programmed in <i>R</i> and can be run in three different modes:
 
@@ -11,7 +11,7 @@ intro,"<a href=""IsoplotR_en.png""><img src=""IsoplotR_en.png"" class=""centered
 <li>Command Line: Advanced users can access the full functionality of <i>IsoplotR</i> from <i>R</i>'s command line. This enables <i>IsoplotR</i> to be extended and incorporated into automation scripts.</li>
 </ol>","<a href=""IsoplotR_cn.png""><img src=""IsoplotR_cn.png"" class=""centered"" width=800></a> 
 
-<p><p/>
+<p></p>
 
 IsoplotR 是一个免费的开源软件，作为由 Kenneth Ludwig 制作的广为人知的 Excel 插件Isoplot 之外的另一选择。IsoplotR 由R 语言开发，有以下三种运行模式：
 
@@ -28,22 +28,23 @@ online_tab,Online,在线使用
 online,"An online GUI is hosted by the following international collaborators:
 
 <ol>
-  <li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
-  <li><a href=""http://www.isoplotr.com/IsoplotR/"">Beijing</a>: Yang Li (Chinese Academy of Sciences)</li>
-  <li><a href=""http://chinageology.com:3838/IsoplotR/"">Changchun</a>: Qiuye Yu (Changchun Institute of Technology)</li>
-   <li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a>: Ian Millar (British Geological Survey)</li>
-  <li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a>: John Cottle (University of California)</li>
+  <li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a> (UK): Pieter Vermeesch (University College London)</li>
+  <li><a href=""http://www.isoplotr.com/IsoplotR/"">Beijing</a> (China): Yang Li (Chinese Academy of Sciences)</li>
+  <li><a href=""http://chinageology.com:3838/IsoplotR/"">Changchun</a> (China): Qiuye Yu (Changchun Institute of Technology)</li>
+   <li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a> (UK): Ian Millar (British Geological Survey)</li>
+  <li><a href=""http://lateandes.com/shiny/IsoplotR/"">Salta</a> (Argentina): Sof&iacute;a Bordese (LA.TE.ANDES)</li>
+  <li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a> (USA): John Cottle (University of California)</li>
 </ol>
 
-Click on one of the yellow boxes below to select a nearby
-mirror:","以下合作者提供了图形用户界面（GUI）的托管：
+Click on one of the yellow boxes below to select a nearby mirror:","以下合作者提供了图形用户界面（GUI）的托管：
 
 <ol>
-<li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">London</a>: Pieter Vermeesch (University College London)</li>
-<li><a href=""http://www.isoplotr.com/IsoplotR/"">北京</a>: 李扬 (中科院) </li>
-<li><a href=""http://chinageology.com:3838/IsoplotR/"">长春</a>: 于瘸子 (长春工程学院)</li>
-<li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a>: Ian Millar (British Geological Survey)</li>
-<li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a>: John Cottle (University of California)</li>
+<li><a href=""http://pieter-vermeesch.es.ucl.ac.uk/shiny/IsoplotR/"">伦敦</a> (英国): Pieter Vermeesch (University College London)</li>
+<li><a href=""http://www.isoplotr.com/IsoplotR/"">北京</a> (中国): 李扬 (中科院) </li>
+<li><a href=""http://chinageology.com:3838/IsoplotR/"">长春</a> (中国): 于瘸子 (长春工程学院)</li>
+<li><a href=""https://shiny.bgs.ac.uk/IsoplotR/"">Keyworth</a> (英国): Ian Millar (British Geological Survey)</li>
+  <li><a href=""http://lateandes.com/shiny/IsoplotR/"">Salta</a> (阿根廷): Sof&iacute;a Bordese (LA.TE.ANDES)</li>
+<li><a href=""http://isoplotr.geol.ucsb.edu:3838/IsoplotR/"">Santa Barbara</a> (美国): John Cottle (University of California)</li>
 </ol>
 
 点击以下任意黄色方框选择一个附近的镜像服务器:"
@@ -73,6 +74,10 @@ news_2,".
 
 <p></p>
 
+<span class=""stamp"">May 4, 2020</span>: LA.TE.ANDES host a new <tt>IsoplotR</tt> mirror in Salta, Argentina: <a href=""http://lateandes.com/shiny/IsoplotR/"">http://lateandes.com/shiny/IsoplotR/<a>
+
+<p></p>
+
 <span class=""stamp"">March 18, 2020</span> (v.3.3): Adds Th-Pb geochronology to the toolbox.
 
 <p></p>
@@ -85,7 +90,7 @@ news_2,".
 
 <p></p>
 
-<span class=""stamp"">October 30, 2019</span>: Yang Li and Liguang Wu host a new <tt>IsoplotR</tt> mirror at the Chinese Academy of Sciences in Beijing: <a href=""http:// www.isoplotr.com/IsoplotR/""> http://www.isoplotr.com/IsoplotR/<a>
+<span class=""stamp"">October 30, 2019</span>: Yang Li and Liguang Wu host a new <tt>IsoplotR</tt> mirror at the Chinese Academy of Sciences in Beijing: <a href=""http://www.isoplotr.com/IsoplotR/""> http://www.isoplotr.com/IsoplotR/<a>
 
 <p></p>
 
@@ -162,6 +167,10 @@ matrices and data frames.
 <span class=""stamp"">April 3, 2018</span>: IsoplotR <a href=""http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018"">paper</a> accepted for publication in <i>Geoscience Frontiers</i> (a free and open journal for free and open software).","的反馈。
 
 <h3>更新历史及相关</h3>
+
+<p></p>
+
+2019年10月30日：阿根廷的公司LA.TE.ANDES 在北京中科院搭建了一个新的IsoplotR 镜像：<a href=""http://lateandes.com/shiny/IsoplotR/"">http://lateandes.com/shiny/IsoplotR/<a>
 
 <p></p>
 

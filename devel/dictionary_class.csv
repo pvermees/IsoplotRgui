@@ -2,7 +2,7 @@ class,en,cn
 age,age,年龄
 help_helioplot_models,Model:,模型：
 detrital_correction_none,none,无 
-where,where:,地点：
+where,where:,其中：
 references,<u>References:</u>,<u>参考文献：</u>
 legend,<u>Legend:</u>,<u>图例：</u>
 omega_u,width of the upper half of a (1-&alpha;)% confidence interval for &omega;.,&omega; (1-&alpha;)%置信区间的上半宽。
