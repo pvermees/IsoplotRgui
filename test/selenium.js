@@ -74,6 +74,11 @@ describe('IsoplotRgui', function() {
     describe('language support', function() {
         it('displays the correct language', async function() {
             this.timeout(20000);
+            // test that English is working without choosing it
+            await testTranslation(driver, false, 'Help', 'ratios.',
+                'Propagate external uncertainties?',
+                'Choose one of the following four options:',
+                'Online', 'free and open-source');
             await testTranslation(driver, '中文', '帮助', '测量值。',
                 '传递外部误差？',
                 '选择以下四个选项之一',
@@ -86,9 +91,16 @@ describe('IsoplotRgui', function() {
     });
 });
 
-async function testTranslation(driver, language, help, ratios, propagate, inputErrorHelp, online, intro) {
+async function testTranslation(driver, language, help, ratios,
+        propagate, inputErrorHelp, online, intro) {
     await driver.get('http://localhost:50054');
-    await chooseLanguage(driver, language);
+    if (language) {
+        await chooseLanguage(driver, language);
+    } else {
+        // for some reason we have to click the header or
+        // the Help button won't click under Selenium
+        await driver.findElement(By.css('main header')).click();
+    }
     // test dictionary_id.json
     await assertTextContains(driver, 'help', help);
     await clickButton(driver, 'help');
