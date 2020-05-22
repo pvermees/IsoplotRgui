@@ -1,3 +1,4 @@
+install.packages('.', repos=NULL, type="source")
 library(IsoplotRgui)
 library(shiny)
 options(shiny.port=50054)
