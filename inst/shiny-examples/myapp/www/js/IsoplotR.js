@@ -1737,16 +1737,18 @@ $(function(){
 	showOrHide();
     }
 
-    function changeLanguage(){
-		const language = $('option:selected', $("#language")).attr('id');
+    function changeLanguage(lang) {
+		console.log('changeLanguage', lang);
+		let language = lang;
 		IsoplotR.settings.language = language;
 		localStorage.setItem("language", language);
 		const filename = '../locales/' + language + '/contextual_help.json';
+		console.log(filename);
 		$.getJSON(filename, function(data){
 			contextual_help = data;
+			var helptit = data['help'];
+			$("#helpmenu").dialog('option','title',helptit);
 		});
-		var helptit = data['help'];
-		$("#helpmenu").dialog('option','title',helptit);
 		translate();
 		showOrHide();
     }
@@ -2063,14 +2065,12 @@ $(function(){
     function translate(){
 		const dir = '../locales/' + IsoplotR.settings.language + '/';
 		$.getJSON(dir + 'dictionary_id.json', function(data) {
-			dictionary_id = data;
 			$(".translate").each(function(i){
 				var text = data[this.id];
 				this.innerHTML = text;
 			});
 		});
 		$.getJSON(dir + 'dictionary_class.json', function(data) {
-			dictionary_id = data;
 			$("translate").each(function(i){
 				var text = data[this.className];
 				this.innerHTML = text;
@@ -2181,32 +2181,33 @@ $(function(){
     
     $("select").selectmenu({ width : 'auto' });
     $("#geochronometer").selectmenu({
-	change: function( event, ui ) {
-	    IsoplotR.settings.geochronometer =
-		$('option:selected', $("#geochronometer")).attr('id');
-	    selectGeochronometer();
-	    changePlotDevice();
-	    IsoplotR.optionschanged = false;
-	}
+		change: function( event, ui ) {
+			IsoplotR.settings.geochronometer =
+			$('option:selected', $("#geochronometer")).attr('id');
+			selectGeochronometer();
+			changePlotDevice();
+			IsoplotR.optionschanged = false;
+		}
     });
     $("#plotdevice").selectmenu({
-	change: function( event, ui ) { changePlotDevice(); }
+		change: function( event, ui ) { changePlotDevice(); }
     });
     $("#language").selectmenu({
-	change: function( event, ui ) { changeLanguage(); }
+		change: function( event, ui ) { changeLanguage(ui.item.value); }
     });
     
     $("#helpmenu").dialog({ autoOpen: false, width: 500 });
     
     $('tit').click(function(){
-	welcome();
+		welcome();
     });
-    
-    $('body').on('click', 'help', function(){
-	var text = contextual_help[this.id];
-	$("#helpmenu").html(text);
-	$("#helpmenu").dialog('open');
-	showOrHide();
+
+	$('body').on('click', 'help', function(){
+		console.log('context help!');
+		var text = contextual_help[this.id];
+		$("#helpmenu").html(text);
+		$("#helpmenu").dialog('open');
+		showOrHide();
     });
 
     $("#OPEN").on('change', function(e){
@@ -2324,8 +2325,6 @@ $(function(){
 
     var IsoplotR;
     var contextual_help;
-    var dictionary_id;
-    var dictionary_class;
     initialise();
 
 });

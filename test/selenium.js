@@ -11,7 +11,7 @@ describe('IsoplotRgui', function() {
     let driver;
 
     before(function() {
-        rProcess = spawn('R', ['CMD', 'BATCH', 'test/start-gui.R', 'test/test.Rbatch']);
+        rProcess = spawn('Rscript', ['test/start-gui.R', '50054']);
         driver = new Builder().forBrowser('firefox').build();
     });
 
@@ -24,13 +24,13 @@ describe('IsoplotRgui', function() {
 
     describe('table implementation', function() {
         it('undoes mistakes', async function() {
-            this.timeout(20000);
+            this.timeout(10000);
             await driver.get('http://localhost:50054');
             await testUndoInTable(driver);
         });
 
         it('resists script injection attempts', async function() {
-            this.timeout(20000);
+            this.timeout(4000);
             await driver.get('http://localhost:50054');
             await goToCell(driver, 'INPUT', 1, 1);
             const input = await driver.switchTo().activeElement();
@@ -41,7 +41,7 @@ describe('IsoplotRgui', function() {
         });
 
         it('is readable from the calculation engine', async function() {
-            this.timeout(20000);
+            this.timeout(5000);
             await driver.get('http://localhost:50054');
             await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
             await driver.wait(() => tryToClearGrid(driver));
@@ -73,20 +73,30 @@ describe('IsoplotRgui', function() {
 
     describe('language support', function() {
         it('displays the correct language', async function() {
-            this.timeout(20000);
+            this.timeout(7000);
+            const onlineEN = 'Online';
+            const onlineZH = '在线使用';
+            const introEN = 'free and open-source';
+            const introZH = '是一个免费的开源软件';
             // test that English is working without choosing it
             await testTranslation(driver, false, 'Help', 'ratios.',
                 'Propagate external uncertainties?',
                 'Choose one of the following four options:',
-                'Online', 'free and open-source');
+                onlineEN, introEN);
             await testTranslation(driver, '中文', '帮助', '测量值。',
                 '传递外部误差？',
                 '选择以下四个选项之一',
-                '在线使用', '是一个免费的开源软件');
+                onlineZH, introZH);
             await testTranslation(driver, 'English', 'Help', 'ratios.',
                 'Propagate external uncertainties?',
                 'Choose one of the following four options:',
-                'Online', 'free and open-source');
+                onlineEN, introEN);
+            await clickButton(driver, 'CN');
+            await assertTextContains(driver, 'online_tab', onlineZH);
+            await assertTextContains(driver, 'intro', introZH);
+            await clickButton(driver, 'EN');
+            await assertTextContains(driver, 'online_tab', onlineEN);
+            await assertTextContains(driver, 'intro', introEN);
         });
     });
 });
