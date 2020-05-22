@@ -24,7 +24,7 @@ describe('IsoplotRgui', function() {
 
     describe('table implementation', function() {
         it('undoes mistakes', async function() {
-            this.timeout(10000);
+            this.timeout(12000);
             await driver.get('http://localhost:50054');
             await testUndoInTable(driver);
         });
@@ -41,7 +41,7 @@ describe('IsoplotRgui', function() {
         });
 
         it('is readable from the calculation engine', async function() {
-            this.timeout(5000);
+            this.timeout(8000);
             await driver.get('http://localhost:50054');
             await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
             await driver.wait(() => tryToClearGrid(driver));

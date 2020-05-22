@@ -2059,6 +2059,7 @@ $(function(){
 		if (IsoplotR.settings.language === loaded_language) {
 			translate_function();
 		} else {
+			loaded_language = null;
 			const dir = '../locales/' + IsoplotR.settings.language + '/';
 			$.getJSON(dir + 'dictionary_id.json', function(tags) {
 				dictionary_id = tags;
@@ -2066,6 +2067,7 @@ $(function(){
 					dictionary_class = classes;
 					$.getJSON(dir + 'contextual_help.json', function(helps){
 						contextual_help = helps;
+						loaded_language = IsoplotR.settings.language;
 						translate_function();
 					});
 				});
