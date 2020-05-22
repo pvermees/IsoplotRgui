@@ -73,7 +73,7 @@ describe('IsoplotRgui', function() {
 
     describe('language support', function() {
         it('displays the correct language', async function() {
-            this.timeout(7000);
+            this.timeout(20000);
             const onlineEN = 'Online';
             const onlineZH = '在线使用';
             const introEN = 'free and open-source';

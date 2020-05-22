@@ -1738,17 +1738,10 @@ $(function(){
     }
 
     function changeLanguage(lang) {
-		console.log('changeLanguage', lang);
 		let language = lang;
 		IsoplotR.settings.language = language;
 		localStorage.setItem("language", language);
 		const filename = '../locales/' + language + '/contextual_help.json';
-		console.log(filename);
-		$.getJSON(filename, function(data){
-			contextual_help = data;
-			var helptit = data['help'];
-			$("#helpmenu").dialog('option','title',helptit);
-		});
 		translate();
 		showOrHide();
     }
@@ -2062,19 +2055,35 @@ $(function(){
 	});
     }
 
-    function translate(){
-		const dir = '../locales/' + IsoplotR.settings.language + '/';
-		$.getJSON(dir + 'dictionary_id.json', function(data) {
+	function loadLanguage(translate_function) {
+		if (IsoplotR.settings.language === loaded_language) {
+			translate_function();
+		} else {
+			const dir = '../locales/' + IsoplotR.settings.language + '/';
+			$.getJSON(dir + 'dictionary_id.json', function(tags) {
+				dictionary_id = tags;
+				$.getJSON(dir + 'dictionary_class.json', function(classes) {
+					dictionary_class = classes;
+					$.getJSON(dir + 'contextual_help.json', function(helps){
+						contextual_help = helps;
+						translate_function();
+					});
+				});
+			});
+		}
+	}
+    function translate() {
+		loadLanguage(function() {
 			$(".translate").each(function(i){
-				var text = data[this.id];
+				var text = dictionary_id[this.id];
 				this.innerHTML = text;
 			});
-		});
-		$.getJSON(dir + 'dictionary_class.json', function(data) {
 			$("translate").each(function(i){
-				var text = data[this.className];
+				var text = dictionary_class[this.className];
 				this.innerHTML = text;
 			});
+			var helptit = contextual_help['help'];
+			$("#helpmenu").dialog('option', 'title', helptit);
 		});
     }
     
@@ -2203,7 +2212,6 @@ $(function(){
     });
 
 	$('body').on('click', 'help', function(){
-		console.log('context help!');
 		var text = contextual_help[this.id];
 		$("#helpmenu").html(text);
 		$("#helpmenu").dialog('open');
@@ -2325,6 +2333,8 @@ $(function(){
 
     var IsoplotR;
     var contextual_help;
+    var dictionary_id;
+	var dictionary_class;
+	var loaded_language = null;
     initialise();
-
 });
