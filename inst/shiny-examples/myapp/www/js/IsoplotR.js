@@ -1737,16 +1737,11 @@ $(function(){
 	showOrHide();
     }
 
-    function changeLanguage(){
-		const language = $('option:selected', $("#language")).attr('id');
+    function changeLanguage(lang) {
+		let language = lang;
 		IsoplotR.settings.language = language;
 		localStorage.setItem("language", language);
 		const filename = '../locales/' + language + '/contextual_help.json';
-		$.getJSON(filename, function(data){
-			contextual_help = data;
-		});
-		var helptit = data['help'];
-		$("#helpmenu").dialog('option','title',helptit);
 		translate();
 		showOrHide();
     }
@@ -2060,21 +2055,35 @@ $(function(){
 	});
     }
 
-    function translate(){
-		const dir = '../locales/' + IsoplotR.settings.language + '/';
-		$.getJSON(dir + 'dictionary_id.json', function(data) {
-			dictionary_id = data;
+	function loadLanguage(translate_function) {
+		if (IsoplotR.settings.language === loaded_language) {
+			translate_function();
+		} else {
+			const dir = '../locales/' + IsoplotR.settings.language + '/';
+			$.getJSON(dir + 'dictionary_id.json', function(tags) {
+				dictionary_id = tags;
+				$.getJSON(dir + 'dictionary_class.json', function(classes) {
+					dictionary_class = classes;
+					$.getJSON(dir + 'contextual_help.json', function(helps){
+						contextual_help = helps;
+						translate_function();
+					});
+				});
+			});
+		}
+	}
+    function translate() {
+		loadLanguage(function() {
 			$(".translate").each(function(i){
-				var text = data[this.id];
+				var text = dictionary_id[this.id];
 				this.innerHTML = text;
 			});
-		});
-		$.getJSON(dir + 'dictionary_class.json', function(data) {
-			dictionary_id = data;
 			$("translate").each(function(i){
-				var text = data[this.className];
+				var text = dictionary_class[this.className];
 				this.innerHTML = text;
 			});
+			var helptit = contextual_help['help'];
+			$("#helpmenu").dialog('option', 'title', helptit);
 		});
     }
     
@@ -2181,32 +2190,32 @@ $(function(){
     
     $("select").selectmenu({ width : 'auto' });
     $("#geochronometer").selectmenu({
-	change: function( event, ui ) {
-	    IsoplotR.settings.geochronometer =
-		$('option:selected', $("#geochronometer")).attr('id');
-	    selectGeochronometer();
-	    changePlotDevice();
-	    IsoplotR.optionschanged = false;
-	}
+		change: function( event, ui ) {
+			IsoplotR.settings.geochronometer =
+			$('option:selected', $("#geochronometer")).attr('id');
+			selectGeochronometer();
+			changePlotDevice();
+			IsoplotR.optionschanged = false;
+		}
     });
     $("#plotdevice").selectmenu({
-	change: function( event, ui ) { changePlotDevice(); }
+		change: function( event, ui ) { changePlotDevice(); }
     });
     $("#language").selectmenu({
-	change: function( event, ui ) { changeLanguage(); }
+		change: function( event, ui ) { changeLanguage(ui.item.value); }
     });
     
     $("#helpmenu").dialog({ autoOpen: false, width: 500 });
     
     $('tit').click(function(){
-	welcome();
+		welcome();
     });
-    
-    $('body').on('click', 'help', function(){
-	var text = contextual_help[this.id];
-	$("#helpmenu").html(text);
-	$("#helpmenu").dialog('open');
-	showOrHide();
+
+	$('body').on('click', 'help', function(){
+		var text = contextual_help[this.id];
+		$("#helpmenu").html(text);
+		$("#helpmenu").dialog('open');
+		showOrHide();
     });
 
     $("#OPEN").on('change', function(e){
@@ -2325,7 +2334,7 @@ $(function(){
     var IsoplotR;
     var contextual_help;
     var dictionary_id;
-    var dictionary_class;
+	var dictionary_class;
+	var loaded_language = null;
     initialise();
-
 });
