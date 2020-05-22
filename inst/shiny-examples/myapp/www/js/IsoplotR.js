@@ -1741,7 +1741,6 @@ $(function(){
 		let language = lang;
 		IsoplotR.settings.language = language;
 		localStorage.setItem("language", language);
-		const filename = '../locales/' + language + '/contextual_help.json';
 		translate();
 		showOrHide();
     }
@@ -2060,7 +2059,7 @@ $(function(){
 			translate_function();
 		} else {
 			loaded_language = null;
-			const dir = '../locales/' + IsoplotR.settings.language + '/';
+			const dir = './locales/' + IsoplotR.settings.language + '/';
 			$.getJSON(dir + 'dictionary_id.json', function(tags) {
 				dictionary_id = tags;
 				$.getJSON(dir + 'dictionary_class.json', function(classes) {
