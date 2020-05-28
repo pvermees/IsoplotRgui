@@ -72,30 +72,58 @@ describe('IsoplotRgui', function() {
     });
 
     describe('language support', function() {
+        const onlineEN = 'Online';
+        const introEN = 'free and open-source';
+        const onlineZH = '在线使用';
+        const introZH = '是一个免费的开源软件';
+        const inputErrorHelpEN = 'Choose one of the following four options:';
+        const propagateEN = 'Propagate external uncertainties?';
+        const ratiosEN = 'ratios.';
+        const helpEN = 'Help';
+        this.timeout(25000);
         it('displays the correct language', async function() {
-            this.timeout(20000);
-            const onlineEN = 'Online';
-            const onlineZH = '在线使用';
-            const introEN = 'free and open-source';
-            const introZH = '是一个免费的开源软件';
             // test that English is working without choosing it
-            await testTranslation(driver, false, 'Help', 'ratios.',
-                'Propagate external uncertainties?',
-                'Choose one of the following four options:',
-                onlineEN, introEN);
+            await testTranslation(driver, false, helpEN, ratiosEN,
+                propagateEN, inputErrorHelpEN, onlineEN, introEN);
             await testTranslation(driver, '中文', '帮助', '测量值。',
                 '传递外部误差？',
                 '选择以下四个选项之一',
                 onlineZH, introZH);
-            await testTranslation(driver, 'English', 'Help', 'ratios.',
-                'Propagate external uncertainties?',
-                'Choose one of the following four options:',
-                onlineEN, introEN);
+            await testTranslation(driver, 'English', helpEN, ratiosEN,
+                propagateEN, inputErrorHelpEN, onlineEN, introEN);
             await clickButton(driver, 'CN');
             await assertTextContains(driver, 'online_tab', onlineZH);
             await assertTextContains(driver, 'intro', introZH);
             await clickButton(driver, 'EN');
             await assertTextContains(driver, 'online_tab', onlineEN);
+            await assertTextContains(driver, 'intro', introEN);
+        });
+        it('displays English where no translation is available', async function() {
+            await driver.get('http://localhost:50054');
+            await driver.executeScript('window.localStorage.setItem("language", "xxtest");');
+            await driver.executeScript('window.translatePage();');
+
+            // test dictionary_id.json
+            await assertTextContains(driver, 'help', 'XXhelp');
+            await clickButton(driver, 'help');
+            await assertTextContains(driver, 'UPb_86', ratiosEN);
+            // test dictionary_class.json
+            await clickButton(driver, 'options');
+            await assertTextContains(driver, 'help_exterr_UPb', propagateEN);
+            await assertTextContains(driver, 'help_UPb_formats', 'XXinput format:');
+            // test contextual_help.json
+            await clickButton(driver, 'help_ierr');
+            await assertTextContains(driver, 'helpmenu', inputErrorHelpEN);
+            await clickButton(driver, 'help_mint_concordia');
+            await assertTextContains(driver, 'helpmenu', 'XXminimum age limit.');
+            // test home_id.json
+            await clickButton(driver, 'home');
+            // wait for the translateHomePage function to be installed
+            await driver.wait(async function() {
+                return await driver.executeScript('return !!window.translateHomePage');
+            });
+            await driver.executeScript('window.translateHomePage();');
+            await assertTextContains(driver, 'online_tab', 'XXonline');
             await assertTextContains(driver, 'intro', introEN);
         });
     });

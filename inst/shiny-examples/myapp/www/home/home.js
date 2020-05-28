@@ -1,5 +1,8 @@
 $(function(){
-    
+    let loaded_language;
+    let home_id;
+    let home_id_fallback;
+
     if (localStorage.getItem("language") === null){
     	localStorage.setItem("language","en");
     }
@@ -8,16 +11,52 @@ $(function(){
     } else {
 	    $("#CN").css("text-decoration","underline")
     }
-        
+
+    function withFallbackLanguage(callback) {
+        if (home_id_fallback) {
+            callback();
+        }
+        $.getJSON('../locales/en/home_id.json', function(data) {
+            home_id_fallback = data;
+            callback();
+        }).fail(function() {
+            console.error("Failed to load fallback language for home page");
+        });
+    }
+
+    function withLanguage(language, callback) {
+        if (loaded_language === language) {
+            callback(home_id);
+        }
+        withFallbackLanguage(function() {
+            if (language === 'en') {
+                callback(home_id_fallback);
+            }
+            $.getJSON('../locales/' + language + '/home_id.json', function(data) {
+                home_id = data;
+                loaded_language = language;
+                callback(data);
+            }).fail(function () {
+                console.warn("Failed to load language '" + language + "' for home page");
+                callback(home_id_fallback);
+            });
+        });
+    }
+
     function translate(){
         var language = localStorage.getItem("language");
-        $.getJSON('../locales/' + language + '/home_id.json', function(data) {
+        withLanguage(language, function (data) {
             $(".translate").each(function(i) {
-                var text = data[this.id];
+                const text = this.id in data?
+                    data[this.id]
+                    : home_id_fallback[this.id];
                 this.innerHTML = text;
             });
         });
     }
+
+    // let the tests call the translate function
+    window.translateHomePage = translate;
 
     $("#EN").click(function(){
         localStorage.setItem("language","en");
