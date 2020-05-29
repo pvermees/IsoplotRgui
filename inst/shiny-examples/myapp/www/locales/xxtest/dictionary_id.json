@@ -1,3 +1,4 @@
 {
-    "help": "XXhelp"
+    "help": "XXhelp",
+    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"XXtranslate me!\">XXTRANSLATE</a>"
 }

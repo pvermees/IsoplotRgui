@@ -3,6 +3,7 @@
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
+    "translation_link": "http://lgc.es.ucl.ac.uk/weblate/translate/isoplotrgui/${FILENAME}/${LANGUAGE}?q=context%3A.${ID}",
     "par": {
 	"cex": 1
     },

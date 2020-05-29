@@ -2105,22 +2105,45 @@ $(function(){
 		});
 	}
 
-	function getItem(key, obj, fallback) {
-		return key in obj? obj[key] : fallback[key];
+    function getFallbackText(key, fallback_messages, filename) {
+        let link = IsoplotR.settings["translation_link"]
+            .replace("${FILENAME}", filename)
+            .replace("${LANGUAGE}", IsoplotR.settings.language)
+            .replace("${ID}", key);
+        let button = dictionary_id["translate_button"]
+            .replace("${LINK}", link);
+        return button + fallback_messages[key];
+    }
+
+	function getItem(key, obj, fallback, filename) {
+		return key in obj? obj[key] : getFallbackText(key, fallback, filename);
+	}
+
+	function getItemDictionaryId(key) {
+		return getItem(key, dictionary_id, dictionary_id_fallback,
+			"dictionary_id");
+	}
+
+	function getItemDictionaryClass(key) {
+		return getItem(key, dictionary_class, dictionary_class_fallback,
+			"dictionary_class");
+	}
+
+	function getItemContextualHelp(key) {
+		return getItem(key, contextual_help, contextual_help_fallback,
+			"contextual_help.json");
 	}
 
 	function translate() {
 		const language = localStorage.getItem("language");
 		withLanguage(language, function() {
 			$(".translate").each(function(i){
-				var text = getItem(this.id, dictionary_id, dictionary_id_fallback);
-				this.innerHTML = text;
+				this.innerHTML = getItemDictionaryId(this.id);
 			});
 			$("translate").each(function(i){
-				var text = getItem(this.className, dictionary_class, dictionary_class_fallback);
-				this.innerHTML = text;
+				this.innerHTML = getItemDictionaryClass(this.className);
 			});
-			var helpTitle = getItem('help', contextual_help, contextual_help_fallback);
+			const helpTitle = getItemContextualHelp('help');
 			$("#helpmenu").dialog('option', 'title', helpTitle);
 		});
     }
@@ -2250,7 +2273,7 @@ $(function(){
     });
 
 	$('body').on('click', 'help', function(){
-		var text = getItem(this.id, contextual_help, contextual_help_fallback);
+		var text = getItemContextualHelp(this.id);
 		$("#helpmenu").html(text);
 		$("#helpmenu").dialog('open');
 		showOrHide();

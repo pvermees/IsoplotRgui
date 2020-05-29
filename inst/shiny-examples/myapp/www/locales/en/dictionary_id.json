@@ -549,5 +549,6 @@
     "help_ThPb_i2i": "Use the isochron intercept to estimate the initial <sup>208</sup>Pb/<sup>204</sup>Pb-ratio?",
     "PbPb_67": "Measured <sup>206</sup>Pb/<sup>207</sup>Pb-ratios.",
     "PbPb_err_67": "Analytical uncertainty of the <sup>206</sup>Pb/<sup>207</sup>Pb-ratios",
-    "ages_48_0": "The initial <sup>234</sup>U/<sup>238</sup>U-ratio."
+    "ages_48_0": "The initial <sup>234</sup>U/<sup>238</sup>U-ratio.",
+    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"Please follow this link to help translate this text\">TRANSLATE</a>"
 }
