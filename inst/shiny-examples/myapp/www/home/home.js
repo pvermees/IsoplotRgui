@@ -8,7 +8,9 @@ $(function(){
     	localStorage.setItem("language","en");
     }
     if (localStorage.getItem("language").startsWith("zh")){
-	    $("#CN").css("text-decoration","underline")
+        $("#CN").css("text-decoration","underline")
+    } else if (localStorage.getItem("language").startsWith("es")) {
+    	$("#ES").css("text-decoration","underline")
     } else {
     	$("#EN").css("text-decoration","underline")
     }
@@ -79,13 +81,22 @@ $(function(){
     $("#EN").click(function(){
         localStorage.setItem("language","en");
         $(this).css("text-decoration","underline")
+        $("#ES").css("text-decoration","none")
+        $("#CN").css("text-decoration","none")
+        translate();
+    });
+    $("#ES").click(function(){
+        localStorage.setItem("language","es");
+        $(this).css("text-decoration","underline")
+        $("#EN").css("text-decoration","none")
         $("#CN").css("text-decoration","none")
         translate();
     });
     $("#CN").click(function(){
-        localStorage.setItem("language","zh-CN");
-        $("#EN").css("text-decoration","none")
+        localStorage.setItem("language","zh_Hans");
         $(this).css("text-decoration","underline")
+        $("#EN").css("text-decoration","none")
+        $("#ES").css("text-decoration","none")
         translate();
     });
     

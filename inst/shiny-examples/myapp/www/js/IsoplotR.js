@@ -2112,16 +2112,11 @@ $(function(){
             .replace("${ID}", key);
         let button = dictionary_id["translate_button"]
             .replace("${LINK}", link);
-        return button + fallback_messages[key];
+        return fallback_messages[key] + button;
     }
 
 	function getItem(key, obj, fallback, filename) {
 		return key in obj? obj[key] : getFallbackText(key, fallback, filename);
-	}
-
-	function getItemDictionaryId(key) {
-		return getItem(key, dictionary_id, dictionary_id_fallback,
-			"dictionary_id");
 	}
 
 	function getItemDictionaryClass(key) {
@@ -2134,11 +2129,25 @@ $(function(){
 			"contextual_help.json");
 	}
 
+	function translateDictionaryId(element) {
+		const key = element.id;
+		if (key in dictionary_id) {
+			element.innerHTML = dictionary_id[key];
+			return;
+		}
+		if (element.tagName !== 'OPTION') {
+			element.innerHTML = getFallbackText(key, dictionary_id_fallback, "dictionary_id");
+			return;
+		}
+		// cannot put a link into option
+		element.innerHTML = dictionary_id_fallback[key];
+	}
+
 	function translate() {
 		const language = localStorage.getItem("language");
 		withLanguage(language, function() {
 			$(".translate").each(function(i){
-				this.innerHTML = getItemDictionaryId(this.id);
+				translateDictionaryId(this);
 			});
 			$("translate").each(function(i){
 				this.innerHTML = getItemDictionaryClass(this.className);
@@ -2405,3 +2414,4 @@ $(function(){
 	var loaded_language = null;
     initialise();
 });
+
