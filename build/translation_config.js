@@ -6,6 +6,6 @@ module.exports = {
         'home/home_id.json'
     ],
     languageRenames: {
-        'zh-CN': 'cn'
+        'zh_Hans': 'cn'
     }
 };

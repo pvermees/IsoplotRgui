@@ -52,8 +52,7 @@ describe('IsoplotRgui', function() {
                 ['27.1', '0.01', '0.05135', '0.00005']
             ];
             await inputTestData(driver, testData);
-            const agesChoiceId = 'ui-id-9';
-            await choosePlotDevice(driver, agesChoiceId);
+            await choosePlotDevice(driver, 'ages');
             await clickButton(driver, 'run');
             const expectedResults = [
                 [251.1, 0.51, 250.86, 0.29, 253.3, 4.48, 250.88, 0.29],
@@ -72,25 +71,25 @@ describe('IsoplotRgui', function() {
     });
 
     describe('language support', function() {
+        const onlineEN = 'Online';
+        const introEN = 'free and open-source';
+        const onlineZH = '在线使用';
+        const introZH = '是一个免费的开源软件';
+        const inputErrorHelpEN = 'Choose one of the following four options:';
+        const propagateEN = 'Propagate external uncertainties?';
+        const ratiosEN = 'ratios.';
+        const helpEN = 'Help';
+        this.timeout(25000);
         it('displays the correct language', async function() {
-            this.timeout(20000);
-            const onlineEN = 'Online';
-            const onlineZH = '在线使用';
-            const introEN = 'free and open-source';
-            const introZH = '是一个免费的开源软件';
             // test that English is working without choosing it
-            await testTranslation(driver, false, 'Help', 'ratios.',
-                'Propagate external uncertainties?',
-                'Choose one of the following four options:',
-                onlineEN, introEN);
+            await testTranslation(driver, false, helpEN, ratiosEN,
+                propagateEN, inputErrorHelpEN, onlineEN, introEN);
             await testTranslation(driver, '中文', '帮助', '测量值。',
                 '传递外部误差？',
                 '选择以下四个选项之一',
                 onlineZH, introZH);
-            await testTranslation(driver, 'English', 'Help', 'ratios.',
-                'Propagate external uncertainties?',
-                'Choose one of the following four options:',
-                onlineEN, introEN);
+            await testTranslation(driver, 'English', helpEN, ratiosEN,
+                propagateEN, inputErrorHelpEN, onlineEN, introEN);
             await clickButton(driver, 'CN');
             await assertTextContains(driver, 'online_tab', onlineZH);
             await assertTextContains(driver, 'intro', introZH);
@@ -98,8 +97,40 @@ describe('IsoplotRgui', function() {
             await assertTextContains(driver, 'online_tab', onlineEN);
             await assertTextContains(driver, 'intro', introEN);
         });
+        it('displays English where no translation is available', async function() {
+            await driver.get('http://localhost:50054');
+            await driver.executeScript('window.localStorage.setItem("language", "xxtest");');
+            await driver.executeScript('window.translatePage();');
+
+            // test dictionary_id.json
+            await assertTextContains(driver, 'help', 'XXhelp');
+            await clickButton(driver, 'help');
+            await assertTextContains(driver, 'UPb_86', ratiosEN);
+            // test dictionary_class.json
+            await clickButton(driver, 'options');
+            await assertTextContains(driver, 'help_exterr_UPb', propagateEN);
+            await assertTextContains(driver, 'help_UPb_formats', 'XXinput format:');
+            // test contextual_help.json
+            await clickButton(driver, 'help_ierr');
+            await assertTextContains(driver, 'helpmenu', inputErrorHelpEN);
+            await clickButton(driver, 'help_mint_concordia');
+            await assertTextContains(driver, 'helpmenu', 'XXminimum age limit.');
+            // test home_id.json
+            await clickButton(driver, 'home');
+            // wait for the translateHomePage function to be installed
+            await driver.wait(async function() {
+                return await driver.executeScript('return !!window.translateHomePage');
+            });
+            await driver.executeScript('window.translateHomePage();');
+            await assertTextContains(driver, 'online_tab', 'XXonline');
+            await assertTextContains(driver, 'intro', introEN);
+        });
     });
 });
+
+async function setDefaultLanguage(driver) {
+    await driver.executeScript('window.localStorage.setItem("language", "en");');
+}
 
 async function testTranslation(driver, language, help, ratios,
         propagate, inputErrorHelp, online, intro) {
@@ -107,6 +138,7 @@ async function testTranslation(driver, language, help, ratios,
     if (language) {
         await chooseLanguage(driver, language);
     } else {
+        setDefaultLanguage(driver);
         // for some reason we have to click the header or
         // the Help button won't click under Selenium
         await driver.findElement(By.css('main header')).click();
@@ -144,11 +176,12 @@ function assertNearlyEqual(a, b) {
     assert(b - db < a && a < b + db, a + ' is not nearly ' + b);
 }
 
-async function choosePlotDevice(driver, choiceId) {
+async function choosePlotDevice(driver, choiceText) {
     // for some reason just clicking doesn't work
     const plotDeviceButton = await driver.findElement(By.id('plotdevice-button'));
     await performClick(driver, plotDeviceButton);
-    const choice = await driver.findElement(By.id(choiceId));
+    const menu = await driver.findElement(By.id('plotdevice-menu'));
+    const choice = await menu.findElement(By.xpath("//li/div[contains(text(),'" + choiceText + "')]"));
     await driver.wait(until.elementIsVisible(choice));
     await performClick(driver, choice);
 }
@@ -224,7 +257,8 @@ async function findMenuItem(driver, text) {
 }
 
 async function clickButton(driver, id) {
-    await driver.wait(until.elementLocated(By.id(id))).click();
+    const button = await driver.wait(until.elementLocated(By.id(id)));
+    button.click();
 }
 
 async function goToCell(driver, tableId, row, column) {

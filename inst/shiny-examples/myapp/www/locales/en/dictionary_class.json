@@ -1,1 +1,16 @@
-{"age":"age","help_helioplot_models":"Model:","detrital_correction_none":"none","where":"where:","references":"<u>References:</u>","legend":"<u>Legend:</u>","omega_u":"width of the upper half of a (1-&alpha;)% confidence interval for &omega;.","omega_l":"width of the lower half of a (1-&alpha;)% confidence interval for &omega;.","omit":"Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.","C":"Optional variable to be used as fill colours in isochron and radial plots.","inverse":"Inverse isochron?","input":"Input format:","pch":"Plot character:","exterr":"Propagate external uncertainties?","12sigma":"(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)"}
+{
+    "age": "age",
+    "help_helioplot_models": "Model:",
+    "where": "where:",
+    "references": "<u>References:</u>",
+    "legend": "<u>Legend:</u>",
+    "omega_u": "width of the upper half of a (1-&alpha;)% confidence interval for &omega;.",
+    "omega_l": "width of the lower half of a (1-&alpha;)% confidence interval for &omega;.",
+    "omit": "Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.",
+    "C": "Optional variable to be used as fill colours in isochron and radial plots.",
+    "inverse": "Inverse isochron?",
+    "input": "Input format:",
+    "pch": "Plot character:",
+    "exterr": "Propagate external uncertainties?",
+    "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)"
+}

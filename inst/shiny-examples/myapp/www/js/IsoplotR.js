@@ -2062,38 +2062,107 @@ $(function(){
 	});
     }
 
-    function loadLanguage(translate_function) {
-	if (IsoplotR.settings.language === loaded_language) {
-	    translate_function();
-	} else {
-	    loaded_language = null;
-	    const dir = './locales/' + IsoplotR.settings.language + '/';
-	    $.getJSON(dir + 'dictionary_id.json', function(tags) {
-		dictionary_id = tags;
-		$.getJSON(dir + 'dictionary_class.json', function(classes) {
-		    dictionary_class = classes;
-		    $.getJSON(dir + 'contextual_help.json', function(helps){
-			contextual_help = helps;
-			loaded_language = IsoplotR.settings.language;
-			translate_function();
-		    });
+	function loadLanguage(language, callback) {
+		const dir = './locales/' + language + '/';
+		$.getJSON(dir + 'dictionary_id.json', function(tags) {
+			return $.getJSON(dir + 'dictionary_class.json', function(classes) {
+				return $.getJSON(dir + 'contextual_help.json', function(helps) {
+					callback(tags, classes, helps);
+				});
+			});
+		}).fail(function() {
+			console.warn("Failed to load language '" + language + "'");
+			callback({}, {}, {});
 		});
-	    });
 	}
+
+	function withFallbackLanguage(lang, callback) {
+		if (!contextual_help_fallback) {
+			loadLanguage(lang, function(tags, classes, helps) {
+				dictionary_id_fallback = tags;
+				dictionary_class_fallback = classes;
+				contextual_help_fallback = helps;
+				callback();
+			});
+		} else {
+			callback();
+		}
+	}
+
+	function withLanguage(language, translate_function) {
+		if (language && language === loaded_language) {
+			return translate_function();
+		}
+		const fallbackLanguage = 'en';
+		withFallbackLanguage(fallbackLanguage, function() {
+			if (language === fallbackLanguage) {
+				dictionary_id = dictionary_id_fallback;
+				dictionary_class = dictionary_class_fallback;
+				contextual_help = contextual_help_fallback;
+				loaded_language = fallbackLanguage;
+				translate_function();
+			} else {
+				loadLanguage(language, function(tags, classes, helps) {
+					dictionary_id = tags;
+					dictionary_class = classes;
+					contextual_help = helps;
+					loaded_language = language;
+					translate_function();
+				});
+			}
+		});
+	}
+
+    function getFallbackText(key, fallback_messages, filename) {
+        let link = IsoplotR.settings["translation_link"]
+            .replace("${FILENAME}", filename)
+            .replace("${LANGUAGE}", IsoplotR.settings.language)
+            .replace("${ID}", key);
+        let button = dictionary_id["translate_button"]
+            .replace("${LINK}", link);
+        return fallback_messages[key] + button;
     }
-    function translate() {
-	loadLanguage(function() {
-	    $(".translate").each(function(i){
-		var text = dictionary_id[this.id];
-		this.innerHTML = text;
-	    });
-	    $("translate").each(function(i){
-		var text = dictionary_class[this.className];
-		this.innerHTML = text;
-	    });
-	    var helptit = contextual_help['help'];
-	    $("#helpmenu").dialog('option', 'title', helptit);
-	});
+
+	function getItem(key, obj, fallback, filename) {
+		return key in obj? obj[key] : getFallbackText(key, fallback, filename);
+	}
+
+	function getItemDictionaryClass(key) {
+		return getItem(key, dictionary_class, dictionary_class_fallback,
+			"dictionary_class");
+	}
+
+	function getItemContextualHelp(key) {
+		return getItem(key, contextual_help, contextual_help_fallback,
+			"contextual_help.json");
+	}
+
+	function translateDictionaryId(element) {
+		const key = element.id;
+		if (key in dictionary_id) {
+			element.innerHTML = dictionary_id[key];
+			return;
+		}
+		if (element.tagName !== 'OPTION') {
+			element.innerHTML = getFallbackText(key, dictionary_id_fallback, "dictionary_id");
+			return;
+		}
+		// cannot put a link into option
+		element.innerHTML = dictionary_id_fallback[key];
+	}
+
+	function translate() {
+		const language = localStorage.getItem("language");
+		withLanguage(language, function() {
+			$(".translate").each(function(i){
+				translateDictionaryId(this);
+			});
+			$("translate").each(function(i){
+				this.innerHTML = getItemDictionaryClass(this.className);
+			});
+			const helpTitle = getItemContextualHelp('help');
+			$("#helpmenu").dialog('option', 'title', helpTitle);
+		});
     }
     
     $.switchErr = function(){
@@ -2220,11 +2289,11 @@ $(function(){
 	welcome();
     });
 
-    $('body').on('click', 'help', function(){
-	var text = contextual_help[this.id];
-	$("#helpmenu").html(text);
-	$("#helpmenu").dialog('open');
-	showOrHide();
+	$('body').on('click', 'help', function(){
+		var text = getItemContextualHelp(this.id);
+		$("#helpmenu").html(text);
+		$("#helpmenu").dialog('open');
+		showOrHide();
     });
 
     $("#OPEN").on('change', function(e){
@@ -2340,10 +2409,17 @@ $(function(){
 	$(location).attr('href','home/index.html');
     });
 
-    var IsoplotR;
-    var contextual_help;
-    var dictionary_id;
-    var dictionary_class;
-    var loaded_language = null;
+	// allow tests to initiate translation
+	window.translatePage = translate;
+
+	var IsoplotR;
+    var contextual_help = {};
+    var dictionary_id = {};
+	var dictionary_class = {};
+	var contextual_help_fallback;
+	var dictionary_id_fallback;
+	var dictionary_class_fallback;
+	var loaded_language = null;
     initialise();
 });
+
