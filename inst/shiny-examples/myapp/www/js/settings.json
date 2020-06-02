@@ -1,5 +1,10 @@
 {
     "language": "en",
+    "languages_supported" : {
+        "en": "en",
+        "es": "es",
+        "zh": "zh_Hans"
+    },
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,

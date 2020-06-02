@@ -4,9 +4,6 @@ $(function(){
     let home_id_fallback;
     let settings;
 
-    if (localStorage.getItem("language") === null){
-    	localStorage.setItem("language","en");
-    }
     if (localStorage.getItem("language").startsWith("zh")){
         $("#CN").css("text-decoration","underline")
     } else if (localStorage.getItem("language").startsWith("es")) {
