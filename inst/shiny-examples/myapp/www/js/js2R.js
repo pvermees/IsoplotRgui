@@ -32,7 +32,8 @@ function getOptions(prefs){
 	out += ",show.age=" + pdsettings.showage;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",common.Pb=" + gcsettings.commonPb;
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
 	out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
@@ -131,7 +132,8 @@ function getOptions(prefs){
 	out += ",format=" + gcsettings.format + ")";
 	out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
@@ -186,7 +188,8 @@ function getOptions(prefs){
 	} else {
 	    out += ",format=" + gcsettings.format + ")";
 	}
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	break;
     case 'average':
 	switch (geochronometer){
@@ -410,7 +413,8 @@ function getOptions(prefs){
 	out += ",levels=selection2levels(method='" + geochronometer + "')";
 	out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
 	out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;

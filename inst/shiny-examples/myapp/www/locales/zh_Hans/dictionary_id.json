@@ -59,7 +59,7 @@
     "help_mineral_option": "矿物：",
     "FT_ICP_absolute": "ICP (绝对值)",
     "FT_ICP_zeta": "ICP (&zeta;)",
-    "help_ellipse_col": "误差椭圆颜色：",
+    "help_ellipsefill": "误差椭圆颜色：",
     "help_concordia_ticks": "年龄刻度个数：",
     "help_shownumbers": "显示样品序号？",
     "help_headers_on": "样品名位于第一行？",
