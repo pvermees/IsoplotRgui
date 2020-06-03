@@ -1,6 +1,16 @@
 $(function(){
 
-    function initialise(){
+	function withData(callback) {
+		$.getJSON('./js/constants.json', function(constants){
+			$.getJSON('./js/settings.json', function(settings){
+				$.getJSON('./js/data.json', function(data){
+					callback(constants, settings, data);
+				});
+			});
+		});
+	}
+
+	function initialise(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
@@ -11,32 +21,44 @@ $(function(){
 	    data4server: [],
 	    optionschanged: false
 	}
-	// three nested asynchronous file readers:
-	$.getJSON('./js/constants.json', function(data){
-	    IsoplotR.constants = data;
-	    $.getJSON('./js/settings.json', function(data){
-		IsoplotR.settings = data;
-		IsoplotR.settings.geochronometer =
-		    $('option:selected', $("#geochronometer")).attr('id');
-		if (localStorage.getItem("language") !== null){
-		    IsoplotR.settings.language = localStorage.getItem("language");
+	withData(function(constants, settings, data) {
+	    IsoplotR.constants = constants;
+		IsoplotR.settings = settings;
+		IsoplotR.data = data;
+		settings.geochronometer =
+			$('option:selected', $("#geochronometer")).attr('id');
+		const languageElement = document.getElementById("language");
+		const lang = localStorage.getItem("language");
+		for (const i in settings.languages_supported) {
+			const s = settings.languages_supported[i];
+			if (lang !== null && lang.startsWith(s.prefix)) {
+				settings.language = s.code;
+			}
+			const option = document.createElement("option");
+			option.id = "lang_" + s.code;
+			option.value = s.code;
+			option.innerHTML = s.name;
+			languageElement.appendChild(option);
 		}
-		$.getJSON('./js/data.json', function(data){
-		    IsoplotR.data = data;
-		    selectGeochronometer();
-		    IsoplotR = populate(IsoplotR,true);
-		    translate();
-		    welcome();
-		    $("#INPUT").handsontable({ // add change handler asynchronously
-			afterChange: function(changes,source){
-			    getData4Server(); // placed here because we don't want to
-			    handson2json();   // call the change handler until after
-			}                     // IsoplotR has been initialised
-		    });
+		selectGeochronometer();
+		IsoplotR = populate(IsoplotR,true);
+
+		// allow tests to initiate translation, even with unsupported languages
+		window.translatePage = function() {
+			IsoplotR.settings.language = this.localStorage.getItem("language");
+			translate();
+		}
+
+		translate();
+		welcome();
+		$("#INPUT").handsontable({ // add change handler asynchronously
+		afterChange: function(changes,source){
+			getData4Server(); // placed here because we don't want to
+			handson2json();   // call the change handler until after
+		}                     // IsoplotR has been initialised
 		});
-	    });
 	});
-    };
+	};
 
     function dnc(){
 	var gc = IsoplotR.settings.geochronometer;
@@ -2143,7 +2165,7 @@ $(function(){
 			element.innerHTML = dictionary_id[key];
 			return;
 		}
-		if (element.tagName !== 'OPTION') {
+		if (element.tagName.toUpperCase() !== 'OPTION') {
 			element.innerHTML = getFallbackText(key, dictionary_id_fallback, "dictionary_id");
 			return;
 		}
@@ -2152,7 +2174,7 @@ $(function(){
 	}
 
 	function translate() {
-		const language = localStorage.getItem("language");
+		const language = IsoplotR.settings.language;
 		withLanguage(language, function() {
 			$(".translate").each(function(i){
 				translateDictionaryId(this);
@@ -2408,9 +2430,6 @@ $(function(){
 	localStorage.setItem("language",IsoplotR.settings.language);
 	$(location).attr('href','home/index.html');
     });
-
-	// allow tests to initiate translation
-	window.translatePage = translate;
 
 	var IsoplotR;
     var contextual_help = {};

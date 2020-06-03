@@ -4,17 +4,6 @@ $(function(){
     let home_id_fallback;
     let settings;
 
-    if (localStorage.getItem("language") === null){
-    	localStorage.setItem("language","en");
-    }
-    if (localStorage.getItem("language").startsWith("zh")){
-        $("#CN").css("text-decoration","underline")
-    } else if (localStorage.getItem("language").startsWith("es")) {
-    	$("#ES").css("text-decoration","underline")
-    } else {
-    	$("#EN").css("text-decoration","underline")
-    }
-
     // load fallback language and settings if required
     function withFallbackLanguage(callback) {
         if (home_id_fallback) {
@@ -62,12 +51,24 @@ $(function(){
         return button + home_id_fallback[id];
     }
 
+    function isWithinLink(element) {
+        while (element) {
+            if (element.tagName.toUpperCase() === "A") {
+                return true;
+            }
+            element = element.parentElement;
+        }
+        return false;
+    }
+
     function translate(){
         let language = localStorage.getItem("language");
         withLanguage(language, function (data) {
             $(".translate").each(function(i) {
                 if (this.id in data) {
                     this.innerHTML = data[this.id];
+                } else if (isWithinLink(this)) {
+                    this.innerHTML = home_id_fallback[this.id];
                 } else {
                     this.innerHTML = getFallbackText(this.id, language, data);
                 }
@@ -78,26 +79,38 @@ $(function(){
     // let the tests call the translate function
     window.translateHomePage = translate;
 
-    $("#EN").click(function(){
-        localStorage.setItem("language","en");
-        $(this).css("text-decoration","underline")
-        $("#ES").css("text-decoration","none")
-        $("#CN").css("text-decoration","none")
-        translate();
-    });
-    $("#ES").click(function(){
-        localStorage.setItem("language","es");
-        $(this).css("text-decoration","underline")
-        $("#EN").css("text-decoration","none")
-        $("#CN").css("text-decoration","none")
-        translate();
-    });
-    $("#CN").click(function(){
-        localStorage.setItem("language","zh_Hans");
-        $(this).css("text-decoration","underline")
-        $("#EN").css("text-decoration","none")
-        $("#ES").css("text-decoration","none")
-        translate();
+    function highlightLanguageElement(code) {
+        const languagesElement = document.getElementById("languages");
+        const children = languagesElement.children;
+        const id = "lang_" + code;
+        for (let i = 0; i !== children.length; ++i) {
+            const child = children[i];
+            child.style.textDecoration = child.id === id? "underline" : "none";
+        }
+    }
+
+    withFallbackLanguage(function() {
+        const languagesElement = document.getElementById("languages");
+        for (const i in settings.languages_supported) {
+            const info = settings.languages_supported[i];
+            const element = document.createElement("span");
+            element.className = "clickable";
+            const id = "lang_" + info.code;
+            element.id = id;
+            element.innerHTML = info.name;
+            const code = info.code;
+            element.onclick = function() {
+                localStorage.setItem("language", code);
+                highlightLanguageElement(code);
+                translate();
+            }
+            if (i !== 0) {
+                const separator = document.createTextNode("\u00A0");
+                languagesElement.appendChild(separator);
+            }
+            languagesElement.appendChild(element);
+        }
+        highlightLanguageElement(localStorage.getItem("language"));
     });
     
     $("#tabs").tabs({
