@@ -1,3 +1,4 @@
 {
-    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"Siga este enlace para ayudar a traducir este texto.\">TRADUCIR</a>"
+    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"Siga este enlace para ayudar a traducir este texto.\">TRADUCIR</a>",
+    "and": "y"
 }
