@@ -550,5 +550,5 @@
     "PbPb_67": " <sup>206</sup>Pb/<sup>207</sup>Pb测量值。",
     "PbPb_err_67": "<sup>206</sup>Pb/<sup>207</sup>Pb测量误差",
     "ages_48_0": "初始<sup>234</sup>U/<sup>238</sup>U比值估算。",
-    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"请点击此链接以帮助翻译此文本。\">翻译</a>"
+    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"请点击此链接以帮助翻译此原文。\">翻译</a>"
 }

@@ -21,5 +21,5 @@
     "Beijing": "&nbsp;&nbsp;北京",
     "Changchun": "&nbsp;&nbsp;&nbsp;&nbsp;长春市",
     "title": "免费，可扩展的地质年代学软件",
-    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"请点击此链接以帮助翻译此文本。\">翻译</a>"
+    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"请点击此链接以帮助翻译此原文。\">翻译</a>"
     }
