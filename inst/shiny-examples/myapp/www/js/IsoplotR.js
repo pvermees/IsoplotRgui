@@ -27,14 +27,18 @@ $(function(){
 		IsoplotR.data = data;
 		settings.geochronometer =
 			$('option:selected', $("#geochronometer")).attr('id');
-		let lang = localStorage.getItem("language");
-		if (lang !== null) {
-			for (const prefix in settings.languages_supported) {
-				if (lang.startsWith(prefix)) {
-					settings.language
-						= settings.languages_supported[prefix];
-				}
+		const languageElement = document.getElementById("language");
+		const lang = localStorage.getItem("language");
+		for (const i in settings.languages_supported) {
+			const s = settings.languages_supported[i];
+			if (lang !== null && lang.startsWith(s.prefix)) {
+				settings.language = s.code;
 			}
+			const option = document.createElement("option");
+			option.id = "lang_" + s.code;
+			option.value = s.code;
+			option.innerHTML = s.name;
+			languageElement.appendChild(option);
 		}
 		selectGeochronometer();
 		IsoplotR = populate(IsoplotR,true);
@@ -2161,7 +2165,7 @@ $(function(){
 			element.innerHTML = dictionary_id[key];
 			return;
 		}
-		if (element.tagName !== 'OPTION') {
+		if (element.tagName.toUpperCase() !== 'OPTION') {
 			element.innerHTML = getFallbackText(key, dictionary_id_fallback, "dictionary_id");
 			return;
 		}

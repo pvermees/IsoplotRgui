@@ -90,16 +90,18 @@ describe('IsoplotRgui', function() {
                 onlineZH, introZH);
             await testTranslation(driver, 'English', helpEN, ratiosEN,
                 propagateEN, inputErrorHelpEN, onlineEN, introEN);
-            await clickButton(driver, 'CN');
+            await clickButton(driver, 'lang_zh_Hans');
             await assertTextContains(driver, 'online_tab', onlineZH);
             await assertTextContains(driver, 'intro', introZH);
-            await clickButton(driver, 'EN');
+            await clickButton(driver, 'lang_en');
             await assertTextContains(driver, 'online_tab', onlineEN);
             await assertTextContains(driver, 'intro', introEN);
         });
         it('displays English where no translation is available', async function() {
             await driver.get('http://localhost:50054');
             await driver.executeScript('window.localStorage.setItem("language", "xxtest");');
+            await driver.get('http://localhost:50054');
+            await waitForFunctionToBeInstalled(driver, 'translatePage');
             await driver.executeScript('window.translatePage();');
 
             // test dictionary_id.json
@@ -117,10 +119,7 @@ describe('IsoplotRgui', function() {
             await assertTextContains(driver, 'helpmenu', 'XXminimum age limit.');
             // test home_id.json
             await clickButton(driver, 'home');
-            // wait for the translateHomePage function to be installed
-            await driver.wait(async function() {
-                return await driver.executeScript('return !!window.translateHomePage');
-            });
+            await waitForFunctionToBeInstalled(driver, 'translateHomePage');
             await driver.executeScript('window.translateHomePage();');
             await assertTextContains(driver, 'online_tab', 'XXonline');
             await assertTextContains(driver, 'intro', introEN);
@@ -128,17 +127,25 @@ describe('IsoplotRgui', function() {
     });
 });
 
-async function setDefaultLanguage(driver) {
-    await driver.executeScript('window.localStorage.setItem("language", "en");');
+async function waitForFunctionToBeInstalled(driver, functionName) {
+    await driver.wait(async function () {
+        return await driver.executeScript('return !!window.' + functionName);
+    });
+}
+
+async function removeDefaultLanguage(driver) {
+    await driver.executeScript('window.localStorage.removeItem("language");');
 }
 
 async function testTranslation(driver, language, help, ratios,
         propagate, inputErrorHelp, online, intro) {
+    if (!language) {
+        removeDefaultLanguage(driver);
+    }
     await driver.get('http://localhost:50054');
     if (language) {
         await chooseLanguage(driver, language);
     } else {
-        setDefaultLanguage(driver);
         // for some reason we have to click the header or
         // the Help button won't click under Selenium
         await driver.findElement(By.css('main header')).click();
