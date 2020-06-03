@@ -2182,7 +2182,10 @@ $(function(){
 			$("translate").each(function(i){
 				this.innerHTML = getItemDictionaryClass(this.className);
 			});
-			const helpTitle = getItemContextualHelp('help');
+			// sadly, we cannot put a "translate" link into a jQuery dialog
+			// so we cannot use getItemContextualHelp
+			const helpTitle = 'help' in contextual_help?
+				contextual_help['help'] : contextual_help_fallback['help'];
 			$("#helpmenu").dialog('option', 'title', helpTitle);
 		});
     }
