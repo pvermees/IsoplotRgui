@@ -1,3 +1,6 @@
 {
-    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"Siga este enlace para ayudar a traducir este texto.\">TRADUCIR</a>"
+    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"Siga este enlace para ayudar a traducir este texto.\">TRADUCIR</a>",
+    "help": "Ayuda",
+    "intro": "IsoplotR es un programa para geocronología que fue diseñado para ser de acceso gratuito, flexible y adaptable al futuro. El nombre del programa está inspirado en el popular programa de Ken Ludwig, Isoplot, para Microsoft Excel, pero no está basado en el mismo.  IsoplotR  tiene funciones para U-Pb,  Pb-Pb,  40Ar-39Ar,  K-Ca,  Rb-Sr,  Sm Nd,  Lu-Hf,  Re-Os,  U-Th-He,  trazas de fisión y datación por las  series de desequilibrio del U, como también para geocronología detrítica.\n\nEste sitio web brinda un acceso rápido con un click a las funciones mas utilizadas de IsoplotR (por favor observar el tutorial para mayores detalles). Alternativamente, las mismas funciones (y mas) pueden ser accedidas desde la línea de comandos a través del paquete IsoplotR.\n\nActualmente IsoplotR está disponible en inglés, chino, y español (en desarrollo). Si usted desearía ayudar en la traducción del programa a otros lenguajes (ruso, árabe, welsh, etc.), por favor contáctese con   p.vermeesch[at]ucl.ac.uk.  Para reportes de errores y otros requerimientos o  consultas, comuníquese a la misma dirección de correo electrónico.",
+    "options": "Opciones"
 }
