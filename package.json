@@ -6,7 +6,8 @@
         "server": "Rscript --vanilla test/start-gui.R 50055",
         "generate-simplified-chinese": "node build/hant2hans.js",
         "test": "mocha test",
-        "generate-translation-files": "node build/degather_translations.js"
+        "generate-translation-files": "node build/degather_translations.js",
+        "bad-translation-ids": "node build/find_translation_prefixes.js"
     },
     "devDependencies": {
         "selenium-webdriver": "^4.0.0-alpha.7",
