@@ -274,7 +274,7 @@
     "run": "运行",
     "IsoplotR_version": "这是 IsoplotR/IsoplotRgui GitHub 版本",
     "GitHub_version": "最新的稳定版本是",
-    "reference": "如果使用本软件,请引用软件开发者 Pieter Vermeesch 所发表的这篇相关文章:",
+    "reference": "引用方式：",
     "ages_err_75": "<sup>207</sup>Pb/<sup>235</sup>U年龄估算误差（标准误差）。",
     "ages_68": "<sup>206</sup>Pb/<sup>238</sup>U年龄。",
     "ages_err_68": "<sup>206</sup>Pb/<sup>238</sup>U年龄估算误差（标准误差）。",
