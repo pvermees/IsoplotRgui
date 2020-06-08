@@ -1,4 +1,23 @@
 {
     "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"Siga este enlace para ayudar a traducir este texto.\">TRADUCIR</a>",
-    "and": "y"
+    "and": "y",
+    "title": "un programa multi-herramientas gratuito y desarrollable para geocronología",
+    "Changchun": "Changchun",
+    "Beijing": "Beijing",
+    "news_1": "IsoplotR es continuamente actualizado en <a href='http://github.com/pvermees/IsoplotR'>GitHub</a>, como se detalla en la bitácora de cambios. Actualizaciones a la versión <a href='https://CRAN.R-project.org/package=IsoplotR'>CRAN</a> son menos frecuentes y son reportados abajo. ",
+    "commandline_3": "La documentación completa con ejemplos adicionales puede ser vista en \"CRAN\" <a href=\"https://cran.r-project.org/web/packages/IsoplotR/IsoplotR.pdf\">",
+    "commandline_2": "Ejemplo de código para reproducir los gráficos en el artículo: <a href=\"http://ucl.ac.uk/~ucfbpve/papers/VermeeschGSF2018\">",
+    "commandline_1": "La funcionalidad completa de IsoplotR puede ser accedida desde la línea de comandos. Esto incluye todas las funciones y opciones que están disponibles a través de la Interface Gráfica del Usuario (GUI, por sus siglas en inglés), y más. Después de instalar R en su sistema desde <a href=\"http://r-project.org\"> http://r-project.org, la funcionalidad de la línea de comandos puede ser instalada desde <a href=\"https://github.com/pvermees/IsoplotR/\"> >Github</a> como se describe bajo la pestaña de \"Fuera de línea\". Alternativamente, IsoplotR puede también ser instalado desde la Red Completa de Archivos de R (CRAN, por sus siglas en inglés) escribiendo:",
+    "contribute_tab": "Contribuir",
+    "news_tab": "Noticias",
+    "commandline_tab": "Línea de comandos (instrucciones)",
+    "contribute": "Los usuarios pueden contribuir al desarrollo de IsoplotR de diferentes maneras:\nCualquier comentario y reporte de errores es gratamente recibido. Si encuentra cualquier problema, por favor envíeme un ejemplo reproducible en .csv (si usa la línea de comandos), o .json (si usa el formato de la interface gráfica del usuario) al correo p.vermeesch [at] ucl.ac.uk  y yo le contactaré tan pronto como sea posible. \n\nSi usted conoce como programar en R, por favor hágalo en www.github.com/pvermees/IsoplotR desde GitHub y modifíquelo o recíclelo. Envíe un \"pull request\" si usted a corregido un error.\n\nTenga una versión local \"mirror\" de la Interface Gráfica del Usuario en línea. Esto va a incrementar la celeridad del sitio fuera del Reino Unido.  https://github.com/pvermees/IsoplotRgui#setting-up-your-own-online-mirror. Las instrucciones de instalación son dadas en GitHub.\n",
+    "offline_2": "Una vez que todos los elementos han sido instalados, puede correr la interface gráfica del usuario basada en el programa, tipeando:",
+    "offline_1": "La Interface Gráfica del Usuario (GUI, por sus siglas en inglés) puede ser obtenida desde <a href=\"https://github.com/pvermees/IsoplotRgui\">.  Para correr la versión del programa fuera de línea, por favor installe <a href=\"http://r-project.org\"> http://r-project.org e ingrese los siguientes comandos en la ventana emergente:",
+    "offline_tab": "Modo fuera de línea",
+    "extra_mirrors": "Si usted desea tener su propio \"mirror\" disponible para el mundo a través de este sitio web , por favor póngase en contacto conmigo al correo: p.vermeesch[at]ucl.ac.uk",
+    "online_tab": "En línea",
+    "online": "Un GUI en línea es posible gracias a los siguientes colaboradores internacionales:\n\nLondres (Reino Unido): Pieter Vermeesch (University Collegue London)\nBeijing (China): Yang Li (Chinese Academy of Sciences) \nChangchun (China): Qiuye Yu (Changchun Institute of Technology)\nKeyworth (Reino Unido): Ian Millar (British Geological Survey)\n(Argentina): Sofía Bordese (LA.TE.ANDES)\nSanta Barbara (E.U.A.) Jhon Cottle (University of California)",
+    "intro_tab": "Introducción",
+    "reference": "Raeferencias:"
 }
