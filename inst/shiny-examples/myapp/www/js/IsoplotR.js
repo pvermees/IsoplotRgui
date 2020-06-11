@@ -58,6 +58,40 @@ $(function(){
 		}                     // IsoplotR has been initialised
 		});
 	});
+	web_socket = new WebSocket("ws://" + window.location.host + "/websocket");
+	web_socket.onopen = function() {
+		web_socket.onmessage = function(event) {
+			console.log('WEBSOCKET EVENT!\n', event);
+			if (event.isTrusted) {
+				const data = JSON.parse(event.data);
+				switch (data.action[0]) {
+				case "results":
+					$('#OUTPUT').handsontable('populateFromArray',0,0,
+						data.data);
+					const hot = $('#OUTPUT').data('handsontable');
+					hot.updateSettings({
+						colHeaders: data.headers
+					});
+					break;
+				case "plot":
+					const img = document.createElement("img");
+					img.setAttribute("src", data.src[0]);
+					img.setAttribute("width", data.width[0]);
+					img.setAttribute("height", data.height[0]);
+					const myplot = document.getElementById("myplot")
+					myplot.textContent = '';
+					myplot.appendChild(img);
+					break;
+				}
+			}
+		}
+		web_socket.onerror = function(event) {
+			console.error('WebSocket error:', event);
+		}
+		web_socket.onclose = function(event) {
+			console.log('WebSocket closed: ', event);
+		}
+	}
 	};
 
     function dnc(){
@@ -299,36 +333,33 @@ $(function(){
 	}
 	geochronometer = IsoplotR.settings.geochronometer;
 	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
-	var dat = cleanData(geochronometer,d,nr,nc);
+	var data = cleanData(geochronometer,d,nr,nc);
+	IsoplotR.data4server = {
+		nr, nc, data
+	};
 	switch (geochronometer){
 	case  'Ar-Ar':
-	    var J = $('#Jval').val();
-	    var sJ = $('#Jerr').val();
-	    IsoplotR.data4server = [nr,nc,J,sJ,dat];
+		IsoplotR.data4server.J = $('#Jval').val();
+		IsoplotR.data4server.sJ = $('#Jerr').val();
 	    break;
 	case 'fissiontracks':
 	    switch (IsoplotR.settings.fissiontracks.format){
 	    case 1:
-		var zeta = $('#zetaVal').val();
-		var zetaErr = $('#zetaErr').val();
-		var rhoD = $('#rhoDval').val();
-		var rhoDerr = $('#rhoDerr').val();
-		IsoplotR.data4server = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
+		IsoplotR.data4server.zeta = $('#zetaVal').val();
+		IsoplotR.data4server.zetaErr = $('#zetaErr').val();
+		IsoplotR.data4server.rhoD = $('#rhoDval').val();
+		IsoplotR.data4server.rhoDerr = $('#rhoDerr').val();
 		break;
 	    case 2:
-		var zeta = $('#zetaVal').val();
-		var zetaErr = $('#zetaErr').val();
-		var spotSize = $('#spotSizeVal').val();
-		IsoplotR.data4server = [nr,nc,zeta,zetaErr,spotSize,dat];
+		IsoplotR.data4server. zeta = $('#zetaVal').val();
+		IsoplotR.data4server.zetaErr = $('#zetaErr').val();
+		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    case 3:
-		var spotSize = $('#spotSizeVal').val();
-		IsoplotR.data4server = [nr,nc,spotSize,dat];
+		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    }
 	    break;
-	default:
-	    IsoplotR.data4server = [nr,nc,dat];
 	}
     }
 
@@ -1912,8 +1943,8 @@ $(function(){
 	} else {
 	    handson2json();
 	}
-	Shiny.onInputChange("data",IsoplotR.data4server);
-	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
+	//Shiny.onInputChange("data",IsoplotR.data4server);
+	//Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
     function multiplytwo(x,num,vec,divide){
@@ -2416,7 +2447,14 @@ $(function(){
 	update();
 	$("#OUTPUT").hide();
 	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
-	$("#PLOTTER").click();
+	const myplot = document.getElementById("myplot")
+	web_socket.send(JSON.stringify({
+		action: "plot",
+		data: IsoplotR.data4server,
+		width: myplot.offsetWidth,
+		height: myplot.offsetHeight,
+		Rcommand: getRcommand(IsoplotR)
+	}));
     });
 
     $("#RUN").click(function(){
@@ -2426,7 +2464,11 @@ $(function(){
 	$("#OUTPUT").handsontable('deselectCell');
 	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#OUTPUT").show();
-	$("#RUNNER").click();
+	web_socket.send(JSON.stringify({
+		action: "run",
+		data: IsoplotR.data4server,
+		Rcommand: getRcommand(IsoplotR)
+	}));
     });
 
     $("#home").click(function(){
@@ -2442,6 +2484,7 @@ $(function(){
 	var dictionary_id_fallback;
 	var dictionary_class_fallback;
 	var loaded_language = null;
+	var web_socket;
     initialise();
 });
 

@@ -1,13 +1,14 @@
 args <- commandArgs(trailingOnly=TRUE)
 install.packages('.', repos=NULL, type="source")
-library(IsoplotRgui)
-library(shiny)
+host <- '0.0.0.0'
+port <- 8080
 if (0 < length(args)) {
     address <- unlist(strsplit(args[1],':'))
     if (length(address) == 2) {
-        options(shiny.host=address[1], shiny.port=as.numeric(address[2]))
+        host <- address[1]
+        port <- as.numeric(address[2])
     } else {
-        options(shiny.port=as.numeric(args[1]))
+        port <- as.numeric(args[1])
     }
 }
-IsoplotR()
+IsoplotRgui::IsoplotR(host=host, port=port)

@@ -1,3 +1,8 @@
+serverR <- source('inst/shiny-examples/myapp/server.R')
+
+# for some reason I have to save the function from server.R
+serverFn <- server
+
 #' Start the \code{IsoplotR} GUI
 #'
 #' Opens a web-browser with a Graphical User Interface (GUI) for the
@@ -7,10 +12,37 @@
 #' @examples
 #' #IsoplotR()
 #' @export
-IsoplotR <- function(){
-    appDir <- system.file("shiny-examples","myapp", package = "IsoplotRgui")
+IsoplotR <- function(host='0.0.0.0', port=8080) {
+    appDir <- system.file("shiny-examples", "myapp", "www",
+            package = "IsoplotRgui")
     if (appDir == "") {
         stop("Could not find shinyApp directory. Try re-installing `IsoplotRgui`.", call. = FALSE)
     }
-    shiny::runApp(appDir, display.mode = "normal")
+    s <- httpuv::startServer(host=host, port=port,
+        app=list(
+            staticPaths = list("/" = appDir),
+            onWSOpen = function(ws) {
+                cat("WebSocket connection opened\n")
+                ws$onMessage(function(binary, message) {
+                    df <- jsonlite::fromJSON(message)
+                    if (df$action == "run") {
+                        fns <- serverFn(df)
+                        reply <- fns$runner()
+                        ws$send(jsonlite::toJSON(reply))
+                    } else if (df$action == "plot") {
+                        fns <- serverFn(df)
+                        reply <- fns$plotter()
+                        ws$send(jsonlite::toJSON(reply))
+                    }
+                })
+                ws$onClose(function() {
+                    cat("WebSocket connection closed\n")
+                })
+            }
+        )
+    )
+    cat(sprintf("Listening on %s:%d\n", host, port))
+    while (TRUE) {
+        later::run_now(9999)
+    }
 }
