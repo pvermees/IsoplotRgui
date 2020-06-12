@@ -82,6 +82,11 @@ $(function(){
 					myplot.textContent = '';
 					myplot.appendChild(img);
 					break;
+				case "download":
+					const downloader = document.getElementById("downloader");
+					downloader.setAttribute("download", data.filename[0]);
+					downloader.setAttribute("href", data.data[0]);
+					downloader.click();
 				}
 			}
 		}
@@ -2471,7 +2476,25 @@ $(function(){
 	}));
     });
 
-    $("#home").click(function(){
+	document.getElementById("PDF").onclick = function() {
+	update();
+	web_socket.send(JSON.stringify({
+		action: "pdf",
+		data: IsoplotR.data4server,
+		Rcommand: getRcommand(IsoplotR)
+	}));
+	}
+
+	document.getElementById("CSV").onclick = function() {
+	update();
+	web_socket.send(JSON.stringify({
+		action: "csv",
+		data: IsoplotR.data4server,
+		Rcommand: getRcommand(IsoplotR)
+	}));
+	}
+	
+	$("#home").click(function(){
 	localStorage.setItem("language",IsoplotR.settings.language);
 	$(location).attr('href','home/index.html');
     });

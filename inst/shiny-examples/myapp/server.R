@@ -146,25 +146,25 @@ server <- function(input){
         } else if (identical(method,"fissiontracks") & format==1){
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
-            mat[2,1] <- dat$zetaVal
+            mat[2,1] <- dat$zeta
             mat[2,2] <- dat$zetaErr
             mat[3,1:2] <-c('rhoD','errRhoD')
-            mat[4,1] <- dat$rhoDval
+            mat[4,1] <- dat$rhoD
             mat[4,2] <- dat$rhoDerr
             mat[5,1:2] <- c('Ns','Ni')
         } else if (identical(method,"fissiontracks") & format==2){
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
-            mat[2,1] <- dat$zetaVal
+            mat[2,1] <- dat$zeta
             mat[2,2] <- dat$zetaErr
             mat[3,1] <-'spot-size'
-            mat[4,1] <- dat$spotSizeVal
+            mat[4,1] <- dat$spotSize
             mat[5,1:2] <- c('Ns','A')
             mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
         } else if (identical(method,"fissiontracks") & format==3){
             mat <- matrix('',3,nc)
             mat[1,1] <-'spot-size'
-            mat[4,1] <- dat$spotSizeVal
+            mat[4,1] <- dat$spotSize
             mat[3,1:2] <- c('Ns','A')
             mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
         } else if (identical(method,"U-Th-He")){
@@ -257,7 +257,7 @@ server <- function(input){
     }
 
     # returns a base64 encoded plot
-    makePlot <- function(filename, device, width, height) {
+    makePlot <- function(filename, device, mimeType, width, height) {
         filenameBits <- unlist(strsplit(filename, '.'))
         tempFilename <- tempfile(pattern=filenameBits[1], fileext=filenameBits[2])
         device(file=tempFilename, width=width, height=height)
@@ -265,7 +265,7 @@ server <- function(input){
         dev.off()
         fileSize <- file.size(tempFilename)
         raw <- readBin(tempFilename, what="raw", n=fileSize)
-        paste0("data:image/png;base64,", jsonlite::base64_enc(raw))
+        paste0("data:", mimeType, ";base64,", jsonlite::base64_enc(raw))
     }
 
     fns <-list()
@@ -276,7 +276,7 @@ server <- function(input){
         forJson$width <- input$width
         forJson$height <- input$height
         forJson$src <- makePlot("IsoplotR.png", png,
-                forJson$width, forJson$height)
+                "image/png", forJson$width, forJson$height)
         forJson
     }
 
@@ -291,18 +291,23 @@ server <- function(input){
 
     fns$getPdf <- function() {
         forJson <- list()
-        forJson$action <- "plot"
-        forJson$data <- makePlot("IsoplotR.pdf", pdf, 7, 7)
+        forJson$action <- "download"
+        forJson$filename <- "IsoplotR.pdf"
+        results <- run(input$Rcommand)
+        forJson$data <- makePlot(forJson$filename, pdf, "application/pdf", 7, 7)
         forJson
     }
 
-    fns$getCsv <- function() {
+    fns$getCsv <- function(name) {
         forJson <- list()
         forJson$action <- "download"
-        forJson$filename <- "ages.csv"
+        forJson$filename <- paste0(name, ".csv")
         results <- run(input$Rcommand)
-        forJson$data <- capture.output(write.csv(results, stdout()))
-        jsonlite::toJSON(forJson)
+        raw <- capture.output(write.csv(results, stdout()))
+        forJson$data <- paste0(
+            "data:text/csv;base64,",
+            jsonlite::base64_enc(raw))
+        forJson
     }
 
     fns

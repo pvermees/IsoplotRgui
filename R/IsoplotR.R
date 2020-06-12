@@ -25,15 +25,17 @@ IsoplotR <- function(host='0.0.0.0', port=8080) {
                 cat("WebSocket connection opened\n")
                 ws$onMessage(function(binary, message) {
                     df <- jsonlite::fromJSON(message)
+                    fns <- serverFn(df)
                     if (df$action == "run") {
-                        fns <- serverFn(df)
                         reply <- fns$runner()
-                        ws$send(jsonlite::toJSON(reply))
                     } else if (df$action == "plot") {
-                        fns <- serverFn(df)
                         reply <- fns$plotter()
-                        ws$send(jsonlite::toJSON(reply))
+                    } else if (df$action == "pdf") {
+                        reply <- fns$getPdf()
+                    } else if (df$action == "csv") {
+                        reply <- fns$getCsv("ages")
                     }
+                    ws$send(jsonlite::toJSON(reply))
                 })
                 ws$onClose(function() {
                     cat("WebSocket connection closed\n")
