@@ -1,3 +1,5 @@
+LETTERS <- unlist(lapply(c(utf8ToInt("A"):utf8ToInt("Z")),intToUtf8))
+
 server <- function(input){
 
     selection2data <- function(method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
@@ -5,7 +7,7 @@ server <- function(input){
         dat <- input$data
         nr <- as.numeric(dat$nc)
         nc <- as.numeric(dat$nc)
-        values <- matrix(as.numeric(dat$data), ncol=nc)
+        values <- matrix(as.character(dat$data), ncol=nc)
         mat <- matrix('',1,nc) # header
         if (identical(method,"U-Pb") & format==1) {
             mat[1,1:5] <- c('Pb207U235','errPb207U235',
@@ -178,12 +180,10 @@ server <- function(input){
         } else if (identical(method,"other")){
             mat <- NULL
         }
-        print(values)
         mat <- rbind(mat,values)
         if (!identical(method,"detritals")){
             mat <- subset(mat,select=-nc) # the last column may contain letters
         }
-        print(mat)
         if (identical(method,'U-Pb')){
             out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,d=d)
         } else if (identical(method,'Th-U')){
