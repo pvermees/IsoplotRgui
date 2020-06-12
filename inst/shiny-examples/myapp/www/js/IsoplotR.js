@@ -2452,14 +2452,24 @@ $(function(){
 	update();
 	$("#OUTPUT").hide();
 	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
-	const myplot = document.getElementById("myplot")
-	web_socket.send(JSON.stringify({
-		action: "plot",
-		data: IsoplotR.data4server,
-		width: myplot.offsetWidth,
-		height: myplot.offsetHeight,
-		Rcommand: getRcommand(IsoplotR)
-	}));
+	const command = getRcommand(IsoplotR);
+	const plot = function() {
+		const myplot = document.getElementById("myplot")
+		web_socket.send(JSON.stringify({
+			action: "plot",
+			data: IsoplotR.data4server,
+			width: myplot.offsetWidth,
+			height: myplot.offsetHeight,
+			Rcommand: command
+		}));
+	};
+	plot();
+	document.getElementsByTagName("BODY")[0].onresize = function() {
+		if (timeout.variable) {
+			window.clearTimeout(timeout.variable);
+		}
+		timeout.variable = window.setTimeout(plot, 400);
+	};
     });
 
     $("#RUN").click(function(){
@@ -2508,6 +2518,7 @@ $(function(){
 	var dictionary_class_fallback;
 	var loaded_language = null;
 	var web_socket;
+	const timeout = {};
     initialise();
 });
 
