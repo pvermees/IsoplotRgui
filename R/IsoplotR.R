@@ -22,7 +22,6 @@ IsoplotR <- function(host='0.0.0.0', port=8080) {
         app=list(
             staticPaths = list("/" = appDir),
             onWSOpen = function(ws) {
-                cat("WebSocket connection opened\n")
                 ws$onMessage(function(binary, message) {
                     df <- jsonlite::fromJSON(message)
                     fns <- serverFn(df)
@@ -36,9 +35,6 @@ IsoplotR <- function(host='0.0.0.0', port=8080) {
                         reply <- fns$getCsv("ages")
                     }
                     ws$send(jsonlite::toJSON(reply))
-                })
-                ws$onClose(function() {
-                    cat("WebSocket connection closed\n")
                 })
             }
         )

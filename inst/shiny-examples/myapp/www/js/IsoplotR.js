@@ -10,6 +10,49 @@ $(function(){
 		});
 	}
 
+	function initialiseWebSocket() {
+	web_socket = new WebSocket("ws://" + window.location.host + "/websocket");
+	web_socket.onopen = function() {
+		web_socket.onmessage = processMessage
+		web_socket.onerror = function(event) {
+			console.error('WebSocket error:', event);
+		}
+		web_socket.onclose = function(event) {
+			initialiseWebSocket();
+		}
+	}
+	}
+
+	function processMessage(event) {
+	if (event.isTrusted) {
+		const data = JSON.parse(event.data);
+		switch (data.action[0]) {
+			case "results":
+				$('#OUTPUT').handsontable('populateFromArray', 0, 0,
+					data.data);
+				const hot = $('#OUTPUT').data('handsontable');
+				hot.updateSettings({
+					colHeaders: data.headers
+				});
+				break;
+			case "plot":
+				const img = document.createElement("img");
+				img.setAttribute("src", data.src[0]);
+				img.setAttribute("width", data.width[0]);
+				img.setAttribute("height", data.height[0]);
+				const myplot = document.getElementById("myplot");
+				myplot.textContent = '';
+				myplot.appendChild(img);
+				break;
+			case "download":
+				const downloader = document.getElementById("downloader");
+				downloader.setAttribute("download", data.filename[0]);
+				downloader.setAttribute("href", data.data[0]);
+				downloader.click();
+		}
+	}
+	}
+	
 	function initialise(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
@@ -58,45 +101,7 @@ $(function(){
 		}                     // IsoplotR has been initialised
 		});
 	});
-	web_socket = new WebSocket("ws://" + window.location.host + "/websocket");
-	web_socket.onopen = function() {
-		web_socket.onmessage = function(event) {
-			console.log('WEBSOCKET EVENT!\n', event);
-			if (event.isTrusted) {
-				const data = JSON.parse(event.data);
-				switch (data.action[0]) {
-				case "results":
-					$('#OUTPUT').handsontable('populateFromArray',0,0,
-						data.data);
-					const hot = $('#OUTPUT').data('handsontable');
-					hot.updateSettings({
-						colHeaders: data.headers
-					});
-					break;
-				case "plot":
-					const img = document.createElement("img");
-					img.setAttribute("src", data.src[0]);
-					img.setAttribute("width", data.width[0]);
-					img.setAttribute("height", data.height[0]);
-					const myplot = document.getElementById("myplot")
-					myplot.textContent = '';
-					myplot.appendChild(img);
-					break;
-				case "download":
-					const downloader = document.getElementById("downloader");
-					downloader.setAttribute("download", data.filename[0]);
-					downloader.setAttribute("href", data.data[0]);
-					downloader.click();
-				}
-			}
-		}
-		web_socket.onerror = function(event) {
-			console.error('WebSocket error:', event);
-		}
-		web_socket.onclose = function(event) {
-			console.log('WebSocket closed: ', event);
-		}
-	}
+	initialiseWebSocket();
 	};
 
     function dnc(){
