@@ -63,24 +63,24 @@ server <- function(input){
         } else if (identical(method,"Ar-Ar") & format==1){
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1] <- dat$Jval
-            mat[2,2] <- dat$Jerr
+            mat[2,1] <- dat$J
+            mat[2,2] <- dat$sJ
             mat[3,1:6] <- c('Ar39Ar36','errAr39Ar36',
                             'Ar40Ar36','errAr40Ar36',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==2) {
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1] <- dat$Jval
-            mat[2,2] <- dat$Jerr
+            mat[2,1] <- dat$J
+            mat[2,2] <- dat$sJ
             mat[3,1:6] <- c('Ar39Ar40','errAr39Ar40',
                             'Ar36Ar40','errAr36Ar40',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==3) {
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1] <- dat$Jval
-            mat[2,2] <- dat$Jerr
+            mat[2,1] <- dat$J
+            mat[2,2] <- dat$sJ
             mat[3,1:7] <- c('Ar39Ar40','errAr39Ar40',
                             'Ar36Ar40','errAr36Ar40',
                             'Ar39Ar36','errAr39Ar36','Ar39')
@@ -195,8 +195,7 @@ server <- function(input){
         out
     }
 
-    # TODO: remove method and format arguments
-    selection2levels <- function(method=NULL, format=NULL) {
+    selection2levels <- function() {
         dat <- input$data
         nc <- as.numeric(dat$nc)
         values <- matrix(as.numeric(dat$data), ncol=nc)
@@ -212,8 +211,7 @@ server <- function(input){
         values[,oc]
     }
 
-    # TODO: remove method and format arguments
-    omitter <- function(flags=c('x','X'), method=NULL, format=NULL) {
+    omitter <- function(flags=c('x','X')) {
         o <- selection2omit()
         which(o%in%flags)
     }
@@ -284,6 +282,8 @@ server <- function(input){
         forJson <- list()
         forJson$action <- "results"
         results <- run(input$Rcommand)
+        print(typeof(results))
+        print(results)
         forJson$headers <- colnames(results)
         forJson$data <- as.matrix(results)
         forJson
