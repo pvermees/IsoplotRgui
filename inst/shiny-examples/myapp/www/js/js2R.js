@@ -564,7 +564,7 @@ function getRcommand(prefs){
 	    prefs.constants.lambda.K40[1] + ");"
 	break;
     case 'Th-Pb':
-	out += "IsoplotR::settings('iratio','Th232Pb204'," +
+	out += "IsoplotR::settings('iratio','Pb208Pb204'," +
 	    prefs.constants.iratio.Pb208Pb204[0] + "," +
 	    prefs.constants.iratio.Pb208Pb204[1] + ");"
 	out += "IsoplotR::settings('lambda','Th232'," +
