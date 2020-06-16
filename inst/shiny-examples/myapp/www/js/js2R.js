@@ -452,6 +452,7 @@ function getOptions(prefs){
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
 	case 'Pb-Pb':
+	    out += ",isochron=FALSE";
 	case 'U-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
