@@ -282,8 +282,6 @@ server <- function(input){
         forJson <- list()
         forJson$action <- "results"
         results <- run(input$Rcommand)
-        print(typeof(results))
-        print(results)
         forJson$headers <- colnames(results)
         forJson$data <- as.matrix(results)
         forJson

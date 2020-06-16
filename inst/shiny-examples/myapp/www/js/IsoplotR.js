@@ -10,49 +10,6 @@ $(function(){
 		});
 	}
 
-	function initialiseWebSocket() {
-	web_socket = new WebSocket("ws://" + window.location.host + "/websocket");
-	web_socket.onopen = function() {
-		web_socket.onmessage = processMessage
-		web_socket.onerror = function(event) {
-			console.error('WebSocket error:', event);
-		}
-		web_socket.onclose = function(event) {
-			initialiseWebSocket();
-		}
-	}
-	}
-
-	function processMessage(event) {
-	if (event.isTrusted) {
-		const data = JSON.parse(event.data);
-		switch (data.action[0]) {
-			case "results":
-				$('#OUTPUT').handsontable('populateFromArray', 0, 0,
-					data.data);
-				const hot = $('#OUTPUT').data('handsontable');
-				hot.updateSettings({
-					colHeaders: data.headers
-				});
-				break;
-			case "plot":
-				const img = document.createElement("img");
-				img.setAttribute("src", data.src[0]);
-				img.setAttribute("width", data.width[0]);
-				img.setAttribute("height", data.height[0]);
-				const myplot = document.getElementById("myplot");
-				myplot.textContent = '';
-				myplot.appendChild(img);
-				break;
-			case "download":
-				const downloader = document.getElementById("downloader");
-				downloader.setAttribute("download", data.filename[0]);
-				downloader.setAttribute("href", data.data[0]);
-				downloader.click();
-		}
-	}
-	}
-	
 	function initialise(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
@@ -101,7 +58,7 @@ $(function(){
 		}                     // IsoplotR has been initialised
 		});
 	});
-	initialiseWebSocket();
+	rrpc.initialize();
 	};
 
     function dnc(){
@@ -2457,16 +2414,26 @@ $(function(){
 	update();
 	$("#OUTPUT").hide();
 	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
-	const command = getRcommand(IsoplotR);
 	const plot = function() {
 		const myplot = document.getElementById("myplot")
-		web_socket.send(JSON.stringify({
-			action: "plot",
+		rrpc.send("plot", {
 			data: IsoplotR.data4server,
 			width: myplot.offsetWidth,
 			height: myplot.offsetHeight,
-			Rcommand: command
-		}));
+			Rcommand: getRcommand(IsoplotR)
+		}, function(result, err) {
+			if (err) {
+				console.error('Plot failed.', err);
+				return;
+			}
+			const img = document.createElement("img");
+			img.setAttribute("src", result.src[0]);
+			img.setAttribute("width", result.width[0]);
+			img.setAttribute("height", result.height[0]);
+			const myplot = document.getElementById("myplot");
+			myplot.textContent = '';
+			myplot.appendChild(img);
+		});
 	};
 	plot();
 	document.getElementsByTagName("BODY")[0].onresize = function() {
@@ -2484,30 +2451,56 @@ $(function(){
 	$("#OUTPUT").handsontable('deselectCell');
 	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#OUTPUT").show();
-	web_socket.send(JSON.stringify({
-		action: "run",
+	rrpc.send("run", {
 		data: IsoplotR.data4server,
 		Rcommand: getRcommand(IsoplotR)
-	}));
+	}, function(result, err) {
+		if (err) {
+			console.error('Run failed.', err);
+			return;
+		}
+		$('#OUTPUT').handsontable('populateFromArray', 0, 0,
+			result.data);
+		const hot = $('#OUTPUT').data('handsontable');
+		hot.updateSettings({
+			colHeaders: result.headers
+		});
+	});
     });
 
 	document.getElementById("PDF").onclick = function() {
 	update();
-	web_socket.send(JSON.stringify({
-		action: "pdf",
+	rrpc.send("pdf", {
 		data: IsoplotR.data4server,
 		Rcommand: getRcommand(IsoplotR)
-	}));
+	}, function(result, err) {
+		if (err) {
+			console.error('Get PDF failed.', err);
+			return;
+		}
+		const downloader = document.getElementById("downloader");
+		downloader.setAttribute("download", result.filename[0]);
+		downloader.setAttribute("href", result.data[0]);
+		downloader.click();
+	});
 	}
 
 	document.getElementById("CSV").onclick = function() {
-	update();
-	web_socket.send(JSON.stringify({
-		action: "csv",
-		data: IsoplotR.data4server,
-		Rcommand: getRcommand(IsoplotR)
-	}));
-	}
+		update();
+		rrpc.send("csv", {
+			data: IsoplotR.data4server,
+			Rcommand: getRcommand(IsoplotR)
+		}, function(result, err) {
+			if (err) {
+				console.error('Get CSV failed.', err);
+				return;
+			}
+			const downloader = document.getElementById("downloader");
+			downloader.setAttribute("download", result.filename[0]);
+			downloader.setAttribute("href", result.data[0]);
+			downloader.click();
+		});
+		}
 	
 	$("#home").click(function(){
 	localStorage.setItem("language",IsoplotR.settings.language);
@@ -2522,8 +2515,6 @@ $(function(){
 	var dictionary_id_fallback;
 	var dictionary_class_fallback;
 	var loaded_language = null;
-	var web_socket;
 	const timeout = {};
     initialise();
 });
-
