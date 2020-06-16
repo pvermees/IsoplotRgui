@@ -2197,7 +2197,7 @@ $(function(){
 
 	function getItemContextualHelp(key) {
 		return getItem(key, contextual_help, contextual_help_fallback,
-			"contextual_help.json");
+			"contextual_help");
 	}
 
 	function translateDictionaryId(element) {
