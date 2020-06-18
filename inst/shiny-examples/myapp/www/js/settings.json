@@ -1,22 +1,17 @@
 {
     "language": "en",
     "languages_supported" : [
-		{
-			"code": "en",
-			"prefix": "en",
-			"name": "English"
-		},
-		{
-        	"code": "zh_Hans",
-			"prefix": "zh",
-			"name": "中文"
-		},
-        {
-			"code": "es",
-			"prefix": "es",
-			"name": "Español"
-		}
-	],
+	{
+	    "code": "en",
+	    "prefix": "en",
+	    "name": "English"
+	},
+	{
+            "code": "zh_Hans",
+	    "prefix": "zh",
+	    "name": "中文"
+	}
+    ],
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
