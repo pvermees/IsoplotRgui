@@ -1,8 +1,21 @@
 {
     "language": "en",
+    "languages_supported" : [
+	{
+	    "code": "en",
+	    "prefix": "en",
+	    "name": "English"
+	},
+	{
+            "code": "zh_Hans",
+	    "prefix": "zh",
+	    "name": "中文"
+	}
+    ],
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
+    "translation_link": "http://lgc.es.ucl.ac.uk/weblate/translate/isoplotrgui/${FILENAME}/${LANGUAGE}?q=context%3A.${ID}",
     "par": {
 	"cex": 1
     },
@@ -94,7 +107,8 @@
 	"anchor":0,
 	"tanchor":0,
 	"sigdig": 2,
-	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"clabel": "",
 	"ticks": "auto"
     },
@@ -111,7 +125,8 @@
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",
 	"sigdig": 2,
-	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"model": 1,
 	"clabel": ""
     },
@@ -127,7 +142,8 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"growth": "FALSE",
 	"clabel": ""
     },
@@ -140,7 +156,8 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"clabel": ""
     },
     "radial": {
@@ -215,7 +232,7 @@
 	"pch": 21,
 	"pos": 0,
 	"cex": 5,
-        "col": "black",
+        "col": "'black'",
 	"bg": "white"
     },
     "helioplot": {
@@ -229,7 +246,8 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"fact": "auto",
-	"ellipsecol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"model": 1,
 	"clabel": ""
     },

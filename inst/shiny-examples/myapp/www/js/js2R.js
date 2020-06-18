@@ -32,7 +32,8 @@ function getOptions(prefs){
 	out += ",show.age=" + pdsettings.showage;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",common.Pb=" + gcsettings.commonPb;
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",levels=selection2levels(method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
 	out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
@@ -131,7 +132,8 @@ function getOptions(prefs){
 	out += ",format=" + gcsettings.format + ")";
 	out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
 	out += ",format=" + gcsettings.format + ")";
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
@@ -186,7 +188,8 @@ function getOptions(prefs){
 	} else {
 	    out += ",format=" + gcsettings.format + ")";
 	}
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	break;
     case 'average':
 	switch (geochronometer){
@@ -410,7 +413,8 @@ function getOptions(prefs){
 	out += ",levels=selection2levels(method='" + geochronometer + "')";
 	out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
 	out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
-	out += ",ellipse.col=" + pdsettings.ellipsecol;
+	out += ",ellipse.fill=" + pdsettings.ellipsefill;
+	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
@@ -448,6 +452,7 @@ function getOptions(prefs){
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
 	case 'Pb-Pb':
+	    out += ",isochron=FALSE";
 	case 'U-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
@@ -559,7 +564,7 @@ function getRcommand(prefs){
 	    prefs.constants.lambda.K40[1] + ");"
 	break;
     case 'Th-Pb':
-	out += "IsoplotR::settings('iratio','Th232Pb204'," +
+	out += "IsoplotR::settings('iratio','Pb208Pb204'," +
 	    prefs.constants.iratio.Pb208Pb204[0] + "," +
 	    prefs.constants.iratio.Pb208Pb204[1] + ");"
 	out += "IsoplotR::settings('lambda','Th232'," +

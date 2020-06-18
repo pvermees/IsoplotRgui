@@ -1,0 +1,7 @@
+{
+    "help": "XXhelp",
+    "home": "XXXXXXXXhome",
+    "options": "XXXXXXXXOptions",
+    "run": "XXXXXXXXRUN",
+    "translate_button": "<a class=\"translatelink\" href=\"${LINK}\" title=\"XXtranslate me!\">XXTRANSLATE</a>"
+}
