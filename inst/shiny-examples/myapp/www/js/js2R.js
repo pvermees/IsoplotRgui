@@ -98,9 +98,11 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discfilter;
 		out += ",cutoff.disc=discfilter(" +
-		    "option='" + gcsettings.discfilteroption + "', " +
-		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		    "option='" + opt + + "', " +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "), ";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -212,9 +214,11 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discfilter;
 		out += ",cutoff.disc=discfilter(" +
-		    "option='" + gcsettings.discfilteroption + "', " +
-		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		    "option='" + opt + + "', " +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "), ";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -313,9 +317,11 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discfilter;
 		out += ",cutoff.disc=discfilter(" +
-		    "option='" + gcsettings.discfilteroption + "', " +
-		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		    "option='" + opt + + "', " +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "), ";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -370,9 +376,11 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discfilter;
 		out += ",cutoff.disc=discfilter(" +
-		    "option='" + gcsettings.discfilteroption + "', " +
-		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		    "option=" + opt + "," +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
