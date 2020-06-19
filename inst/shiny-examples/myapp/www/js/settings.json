@@ -34,10 +34,10 @@
     },
     "U-Pb": {
 	"format": 2,
-	"type": 4,
+	"type": 5,
 	"cutoff76": 1100,
 	"cutoffdisc": 0,
-	"discoption": "c",
+	"discfilteroption": "c",
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,

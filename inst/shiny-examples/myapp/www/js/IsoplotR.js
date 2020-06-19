@@ -404,6 +404,11 @@ $(function(){
 	case 'U-Pb':
 	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
+	    if (set.type==4){
+		$('.show4UPbType4').show();
+	    } else {
+		$('.show4UPbType4').hide();
+	    }
 	    switch (set.format){
 	    case 1:
 		$('.show4UPb1').show();
