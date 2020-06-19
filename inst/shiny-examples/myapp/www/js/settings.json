@@ -10,6 +10,11 @@
             "code": "zh_Hans",
 	    "prefix": "zh",
 	    "name": "中文"
+	},
+        {
+	    "code": "es",
+	    "prefix": "es",
+	    "name": "Español"
 	}
     ],
     "geochronometer": "U-Pb",
@@ -32,6 +37,7 @@
 	"type": 4,
 	"cutoff76": 1100,
 	"cutoffdisc": 0,
+	"discoption": "c",
 	"mindisc": -15,
 	"maxdisc": 5,
 	"commonPb": 0,

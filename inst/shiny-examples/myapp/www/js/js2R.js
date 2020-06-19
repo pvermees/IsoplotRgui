@@ -97,14 +97,15 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		out += ",cutoff.disc=discfilter(" +
+		    "option='" + gcsettings.discoption + "', " +
+		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -210,14 +211,15 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		out += ",cutoff.disc=discfilter(" +
+		    "option='" + gcsettings.discoption + "', " +
+		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -310,14 +312,15 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		out += ",cutoff.disc=discfilter(" +
+		    "option='" + gcsettings.discoption + "', " +
+		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -366,14 +369,15 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		out += ",cutoff.disc=discfilter(" +
+		    "option='" + gcsettings.discoption + "', " +
+		    "cutoff=c(" + gcsettings.mindisc + "," + gcsettings.maxdisc + "), ";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
