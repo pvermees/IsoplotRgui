@@ -24,16 +24,26 @@
     <option class="translate" id="discordance_filter_before_common_Pb" value=1></option>
     <option class="translate" id="discordance_filter_after_common_Pb" value=2></option>
   </select>
+  <span class="show4cutoffdisc">
+    &nbsp;<help class="translate" id="help_discfilter"></help>
+    <select id="discfilter" onchange="$.chooseDiscFilter();">
+      <option class="translate" id="discfilter_t" value=0></option>
+      <option class="translate" id="discfilter_r" value=1></option>
+      <option class="translate" id="discfilter_sk" value=2></option>
+      <option class="translate" id="discfilter_a" value=3></option>
+      <option class="translate" id="discfilter_c" value=4></option>
+    </select>
+  </span>
   <p></p>
 </div>
 
 <table>
   <tr hidden class="show4UPb show4cutoffdisc">
     <td>&nbsp;<help class="translate" id="help_mindisc"></help></td>
-    <td><input type="text" id="mindisc">%</td></tr>
+    <td><input type="text" id="mindisc"></td></tr>
   <tr hidden class="show4UPb show4cutoffdisc">
     <td>&nbsp;<help class="translate" id="help_maxdisc"></help></td>
-    <td><input type="text" id="maxdisc">%</td></tr>
+    <td><input type="text" id="maxdisc"></td></tr>
   <tr hidden class="show4UPb show4UPbType4">
     <td>&nbsp;<help id="help_cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
     <td><input type="text" id="cutoff76">Ma</td></tr>

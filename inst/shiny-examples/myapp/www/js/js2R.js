@@ -100,9 +100,9 @@ function getOptions(prefs){
 	    if (gcsettings.cutoffdisc!=0){
 		var opt = gcsettings.discfilter;
 		out += ",cutoff.disc=discfilter(" +
-		    "option='" + opt + + "', " +
+		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt] +
-		    "," + gcsettings.maxdisc[opt] + "), ";
+		    "," + gcsettings.maxdisc[opt] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -216,9 +216,9 @@ function getOptions(prefs){
 	    if (gcsettings.cutoffdisc!=0){
 		var opt = gcsettings.discfilter;
 		out += ",cutoff.disc=discfilter(" +
-		    "option='" + opt + + "', " +
+		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt] +
-		    "," + gcsettings.maxdisc[opt] + "), ";
+		    "," + gcsettings.maxdisc[opt] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -319,9 +319,9 @@ function getOptions(prefs){
 	    if (gcsettings.cutoffdisc!=0){
 		var opt = gcsettings.discfilter;
 		out += ",cutoff.disc=discfilter(" +
-		    "option='" + opt + + "', " +
+		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt] +
-		    "," + gcsettings.maxdisc[opt] + "), ";
+		    "," + gcsettings.maxdisc[opt] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
