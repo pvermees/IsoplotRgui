@@ -447,7 +447,7 @@ function getOptions(prefs){
 	break;
     case 'ages':
 	if (geochronometer == 'U-Pb')
-	    out += ",show.p=" + pdsettings.show_p;
+	    out += ",discordance=" + pdsettings.discordance;
 	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
 	switch (geochronometer){

@@ -828,11 +828,8 @@ $(function(){
 	    }
 	    break;
 	case 'ages':
-	    if (pd.show_p=='TRUE'){
-		$('.show4show_p').show();
-	    } else {
-		$('.show4show_p').hide();
-	    }
+	    $('#discordance option[value='+pd.discordance+']').
+		prop('selected', 'selected');
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
@@ -1252,7 +1249,8 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		$('#show_p').prop('checked',set.show_p=='TRUE');
+		$('#discordance option[value='+set.discordance+']').
+		    prop('selected', 'selected');
 	    }
 	    if (geochronometer != 'U-Th-He') {
 		$('#age-exterr').prop('checked',set.exterr=='TRUE');
@@ -1648,7 +1646,7 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		pdsettings.show_p = truefalse('#show_p');
+		pdsettings.discordance = $('#discordance').val();
 	    }
 	    if (geochronometer != 'U-Th-He'){
 		pdsettings.exterr = truefalse('#age-exterr');
@@ -2461,4 +2459,3 @@ $(function(){
     var loaded_language = null;
     initialise();
 });
-

@@ -258,7 +258,7 @@
 	"clabel": ""
     },
     "ages": {
-	"show_p": "FALSE",
+	"discordance": "NA",
 	"exterr": "FALSE",
 	"sigdig": 2
     }
