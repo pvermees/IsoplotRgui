@@ -37,7 +37,7 @@
 	"type": 5,
 	"cutoff76": 1100,
 	"cutoffdisc": 0,
-	"discfilter": 4,
+	"discoption": 4,
 	"mindisc": [-5,-5,-0.01,-1,-1],
 	"maxdisc": [50,15,0.1,5,5],
 	"commonPb": 0,
@@ -258,7 +258,8 @@
 	"clabel": ""
     },
     "ages": {
-	"discordance": "NA",
+	"showdisc": 0,
+	"discoption": "c",
 	"exterr": "FALSE",
 	"sigdig": 2
     }

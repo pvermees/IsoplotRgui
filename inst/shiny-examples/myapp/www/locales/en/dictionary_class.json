@@ -11,5 +11,6 @@
     "input": "Input format:",
     "pch": "Plot character:",
     "exterr": "Propagate external uncertainties?",
+    "type": "Type:",
     "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)"
 }

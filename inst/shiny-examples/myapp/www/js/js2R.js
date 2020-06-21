@@ -98,7 +98,7 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
-		var opt = gcsettings.discfilter;
+		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt] +
@@ -214,7 +214,7 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
-		var opt = gcsettings.discfilter;
+		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt] +
@@ -317,7 +317,7 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
-		var opt = gcsettings.discfilter;
+		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt] +
@@ -376,7 +376,7 @@ function getOptions(prefs){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
-		var opt = gcsettings.discfilter;
+		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt] +
@@ -446,8 +446,18 @@ function getOptions(prefs){
 	out += ",hide=c(" + gcsettings.hide + ')';
 	break;
     case 'ages':
-	if (geochronometer == 'U-Pb')
-	    out += ",discordance=" + pdsettings.discordance;
+	if (geochronometer == 'U-Pb'){
+	    out += ",discordance=discfilter(option=";
+	    if (pdsettings.showdisc==0){
+		out += "NA)";
+	    } else if (pdsettings.showdisc==1){
+		out += pdsettings.discoption;
+		out += ",before=TRUE)";
+	    } else {
+		out += pdsettings.discoption;
+		out += ",before=FALSE)";
+	    }
+	}
 	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
 	switch (geochronometer){

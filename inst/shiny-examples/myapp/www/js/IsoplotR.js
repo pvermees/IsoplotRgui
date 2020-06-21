@@ -828,7 +828,16 @@ $(function(){
 	    }
 	    break;
 	case 'ages':
-	    $('#discordance option[value='+pd.discordance+']').
+	    switch (set.showdisc){
+	    case 0:
+		$(".show4discordance").hide();
+		break;
+	    case 1:
+	    case 2:
+		$(".show4discordance").show();
+		break;
+	    }
+	    $('#discoption option[value='+pd.discoption+']').
 		prop('selected', 'selected');
 	    break;
 	case 'evolution':
@@ -890,7 +899,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#discordance-filter option[value='+set.cutoffdisc+']').
 		prop('selected', 'selected');
-	    $('#discfilter option[value='+set.discfilter+']').
+	    $('#discoption option[value='+set.discoption+']').
 		prop('selected', 'selected');	    
 	    $('#U48-diseq option[value='+set.U48[1]+']').
 		prop('selected', 'selected');
@@ -924,8 +933,8 @@ $(function(){
 	    $('#LambdaPa231').val(cst.lambda.Pa231[0]);
 	    $('#errLambdaPa231').val(cst.lambda.Pa231[1]);
 	    $('#cutoff76').val(set.cutoff76);
-	    $('#mindisc').val(set.mindisc[set.discfilter]);
-	    $('#maxdisc').val(set.maxdisc[set.discfilter]);
+	    $('#mindisc').val(set.mindisc[set.discoption]);
+	    $('#maxdisc').val(set.maxdisc[set.discoption]);
 	    $('#U48').val(set.U48[0]);
 	    $('#ThU').val(set.ThU[0]);
 	    $('#RaU').val(set.RaU[0]);
@@ -1249,7 +1258,9 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		$('#discordance option[value='+set.discordance+']').
+		$('#discordance option[value='+set.showdisc+']').
+		    prop('selected', 'selected');
+		$('#discoption option[value='+set.discoption+']').
 		    prop('selected', 'selected');
 	    }
 	    if (geochronometer != 'U-Th-He') {
@@ -1326,8 +1337,8 @@ $(function(){
 		gcsettings.type = getOption("#UPb-age-type");
 		gcsettings.cutoff76 = getNumber('#cutoff76');
 		gcsettings.cutoffdisc = getOption("#discordance-filter");
-		var opt = getOption("#discfilter");
-		gcsettings.discfilter = opt;
+		var opt = getOption("#discoption");
+		gcsettings.discoption = opt;
 		gcsettings.mindisc[opt] = getNumber('#mindisc');
 		gcsettings.maxdisc[opt] = getNumber('#maxdisc');
 	    }
@@ -1646,7 +1657,8 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		pdsettings.discordance = $('#discordance').val();
+		pdsettings.showdisc = $('#discordance').val();
+		pdsettings.discoption = $('#discoption').val();
 	    }
 	    if (geochronometer != 'U-Th-He'){
 		pdsettings.exterr = truefalse('#age-exterr');
@@ -2256,9 +2268,9 @@ $(function(){
     }
 
     $.chooseDiscFilter = function(){
-	var opt = getOption("#discfilter");
+	var opt = getOption("#discoption");
 	var set = IsoplotR.settings['U-Pb'];
-	set.discfilter = opt;
+	set.discoption = opt;
 	$('#mindisc').val(set.mindisc[opt]);
 	$('#maxdisc').val(set.maxdisc[opt]);
     }    
