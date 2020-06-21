@@ -259,7 +259,7 @@
     },
     "ages": {
 	"showdisc": 0,
-	"discoption": "c",
+	"discoption": 4,
 	"exterr": "FALSE",
 	"sigdig": 2
     }
