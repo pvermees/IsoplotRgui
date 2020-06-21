@@ -828,7 +828,7 @@ $(function(){
 	    }
 	    break;
 	case 'ages':
-	    switch (set.showdisc){
+	    switch (pd.showdisc){
 	    case 0:
 		$(".show4discordance").hide();
 		break;
@@ -1258,7 +1258,7 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		$('#discordance option[value='+set.showdisc+']').
+		$('#showdisc option[value='+set.showdisc+']').
 		    prop('selected', 'selected');
 		$('#discoption option[value='+set.discoption+']').
 		    prop('selected', 'selected');
@@ -1657,7 +1657,7 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		pdsettings.showdisc = $('#discordance').val();
+		pdsettings.showdisc = getOption('#showdisc');
 		pdsettings.discoption = $('#discoption').val();
 	    }
 	    if (geochronometer != 'U-Th-He'){
