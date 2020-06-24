@@ -97,14 +97,17 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discoption;
+		out += ",cutoff.disc=discfilter(" +
+		    "option=" + opt + "," +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "),";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -210,14 +213,17 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discoption;
+		out += ",cutoff.disc=discfilter(" +
+		    "option=" + opt + "," +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "),";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -310,14 +316,17 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discoption;
+		out += ",cutoff.disc=discfilter(" +
+		    "option=" + opt + "," +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "),";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -366,14 +375,17 @@ function getOptions(prefs){
 	    if (type==4) {
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
-	    if (gcsettings.cutoffdisc==1){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",TRUE)";
-	    } else if (gcsettings.cutoffdisc==2){
-		out += ",cutoff.disc=list(" +
-		    gcsettings.mindisc + "," + gcsettings.maxdisc + ",FALSE)";
-	    } else {
-		out += ",cutoff.disc=NA";
+	    if (gcsettings.cutoffdisc!=0){
+		var opt = gcsettings.discoption;
+		out += ",cutoff.disc=discfilter(" +
+		    "option=" + opt + "," +
+		    "cutoff=c(" + gcsettings.mindisc[opt] +
+		    "," + gcsettings.maxdisc[opt] + "),";
+		if (gcsettings.cutoffdisc==1){
+		    out += "before=TRUE)";
+		} else {
+		    out += "before=FALSE)";
+		}
 	    }
 	case 'Pb-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -434,8 +446,18 @@ function getOptions(prefs){
 	out += ",hide=c(" + gcsettings.hide + ')';
 	break;
     case 'ages':
-	if (geochronometer == 'U-Pb')
-	    out += ",show.p=" + pdsettings.show_p;
+	if (geochronometer == 'U-Pb'){
+	    out += ",discordance=discfilter(option=";
+	    if (pdsettings.showdisc==0){
+		out += "NA)";
+	    } else if (pdsettings.showdisc==1){
+		out += pdsettings.discoption;
+		out += ",before=TRUE)";
+	    } else {
+		out += pdsettings.discoption;
+		out += ",before=FALSE)";
+	    }
+	}
 	if (geochronometer != 'U-Th-He')
 	    out += ",exterr=" + pdsettings.exterr;
 	switch (geochronometer){
@@ -452,6 +474,7 @@ function getOptions(prefs){
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;
 	case 'Pb-Pb':
+	    out += ",isochron=FALSE";
 	case 'U-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
 	    break;
@@ -563,7 +586,7 @@ function getRcommand(prefs){
 	    prefs.constants.lambda.K40[1] + ");"
 	break;
     case 'Th-Pb':
-	out += "IsoplotR::settings('iratio','Th232Pb204'," +
+	out += "IsoplotR::settings('iratio','Pb208Pb204'," +
 	    prefs.constants.iratio.Pb208Pb204[0] + "," +
 	    prefs.constants.iratio.Pb208Pb204[1] + ");"
 	out += "IsoplotR::settings('lambda','Th232'," +
