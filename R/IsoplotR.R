@@ -35,23 +35,20 @@ IsoplotR <- function(host='0.0.0.0', port=8080) {
     if (appDir == "") {
         stop("Could not find shinyApp directory. Try re-installing `IsoplotRgui`.", call. = FALSE)
     }
-    s <- httpuv::startServer(host=host, port=port,
-        app=list(
-            staticPaths = list("/" = appDir),
-            onWSOpen = rrpc(list(
-                run=function(p) {
-                    serverFn(p)$runner()
-                },
-                plot=function(p) {
-                    serverFn(p)$plotter()
-                },
-                pdf=function(p) {
-                    serverFn(p)$getPdf()
-                },
-                csv=function(p) {
-                    serverFn(p)$getCsv("ages")
-                }
-            ))
+    s <- rrpc::rrpcServer(host=host, port=port, appDir=appDir, root="/",
+        interface=list(
+            run=function(data, Rcommand) {
+                serverFn(data)$runner(Rcommand)
+            },
+            plot=function(data, width, height, Rcommand) {
+                serverFn(data)$plotter(width, height, Rcommand)
+            },
+            pdf=function(data, Rcommand) {
+                serverFn(data)$getPdf(Rcommand)
+            },
+            csv=function(data, Rcommand) {
+                serverFn(data)$getCsv(Rcommand, "ages")
+            }
         )
     )
     cat(sprintf("Listening on %s:%d\n", host, port))

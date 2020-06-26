@@ -2416,7 +2416,7 @@ $(function(){
 	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
 	const plot = function() {
 		const myplot = document.getElementById("myplot")
-		rrpc.send("plot", {
+		rrpc.call("plot", {
 			data: IsoplotR.data4server,
 			width: myplot.offsetWidth,
 			height: myplot.offsetHeight,
@@ -2451,7 +2451,7 @@ $(function(){
 	$("#OUTPUT").handsontable('deselectCell');
 	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#OUTPUT").show();
-	rrpc.send("run", {
+	rrpc.call("run", {
 		data: IsoplotR.data4server,
 		Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
@@ -2470,7 +2470,7 @@ $(function(){
 
 	document.getElementById("PDF").onclick = function() {
 	update();
-	rrpc.send("pdf", {
+	rrpc.call("pdf", {
 		data: IsoplotR.data4server,
 		Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
@@ -2487,7 +2487,7 @@ $(function(){
 
 	document.getElementById("CSV").onclick = function() {
 		update();
-		rrpc.send("csv", {
+		rrpc.call("csv", {
 			data: IsoplotR.data4server,
 			Rcommand: getRcommand(IsoplotR)
 		}, function(result, err) {

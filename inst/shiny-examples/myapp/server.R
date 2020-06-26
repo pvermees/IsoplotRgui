@@ -1,10 +1,9 @@
 LETTERS <- unlist(lapply(c(utf8ToInt("A"):utf8ToInt("Z")),intToUtf8))
 
-server <- function(input){
+server <- function(dat){
 
     selection2data <- function(method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
                                Th02=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
-        dat <- input$data
         nr <- as.numeric(dat$nc)
         nc <- as.numeric(dat$nc)
         values <- matrix(as.character(dat$data), ncol=nc)
@@ -196,7 +195,6 @@ server <- function(input){
     }
 
     selection2levels <- function() {
-        dat <- input$data
         nc <- as.numeric(dat$nc)
         values <- matrix(as.numeric(dat$data), ncol=nc)
         lc <- nc - 1
@@ -204,7 +202,6 @@ server <- function(input){
     }
 
     selection2omit <- function() {
-        dat <- input$data
         nc <- as.numeric(dat$nc)
         values <- matrix(as.numeric(dat$data), ncol=nc)
         oc <- nc
@@ -254,53 +251,44 @@ server <- function(input){
         out
     }
 
-    # returns a base64 encoded plot
-    makePlot <- function(filename, device, mimeType, width, height) {
-        filenameBits <- unlist(strsplit(filename, '.'))
-        tempFilename <- tempfile(pattern=filenameBits[1], fileext=filenameBits[2])
-        device(file=tempFilename, width=width, height=height)
-        run(input$Rcommand)
-        dev.off()
-        fileSize <- file.size(tempFilename)
-        raw <- readBin(tempFilename, what="raw", n=fileSize)
-        paste0("data:", mimeType, ";base64,", jsonlite::base64_enc(raw))
-    }
-
     fns <-list()
 
-    fns$plotter <- function() {
+    fns$plotter <- function(width, height, Rcommand) {
         forJson <- list()
         forJson$action <- "plot"
-        forJson$width <- input$width
-        forJson$height <- input$height
-        forJson$src <- makePlot("IsoplotR.png", png,
-                "image/png", forJson$width, forJson$height)
+        forJson$width <- width
+        forJson$height <- height
+        forJson$src <- rrpc::encodePlotAsPng(width, height, function() {
+            run(Rcommand)
+        })
         forJson
     }
 
-    fns$runner <- function() {
+    fns$runner <- function(Rcommand) {
         forJson <- list()
         forJson$action <- "results"
-        results <- run(input$Rcommand)
+        results <- run(Rcommand)
         forJson$headers <- colnames(results)
         forJson$data <- as.matrix(results)
         forJson
     }
 
-    fns$getPdf <- function() {
+    fns$getPdf <- function(Rcommand) {
         forJson <- list()
         forJson$action <- "download"
         forJson$filename <- "IsoplotR.pdf"
-        results <- run(input$Rcommand)
-        forJson$data <- makePlot(forJson$filename, pdf, "application/pdf", 7, 7)
+        results <- run(Rcommand)
+        forJson$data <- rrpc::encodePlotAsPdf(7, 7, function() {
+            run(Rcommand)
+        })
         forJson
     }
 
-    fns$getCsv <- function(name) {
+    fns$getCsv <- function(Rcommand, name) {
         forJson <- list()
         forJson$action <- "download"
         forJson$filename <- paste0(name, ".csv")
-        results <- run(input$Rcommand)
+        results <- run(Rcommand)
         raw <- capture.output(write.csv(results, stdout()))
         forJson$data <- paste0(
             "data:text/csv;base64,",
