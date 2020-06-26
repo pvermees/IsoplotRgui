@@ -35,49 +35,67 @@ at the command prompt. Alternatively, the program can also be accessed online vi
 
 ## Setting up your own online mirror
 
-The following instructions assume that you have access to a **Linux**
-server with **git** and **nginx** installed on it.
+On a Linux machine:
 
-1. Install **R** and **shiny-server** using the instructions provided at [https://www.rstudio.com/products/shiny/download-server](https://www.rstudio.com/products/shiny/download-server)
-
-2. Save the following code in a file called
-``/srv/shiny-server/IsoplotR.sh``:
+Copy following into a new file `/etc/systemd/system/isoplotr.service`, edited
+as appropriate:
 
 ```
-# i. update IsoplotR from GitHub:
-sudo su - -c "R -e \"devtools::install_github('pvermees/IsoplotR',force=TRUE)\""
+[Unit]
+Description=IsoplotR
+After=network.target
 
-# ii. clone IsoplotRgui from GitHub to /tmp:
-cd /tmp
-git clone https://github.com/pvermees/IsoplotRgui
+[Service]
+Type=simple
+User=myuser
+ExecStart=Rscript --vanilla -e "IsoplotRgui::IsoplotR(port=3838)"
+Restart=always
 
-# iii. copy the app to the shiny-server directory:
-cd IsoplotRgui/inst/shiny-examples/myapp
-sudo cp -R www /srv/shiny-server/IsoplotR
-sudo cp -R server.R /srv/shiny-server/IsoplotR
-
-# iv. clean up and restart shiny-server
-sudo rm -rf /tmp/IsoplotRgui
-sudo systemctl restart shiny-server
+[Install]
+WantedBy=multi-user.target
 ```
 
-3. Run the ``IsoplotR.sh`` script by entering the following code at the command prompt:
+Change the word on the right of `User=` to your login name. It can be
+the name of any user on your system who has installed the `IsoplotRgui`
+package; the version they have installed is the one that will be used.
 
+Also (if you like) on the `ExecStart=` line, change the number to the
+right of `port=` to be the port you would like to run **IsoplotR** on.
+
+Then to make IsoplotR start on system boot type:
+
+```sh
+sudo systemctl enable isoplotr
 ```
-cd /srv/shiny-server
-mkdir IsoplotR
-chmod 755 IsoplotR.sh
-./IsoplotR.sh
+
+Of course you can use other `systemctl` commands such as `start`, `stop`,
+`restart` (to control whether it is running) and `disable` (to stop it from
+running automatically on boot).
+
+You can view the logs from this process at any time using:
+
+```sh
+sudo journalctl -u isoplotr
 ```
 
-**IsoplotR** should now be available at http://localhost:3838/IsoplotR. You will need to set up port forwarding to release it over the Internet.
+4. To ensure that **IsoplotR** is up-to-date, it is a good idea to set up auto-updating.
 
-4. To ensure that **IsoplotR** is up-to-date, it is a good idea to set up auto-updating. One way to do this is with **crontab**. First enter ``crontab -e`` at the command prompt and then enter:
+Put the following in a script `updateIsoplotR.sh`:
+
+```sh
+Rscript -e "devtools::install_github('pvermees/IsoplotR',force=TRUE)"
+Rscript -e "devtools::install_github('pvermees/IsoplotRgui',force=TRUE)"
+sudo systemctl restart isoplotr
+```
+
+Ensure it is executable with `chmod +x updateIsoplotR.sh`.
+
+One way to do this is with **crontab**. First enter ``crontab -e`` at the command prompt and then enter:
 
 ```
 # Minute    Hour   Day of Month    Month            Day of Week           Command
 # (0-59)   (0-23)    (1-31)    (1-12 or Jan-Dec) (0-6 or Sun-Sat)
-    0        0         *             *                  0        /srv/shiny-server/IsoplotR.sh
+    0        0         *             *                  0        /path/to/updateIsoplotR.sh
 ```
 
 which will automatically synchronise **IsoplotR** and **IsoplotRgui** with **GitHub** on every Sunday.

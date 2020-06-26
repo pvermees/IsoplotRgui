@@ -3,7 +3,7 @@
     "description": "Front end for IsoplotR",
     "private": true,
     "scripts": {
-        "server": "Rscript --vanilla test/start-gui.R 50055",
+        "server": "Rscript --vanilla build/start-gui.R 50055",
         "install-r-dependencies": "Rscript build/install.R",
         "test": "mocha test",
         "generate-translation-files": "node build/degather_translations.js",

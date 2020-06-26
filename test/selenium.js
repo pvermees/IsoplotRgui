@@ -11,7 +11,7 @@ describe('IsoplotRgui', function() {
     let driver;
 
     before(function() {
-        rProcess = spawn('Rscript', ['test/start-gui.R', '50054']);
+        rProcess = spawn('Rscript', ['build/start-gui.R', '50054']);
         driver = new Builder().forBrowser('firefox').build();
     });
 
