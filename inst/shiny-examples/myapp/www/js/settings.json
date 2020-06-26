@@ -1,22 +1,22 @@
 {
     "language": "en",
     "languages_supported" : [
-		{
-			"code": "en",
-			"prefix": "en",
-			"name": "English"
-		},
-		{
-        	"code": "zh_Hans",
-			"prefix": "zh",
-			"name": "中文"
-		},
+	{
+	    "code": "en",
+	    "prefix": "en",
+	    "name": "English"
+	},
+	{
+            "code": "zh_Hans",
+	    "prefix": "zh",
+	    "name": "中文"
+	},
         {
-			"code": "es",
-			"prefix": "es",
-			"name": "Español"
-		}
-	],
+	    "code": "es",
+	    "prefix": "es",
+	    "name": "Español"
+	}
+    ],
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
@@ -34,11 +34,12 @@
     },
     "U-Pb": {
 	"format": 2,
-	"type": 4,
+	"type": 5,
 	"cutoff76": 1100,
 	"cutoffdisc": 0,
-	"mindisc": -15,
-	"maxdisc": 5,
+	"discoption": 4,
+	"mindisc": [-5,-5,-0.01,-1,-1],
+	"maxdisc": [50,15,0.1,5,5],
 	"commonPb": 0,
 	"diseq": "FALSE",
 	"U48": [1,0],
@@ -257,7 +258,8 @@
 	"clabel": ""
     },
     "ages": {
-	"show_p": "FALSE",
+	"showdisc": 0,
+	"discoption": 4,
 	"exterr": "FALSE",
 	"sigdig": 2
     }
