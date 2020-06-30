@@ -10,13 +10,13 @@ geochronology.
 
 ```
 install.packages('devtools')
-install.packages('shiny')
 ```
 
 2. The latest version of **IsoplotR** and **IsoplotRgui** can both be installed from **GitHub** with the following commands:
 
 ```
 library(devtools)
+install_github('tim-band/rrpc')
 install_github('pvermees/IsoplotR')
 install_github('pvermees/IsoplotRgui')
 ```
@@ -35,10 +35,43 @@ at the command prompt. Alternatively, the program can also be accessed online vi
 
 ## Setting up your own online mirror
 
-On a Linux machine:
+Here is a way to set up a mirror on a Linux machine.
 
-Copy following into a new file `/etc/systemd/system/isoplotr.service`, edited
-as appropriate:
+### Create a user to run IsoplotR
+
+It can be advantageous to have a non-human user running the applications
+such as IsoplotR that you are exposing over the web so as to limit any damage
+should one behave badly. For our purposes we will create one called
+`wwwrunner`:
+
+```sh
+sudo useradd -mr wwwrunner
+```
+
+### Set up IsoplotRgui for this user
+
+The version of IsoplotR and IsoplotRgui that gets run will be the
+version that our new user `wwwrunner` has installed. Begin with a
+file that installs the latest version of `IsoplotR` and `IsoplotRgui`.
+
+Copy the following script into a new file at `/usr/local/sbin/update_isoplotr`:
+
+Now we will prepare for running this script:
+
+```sh
+chmod +x /usr/local/sbin/update_isoplotr
+sudo -u wwwrunner sh -c "mkdir ~/R"
+sudo -u wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
+sudo -u wwwrunner Rscript -e "install.packages('devtools')"
+sudo -u wwwrunner Rscript -e "install.packages('rrpc')"
+sudo -u wwwrunner Rscript -e "devtools::install_github('tim-band/rrpc')"
+sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/isoplotr')"
+sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/isoplotrgui')"
+```
+
+### Create a systemd service for IsoplotR
+
+Copy following into a new file `/etc/systemd/system/isoplotr.service`:
 
 ```
 [Unit]
@@ -47,20 +80,16 @@ After=network.target
 
 [Service]
 Type=simple
-User=myuser
-ExecStart=Rscript --vanilla -e "IsoplotRgui::IsoplotR(port=3838)"
+User=wwwrunner
+ExecStart=Rscript -e "IsoplotRgui::IsoplotR(port=3838)"
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Change the word on the right of `User=` to your login name. It can be
-the name of any user on your system who has installed the `IsoplotRgui`
-package; the version they have installed is the one that will be used.
-
-Also (if you like) on the `ExecStart=` line, change the number to the
-right of `port=` to be the port you would like to run **IsoplotR** on.
+Note we are setting `User=wwwrunner` to use our new user and running
+it on port 3838.
 
 Then to make IsoplotR start on system boot type:
 
@@ -78,11 +107,47 @@ You can view the logs from this process at any time using:
 sudo journalctl -u isoplotr
 ```
 
+### Expose IsoplotR with nginx
+
+To serve this in nginx you can add the following file at `/etc/nginx/sites-enabled/default`.
+If there is one present, you will need to add our `location /isoplotr/` block to the
+appropriate `server` block in yours:
+
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+
+    index index.html
+
+    server_name _;
+
+    location /isoplotr/ {
+        proxy_pass http://127.0.0.1:3838/;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+    }
+}
+```
+
+Now you can start this all up with:
+
+```sh
+sudo systemctl start isoplotr
+sudo systemctl restart nginx
+```
+
+and **IsoplotR** will be available on `http://localhost/isoplotr`
+
 4. To ensure that **IsoplotR** is up-to-date, it is a good idea to set up auto-updating.
 
 Put the following in a script `updateIsoplotR.sh`:
 
 ```sh
+Rscript -e "install.packages('rrpc')"
 Rscript -e "devtools::install_github('pvermees/IsoplotR',force=TRUE)"
 Rscript -e "devtools::install_github('pvermees/IsoplotRgui',force=TRUE)"
 sudo systemctl restart isoplotr
@@ -90,7 +155,7 @@ sudo systemctl restart isoplotr
 
 Ensure it is executable with `chmod +x updateIsoplotR.sh`.
 
-One way to do this is with **crontab**. First enter ``crontab -e`` at the command prompt and then enter:
+One way to do this is with **crontab**. First enter ``crontab -u wwwrunner -e`` at the command prompt and then enter:
 
 ```
 # Minute    Hour   Day of Month    Month            Day of Week           Command
