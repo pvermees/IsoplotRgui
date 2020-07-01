@@ -10,11 +10,6 @@
             "code": "zh_Hans",
 	    "prefix": "zh",
 	    "name": "中文"
-	},
-        {
-	    "code": "es",
-	    "prefix": "es",
-	    "name": "Español"
 	}
     ],
     "geochronometer": "U-Pb",
