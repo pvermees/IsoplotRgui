@@ -111,6 +111,7 @@
     "help_log": "Take logarithms?",
     "help_logratio": "Logratio plot?",
     "help_showcentralcomp": "Show central composition?",
+    "help_helioplot_models": "Model:",
     "helioplot_model_1": "1. Weighted mean",
     "helioplot_model_2": "2. Unweighted mean",
     "helioplot_model_3": "3. Weighted mean with overdispersion",
