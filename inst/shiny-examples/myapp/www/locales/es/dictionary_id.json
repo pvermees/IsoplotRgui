@@ -69,7 +69,6 @@
     "ArAr_format_2": "2. Inverso",
     "ArAr_format_3": "3. Tres tasas",
     "help_LambdaK40": "Constante de decaimiento de <sup>40</sup>K :",
-    "help_show_p": "Mostrar el p-value para concordancia?",
     "help_RbSr_i2i": "Usar el intercept del isochron como proporción inicial de <sup>87</sup>Sr/<sup>86</sup>Sr ?",
     "help_Ar40Ar36": "Proporción de  <sup>40</sup>Ar/<sup>36</sup>Ar atmosférico:",
     "help_ArAr_i2i": "Usar el intercept del isochron como proporción inicial de  <sup>40</sup>Ar/<sup>36</sup>Ar ?",
