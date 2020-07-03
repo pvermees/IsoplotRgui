@@ -18,7 +18,7 @@ function falsetrue(id){
 }
 
 function getOption(id){
-    var val = $('option:selected', $(id)).attr('value');
+    var val = $('option:selected', $(id)).prop('value');
     var out = isNaN(val) ? val : parseInt(val);
     return(out);
 }
