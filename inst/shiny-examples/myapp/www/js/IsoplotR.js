@@ -2447,12 +2447,21 @@ $(function(){
 	});
     });
     
+	function displayError(message, err) {
+		console.error(message, err);
+		var par = document.createElement("p");
+		par.setAttribute("class", "ploterror"); 
+		par.textContent = err;
+		var myplot = document.getElementById("myplot");
+		myplot.textContent = '';
+		myplot.appendChild(par);
+}
+
     $("#PLOT").click(function(){
 	update();
 	$("#OUTPUT").hide();
 	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
-	const plot = function() {
-		const myplot = document.getElementById("myplot")
+	var plot = function() {
 		rrpc.call("plot", {
 			data: IsoplotR.data4server,
 			width: myplot.offsetWidth,
@@ -2460,14 +2469,14 @@ $(function(){
 			Rcommand: getRcommand(IsoplotR)
 		}, function(result, err) {
 			if (err) {
-				console.error('Plot failed.', err);
+				displayError("Plot failed.", err);
 				return;
 			}
-			const img = document.createElement("img");
+			var img = document.createElement("img");
 			img.setAttribute("src", result.src[0]);
 			img.setAttribute("width", result.width[0]);
 			img.setAttribute("height", result.height[0]);
-			const myplot = document.getElementById("myplot");
+			var myplot = document.getElementById("myplot");
 			myplot.textContent = '';
 			myplot.appendChild(img);
 		});
@@ -2481,7 +2490,7 @@ $(function(){
 	};
     });
 
-    $("#RUN").click(function(){
+	$("#RUN").click(function(){
 	update();
 	$("#myplot").empty();
 	$("#OUTPUT").handsontable('clear');
@@ -2493,7 +2502,7 @@ $(function(){
 		Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
 		if (err) {
-			console.error('Run failed.', err);
+			displayError('Run failed.', err);
 			return;
 		}
 		$('#OUTPUT').handsontable('populateFromArray', 0, 0,
@@ -2512,7 +2521,7 @@ $(function(){
 		Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
 		if (err) {
-			console.error('Get PDF failed.', err);
+			displayError('Get PDF failed.', err);
 			return;
 		}
 		const downloader = document.getElementById("downloader");
@@ -2529,7 +2538,7 @@ $(function(){
 			Rcommand: getRcommand(IsoplotR)
 		}, function(result, err) {
 			if (err) {
-				console.error('Get CSV failed.', err);
+				displayError('Get CSV failed.', err);
 				return;
 			}
 			const downloader = document.getElementById("downloader");

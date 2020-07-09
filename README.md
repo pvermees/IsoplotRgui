@@ -16,7 +16,6 @@ install.packages('devtools')
 
 ```
 library(devtools)
-install_github('tim-band/rrpc')
 install_github('pvermees/IsoplotR')
 install_github('pvermees/IsoplotRgui')
 ```
@@ -63,8 +62,6 @@ chmod +x /usr/local/sbin/update_isoplotr
 sudo -u wwwrunner sh -c "mkdir ~/R"
 sudo -u wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
 sudo -u wwwrunner Rscript -e "install.packages('devtools')"
-sudo -u wwwrunner Rscript -e "install.packages('rrpc')"
-sudo -u wwwrunner Rscript -e "devtools::install_github('tim-band/rrpc')"
 sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/isoplotr')"
 sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/isoplotrgui')"
 ```
@@ -147,7 +144,6 @@ and **IsoplotR** will be available on `http://localhost/isoplotr`
 Put the following in a script `updateIsoplotR.sh`:
 
 ```sh
-Rscript -e "install.packages('rrpc')"
 Rscript -e "devtools::install_github('pvermees/IsoplotR',force=TRUE)"
 Rscript -e "devtools::install_github('pvermees/IsoplotRgui',force=TRUE)"
 sudo systemctl restart isoplotr

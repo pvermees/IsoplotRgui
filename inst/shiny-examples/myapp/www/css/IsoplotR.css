@@ -162,3 +162,8 @@ right {
 cn {
     display: none;
 }
+
+.ploterror {
+    color: red;
+    font-size: large;
+}
