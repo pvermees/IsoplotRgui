@@ -69,7 +69,7 @@ sanitizeCommand <- function(command, callback) {
     com <- parse(text=command)
     failures <- nameCheck(com, list(
         'IsoplotR::settings', '<-', 'dat', 'selection2data', 'par', 'c',
-#        'rgb', 'selection2levels', 'omitter', 'IsoplotR::concordia',
+        'rgb', 'selection2levels', 'omitter', 'IsoplotR::concordia',
         'IsoplotR::read.data', 'IsoplotR::data2york', 'IsoplotR::kde',
         'IsoplotR::cad', 'IsoplotR::mds', 'IsoplotR::isochron',
         'IsoplotR::evolution', 'IsoplotR::radialplot',
