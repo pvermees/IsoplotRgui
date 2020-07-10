@@ -17,7 +17,12 @@ rrpc <- function(interface) { function(ws) {
             error <- NULL
             envelope$result <- tryCatch(
                 do.call(interface[[method]], df$params),
-                error=function(e) { error <<- geterrmessage(); NULL })
+                error=function(e) {
+                    error <<- geterrmessage();
+                    cat("ERROR:", error, "\n");
+                    NULL
+                }
+            )
             envelope$error <- error;
         }
         ws$send(jsonlite::toJSON(envelope))

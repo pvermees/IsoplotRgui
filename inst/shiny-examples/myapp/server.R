@@ -1,53 +1,53 @@
 LETTERS <- unlist(lapply(c(utf8ToInt("A"):utf8ToInt("Z")),intToUtf8))
 
-#' Renders a plot as a base64-encoded image
-#'
-#' @param device Graphics device function, such as [grDevices::png]
-#'   or [grDevices::pdf]
-#' @param mimeType Mime type for the data produced by `device`
-#' @param width Width of the plot in units applicable to `device`
-#' @param height Height of the plot in units applicable to `device`
-#' @param plotFn Function to call to perform the plot
-#' @seealso [encodePlotAsPng()]
-#' @seealso [encodePlotAsPdf()]
-encodePlot <- function(device, mimeType, width, height, plotFn) {
-    tempFilename <- tempfile(pattern='plot', fileext='png')
-    device(file=tempFilename, width=width, height=height)
-    plotFn()
-    grDevices::dev.off()
-    fileSize <- file.size(tempFilename)
-    raw <- readBin(tempFilename, what="raw", n=fileSize)
-    paste0("data:", mimeType, ";base64,", jsonlite::base64_enc(raw))
-}
-
-#' Renders a plot as a base64-encoded PNG
-#'
-#' The result can be set as the `src` attribute of an `img` element in HTML.
-#'
-#' @param width Width of the plot in pixels
-#' @param height Height of the plot in pixels
-#' @param plotFn Function to call to perform the plot
-#' @export
-#' @seealso [rrpcServer()]
-encodePlotAsPng <- function(width, height, plotFn) {
-    encodePlot(grDevices::png, "image/png", width, height, plotFn)
-}
-
-#' Renders a plot as a base64-encoded PDF
-#'
-#' The result can be set as the `href` attribute of an `a` element in HTML
-#' to allow the PDF to be downloaded (also set a `download` attribute to
-#' a reasonable filename).
-#'
-#' @param width Width of the plot in inches
-#' @param height Height of the plot in inches
-#' @param plotFn Function to call to perform the plot
-#' @export
-encodePlotAsPdf <- function(width, height, plotFn) {
-    encodePlot(grDevices::pdf, "application/pdf", width, height, plotFn)
-}
-
 server <- function(dat){
+
+    #' Renders a plot as a base64-encoded image
+    #'
+    #' @param device Graphics device function, such as [grDevices::png]
+    #'   or [grDevices::pdf]
+    #' @param mimeType Mime type for the data produced by `device`
+    #' @param width Width of the plot in units applicable to `device`
+    #' @param height Height of the plot in units applicable to `device`
+    #' @param plotFn Function to call to perform the plot
+    #' @seealso [encodePlotAsPng()]
+    #' @seealso [encodePlotAsPdf()]
+    encodePlot <- function(device, mimeType, width, height, plotFn) {
+        tempFilename <- tempfile(pattern='plot', fileext='png')
+        device(file=tempFilename, width=width, height=height)
+        plotFn()
+        grDevices::dev.off()
+        fileSize <- file.size(tempFilename)
+        raw <- readBin(tempFilename, what="raw", n=fileSize)
+        paste0("data:", mimeType, ";base64,", jsonlite::base64_enc(raw))
+    }
+
+    #' Renders a plot as a base64-encoded PNG
+    #'
+    #' The result can be set as the `src` attribute of an `img` element in HTML.
+    #'
+    #' @param width Width of the plot in pixels
+    #' @param height Height of the plot in pixels
+    #' @param plotFn Function to call to perform the plot
+    #' @export
+    #' @seealso [rrpcServer()]
+    encodePlotAsPng <- function(width, height, plotFn) {
+        encodePlot(grDevices::png, "image/png", width, height, plotFn)
+    }
+
+    #' Renders a plot as a base64-encoded PDF
+    #'
+    #' The result can be set as the `href` attribute of an `a` element in HTML
+    #' to allow the PDF to be downloaded (also set a `download` attribute to
+    #' a reasonable filename).
+    #'
+    #' @param width Width of the plot in inches
+    #' @param height Height of the plot in inches
+    #' @param plotFn Function to call to perform the plot
+    #' @export
+    encodePlotAsPdf <- function(width, height, plotFn) {
+        encodePlot(grDevices::pdf, "application/pdf", width, height, plotFn)
+    }
 
     selection2data <- function(method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
                                Th02=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
