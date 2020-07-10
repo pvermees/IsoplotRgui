@@ -89,8 +89,8 @@ function getOptions(prefs){
 		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
-		    "cutoff=c(" + gcsettings.mindisc[opt] +
-		    "," + gcsettings.maxdisc[opt] + "),";
+		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
+		    "," + gcsettings.maxdisc[opt-1] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -175,8 +175,8 @@ function getOptions(prefs){
 		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
-		    "cutoff=c(" + gcsettings.mindisc[opt] +
-		    "," + gcsettings.maxdisc[opt] + "),";
+		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
+		    "," + gcsettings.maxdisc[opt-1] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -253,8 +253,8 @@ function getOptions(prefs){
 		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
-		    "cutoff=c(" + gcsettings.mindisc[opt] +
-		    "," + gcsettings.maxdisc[opt] + "),";
+		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
+		    "," + gcsettings.maxdisc[opt-1] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -309,8 +309,8 @@ function getOptions(prefs){
 		var opt = gcsettings.discoption;
 		out += ",cutoff.disc=discfilter(" +
 		    "option=" + opt + "," +
-		    "cutoff=c(" + gcsettings.mindisc[opt] +
-		    "," + gcsettings.maxdisc[opt] + "),";
+		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
+		    "," + gcsettings.maxdisc[opt-1] + "),";
 		if (gcsettings.cutoffdisc==1){
 		    out += "before=TRUE)";
 		} else {
@@ -373,11 +373,9 @@ function getOptions(prefs){
 	out += ",hide=c(" + gcsettings.hide + ')';
 	break;
     case 'ages':
-	if (geochronometer == 'U-Pb'){
+	if (geochronometer == 'U-Pb' & pdsettings.showdisc!=0){
 	    out += ",discordance=discfilter(option=";
-	    if (pdsettings.showdisc==0){
-		out += "NA)";
-	    } else if (pdsettings.showdisc==1){
+	    if (pdsettings.showdisc==1){
 		out += pdsettings.discoption;
 		out += ",before=TRUE)";
 	    } else {

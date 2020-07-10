@@ -837,14 +837,14 @@ $(function(){
 	    $('#discoption option[value='+pd.discoption+']').
 		prop('selected', 'selected');
 	    switch (pd.discoption){
-	    case 0:
 	    case 1:
 	    case 2:
 	    case 3:
 	    case 4:
+	    case 5:
 		$('.show4ages_disc').show();
 		break;
-	    case 5:
+	    case 6:
 		$('.show4ages_pconc').show();
 	    }
 	    break;
@@ -941,8 +941,8 @@ $(function(){
 	    $('#LambdaPa231').val(cst.lambda.Pa231[0]);
 	    $('#errLambdaPa231').val(cst.lambda.Pa231[1]);
 	    $('#cutoff76').val(set.cutoff76);
-	    $('#mindisc').val(set.mindisc[set.discoption]);
-	    $('#maxdisc').val(set.maxdisc[set.discoption]);
+	    $('#mindisc').val(set.mindisc[set.discoption-1]);
+	    $('#maxdisc').val(set.maxdisc[set.discoption-1]);
 	    $('#U48').val(set.U48[0]);
 	    $('#ThU').val(set.ThU[0]);
 	    $('#RaU').val(set.RaU[0]);
@@ -1347,8 +1347,8 @@ $(function(){
 		gcsettings.cutoffdisc = getOption("#discordance-filter");
 		var opt = getOption("#discoption");
 		gcsettings.discoption = opt;
-		gcsettings.mindisc[opt] = getNumber('#mindisc');
-		gcsettings.maxdisc[opt] = getNumber('#maxdisc');
+		gcsettings.mindisc[opt-1] = getNumber('#mindisc');
+		gcsettings.maxdisc[opt-1] = getNumber('#maxdisc');
 	    }
 	    if (gcsettings.format<7 & gcsettings.type==6){
 		gcsettings.type = 4;
@@ -2279,8 +2279,8 @@ $(function(){
 	var opt = getOption("#discoption");
 	var set = IsoplotR.settings['U-Pb'];
 	set.discoption = opt;
-	$('#mindisc').val(set.mindisc[opt]);
-	$('#maxdisc').val(set.maxdisc[opt]);
+	$('#mindisc').val(set.mindisc[opt-1]);
+	$('#maxdisc').val(set.maxdisc[opt-1]);
     }    
     
     $.chooseMineral = function(){

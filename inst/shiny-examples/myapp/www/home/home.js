@@ -97,7 +97,7 @@ $(function(){
             element.className = "clickable";
             const id = "lang_" + info.code;
             element.id = id;
-            element.innerHTML = info.name;
+            element.innerHTML = info.short_name;
             const code = info.code;
             element.onclick = function() {
                 localStorage.setItem("language", code);
