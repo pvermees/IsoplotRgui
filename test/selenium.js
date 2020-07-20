@@ -5,6 +5,8 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 const { describe, before, after, it } = require('mocha');
 const clipboardy = require("clipboardy");
 const assert = require("assert");
+const { PNG } = require("pngjs");
+const floor = Math.floor;
 
 describe('IsoplotRgui', function() {
     let rProcess;
@@ -125,7 +127,218 @@ describe('IsoplotRgui', function() {
             await assertTextContains(driver, 'intro', introEN);
         });
     });
+
+    describe('the plotter', function() {
+        it('can plot a concordia graph', async function() {
+            this.timeout(25000);
+            await driver.get('http://localhost:50054');
+            // 38/06, err, 07/06, err
+            const testData = [
+                [25.2, 0.03, 0.0513, 0.0001],
+                [25.4, 0.02, 0.0512, 0.0002],
+                [27.1, 0.01, 0.05135, 0.00005]
+            ];
+            await driver.wait(() => tryToClearGrid(driver));
+            await inputTestData(driver, testData);
+            await choosePlotDevice(driver, 'concordia');
+            await performClick(driver, 'options');
+            const options = {
+                U238U235: 137.818,
+                errU238U235: 0.0225,
+                minx: 0.260,
+                maxx: 0.282,
+                miny: 0.0368,
+                maxy: 0.0400,
+                ellipsefill: "'green'",
+                ellipsestroke: "'green'"
+            };
+            await performType(driver, options);
+            await performClick(driver, 'plot');
+            const img = await driver.wait(until.elementLocated(By.css('#myplot img')));
+            const imgSrc = await img.getAttribute('src');
+            const imgB64 = imgSrc.split(',')[1];
+            testData.forEach((data) => {
+                const failures = assertConcordiaBlob(imgB64, options, data, 1500);
+                // some failures are caused by other marks on the graph; labels or
+                // other blobs, for example.
+                assert(failures.length <= 10, 'Too many failures: ' + failures.join(', '));
+            });
+        });
+    });
 });
+
+function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
+    const png = PNG.sync.read(Buffer.from(imgB64, 'base64'));
+    const axes = getAxes(png);
+    const ranges = getRanges(options);
+    const [u38pb06, u38pb06err, pb07pb06, pb07pb06err] = testData;
+    const { U238U235 } = options;
+    const u38pb06rev = varianceOfRelativeError(u38pb06, u38pb06err);
+    const pb07pb06rev = varianceOfRelativeError(pb07pb06, pb07pb06err);
+    // y is Pb206 / U238
+    const y = 1 / u38pb06;
+    // x is Pb207 / U235
+    const x = pb07pb06 * U238U235 / u38pb06;
+    const yErr = y * Math.sqrt(u38pb06rev);
+    const xErrBy3806 = x * Math.sqrt(u38pb06rev);
+    const xErrBy0706 = x * Math.sqrt(pb07pb06rev);
+    // the zone of ambiguity seems to be 5 <= h2 <= 8. I don't know why.
+    const minimumGreenDistanceSquared = 5;
+    const maximumGreenDistanceSquared = 8;
+    let failures = [];
+    for (let i = 0; i != sampleCount; ++i) {
+        // So, let's choose a random dot
+        // tv = amount of pb07pb06 error we have
+        const tv = Math.random() * 6 - 3;
+        // tw = amount of u38pb06 error we have
+        const tw = Math.random() * 6 - 3;
+        const h2 = tv * tv + tw * tw;
+        const gx = x + tv * xErrBy0706 + tw * xErrBy3806;
+        const gy = y + tw * yErr;
+        // we think if h2 < 1 the transformed dot wll be green
+        const pixel = toPixel(axes, ranges, gx, gy);
+        const col = colour(png, pixel);
+        const expectedCol = h2 < minimumGreenDistanceSquared ? 'G' : 'W';
+        if (expectedCol !== col
+            && (h2 < minimumGreenDistanceSquared
+                || maximumGreenDistanceSquared < h2)) {
+            failures.push('Expected colour ' + expectedCol
+                + ' but got ' + col + ' at distance^2 ' + h2);
+        }
+    }
+    return failures;
+}
+
+function varianceOfRelativeError(value, standardDeviation) {
+    const r = standardDeviation / value;
+    return r*r;
+}
+
+function colour(png, pixel) {
+    const index = (pixel.x + png.width * pixel.y) * 4;
+    const r = png.data[index];
+    const g = png.data[index + 1];
+    const b = png.data[index + 2];
+    const bright = Math.max(r,g,b,20);
+    const threshold = bright * 0.6;
+    const colour =
+        (r < threshold? 0 : 1) +
+        (g < threshold? 0 : 2) +
+        (b < threshold? 0 : 4);
+    return "KRGYBMCW"[colour];
+}
+
+function isLinePixel(png, index) {
+    const d = png.data;
+    const brightness = d[index] + d[index + 1] + d[index + 2];
+    return brightness < 350;
+}
+
+function isOnHorizontalLine(png, index) {
+    const pixelsToCheck = floor(png.width / 10);
+    index -= floor(pixelsToCheck / 2) * 4;
+    let lastIndex = index + pixelsToCheck * 4;
+    for (; index < lastIndex; index += 4) {
+        if (!isLinePixel(png, index)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function findBottomLine(png) {
+    const width = png.width;
+    const row = width * 4;
+    const endIndex = row * png.height;
+    let index = endIndex - floor(width / 2) * 4
+    // search the bottom third of the image
+    const giveUp = index - row * floor(png.height / 3);
+    for (; giveUp <= index; index -= row) {
+        if (isLinePixel(png, index) && isOnHorizontalLine(png, index)) {
+            return floor(index / row);
+        }
+    }
+    return null;
+}
+
+function isOnVerticalLine(png, index) {
+    const pixelsToCheck = floor(png.height / 10);
+    const row = 4 * png.width;
+    index -= floor(pixelsToCheck / 2) * row;
+    let lastIndex = index + pixelsToCheck * row;
+    for (; index < lastIndex; index += row) {
+        if (!isLinePixel(png, index)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function findLeftLine(png) {
+    const width = png.width;
+    const row = width * 4;
+    let startIndex = floor(png.height / 2) * row;
+    // search the left third of the image
+    const giveUp = startIndex + floor(width / 3) * 4;
+    for (let index = startIndex; index < giveUp; index += 4) {
+        if (isLinePixel(png, index) && isOnVerticalLine(png, index)) {
+            return floor((index - startIndex) / 4);
+        }
+    }
+    return null;
+}
+
+function lineEndIndex(png, index, dIndex) {
+    let result = index;
+    let gap = 0;
+    while (gap < 4) {
+        if (isLinePixel(png, index)) {
+            result = index;
+            gap = 0;
+        } else {
+            ++gap;
+        }
+        index += dIndex;
+    }
+    return result;
+}
+
+function getAxes(png) {
+    const originX = findLeftLine(png);
+    const originY = findBottomLine(png);
+    const row = png.width * 4;
+    const originRowStart = originY * row;
+    const originIndex = originRowStart + originX * 4;
+    const topIndex = lineEndIndex(png, originIndex, -row);
+    const rightIndex = lineEndIndex(png, originIndex, 4);
+    return {
+        bottom: originY,
+        left: originX,
+        height: originY - floor(topIndex / row),
+        width: floor((rightIndex - originRowStart) / 4) - originX
+    };
+}
+
+function getRanges(options) {
+    const centreX = (options.maxx + options.minx) / 2;
+    // R expands its ranges by on each side 4%, it seems
+    const halfRangeX = (options.maxx - options.minx) * 0.54;
+    const centreY = (options.maxy + options.miny) / 2;
+    const halfRangeY = (options.maxy - options.miny) * 0.54;
+    return {
+        minx: centreX - halfRangeX,
+        sizex: 2 * halfRangeX,
+        miny: centreY - halfRangeY,
+        sizey: 2 * halfRangeY
+    };
+}
+
+function toPixel(axes, range, x, y) {
+    return {
+        x: floor(0.5 + axes.left + axes.width * (x - range.minx) / range.sizex),
+        y: floor(0.5 + axes.bottom - axes.height * (y - range.miny) / range.sizey)
+    };
+}
 
 async function waitForFunctionToBeInstalled(driver, functionName) {
     await driver.wait(async function () {
@@ -184,9 +397,7 @@ function assertNearlyEqual(a, b) {
 }
 
 async function choosePlotDevice(driver, choiceText) {
-    // for some reason just clicking doesn't work
-    const plotDeviceButton = await driver.findElement(By.id('plotdevice-button'));
-    await performClick(driver, plotDeviceButton);
+    await performClick(driver, 'plotdevice-button');
     const menu = await driver.findElement(By.id('plotdevice-menu'));
     const choice = await menu.findElement(By.xpath("//li/div[contains(text(),'" + choiceText + "')]"));
     await driver.wait(until.elementIsVisible(choice));
@@ -194,8 +405,7 @@ async function choosePlotDevice(driver, choiceText) {
 }
 
 async function chooseLanguage(driver, languageText) {
-    const menuButton = await driver.wait(until.elementLocated(By.id('language-button')));
-    await performClick(driver, menuButton);
+    await performClick(driver, 'language-button');
     const arbitraryLanguageChoice = await driver.wait(until.elementLocated(By.css('#language-menu li')));
     await driver.wait(until.elementIsVisible(arbitraryLanguageChoice));
     const choice = await findMenuItem(driver, languageText);
@@ -204,11 +414,24 @@ async function chooseLanguage(driver, languageText) {
 
 // to be used when normal clicks mysteriously don't work
 async function performClick(driver, element) {
+    if (typeof(element) === 'string') {
+        element = await driver.wait(until.elementLocated(By.id(element)));
+    }
     await driver.actions()
         .move({origin: element})
         .press()
         .release()
         .perform();
+    return element;
+}
+
+// super robust typing into input box
+async function performType(driver, idToKeys) {
+    for (const k in idToKeys) {
+        const input = await performClick(driver, k);
+        await input.clear();
+        await input.sendKeys(idToKeys[k]);
+    }
 }
 
 // Clicks 'Clear' button then reports if the grid (or at least the home cell)
