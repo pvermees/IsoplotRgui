@@ -34,12 +34,9 @@ function getOptions(prefs){
 	out += ",common.Pb=" + gcsettings.commonPb;
 	out += ",ellipse.fill=" + pdsettings.ellipsefill;
 	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
-	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
-	out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
-	out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
+	out += ",levels=selection2levels()";
+	out += ",omit=omitter(flags='x')";
+	out += ",hide=omitter(flags='X')";
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (pdsettings.anchor==1){
 	    out += ",anchor=list(TRUE," + pdsettings.tanchor + ")";
@@ -49,18 +46,9 @@ function getOptions(prefs){
 	break;
     case 'radial':
 	out += ",transformation='" + pdsettings.transformation + "'";
-	if (geochronometer=='U-Th-He'){
-	    out += ",levels=selection2levels(method='" + geochronometer + "')";
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
-	} else {
-	    out += ",levels=selection2levels(method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";
-	}
+	out += ",levels=selection2levels()";
+	out += ",omit=omitter(flags='x')";
+	out += ",hide=omitter(flags='X')";
 	if (pdsettings.numpeaks == 'auto') out += ",k='auto'"
 	else if (pdsettings.numpeaks == 'min') out += ",k='min'"
 	else out += ",k=" + pdsettings.numpeaks ;
@@ -129,12 +117,9 @@ function getOptions(prefs){
 	out += ",detritus=" + gcsettings.detritus;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
-	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
-	out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
-	out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
+	out += ",levels=selection2levels()";
+	out += ",omit=omitter(flags='x')";
+	out += ",hide=omitter(flags='X')";
 	out += ",ellipse.fill=" + pdsettings.ellipsefill;
 	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",model=" + pdsettings.model;
@@ -161,36 +146,9 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
-	if (geochronometer=='other'){
-	    out += ",levels=selection2levels(method='regression'";
-	} else {
-	    out += ",levels=selection2levels(method='" + geochronometer + "'";
-	}
-	if (geochronometer=='U-Th-He'){
-	    out += ")";
-	} else {
-	    out += ",format=" + gcsettings.format + ")";
-	}
-	if (geochronometer=='other'){
-	    out += ",omit=omitter(flags='x',method='regression'";
-	} else {
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
-	}
-	if (geochronometer=='U-Th-He'){
-	    out += ")";
-	} else {
-	    out += ",format=" + gcsettings.format + ")";
-	}
-	if (geochronometer=='other'){
-	    out += ",hide=omitter(flags='X',method='regression'";
-	} else {
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
-	}
-	if (geochronometer=='U-Th-He'){
-	    out += ")";
-	} else {
-	    out += ",format=" + gcsettings.format + ")";
-	}
+    out += ",levels=selection2levels()";
+    out += ",omit=omitter(flags='x')";
+    out += ",hide=omitter(flags='X')";
 	out += ",ellipse.fill=" + pdsettings.ellipsefill;
 	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	break;
@@ -239,28 +197,14 @@ function getOptions(prefs){
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",ranked=" + pdsettings.ranked;
-	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	if (geochronometer!='U-Th-He'){
-	    out += ",format=" + gcsettings.format;
-	}
-	out += ")";
+	out += ",levels=selection2levels()";
 	out += ",rect.col=" + pdsettings.rectcol;
 	out += ",outlier.col=" + pdsettings.outliercol;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
-	if (geochronometer=='U-Th-He'){
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
-	} else {
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";
-	}
-	if (geochronometer=='U-Th-He'){
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
-	} else {
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";
-	}
+    out += ",omit=omitter(flags='x')";
+    out += ",hide=omitter(flags='X')";
 	break;
     case 'spectrum':
 	if (geochronometer=='Ar-Ar'){
@@ -271,23 +215,12 @@ function getOptions(prefs){
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
-	out += ",levels=selection2levels(method='" + geochronometer + "'";
-	out += ",format=" + gcsettings.format + ")";
+	out += ",levels=selection2levels()";
 	out += ",plateau.col=" + pdsettings.plateaucol;	
 	out += ",non.plateau.col=" + pdsettings.nonplateaucol;
 	out += ",clabel='" + pdsettings.clabel + "'";
-	if (geochronometer=='other'){
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
-	} else {
-	    out += ",omit=omitter(flags='x',method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";	    
-	}
-	if (geochronometer=='other'){
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
-	} else {
-	    out += ",hide=omitter(flags='X',method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";	    
-	}
+    out += ",omit=omitter(flags='x')";
+    out += ",hide=omitter(flags='X')";
 	break;
     case 'KDE':
 	if (pdsettings.minx != 'auto') { out += ",from=" + pdsettings.minx; }
@@ -345,13 +278,10 @@ function getOptions(prefs){
 	out += ",log=" + pdsettings.log;
 	if (pdsettings.binwidth != 'auto') { out += ",binwidth=" + pdsettings.binwidth; }
 	else { out += ",binwidth=NA"; }
-	if (geochronometer=='U-Th-He'){
-	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
-	} else if (geochronometer=='detritals'){
+	if (geochronometer=='detritals'){
 	    out += ",hide=c(" + gcsettings.hide + ')';
 	} else {
-	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";
+	    out += ",hide=omitter(flags=c('x','X'))";
 	}
 	break;
     case 'CAD':
@@ -392,14 +322,11 @@ function getOptions(prefs){
 	    break;
 	default:
 	}
-	if (geochronometer=='U-Th-He'){
-	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "')";
-	} else if (geochronometer=='detritals'){
+	if (geochronometer=='detritals'){
 	    out += ",col='" + pdsettings.colmap + "'";
 	    out += ",hide=c(" + gcsettings.hide + ')';
 	} else {
-	    out += ",hide=omitter(flags=c('x','X'),method='" + geochronometer + "'";
-	    out += ",format=" + gcsettings.format + ")";
+	    out += ",hide=omitter(flags=c('x','X'))";
 	}
 	break;
     case 'set-zeta':
@@ -422,9 +349,9 @@ function getOptions(prefs){
 	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")"
 	if (pdsettings.fact != 'auto')
 	    out += ",fact=" + pdsettings.fact;
-	out += ",levels=selection2levels(method='" + geochronometer + "')";
-	out += ",omit=omitter(flags='x',method='" + geochronometer + "')";
-	out += ",hide=omitter(flags='X',method='" + geochronometer + "')";
+	out += ",levels=selection2levels()";
+	out += ",omit=omitter(flags='x')";
+	out += ",hide=omitter(flags='X')";
 	out += ",ellipse.fill=" + pdsettings.ellipsefill;
 	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
 	out += ",model=" + pdsettings.model;
@@ -781,7 +708,7 @@ function getRcommand(prefs){
 	out += "IsoplotR::mds(dat";
 	break;
     case 'ages':
-	out += "IsoplotR::age(dat";
+	out += "IsoplotR::age(dat,isochron=FALSE";
 	break;
     }
     out += options +");"

@@ -1,13 +1,60 @@
-shiny::shinyServer(function(input,output,session){
+LETTERS <- unlist(lapply(c(utf8ToInt("A"):utf8ToInt("Z")),intToUtf8))
+
+server <- function(dat){
+
+    #' Renders a plot as a base64-encoded image
+    #'
+    #' @param device Graphics device function, such as [grDevices::png]
+    #'   or [grDevices::pdf]
+    #' @param mimeType Mime type for the data produced by `device`
+    #' @param width Width of the plot in units applicable to `device`
+    #' @param height Height of the plot in units applicable to `device`
+    #' @param plotFn Function to call to perform the plot
+    #' @seealso [encodePlotAsPng()]
+    #' @seealso [encodePlotAsPdf()]
+    encodePlot <- function(device, mimeType, width, height, plotFn) {
+        tempFilename <- tempfile(pattern='plot', fileext='png')
+        device(file=tempFilename, width=width, height=height)
+        plotFn()
+        grDevices::dev.off()
+        fileSize <- file.size(tempFilename)
+        raw <- readBin(tempFilename, what="raw", n=fileSize)
+        paste0("data:", mimeType, ";base64,", jsonlite::base64_enc(raw))
+    }
+
+    #' Renders a plot as a base64-encoded PNG
+    #'
+    #' The result can be set as the `src` attribute of an `img` element in HTML.
+    #'
+    #' @param width Width of the plot in pixels
+    #' @param height Height of the plot in pixels
+    #' @param plotFn Function to call to perform the plot
+    #' @export
+    #' @seealso [rrpcServer()]
+    encodePlotAsPng <- function(width, height, plotFn) {
+        encodePlot(grDevices::png, "image/png", width, height, plotFn)
+    }
+
+    #' Renders a plot as a base64-encoded PDF
+    #'
+    #' The result can be set as the `href` attribute of an `a` element in HTML
+    #' to allow the PDF to be downloaded (also set a `download` attribute to
+    #' a reasonable filename).
+    #'
+    #' @param width Width of the plot in inches
+    #' @param height Height of the plot in inches
+    #' @param plotFn Function to call to perform the plot
+    #' @export
+    encodePlotAsPdf <- function(width, height, plotFn) {
+        encodePlot(grDevices::pdf, "application/pdf", width, height, plotFn)
+    }
 
     selection2data <- function(method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
                                Th02=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
-        dat <- input$data
-        nn <- length(dat)
-        nr <- as.numeric(dat[1])
-        nc <- as.numeric(dat[2])
+        nr <- as.numeric(dat$nc)
+        nc <- as.numeric(dat$nc)
+        values <- matrix(as.character(dat$data), ncol=nc)
         mat <- matrix('',1,nc) # header
-        bi <- getbi(method=method,format=format)
         if (identical(method,"U-Pb") & format==1) {
             mat[1,1:5] <- c('Pb207U235','errPb207U235',
                             'Pb206U238','errPb206U238','rho')
@@ -62,21 +109,24 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"Ar-Ar") & format==1){
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1:2] <- dat[3:4]
+            mat[2,1] <- dat$J
+            mat[2,2] <- dat$sJ
             mat[3,1:6] <- c('Ar39Ar36','errAr39Ar36',
                             'Ar40Ar36','errAr40Ar36',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==2) {
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1:2] <- dat[3:4]
+            mat[2,1] <- dat$J
+            mat[2,2] <- dat$sJ
             mat[3,1:6] <- c('Ar39Ar40','errAr39Ar40',
                             'Ar36Ar40','errAr36Ar40',
                             'rho','Ar39')
         } else if (identical(method,"Ar-Ar") & format==3) {
             mat <- matrix('',3,nc)
             mat[1,1:2] <- c('J','errJ')
-            mat[2,1:2] <- dat[3:4]
+            mat[2,1] <- dat$J
+            mat[2,2] <- dat$sJ
             mat[3,1:7] <- c('Ar39Ar40','errAr39Ar40',
                             'Ar36Ar40','errAr36Ar40',
                             'Ar39Ar36','errAr39Ar36','Ar39')
@@ -144,22 +194,25 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"fissiontracks") & format==1){
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
-            mat[2,1:2] <- dat[3:4]
+            mat[2,1] <- dat$zeta
+            mat[2,2] <- dat$zetaErr
             mat[3,1:2] <-c('rhoD','errRhoD')
-            mat[4,1:2] <- dat[5:6]
+            mat[4,1] <- dat$rhoD
+            mat[4,2] <- dat$rhoDerr
             mat[5,1:2] <- c('Ns','Ni')
         } else if (identical(method,"fissiontracks") & format==2){
             mat <- matrix('',5,nc)
             mat[1,1:2] <-c('Zeta','errZeta')
-            mat[2,1:2] <- dat[3:4]
+            mat[2,1] <- dat$zeta
+            mat[2,2] <- dat$zetaErr
             mat[3,1] <-'spot-size'
-            mat[4,1] <- dat[5]
+            mat[4,1] <- dat$spotSize
             mat[5,1:2] <- c('Ns','A')
             mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
         } else if (identical(method,"fissiontracks") & format==3){
             mat <- matrix('',3,nc)
             mat[1,1] <-'spot-size'
-            mat[2,1] <- dat[3]
+            mat[4,1] <- dat$spotSize
             mat[3,1:2] <- c('Ns','A')
             mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
         } else if (identical(method,"U-Th-He")){
@@ -173,7 +226,7 @@ shiny::shinyServer(function(input,output,session){
         } else if (identical(method,"other")){
             mat <- NULL
         }
-        mat <- rbind(mat,matrix(dat[bi:nn],ncol=nc,byrow=TRUE))
+        mat <- rbind(mat,values)
         if (!identical(method,"detritals")){
             mat <- subset(mat,select=-nc) # the last column may contain letters
         }
@@ -188,72 +241,32 @@ shiny::shinyServer(function(input,output,session){
         out
     }
 
-    # return index of the first isotope measurement
-    getbi <- function(method="U-Pb",format=1){
-        out <- 3
-        if (identical(method,"Ar-Ar")){
-            out <- 5
-        } else if (identical(method,"fissiontracks") & format==1){
-            out <- 7
-        } else if (identical(method,"fissiontracks") & format==2){
-            out <- 6
-        } else if (identical(method,"fissiontracks") & format==3){
-            out <- 4
-        }
-        out
-    }
-    
-    selection2levels <- function(method="U-Pb",format=1){
-        dat <- input$data
-        nn <- length(dat)
-        bi <- getbi(method=method,format=format)
-        nc <- as.numeric(dat[2])
-        lc <- nc-1 # penultimate column
-        li <- seq(from=bi+lc-1,to=nn-1,by=nc)
-        as.numeric(dat[li])
-    }
-    
-    selection2omit <- function(method="U-Pb",format=1){
-        dat <- input$data
-        nn <- length(dat)
-        bi <- getbi(method=method,format=format)
-        nc <- as.numeric(dat[2])
-        oc <- nc
-        oi <- seq(from=bi+oc-1,to=nn,by=nc)
-        dat[oi]
+    selection2levels <- function() {
+        nc <- as.numeric(dat$nc)
+        values <- matrix(as.numeric(dat$data), ncol=nc)
+        lc <- nc - 1
+        values[,lc]
     }
 
-    omitter <- function(flags=c('x','X'),method="U-Pb",format=1){
-        o <- selection2omit(method=method,format=format)
+    selection2omit <- function() {
+        nc <- as.numeric(dat$nc)
+        values <- matrix(as.numeric(dat$data), ncol=nc)
+        oc <- nc
+        values[,oc]
+    }
+
+    omitter <- function(flags=c('x','X')) {
+        o <- selection2omit()
         which(o%in%flags)
     }
-    
-    getJavascript <- function(results){
-        header <- paste0("['",paste(colnames(results),collapse="','"),"']")
-        jarray <- "["
-        for (i in 1:nrow(results)){
-            jarray <- paste0(jarray,"[",paste(results[i,],collapse=","),"]")
-            if (i<nrow(results)) jarray <- paste0(jarray,",")
-        }
-        jarray <- paste0(jarray,"]")
-        script <- paste0("<script type='text/javascript'>",
-                         "$(function(){",
-                         "$('#OUTPUT').handsontable('populateFromArray',0,0,",
-                         jarray,
-                         ");",
-                         "});",
-                         "var hot = $('#OUTPUT').data('handsontable');",
-                         "hot.updateSettings({",
-                         "colHeaders:",
-                         header,
-                         "});",
-                         "</script>")
-        HTML(script)
-    }
 
+    # TODO: this should not just produce a plot in case of an error,
+    # but run an error function supplied by the user because a plot
+    # in not always sensible. A function to call on success would also
+    # be useful.
     run <- function(Rcommand){
         tryCatch({
-            eval(parse(text=Rcommand))
+            eval(Rcommand)
         }, error = function(e){
             width <- 70
             message1 <- e$message
@@ -263,6 +276,7 @@ shiny::shinyServer(function(input,output,session){
                                "be addressed asap.")
             errormessage <- paste0("Error message:\n\n",wrap(message1,width),
                                    "\n\n",wrap(message2,width),"\n\n-PV")
+            print(e)
             plot(c(0, 1),c(0,1),ann=F,bty ='n',type='n',xaxt='n',yaxt='n')
             text(0.5,0,errormessage,cex=1.5,pos=3)
         })
@@ -270,48 +284,64 @@ shiny::shinyServer(function(input,output,session){
     }
 
     wrap <- function(tekst,width){
+        len <- nchar(tekst)
+        if (len <= width) {
+            return(tekst)
+        }
         out <- tekst
         spaces <- which(strsplit(tekst, "")[[1]]==" ")
-        toreplace <- seq(from=width,to=nchar(tekst),by=width)
+        toreplace <- seq(from=width,to=len,by=width)
         for (i in 1:length(toreplace)){
             j <- which.min(abs(spaces-toreplace[i]))
             substr(out,spaces[j],spaces[j]) <- '\n'
         }
         out
     }
-    
-    observeEvent(input$PLOTTER, {
-        output$myplot <- renderPlot({
-            isolate({
-                run(input$Rcommand)
-            })
+
+    fns <-list()
+
+    fns$plotter <- function(width, height, Rcommand) {
+        forJson <- list()
+        forJson$action <- "plot"
+        forJson$width <- width
+        forJson$height <- height
+        forJson$src <- encodePlotAsPng(width, height, function() {
+            run(Rcommand)
         })
-    })
+        forJson
+    }
 
-    observeEvent(input$RUNNER, {
-        output$myscript <- renderUI({
-            isolate({
-                results <- run(input$Rcommand)
-                getJavascript(results)
-            })
+    fns$runner <- function(Rcommand) {
+        forJson <- list()
+        forJson$action <- "results"
+        results <- run(Rcommand)
+        forJson$headers <- colnames(results)
+        forJson$data <- as.matrix(results)
+        forJson
+    }
+
+    fns$getPdf <- function(Rcommand) {
+        forJson <- list()
+        forJson$action <- "download"
+        forJson$filename <- "IsoplotR.pdf"
+        results <- run(Rcommand)
+        forJson$data <- encodePlotAsPdf(7, 7, function() {
+            run(Rcommand)
         })
-    })
+        forJson
+    }
 
-    output$PDF <- downloadHandler(
-        filename = 'IsoplotR.pdf',
-        content = function(file) {
-            pdf(file=file)
-            run(input$Rcommand)
-            dev.off()
-        }
-    )
+    fns$getCsv <- function(Rcommand, name) {
+        forJson <- list()
+        forJson$action <- "download"
+        forJson$filename <- paste0(name, ".csv")
+        results <- run(Rcommand)
+        raw <- capture.output(write.csv(results, stdout()))
+        forJson$data <- paste0(
+            "data:text/csv;base64,",
+            jsonlite::base64_enc(raw))
+        forJson
+    }
 
-    output$CSV <- downloadHandler(
-        filename <- 'ages.csv',
-        content = function(file) {
-            results <- run(input$Rcommand)
-            write.csv(results,file)
-        }
-    )
-    
-})
+    fns
+}

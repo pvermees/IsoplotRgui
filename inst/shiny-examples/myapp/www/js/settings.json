@@ -241,7 +241,7 @@
 	"pch": 21,
 	"pos": 0,
 	"cex": 5,
-        "col": "black",
+	"col": "black",
 	"bg": "white"
     },
     "helioplot": {

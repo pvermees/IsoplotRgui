@@ -58,7 +58,8 @@ $(function(){
 		}                     // IsoplotR has been initialised
 	    });
 	});
-    };
+	rrpc.initialize();
+	};
 
     function dnc(){
 	var gc = IsoplotR.settings.geochronometer;
@@ -299,36 +300,33 @@ $(function(){
 	}
 	geochronometer = IsoplotR.settings.geochronometer;
 	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
-	var dat = cleanData(geochronometer,d,nr,nc);
+	var data = cleanData(geochronometer,d,nr,nc);
+	IsoplotR.data4server = {
+		nr, nc, data
+	};
 	switch (geochronometer){
 	case  'Ar-Ar':
-	    var J = $('#Jval').val();
-	    var sJ = $('#Jerr').val();
-	    IsoplotR.data4server = [nr,nc,J,sJ,dat];
+		IsoplotR.data4server.J = $('#Jval').val();
+		IsoplotR.data4server.sJ = $('#Jerr').val();
 	    break;
 	case 'fissiontracks':
 	    switch (IsoplotR.settings.fissiontracks.format){
 	    case 1:
-		var zeta = $('#zetaVal').val();
-		var zetaErr = $('#zetaErr').val();
-		var rhoD = $('#rhoDval').val();
-		var rhoDerr = $('#rhoDerr').val();
-		IsoplotR.data4server = [nr,nc,zeta,zetaErr,rhoD,rhoDerr,dat];
+		IsoplotR.data4server.zeta = $('#zetaVal').val();
+		IsoplotR.data4server.zetaErr = $('#zetaErr').val();
+		IsoplotR.data4server.rhoD = $('#rhoDval').val();
+		IsoplotR.data4server.rhoDerr = $('#rhoDerr').val();
 		break;
 	    case 2:
-		var zeta = $('#zetaVal').val();
-		var zetaErr = $('#zetaErr').val();
-		var spotSize = $('#spotSizeVal').val();
-		IsoplotR.data4server = [nr,nc,zeta,zetaErr,spotSize,dat];
+		IsoplotR.data4server. zeta = $('#zetaVal').val();
+		IsoplotR.data4server.zetaErr = $('#zetaErr').val();
+		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    case 3:
-		var spotSize = $('#spotSizeVal').val();
-		IsoplotR.data4server = [nr,nc,spotSize,dat];
+		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    }
 	    break;
-	default:
-	    IsoplotR.data4server = [nr,nc,dat];
 	}
     }
 
@@ -1941,8 +1939,8 @@ $(function(){
 	} else {
 	    handson2json();
 	}
-	Shiny.onInputChange("data",IsoplotR.data4server);
-	Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
+	//Shiny.onInputChange("data",IsoplotR.data4server);
+	//Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
     function multiplytwo(x,num,vec,divide){
@@ -2449,24 +2447,108 @@ $(function(){
 	});
     });
     
+	function displayError(message, err) {
+		console.error(message, err);
+		var par = document.createElement("p");
+		par.setAttribute("class", "ploterror"); 
+		par.textContent = err;
+		var myplot = document.getElementById("myplot");
+		myplot.textContent = '';
+		myplot.appendChild(par);
+}
+
     $("#PLOT").click(function(){
 	update();
 	$("#OUTPUT").hide();
 	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
-	$("#PLOTTER").click();
+	var plot = function() {
+		rrpc.call("plot", {
+			data: IsoplotR.data4server,
+			width: myplot.offsetWidth,
+			height: myplot.offsetHeight,
+			Rcommand: getRcommand(IsoplotR)
+		}, function(result, err) {
+			if (err) {
+				displayError("Plot failed.", err);
+				return;
+			}
+			var img = document.createElement("img");
+			img.setAttribute("src", result.src[0]);
+			img.setAttribute("width", result.width[0]);
+			img.setAttribute("height", result.height[0]);
+			var myplot = document.getElementById("myplot");
+			myplot.textContent = '';
+			myplot.appendChild(img);
+		});
+	};
+	plot();
+	document.getElementsByTagName("BODY")[0].onresize = function() {
+		if (timeout.variable) {
+			window.clearTimeout(timeout.variable);
+		}
+		timeout.variable = window.setTimeout(plot, 400);
+	};
     });
 
-    $("#RUN").click(function(){
+	$("#RUN").click(function(){
 	update();
 	$("#myplot").empty();
 	$("#OUTPUT").handsontable('clear');
 	$("#OUTPUT").handsontable('deselectCell');
 	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#OUTPUT").show();
-	$("#RUNNER").click();
+	rrpc.call("run", {
+		data: IsoplotR.data4server,
+		Rcommand: getRcommand(IsoplotR)
+	}, function(result, err) {
+		if (err) {
+			displayError('Run failed.', err);
+			return;
+		}
+		$('#OUTPUT').handsontable('populateFromArray', 0, 0,
+			result.data);
+		const hot = $('#OUTPUT').data('handsontable');
+		hot.updateSettings({
+			colHeaders: result.headers
+		});
+	});
     });
 
-    $("#home").click(function(){
+	document.getElementById("PDF").onclick = function() {
+	update();
+	rrpc.call("pdf", {
+		data: IsoplotR.data4server,
+		Rcommand: getRcommand(IsoplotR)
+	}, function(result, err) {
+		if (err) {
+			displayError('Get PDF failed.', err);
+			return;
+		}
+		const downloader = document.getElementById("downloader");
+		downloader.setAttribute("download", result.filename[0]);
+		downloader.setAttribute("href", result.data[0]);
+		downloader.click();
+	});
+	}
+
+	document.getElementById("CSV").onclick = function() {
+		update();
+		rrpc.call("csv", {
+			data: IsoplotR.data4server,
+			Rcommand: getRcommand(IsoplotR)
+		}, function(result, err) {
+			if (err) {
+				displayError('Get CSV failed.', err);
+				return;
+			}
+			const downloader = document.getElementById("downloader");
+			downloader.setAttribute("download", result.filename[0]);
+			downloader.setAttribute("href", result.data[0]);
+			downloader.click();
+		});
+		}
+	
+	$("#home").click(function(){
 	localStorage.setItem("language",IsoplotR.settings.language);
 	$(location).attr('href','home/index.html');
     });
@@ -2474,10 +2556,11 @@ $(function(){
     var IsoplotR;
     var contextual_help = {};
     var dictionary_id = {};
-    var dictionary_class = {};
-    var contextual_help_fallback;
-    var dictionary_id_fallback;
-    var dictionary_class_fallback;
-    var loaded_language = null;
+	var dictionary_class = {};
+	var contextual_help_fallback;
+	var dictionary_id_fallback;
+	var dictionary_class_fallback;
+	var loaded_language = null;
+	const timeout = {};
     initialise();
 });
