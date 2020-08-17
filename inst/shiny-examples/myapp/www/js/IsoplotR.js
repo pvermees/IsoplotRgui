@@ -1,16 +1,16 @@
 $(function(){
 
-	function withData(callback) {
-		$.getJSON('./js/constants.json', function(constants){
-			$.getJSON('./js/settings.json', function(settings){
-				$.getJSON('./js/data.json', function(data){
-					callback(constants, settings, data);
-				});
-			});
+    function withData(callback) {
+	$.getJSON('./js/constants.json', function(constants){
+	    $.getJSON('./js/settings.json', function(settings){
+		$.getJSON('./js/data.json', function(data){
+		    callback(constants, settings, data);
 		});
-	}
+	    });
+	});
+    }
 
-	function initialise(){
+    function initialise(){
 	$('#OUTPUT').hide();
 	$('#RUN').hide();
 	$('#CSV').hide();
@@ -23,42 +23,42 @@ $(function(){
 	}
 	withData(function(constants, settings, data) {
 	    IsoplotR.constants = constants;
-		IsoplotR.settings = settings;
-		IsoplotR.data = data;
-		settings.geochronometer =
-			$('option:selected', $("#geochronometer")).attr('id');
-		const languageElement = document.getElementById("language");
-		const lang = localStorage.getItem("language");
-		for (const i in settings.languages_supported) {
-			const s = settings.languages_supported[i];
-			if (lang !== null && lang.startsWith(s.prefix)) {
-				settings.language = s.code;
-			}
-			const option = document.createElement("option");
-			option.id = "lang_" + s.code;
-			option.value = s.code;
-			option.innerHTML = s.name;
-			languageElement.appendChild(option);
+	    IsoplotR.settings = settings;
+	    IsoplotR.data = data;
+	    settings.geochronometer =
+		$('option:selected', $("#geochronometer")).attr('id');
+	    const languageElement = document.getElementById("language");
+	    const lang = localStorage.getItem("language");
+	    for (const i in settings.languages_supported) {
+		const s = settings.languages_supported[i];
+		if (lang !== null && lang.startsWith(s.prefix)) {
+		    settings.language = s.code;
 		}
-		selectGeochronometer();
-		IsoplotR = populate(IsoplotR,true);
+		const option = document.createElement("option");
+		option.id = "lang_" + s.code;
+		option.value = s.code;
+		option.innerHTML = s.name;
+		languageElement.appendChild(option);
+	    }
+	    selectGeochronometer();
+	    IsoplotR = populate(IsoplotR,true);
 
-		// allow tests to initiate translation, even with unsupported languages
-		window.translatePage = function() {
-			IsoplotR.settings.language = this.localStorage.getItem("language");
-			translate();
-		}
-
+	    // allow tests to initiate translation, even with unsupported languages
+	    window.translatePage = function() {
+		IsoplotR.settings.language = this.localStorage.getItem("language");
 		translate();
-		welcome();
-		$("#INPUT").handsontable({ // add change handler asynchronously
+	    }
+
+	    translate();
+	    welcome();
+	    $("#INPUT").handsontable({ // add change handler asynchronously
 		afterChange: function(changes,source){
-			getData4Server(); // placed here because we don't want to
-			handson2json();   // call the change handler until after
+		    getData4Server(); // placed here because we don't want to
+		    handson2json();   // call the change handler until after
 		}                     // IsoplotR has been initialised
-		});
+	    });
 	});
-	};
+    };
 
     function dnc(){
 	var gc = IsoplotR.settings.geochronometer;
@@ -404,6 +404,11 @@ $(function(){
 	case 'U-Pb':
 	    $('.show4UPb').show();
 	    $('.hide4UPb').hide();
+	    if (set.type==4){
+		$('.show4UPbType4').show();
+	    } else {
+		$('.show4UPbType4').hide();
+	    }
 	    switch (set.format){
 	    case 1:
 		$('.show4UPb1').show();
@@ -823,10 +828,26 @@ $(function(){
 	    }
 	    break;
 	case 'ages':
-	    if (pd.show_p=='TRUE'){
-		$('.show4show_p').show();
-	    } else {
-		$('.show4show_p').hide();
+	    switch (pd.showdisc){
+	    case 0:
+		$(".show4discordance").hide();
+		break;
+	    case 1:
+	    case 2:
+		$(".show4discordance").show();
+	    }
+	    $('#discoption option[value='+pd.discoption+']').
+		prop('selected', 'selected');
+	    switch (pd.discoption){
+	    case 1:
+	    case 2:
+	    case 3:
+	    case 4:
+	    case 5:
+		$('.show4ages_disc').show();
+		break;
+	    case 6:
+		$('.show4ages_pconc').show();
 	    }
 	    break;
 	case 'evolution':
@@ -888,6 +909,8 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#discordance-filter option[value='+set.cutoffdisc+']').
 		prop('selected', 'selected');
+	    $('#discoption option[value='+set.discoption+']').
+		prop('selected', 'selected');	    
 	    $('#U48-diseq option[value='+set.U48[1]+']').
 		prop('selected', 'selected');
 	    $('#ThU-diseq option[value='+set.ThU[1]+']').
@@ -920,8 +943,8 @@ $(function(){
 	    $('#LambdaPa231').val(cst.lambda.Pa231[0]);
 	    $('#errLambdaPa231').val(cst.lambda.Pa231[1]);
 	    $('#cutoff76').val(set.cutoff76);
-	    $('#mindisc').val(set.mindisc);
-	    $('#maxdisc').val(set.maxdisc);
+	    $('#mindisc').val(set.mindisc[set.discoption-1]);
+	    $('#maxdisc').val(set.maxdisc[set.discoption-1]);
 	    $('#U48').val(set.U48[0]);
 	    $('#ThU').val(set.ThU[0]);
 	    $('#RaU').val(set.RaU[0]);
@@ -1245,7 +1268,10 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		$('#show_p').prop('checked',set.show_p=='TRUE');
+		$('#showdisc option[value='+set.showdisc+']').
+		    prop('selected', 'selected');
+		$('#discoption option[value='+set.discoption+']').
+		    prop('selected', 'selected');
 	    }
 	    if (geochronometer != 'U-Th-He') {
 		$('#age-exterr').prop('checked',set.exterr=='TRUE');
@@ -1321,8 +1347,10 @@ $(function(){
 		gcsettings.type = getOption("#UPb-age-type");
 		gcsettings.cutoff76 = getNumber('#cutoff76');
 		gcsettings.cutoffdisc = getOption("#discordance-filter");
-		gcsettings.mindisc = getNumber('#mindisc');
-		gcsettings.maxdisc = getNumber('#maxdisc');
+		var opt = getOption("#discoption");
+		gcsettings.discoption = opt;
+		gcsettings.mindisc[opt-1] = getNumber('#mindisc');
+		gcsettings.maxdisc[opt-1] = getNumber('#maxdisc');
 	    }
 	    if (gcsettings.format<7 & gcsettings.type==6){
 		gcsettings.type = 4;
@@ -1639,7 +1667,8 @@ $(function(){
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
-		pdsettings.show_p = truefalse('#show_p');
+		pdsettings.showdisc = getOption('#showdisc');
+		pdsettings.discoption = getOption('#discoption');
 	    }
 	    if (geochronometer != 'U-Th-He'){
 		pdsettings.exterr = truefalse('#age-exterr');
@@ -2084,56 +2113,56 @@ $(function(){
 	});
     }
 
-	function loadLanguage(language, callback) {
-		const dir = './locales/' + language + '/';
-		$.getJSON(dir + 'dictionary_id.json', function(tags) {
-			return $.getJSON(dir + 'dictionary_class.json', function(classes) {
-				return $.getJSON(dir + 'contextual_help.json', function(helps) {
-					callback(tags, classes, helps);
-				});
-			});
-		}).fail(function() {
-			console.warn("Failed to load language '" + language + "'");
-			callback({}, {}, {});
+    function loadLanguage(language, callback) {
+	const dir = './locales/' + language + '/';
+	$.getJSON(dir + 'dictionary_id.json', function(tags) {
+	    return $.getJSON(dir + 'dictionary_class.json', function(classes) {
+		return $.getJSON(dir + 'contextual_help.json', function(helps) {
+		    callback(tags, classes, helps);
 		});
-	}
+	    });
+	}).fail(function() {
+	    console.warn("Failed to load language '" + language + "'");
+	    callback({}, {}, {});
+	});
+    }
 
-	function withFallbackLanguage(lang, callback) {
-		if (!contextual_help_fallback) {
-			loadLanguage(lang, function(tags, classes, helps) {
-				dictionary_id_fallback = tags;
-				dictionary_class_fallback = classes;
-				contextual_help_fallback = helps;
-				callback();
-			});
-		} else {
-			callback();
-		}
+    function withFallbackLanguage(lang, callback) {
+	if (!contextual_help_fallback) {
+	    loadLanguage(lang, function(tags, classes, helps) {
+		dictionary_id_fallback = tags;
+		dictionary_class_fallback = classes;
+		contextual_help_fallback = helps;
+		callback();
+	    });
+	} else {
+	    callback();
 	}
+    }
 
-	function withLanguage(language, translate_function) {
-		if (language && language === loaded_language) {
-			return translate_function();
-		}
-		const fallbackLanguage = 'en';
-		withFallbackLanguage(fallbackLanguage, function() {
-			if (language === fallbackLanguage) {
-				dictionary_id = dictionary_id_fallback;
-				dictionary_class = dictionary_class_fallback;
-				contextual_help = contextual_help_fallback;
-				loaded_language = fallbackLanguage;
-				translate_function();
-			} else {
-				loadLanguage(language, function(tags, classes, helps) {
-					dictionary_id = tags;
-					dictionary_class = classes;
-					contextual_help = helps;
-					loaded_language = language;
-					translate_function();
-				});
-			}
+    function withLanguage(language, translate_function) {
+	if (language && language === loaded_language) {
+	    return translate_function();
+	}
+	const fallbackLanguage = 'en';
+	withFallbackLanguage(fallbackLanguage, function() {
+	    if (language === fallbackLanguage) {
+		dictionary_id = dictionary_id_fallback;
+		dictionary_class = dictionary_class_fallback;
+		contextual_help = contextual_help_fallback;
+		loaded_language = fallbackLanguage;
+		translate_function();
+	    } else {
+		loadLanguage(language, function(tags, classes, helps) {
+		    dictionary_id = tags;
+		    dictionary_class = classes;
+		    contextual_help = helps;
+		    loaded_language = language;
+		    translate_function();
 		});
-	}
+	    }
+	});
+    }
 
     function getFallbackText(key, fallback_messages, filename) {
         let link = IsoplotR.settings["translation_link"]
@@ -2145,49 +2174,49 @@ $(function(){
         return fallback_messages[key] + button;
     }
 
-	function getItem(key, obj, fallback, filename) {
-		return key in obj? obj[key] : getFallbackText(key, fallback, filename);
-	}
+    function getItem(key, obj, fallback, filename) {
+	return key in obj? obj[key] : getFallbackText(key, fallback, filename);
+    }
 
-	function getItemDictionaryClass(key) {
-		return getItem(key, dictionary_class, dictionary_class_fallback,
-			"dictionary_class");
-	}
+    function getItemDictionaryClass(key) {
+	return getItem(key, dictionary_class, dictionary_class_fallback,
+		       "dictionary_class");
+    }
 
-	function getItemContextualHelp(key) {
-		return getItem(key, contextual_help, contextual_help_fallback,
-			"contextual_help.json");
-	}
+    function getItemContextualHelp(key) {
+	return getItem(key, contextual_help, contextual_help_fallback,
+		       "contextual_help");
+    }
 
-	function translateDictionaryId(element) {
-		const key = element.id;
-		if (key in dictionary_id) {
-			element.innerHTML = dictionary_id[key];
-			return;
-		}
-		if (element.tagName.toUpperCase() !== 'OPTION') {
-			element.innerHTML = getFallbackText(key, dictionary_id_fallback, "dictionary_id");
-			return;
-		}
-		// cannot put a link into option
-		element.innerHTML = dictionary_id_fallback[key];
+    function translateDictionaryId(element) {
+	const key = element.id;
+	if (key in dictionary_id) {
+	    element.innerHTML = dictionary_id[key];
+	    return;
 	}
+	if (element.tagName.toUpperCase() !== 'OPTION') {
+	    element.innerHTML = getFallbackText(key, dictionary_id_fallback, "dictionary_id");
+	    return;
+	}
+	// cannot put a link into option
+	element.innerHTML = dictionary_id_fallback[key];
+    }
 
-	function translate() {
-		const language = IsoplotR.settings.language;
-		withLanguage(language, function() {
-			$(".translate").each(function(i){
-				translateDictionaryId(this);
-			});
-			$("translate").each(function(i){
-				this.innerHTML = getItemDictionaryClass(this.className);
-			});
-			// sadly, we cannot put a "translate" link into a jQuery dialog
-			// so we cannot use getItemContextualHelp
-			const helpTitle = 'help' in contextual_help?
-				contextual_help['help'] : contextual_help_fallback['help'];
-			$("#helpmenu").dialog('option', 'title', helpTitle);
-		});
+    function translate() {
+	const language = IsoplotR.settings.language;
+	withLanguage(language, function() {
+	    $(".translate").each(function(i){
+		translateDictionaryId(this);
+	    });
+	    $("translate").each(function(i){
+		this.innerHTML = getItemDictionaryClass(this.className);
+	    });
+	    // sadly, we cannot put a "translate" link into a jQuery dialog
+	    // so we cannot use getItemContextualHelp
+	    const helpTitle = 'help' in contextual_help?
+		  contextual_help['help'] : contextual_help_fallback['help'];
+	    $("#helpmenu").dialog('option', 'title', helpTitle);
+	});
     }
     
     $.switchErr = function(){
@@ -2247,6 +2276,14 @@ $(function(){
 	errconvert();
 	showOrHide();
     }
+
+    $.chooseDiscFilter = function(){
+	var opt = getOption("#discoption");
+	var set = IsoplotR.settings['U-Pb'];
+	set.discoption = opt;
+	$('#mindisc').val(set.mindisc[opt-1]);
+	$('#maxdisc').val(set.maxdisc[opt-1]);
+    }    
     
     $.chooseMineral = function(){
 	var cst = IsoplotR.constants;
@@ -2314,11 +2351,11 @@ $(function(){
 	welcome();
     });
 
-	$('body').on('click', 'help', function(){
-		var text = getItemContextualHelp(this.id);
-		$("#helpmenu").html(text);
-		$("#helpmenu").dialog('open');
-		showOrHide();
+    $('body').on('click', 'help', function(){
+	var text = getItemContextualHelp(this.id);
+	$("#helpmenu").html(text);
+	$("#helpmenu").dialog('open');
+	showOrHide();
     });
 
     $("#OPEN").on('change', function(e){
@@ -2434,14 +2471,13 @@ $(function(){
 	$(location).attr('href','home/index.html');
     });
 
-	var IsoplotR;
+    var IsoplotR;
     var contextual_help = {};
     var dictionary_id = {};
-	var dictionary_class = {};
-	var contextual_help_fallback;
-	var dictionary_id_fallback;
-	var dictionary_class_fallback;
-	var loaded_language = null;
+    var dictionary_class = {};
+    var contextual_help_fallback;
+    var dictionary_id_fallback;
+    var dictionary_class_fallback;
+    var loaded_language = null;
     initialise();
 });
-

@@ -1,2 +1,9 @@
 {
+    "help": "ayuda",
+    "help_age_exterr": "Cuando esta opción es seleccionada, la incerteza analítica con las constantes de decaimiento de <sup>235</sup>U y<sup>238</sup>U se propagarán en el cálculo de la edad. Esta opción se recomienda si cada alíquota corresponde a muestras separadas, pero <i>no</i> si pertenecen a la misma muestra. En este caso, las incertezas de las constantes de decaimiento introducirán errores correlacionados que se pierden la la tabla de salida. Las funciones de concordia y de gráfica radial de <tt>IsoplotR</tt> fueron designadas para tener en cuenta esta correlación.",
+    "help_isochron_exterr": "Cuando esta opción es seleccionada, la incerteza analítica asociada con la constante de decaimiento radioactiva y con la composición isotópica no radiogénica, se propaga en la edad.",
+    "help_normalise": "Cuando esta opción es seleccionada, el área debajo de cada uno de los KDEs (e histogramas) serán normalizados a un número común. De lo contrario, el KDE utilizará el rango completo de valores de y disponibles.",
+    "help_verticals": "Cuando esta opción es seleccionada, los puntos horizontales son conectados con las lineas verticales",
+    "help_exterr_UPb": "Cuando esta opción es seleccionada,  el espesor de la linea de concordia será ajustado para mostrar la incertidumbre analítica asociada con la constante de decaimiento y con las relaciones <sup>238</sup>U/<sup>235</sup>U. Esta incertidumbre será también propagada dentro de los cálculos de concordia o discordia.",
+    "help_exterr": "Cuando esta opción es seleccionada, la incerteza analítica asociada a las constantes de decaimiento, factores de calibración, etc. se propaga en la edad."
 }

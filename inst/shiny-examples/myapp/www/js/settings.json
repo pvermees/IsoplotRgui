@@ -1,21 +1,24 @@
 {
-    "language": "en",
-    "languages_supported" : [
-		{
-			"code": "en",
-			"prefix": "en",
-			"name": "English"
-		},
-		{
-        	"code": "zh_Hans",
-			"prefix": "zh",
-			"name": "中文"
-		},
-        {
-			"code": "es",
-			"prefix": "es",
-			"name": "Español"
-		}
+	"language": "en",
+	"languages_supported" : [
+	{
+		"code": "en",
+		"prefix": "en",
+		"name": "English",
+		"short_name": "EN"
+	},
+	{
+		"code": "zh_Hans",
+		"prefix": "zh",
+		"name": "中文",
+		"short_name": "CN"
+	},
+	{
+		"code": "es",
+		"prefix": "es",
+		"name": "Español",
+		"short_name": "ES"
+	}
 	],
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
@@ -34,11 +37,12 @@
     },
     "U-Pb": {
 	"format": 2,
-	"type": 4,
+	"type": 5,
 	"cutoff76": 1100,
 	"cutoffdisc": 0,
-	"mindisc": -15,
-	"maxdisc": 5,
+	"discoption": 5,
+	"mindisc": [-5,-5,-0.01,-1,-1],
+	"maxdisc": [50,15,0.1,5,5],
 	"commonPb": 0,
 	"diseq": "FALSE",
 	"U48": [1,0],
@@ -237,7 +241,7 @@
 	"pch": 21,
 	"pos": 0,
 	"cex": 5,
-        "col": "'black'",
+        "col": "black",
 	"bg": "white"
     },
     "helioplot": {
@@ -257,7 +261,8 @@
 	"clabel": ""
     },
     "ages": {
-	"show_p": "FALSE",
+	"showdisc": 0,
+	"discoption": 5,
 	"exterr": "FALSE",
 	"sigdig": 2
     }
