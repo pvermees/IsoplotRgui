@@ -1,51 +1,4 @@
-LETTERS <- unlist(lapply(c(utf8ToInt("A"):utf8ToInt("Z")),intToUtf8))
-
 server <- function(dat){
-
-    base64codes <- c(LETTERS, letters,
-        unlist(strsplit("0123456789+/", split=NULL)))
-
-    base64chunk <- function(xx) {
-        x <- as.numeric(xx)
-        switch (length(x),
-        {
-        # one byte
-        r1 <- x[1] * 16
-        r0 <- r1 %/% 64
-        paste0(base64codes[r0 + 1],
-            base64codes[r1 %% 64 + 1],
-            "==")
-        },
-        {
-        # two bytes
-        r2 <- x[1] * 1024 + x[2] * 4
-        r1 <- r2 %/% 64
-        r0 <- r1 %/% 64
-        paste0(base64codes[r0 + 1],
-            base64codes[r1 %% 64 + 1],
-            base64codes[r2 %% 64 + 1],
-            "=")
-        },
-        {
-        # three bytes
-        r3 <- x[1] * 65536 + x[2] * 256 + x[3]
-        r2 <- r3 %/% 64
-        r1 <- r2 %/% 64
-        r0 <- r1 %/% 64
-        paste0(base64codes[r0 + 1],
-            base64codes[r1 %% 64 + 1],
-            base64codes[r2 %% 64 + 1],
-            base64codes[r3 %% 64 + 1])
-        })
-    }
-
-    base64 <- function(x) {
-        if (length(x) == 0) return("")
-        chunkCount <- (length(x)+2) %/% 3
-        indices <- 1:chunkCount
-        chunks <- sapply(indices, function(i) base64chunk(x[(i*3-2):(i*3)]))
-        paste0(chunks, collapse="")
-    }
 
     #' Renders a plot as a base64-encoded image
     #'
@@ -64,7 +17,7 @@ server <- function(dat){
         grDevices::dev.off()
         fileSize <- file.size(tempFilename)
         raw <- readBin(tempFilename, what="raw", n=fileSize)
-        paste0("data:", mimeType, ";base64,", base64(raw))
+        paste0("data:", mimeType, ";base64,", jsonlite::base64_enc(raw))
     }
 
     #' Renders a plot as a base64-encoded PNG
@@ -384,7 +337,7 @@ server <- function(dat){
         raw <- capture.output(write.csv(results, stdout()))
         forJson$data <- paste0(
             "data:text/csv;base64,",
-            base64(raw))
+            jsonlite::base64_enc(raw))
         forJson
     }
 
