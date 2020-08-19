@@ -1,5 +1,3 @@
-LETTERS <- unlist(lapply(c(utf8ToInt("A"):utf8ToInt("Z")),intToUtf8))
-
 server <- function(dat){
 
     #' Renders a plot as a base64-encoded image
