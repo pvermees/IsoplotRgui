@@ -16,7 +16,7 @@ RUN npm install .
 COPY DESCRIPTION /app/DESCRIPTION
 COPY NAMESPACE /app/NAMESPACE
 COPY R/IsoplotR.R /app/R/IsoplotR.R
-COPY test /app/test
+COPY build /app/build
 COPY inst /app/inst
 
-CMD ["Rscript", "--vanilla", "test/start-gui.R", "0.0.0.0:50055"]
+CMD ["Rscript", "--vanilla", "build/start-gui.R", "0.0.0.0:50055"]
