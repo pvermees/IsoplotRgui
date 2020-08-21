@@ -275,8 +275,8 @@ server <- function(dat){
             errormessage <- paste0("Error message:\n\n",wrap(message1,width),
                                    "\n\n",wrap(message2,width),"\n\n-PV")
             print(e)
-            plot(c(0, 1),c(0,1),ann=F,bty ='n',type='n',xaxt='n',yaxt='n')
-            text(0.5,0,errormessage,cex=1.5,pos=3)
+            graphics::plot(c(0, 1),c(0,1),ann=F,bty ='n',type='n',xaxt='n',yaxt='n')
+            graphics::text(0.5,0,errormessage,cex=1.5,pos=3)
         })
 
     }
@@ -334,7 +334,7 @@ server <- function(dat){
         forJson$action <- "download"
         forJson$filename <- paste0(name, ".csv")
         results <- run(Rcommand)
-        raw <- capture.output(write.csv(results, stdout()))
+        raw <- utils::capture.output(utils::write.csv(results, stdout()))
         forJson$data <- paste0(
             "data:text/csv;base64,",
             jsonlite::base64_enc(raw))
