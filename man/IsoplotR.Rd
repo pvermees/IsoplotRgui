@@ -4,7 +4,12 @@
 \alias{IsoplotR}
 \title{Start the \code{IsoplotR} GUI}
 \usage{
-IsoplotR()
+IsoplotR(host = "0.0.0.0", port = 8080)
+}
+\arguments{
+\item{host}{IP address of the virtual server}
+
+\item{port}{internet port of the virtual server}
 }
 \description{
 Opens a web-browser with a Graphical User Interface (GUI) for the

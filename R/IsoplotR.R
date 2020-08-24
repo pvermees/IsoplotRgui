@@ -93,7 +93,8 @@ sanitizeCommand <- function(command, callback) {
 #' Opens a web-browser with a Graphical User Interface (GUI) for the
 #' \code{IsoplotR} package. An online version of the same interface is
 #' provided at \url{http://isoplotr.london-geochron.com}
-#'
+#' @param host IP address of the virtual server
+#' @param port internet port of the virtual server
 #' @examples
 #' #IsoplotR()
 #' @export
@@ -101,7 +102,8 @@ IsoplotR <- function(host='0.0.0.0', port=8080) {
     appDir <- system.file("shiny-examples", "myapp", "www",
             package = "IsoplotRgui")
     if (appDir == "") {
-        stop("Could not find shinyApp directory. Try re-installing `IsoplotRgui`.", call. = FALSE)
+        stop("Could not find shinyApp directory. Try re-installing `IsoplotRgui`.",
+             call. = FALSE)
     }
     s <- rrpcServer(host=host, port=port, appDir=appDir, root="/",
         interface=list(
