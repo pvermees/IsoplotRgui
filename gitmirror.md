@@ -1,7 +1,8 @@
 ## Setting up your own online mirror with *git*
 
-[Docker](README.md) is the most secure way to install an **IsoplotR**
-mirror. This document presents an alternative approach using **git**.
+[Docker](README.md#setting-up-your-own-online-mirror) is the most
+secure way to install an **IsoplotR** mirror. This document presents
+an alternative approach using **git**.
 
 ### Create a user to run *IsoplotR*
 

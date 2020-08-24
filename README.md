@@ -49,7 +49,7 @@ following ingredients:
 - crontab
 
 For an alternative (but less secure) installation procedure using
-*git* instead of *docker*, see [here](gitmirror.md).
+**git** instead of **docker**, see [here](gitmirror.md).
 
 ### *docker* to run *IsoplotR*
 
@@ -70,7 +70,7 @@ sudo adduser wwwrunner docker
 Clone and build (as `wwwrunner`):
 
 ```sh
-sudo -u wwwrunner docker build -t docker-isoplotr https://github.com/pvermees/docker-isoplotr.git
+sudo -u wwwrunner docker pull pvermees/isoplotr
 ```
 
 ### SystemD to keep *IsoplotR* running
