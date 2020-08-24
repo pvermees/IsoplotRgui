@@ -214,12 +214,6 @@ boot, or `-f` to show messages as they come in.
 
 As well as `journalctl`, there are logs from nginx at `var/log/nginx`.
 
-#### docker logs
-
-```sh
-docker logs isoplotrd
-```
-
 ## Further information
 
 See [http://isoplotr.london-geochron.com](http://ucl.ac.uk/~ucfbpve/isoplotr)
