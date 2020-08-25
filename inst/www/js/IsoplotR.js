@@ -2092,7 +2092,7 @@ $(function(){
 	    showOrHide();
 	    $("#version").load('version.txt',function(){
 		$.ajax({
-		    url: 'https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/shiny-examples/myapp/www/version.txt',
+		    url: 'https://raw.githubusercontent.com/pvermees/IsoplotRgui/master/inst/www/version.txt',
 		    error: function(){
 			$('#behind').hide();
 		    },

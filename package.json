@@ -6,8 +6,6 @@
         "server": "Rscript --vanilla build/start-gui.R 50055",
         "install-r-dependencies": "Rscript build/install.R",
         "test": "mocha test",
-        "generate-translation-files": "node build/degather_translations.js",
-        "generate-simplified-chinese": "node build/hant2hans.js",
         "bad-translation-ids": "node build/find_translation_prefixes.js"
     },
     "devDependencies": {

@@ -16,5 +16,5 @@ s1="/"
 
 COMMIT="$APPVERSION$s1$GUIVERSION"
 
-FILE=inst/shiny-examples/myapp/www/version.txt
+FILE=inst/www/version.txt
 echo -e "$COMMIT" > "$FILE"

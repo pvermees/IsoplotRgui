@@ -1,7 +1,3 @@
-serverR <- source('inst/shiny-examples/myapp/server.R')
-
-# for some reason I have to save the function from server.R
-serverFn <- server
 
 rrpc <- function(interface) { function(ws) {
     ws$onMessage(function(binary, message) {
@@ -99,32 +95,31 @@ sanitizeCommand <- function(command, callback) {
 #' #IsoplotR()
 #' @export
 IsoplotR <- function(host='0.0.0.0', port=8080) {
-    appDir <- system.file("shiny-examples", "myapp", "www",
-            package = "IsoplotRgui")
+    appDir <- system.file("www", package = "IsoplotRgui")
     if (appDir == "") {
-        stop("Could not find shinyApp directory. Try re-installing `IsoplotRgui`.",
+        stop("Could not find www directory. Try re-installing `IsoplotRgui`.",
              call. = FALSE)
     }
     s <- rrpcServer(host=host, port=port, appDir=appDir, root="/",
         interface=list(
             run=function(data, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    serverFn(data)$runner(com)
+                    server(data)$runner(com)
                 })
             },
             plot=function(data, width, height, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    serverFn(data)$plotter(width, height, com)
+                    server(data)$plotter(width, height, com)
                 })
             },
             pdf=function(data, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    serverFn(data)$getPdf(com)
+                    server(data)$getPdf(com)
                 })
             },
             csv=function(data, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    serverFn(data)$getCsv(com, "ages")
+                    server(data)$getCsv(com, "ages")
                 })
             }
         )
