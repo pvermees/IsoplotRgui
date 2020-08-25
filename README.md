@@ -5,7 +5,7 @@ geochronology.
 
 ## Offline installation and use
 
-1. You must have **R** installed on your system (see [http://r-project.org](http://r-project.org)) as well as the **devtools** and **shiny** packages. These can be installed by typing the following code at the **R** command line prompt:
+1. You must have **R** installed on your system (see [http://r-project.org](http://r-project.org)) as well as the **devtools** package. These can be installed by typing the following code at the **R** command line prompt:
 
 
 ```
