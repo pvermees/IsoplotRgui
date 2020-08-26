@@ -426,7 +426,7 @@ function getRcommand(prefs){
     var plotdevice = prefs.settings.plotdevice;
     var options = getOptions(prefs);
     var gcsettings = prefs.settings[geochronometer];
-    var out = "dat <- selection2data(method='" + geochronometer + "'";
+    var out = "dat <- selection2data(input, method='" + geochronometer + "'";
     if (geochronometer=='detritals' |
 	geochronometer=='fissiontracks' |
 	geochronometer=='U-Pb'  |

@@ -25,16 +25,18 @@ rrpc <- function(interface) { function(ws) {
     })
 }}
 
-rrpcServer <- function(interface, host='0.0.0.0', port=8080, appDir=NULL, root="/") {
+rrpcServer <- function(interface, host='0.0.0.0', port=NULL, appDir=NULL, root="/") {
     app <- list(onWSOpen=rrpc(interface))
     if (!is.null(appDir)) {
         paths <- list()
         paths[[root]] <- appDir
         app$staticPaths <- paths
     }
+    if (is.null(port)) {
+        port <- httpuv::randomPort(min=8192, max=40000, host=host)
+    }
     httpuv::startServer(host=host, port=port, app=app)
 }
-
 
 # Calls callback for each name found in expression 'exp'
 
@@ -75,7 +77,8 @@ sanitizeCommand <- function(command, callback) {
         'IsoplotR::cad', 'IsoplotR::mds', 'IsoplotR::isochron',
         'IsoplotR::evolution', 'IsoplotR::radialplot',
         'IsoplotR::agespectrum', 'IsoplotR::weightedmean',
-        'IsoplotR::set.zeta', 'IsoplotR::helioplot', 'IsoplotR::age'
+        'IsoplotR::set.zeta', 'IsoplotR::helioplot', 'IsoplotR::age',
+        'input'
     ))
     if (0 < length(failures)) {
         txt <- paste(failures, collapse=", ")
@@ -90,11 +93,14 @@ sanitizeCommand <- function(command, callback) {
 #' \code{IsoplotR} package. An online version of the same interface is
 #' provided at \url{http://isoplotr.london-geochron.com}
 #' @param host IP address of the virtual server
-#' @param port internet port of the virtual server
+#' @param port Internet port of the virtual server. If not defined, a
+#' random free port will be chosen and the browser will be opened
+#' to show the GUI.
+#' @return server object
 #' @examples
 #' #IsoplotR()
 #' @export
-IsoplotR <- function(host='0.0.0.0', port=8080) {
+IsoplotR <- function(host='0.0.0.0', port=NULL) {
     appDir <- system.file("www", package = "IsoplotRgui")
     if (appDir == "") {
         stop("Could not find www directory. Try re-installing `IsoplotRgui`.",
@@ -104,28 +110,50 @@ IsoplotR <- function(host='0.0.0.0', port=8080) {
         interface=list(
             run=function(data, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    server(data)$runner(com)
+                    server$runner(com, data)
                 })
             },
             plot=function(data, width, height, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    server(data)$plotter(width, height, com)
+                    server$plotter(width, height, com, data)
                 })
             },
             pdf=function(data, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    server(data)$getPdf(com)
+                    server$getPdf(com, data)
                 })
             },
             csv=function(data, Rcommand) {
                 sanitizeCommand(Rcommand, function(com) {
-                    server(data)$getCsv(com, "ages")
+                    server$getCsv(com, data, "ages")
                 })
             }
         )
     )
+    if (is.null(port)) {
+        protocol <- "http://"
+        if (grepl("://", host, fixed=TRUE)) {
+            protocol <- ""
+        }
+        port <- s$getPort()
+        utils::browseURL(paste0(protocol, host, ":", port))
+    }
     cat(sprintf("Listening on %s:%d\n", host, port))
-    while (TRUE) {
-        later::run_now(9999)
+    s
+}
+
+#' Stop an \code{IsoplotR} GUI
+#'
+#' @param server The server (returned by [IsoplotR()]) to stop. If not
+#' supplied all servers will be stopped.
+#' @return The number of servers stopped.
+#' @examples
+#' #IsoplotR()
+#' @export
+stopIsoplotR <- function(server=NULL) {
+    if (is.null(server)) {
+        httpuv::stopAllServers()
+    } else {
+        server$stop()
     }
 }
