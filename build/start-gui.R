@@ -11,4 +11,9 @@ if (0 < length(args)) {
         port <- as.numeric(args[1])
     }
 }
-IsoplotRgui::IsoplotR(host=host, port=port)
+
+server <- IsoplotRgui::IsoplotR(host=host, port=port)
+
+while (TRUE) {
+    later::run_now(9999)
+}
