@@ -12,7 +12,7 @@ if (0 < length(args)) {
     }
 }
 
-server <- IsoplotRgui::IsoplotR(host=host, port=port)
+IsoplotRgui::IsoplotR(host=host, port=port)
 
 while (TRUE) {
     later::run_now(9999)
