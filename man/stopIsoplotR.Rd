@@ -7,8 +7,8 @@
 stopIsoplotR(server = NULL)
 }
 \arguments{
-\item{server}{The server (returned by [IsoplotR()]) to stop. If not
-supplied all servers will be stopped.}
+\item{server}{The server (returned by \code{\link{IsoplotRgui::IsoplotR()}})
+to stop. If not supplied all servers will be stopped.}
 }
 \value{
 The number of servers stopped.

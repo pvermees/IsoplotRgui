@@ -130,6 +130,7 @@ IsoplotR <- function(host='0.0.0.0', port=NULL) {
             }
         )
     )
+    extraMessage <- ""
     if (is.null(port)) {
         protocol <- "http://"
         if (grepl("://", host, fixed=TRUE)) {
@@ -137,15 +138,16 @@ IsoplotR <- function(host='0.0.0.0', port=NULL) {
         }
         port <- s$getPort()
         utils::browseURL(paste0(protocol, host, ":", port))
+        extraMessage <- "Call IsoplotRgui::stopIsoplotR() to stop serving IsoplotR\n"
     }
-    cat(sprintf("Listening on %s:%d\n", host, port))
-    s
+    cat(sprintf("Listening on %s:%d\n%s", host, port, extraMessage))
+    invisible(s)
 }
 
 #' Stop an \code{IsoplotR} GUI
 #'
-#' @param server The server (returned by [IsoplotR()]) to stop. If not
-#' supplied all servers will be stopped.
+#' @param server The server (returned by \code{\link{IsoplotRgui::IsoplotR()}})
+#' to stop. If not supplied all servers will be stopped.
 #' @return The number of servers stopped.
 #' @examples
 #' #IsoplotR()
