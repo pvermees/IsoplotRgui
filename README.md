@@ -67,10 +67,19 @@ sudo useradd -mrU wwwrunner
 sudo adduser wwwrunner docker
 ```
 
-Clone and build (as `wwwrunner`):
+Pull (as `wwwrunner`):
 
 ```sh
 sudo -u wwwrunner docker pull pvermees/isoplotr
+```
+
+#### (Without Docker Hub)
+
+If you cannot or do not want to use Docker Hub, the following will
+perform the image build on your machine:
+
+```sh
+docker build -t pvermees/isoplotr https://github.com/pvermees/IsoplotRgui.git
 ```
 
 ### SystemD to keep *IsoplotR* running
@@ -92,7 +101,7 @@ After=network.target
 [Service]
 Type=simple
 User=wwwrunner
-ExecStart=docker run --rm --name isoplotr -p 3838:80 isoplotr
+ExecStart=docker run --rm --name isoplotr -p 3838:80 pvermees/isoplotr
 Restart=always
 
 [Install]
@@ -164,6 +173,69 @@ Then add a line like this (to run at 03:17 local time):
 
 ```
 17 3 * * * docker pull pvermees/isoplotr && systemctl restart isoplotr
+```
+
+#### (Without Docker Hub)
+
+Again, if you cannot or do not want to use Docker Hub, you can rebuild
+image on your machine:
+
+```
+17 3 * * * docker build --no-cache -t pvermees/isoplotr https://github.com/pvermees/IsoplotRgui.git && systemctl restart isoplotr
+```
+
+
+### Maintenance
+
+You can find logs for the various processes mentioned here in the
+following places:
+
+#### crontab logs
+
+```
+grep CRON < /var/log/syslog
+```
+
+or, if you want to see the messages as they appear:
+
+```
+tail -f /var/log/syslog | grep --line-buffered CRON
+```
+
+#### SystemD logs
+
+```sh
+journalctl -u isoplotr
+```
+
+and:
+
+```sh
+journalctl -u nginx
+```
+
+`journalctl` has many interesting options; for example `-r` to see
+the most recent messages first, `-k` to see messages only from this
+boot, or `-f` to show messages as they come in.
+
+#### nginx logs
+
+As well as `journalctl`, there are logs from nginx at `/var/log/nginx`.
+
+#### docker logs
+
+```sh
+docker logs isoplotr
+```
+
+## Updating
+
+We update the image (tagged `latest`) on docker hub with the following commands:
+
+```sh
+docker login
+docker build -t pvermees/isoplotr https://github.com/pvermees/IsoplotRgui.git
+docker push pvermees/isoplotr
 ```
 
 ## Further information
