@@ -230,11 +230,12 @@ docker logs isoplotr
 
 ## Updating
 
-We update the image (tagged `latest`) on docker hub with the following commands:
+We update the image (tagged `latest`) on docker hub with commands like these:
 
 ```sh
+git checkout master
+docker build -t pvermees/isoplotr .
 docker login
-docker build -t pvermees/isoplotr https://github.com/pvermees/IsoplotRgui.git
 docker push pvermees/isoplotr
 ```
 
