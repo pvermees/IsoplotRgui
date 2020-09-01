@@ -1,10 +1,10 @@
-FROM r-base:4.0.0
+FROM alpine:3.11.6
 
-RUN apt-get update && apt-get install -y npm libcurl4-openssl-dev libxml2-dev
+RUN apk add R R-dev R-doc build-base automake autoconf ttf-freefont
 
-COPY build/install.R /app/build/install.R
 WORKDIR /app
-RUN Rscript build/install.R
+
+RUN Rscript --vanilla -e "install.packages(c('later','jsonlite','httpuv','IsoplotR'), repos=c(CRAN='https://cran.rstudio.com'))"
 
 COPY DESCRIPTION /app/DESCRIPTION
 COPY NAMESPACE /app/NAMESPACE
