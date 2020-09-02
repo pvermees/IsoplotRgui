@@ -1,0 +1,15 @@
+Package: IsoplotRgui
+Title: Docker version of IsoplotR
+Version: 3.5
+Date: 2020-09-02
+Authors@R: c(person("Pieter", "Vermeesch", email = "p.vermeesch@ucl.ac.uk", role = c("aut", "cre")), person("Tim","Band",role="ctb"))
+Description: Implements the fuctionality of the popular Isoplot Excel Add-In for Isotope Geology.
+Author: Pieter Vermeesch [aut, cre], Tim Band [ctb]
+Maintainer: Pieter Vermeesch <p.vermeesch@ucl.ac.uk>
+Depends: R (>= 3.0.0)
+Imports: grDevices (>= 3.6.2), httpuv (>= 1.5.4), jsonlite (>= 1.6.1), later (>= 1.0), MASS
+License: GPL-3
+URL: http://isoplotr.london-geochron.com
+LazyData: true
+RoxygenNote: 7.1.1
+Encoding: UTF-8
