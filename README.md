@@ -73,15 +73,6 @@ Pull (as `wwwrunner`):
 sudo -u wwwrunner docker pull pvermees/isoplotr
 ```
 
-#### (Without Docker Hub)
-
-If you cannot or do not want to use Docker Hub, the following will
-perform the image build on your machine:
-
-```sh
-docker build -t pvermees/isoplotr https://github.com/pvermees/IsoplotRgui.git
-```
-
 ### SystemD to keep *IsoplotR* running
 
 We will be using [SystemD](https:://systemd.io) to keep **IsoplotR**
@@ -174,16 +165,6 @@ Then add a line like this (to run at 03:17 local time):
 ```
 17 3 * * * docker pull pvermees/isoplotr && systemctl restart isoplotr
 ```
-
-#### (Without Docker Hub)
-
-Again, if you cannot or do not want to use Docker Hub, you can rebuild
-image on your machine:
-
-```
-17 3 * * * docker build --no-cache -t pvermees/isoplotr https://github.com/pvermees/IsoplotRgui.git && systemctl restart isoplotr
-```
-
 
 ### Maintenance
 

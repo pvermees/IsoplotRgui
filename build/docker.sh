@@ -35,6 +35,9 @@ cp -r "$home/IsoplotR/data/." "$home/docker-isoplotr/data"
 # combine the NAMESPACE files of IsoplotR and IsoplotRgui
 cat "$home/IsoplotR/NAMESPACE" "$home/IsoplotRgui/NAMESPACE" > "$home/docker-isoplotr/NAMESPACE"
 
+# move the Dockerfile to the docker-isoplotr home directory
+mv "$home/docker-isoplotr/build/Dockerfile" "$home/docker-isoplotr/Dockerfile"
+
 # build the image and upload the Docker Hub
 docker build -t pvermees/isoplotr "$home/docker-isoplotr"
 docker login
