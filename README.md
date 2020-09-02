@@ -228,17 +228,6 @@ As well as `journalctl`, there are logs from nginx at `/var/log/nginx`.
 docker logs isoplotr
 ```
 
-## Updating
-
-We update the image (tagged `latest`) on docker hub with commands like these:
-
-```sh
-git checkout master
-docker build -t pvermees/isoplotr .
-docker login
-docker push pvermees/isoplotr
-```
-
 ## Further information
 
 See [http://isoplotr.london-geochron.com](http://ucl.ac.uk/~ucfbpve/isoplotr/index.html)

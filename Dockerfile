@@ -1,10 +1,8 @@
-FROM alpine:3.11.6
-
-RUN apk add R R-dev R-doc build-base automake autoconf ttf-freefont
+FROM pvermees/isoplotr
 
 WORKDIR /app
 
-RUN Rscript --vanilla -e "install.packages(c('later','jsonlite','httpuv','IsoplotR'), repos=c(CRAN='https://cran.rstudio.com'))"
+RUN Rscript --vanilla -e "install.packages(c('later','jsonlite','httpuv'), repos='https://cran.rstudio.com')"
 
 COPY DESCRIPTION /app/DESCRIPTION
 COPY NAMESPACE /app/NAMESPACE
