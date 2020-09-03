@@ -7,7 +7,6 @@ geochronology.
 
 1. You must have **R** installed on your system (see [http://r-project.org](http://r-project.org)) as well as the **devtools** package. These can be installed by typing the following code at the **R** command line prompt:
 
-
 ```
 install.packages('devtools')
 ```
@@ -70,13 +69,26 @@ sudo adduser wwwrunner docker
 Pull (as `wwwrunner`):
 
 ```sh
-sudo -u wwwrunner docker pull pvermees/isoplotr
+sudo -u wwwrunner docker pull pvermees/isoplotrgui
 ```
 
-Begin:
+Let us write a startup script for this docker container. Put the
+following lines into a file `/usr/local/sbin/isoplotr-start`:
 
 ```sh
-docker run --restart unless-stopped --rm --name isoplotr -p 3838:80 pvermees/isoplotr
+docker stop isoplotr
+docker rm isoplotr
+docker run --restart unless-stopped -d --name isoplotr -p 3838:80 pvermees/isoplotrgui
+```
+
+(note that the absence of `set -eu` is not a mistake;
+execution should continue in the presence of errors)
+
+And begin:
+
+```sh
+sudo chmod a+x /usr/local/sbin/isoplotr-start
+sudo -u wwwrunner isoplotr-start
 ```
 
 You should now see **IsoplotR** running on [http://localhost:3838]
@@ -131,13 +143,13 @@ think it is not likely to be used (as a short period of downtime
 occurs when there is an update to be installed):
 
 ```sh
-sudo crontab -e
+sudo -u wwwrunner crontab -e
 ```
 
 Then add a line like this (to run at 03:17 local time):
 
 ```
-17 3 * * * docker pull pvermees/isoplotr && docker stop isoplotr ; docker run --restart unless-stopped --rm --name isoplotr -p 3838:80 pvermees/isoplotr
+17 3 * * * docker pull pvermees/isoplotrgui && isoplotr-start
 ```
 
 ### Maintenance
