@@ -7,7 +7,6 @@ geochronology.
 
 1. You must have **R** installed on your system (see [http://r-project.org](http://r-project.org)) as well as the **devtools** package. These can be installed by typing the following code at the **R** command line prompt:
 
-
 ```
 install.packages('devtools')
 ```
@@ -70,7 +69,7 @@ sudo adduser wwwrunner docker
 Pull (as `wwwrunner`):
 
 ```sh
-sudo -u wwwrunner docker pull pvermees/isoplotr
+sudo -u wwwrunner docker pull pvermees/isoplotrgui
 ```
 
 Let us write a startup script for this docker container. Put the
@@ -79,7 +78,7 @@ following lines into a file `/usr/local/sbin/isoplotr-start`:
 ```sh
 docker stop isoplotr
 docker rm isoplotr
-docker run --restart unless-stopped -d --name isoplotr -p 3838:80 pvermees/isoplotr
+docker run --restart unless-stopped -d --name isoplotr -p 3838:80 pvermees/isoplotrgui
 ```
 
 (note that the absence of `set -eu` is not a mistake;
@@ -150,7 +149,7 @@ sudo -u wwwrunner crontab -e
 Then add a line like this (to run at 03:17 local time):
 
 ```
-17 3 * * * docker pull pvermees/isoplotr && isoplotr-start
+17 3 * * * docker pull pvermees/isoplotrgui && isoplotr-start
 ```
 
 ### Maintenance
