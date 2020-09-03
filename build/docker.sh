@@ -2,7 +2,8 @@
 
 home=${1:-"/home/pvermees/Documents/Programming/R"}
 
-# build the image and upload the Docker Hub
-docker build -t pvermees/isoplotr "$home/docker-isoplotr"
+docker build -t pvermees/docker-isoplotr "$home/IsoplotR"
+docker build -t pvermees/isoplotr "$home/IsoplotRgui"
 docker login
+docker push pvermees/docker-isoplotr
 docker push pvermees/isoplotr
