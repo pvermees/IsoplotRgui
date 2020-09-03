@@ -73,36 +73,10 @@ Pull (as `wwwrunner`):
 sudo -u wwwrunner docker pull pvermees/isoplotr
 ```
 
-### SystemD to keep *IsoplotR* running
-
-We will be using [SystemD](https:://systemd.io) to keep **IsoplotR**
-running. **SystemD** is a service manager that is used in many Linux
-distributions including *Arch*, *CentOS*, *Debian*, *Fedora*, *Mint*,
-*Manjaro*, *openSUSE*, *Red Hat* and *Ubuntu*. Although the
-instructions here are for Ubuntu, there should be no problem using
-other distributions as long as they use **SystemD**.
-
-Copy following into a new file `/etc/systemd/system/isoplotr.service`:
-
-```
-[Unit]
-Description=IsoplotR
-After=network.target
-
-[Service]
-Type=simple
-User=wwwrunner
-ExecStart=docker run --rm --name isoplotr -p 3838:80 pvermees/isoplotr
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
-and start the service:
+Begin:
 
 ```sh
-sudo systemctl start isoplotr
+docker run --restart unless-stopped --rm --name isoplotr -p 3838:80 pvermees/isoplotr
 ```
 
 You should now see **IsoplotR** running on [http://localhost:3838]
@@ -163,7 +137,7 @@ sudo crontab -e
 Then add a line like this (to run at 03:17 local time):
 
 ```
-17 3 * * * docker pull pvermees/isoplotr && systemctl restart isoplotr
+17 3 * * * docker pull pvermees/isoplotr && docker stop isoplotr ; docker run --restart unless-stopped --rm --name isoplotr -p 3838:80 pvermees/isoplotr
 ```
 
 ### Maintenance
@@ -183,13 +157,9 @@ or, if you want to see the messages as they appear:
 tail -f /var/log/syslog | grep --line-buffered CRON
 ```
 
-#### SystemD logs
+#### nginx logs
 
-```sh
-journalctl -u isoplotr
-```
-
-and:
+nginx mainly logs to `journalctl`:
 
 ```sh
 journalctl -u nginx
@@ -198,8 +168,6 @@ journalctl -u nginx
 `journalctl` has many interesting options; for example `-r` to see
 the most recent messages first, `-k` to see messages only from this
 boot, or `-f` to show messages as they come in.
-
-#### nginx logs
 
 As well as `journalctl`, there are logs from nginx at `/var/log/nginx`.
 
