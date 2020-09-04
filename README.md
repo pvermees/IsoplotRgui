@@ -78,6 +78,7 @@ following lines into a file `/usr/local/sbin/isoplotr-start`:
 ```sh
 docker stop isoplotr
 docker rm isoplotr
+docker rmi $(docker images -qf dangling=true pvermees/isoplotr)
 docker run --restart unless-stopped -d --name isoplotr -p 3838:80 pvermees/isoplotr
 ```
 
