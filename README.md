@@ -69,7 +69,7 @@ sudo adduser wwwrunner docker
 Pull (as `wwwrunner`):
 
 ```sh
-sudo -u wwwrunner docker pull pvermees/isoplotrgui
+sudo -u wwwrunner docker pull pvermees/isoplotr
 ```
 
 Let us write a startup script for this docker container. Put the
@@ -78,8 +78,8 @@ following lines into a file `/usr/local/sbin/isoplotr-start`:
 ```sh
 docker stop isoplotr
 docker rm isoplotr
-docker rmi $(docker images -qf dangling=true pvermees/isoplotrgui)
-docker run --restart unless-stopped -d --name isoplotr -p 3838:80 pvermees/isoplotrgui
+docker rmi $(docker images -qf dangling=true pvermees/isoplotr)
+docker run --restart unless-stopped -d --name isoplotr -p 3838:80 pvermees/isoplotr
 ```
 
 (note that the absence of `set -eu` is not a mistake;
@@ -150,7 +150,7 @@ sudo -u wwwrunner crontab -e
 Then add a line like this (to run at 03:17 local time):
 
 ```
-17 3 * * * docker pull pvermees/isoplotrgui && isoplotr-start
+17 3 * * * docker pull pvermees/isoplotr && isoplotr-start
 ```
 
 ### Maintenance
