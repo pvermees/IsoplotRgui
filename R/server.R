@@ -250,7 +250,7 @@ run <- function(Rcommand, input){
 
     selection2omit <- function() {
         nc <- as.numeric(input$nc)
-        values <- matrix(as.numeric(input$data), ncol=nc)
+        values <- matrix(input$data, ncol=nc)
         oc <- nc
         values[,oc]
     }
