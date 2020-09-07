@@ -1939,8 +1939,6 @@ $(function(){
 	} else {
 	    handson2json();
 	}
-	//Shiny.onInputChange("data",IsoplotR.data4server);
-	//Shiny.onInputChange("Rcommand",getRcommand(IsoplotR));
     }
 
     function multiplytwo(x,num,vec,divide){

@@ -134,12 +134,15 @@ describe('IsoplotRgui', function() {
             await driver.get('http://localhost:50054');
             // 38/06, err, 07/06, err
             const testData = [
-                [25.2, 0.03, 0.0513, 0.0001],
-                [25.4, 0.02, 0.0512, 0.0002],
-                [27.1, 0.01, 0.05135, 0.00005]
+                [25.2, 0.03, 0.0513, 0.0001, '', '', ''],
+                [25.4, 0.02, 0.0512, 0.0002, '', '', ''],
+                [27.1, 0.01, 0.05135, 0.00005, '', '', ''],
+                [26.1, 0.025, 0.0512, 0.0002, '', '', 'x']
             ];
             await driver.wait(() => tryToClearGrid(driver));
             await inputTestData(driver, testData);
+            // remove selection
+            await driver.switchTo().activeElement().sendKeys(Key.ARROW_RIGHT);
             await choosePlotDevice(driver, 'concordia');
             await performClick(driver, 'options');
             const options = {
@@ -161,7 +164,7 @@ describe('IsoplotRgui', function() {
                 const failures = assertConcordiaBlob(imgB64, options, data, 1500);
                 // some failures are caused by other marks on the graph; labels or
                 // other blobs, for example.
-                assert(failures.length <= 10, 'Too many failures: ' + failures.join(', '));
+                assert(failures.length <= 20, 'Too many failures: ' + failures.join(', '));
             });
         });
     });
@@ -171,7 +174,9 @@ function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
     const png = PNG.sync.read(Buffer.from(imgB64, 'base64'));
     const axes = getAxes(png);
     const ranges = getRanges(options);
-    const [u38pb06, u38pb06err, pb07pb06, pb07pb06err] = testData;
+    const [u38pb06, u38pb06err, pb07pb06, pb07pb06err,
+        dummy0, dummy1, omit] = testData;
+    const innerColour = ['x', 'X'].includes(omit)? 'W' : 'G';
     const { U238U235 } = options;
     const u38pb06rev = varianceOfRelativeError(u38pb06, u38pb06err);
     const pb07pb06rev = varianceOfRelativeError(pb07pb06, pb07pb06err);
@@ -183,8 +188,8 @@ function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
     const xErrBy3806 = x * Math.sqrt(u38pb06rev);
     const xErrBy0706 = x * Math.sqrt(pb07pb06rev);
     // the zone of ambiguity seems to be 5 <= h2 <= 8. I don't know why.
-    const minimumGreenDistanceSquared = 5;
-    const maximumGreenDistanceSquared = 8;
+    const minimumDistanceSquared = 5;
+    const maximumDistanceSquared = 8;
     let failures = [];
     for (let i = 0; i != sampleCount; ++i) {
         // So, let's choose a random dot
@@ -198,10 +203,10 @@ function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
         // we think if h2 < 1 the transformed dot wll be green
         const pixel = toPixel(axes, ranges, gx, gy);
         const col = colour(png, pixel);
-        const expectedCol = h2 < minimumGreenDistanceSquared ? 'G' : 'W';
+        const expectedCol = h2 < minimumDistanceSquared ? innerColour : 'W';
         if (expectedCol !== col
-            && (h2 < minimumGreenDistanceSquared
-                || maximumGreenDistanceSquared < h2)) {
+            && (h2 < minimumDistanceSquared
+                || maximumDistanceSquared < h2)) {
             failures.push('Expected colour ' + expectedCol
                 + ' but got ' + col + ' at distance^2 ' + h2);
         }
