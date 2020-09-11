@@ -25,9 +25,9 @@ Install **IsoplotR** for this user:
 ```sh
 sudo -u wwwrunner sh -c "mkdir ~/R"
 sudo -u wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
-sudo -u wwwrunner Rscript -e "install.packages('devtools')"
-sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/isoplotr')"
-sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/isoplotrgui')"
+sudo -u wwwrunner Rscript -e "install.packages('remotes')"
+sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/isoplotr')"
+sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/isoplotrgui')"
 ```
 
 ### Create a systemd service for *IsoplotR*
@@ -42,7 +42,7 @@ After=network.target
 [Service]
 Type=simple
 User=wwwrunner
-ExecStart=Rscript -e "IsoplotRgui::IsoplotR(port=3838)"
+ExecStart=Rscript -e "IsoplotRgui::IsoplotR(port=3838);while(1){later::run_now(9999)}"
 Restart=always
 
 [Install]
@@ -114,8 +114,8 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/IsoplotR',force=TRUE)"
-sudo -u wwwrunner Rscript -e "devtools::install_github('pvermees/IsoplotRgui',force=TRUE)"
+sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/IsoplotR',force=TRUE)"
+sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/IsoplotRgui',force=TRUE)"
 systemctl restart isoplotr
 ```
  
