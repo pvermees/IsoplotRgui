@@ -10,12 +10,10 @@ stopIsoplotR(server = NULL)
 \item{server}{The server (returned by \code{\link{IsoplotRgui::IsoplotR()}})
 to stop. If not supplied all servers will be stopped.}
 }
-\value{
-The number of servers stopped.
-}
 \description{
 Stop an \code{IsoplotR} GUI
 }
 \examples{
-#IsoplotR()
+# s <- IsoplotR()
+# stopIsoplotR(s)
 }
