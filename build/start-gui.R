@@ -12,8 +12,4 @@ if (0 < length(args)) {
     }
 }
 
-IsoplotRgui::IsoplotR(host=host, port=port)
-
-while (TRUE) {
-    later::run_now(9999)
-}
+IsoplotRgui::daemon(host=host, port=port)

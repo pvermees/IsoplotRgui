@@ -92,7 +92,7 @@ sanitizeCommand <- function(command, callback) {
 #' Opens a web-browser with a Graphical User Interface (GUI) for the
 #' \code{IsoplotR} package. An online version of the same interface is
 #' provided at \url{http://isoplotr.london-geochron.com}
-#' @param host IP address of the virtual server
+#' @param host IP address of the virtual server, default is 0.0.0.0
 #' @param port Internet port of the virtual server. If not defined, a
 #' random free port will be chosen and the browser will be opened
 #' to show the GUI.
@@ -148,14 +148,34 @@ IsoplotR <- function(host='0.0.0.0', port=NULL) {
 #'
 #' @param server The server (returned by \code{\link{IsoplotRgui::IsoplotR()}})
 #' to stop. If not supplied all servers will be stopped.
-#' @return The number of servers stopped.
 #' @examples
-#' #IsoplotR()
+#' # s <- IsoplotR()
+#' # stopIsoplotR(s)
 #' @export
 stopIsoplotR <- function(server=NULL) {
     if (is.null(server)) {
         httpuv::stopAllServers()
     } else {
         server$stop()
+    }
+}
+
+#' Start the \code{IsoplotR} GUI without exiting
+#'
+#' Opens a web-browser with a Graphical User Interface (GUI) for the
+#' \code{IsoplotR} package. This function is intended to be used from
+#' Rscript so that Rscript does not terminate and the server stays up.
+#' @param host IP address of the virtual server
+#' @param port Internet port of the virtual server. If not defined, a
+#' random free port will be chosen and the browser will be opened
+#' to show the GUI.
+#' @return This function does not return.
+#' @examples
+#' #daemon(3838)
+#' @export
+daemon <- function(port=NULL, host='127.0.0.1') {
+    IsoplotR(host=host, port=port)
+    while (TRUE) {
+        later::run_now(9999)
     }
 }

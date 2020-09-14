@@ -42,7 +42,7 @@ After=network.target
 [Service]
 Type=simple
 User=wwwrunner
-ExecStart=Rscript -e "IsoplotRgui::IsoplotR(port=3838);while(1){later::run_now(9999)}"
+ExecStart=Rscript -e IsoplotRgui::daemon(3838)
 Restart=always
 
 [Install]
