@@ -2,38 +2,85 @@
 
 const { spawn } = require('child_process');
 const { Builder, By, Key, until } = require('selenium-webdriver');
-const { describe, before, after, it } = require('mocha');
+const { describe, before, beforeEach, after, it } = require('mocha');
 const clipboardy = require("clipboardy");
 const assert = require("assert");
 const { PNG } = require("pngjs");
 const floor = Math.floor;
+const http = require("http");
+
+function findArg(a) {
+  for (let i = 1; i < process.argv.length; ++i) {
+    const ar = process.argv[i];
+    const equals = ar.search("=");
+    if (equals < 0) {
+      if (ar === a) {
+        ++i;
+        return args[i];
+      }
+    } else {
+      if (ar.slice(0,equals) === a) {
+        return ar.slice(equals+1);
+      }
+    }
+  }
+  return null;
+}
+
+const browserArg = findArg('--browser');
+const browser = browserArg? browserArg : 'chrome';
+
+function successfulGet(address, retries, done) {
+    http.get(address, res => {
+        done();
+    }).on('error', (err) => {
+        if (0 < retries) {
+            setTimeout(() => {
+                successfulGet(address, retries - 1, done);
+            }, 1000);
+        } else {
+            console.error('failed to get', address);
+            done();
+        }
+    });
+}
 
 describe('IsoplotRgui', function() {
     let rProcess;
     let driver;
 
-    before(function() {
+    before(function(done) {
         rProcess = spawn('Rscript', ['build/start-gui.R', '50054']);
-        driver = new Builder().forBrowser('firefox').build();
+        successfulGet('http://localhost:50054', 5, () => {
+            new Builder().forBrowser(browser).build().then(d => {
+                driver = d;
+                done();
+            });
+        });
     });
 
-    after(async function() {
+    after(function(done) {
         // unbelievably this has to be async to make Mocha wait until
         // all the tests have resolved before it calls it
-        rProcess.kill('SIGHUP');
-        driver.quit();
+        driver.quit().then(() => {
+            rProcess.kill('SIGHUP');
+            done();
+        });
     })
 
     describe('table implementation', function() {
+
+        beforeEach(async function() {
+            await driver.get('http://localhost:50054');
+        });
+
         it('undoes mistakes', async function() {
             this.timeout(12000);
-            await driver.get('http://localhost:50054');
             await testUndoInTable(driver);
         });
 
         it('resists script injection attempts', async function() {
             this.timeout(4000);
-            await driver.get('http://localhost:50054');
             await goToCell(driver, 'INPUT', 1, 1);
             const input = await driver.switchTo().activeElement();
             const text = "<script>alert('bad!')</script>";
@@ -44,7 +91,6 @@ describe('IsoplotRgui', function() {
 
         it('is readable from the calculation engine', async function() {
             this.timeout(8000);
-            await driver.get('http://localhost:50054');
             await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
             await driver.wait(() => tryToClearGrid(driver));
             const u235toU238 = 137.818;
@@ -82,6 +128,11 @@ describe('IsoplotRgui', function() {
         const ratiosEN = 'ratios.';
         const helpEN = 'Help';
         this.timeout(25000);
+
+        beforeEach(async function() {
+            await driver.get('http://localhost:50054');
+        });
+
         it('displays the correct language', async function() {
             // test that English is working without choosing it
             await testTranslation(driver, false, helpEN, ratiosEN,
@@ -99,8 +150,8 @@ describe('IsoplotRgui', function() {
             await assertTextContains(driver, 'online_tab', onlineEN);
             await assertTextContains(driver, 'intro', introEN);
         });
+
         it('displays English where no translation is available', async function() {
-            await driver.get('http://localhost:50054');
             await driver.executeScript('window.localStorage.setItem("language", "xxtest");');
             await driver.get('http://localhost:50054');
             await waitForFunctionToBeInstalled(driver, 'translatePage');
@@ -129,9 +180,13 @@ describe('IsoplotRgui', function() {
     });
 
     describe('the plotter', function() {
+
+        beforeEach(async function() {
+            await driver.get('http://localhost:50054');
+        });
+
         it('can plot a concordia graph', async function() {
             this.timeout(25000);
-            await driver.get('http://localhost:50054');
             // 38/06, err, 07/06, err
             const testData = [
                 [25.2, 0.03, 0.0513, 0.0001, '', '', ''],
@@ -358,7 +413,7 @@ async function removeDefaultLanguage(driver) {
 async function testTranslation(driver, language, help, ratios,
         propagate, inputErrorHelp, online, intro) {
     if (!language) {
-        removeDefaultLanguage(driver);
+        await removeDefaultLanguage(driver);
     }
     await driver.get('http://localhost:50054');
     if (language) {
@@ -493,7 +548,7 @@ async function findMenuItem(driver, text) {
 
 async function clickButton(driver, id) {
     const button = await driver.wait(until.elementLocated(By.id(id)));
-    button.click();
+    await button.click();
 }
 
 async function goToCell(driver, tableId, row, column) {
