@@ -107,14 +107,15 @@ describe('IsoplotRgui', function() {
                 [248.92, 0.88, 248.93, 0.19, 248.81, 8.99, 248.93, 0.19],
                 [235.59, 0.22, 233.591, 0.085, 255.54, 2.24, 233.619, 0.085]
             ];
-            await chainWithIndex(expectedResults, (row, rowNumber) =>
-                chainWithIndex(row, (value, columnNumber) => {
-                return driver.findElement(
-                        cellInTable('OUTPUT', rowNumber + 1, columnNumber + 1)
-                        ).getText().then(actual => {
+            await chainWithIndex(expectedResults, async function (row, rowNumber) {
+                await chainWithIndex(row, async function(value, columnNumber) {
+                    const actual = await doUntil(async function() {
+                        const text = await getOutputCellText(driver, rowNumber + 1, columnNumber + 1);
+                        return Number(text);
+                    }, x => !isNaN(x), 8, 500);
                     assertNearlyEqual(Number(actual), value);
                 });
-            }));
+            });
         });
     });
 
@@ -168,6 +169,7 @@ describe('IsoplotRgui', function() {
             // test contextual_help.json
             await clickButton(driver, 'help_ierr');
             await assertTextContains(driver, 'helpmenu', inputErrorHelpEN);
+            await driver.findElement(By.css('button[title="Close"]')).click();
             await clickButton(driver, 'help_mint_concordia');
             await assertTextContains(driver, 'helpmenu', 'XXminimum age limit.');
             // test home_id.json
@@ -226,7 +228,8 @@ describe('IsoplotRgui', function() {
 });
 
 function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
-    const png = PNG.sync.read(Buffer.from(imgB64, 'base64'));
+    const imgB64i = imgB64.replace(/%0A/gi, '');
+    const png = PNG.sync.read(Buffer.from(imgB64i, 'base64'));
     const axes = getAxes(png);
     const ranges = getRanges(options);
     const [u38pb06, u38pb06err, pb07pb06, pb07pb06err,
@@ -444,11 +447,11 @@ async function assertTextContains(driver, id, text) {
     await driver.wait(until.elementTextContains(element, text));
 }
 
-function chainWithIndex(arr, callback, first=0, end=arr.length) {
+async function chainWithIndex(arr, callback, first=0, end=arr.length) {
     if (first < end) {
-        return callback(arr[first], first).then(chainWithIndex(arr, callback, first + 1, end));
+        await callback(arr[first], first)
+        await chainWithIndex(arr, callback, first + 1, end);
     }
-    return new Promise(x => x, r => { throw r; });
 }
 
 function assertNearlyEqual(a, b) {
@@ -501,6 +504,23 @@ async function tryToClearGrid(driver) {
     const homeCell = await driver.findElement(cellInTable('INPUT', 1, 1));
     const text = await homeCell.getText();
     return text === '';
+}
+
+async function getOutputCellText(driver, row, column) {
+    const cell = await driver.findElement(cellInTable('OUTPUT', row, column));
+    return await cell.getText();
+}
+
+async function doUntil(doFn, isGoodFn, retries=5, delay=500) {
+    for (; 0 <= retries; --retries) {
+        const x = await doFn();
+        if (isGoodFn(x)) {
+            return x;
+        }
+        await new Promise(function(resolve) {
+            setTimeout(resolve, delay);
+        });
+    }
 }
 
 async function testUndoInTable(driver) {
