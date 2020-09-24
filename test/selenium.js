@@ -16,7 +16,7 @@ function findArg(a) {
     if (equals < 0) {
       if (ar === a) {
         ++i;
-        return args[i];
+        return process.argv[i];
       }
     } else {
       if (ar.slice(0,equals) === a) {
@@ -60,10 +60,8 @@ describe('IsoplotRgui', function() {
     });
 
     after(function(done) {
-        // unbelievably this has to be async to make Mocha wait until
-        // all the tests have resolved before it calls it
         driver.quit().then(() => {
-            rProcess.kill('SIGHUP');
+            rProcess.kill('SIGINT');
             done();
         });
     })
