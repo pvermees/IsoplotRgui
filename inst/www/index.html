@@ -4,12 +4,12 @@
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="js/bootstrap-filestyle.min.js" type="text/javascript"> </script>
-<script src="js/handsontable.min.js" type="text/javascript"></script>
+<script src="js/dataentrygrid.min.js" type="text/javascript"></script>
 <script src="js/examples.js" type="text/javascript"></script>
 <script src="js/rrpc.min.js" type="text/javascript"></script>
 <script src="js/IsoplotR.js" type="text/javascript"></script>
 <script src="js/js2R.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="css/handsontable.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/dataentrygrid.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/IsoplotR.css"/>
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
@@ -106,14 +106,18 @@
     <div style="line-height:50%;"><br></div>
   </div>
   
-  <div id="INPUT"></div>
+  <div id="INPUT">
+    <table class="data-entry-grid" id="deg-input"></table>
+  </div>
 </left>
 
 <right>
   <div id="helpmenu" title="help"></div>
   <div id="myplot" class="result"></div>
   <div id="myscript"></div>
-  <div id="OUTPUT" class="result"></div>
+  <div id="OUTPUT" class="result">
+    <table class="data-entry-grid" id="deg-output"></table>
+  </div>
 </right>
 
 <footer>

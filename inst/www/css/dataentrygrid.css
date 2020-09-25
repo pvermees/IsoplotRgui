@@ -1,0 +1,43 @@
+table.data-entry-grid {
+  border: 1px solid black;
+  background-color: white;
+  border-collapse: collapse;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+table.data-entry-grid th, table.data-entry-grid td {
+  border: 1px solid black;
+  background-color: white;
+  border-collapse: collapse;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+table.data-entry-grid input {
+  border: 0;
+}
+
+table.data-entry-grid td.selected {
+  border: 1px solid blue;
+  background-color: lightskyblue;
+  border-collapse: collapse;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+table.data-entry-grid td.anchor {
+  border: 3px solid blue;
+  background-color: lightskyblue;
+  border-collapse: collapse;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}

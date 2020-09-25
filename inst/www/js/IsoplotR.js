@@ -18,8 +18,10 @@ $(function(){
 	    constants: null,
 	    settings: null,
 	    data: null,
+		inputTable: null,
+		outputTable: null,
 	    data4server: [],
-	    optionschanged: false
+		optionschanged: false
 	}
 	withData(function(constants, settings, data) {
 	    IsoplotR.constants = constants;
@@ -50,14 +52,10 @@ $(function(){
 	    }
 
 	    translate();
-	    welcome();
-	    $("#INPUT").handsontable({ // add change handler asynchronously
-		afterChange: function(changes,source){
-		    getData4Server(); // placed here because we don't want to
-		    handson2json();   // call the change handler until after
-		}                     // IsoplotR has been initialised
-	    });
+		welcome();
 	});
+	IsoplotR.inputTable = createDataEntryGrid("deg-input", ["A", "B", "C"], 10);
+	IsoplotR.outputTable = createDataEntryGrid("deg-output", ["A", "B", "C"], 10);
 	rrpc.initialize();
 	};
 
@@ -132,7 +130,7 @@ $(function(){
 	case 'U-Th-He':
 	    return 10;
 	case 'detritals':
-	    var firstrow = $("#INPUT").handsontable('getData')[0];
+		var firstrow = IsoplotR.inputTable.getCells(0, 1)[0];
 	    var nc = firstrow.length;
 	    for (var i=(nc-1); i>0; i--){
 		if (firstrow[i]!=null) return i+1;
@@ -140,7 +138,7 @@ $(function(){
 	case 'other':
 	    switch(IsoplotR.settings.plotdevice){
 	    case 'regression':
-		if (IsoplotR.settings["other"].format == 1){ return 7; }
+			if (IsoplotR.settings["other"].format === 1) { return 7; }
 		else {return 8;}
 	    case 'spectrum':
 		return 5;
@@ -204,17 +202,14 @@ $(function(){
 	    }
 	    handson.data.push(row);
 	}
-	$("#INPUT").handsontable({
-	    data: handson.data,
-	    colHeaders: handson.headers
-	});
+	IsoplotR.inputTable.init(handson.headers, handson.data);
 	
 	$("#language").val(IsoplotR.settings.language);
 	$("#language").selectmenu("refresh");
     }
     
     // overwrites the data in the IsoplotR 
-    // preferences based on the handsontable
+    // preferences based on the input table
     function handson2json(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
@@ -257,14 +252,12 @@ $(function(){
 		} else {
 		    label = labels[Math.floor((k-1)/26)] + labels[k%26];
 		}
-		mydata.data[label] =
-		    $("#INPUT").handsontable('getDataAtCol',k);
-	    }
+		mydata.data[label] = IsoplotR.inputTable.getColumn(k);
+	}
 	} else {
 	    var i = 0;
 	    $.each(mydata.data, function(k, v) {
-		mydata.data[k] =
-		    $("#INPUT").handsontable('getDataAtCol',i++);
+			mydata.data[k] = IsoplotR.inputTable.getColumn(i++);
 	    });
 	}
 	out.data[geochronometer] = mydata;
@@ -273,18 +266,13 @@ $(function(){
     }
     
     function getData4Server(){
-	var selected = $("#INPUT").handsontable('getSelected');
-	var selection = [0,0,0,0];
-	if (typeof selected != 'undefined'){
-	    selection = selected[0];
-	}
-	var r1 = selection[0];
-	var c1 = selection[1];
-	var r2 = selection[2];
-	var c2 = selection[3];
+	var selection = IsoplotR.inputTable.getSelection();
+	var r1 = Math.min(selection.anchorRow, selection.selectionRow);
+	var c1 = Math.min(selection.anchorColumn, selection.selectionColumn);
+	var r2 = Math.max(selection.anchorRow, selection.selectionRow);
+	var c2 = Math.max(selection.anchorColumn, selection.selectionColumn);
 	var nr = 1+Math.abs(r2-r1);
 	var nc = 1+Math.abs(c2-c1);
-	var dat = [];
 	var DNC = dnc();
 	var toofewcols = (geochronometer!='detritals') & (nc < DNC);
 	var onerow = ((geochronometer=='other' |
@@ -294,12 +282,12 @@ $(function(){
 	    nc = DNC;
 	    c1 = 0;
 	    c2 = nc-1;
-	    nr = $("#INPUT").handsontable('countRows');
+		nr = IsoplotR.inputTable.rowCount();
 	    r1 = 0;
 	    r2 = nr-1;
 	}
 	geochronometer = IsoplotR.settings.geochronometer;
-	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
+	var d = IsoplotR.inputTable.getCells(r1, r2+1, c1, c2+1);
 	var data = cleanData(geochronometer,d,nr,nc);
 	IsoplotR.data4server = {
 		nr, nc, data
@@ -1899,7 +1887,7 @@ $(function(){
 	    $('option:selected', $("#plotdevice")).attr('value');
     }
 
-    // populate the handsontable with stored data
+    // populate the input table with stored data
     function populate(prefs,refreshdata){
 	var geochronometer = prefs.settings.geochronometer;
 	var plotdevice = prefs.settings.plotdevice;
@@ -1957,7 +1945,7 @@ $(function(){
 	var gc = IsoplotR.settings.geochronometer;
 	var pd = IsoplotR.settings.plotdevice;
 	var data = IsoplotR.data[gc].data;
-	var headers = $("#INPUT").handsontable("getColHeader");
+	var headers = IsoplotR.inputTable.getColumnHeaders();
 	var format = (gc=='U-Th-He') ? 0 : IsoplotR.settings[gc].format;
 	var cols = getErrCols(gc,pd,format);
 	var pair = [0,0];
@@ -2297,33 +2285,9 @@ $(function(){
 	    break;
 	}
     }
-    
-    $(".button").button()
-    
-    $("#INPUT").handsontable({
-	data : [[]],
-	minRows: 100,
-	minCols: 26,
-	rowHeaders: true,
-	colHeaders: true,
-	contextMenu: true,
-	observeChanges: true,
-	manualColumnResize: true,
-	outsideClickDeselects: false,
-	selectionMode: 'range'
-    });
 
-    $("#OUTPUT").handsontable({
-	data : [[]],
-	minRows: 100,
-	minCols: 26,
-	rowHeaders: true,
-	colHeaders: true,
-	contextMenu: true,
-	observeChanges: false,
-	manualColumnResize: true
-    });
-    
+    $(".button").button()
+
     $("select").selectmenu({ width : 'auto' });
     $("#geochronometer").selectmenu({
 	change: function( event, ui ) {
@@ -2437,13 +2401,9 @@ $(function(){
     });
 
     $("#CLEAR").click(function(){
-	$("#INPUT").handsontable({
-	    data: [[]]
+		IsoplotR.inputTable.clearData();
+		IsoplotR.outputTable.clearData();
 	});
-	$("#OUTPUT").handsontable({
-	    data: [[]]
-	});
-    });
     
 	function displayError(message, err) {
 		console.error(message, err);
@@ -2491,9 +2451,9 @@ $(function(){
 	$("#RUN").click(function(){
 	update();
 	$("#myplot").empty();
-	$("#OUTPUT").handsontable('clear');
-	$("#OUTPUT").handsontable('deselectCell');
-	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
+	IsoplotR.outputTable.clearData();
+	IsoplotR.outputTable.setSelection(0, 0);
+	IsoplotR.outputTable.putCells(0, 1, 0, 1, [['Processing...']]);
 	$("#OUTPUT").show();
 	rrpc.call("run", {
 		data: IsoplotR.data4server,
@@ -2503,12 +2463,7 @@ $(function(){
 			displayError('Run failed.', err);
 			return;
 		}
-		$('#OUTPUT').handsontable('populateFromArray', 0, 0,
-			result.data);
-		const hot = $('#OUTPUT').data('handsontable');
-		hot.updateSettings({
-			colHeaders: result.headers
-		});
+		IsoplotR.outputTable.init(result.headers, result.data);
 	});
     });
 
