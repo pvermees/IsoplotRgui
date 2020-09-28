@@ -64,7 +64,7 @@ describe('IsoplotRgui', function() {
             rProcess.kill('SIGINT');
             done();
         });
-    })
+    });
 
     describe('table implementation', function() {
 
@@ -532,8 +532,10 @@ async function testUndoInTable(driver) {
     await input.sendKeys(Key.CONTROL, 'a');
     await input.sendKeys('7.54', Key.TAB);
     await driver.wait(until.elementTextContains(box,'7.54'));
+    input = await driver.switchTo().activeElement();
     await input.sendKeys(Key.CONTROL, 'z');
     await driver.wait(until.elementTextContains(box,'13.2'));
+    input = await driver.switchTo().activeElement();
     await input.sendKeys(Key.CONTROL, Key.SHIFT, 'z');
     await driver.wait(until.elementTextContains(box,'7.54'));
 }
@@ -570,7 +572,16 @@ async function clickButton(driver, id) {
 }
 
 async function goToCell(driver, tableId, row, column) {
-    await driver.wait(until.elementLocated(cellInTable(tableId, row, column))).click();
+    await driver.wait(async function() {
+        try {
+            const cell = await driver.findElement(cellInTable(tableId, row, column));
+            await cell.click();
+            const inputs = await cell.findElements(By.css("input"));
+            return inputs.length !== 0;
+        } catch (e) {
+            return false;
+        }
+    });
 }
 
 function cellInTable(tableId, row, column) {

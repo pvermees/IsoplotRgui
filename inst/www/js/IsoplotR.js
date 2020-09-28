@@ -181,7 +181,7 @@ $(function(){
 	    break;
 	default:
 	}
-	var row, header;
+	var row;
 	var handson = {
 	    data: [],
 	    headers: []
@@ -1746,7 +1746,6 @@ $(function(){
     
     function changePlotDevice(){
 	var gc = IsoplotR.settings.geochronometer;
-	var opd = IsoplotR.settings.plotdevice; // old plot device
 	var npd = $('option:selected', $("#plotdevice")).attr('value');
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
@@ -1771,8 +1770,6 @@ $(function(){
 	if (gc == "other"){
 	    populate(IsoplotR,true);
 	    errconvert();
-	} else {
-	    populate(IsoplotR,false); 
 	}
 	if (gc == 'fissiontracks' & npd == 'set-zeta'){
 	    $(".show4zeta").show();
@@ -2334,6 +2331,7 @@ $(function(){
     });
 
     $("#SAVE").click(function( event ) {
+	update();
 	var fname = prompt("Please enter a file name", "IsoplotR.json");
 	if (fname != null){
 	    handson2json();
@@ -2502,6 +2500,7 @@ $(function(){
 		}
 	
 	$("#home").click(function(){
+	update();
 	localStorage.setItem("language",IsoplotR.settings.language);
 	$(location).attr('href','home/index.html');
     });
