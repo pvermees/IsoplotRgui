@@ -29,19 +29,18 @@ $(function(){
 	    IsoplotR.data = data;
 	    settings.geochronometer =
 		$('option:selected', $("#geochronometer")).attr('id');
-	    const languageElement = document.getElementById("language");
-	    const lang = localStorage.getItem("language");
-	    for (const i in settings.languages_supported) {
-		const s = settings.languages_supported[i];
+	    var languageElement = document.getElementById("language");
+	    var lang = localStorage.getItem("language");
+	    $.each(settings.languages_supported, function(i,s) {
 		if (lang !== null && lang.startsWith(s.prefix)) {
 		    settings.language = s.code;
 		}
-		const option = document.createElement("option");
+		var option = document.createElement("option");
 		option.id = "lang_" + s.code;
 		option.value = s.code;
 		option.innerHTML = s.name;
 		languageElement.appendChild(option);
-	    }
+	    });
 	    selectGeochronometer();
 	    IsoplotR = populate(IsoplotR,true);
 
@@ -290,7 +289,7 @@ $(function(){
 	var d = IsoplotR.inputTable.getCells(r1, r2+1, c1, c2+1);
 	var data = cleanData(geochronometer,d,nr,nc);
 	IsoplotR.data4server = {
-		nr, nc, data
+		nr: nr, nc: nc, data: data
 	};
 	switch (geochronometer){
 	case  'Ar-Ar':
@@ -1780,7 +1779,7 @@ $(function(){
     }
 
     function changeLanguage(lang) {
-	let language = lang;
+	var language = lang;
 	IsoplotR.settings.language = language;
 	localStorage.setItem("language", language);
 	translate();
@@ -2095,7 +2094,7 @@ $(function(){
     }
 
     function loadLanguage(language, callback) {
-	const dir = './locales/' + language + '/';
+	var dir = './locales/' + language + '/';
 	$.getJSON(dir + 'dictionary_id.json', function(tags) {
 	    return $.getJSON(dir + 'dictionary_class.json', function(classes) {
 		return $.getJSON(dir + 'contextual_help.json', function(helps) {
@@ -2125,7 +2124,7 @@ $(function(){
 	if (language && language === loaded_language) {
 	    return translate_function();
 	}
-	const fallbackLanguage = 'en';
+	var fallbackLanguage = 'en';
 	withFallbackLanguage(fallbackLanguage, function() {
 	    if (language === fallbackLanguage) {
 		dictionary_id = dictionary_id_fallback;
@@ -2146,11 +2145,11 @@ $(function(){
     }
 
     function getFallbackText(key, fallback_messages, filename) {
-        let link = IsoplotR.settings["translation_link"]
+        var link = IsoplotR.settings["translation_link"]
             .replace("${FILENAME}", filename)
             .replace("${LANGUAGE}", IsoplotR.settings.language)
             .replace("${ID}", key);
-        let button = dictionary_id["translate_button"]
+        var button = dictionary_id["translate_button"]
             .replace("${LINK}", link);
         return fallback_messages[key] + button;
     }
@@ -2170,7 +2169,7 @@ $(function(){
     }
 
     function translateDictionaryId(element) {
-	const key = element.id;
+	var key = element.id;
 	if (key in dictionary_id) {
 	    element.innerHTML = dictionary_id[key];
 	    return;
@@ -2184,7 +2183,7 @@ $(function(){
     }
 
     function translate() {
-	const language = IsoplotR.settings.language;
+	var language = IsoplotR.settings.language;
 	withLanguage(language, function() {
 	    $(".translate").each(function(i){
 		translateDictionaryId(this);
@@ -2194,7 +2193,7 @@ $(function(){
 	    });
 	    // sadly, we cannot put a "translate" link into a jQuery dialog
 	    // so we cannot use getItemContextualHelp
-	    const helpTitle = 'help' in contextual_help?
+	    var helpTitle = 'help' in contextual_help?
 		  contextual_help['help'] : contextual_help_fallback['help'];
 	    $("#helpmenu").dialog('option', 'title', helpTitle);
 	});
@@ -2475,7 +2474,7 @@ $(function(){
 			displayError('Get PDF failed.', err);
 			return;
 		}
-		const downloader = document.getElementById("downloader");
+		var downloader = document.getElementById("downloader");
 		downloader.setAttribute("download", result.filename[0]);
 		downloader.setAttribute("href", result.data[0]);
 		downloader.click();
@@ -2492,7 +2491,7 @@ $(function(){
 				displayError('Get CSV failed.', err);
 				return;
 			}
-			const downloader = document.getElementById("downloader");
+			var downloader = document.getElementById("downloader");
 			downloader.setAttribute("download", result.filename[0]);
 			downloader.setAttribute("href", result.data[0]);
 			downloader.click();
@@ -2513,6 +2512,6 @@ $(function(){
 	var dictionary_id_fallback;
 	var dictionary_class_fallback;
 	var loaded_language = null;
-	const timeout = {};
+	var timeout = {};
     initialise();
 });
