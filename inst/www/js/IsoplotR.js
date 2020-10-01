@@ -32,7 +32,7 @@ $(function(){
 	    var languageElement = document.getElementById("language");
 	    var lang = localStorage.getItem("language");
 	    $.each(settings.languages_supported, function(i,s) {
-		if (lang !== null && lang.startsWith(s.prefix)) {
+		if (lang !== null && lang.substr(0, s.prefix.length) === s.prefix) {
 		    settings.language = s.code;
 		}
 		var option = document.createElement("option");
