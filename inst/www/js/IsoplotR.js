@@ -18,8 +18,8 @@ $(function(){
 	    constants: null,
 	    settings: null,
 	    data: null,
-		inputTable: null,
-		outputTable: null,
+	    inputTable: null,
+	    outputTable: null,
 	    data4server: [],
 		optionschanged: false
 	}
@@ -28,30 +28,30 @@ $(function(){
 	    IsoplotR.settings = settings;
 	    IsoplotR.data = data;
 	    settings.geochronometer =
-		$('option:selected', $("#geochronometer")).attr('id');
+	    $('option:selected', $("#geochronometer")).attr('id');
 	    var languageElement = document.getElementById("language");
 	    var lang = localStorage.getItem("language");
 	    $.each(settings.languages_supported, function(i,s) {
-		if (lang !== null && lang.substr(0, s.prefix.length) === s.prefix) {
-		    settings.language = s.code;
-		}
-		var option = document.createElement("option");
-		option.id = "lang_" + s.code;
-		option.value = s.code;
-		option.innerHTML = s.name;
-		languageElement.appendChild(option);
+	    if (lang !== null && lang.substr(0, s.prefix.length) === s.prefix) {
+	        settings.language = s.code;
+	    }
+	    var option = document.createElement("option");
+	    option.id = "lang_" + s.code;
+	    option.value = s.code;
+	    option.innerHTML = s.name;
+	    languageElement.appendChild(option);
 	    });
 	    selectGeochronometer();
 	    IsoplotR = populate(IsoplotR,true);
 
 	    // allow tests to initiate translation, even with unsupported languages
 	    window.translatePage = function() {
-		IsoplotR.settings.language = this.localStorage.getItem("language");
-		translate();
+	    IsoplotR.settings.language = this.localStorage.getItem("language");
+	    translate();
 	    }
 
 	    translate();
-		welcome();
+	    welcome();
 	});
 	IsoplotR.inputTable = createDataEntryGrid("deg-input", ["A", "B", "C"], 10);
 	IsoplotR.outputTable = createDataEntryGrid("deg-output", ["A", "B", "C"], 10);
@@ -129,7 +129,7 @@ $(function(){
 	case 'U-Th-He':
 	    return 10;
 	case 'detritals':
-		var firstrow = IsoplotR.inputTable.getCells(0, 1)[0];
+	    var firstrow = IsoplotR.inputTable.getCells(0, 1)[0];
 	    var nc = firstrow.length;
 	    for (var i=(nc-1); i>0; i--){
 		if (firstrow[i]!=null) return i+1;
@@ -251,7 +251,7 @@ $(function(){
 		} else {
 		    label = labels[Math.floor((k-1)/26)] + labels[k%26];
 		}
-		mydata.data[label] = IsoplotR.inputTable.getColumn(k);
+	    mydata.data[label] = IsoplotR.inputTable.getColumn(k);
 	}
 	} else {
 	    var i = 0;
@@ -281,7 +281,7 @@ $(function(){
 	    nc = DNC;
 	    c1 = 0;
 	    c2 = nc-1;
-		nr = IsoplotR.inputTable.rowCount();
+	    nr = IsoplotR.inputTable.rowCount();
 	    r1 = 0;
 	    r2 = nr-1;
 	}
