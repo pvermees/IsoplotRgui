@@ -21,7 +21,7 @@ $(function(){
 	    inputTable: null,
 	    outputTable: null,
 	    data4server: [],
-		optionschanged: false
+	    optionschanged: false
 	}
 	withData(function(constants, settings, data) {
 	    IsoplotR.constants = constants;
@@ -137,8 +137,8 @@ $(function(){
 	case 'other':
 	    switch(IsoplotR.settings.plotdevice){
 	    case 'regression':
-			if (IsoplotR.settings["other"].format === 1) { return 7; }
-		else {return 8;}
+	    if (IsoplotR.settings["other"].format === 1) { return 7; }
+	    else {return 8;}
 	    case 'spectrum':
 		return 5;
 	    case 'radial':
@@ -256,7 +256,7 @@ $(function(){
 	} else {
 	    var i = 0;
 	    $.each(mydata.data, function(k, v) {
-			mydata.data[k] = IsoplotR.inputTable.getColumn(i++);
+	        mydata.data[k] = IsoplotR.inputTable.getColumn(i++);
 	    });
 	}
 	out.data[geochronometer] = mydata;
