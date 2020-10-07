@@ -94,10 +94,12 @@ describe('IsoplotRgui', function () {
       const u235toU238 = 137.818;
       const testData = [
         ['25.2', '0.03', '0.0513', '0.0001'],
-        ['25.4', '0.02', '0.0512', '0.0002'],
+        ['25.4', '0.02', '0.0512', '0.0002', '', '', '', 'hello'],
         ['27.1', '0.01', '0.05135', '0.00005']
       ];
       await inputTestData(driver, testData);
+      const input = await driver.switchTo().activeElement();
+      await input.sendKeys(Key.ARROW_UP);
       await choosePlotDevice(driver, 'ages');
       await clickButton(driver, 'run');
       const expectedResults = [
@@ -190,7 +192,7 @@ describe('IsoplotRgui', function () {
       // 38/06, err, 07/06, err
       const testData = [
         [25.2, 0.03, 0.0513, 0.0001, '', '', ''],
-        [25.4, 0.02, 0.0512, 0.0002, '', '', ''],
+        [25.4, 0.02, 0.0512, 0.0002, '', '', '', 'a comment'],
         [27.1, 0.01, 0.05135, 0.00005, '', '', ''],
         [26.1, 0.025, 0.0512, 0.0002, '', '', 'x']
       ];

@@ -6,6 +6,7 @@ table.data-entry-grid {
   padding-right: 5px;
   padding-top: 0px;
   padding-bottom: 0px;
+  width: 100%;
 }
 
 table.data-entry-grid th, table.data-entry-grid td {
@@ -16,6 +17,7 @@ table.data-entry-grid th, table.data-entry-grid td {
   padding-right: 5px;
   padding-top: 0px;
   padding-bottom: 0px;
+  width: auto;
 }
 
 table.data-entry-grid input {
@@ -40,4 +42,10 @@ table.data-entry-grid td.anchor {
   padding-right: 5px;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+#INPUT {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }

@@ -202,6 +202,7 @@ $(function () {
       }
       handson.data.push(row);
     }
+    handson.headers.push('');
     IsoplotR.inputTable.init(handson.headers, handson.data);
 
     $("#language").val(IsoplotR.settings.language);
