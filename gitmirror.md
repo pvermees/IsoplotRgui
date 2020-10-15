@@ -90,12 +90,15 @@ server {
 
     location /isoplotr/ {
         proxy_pass http://127.0.0.1:3838/;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection "upgrade";
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
     }
 }
 ```
+
+Please take care with the exact syntax, for example the `proxy_pass`
+line must end with `/;`.
 
 Now you can start this all up with:
 
@@ -105,6 +108,12 @@ sudo systemctl restart nginx
 ```
 
 and **IsoplotR** will be available on `http://localhost/isoplotr`
+
+If you get errors restarting nginx you can get the error report with:
+
+```sh
+journalctl -xeu nginx
+```
 
 ### Set up auto-updating
 
