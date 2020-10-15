@@ -72,6 +72,10 @@ Pull (as `wwwrunner`):
 sudo -u wwwrunner docker pull pvermees/isoplotr
 ```
 
+If this fails, try again; there are many layers to be downloaded in this
+initial pull, and some are fairly large (in contrast the updates we will be
+pulling later will complete quickly).
+
 Let us write a startup script for this docker container. Put the
 following lines into a file `/usr/local/sbin/isoplotr-start`:
 

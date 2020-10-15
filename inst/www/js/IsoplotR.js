@@ -204,6 +204,7 @@ $(function () {
     }
     handson.headers.push('');
     IsoplotR.inputTable.init(handson.headers, handson.data);
+    IsoplotR.inputTable.extendRows(100);
 
     $("#language").val(IsoplotR.settings.language);
     $("#language").selectmenu("refresh");
