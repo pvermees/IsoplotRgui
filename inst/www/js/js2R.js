@@ -708,7 +708,7 @@ function getRcommand(prefs){
 	out += "IsoplotR::mds(dat";
 	break;
     case 'ages':
-	out += "IsoplotR::age(dat,isochron=FALSE";
+	out += "IsoplotR::age(dat";
 	break;
     }
     out += options +");"
