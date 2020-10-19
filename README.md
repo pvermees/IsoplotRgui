@@ -173,14 +173,17 @@ following places:
 
 #### crontab logs
 
-```
-grep CRON < /var/log/syslog
-```
-
-or, if you want to see the messages as they appear:
+To find out what your cron jobs have done:
 
 ```
-tail -f /var/log/syslog | grep --line-buffered CRON
+journalctl -eu cron
+```
+
+If you get the message `No MTA installed, discarding output` in your
+logs, you can open crontab:
+
+```sh
+sudo -u wwwrunner crontab -e
 ```
 
 #### nginx logs
