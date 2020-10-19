@@ -202,8 +202,14 @@ $(function () {
       }
       handson.data.push(row);
     }
-    handson.headers.push('');
-    IsoplotR.inputTable.init(handson.headers, handson.data);
+
+    if (geochronometer !== 'detritals') {
+      // add a comments column
+      IsoplotR.inputTable.init(handson.headers.concat(['']), handson.data);
+    } else {
+      // make flexible columns by passing in the number of columns wanted
+      IsoplotR.inputTable.init(handson.headers.length, handson.data);
+    }
     IsoplotR.inputTable.extendRows(100);
 
     $("#language").val(IsoplotR.settings.language);
@@ -244,17 +250,9 @@ $(function () {
     }
     if (geochronometer == 'detritals') {
       mydata.data = {}; // clear the object
-      var labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-        'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-        'U', 'V', 'W', 'X', 'Y', 'Z'];
-      var label = '';
-      for (var k = 0; k < dnc(); k++) {
-        if (k < 26) {
-          label = labels[k];
-        } else {
-          label = labels[Math.floor((k - 1) / 26)] + labels[k % 26];
-        }
-        mydata.data[label] = IsoplotR.inputTable.getColumn(k);
+      var labels = IsoplotR.inputTable.getColumnHeaders();
+      for (var k = 0; k < labels.length; k++) {
+        mydata.data[labels[k]] = IsoplotR.inputTable.getColumn(k);
       }
     } else {
       var i = 0;
@@ -268,13 +266,14 @@ $(function () {
   }
 
   function getData4Server() {
+    var geochronometer = IsoplotR.settings.geochronometer;
     var selection = IsoplotR.inputTable.getSelection();
     var r1 = Math.min(selection.anchorRow, selection.selectionRow);
     var c1 = Math.min(selection.anchorColumn, selection.selectionColumn);
     var r2 = Math.max(selection.anchorRow, selection.selectionRow);
     var c2 = Math.max(selection.anchorColumn, selection.selectionColumn);
-    var nr = 1 + Math.abs(r2 - r1);
-    var nc = 1 + Math.abs(c2 - c1);
+    var nr = 1 + r2 - r1;
+    var nc = 1 + c2 - c1;
     var DNC = dnc();
     var toofewcols = (geochronometer != 'detritals') & (nc < DNC);
     var onerow = ((geochronometer == 'other' |

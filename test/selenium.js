@@ -214,22 +214,60 @@ describe('IsoplotRgui', function () {
       };
       await performType(driver, options);
       await performClick(driver, 'plot');
-      const img = await driver.wait(until.elementLocated(By.css('#myplot img')));
-      const imgSrc = await img.getAttribute('src');
-      const imgB64 = imgSrc.split(',')[1];
+      const png = await getPlot(driver);
       testData.forEach((data) => {
-        const failures = assertConcordiaBlob(imgB64, options, data, 1500);
+        const failures = assertConcordiaBlob(png, options, data, 1500);
         // some failures are caused by other marks on the graph; labels or
         // other blobs, for example.
-        assert(failures.length <= 20, 'Too many failures: ' + failures.join(', '));
+        assert(failures.length <= 30, 'Too many failures: ' + failures.join(', '));
       });
+    });
+
+    it('can plot a detritals graph', async function() {
+      await chooseGeochronometer(driver, 'detritals');
+      await goToCell(driver, 'INPUT', 2, 2);
+      await driver.findElement(By.xpath('//div[@id="INPUT"]//th[text()="A"]')).click();
+      await performClick(driver, 'plot');
+      const png = await getPlot(driver);
+      const axes = getAxes(png);
+      const x = floor(axes.width * 760/3000 + axes.left);
+      let lastColour = 'W';
+      let section = 0;
+      for (let y = axes.bottom - axes.height; y < axes.bottom; ++y) {
+        const c = colour(png, { x, y }, 120);
+        if (c !== lastColour) {
+          const actualY = 50 * (axes.bottom - y) / axes.height;
+          if ((lastColour === 'W' && c === 'K' && section === 0)
+              || lastColour === 'K' && c === 'G' && section === 1) {
+            assert(47 <= actualY && actualY <= 49, `green bar top should be about 48, not ${actualY}`);
+            ++section;
+          } else if ((lastColour === 'G' && c === 'K' && section === 2)
+              || (lastColour === 'K' && c === 'M' && section === 3)) {
+            assert(10 <= actualY && actualY <= 25, `pink area should end at about 20, not ${actualY}`);
+            ++section;
+          } else if (lastColour === 'M' && c === 'K' && section === 4) {
+            assert(0 <= actualY && actualY < 0.2, `graph should end at 0, not ${actualY}`);
+            ++section;
+          } else {
+            assert.fail(`weird transition from ${lastColour} to ${c}`);
+          }
+          lastColour = c;
+        }
+      }
+      assert.strictEqual(section, 5, `found only ${section} different colours on the graph, not 5`);
     });
   });
 });
 
-function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
+async function getPlot(driver) {
+  const img = await driver.wait(until.elementLocated(By.css('#myplot img')));
+  const imgSrc = await img.getAttribute('src');
+  const imgB64 = imgSrc.split(',')[1];
   const imgB64i = imgB64.replace(/%0A/gi, '');
-  const png = PNG.sync.read(Buffer.from(imgB64i, 'base64'));
+  return PNG.sync.read(Buffer.from(imgB64i, 'base64'));
+}
+
+function assertConcordiaBlob(png, options, testData, sampleCount) {
   const axes = getAxes(png);
   const ranges = getRanges(options);
   const [u38pb06, u38pb06err, pb07pb06, pb07pb06err,
@@ -260,7 +298,7 @@ function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
     const gy = y + tw * yErr;
     // we think if h2 < 1 the transformed dot wll be green
     const pixel = toPixel(axes, ranges, gx, gy);
-    const col = colour(png, pixel);
+    const col = colour(png, pixel, 20);
     const expectedCol = h2 < minimumDistanceSquared ? innerColour : 'W';
     if (expectedCol !== col
       && (h2 < minimumDistanceSquared
@@ -277,18 +315,18 @@ function varianceOfRelativeError(value, standardDeviation) {
   return r * r;
 }
 
-function colour(png, pixel) {
+function colour(png, pixel, minBrightness) {
   const index = (pixel.x + png.width * pixel.y) * 4;
   const r = png.data[index];
   const g = png.data[index + 1];
   const b = png.data[index + 2];
-  const bright = Math.max(r, g, b, 20);
-  const threshold = bright * 0.6;
-  const colour =
+  const bright = Math.max(r, g, b, minBrightness);
+  const threshold = bright * 0.85;
+  const c =
     (r < threshold ? 0 : 1) +
     (g < threshold ? 0 : 2) +
     (b < threshold ? 0 : 4);
-  return "KRGYBMCW"[colour];
+  return "KRGYBMCW"[c];
 }
 
 function isLinePixel(png, index) {
@@ -366,19 +404,43 @@ function lineEndIndex(png, index, dIndex) {
   return result;
 }
 
+function lineStartIndex(png, index, dIndex) {
+  const tooFar0 = dIndex < 0? 0 : 4 * png.width * png.height;
+  const tooFar = floor((tooFar0 - index) / dIndex) * dIndex + index
+  let result = index;
+  let gap = 0;
+  while (gap < 4) {
+    if (!isLinePixel(png, index)) {
+      result = index;
+      gap = 0;
+    } else {
+      ++gap;
+    }
+    if (index === tooFar) {
+      return index;
+    }
+    index += dIndex;
+  }
+  return result;
+}
+
 function getAxes(png) {
   const originX = findLeftLine(png);
   const originY = findBottomLine(png);
   const row = png.width * 4;
   const originRowStart = originY * row;
   const originIndex = originRowStart + originX * 4;
-  const topIndex = lineEndIndex(png, originIndex, -row);
-  const rightIndex = lineEndIndex(png, originIndex, 4);
+  const bottomIndex =lineStartIndex(png, originIndex, -row);
+  const topIndex = lineEndIndex(png, bottomIndex, -row);
+  const leftIndex = lineStartIndex(png, originIndex, 4);
+  const rightIndex = lineEndIndex(png, leftIndex, 4);
+  const bottom = floor(bottomIndex / row);
+  const left = floor(leftIndex - originRowStart) / 4;
   return {
-    bottom: originY,
-    left: originX,
-    height: originY - floor(topIndex / row),
-    width: floor((rightIndex - originRowStart) / 4) - originX
+    bottom,
+    left,
+    height: floor((bottomIndex - topIndex) / row),
+    width: floor((rightIndex - leftIndex) / 4)
   };
 }
 
@@ -459,9 +521,19 @@ function assertNearlyEqual(a, b) {
   assert(b - db < a && a < b + db, a + ' is not nearly ' + b);
 }
 
+async function chooseGeochronometer(driver, choiceText) {
+  await selectFromMenu(driver, choiceText,
+    'geochronometer-button', 'geochronometer-menu');
+}
+
 async function choosePlotDevice(driver, choiceText) {
-  await performClick(driver, 'plotdevice-button');
-  const menu = await driver.findElement(By.id('plotdevice-menu'));
+  await selectFromMenu(driver, choiceText,
+    'plotdevice-button', 'plotdevice-menu');
+}
+
+async function selectFromMenu(driver, choiceText, buttonId, menuId) {
+  await performClick(driver, buttonId);
+  const menu = await driver.findElement(By.id(menuId));
   const choice = await menu.findElement(By.xpath("//li/div[contains(text(),'" + choiceText + "')]"));
   await driver.wait(until.elementIsVisible(choice));
   await performClick(driver, choice);
