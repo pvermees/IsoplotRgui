@@ -66,16 +66,11 @@ sudo useradd -mrU wwwrunner
 sudo adduser wwwrunner docker
 ```
 
-Pull (as `wwwrunner`):
-
-```sh
-sudo -u wwwrunner docker pull pvermees/isoplotr
-```
-
 Let us write a startup script for this docker container. Put the
 following lines into a file `/usr/local/sbin/isoplotr-start`:
 
 ```sh
+docker pull pvermees/isoplotr
 docker stop isoplotr
 docker rm isoplotr
 docker images -qf dangling=true pvermees/isoplotr | xargs -r docker rmi
@@ -120,9 +115,9 @@ server {
 
     location /isoplotr/ {
         proxy_pass http://127.0.0.1:3838/;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection "upgrade";
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
     }
 }
 ```
@@ -150,7 +145,7 @@ sudo -u wwwrunner crontab -e
 Then add a line like this (to run at 03:17 local time):
 
 ```
-17 3 * * * docker pull pvermees/isoplotr && isoplotr-start
+17 3 * * * /usr/local/sbin/isoplotr-start | /usr/bin/logger
 ```
 
 ### Maintenance
