@@ -115,9 +115,9 @@ server {
 
     location /isoplotr/ {
         proxy_pass http://127.0.0.1:3838/;
-  		  proxy_http_version 1.1;
-	  	  proxy_set_header Upgrade $http_upgrade;
-		    proxy_set_header Connection "upgrade";
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
     }
 }
 ```
