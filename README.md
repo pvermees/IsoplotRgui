@@ -3,7 +3,7 @@
 Graphical User Interface to the **IsoplotR** R package for radiometric
 geochronology.
 
-## Offline installation
+## Offline installation and use
 
 You must have **R** installed on your system (see
 [http://r-project.org](http://www.r-project.org)). Within **R**, there
@@ -43,10 +43,10 @@ or from your own server as discussed in the next section.
 
 There are three ways to install **IsoplotR** online:
 
-1. The safest and most secure solution is to install **IsoplotR** as ap
-[docker](build/docker.md) container.
+1. The current stable version is available from [CRAN](build/CRAN.md).
 
-2. The latest stable version is available from [CRAN](build/CRAN.md).
+2. The safest and most secure solution is to install **IsoplotR** as ap
+[docker](build/docker.md) container.
 
 3. The development version is available from [GitHub](build/git.md).
 
