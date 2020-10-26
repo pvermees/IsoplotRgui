@@ -146,8 +146,9 @@ IsoplotR <- function(host='0.0.0.0', port=NULL) {
 
 #' Stop an \code{IsoplotR} GUI
 #'
-#' @param server The server (returned by \code{\link{IsoplotRgui::IsoplotR()}})
-#' to stop. If not supplied all servers will be stopped.
+#' @param server The server (returned by
+#'     \code{IsoplotRgui::IsoplotR()}) to stop. If not supplied all
+#'     servers will be stopped.
 #' @examples
 #' # s <- IsoplotR()
 #' # stopIsoplotR(s)
