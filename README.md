@@ -9,9 +9,9 @@ You must have **R** installed on your system (see
 [http://r-project.org](http://www.r-project.org)). Within **R**, there
 are two ways to install **IsoplotRgui**:
 
-1. The latest stable version is available via CRAN (the Comprehensive
-R Archive Network). This version can be install from the R command
-prompt:
+1. The current stable version is available via **CRAN** (the
+Comprehensive R Archive Network). This version can be installed from
+the **R** command prompt:
 
 ```
 install.packages('IsoplotRgui')
