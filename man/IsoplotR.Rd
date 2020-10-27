@@ -19,7 +19,7 @@ server object
 \description{
 Opens a web-browser with a Graphical User Interface (GUI) for the
 \code{IsoplotR} package. An online version of the same interface is
-provided at \url{http://isoplotr.london-geochron.com}
+provided at \url{https://www.ucl.ac.uk/~ucfbpve/isoplotr/}
 }
 \examples{
 #IsoplotR()

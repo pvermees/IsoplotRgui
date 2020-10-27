@@ -91,7 +91,7 @@ sanitizeCommand <- function(command, callback) {
 #'
 #' Opens a web-browser with a Graphical User Interface (GUI) for the
 #' \code{IsoplotR} package. An online version of the same interface is
-#' provided at \url{http://isoplotr.london-geochron.com}
+#' provided at \url{https://www.ucl.ac.uk/~ucfbpve/isoplotr/}
 #' @param host IP address of the virtual server, default is 0.0.0.0
 #' @param port Internet port of the virtual server. If not defined, a
 #' random free port will be chosen and the browser will be opened

@@ -153,7 +153,7 @@ You can force an update yourself by running the script as the
 `wwwrunner` user:
 
 ```sh
-sudo -u wwwrunner
+sudo -u wwwrunner /usr/local/sbin/updateIsoplotR.sh
 ```
 
 ### Maintenance
