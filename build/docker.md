@@ -31,8 +31,7 @@ Set up a new user that you want to be running the **docker** container
 called `wwwrunner` (and add it to the `docker` group):
 
 ```sh
-sudo useradd -mrU wwwrunner
-sudo adduser wwwrunner docker
+sudo useradd -mrUaG docker wwwrunner
 ```
 
 Let us write a startup script for this docker container. Put the
