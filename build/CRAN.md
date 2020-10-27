@@ -102,9 +102,9 @@ server {
 
     location /isoplotr/ {
         proxy_pass http://127.0.0.1:3838/;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection "upgrade";
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
     }
 }
 ```
@@ -149,48 +149,27 @@ then enter:
 
 which will automatically synchronise **IsoplotR** and **IsoplotRgui** with **GitHub** on every Sunday.
 
-You can force an update yourself by running the script as the
-`wwwrunner` user:
+You can force an update yourself by running the script as the `root` user:
 
 ```sh
-sudo -u wwwrunner /usr/local/sbin/updateIsoplotR.sh
+sudo /usr/local/sbin/updateIsoplotR.sh
 ```
 
 ### Maintenance
 
-#### *crontab* logs
+You can view the logs from the various processes mentioned here
+as follows:
 
-```
-grep CRON < /var/log/syslog
-```
-
-or, if you want to see the messages as they appear:
-
-```
-tail -f /var/log/syslog | grep CRON
-```
-
-Or see the **IsoplotR** update log at `/var/log/isoplotr-update.log`.
-If **cron** is running the update script but no output appears it
-means that there is no update available.
-
-#### *SystemD* logs
-
-```sh
-journalctl -u isoplotr
-```
-
-and:
-
-```sh
-journalctl -u nginx
-```
+Process | command for accessing logs
+-----|-----
+cron (including the update script) | `journalctl -eu cron`
+systemD | `journalctl -e _PID=1`
+IsoplotRgui | `journalctl -eu isoplotr`
+nginx | `journalctl -eu nginx`
+nginx detail | logs are written into the `/var/log/nginx` directory
 
 `journalctl` has many interesting options; for example `-r` to see
 the most recent messages first, `-k` to see messages only from this
-boot, or `-f` to show messages as they come in.
-
-#### *nginx* logs
-
-As well as `journalctl`, there are logs from **nginx** at
-`var/log/nginx`.
+boot, or `-f` to show messages as they come in. The `-e` option
+we have been using scrolls to the end of the log so that you are
+looking at the most recent entries immediately.

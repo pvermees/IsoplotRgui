@@ -31,8 +31,7 @@ Set up a new user that you want to be running the **docker** container
 called `wwwrunner` (and add it to the `docker` group):
 
 ```sh
-sudo useradd -mrU wwwrunner
-sudo adduser wwwrunner docker
+sudo useradd -mrUaG docker wwwrunner
 ```
 
 Let us write a startup script for this docker container. Put the
@@ -117,39 +116,28 @@ Then add a line like this (to run at 03:17 local time):
 17 3 * * * /usr/local/sbin/isoplotr-start | /usr/bin/logger
 ```
 
-### Maintenance
-
-You can find logs for the various processes mentioned here in the
-following places:
-
-#### crontab logs
-
-```
-grep CRON < /var/log/syslog
-```
-
-or, if you want to see the messages as they appear:
-
-```
-tail -f /var/log/syslog | grep --line-buffered CRON
-```
-
-#### nginx logs
-
-nginx mainly logs to `journalctl`:
+You can force an update yourself by running the script as the `wwwrunner` user:
 
 ```sh
-journalctl -u nginx
+sudo -u wwwrunner /usr/local/sbin/isoplotr-start
 ```
+
+### Maintenance
+
+You can view the logs from the various processes mentioned here
+as follows:
+
+Process | command for accessing logs
+-----|-----
+cron (including the update script) | `journalctl -eu cron`
+systemD | `journalctl -e _PID=1`
+IsoplotRgui | `docker logs isoplotr`
+docker | `journalctl -eu docker` but don't expect anything too helpful
+nginx | `journalctl -eu nginx`
+nginx detail | logs are written into the `/var/log/nginx` directory
 
 `journalctl` has many interesting options; for example `-r` to see
 the most recent messages first, `-k` to see messages only from this
-boot, or `-f` to show messages as they come in.
-
-As well as `journalctl`, there are logs from nginx at `/var/log/nginx`.
-
-#### docker logs
-
-```sh
-docker logs isoplotr
-```
+boot, or `-f` to show messages as they come in. The `-e` option
+we have been using scrolls to the end of the log so that you are
+looking at the most recent entries immediately.
