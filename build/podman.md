@@ -1,26 +1,35 @@
-# Setting up your own online mirror with *podman 2*
+# Setting up your own online mirror with *podman*
 
-Here is a way to set up a mirror on a Linux machine using the
-following ingredients:
+Podman is an alternative to docker, preferred by some linux
+distros. Podman has many theoretical advantages over docker
+but we have, so far, found it harder to use. The instructions
+here are to be considered experimental.
 
-- Linux distribution with a recent podman. These include:
+Nevertheless, here is a way to set up a mirror on a Linux
+machine using the following ingredients:
+
+- Linux distribution with podman. These include:
   - Alpine Edge
   - Arch Linux
-  - Debian 11 (Bullseye)
-  - Fedora 33
-  - OpenSUSE Tumbleweed
-  - Ubuntu 20.10
+  - CentOS 7
+  - Debian 11
+  - Fedora 31
+  - OpenSUSE Leap 15.2
 - nginx
 - crontab
-- podman (at least version 1.9)
+- podman
 
 This method containerises the installation and thereby delivers the
-most secure version of the app. Alternative methods include:
+security of the docker version of the app. Alternative methods
+include:
 
 1. [CRAN](CRAN.md) provides the current stable version on the
 Comprehensive R Archive Netword (CRAN).
 
 2. [GitHub](git.md) provides the most up to date development version.
+
+3. [Docker](docker.md) the same containerised solution as here,
+but using docker to manage it, not podman.
 
 Instructions for offline use are provided in the main
 [README](../README.md) file.
@@ -162,25 +171,33 @@ to browse to `/isoplotr` on your machine from another machine.
 
 ### crontab to keep *IsoplotR* up-to-date
 
-Set up a **cron** job to update the Docker image at some time when you
+Put the following in a new file `/usr/local/sbin/isoplotr-update.sh`:
+
+```sh
+sudo -iu wwwrunner podman pull docker.io/pvermees/isoplotr
+systemctl restart isoplotr
+```
+
+Now we're going to set that file to be executable, then set up a
+**cron** job to update the Docker image at some time when you
 think it is not likely to be used (as a short period of downtime
 occurs when there is an update to be installed):
 
 ```sh
+sudo chmod a+x /usr/local/sbin/isoplotr-update.sh
 sudo crontab -e
 ```
 
 Then add a line like this (to run at 03:17 local time):
 
 ```
-17 3 * * * (sudo -u wwwrunner podman docker.io/timband/isoplotr && systemctl restart isoplotr) | /usr/bin/logger
+17 3 * * * /usr/local/sbin/isoplotr-update.sh 2>&1 | /usr/bin/logger
 ```
 
 You can force an update yourself, of course:
 
 ```sh
-sudo -u wwwrunner podman docker.io/timband/isoplotr
-sudo systemctl restart isoplotr
+sudo /usr/local/sbin/isoplotr-update.sh
 ```
 
 ### Maintenance
@@ -201,3 +218,12 @@ the most recent messages first, `-k` to see messages only from this
 boot, or `-f` to show messages as they come in. The `-e` option
 we have been using scrolls to the end of the log so that you are
 looking at the most recent entries immediately.
+
+I have found that if podman refuses to work, it can be reset with:
+
+```sh
+sudo -iu wwwrunner $SHELL
+rm ~/.local/share/containers/ -rf
+exit
+sudo /usr/local/sbin/isoplotr-update.sh
+```
