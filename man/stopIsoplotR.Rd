@@ -15,6 +15,8 @@ servers will be stopped.}
 Stop an \code{IsoplotR} GUI
 }
 \examples{
-# s <- IsoplotR()
-# stopIsoplotR(s)
+\donttest{
+s <- IsoplotR()
+stopIsoplotR(s)
+}
 }

@@ -1,4 +1,3 @@
-
 rrpc <- function(interface) { function(ws) {
     ws$onMessage(function(binary, message) {
         df <- jsonlite::fromJSON(message);
@@ -14,7 +13,7 @@ rrpc <- function(interface) { function(ws) {
             envelope$result <- tryCatch(
                 do.call(interface[[method]], df$params),
                 error=function(e) {
-                    error <<- geterrmessage();
+                    error <- geterrmessage();
                     cat("ERROR:", error, "\n");
                     NULL
                 }
@@ -56,12 +55,12 @@ findNames <- function(exp, callback) {
 }
 
 nameCheck <- function(exps, allowed) {
-  failures <- list()
+  failures <- NULL
   lapply(exps,function(exp) {
     findNames(exp, function(n) {
       text <- as.character(n)
       if (!(text %in% allowed)) {
-        failures[text] <<- TRUE
+        failures[text] <- TRUE
       }
     })
   })
@@ -98,7 +97,7 @@ sanitizeCommand <- function(command, callback) {
 #' to show the GUI.
 #' @return server object
 #' @examples
-#' #IsoplotR()
+#' \donttest{IsoplotR()}
 #' @export
 IsoplotR <- function(host='0.0.0.0', port=NULL) {
     appDir <- system.file("www", package = "IsoplotRgui")
@@ -150,8 +149,10 @@ IsoplotR <- function(host='0.0.0.0', port=NULL) {
 #'     \code{IsoplotRgui::IsoplotR()}) to stop. If not supplied all
 #'     servers will be stopped.
 #' @examples
-#' # s <- IsoplotR()
-#' # stopIsoplotR(s)
+#' \donttest{
+#' s <- IsoplotR()
+#' stopIsoplotR(s)
+#' }
 #' @export
 stopIsoplotR <- function(server=NULL) {
     if (is.null(server)) {
@@ -172,7 +173,7 @@ stopIsoplotR <- function(server=NULL) {
 #' to show the GUI.
 #' @return This function does not return.
 #' @examples
-#' #daemon(3838)
+#' \donttest{daemon(3838)}
 #' @export
 daemon <- function(port=NULL, host='127.0.0.1') {
     IsoplotR(host=host, port=port)
