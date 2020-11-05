@@ -9,16 +9,15 @@ rrpc <- function(interface) { function(ws) {
             envelope$error <- "no such method"
             envelope$result <- NULL
         } else {
-            error <- NULL
-            envelope$result <- tryCatch(
-                do.call(interface[[method]], df$params),
-                error=function(e) {
-                    error <<- geterrmessage();
-                    cat("ERROR:", error, "\n");
-                    NULL
-                }
-            )
-            envelope$error <- error;
+            envelope <- tryCatch({
+                return(
+                  result=do.call(interface[[method]], df$params)
+                  error=NULL)
+            }, error=function(e) {
+                error <- geterrmessage();
+                cat("ERROR:", error, "\n");
+                return(result=NULL, error=error)
+            })
         }
         ws$send(jsonlite::toJSON(envelope))
     })
