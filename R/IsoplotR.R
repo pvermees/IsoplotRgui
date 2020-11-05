@@ -9,16 +9,15 @@ rrpc <- function(interface) { function(ws) {
             envelope$error <- "no such method"
             envelope$result <- NULL
         } else {
-            error <- NULL
-            envelope$result <- tryCatch(
-                do.call(interface[[method]], df$params),
-                error=function(e) {
-                    error <- geterrmessage();
-                    cat("ERROR:", error, "\n");
-                    NULL
-                }
-            )
-            envelope$error <- error;
+            envelope <- tryCatch({
+                return(
+                  result=do.call(interface[[method]], df$params)
+                  error=NULL)
+            }, error=function(e) {
+                error <- geterrmessage();
+                cat("ERROR:", error, "\n");
+                return(result=NULL, error=error)
+            })
         }
         ws$send(jsonlite::toJSON(envelope))
     })
@@ -37,39 +36,32 @@ rrpcServer <- function(interface, host='0.0.0.0', port=NULL, appDir=NULL, root="
     httpuv::startServer(host=host, port=port, app=app)
 }
 
-# Calls callback for each name found in expression 'exp'
-
-findNames <- function(exp, callback) {
+# Finds all names in an expression
+# but the result needs flattening
+findNames <- function(exp) {
   # don't care about is.atomic
   if (is.name(exp)) {
-    callback(exp)
+    exp
   } else if (is.pairlist(exp)) {
-    lapply(exp, function(e) { findNames(e, callback) })
+    Map(findNames, exp)
   } else if (is.call(exp)) {
     if ("::" == exp[[1]] && is.name(exp[[2]]) && is.name(exp[[3]])) {
-      callback(paste0(exp[2], "::", exp[3]))
+      paste0(exp[2], "::", exp[3])
     } else {
-      lapply(exp, function(e) { findNames(e, callback) })
+      Map(findNames, exp)
     }
   }
 }
 
 nameCheck <- function(exps, allowed) {
-  failures <- NULL
-  lapply(exps,function(exp) {
-    findNames(exp, function(n) {
-      text <- as.character(n)
-      if (!(text %in% allowed)) {
-        failures[text] <- TRUE
-      }
-    })
-  })
-  names(failures)
+  symbls <- unlist(Map(findNames, exps))
+  nams <- unique(Map(as.character, symbls))
+  setdiff(nams, allowed)
 }
 
 sanitizeCommand <- function(command, callback) {
     com <- parse(text=command)
-    failures <- nameCheck(com, list(
+    failures <- nameCheck(com, c(
         'IsoplotR::settings', '<-', 'dat', 'selection2data', 'par', 'c',
         'rgb', 'selection2levels', 'omitter', 'IsoplotR::concordia',
         'IsoplotR::read.data', 'IsoplotR::data2york', 'IsoplotR::kde',
