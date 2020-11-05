@@ -55,7 +55,7 @@ describe('IsoplotRgui', function() {
             ];
             await inputTestData(driver, testData);
             await choosePlotDevice(driver, 'ages');
-            await clickButton(driver, 'run');
+            await performClick(driver, 'run');
             const expectedResults = [
                 [251.1, 0.51, 250.86, 0.29, 253.3, 4.48, 250.88, 0.29],
                 [248.92, 0.88, 248.93, 0.19, 248.81, 8.99, 248.93, 0.19],
@@ -167,6 +167,45 @@ describe('IsoplotRgui', function() {
                 assert(failures.length <= 20, 'Too many failures: ' + failures.join(', '));
             });
         });
+    });
+
+    describe('error conditions', function() {
+      before(async function() {
+        await driver.get('http://localhost:50054');
+        // ensure that we have the websocket connection by getting a plot
+        await performClick(driver, 'plot');
+        await driver.wait(until.elementLocated(By.css('#myplot img')));
+      });
+
+      it('illegal Rcommands are rejected', function(done) {
+        driver.executeAsyncScript(
+          'var callback = arguments[arguments.length-1];' +
+          'window.rrpc.call("plot", { data: [], width: 99, height: 99, Rcommand:' +
+          '"print(\\"gotcha!\\")"' +
+          '}, function(result, err) {' +
+          'callback(err);' +
+          '});'
+        ).then(err => {
+          assert.strictEqual(err.length, 1);
+          assert(err[0].includes('whitelist'),
+              `Expected error message '${err[0]}' to include the word 'whitelist'`);
+          done();
+        });
+      });
+
+      it('error-causing Rcommands are reported', function(done) {
+        driver.executeAsyncScript(
+          'var callback = arguments[arguments.length-1];' +
+          'window.rrpc.call("plot", { data: [], width: 99, height: 99, Rcommand:' +
+          '"selection2data(rgb)"' +
+          '}, function(result, err) {' +
+          'callback(err);' +
+          '});'
+        ).then(err => {
+          assert.strictEqual(err.length, 1, 'Expected some error');
+          done();
+        });
+      });
     });
 });
 

@@ -13,7 +13,7 @@ rrpc <- function(interface) { function(ws) {
             envelope$result <- tryCatch(
                 do.call(interface[[method]], df$params),
                 error=function(e) {
-                    error <- geterrmessage();
+                    error <<- geterrmessage();
                     cat("ERROR:", error, "\n");
                     NULL
                 }
@@ -60,7 +60,7 @@ nameCheck <- function(exps, allowed) {
     findNames(exp, function(n) {
       text <- as.character(n)
       if (!(text %in% allowed)) {
-        failures[text] <- TRUE
+        failures[text] <<- TRUE
       }
     })
   })
