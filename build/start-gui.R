@@ -1,4 +1,5 @@
 args <- commandArgs(trailingOnly=TRUE)
+options(warn=2)
 install.packages('.', repos=NULL, type="source")
 host <- '0.0.0.0'
 port <- 8080
