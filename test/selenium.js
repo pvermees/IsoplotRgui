@@ -17,9 +17,7 @@ describe('IsoplotRgui', function() {
         driver = new Builder().forBrowser('firefox').build();
     });
 
-    after(async function() {
-        // unbelievably this has to be async to make Mocha wait until
-        // all the tests have resolved before it calls it
+    after(function() {
         rProcess.kill('SIGHUP');
         driver.quit();
     })

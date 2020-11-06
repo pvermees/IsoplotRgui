@@ -1,26 +1,27 @@
 rrpc <- function(interface) { function(ws) {
-    ws$onMessage(function(binary, message) {
-        df <- jsonlite::fromJSON(message);
-        method <- df$method
-        envelope <- list()
-        envelope$jsonrpc <- "2.0"
-        envelope$id <- df$id
-        if (is.null(interface[[method]])) {
-            envelope$error <- "no such method"
-            envelope$result <- NULL
-        } else {
-            envelope <- tryCatch({
-                return(
-                  result=do.call(interface[[method]], df$params)
-                  error=NULL)
-            }, error=function(e) {
-                error <- geterrmessage();
-                cat("ERROR:", error, "\n");
-                return(result=NULL, error=error)
-            })
-        }
-        ws$send(jsonlite::toJSON(envelope))
-    })
+  ws$onMessage(function(binary, message) {
+    df <- jsonlite::fromJSON(message);
+    method <- df$method
+    envelope <- list()
+    envelope$jsonrpc <- "2.0"
+    envelope$id <- df$id
+    if (is.null(interface[[method]])) {
+      envelope$error <- "no such method"
+      envelope$result <- NULL
+    } else {
+      r <- tryCatch({
+        result <- do.call(interface[[method]], df$params)
+        list(result=result, error=NULL)
+      }, error=function(e) {
+        error <- geterrmessage();
+        cat("ERROR:", error, "\n");
+        list(result=NULL, error=error)
+      })
+      envelope$result <- r$result
+      envelope$error <- r$error
+    }
+    ws$send(jsonlite::toJSON(envelope))
+  })
 }}
 
 rrpcServer <- function(interface, host='0.0.0.0', port=NULL, appDir=NULL, root="/") {
