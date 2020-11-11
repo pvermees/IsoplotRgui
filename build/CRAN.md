@@ -126,12 +126,11 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -u wwwrunner Rscript -e "utils::update.packages('IsoplotR')"
-sudo -u wwwrunner Rscript -e "utils::update.packages('IsoplotRgui')"
+sudo -u wwwrunner Rscript -e "utils::update.packages('~/R',ask=FALSE)"
 systemctl restart isoplotr
 ```
 
-Ensure it is executable with:
+Ensure that it is executable with:
 
 ```sh
 sudo chmod a+rx /usr/local/sbin/updateIsoplotR.sh
