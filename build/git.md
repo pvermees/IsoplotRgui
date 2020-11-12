@@ -5,8 +5,9 @@ following ingredients:
 
 - Ubuntu
 - nginx
-- crontab
+- R
 - git
+- crontab
 
 This method delivers the latest stable version of the app. Alternative
 methods include:
@@ -19,6 +20,15 @@ install an **IsoplotR** mirror.
 
 Instructions for offline use are provided in the main
 [README](../README.md) file.
+
+### Install *nginx*, *R* and *git*
+
+If these packages are not installed on your system already, then you
+can add them with the following commands:
+
+```sh
+sudo apt-get install nginx r-base git
+```
 
 ### Create a user to run *IsoplotR*
 
@@ -41,8 +51,8 @@ Install **IsoplotR** for this user:
 ```sh
 sudo -Hu wwwrunner sh -c "mkdir ~/R"
 sudo -Hu wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
-sudo -Hu wwwrunner Rscript -e "install.packages('remotes', '~/R')"
-sudo -Hu wwwrunner Rscript -e "remotes::install_github(c('pvermees/IsoplotR', 'pvermees/IsoplotRgui'), lib='~/R')"
+sudo -Hu wwwrunner Rscript -e "install.packages(pkgs='remotes',lib='~/R')"
+sudo -Hu wwwrunner Rscript -e "remotes::install_github(repo=c('pvermees/IsoplotR','pvermees/IsoplotRgui'),lib='~/R')"
 ```
 
 ### Create a systemd service for *IsoplotR*
@@ -121,7 +131,7 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -Hu wwwrunner Rscript -e "remotes::install_github(c('pvermees/IsoplotR', 'pvermees/IsoplotRgui'), force=TRUE, lib='~/R')"
+sudo -Hu wwwrunner Rscript -e "remotes::install_github(repo=c('pvermees/IsoplotR','pvermees/IsoplotRgui'),force=TRUE,lib='~/R')"
 systemctl restart isoplotr
 ```
  

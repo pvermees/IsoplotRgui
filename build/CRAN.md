@@ -5,6 +5,7 @@ following ingredients:
 
 - Ubuntu
 - nginx
+- R
 - crontab
 
 This method delivers the current stable version of the
@@ -17,6 +18,15 @@ install an **IsoplotR** mirror.
 
 Instructions for offline use are provided in the main
 [README](../README.md) file.
+
+### Install *nginx* and *R*
+
+If these packages are not installed on your system already, then you
+can add them with the following commands:
+
+```sh
+sudo apt-get install nginx r-base
+```
 
 ### Create a user to run *IsoplotR*
 
@@ -39,7 +49,7 @@ Install **IsoplotR** for this user:
 ```sh
 sudo -Hu wwwrunner sh -c "mkdir ~/R"
 sudo -Hu wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
-sudo -Hu wwwrunner Rscript -e "utils::install.packages('IsoplotRgui', lib='~/R')"
+sudo -Hu wwwrunner Rscript -e "utils::install.packages(pkgs='IsoplotRgui',lib='~/R')"
 ```
 
 ### Create a systemd service for *IsoplotR*
@@ -126,7 +136,7 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -Hu wwwrunner Rscript -e "utils::update.packages('~/R',ask=FALSE)"
+sudo -Hu wwwrunner Rscript -e "utils::update.packages(lib.loc='~/R',ask=FALSE)"
 systemctl restart isoplotr
 ```
 
@@ -143,7 +153,7 @@ then enter:
 ```
 # Minute    Hour   Day of Month    Month            Day of Week           Command
 # (0-59)   (0-23)    (1-31)    (1-12 or Jan-Dec) (0-6 or Sun-Sat)
-    0        0         *             *                  0        /usr/local/sbin/updateIsoplotR.sh
+    0        0         *             *                  0        /usr/local/sbin/updateIsoplotR.sh | /usr/bin/logger
 ```
 
 which will automatically synchronise **IsoplotR** and **IsoplotRgui** with **GitHub** on every Sunday.
