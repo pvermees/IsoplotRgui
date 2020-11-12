@@ -130,7 +130,7 @@ sudo -Hu wwwrunner Rscript -e "utils::update.packages('~/R',ask=FALSE)"
 systemctl restart isoplotr
 ```
 
-Ensure it is executable with:
+Ensure that it is executable with:
 
 ```sh
 sudo chmod a+rx /usr/local/sbin/updateIsoplotR.sh
