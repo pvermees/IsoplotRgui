@@ -39,11 +39,10 @@ the version that our new user `wwwrunner` has installed.
 Install **IsoplotR** for this user:
 
 ```sh
-sudo -u wwwrunner sh -c "mkdir ~/R"
-sudo -u wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
-sudo -u wwwrunner Rscript -e "install.packages('remotes')"
-sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/isoplotr')"
-sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/isoplotrgui')"
+sudo -Hu wwwrunner sh -c "mkdir ~/R"
+sudo -Hu wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
+sudo -Hu wwwrunner Rscript -e "install.packages('remotes', '~/R')"
+sudo -Hu wwwrunner Rscript -e "remotes::install_github(c('pvermees/IsoplotR', 'pvermees/IsoplotRgui'), lib='~/R')"
 ```
 
 ### Create a systemd service for *IsoplotR*
@@ -58,7 +57,7 @@ After=network.target
 [Service]
 Type=simple
 User=wwwrunner
-ExecStart=Rscript -e IsoplotRgui::daemon(3838)
+ExecStart=/usr/bin/Rscript -e IsoplotRgui::daemon(3838)
 Restart=always
 
 [Install]
@@ -122,8 +121,7 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/IsoplotR',force=TRUE)"
-sudo -u wwwrunner Rscript -e "remotes::install_github('pvermees/IsoplotRgui',force=TRUE)"
+sudo -Hu wwwrunner Rscript -e "remotes::install_github(c('pvermees/IsoplotR', 'pvermees/IsoplotRgui'), force=TRUE, lib='~/R')"
 systemctl restart isoplotr
 ```
  
