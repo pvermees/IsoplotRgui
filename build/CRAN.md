@@ -25,7 +25,7 @@ If these packages are not installed on your system already, then you
 can add them with the following commands:
 
 ```sh
-sudo apt-get install nginx r-base
+sudo apt-get install nginx r-base r-base-dev
 ```
 
 ### Create a user to run *IsoplotR*
