@@ -267,13 +267,13 @@ function getOptions(prefs){
 	case 'detritals':
 	    out += ",samebandwidth=" + pdsettings.samebandwidth;
 	    out += ",normalise=" + pdsettings.normalise;
-	    if (pdsettings.pchdetritals!='none') {
-		out += ",pch=" + pdsettings.pchdetritals; }
 	    break;
 	default:
 	}
-	if (geochronometer!="detritals" & pdsettings.pch!='none'){
-	    out += ",pch=" + pdsettings.pch;
+	if (geochronometer=="detritals"){
+	    out += ",rug=" + pdsettings.rugdetritals;
+	} else {
+	    out += ",rug=" + pdsettings.rug;
 	}
 	out += ",log=" + pdsettings.log;
 	if (pdsettings.binwidth != 'auto') { out += ",binwidth=" + pdsettings.binwidth; }

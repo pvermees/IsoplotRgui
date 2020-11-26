@@ -161,6 +161,7 @@
     "help_classical": "Classical MDS?",
     "help_shepard": "Shepard plot?",
     "help_nnlines": "Add nearest neighbour lines?",
+    "help_rug": "Add rug plot?",
     "help_ticks": "Show axes?",
     "help_pcex": "Plot symbol magnification:",
     "help_Os186Os192": "<sup>186</sup>Os/<sup>192</sup>Os ratio:",

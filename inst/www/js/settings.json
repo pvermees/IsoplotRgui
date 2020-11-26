@@ -221,8 +221,8 @@
 	"maxx": "auto",
 	"bandwidth": "auto",
 	"binwidth": "auto",
-	"pchdetritals": "none",
-	"pch": "'|'"
+	"rugdetritals": "FALSE",
+	"rug": "TRUE"
     },
     "CAD": {
 	"pch": "none",
