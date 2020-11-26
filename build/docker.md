@@ -77,7 +77,7 @@ server {
 
     root /var/www/html;
 
-    index index.html
+    index index.html;
 
     server_name _;
 
