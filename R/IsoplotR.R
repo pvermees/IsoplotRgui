@@ -129,7 +129,9 @@ IsoplotR <- function(host='0.0.0.0', port=NULL) {
             protocol <- ""
         }
         port <- s$getPort()
-        utils::browseURL(paste0(protocol, host, ":", port))
+        utils::browseURL(paste0(protocol,
+          if (host == '0.0.0.0') '127.0.0.1' else host,
+          ":", port))
         extraMessage <- "Call IsoplotRgui::stopIsoplotR() to stop serving IsoplotR\n"
     }
     cat(sprintf("Listening on %s:%d\n%s", host, port, extraMessage))
