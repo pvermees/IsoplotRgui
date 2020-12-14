@@ -87,7 +87,7 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc!=0){
 		var opt = gcsettings.discoption;
-		out += ",cutoff.disc=discfilter(" +
+		out += ",cutoff.disc=IsoplotR::discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
 		    "," + gcsettings.maxdisc[opt-1] + "),";
@@ -173,7 +173,7 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc!=0){
 		var opt = gcsettings.discoption;
-		out += ",cutoff.disc=discfilter(" +
+		out += ",cutoff.disc=IsoplotR::discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
 		    "," + gcsettings.maxdisc[opt-1] + "),";
@@ -251,7 +251,7 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc!=0){
 		var opt = gcsettings.discoption;
-		out += ",cutoff.disc=discfilter(" +
+		out += ",cutoff.disc=IsoplotR::discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
 		    "," + gcsettings.maxdisc[opt-1] + "),";
@@ -307,7 +307,7 @@ function getOptions(prefs){
 	    }
 	    if (gcsettings.cutoffdisc!=0){
 		var opt = gcsettings.discoption;
-		out += ",cutoff.disc=discfilter(" +
+		out += ",cutoff.disc=IsoplotR::discfilter(" +
 		    "option=" + opt + "," +
 		    "cutoff=c(" + gcsettings.mindisc[opt-1] +
 		    "," + gcsettings.maxdisc[opt-1] + "),";
@@ -374,7 +374,7 @@ function getOptions(prefs){
 	break;
     case 'ages':
 	if (geochronometer == 'U-Pb' & pdsettings.showdisc!=0){
-	    out += ",discordance=discfilter(option=";
+	    out += ",discordance=IsoplotR::discfilter(option=";
 	    if (pdsettings.showdisc==1){
 		out += pdsettings.discoption;
 		out += ",before=TRUE)";
