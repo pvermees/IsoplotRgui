@@ -129,7 +129,7 @@ stop it from running automatically on boot).
 ### *nginx* to serve *IsoplotR* on port 80
 
 You can expose this IsoplotR to your nginx server (if that is what
-you want to use) with the instructions [here](build/nginx.md)
+you want to use) with the instructions [here](nginx.md)
 
 ### crontab to keep *IsoplotR* up-to-date
 

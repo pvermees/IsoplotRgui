@@ -95,7 +95,7 @@ sudo journalctl -u isoplotr
 ### Expose *IsoplotR* with *nginx*
 
 You can expose this IsoplotR to your nginx server (if that is what
-you want to use) with the instructions [here](build/nginx.md)
+you want to use) with the instructions [here](nginx.md)
 
 ### Set up auto-updating
 
