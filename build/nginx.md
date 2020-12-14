@@ -9,15 +9,11 @@ On Ubuntu you can use `apt install nginx`, on CentOS you can use
 
 ### On Ubuntu or other distributions using sites-enabled
 
-Some distributions, such as Ubuntu, encourage you to put your configuration
-files in `/etc/nginx/sites-enabled/default`. If there is one present, you will
-need to add our `location /isoplotr/` block to the appropriate
-server` block in yours:
-
-To serve this in nginx you can add the following file at
-`/etc/nginx/sites-enabled`. If this directory is present (and to be sure,
-you can check for a line saying `include /etc/nginx/sites-enabled/*;`
-in the file `/etc/nginx/nginx.conf`) then you need to add a file called
+Some distributions (such as Ubuntu) encourage you to put your
+configuration files in the directory `/etc/nginx/sites-enabled`. If
+this directory is present (and to be sure, you can check for a line
+saying `include /etc/nginx/sites-enabled/*;` in the file
+`/etc/nginx/nginx.conf`) then you need to add a file called
 `/etc/nginx/sites-enabled/default` with the following contents:
 
 ```
@@ -42,7 +38,7 @@ server {
 
 If you already have a file called `/etc/nginx/sites-enabled/default`,
 you will need to copy just the `location {...}` block into the
-appropriate `server` block in the existing file.
+appropriate `server {...}` block in the existing file.
 
 ### On CentOS or other distributions using default.d
 
@@ -50,7 +46,7 @@ Some distributions such as CentOS install nginx with a different
 default configuration. If you have a directory called
 `/etc/nginx/default.d` (and the `/etc/nginx/nginx.conf` file
 contains a `server {...}` block containing the line
-`include /etc/nginx/default.d/*.conf;`) then you can add a file
+`include /etc/nginx/default.d/*.conf;`) then you can create a file
 called `/etc/nginx/default.d/isoplotr.conf` with the following
 contents:
 
