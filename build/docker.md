@@ -59,46 +59,8 @@ You should now see **IsoplotR** running on [http://localhost:3838]
 
 ### *nginx* to serve *IsoplotR* on port 80
 
-We are assuming that you are not already using *nginx* for
-something else. Here are the instructions in this case:
-
-Install **nginx**:
-
-```sh
-sudo apt install nginx
-```
-
-Add the following file at `/etc/nginx/sites-enabled/default`.
-
-```
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-
-    index index.html
-
-    server_name _;
-
-    location /isoplotr/ {
-        proxy_pass http://127.0.0.1:3838/;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-    }
-}
-```
-
-And restart **nginx**:
-
-```sh
-sudo systemctl restart nginx
-```
-
-You should now be able to browse to [http://localhost/isoplotr].
-Once you have configured your firewall you should be able
-to browse to `/isoplotr` on your machine from another machine.
+You can expose this IsoplotR to your nginx server (if that is what
+you want to use) with the instructions [here](build/nginx.md)
 
 ### crontab to keep *IsoplotR* up-to-date
 
