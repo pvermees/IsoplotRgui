@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./docker.sh
+#./docker.sh
 
 docker login
 docker push pvermees/docker-isoplotr

@@ -243,9 +243,9 @@ run <- function(Rcommand, input){
 
     selection2levels <- function() {
         nc <- as.numeric(input$nc)
-        values <- matrix(as.numeric(input$data), ncol=nc)
+        values <- matrix(input$data, ncol=nc)
         lc <- nc - 1
-        values[,lc]
+        as.numeric(values[,lc])
     }
 
     selection2omit <- function() {

@@ -1248,8 +1248,8 @@ $(function(){
 	    $('#maxx').val(set.maxx);
 	    $('#bandwidth').val(set.bandwidth);
 	    $('#binwidth').val(set.binwidth);
-	    $('#pchdetritals').val(set.pchdetritals);
-	    $('#pch').val(set.pch);
+	    $('#rugdetritals').prop('checked',set.rugdetritals=='TRUE');
+	    $('#rug').prop('checked',set.rug=='TRUE');
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'CAD':
@@ -1631,8 +1631,8 @@ $(function(){
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["bandwidth"] = check($('#bandwidth').val(),'auto');
 	    pdsettings["binwidth"] = check($('#binwidth').val(),'auto');
-	    pdsettings["pchdetritals"] = $('#pchdetritals').val();
-	    pdsettings["pch"] = $('#pch').val();
+	    pdsettings["rugdetritals"] = truefalse('#rugdetritals');
+	    pdsettings["rug"] = truefalse('#rug');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
 	    break;

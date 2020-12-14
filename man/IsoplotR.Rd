@@ -22,5 +22,5 @@ Opens a web-browser with a Graphical User Interface (GUI) for the
 provided at \url{https://www.ucl.ac.uk/~ucfbpve/isoplotr/}
 }
 \examples{
-#IsoplotR()
+\donttest{IsoplotR()}
 }
