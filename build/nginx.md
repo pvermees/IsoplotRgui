@@ -2,8 +2,8 @@
 
 ## install nginx
 
-On Ubuntu you can use `apt install nginx`, on CentOS you can use
-`yum install nginx`. Other distributions may use other commands.
+On Ubuntu you can use `sudo apt install nginx`, on CentOS you can use
+`sudo yum install nginx`. Other distributions may use other commands.
 
 ## Configure nginx
 
