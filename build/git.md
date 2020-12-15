@@ -89,39 +89,8 @@ from running automatically on boot).
 
 ### Expose *IsoplotR* with *nginx*
 
-To serve this in nginx you can add the following file at
-`/etc/nginx/sites-enabled/default`. If there is one present, you will
-need to add our `location /isoplotr/` block to the appropriate
-`server` block in yours:
-
-```
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-
-    index index.html;
-
-    server_name _;
-
-    location /isoplotr/ {
-        proxy_pass http://127.0.0.1:3838/;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-    }
-}
-```
-
-Now you can start this all up with:
-
-```sh
-sudo systemctl start isoplotr
-sudo systemctl restart nginx
-```
-
-and **IsoplotR** will be available on `http://localhost/isoplotr`
+You can expose this IsoplotR to your nginx server (if that is what
+you want to use) with the instructions [here](nginx.md)
 
 ### Set up auto-updating
 
