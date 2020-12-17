@@ -100,13 +100,10 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -Hu wwwrunner Rscript -e "remotes::install_github(repo=c('pvermees/IsoplotR','pvermees/IsoplotRgui'),force=TRUE,lib='~/R')"
+sudo -Hu wwwrunner Rscript -e \
+     "remotes::install_github(repo=c('pvermees/IsoplotR','pvermees/IsoplotRgui'),force=TRUE,lib='~/R')"
 systemctl restart isoplotr
 ```
- 
- (note: if you want to run a different branch of **IsoplotR**, for example
- the bleeding-edge `beta` branch, change `pvermees/IsoplotRgui` to
- `pvermees/IsoplotRgui@beta`)
 
 Ensure it is executable with:
 

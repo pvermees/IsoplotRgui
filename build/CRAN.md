@@ -19,36 +19,16 @@ install an **IsoplotR** mirror.
 Instructions for offline use are provided in the main
 [README](../README.md) file.
 
-### Install *R*, if required
+### Install *R* and *nginx*, if required
 
 If these packages are not installed on your system already, then you
-can add them with the following commands (on Ubuntu):
+can add them with the following commands:
 
 ```sh
 sudo apt-get install nginx r-base r-base-dev
 ```
 
-On CentOS 8 you can use, instead:
-
-```sh
-sudo dnf -y install epel-release dnf-plugins-core
-sudo dnf config-manager --set-enabled powertools
-sudo dnf -y install R
-```
-
-If you get an 'unknown repo' error when trying to enable `powertools`,
-you may have better luck with `sudo dnf config-manager --set-enabled PowerTools`
-or `sudo dnf config-manager --set-enabled codeready-builder-for-rhel-8-x86_64-rpms`
-(if you are using RedHat 8) or
-`sudo dnf config-manager --set-enabled codeready-builder-for-rhel-8-x86_64-rpms`
-(if you are using RedHad on AWS).
-
-On CentOS 7 you can use:
-
-```sh
-sudo yum -y install epel-release
-sudo yum -y install R
-```
+Equivalent instructions for CentOS can be found [here](CentOS.md).
 
 ### Create a user to run *IsoplotR*
 
@@ -71,7 +51,7 @@ Install **IsoplotR** for this user:
 ```sh
 sudo -Hu wwwrunner sh -c "mkdir ~/R"
 sudo -Hu wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
-sudo -Hiu wwwrunner Rscript -e "utils::install.packages(pkgs='IsoplotRgui',lib='~/R',repos='https://cloud.r-project.org')"
+sudo -Hiu wwwrunner Rscript -e "utils::install.packages(pkgs='IsoplotRgui',lib='~/R')"
 ```
 
 ### Create a systemd service for *IsoplotR*
@@ -116,8 +96,57 @@ sudo journalctl -u isoplotr
 
 ### Expose *IsoplotR* with *nginx*
 
-You can expose this IsoplotR to your nginx server (if that is what
-you want to use) with the instructions [here](nginx.md)
+Ubuntu encourages you to put your configuration files in the
+directory `/etc/nginx/sites-enabled`. If this directory is present
+(and to be sure, you can check for a line saying `include
+/etc/nginx/sites-enabled/*;` in the file `/etc/nginx/nginx.conf`) then
+you need to add a file called `/etc/nginx/sites-enabled/default` with
+the following contents:
+
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+
+    index index.html;
+
+    server_name _;
+
+    location /isoplotr/ {
+        proxy_pass http://127.0.0.1:3838/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+```
+
+If you already have a file called `/etc/nginx/sites-enabled/default`,
+you will need to copy just the `location {...}` block into the
+appropriate `server {...}` block in the existing file.
+
+### Restart nginx
+
+If you need to start isoplotr now, call:
+
+```sh
+sudo systemctl start isoplotr
+```
+
+You can restart nginx to take the changes to its configuration we
+made above with:
+
+```sh
+sudo systemctl restart nginx
+```
+
+and **IsoplotR** will be available on `http://localhost/isoplotr`
+
+You should now be able to browse to [http://localhost/isoplotr].
+Once you have configured your firewall you should be able
+to browse to `/isoplotr` on your machine from another machine.
 
 ### Set up auto-updating
 
@@ -127,7 +156,7 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -Hiu wwwrunner Rscript -e "utils::update.packages(lib.loc='~/R',ask=FALSE,repos='https://cloud.r-project.org')"
+sudo -Hiu wwwrunner Rscript -e "utils::update.packages(lib.loc='~/R',ask=FALSE)"
 systemctl restart isoplotr
 ```
 
@@ -147,7 +176,7 @@ then enter:
     0        0         *             *                  0        /usr/local/sbin/updateIsoplotR.sh | /usr/bin/logger
 ```
 
-which will automatically synchronise **IsoplotR** and **IsoplotRgui** with **GitHub** on every Sunday.
+which will automatically synchronise IsoplotR and IsoplotRgui with CRAN on every Sunday.
 
 You can force an update yourself by running the script as the `root` user:
 
