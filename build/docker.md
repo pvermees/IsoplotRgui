@@ -9,7 +9,10 @@ following ingredients:
 - docker
 
 This method containerises the installation and thereby delivers the
-most secure version of the app. Alternative methods include:
+most secure version of the app. If you want to use a Linux
+distribution that uses podman instead of docker (for example, CentOS),
+you can use the slightly different [podman](podman.md)
+instructions. Alternative methods include:
 
 1. [CRAN](CRAN.md) provides the current stable version on the
 Comprehensive R Archive Netword (CRAN).

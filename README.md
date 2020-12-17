@@ -46,9 +46,7 @@ There are three ways to install **IsoplotR** online:
 1. The current stable version is available from [CRAN](build/CRAN.md).
 
 2. The safest and most secure solution is to install **IsoplotR** as a
-[docker](build/docker.md) container. If you want to use a Linux
-distribution that uses podman instead of docker (for example, CentOS),
-you can use the slightly different [podman](build/podman.md) instructions.
+[docker](build/docker.md) container.
 
 3. The development version is available from [GitHub](build/git.md).
 
