@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const process = require('process');
 
-const localeDir = 'inst/shiny-examples/myapp/www/locales';
+const localeDir = 'inst/www/locales';
 const initialRegexp = new RegExp('^[ \t\r\n]*{[ \t\r\n]*"');
 const keySplit = new RegExp(
     '"[ \\t\\r\\n]*:[ \\t\\r\\n]*' + // ": after key
