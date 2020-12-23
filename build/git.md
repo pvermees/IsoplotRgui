@@ -52,7 +52,8 @@ Install **IsoplotR** for this user:
 sudo -Hu wwwrunner sh -c "mkdir ~/R"
 sudo -Hu wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
 sudo -Hu wwwrunner Rscript -e "install.packages(pkgs='remotes',lib='~/R')"
-sudo -Hu wwwrunner Rscript -e "remotes::install_github(repo=c('pvermees/IsoplotR','pvermees/IsoplotRgui'),lib='~/R')"
+sudo -Hu wwwrunner Rscript -e \
+     "remotes::install_github(repo=c('pvermees/IsoplotR','pvermees/IsoplotRgui'),lib='~/R')"
 ```
 
 ### Create a systemd service for *IsoplotR*

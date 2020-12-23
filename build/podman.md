@@ -128,8 +128,20 @@ stop it from running automatically on boot).
 
 ### *nginx* to serve *IsoplotR* on port 80
 
-You can expose this IsoplotR to your nginx server (if that is what
-you want to use) with the instructions [here](nginx.md)
+If you have a directory called `/etc/nginx/default.d` (and the
+`/etc/nginx/nginx.conf` file contains a `server {...}` block
+containing the line `include /etc/nginx/default.d/*.conf;`) then you
+can create a file called `/etc/nginx/default.d/isoplotr.conf` with the
+following contents:
+
+```
+location /isoplotr/ {
+    proxy_pass http://127.0.0.1:3838/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+```
 
 ### crontab to keep *IsoplotR* up-to-date
 
