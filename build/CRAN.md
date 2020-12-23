@@ -51,7 +51,8 @@ Install **IsoplotR** for this user:
 ```sh
 sudo -Hu wwwrunner sh -c "mkdir ~/R"
 sudo -Hu wwwrunner sh -c "echo R_LIBS_USER=~/R > ~/.Renviron"
-sudo -Hiu wwwrunner Rscript -e "utils::install.packages(pkgs='IsoplotRgui',lib='~/R')"
+sudo -Hiu wwwrunner Rscript -e \
+     "utils::install.packages(pkgs='IsoplotRgui',lib='~/R',repos='https://cloud.r-project.org/')"
 ```
 
 ### Create a systemd service for *IsoplotR*
@@ -156,7 +157,8 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
-sudo -Hiu wwwrunner Rscript -e "utils::update.packages(lib.loc='~/R',ask=FALSE)"
+sudo -Hiu wwwrunner Rscript -e \
+     "utils::update.packages(lib.loc='~/R',ask=FALSE,repos='https://cloud.r-project.org')"
 systemctl restart isoplotr
 ```
 

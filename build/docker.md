@@ -62,8 +62,36 @@ You should now see **IsoplotR** running on [http://localhost:3838]
 
 ### *nginx* to serve *IsoplotR* on port 80
 
-You can expose this IsoplotR to your nginx server (if that is what
-you want to use) with the instructions [here](nginx.md)
+Ubuntu encourages you to put your configuration files in the
+directory `/etc/nginx/sites-enabled`. If this directory is present
+(and to be sure, you can check for a line saying `include
+/etc/nginx/sites-enabled/*;` in the file `/etc/nginx/nginx.conf`) then
+you need to add a file called `/etc/nginx/sites-enabled/default` with
+the following contents:
+
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+
+    index index.html;
+
+    server_name _;
+
+    location /isoplotr/ {
+        proxy_pass http://127.0.0.1:3838/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+```
+
+If you already have a file called `/etc/nginx/sites-enabled/default`,
+you will need to copy just the `location {...}` block into the
+appropriate `server {...}` block in the existing file.
 
 ### crontab to keep *IsoplotR* up-to-date
 
