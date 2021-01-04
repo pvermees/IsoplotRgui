@@ -107,7 +107,7 @@ Type=simple
 WantedBy=multi-user.target default.target
 ```
 
-Noe you can run it:
+Now you can run it:
 
 ```sh
 sudo systemctl enable isoplotr
