@@ -22,5 +22,6 @@ Opens a web-browser with a Graphical User Interface (GUI) for the
 Rscript so that Rscript does not terminate and the server stays up.
 }
 \examples{
-\donttest{daemon(3838)}
+# runs indefinitely unless interrupted by the user:
+\dontrun{daemon(3838)}
 }

@@ -24,7 +24,8 @@ rrpc <- function(interface) { function(ws) {
   })
 }}
 
-rrpcServer <- function(interface, host='0.0.0.0', port=NULL, appDir=NULL, root="/") {
+rrpcServer <- function(interface, host='0.0.0.0',
+                       port=NULL, appDir=NULL, root="/") {
     app <- list(onWSOpen=rrpc(interface))
     if (!is.null(appDir)) {
         paths <- list()
@@ -130,9 +131,9 @@ IsoplotR <- function(host='0.0.0.0', port=NULL) {
         }
         port <- s$getPort()
         utils::browseURL(paste0(protocol,
-          if (host == '0.0.0.0') '127.0.0.1' else host,
-          ":", port))
-        extraMessage <- "Call IsoplotRgui::stopIsoplotR() to stop serving IsoplotR\n"
+          if (host == '0.0.0.0') '127.0.0.1' else host, ":", port))
+        extraMessage <-
+            "Call IsoplotRgui::stopIsoplotR() to stop serving IsoplotR\n"
     }
     cat(sprintf("Listening on %s:%d\n%s", host, port, extraMessage))
     invisible(s)
@@ -168,7 +169,8 @@ stopIsoplotR <- function(server=NULL) {
 #' to show the GUI.
 #' @return This function does not return.
 #' @examples
-#' \donttest{daemon(3838)}
+#' # runs indefinitely unless interrupted by the user:
+#' \dontrun{daemon(3838)}
 #' @export
 daemon <- function(port=NULL, host='127.0.0.1') {
     IsoplotR(host=host, port=port)
