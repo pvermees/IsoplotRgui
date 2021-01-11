@@ -68,7 +68,7 @@ After=network.target
 [Service]
 Type=simple
 User=wwwrunner
-ExecStart=/usr/bin/Rscript -e IsoplotRgui::daemon(3838)
+ExecStart=/usr/bin/Rscript -e IsoplotRgui::daemon(3839)
 Restart=always
 
 [Install]
@@ -76,7 +76,7 @@ WantedBy=multi-user.target
 ```
 
 Note we are setting `User=wwwrunner` to use our new user and we are
-running it on port 3838.
+running it on port 3839.
 
 Then to make **IsoplotR** start on system boot type:
 

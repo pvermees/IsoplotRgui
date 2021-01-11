@@ -99,7 +99,7 @@ Restart=always
 ExecStartPre=-/usr/bin/podman stop isoplotr
 ExecStartPre=-/usr/bin/podman rm isoplotr
 ExecStartPre=-/usr/bin/podman rm --storage isoplotr
-ExecStart=/usr/bin/podman run --name isoplotr -p 3838:80 docker.io/pvermees/isoplotr
+ExecStart=/usr/bin/podman run --name isoplotr -p 3839:80 docker.io/pvermees/isoplotr
 ExecStop=-/usr/bin/podman stop isoplotr
 Type=simple
 
@@ -120,7 +120,7 @@ also help by showing which commands were run and what the
 exit codes from each failing one were.
 
 If it succeeds, you should now see **IsoplotR** running
-on [http://localhost:3838]
+on [http://localhost:3839]
 
 Of course you can use other `systemctl` commands such as `stop`
 and `restart` (to control whether it is running), and `disable` (to
@@ -136,7 +136,7 @@ following contents:
 
 ```
 location /isoplotr/ {
-    proxy_pass http://127.0.0.1:3838/;
+    proxy_pass http://127.0.0.1:3839/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
