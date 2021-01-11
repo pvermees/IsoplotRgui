@@ -37,7 +37,7 @@
     "help_pcex": "'默认绘制符号大小的放大倍数。",
     "help_etchfact": "效率系数校正了蚀刻过程引起的偏差。磷灰石的默认值基于Iwano&Danhara (1998)的3次测量和Jonckheere (2003)的1次测量的平均值。",
     "help_ticks": "（非度量）MDS算法使用的视差变换产生没有物理意义的归一化值。因此可以安全地移除MDS配置的轴，这改善了图形输出的墨水信息比（sensu <i>Tufte</i>）。",
-    "help_LambdaRb87": "<sup>87</sup>Rb衰减常数的默认值及其标准误差取自Villa et al. (2015)。要使用Steiger and Jaeger (1977)的旧IUGS推荐值，请更改为0.000013972±0。",
+    "help_LambdaRb87": "<sup>87</sup>Rb衰减常数的默认值及其标准误差取自Villa et al. (2015)。要使用Steiger and Jaeger (1977)的旧IUGS推荐值，请更改为0.0000142±0。",
     "help_LambdaU238": "<sup>238</sup>U衰减常数的默认值及其标准误差取自Jaffey et al. (1971)。",
     "help_LambdaU235": "<sup>235</sup>U衰减常数的默认值及其标准误差取自Jaffey et al. (1971)。",
     "help_LambdaTh232": "<sup>232</sup>Th衰减常数的默认值及其标准误差来自Le Roux and Glendenin (1963)。",

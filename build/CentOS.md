@@ -55,7 +55,7 @@ contents:
 
 ```
 location /isoplotr/ {
-    proxy_pass http://127.0.0.1:3838/;
+    proxy_pass http://127.0.0.1:3839/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
@@ -106,7 +106,7 @@ sudo cat /var/log/audit/audit.log | grep nginx
 If you see results like:
 
 ```
-35528 comm="nginx" dest=3838 ...
+35528 comm="nginx" dest=3839 ...
 ```
 
 It means that you are having an SELinux permissions issue, which you can try

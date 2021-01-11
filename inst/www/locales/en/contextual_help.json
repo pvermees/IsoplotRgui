@@ -39,7 +39,7 @@
     "help_pcex": "The factor by which plotting symbols should be magnified relative to the default (which is 1)",
     "help_etchfact": "The efficiency factor corrects the bias caused by the etching process. The default value for apatite is based on the mean of 3 measurements by Iwano & Danhara (1998) and 1 measurement by Jonckheere (2003).",
     "help_ticks": "The disparity transformation used by the (non-metric) MDS algorithm produces normalised values with no physical meaning. The axes of the MDS configuration can therefore safely be removed, which improves the ink-to-information ratio (sensu <i>Tufte</i>) of the graphical output.",
-    "help_LambdaRb87": "The default values of the <sup>87</sup>Rb decay constant and its standard error are taken from Villa et al. (2015). To use the old IUGS recommended values of Steiger and Jaeger (1977), change to 0.000013972 &plusmn; 0.",
+    "help_LambdaRb87": "The default values of the <sup>87</sup>Rb decay constant and its standard error are taken from Villa et al. (2015). To use the old IUGS recommended values of Steiger and Jaeger (1977), change to 0.0000142 &plusmn; 0.",
     "help_LambdaU238": "The default values of the <sup>238</sup>U decay constant and its standard error are taken from Jaffey et al. (1971).",
     "help_LambdaU235": "The default values of the <sup>235</sup>U decay constant and its standard error are taken from Jaffey et al. (1971).",
     "help_LambdaTh232": "The default values of the <sup>232</sup>Th decay constant and its standard error are taken from Le Roux and Glendenin (1963).",
