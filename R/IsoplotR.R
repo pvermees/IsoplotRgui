@@ -168,7 +168,7 @@ stopIsoplotR <- function(server=NULL) {
 #' to show the GUI.
 #' @return This function does not return.
 #' @examples
-#' \donttest{daemon(3838)}
+#' \donttest{daemon(3839)}
 #' @export
 daemon <- function(port=NULL, host='127.0.0.1') {
     IsoplotR(host=host, port=port)

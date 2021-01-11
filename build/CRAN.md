@@ -67,7 +67,7 @@ After=network.target
 [Service]
 Type=simple
 User=wwwrunner
-ExecStart=/usr/bin/Rscript -e IsoplotRgui::daemon(3838)
+ExecStart=/usr/bin/Rscript -e IsoplotRgui::daemon(3839)
 Restart=always
 
 [Install]
@@ -75,7 +75,7 @@ WantedBy=multi-user.target
 ```
 
 Note we are setting `User=wwwrunner` to use our new user and we are
-running it on port 3838.
+running it on port 3839.
 
 Then to make **IsoplotR** start on system boot type:
 
@@ -116,7 +116,7 @@ server {
     server_name _;
 
     location /isoplotr/ {
-        proxy_pass http://127.0.0.1:3838/;
+        proxy_pass http://127.0.0.1:3839/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";

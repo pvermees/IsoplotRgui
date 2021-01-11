@@ -45,7 +45,7 @@ docker pull pvermees/isoplotr
 docker stop isoplotr
 docker rm isoplotr
 docker images -qf dangling=true pvermees/isoplotr | xargs -r docker rmi
-docker run --restart unless-stopped -d --name isoplotr -p 3838:80 pvermees/isoplotr
+docker run --restart unless-stopped -d --name isoplotr -p 3839:80 pvermees/isoplotr
 ```
 
 (note that the absence of `set -eu` is not a mistake;
@@ -58,7 +58,7 @@ sudo chmod a+x /usr/local/sbin/isoplotr-start
 sudo -u wwwrunner isoplotr-start
 ```
 
-You should now see **IsoplotR** running on [http://localhost:3838]
+You should now see **IsoplotR** running on [http://localhost:3839]
 
 ### *nginx* to serve *IsoplotR* on port 80
 
@@ -81,7 +81,7 @@ server {
     server_name _;
 
     location /isoplotr/ {
-        proxy_pass http://127.0.0.1:3838/;
+        proxy_pass http://127.0.0.1:3839/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
