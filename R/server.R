@@ -44,7 +44,7 @@ encodePlotAsPdf <- function(width, height, plotFn) {
 }
 
 selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
-                            Th02=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
+                           Th02=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
     nr <- as.numeric(input$nc)
     nc <- as.numeric(input$nc)
     values <- matrix(as.character(input$data), ncol=nc)
@@ -206,7 +206,7 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
     } else if (identical(method,"fissiontracks") & format==3){
         mat <- matrix('',3,nc)
         mat[1,1] <-'spot-size'
-        mat[4,1] <- input$spotSize
+        mat[2,1] <- input$spotSize
         mat[3,1:2] <- c('Ns','A')
         mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
     } else if (identical(method,"U-Th-He")){
