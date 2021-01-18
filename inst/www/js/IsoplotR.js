@@ -1262,7 +1262,7 @@ $(function(){
 	    $('.show4zeta').show();
 	    $('.hide4zeta').hide();
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#spigdig').val(set.sigdig);
+	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
