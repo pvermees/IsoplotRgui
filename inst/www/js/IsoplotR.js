@@ -483,7 +483,7 @@ $(function(){
 	    } else {
 		$(".show4diseq").hide();
 	    }
-	    if (set.commonPb!=1 & pd.anchor!=2){
+	    if (set.commonPb!=1 & pd.anchor!=1){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').hide();
@@ -783,7 +783,7 @@ $(function(){
 		$('.hide4model3').hide();
 		break;
 	    }
-	    if (pd.anchor == 1){
+	    if (pd.anchor == 2){
 		$('.show4tanchor').show();
 	    } else {
 		$('.show4tanchor').hide();
