@@ -39,9 +39,9 @@ function getOptions(prefs){
 	out += ",hide=omitter(flags='X')";
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (pdsettings.anchor==1){
-	    out += ",anchor=list(TRUE," + pdsettings.tanchor + ")";
+	    out += ",anchor=1";
 	} else if (pdsettings.anchor==2){
-	    out += ",anchor=list(TRUE,NA)";
+	    out += ",anchor=c(2," + pdsettings.tanchor + ")";
 	}
 	break;
     case 'radial':
