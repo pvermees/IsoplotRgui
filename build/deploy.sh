@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #./docker.sh
 
 docker login
