@@ -53,6 +53,7 @@ function example(geochronometer,plotdevice,format){
 		    "err[Z]":  [0.00004,0.00016,0.00008,0.00009,0.00006,
 				0.00007,0.00011,0.00007,0.00006,0.00004],
 		    "(rhoXY)": [],
+		    "(rhoXZ)": [],
 		    "(rhoYZ)": [],
 		    "(C)":     [],
 		    "(omit)":  []
