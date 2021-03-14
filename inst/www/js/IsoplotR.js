@@ -69,7 +69,7 @@ $(function(){
 	    switch (format){
 	    case 1:
 	    case 2: return 7;
-	    case 3: return 10;
+	    case 3:
 	    case 4:
 	    case 5: return 11;
 	    case 6: return 14;
