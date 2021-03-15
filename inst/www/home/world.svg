@@ -34,7 +34,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1056"
+     inkscape:window-height="1046"
      id="namedview4"
      showgrid="false"
      fit-margin-top="0"
@@ -42,10 +42,10 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="1.0085051"
-     inkscape:cx="525.92892"
-     inkscape:cy="358.94849"
+     inkscape:cx="296.38125"
+     inkscape:cy="355.47801"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="-3"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" /><g
      id="g10"
@@ -1491,33 +1491,9 @@
 
 
 
-</a>
-<a
-   id="a4890"
-   xlink:href="https://shiny.bgs.ac.uk/IsoplotR/"
-   xlink:title="BGS"><rect
-     y="121.28786"
-     x="545.12048"
-     height="35.333931"
-     width="99.666328"
-     id="rect11871-5"
-     style="fill:#fffb00;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /></a><a
-   id="a5693"
-   xlink:href="https://shiny.bgs.ac.uk/IsoplotR/"
-   xlink:title="BGS"
-   transform="translate(0,-2.0000001)"><text
-   id="text11927-3"
-   y="146.60785"
-   x="550.21259"
-   style="font-style:normal;font-weight:normal;font-size:18.66666603px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-   xml:space="preserve"><tspan
-     style="text-align:start;text-anchor:start"
-     y="146.60785"
-     x="550.21259"
-     id="tspan11925-5"
-     sodipodi:role="line">Keyworth</tspan></text>
 
 </a>
+
 <a
    id="a4887"
    xlink:href="http://isoplotr.es.ucl.ac.uk/"
@@ -1549,17 +1525,13 @@
 
 
 
+
 </a>
 
 <path
    style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
    d="m 262.9647,180.09464 18.79129,15.95577"
    id="path11992"
-   inkscape:connector-curvature="0"
-   sodipodi:nodetypes="cc" /><path
-   style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-   d="m 645.12726,139.12242 47.64092,11.40366"
-   id="path11992-0"
    inkscape:connector-curvature="0"
    sodipodi:nodetypes="cc" /><path
    style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -1594,6 +1566,7 @@
        class="translate"
        id="Changchun">Changchun</tspan></tspan></text>
 
+
 </a><path
    style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
    d="m 1049.5642,145.96442 31.7759,13.40366"
@@ -1626,6 +1599,7 @@
      style="text-align:start;text-anchor:start"><tspan
        class="translate"
        id="Beijing">Beijing</tspan></tspan></text>
+
 
 </a><path
    sodipodi:nodetypes="cc"
@@ -1660,6 +1634,7 @@
      y="187.53577"
      style="text-align:start;text-anchor:start">Salta</tspan></text>
 
+
 </a><path
    sodipodi:nodetypes="cc"
    inkscape:connector-curvature="0"
@@ -1685,13 +1660,14 @@
    xlink:href="http://isoplotr.geo.utexas.edu/"
    target="http://isoplotr.geo.utexas.edu/"
    xlink:title="UT Austin"><text
-     id="text1212"
+   id="text1212"
+   y="216.16431"
+   x="338.1243"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:0;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+   xml:space="preserve"><tspan
      y="216.16431"
      x="338.1243"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:0;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-     xml:space="preserve"><tspan
-       y="216.16431"
-       x="338.1243"
-       id="tspan1210"
-       sodipodi:role="line">Austin</tspan></text>
+     id="tspan1210"
+     sodipodi:role="line">Austin</tspan></text>
+
 </a></g></svg>
