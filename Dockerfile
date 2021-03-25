@@ -1,15 +1,18 @@
 FROM pvermees/docker-isoplotr
 
-WORKDIR /app
+WORKDIR /isoplotrgui
 
-RUN Rscript --vanilla -e \
+RUN ["Rscript",  "-e", \
     "install.packages(c('later','jsonlite','httpuv'), \
-    repos='https://cran.rstudio.com')"
+    repos='https://cran.rstudio.com')"]
 
-COPY DESCRIPTION /app/DESCRIPTION
-COPY NAMESPACE /app/NAMESPACE
-COPY R /app/R
-COPY inst /app/inst
-COPY build/start-gui.R /app/build/start-gui.R
+COPY DESCRIPTION /isoplotrgui/DESCRIPTION
+COPY NAMESPACE /isoplotrgui/NAMESPACE
+COPY R /isoplotrgui/R
+COPY inst /isoplotrgui/inst
 
-CMD ["Rscript", "--vanilla", "build/start-gui.R", "0.0.0.0:80"]
+RUN ["R", "CMD", "INSTALL", "."]
+
+ENV TIMEOUT 10
+
+CMD Rscript -e "IsoplotRgui::daemon(80,'0.0.0.0',timeout=${TIMEOUT})"
