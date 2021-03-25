@@ -4,7 +4,7 @@
 \alias{daemon}
 \title{Start the \code{IsoplotR} GUI without exiting}
 \usage{
-daemon(port = NULL, host = "127.0.0.1")
+daemon(port = NULL, host = "127.0.0.1", timeout = 30)
 }
 \arguments{
 \item{port}{Internet port of the virtual server. If not defined, a
@@ -12,6 +12,9 @@ random free port will be chosen and the browser will be opened
 to show the GUI.}
 
 \item{host}{IP address of the virtual server}
+
+\item{timeout}{How long (in CPU time) an operation may take
+before returning with a timeout error. Default: 30 seconds.}
 }
 \value{
 This function does not return.

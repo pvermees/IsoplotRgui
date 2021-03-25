@@ -4,7 +4,7 @@
 \alias{IsoplotR}
 \title{Start the \code{IsoplotR} GUI}
 \usage{
-IsoplotR(host = "0.0.0.0", port = NULL)
+IsoplotR(host = "0.0.0.0", port = NULL, timeout = Inf)
 }
 \arguments{
 \item{host}{IP address of the virtual server, default is 0.0.0.0}
@@ -12,6 +12,9 @@ IsoplotR(host = "0.0.0.0", port = NULL)
 \item{port}{Internet port of the virtual server. If not defined, a
 random free port will be chosen and the browser will be opened
 to show the GUI.}
+
+\item{timeout}{How long (in CPU time) an operation may take
+before returning with a timeout error. Default: no limit.}
 }
 \value{
 server object

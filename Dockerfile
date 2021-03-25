@@ -13,6 +13,6 @@ COPY inst /isoplotrgui/inst
 
 RUN ["R", "CMD", "INSTALL", "."]
 
-ENV TIMEOUT 10
+ENV TIMEOUT 30
 
 CMD Rscript -e "IsoplotRgui::daemon(80,'0.0.0.0',timeout=${TIMEOUT})"
