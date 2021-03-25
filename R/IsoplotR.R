@@ -180,13 +180,13 @@ stopIsoplotR <- function(server=NULL) {
 #' random free port will be chosen and the browser will be opened
 #' to show the GUI.
 #' @param timeout How long (in CPU time) an operation may take
-#' before returning with a timeout error. Default: no limit.
+#' before returning with a timeout error. Default: 30 seconds.
 #' @return This function does not return.
 #' @examples
 #' # this function runs indefinitely unless interrupted by the user.
 #' \donttest{daemon(3839)}
 #' @export
-daemon <- function(port=NULL, host='127.0.0.1', timeout=Inf) {
+daemon <- function(port=NULL, host='127.0.0.1', timeout=30) {
     IsoplotR(host=host, port=port, timeout=timeout)
     while (TRUE) {
         later::run_now(9999)
