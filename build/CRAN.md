@@ -204,3 +204,10 @@ the most recent messages first, `-k` to see messages only from this
 boot, or `-f` to show messages as they come in. The `-e` option
 we have been using scrolls to the end of the log so that you are
 looking at the most recent entries immediately.
+
+If you need to set a custom timeout (say, to 6.5 seconds in this
+example), change the `ExecStart` line in `isoplotr.service` like this:
+
+```sh
+ExecStart=/usr/bin/Rscript -e IsoplotRgui::daemon(3839, timeout=6.5)
+```
