@@ -90,35 +90,46 @@ sanitizeCommand <- function(command, callback) {
 #' @param port Internet port of the virtual server. If not defined, a
 #' random free port will be chosen and the browser will be opened
 #' to show the GUI.
+#' @param timeout How long (in CPU time) an operation may take
+#' before returning with a timeout error. Default: no limit.
 #' @return server object
 #' @examples
 #' \donttest{IsoplotR()}
 #' @export
-IsoplotR <- function(host='0.0.0.0', port=NULL) {
+IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
     appDir <- system.file("www", package = "IsoplotRgui")
     if (appDir == "") {
         stop("Could not find www directory. Try re-installing `IsoplotRgui`.",
              call. = FALSE)
     }
+    wrap <- function(Rcommand, callback) {
+      sanitizeCommand(Rcommand, function(com) {
+        setTimeLimit(cpu=timeout)
+        on.exit({
+          setTimeLimit(cpu=Inf)
+        })
+        callback(com)
+      })
+    }
     s <- rrpcServer(host=host, port=port, appDir=appDir, root="/",
         interface=list(
             run=function(data, Rcommand) {
-                sanitizeCommand(Rcommand, function(com) {
+                wrap(Rcommand, function(com) {
                     server$runner(com, data)
                 })
             },
             plot=function(data, width, height, Rcommand) {
-                sanitizeCommand(Rcommand, function(com) {
+                wrap(Rcommand, function(com) {
                     server$plotter(width, height, com, data)
                 })
             },
             pdf=function(data, Rcommand) {
-                sanitizeCommand(Rcommand, function(com) {
+                wrap(Rcommand, function(com) {
                     server$getPdf(com, data)
                 })
             },
             csv=function(data, Rcommand) {
-                sanitizeCommand(Rcommand, function(com) {
+                wrap(Rcommand, function(com) {
                     server$getCsv(com, data, "ages")
                 })
             }
@@ -168,13 +179,15 @@ stopIsoplotR <- function(server=NULL) {
 #' @param port Internet port of the virtual server. If not defined, a
 #' random free port will be chosen and the browser will be opened
 #' to show the GUI.
+#' @param timeout How long (in CPU time) an operation may take
+#' before returning with a timeout error. Default: 30 seconds.
 #' @return This function does not return.
 #' @examples
 #' # this function runs indefinitely unless interrupted by the user.
 #' \donttest{daemon(3839)}
 #' @export
-daemon <- function(port=NULL, host='127.0.0.1') {
-    IsoplotR(host=host, port=port)
+daemon <- function(port=NULL, host='127.0.0.1', timeout=30) {
+    IsoplotR(host=host, port=port, timeout=timeout)
     while (TRUE) {
         later::run_now(9999)
     }

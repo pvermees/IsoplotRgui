@@ -134,3 +134,10 @@ the most recent messages first, `-k` to see messages only from this
 boot, or `-f` to show messages as they come in. The `-e` option
 we have been using scrolls to the end of the log so that you are
 looking at the most recent entries immediately.
+
+If you need to set a custom timeout (say, to 6.5 seconds in this
+example), change the `docker run` line in `isoplotr-start` like this:
+
+```sh
+docker run --restart unless-stopped -d --name isoplotr -p 3839:80 -e TIMEOUT=6.5 pvermees/
+```
