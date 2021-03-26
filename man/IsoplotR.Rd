@@ -13,7 +13,7 @@ IsoplotR(host = "0.0.0.0", port = NULL, timeout = Inf)
 random free port will be chosen and the browser will be opened
 to show the GUI.}
 
-\item{timeout}{How long (in CPU time) an operation may take
+\item{timeout}{How long (in wall-clock time) an operation may take
 before returning with a timeout error. Default: no limit.}
 }
 \value{
