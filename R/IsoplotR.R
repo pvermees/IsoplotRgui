@@ -90,7 +90,7 @@ sanitizeCommand <- function(command, callback) {
 #' @param port Internet port of the virtual server. If not defined, a
 #' random free port will be chosen and the browser will be opened
 #' to show the GUI.
-#' @param timeout How long (in CPU time) an operation may take
+#' @param timeout How long (in wall-clock time) an operation may take
 #' before returning with a timeout error. Default: no limit.
 #' @return server object
 #' @examples
@@ -104,9 +104,9 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
     }
     wrap <- function(Rcommand, callback) {
       sanitizeCommand(Rcommand, function(com) {
-        setTimeLimit(cpu=timeout)
+        setTimeLimit(elapsed=timeout)
         on.exit({
-          setTimeLimit(cpu=Inf)
+          setTimeLimit(elapsed=Inf)
         })
         callback(com)
       })
@@ -179,7 +179,7 @@ stopIsoplotR <- function(server=NULL) {
 #' @param port Internet port of the virtual server. If not defined, a
 #' random free port will be chosen and the browser will be opened
 #' to show the GUI.
-#' @param timeout How long (in CPU time) an operation may take
+#' @param timeout How long (in elapsed time) an operation may take
 #' before returning with a timeout error. Default: 30 seconds.
 #' @return This function does not return.
 #' @examples
