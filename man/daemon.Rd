@@ -13,7 +13,7 @@ to show the GUI.}
 
 \item{host}{IP address of the virtual server}
 
-\item{timeout}{How long (in CPU time) an operation may take
+\item{timeout}{How long (in elapsed time) an operation may take
 before returning with a timeout error. Default: 30 seconds.}
 }
 \value{
