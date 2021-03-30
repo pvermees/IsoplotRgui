@@ -1,25 +1,25 @@
 {
-	"language": "en",
-	"languages_supported" : [
+    "language": "en",
+    "languages_supported" : [
 	{
-		"code": "en",
-		"prefix": "en",
-		"name": "English",
-		"short_name": "EN"
+	    "code": "en",
+	    "prefix": "en",
+	    "name": "English",
+	    "short_name": "EN"
 	},
 	{
-		"code": "zh_Hans",
-		"prefix": "zh",
-		"name": "中文",
-		"short_name": "CN"
+	    "code": "zh_Hans",
+	    "prefix": "zh",
+	    "name": "中文",
+	    "short_name": "CN"
 	},
 	{
-		"code": "es",
-		"prefix": "es",
-		"name": "Español",
-		"short_name": "ES"
+	    "code": "es",
+	    "prefix": "es",
+	    "name": "Español",
+	    "short_name": "ES"
 	}
-	],
+    ],
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,

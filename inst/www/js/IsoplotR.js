@@ -1791,6 +1791,9 @@ $(function(){
 	} else {
 	    $(".show4zeta").hide();
 	}
+	if (npd=='radial'){
+	    $.transformation();
+	}
 	showOrHide();
     }
 
@@ -2215,9 +2218,9 @@ $(function(){
 	});
     }
 
-    $.chooseUPbFormat = function(ID){
+    $.chooseUPbFormat = function(){
 	var oldformat = IsoplotR.settings["U-Pb"].format;
-	var newformat = getInt(ID);
+	var newformat = getInt('#UPb-formats');
 	var upgrade = (oldformat<4 & newformat>3);
 	var downgrade = (oldformat>3 & newformat<4);
 	var pd = IsoplotR.settings.plotdevice;
@@ -2240,7 +2243,7 @@ $(function(){
 	    IsoplotR = populate(IsoplotR,true);
 	    errconvert();
 	} else {
-	    $.chooseFormat(ID,"U-Pb");
+	    $.chooseFormat('#UPb-formats',"U-Pb");
 	    showSettings(pd);
 	}
 	if (IsoplotR.settings["U-Pb"].ThU[1]==3 &
@@ -2248,9 +2251,28 @@ $(function(){
 	    IsoplotR.settings["U-Pb"].ThU[1] = 0;
 	}
     }
+
+    $.transformation = function(){
+	var set = IsoplotR.settings;
+	if (set.geochronometer=='fissiontracks' &&
+	    set.fissiontracks.format==1){
+	    if(set.radial.transformation=='sqrt'){
+		set.radial.transformation = 'arcsin';
+		$('#transformation option[value="arcsin"]').prop('selected', 'selected');
+	    }
+	} else {
+	    if (set.radial.transformation=='arcsin'){
+		set.radial.transformation = 'log';
+		$('#transformation option[value="log"]').prop('selected', 'selected');
+	    }
+	}
+    }
     
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
+	if (chronometer=='fissiontracks'){
+	    $.transformation();
+	}
 	IsoplotR = populate(IsoplotR,true);
 	errconvert();
 	showOrHide();
