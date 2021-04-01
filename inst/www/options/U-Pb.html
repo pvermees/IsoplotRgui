@@ -1,0 +1,161 @@
+<p></p>
+
+&nbsp;<help id="help_UPb_formats"><translate class="input"></translate></help>
+<select id="UPb-formats" onchange="$.chooseUPbFormat();">
+  <option value=1>[07/35], [06/38]</option>
+  <option value=2>[38/06], [07/06]</option>
+  <option value=3>[07/35], [06/38], [07/06]</option>
+  <option value=4>[07/35], [06/38], [04/38]</option>
+  <option value=5>[38/06], [07/06], [04/06]</option>
+  <option value=6>[07/35], [06/38], [04/38], [07/06], [04/07], [04/06]</option>
+  <option value=7>[07/35], [06/38], [08/32], [32/38]</option>
+  <option value=8>[38/06], [07/06], [08/06], [32/38]</option>
+</select>
+
+<p></p>
+
+<div class="hide4isochron">
+  &nbsp;<help class="translate" id="help_common_Pb_option"></help>
+  <select id="common-Pb-option" onchange="$.register();">
+    <option class="translate" id="common_Pb_correction_none" value=0></option>
+    <option class="translate" id="common_Pb_correction_nominal" value=1></option>
+    <option class="translate" id="common_Pb_correction_isochron" value=2></option>
+    <option value=3>Stacey-Kramers</option>
+  </select>
+  <p></p>
+</div>
+
+<p></p>
+
+&nbsp;<input type="checkbox" id="diseq" onchange="$.register();">
+<help class="translate" id="help_diseq"></help>
+
+<p></p>
+
+<table class="show4diseq">
+  <tr>
+    <td>
+      &nbsp;<help class="translate" id="help_U48_UPb"></help>
+    </td>
+    <td>
+      <select id="U48-diseq" onchange="$.register();">
+	<option class="translate" id="diseq_none" value=0></option>
+	<option class="translate" id="diseq_initial" value=1></option>
+	<option class="translate" id="diseq_measured" value=2></option>
+      </select>
+    </td>
+    <td class="show4U48diseq">
+      <sup>234</sup>U/<sup>238</sup>U = <input type="text" id="U48">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      &nbsp;<help class="translate" id="help_ThU_UPb"></help>
+    </td>
+    <td>
+      <select id="ThU-diseq" onchange="$.register();">
+	<option class="translate" id="diseq_none" value=0></option>
+	<option class="translate" id="diseq_initial" value=1></option>
+	<option class="translate" id="diseq_measured" value=2></option>
+	<option id="diseq_magma" value=3
+		class="translate hide4UPb1 hide4UPb2 
+		       hide4UPb3 hide4UPb4 hide4UPb5
+		       hide4UPb6 show4UPb7 show4UPb8"></option>
+      </select>
+    </td>
+    <td class="show4ThUdiseq">
+      <span class="show4ThUdiseq12"><sup>230</sup>Th/<sup>238</sup>U</span>
+      <span class="show4ThUdiseq3">Th/U =</span>
+      <input type="text" id="ThU">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      &nbsp;<help class="translate" id="help_RaU_UPb"></help>
+    </td>
+    <td>
+      <select id="RaU-diseq" onchange="$.register();">
+	<option class="translate" id="diseq_none" value=0></option>
+	<option class="translate" id="diseq_initial" value=1></option>
+      </select>
+    </td>
+    <td class="show4RaUdiseq">
+      <sup>226</sup>Ra/<sup>238</sup>U = <input type="text" id="RaU">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      &nbsp;<help class="translate" id="help_PaU_UPb"></help>
+    </td>
+    <td>
+      <select id="PaU-diseq" onchange="$.register();">
+	<option class="translate" id="diseq_none" value=0></option>
+	<option class="translate" id="diseq_initial" value=1></option>
+      </select>
+    </td>
+    <td class="show4PaUdiseq">
+      <sup>231</sup>Pa/<sup>238</sup>U = <input type="text" id="PaU">
+    </td>
+  </tr>
+</table>
+
+<table>
+<tr><td>&nbsp;<help class="translate" id="help_U238U235"></help></td>
+  <td><input type="text" id="U238U235"> &plusmn;</td>
+  <td><input type="text" id="errU238U235"></td>
+</tr>
+<tr><td>&nbsp;<help class="translate" id="help_LambdaU238"></help></td>
+  <td><input type="text" id="LambdaU238"> &plusmn;</td>
+  <td><input type="text" id="errLambdaU238">Myr<sup>-1</sup></td>
+</tr>
+<tr><td>&nbsp;<help class="translate" id="help_LambdaU235"></help></td>
+  <td><input type="text" id="LambdaU235"> &plusmn;</td>
+  <td><input type="text" id="errLambdaU235">Myr<sup>-1</sup></td>
+</tr>
+<tr class="hidden hideUPb1 hide4UPb2 hide4UPb3 hide4UPb4 
+		  hide4UPb5 hide4UPb6 show4UPb7 show4UPb8">
+  <td>&nbsp;<help class="translate" id="help_LambdaTh232"></help></td>
+  <td><input type="text" id="LambdaTh232"> &plusmn;</td>
+  <td><input type="text" id="errLambdaTh232">Myr<sup>-1</sup></td>
+</tr>
+<tr class="show4diseq">
+  <td>&nbsp;<help class="translate" id="help_LambdaU234"></help></td>
+  <td><input type="text" id="LambdaU234"> &plusmn;</td>
+  <td><input type="text" id="errLambdaU234">kyr<sup>-1</sup></td>
+</tr>
+<tr class="show4diseq">
+  <td>&nbsp;<help class="translate" id="help_LambdaTh230"></help></td>
+  <td><input type="text" id="LambdaTh230"> &plusmn;</td>
+  <td><input type="text" id="errLambdaTh230">kyr<sup>-1</sup></td>
+</tr>
+<tr class="show4diseq">
+  <td>&nbsp;<help class="translate" id="help_LambdaRa226"></help></td>
+  <td><input type="text" id="LambdaRa226"> &plusmn;</td>
+  <td><input type="text" id="errLambdaRa226">kyr<sup>-1</sup></td>
+</tr>
+<tr class="show4diseq">
+  <td>&nbsp;<help class="translate" id="help_LambdaPa231"></help></td>
+  <td><input type="text" id="LambdaPa231"> &plusmn;</td>
+  <td><input type="text" id="errLambdaPa231">kyr<sup>-1</sup></td>
+</tr>
+<tr class="hidden show4commonPbwithout204">
+  <td>&nbsp;<help class="translate" id="help_Pb207Pb206"></help></td>
+  <td><input type="text" id="Pb207Pb206"></td>
+</tr>
+<tr class="hidden show4commonPbwith204">
+  <td>&nbsp;<help class="translate" id="help_Pb206Pb204"></help></td>
+  <td><input type="text" id="Pb206Pb204"></td>
+</tr>
+<tr class="hidden show4commonPbwith204">
+  <td>&nbsp;<help class="translate" id="help_Pb207Pb204"></help></td>
+  <td><input type="text" id="Pb207Pb204"></td>
+</tr>
+<tr class="hidden show4commonPbwith208">
+  <td>&nbsp;<help class="translate" id="help_Pb208Pb206"></help></td>
+  <td><input type="text" id="Pb208Pb206"></td>
+</tr>
+<tr class="hidden show4commonPbwith208">
+  <td>&nbsp;<help class="translate" id="help_Pb208Pb207"></help></td>
+  <td><input type="text" id="Pb208Pb207"></td>
+</tr>
+</table>

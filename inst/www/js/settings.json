@@ -1,0 +1,269 @@
+{
+    "language": "en",
+    "languages_supported" : [
+	{
+	    "code": "en",
+	    "prefix": "en",
+	    "name": "English",
+	    "short_name": "EN"
+	},
+	{
+	    "code": "zh_Hans",
+	    "prefix": "zh",
+	    "name": "中文",
+	    "short_name": "CN"
+	},
+	{
+	    "code": "es",
+	    "prefix": "es",
+	    "name": "Español",
+	    "short_name": "ES"
+	}
+    ],
+    "geochronometer": "U-Pb",
+    "plotdevice": "concordia",
+    "ierr": 1,
+    "translation_link": "http://lgc.es.ucl.ac.uk/weblate/translate/isoplotrgui/${FILENAME}/${LANGUAGE}?q=context%3A.${ID}",
+    "par": {
+	"cex": 1
+    },
+    "fissiontracks": {
+	"format": 1,
+	"mineral": "apatite"
+    },
+    "detritals": {
+	"format": 1,
+	"hide": []
+    },
+    "U-Pb": {
+	"format": 2,
+	"type": 5,
+	"cutoff76": 1100,
+	"cutoffdisc": 0,
+	"discoption": 5,
+	"mindisc": [-50,-5,-0.3,-2,-2],
+	"maxdisc": [140,15,1,6,7],
+	"commonPb": 0,
+	"diseq": "FALSE",
+	"U48": [1,0],
+	"ThU": [1,0],
+	"RaU": [1,0],
+	"PaU": [1,0]
+    },
+    "Th-U": {
+	"format": 2,
+	"detritus": 0,
+	"Th02": [0,0],
+	"Th02U48": [0,0,1e6,0,0,0,0,0,0],
+	"i2i": "TRUE"
+    },
+    "Pb-Pb": {
+	"format": 3,
+	"commonPb": 2,
+	"inverse": "TRUE"
+    },
+    "Ar-Ar": {
+	"format": 3,
+	"i2i": "FALSE",
+	"inverse": "TRUE"
+    },
+    "Th-Pb": {
+	"format": 2,
+	"i2i": "TRUE",
+	"inverse": "TRUE"
+    },
+    "K-Ca": {
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
+    },
+    "Rb-Sr": {
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
+    },
+    "Sm-Nd": {
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
+    },
+    "Re-Os": {
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
+    },
+    "Lu-Hf": {
+	"format": 1,
+	"i2i": "TRUE",
+	"inverse": "FALSE"
+    },
+    "U-Th-He": {},
+    "other": {
+	"format": 1
+    },
+    "concordia": {
+	"mint": "auto",
+	"maxt": "auto",
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
+	"alpha": 0.05,
+	"type": 1,
+	"exterr": "FALSE",
+	"shownumbers": "FALSE",
+	"showage": 0,
+	"anchor":0,
+	"tanchor":0,
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
+	"clabel": "",
+	"ticks": "auto"
+    },
+    "evolution": {
+	"min08": "auto",
+	"max08": "auto",
+	"min48": "auto",
+	"max48": "auto",
+	"mint": "auto",
+	"maxt": "auto",
+	"alpha": 0.05,
+	"transform": "FALSE",
+	"exterr": "FALSE",
+	"isochron": "FALSE",
+	"shownumbers": "FALSE",
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
+	"model": 1,
+	"clabel": ""
+    },
+    "isochron": {
+	"UPbtype": 1,
+	"ThUtype": 2,
+	"model": 1,
+	"exterr": "FALSE",
+	"shownumbers": "FALSE",
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
+	"growth": "FALSE",
+	"clabel": ""
+    },
+    "regression": {
+	"model": 1,
+	"shownumbers": "FALSE",
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
+	"clabel": ""
+    },
+    "radial": {
+	"transformation": "log",
+	"mint": "auto",
+	"t0": "auto",
+	"maxt": "auto",
+	"pch": 21,
+	"cex": 1,
+	"bg": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"sigdig": 2,
+	"alpha": 0.05,
+	"shownumbers": "FALSE",
+	"numpeaks": 0,
+	"clabel": "",
+	"exterr": "FALSE"
+    },
+    "average": {
+	"outliers": "TRUE",
+	"exterr": "FALSE",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"randomeffects": "FALSE",
+	"mint": "auto",
+	"maxt": "auto",
+	"ranked": "FALSE",
+	"rectcol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"outliercol": "rgb(0,1,1,0.5)",
+	"clabel": ""
+    },
+    "spectrum": {
+	"plateau": "TRUE",
+	"exterr": "FALSE",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"randomeffects": "FALSE",
+	"plateaucol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"nonplateaucol": "rgb(0,1,1,0.5)",
+	"clabel": ""
+    },
+    "KDE": {
+	"ncol": "auto",
+	"xlab": "age [Ma]",
+	"showhist": "TRUE",
+	"binwidth": "auto",
+	"bw": "auto",
+	"samebandwidth": "TRUE",
+	"normalise": "TRUE",
+	"log": "FALSE",
+	"adaptive": "TRUE",
+	"minx": "auto",
+	"maxx": "auto",
+	"bandwidth": "auto",
+	"binwidth": "auto",
+	"rugdetritals": "FALSE",
+	"rug": "TRUE"
+    },
+    "CAD": {
+	"pch": "none",
+	"verticals": "TRUE",
+	"colmap": "heat.colors"
+    },
+    "set-zeta": {
+	"sigdig": 2,
+	"exterr": "FALSE"
+    },
+    "MDS": {
+	"classical": "FALSE",
+	"shepard": "FALSE",
+        "nnlines": "FALSE",
+	"ticks": "TRUE",
+	"pch": 21,
+	"pos": 0,
+	"cex": 5,
+	"col": "black",
+	"bg": "white"
+    },
+    "helioplot": {
+	"logratio": "TRUE",
+	"shownumbers": "FALSE",
+	"showcentralcomp": "TRUE",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"minx": "auto",
+	"maxx": "auto",
+	"miny": "auto",
+	"maxy": "auto",
+	"fact": "auto",
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
+	"model": 1,
+	"clabel": ""
+    },
+    "ages": {
+	"showdisc": 0,
+	"discoption": 5,
+	"exterr": "FALSE",
+	"sigdig": 2
+    }
+}

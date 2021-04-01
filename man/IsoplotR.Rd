@@ -4,13 +4,26 @@
 \alias{IsoplotR}
 \title{Start the \code{IsoplotR} GUI}
 \usage{
-IsoplotR()
+IsoplotR(host = "0.0.0.0", port = NULL, timeout = Inf)
+}
+\arguments{
+\item{host}{IP address of the virtual server, default is 0.0.0.0}
+
+\item{port}{Internet port of the virtual server. If not defined, a
+random free port will be chosen and the browser will be opened
+to show the GUI.}
+
+\item{timeout}{How long (in wall-clock time) an operation may take
+before returning with a timeout error. Default: no limit.}
+}
+\value{
+server object
 }
 \description{
 Opens a web-browser with a Graphical User Interface (GUI) for the
 \code{IsoplotR} package. An online version of the same interface is
-provided at \url{http://isoplotr.london-geochron.com}
+provided at \url{https://www.ucl.ac.uk/~ucfbpve/isoplotr/}
 }
 \examples{
-#IsoplotR()
+\donttest{IsoplotR()}
 }

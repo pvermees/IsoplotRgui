@@ -3,16 +3,16 @@
     "description": "Front end for IsoplotR",
     "private": true,
     "scripts": {
-        "server": "Rscript --vanilla test/start-gui.R 50055",
-        "generate-simplified-chinese": "node build/hant2hans.js",
+        "server": "Rscript --vanilla build/start-gui.R 50055",
+        "install-r-dependencies": "Rscript build/install.R",
         "test": "mocha test",
-        "generate-translation-files": "node build/degather_translations.js",
         "bad-translation-ids": "node build/find_translation_prefixes.js"
     },
     "devDependencies": {
         "selenium-webdriver": "^4.0.0-alpha.7",
         "mocha": "^7.1.1",
         "clipboardy": "^2.3.0",
-        "node-stream-zip": "^1.11.1"
+        "node-stream-zip": "^1.11.1",
+        "pngjs": "5.0.0"
     }
 }
