@@ -135,6 +135,8 @@
     "Osmond_B": "4. <tt>4/8</tt> vs. <tt>2/8</tt> (Osmond B)",
     "UPb_isochron_type_1": "1. <tt>(04 or 08c)/06</tt> vs. <tt>38/06</tt>",
     "UPb_isochron_type_2": "2. <tt>(04 or 08c)/07</tt> vs. <tt>35/07</tt>",
+    "UPb_isochron_type_3": "3. <tt>06c/08</tt> vs. <tt>32/08</tt>",
+    "UPb_isochron_type_4": "4. <tt>07c/08</tt> vs. <tt>32/08</tt>",
     "help_isochron_models": "Model:",
     "help_PbPb_growth": "Add Stacey-Kramers Pb-Pb growth curve?",
     "help_isochron_minx": "Minimum X:",

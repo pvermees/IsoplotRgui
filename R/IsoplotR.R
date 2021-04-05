@@ -70,9 +70,9 @@ sanitizeCommand <- function(command, callback) {
         'IsoplotR::evolution', 'IsoplotR::radialplot',
         'IsoplotR::agespectrum', 'IsoplotR::weightedmean',
         'IsoplotR::set.zeta', 'IsoplotR::helioplot', 'IsoplotR::age',
-        'IsoplotR::discfilter', 'IsoplotR::diseq', 'list', 'input','-',':',
-        'rev','rainbow','topo.colors','terrain.colors','heat.colors',
-        'cm.colors'
+        'IsoplotR::discfilter', 'IsoplotR::diseq', 'list', 'input','-',
+        'seq',':','rev','rainbow','topo.colors','terrain.colors',
+        'heat.colors','cm.colors'
     ))
     if (0 < length(failures)) {
         txt <- paste(failures, collapse=", ")
