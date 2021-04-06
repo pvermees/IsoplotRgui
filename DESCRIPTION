@@ -1,13 +1,13 @@
 Package: IsoplotRgui
 Title: Web Interface to 'IsoplotR'
 Version: 3.8
-Date: 2021-04-05
+Date: 2021-04-06
 Authors@R: c(person("Pieter", "Vermeesch", email = "p.vermeesch@ucl.ac.uk", role = c("aut", "cre")), person("Tim","Band",role="ctb"))
 Description: Provides a graphical user interface to the 'IsoplotR' package for radiometric geochronology. The GUI runs in an internet browser and can either be used offline, or hosted on a server to provide online access to the 'IsoplotR' toolbox.
 Author: Pieter Vermeesch [aut, cre], Tim Band [ctb]
 Maintainer: Pieter Vermeesch <p.vermeesch@ucl.ac.uk>
 Depends: R (>= 3.0.0)
-Imports: IsoplotR (>= 3.7),
+Imports: IsoplotR (>= 3.8),
     grDevices (>= 3.6.2),
     httpuv (>= 1.5.4),
     jsonlite (>= 1.6.1),
