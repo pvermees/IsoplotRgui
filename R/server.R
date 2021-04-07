@@ -71,18 +71,18 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
                         'rhoXY','rhoXZ','rhoYZ')
     } else if (identical(method,"U-Pb") & format==6) {
         mat[1,1:12] <- c('Pb207U235','errPb207U235',
-                            'Pb206U238','errPb206U238',
-                            'Pb204U238','errPb204U238',
-                            'Pb207Pb206','errPb207Pb206',
-                            'Pb204Pb207','errPb204Pb207',
-                            'Pb204Pb206','errPb204Pb206')
+                         'Pb206U238','errPb206U238',
+                         'Pb204U238','errPb204U238',
+                         'Pb207Pb206','errPb207Pb206',
+                         'Pb204Pb207','errPb204Pb207',
+                         'Pb204Pb206','errPb204Pb206')
     } else if (identical(method,"U-Pb") & format==7) {
         mat[1,1:14] <- c('Pb207U235','errPb207U235',
-                            'Pb206U238','errPb206U238',
-                            'Pb208Th232','errPb208Th232',
-                            'Th232U238','errTh232U238',
-                            'rhoXY','rhoXZ','rhoXW',
-                            'rhoYZ','rhoYW','rhoZW')
+                         'Pb206U238','errPb206U238',
+                         'Pb208Th232','errPb208Th232',
+                         'Th232U238','errTh232U238',
+                         'rhoXY','rhoXZ','rhoXW',
+                         'rhoYZ','rhoYW','rhoZW')
     } else if (identical(method,"U-Pb") & format==8) {
         mat[1,1:14] <- c('U238Pb206','errU238Pb206',
                             'Pb207Pb206','errPb207Pb206',
