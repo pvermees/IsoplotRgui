@@ -1203,7 +1203,7 @@ $(function(){
 	    if (shownumbers){ $('#radial-pch').hide(); }
 	    else { $('#radial-pch').show(); }
 	    $('#mint').val(set.mint);
-	    $('#t0').val(set.t0);
+	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
@@ -1582,7 +1582,7 @@ $(function(){
 	    pdsettings.transformation = getOption("#transformation");
 	    pdsettings.numpeaks = getOption("#mixtures");
 	    pdsettings.mint = check($('#mint').val(),'auto');
-	    pdsettings.t0 = check($('#t0').val(),'auto');
+	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
