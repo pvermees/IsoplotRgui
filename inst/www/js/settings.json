@@ -172,7 +172,7 @@
     "radial": {
 	"transformation": "log",
 	"mint": "auto",
-	"t0": "auto",
+	"z0": "auto",
 	"maxt": "auto",
 	"pch": 21,
 	"cex": 1,

@@ -53,7 +53,7 @@ function getOptions(prefs){
 	else if (pdsettings.numpeaks == 'min') out += ",k='min'"
 	else out += ",k=" + pdsettings.numpeaks ;
 	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
-	if (pdsettings.t0 != 'auto') out += ",t0=" + pdsettings.t0;
+	if (pdsettings.z0 != 'auto') out += ",z0=" + pdsettings.z0;
 	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
 	out += ",pch=" + pdsettings.pch;
 	out += ",cex=" + pdsettings.cex;

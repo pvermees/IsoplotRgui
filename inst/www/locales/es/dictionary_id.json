@@ -221,7 +221,7 @@
     "PD_format_2": "2. Inverso",
     "PD_format_1": "1. Normal",
     "help_maxt_radial": "Valor máximo:",
-    "help_t0": "Valor central:",
+    "help_z0": "Valor central:",
     "help_mint_radial": "Valor mínimo:",
     "help_verticals": "Dibujar las líneas verticales en los escalones?",
     "help_discordance_filter": "Filtro de discordancia:",

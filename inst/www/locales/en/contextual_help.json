@@ -85,7 +85,7 @@
     "help_maxt_concordia": "Set the maximum age limit for the concordia diagram (a number between 0 and 4568 Ma). Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_max48": "Set the maximum <sup>234</sup>U/<sup>238</sup>U ratio limit for the evolution diagram. Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_max08": "Set the maximum <sup>230</sup>Th/<sup>238</sup>U ratio limit for the evolution diagram. Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
-    "help_t0": "Set the central value of the radial scale. Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
+    "help_z0": "Set the central value of the radial scale. Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_RbSr_inverse": "Selecting this box plots <sup>86</sup>Sr/<sup>87</sup>Sr against <sup>87</sup>Rb/<sup>87</sup>Sr. Otherwise, <tt>IsoplotR</tt> plots <sup>87</sup>Sr/<sup>86</sup>Sr against <sup>87</sup>Rb/<sup>86</sup>Sr.",
     "help_KCa_inverse": "Selecting this box plots <sup>44</sup>Ca/<sup>40</sup>Ca against <sup>40</sup>K/<sup>40</sup>Ca. Otherwise, <tt>IsoplotR</tt> plots <sup>40</sup>Ca/<sup>44</sup>Ca against <sup>40</sup>K/<sup>44</sup>Ca.",
     "help_ArAr_inverse": "Selecting this box plots <sup>36</sup>Ar/<sup>40</sup>Ar against <sup>39</sup>Ar/<sup>40</sup>Ar. Otherwise, <tt>IsoplotR</tt> plots <sup>40</sup>Ar/<sup>39</sup>Ar against <sup>36</sup>Ar/<sup>39</sup>Ar.",
