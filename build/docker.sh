@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home=${1:-"/home/pvermees/Documents/Programming"}
+home=${1:-"/home/pvermees/Documents/Programming/R"}
 
 #docker rmi --no-prune pvermees/isoplotr
 #docker build --no-cache -t pvermees/docker-isoplotr "$home/IsoplotR"

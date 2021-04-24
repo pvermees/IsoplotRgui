@@ -84,7 +84,7 @@
     "help_z0": "设置径向刻度的中心值。输入(<tt>auto</tt>)以使<tt>IsoplotR</tt>自动设置合适的值。",
     "help_RbSr_inverse": "选择此框将绘制<sup>86</sup>Sr/<sup>87</sup>Sr vs. <sup>87</sup>Rb/<sup>87</sup>Sr图。否则，<tt>IsoplotR</tt>将绘制<sup>87</sup>Sr/<sup>86</sup>Sr vs. <sup>87</sup>Rb/<sup>86</sup>Sr图。",
     "help_KCa_inverse": "选择此框将绘制<sup>44</sup>Ca/<sup>40</sup>Ca vs. <sup>40</sup>K/<sup>40</sup>Ca图。否则，<tt>IsoplotR</tt>将绘制<sup>40</sup>Ca/<sup>44</sup>Ca vs. <sup>40</sup>K/<sup>44</sup>Ca图。",
-    "help_ArAr_inverse": "选择此框将绘制<sup>36</sup>Ar/<sup>40</sup>Ar vs. <sup>39</sup>Ar/<sup>40</sup>Ar图。否则，<tt>IsoplotR</tt>将绘制<sup>40</sup>Ar/<sup>39</sup>Ar vs. <sup>36</sup>Ar/<sup>39</sup>Ar图。",
+    "help_ArAr_inverse": "选择此框将绘制<sup>36</sup>Ar/<sup>40</sup>Ar vs. <sup>39</sup>Ar/<sup>40</sup>Ar图。否则，<tt>IsoplotR</tt>将绘制<sup>40</sup>Ar/<sup>36</sup>Ar vs. <sup>39</sup>Ar/<sup>36</sup>Ar图。",
     "help_PbPb_inverse": "选择此框将绘制<sup>207</sup>Pb/<sup>206</sup>Pb vs. <sup>204</sup>Pb/<sup>206</sup>Pb图。否则，<tt>IsoplotR</tt>将绘制<sup>207</sup>Pb/<sup>204</sup>Pb vs. <sup>206</sup>Pb/<sup>204</sup>Pb图。",
     "help_ReOs_inverse": "选择此框将绘制<sup>188</sup>Os/<sup>187</sup>Os vs. <sup>187</sup>Re/<sup>187</sup>Os图。否则，<tt>IsoplotR</tt>将绘制<sup>187</sup>Os/<sup>188</sup>Os vs. <sup>187</sup>Re/<sup>188</sup>Os图。",
     "help_LuHf_inverse": "选择此框将绘制<sup>177</sup>Hf/<sup>176</sup>Hf vs. <sup>176</sup>Lu/<sup>176</sup>Hf图。否则，<tt>IsoplotR</tt>将绘制<sup>176</sup>Hf/<sup>177</sup>Hf vs. <sup>176</sup>Lu/<sup>177</sup>Hf图。",
