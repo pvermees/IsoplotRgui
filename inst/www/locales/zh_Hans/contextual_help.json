@@ -42,7 +42,7 @@
     "help_LambdaU235": "<sup>235</sup>U衰减常数的默认值及其标准误差取自Jaffey et al. (1971)。",
     "help_LambdaTh232": "<sup>232</sup>Th衰减常数的默认值及其标准误差来自Le Roux and Glendenin (1963)。",
     "help_LambdaRe187": "<sup>187</sup>Re衰减常数的默认值及其标准误差取自Selby et al. (2007)。",
-    "help_LambdaSm147": "<sup>147</sup>Sm衰减常数的默认值及其标准误差取自Lugmair and Marti (1978)。",
+    "help_LambdaSm147": "<sup>147</sup>Sm衰减常数的默认值及其标准误差取自Villa et al. (2020)。",
     "help_LambdaK40": "40K衰减常数的默认值及其标准误差取自Renne et al. (2011)。",
     "help_Ar40Ar36": "大气（“过量”）Ar比例及其标准误差的默认值取自Lee et al. (2006)。",
     "help_LambdaU234": "<sup>234</sup>U衰减常数的默认值取自Cheng et al. (2013)。其标准误差排除了<sup>230</sup>Th分析不确定性的所有共变来源。",
