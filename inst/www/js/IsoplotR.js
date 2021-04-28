@@ -1684,7 +1684,7 @@ $(function(){
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
 	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
-	    pdsettings["fact"] = check($('#fact').val(),'auto');
+	    pdsettings["fact"] = $('#fact').val();
 	    pdsettings.ellipsefill = $('#ellipsefill').val();
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#helioplot-models");
