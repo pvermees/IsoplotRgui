@@ -318,11 +318,12 @@ $(function(){
 		IsoplotR.data4server.rhoDerr = $('#rhoDerr').val();
 		break;
 	    case 2:
-		IsoplotR.data4server. zeta = $('#zetaVal').val();
+		IsoplotR.data4server.zeta = $('#zetaVal').val();
 		IsoplotR.data4server.zetaErr = $('#zetaErr').val();
 		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    case 3:
+		IsoplotR.data4server.mineral = IsoplotR.settings.fissiontracks.mineral;
 		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    }
@@ -1684,7 +1685,7 @@ $(function(){
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
 	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
-	    pdsettings["fact"] = check($('#fact').val(),'auto');
+	    pdsettings["fact"] = $('#fact').val();
 	    pdsettings.ellipsefill = $('#ellipsefill').val();
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#helioplot-models");
@@ -2301,6 +2302,7 @@ $(function(){
 	    $("#mindens").val(cst.mindens[mineral]);
 	    break;
 	}
+	IsoplotR.settings.fissiontracks.mineral = mineral;
     }
     
     $(".button").button()
