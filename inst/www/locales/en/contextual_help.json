@@ -67,7 +67,7 @@
     "help_rYZ_detritus": "Specify the error correlation between the measured present day <sup>232</sup>Th/<sup>238</sup>U and <sup>234</sup>U/<sup>238</sup>U-ratios of the detritus.",
     "help_rXZ_detritus": "Specify the error correlation between the measured present day <sup>230</sup>Th/<sup>238</sup>U and <sup>234</sup>U/<sup>238</sup>U-ratios of the detritus.",
     "help_rXY_detritus": "Specify the error correlation between the measured present day <sup>230</sup>Th/<sup>238</sup>U and <sup>232</sup>Th/<sup>238</sup>U-ratios of the detritus.",
-    "help_Th02_ThU": "Specify the assumed initial <sup>230</sup>Th/<sup>232</sup>Th activity ratio of the detritus and its standard error.",
+    "help_Th02_ThU": "Specify the assumed initial <sup>230</sup>Th/<sup>232</sup>Th activity ratio of the detritus (for formats 1 and 2) or the rock (for formats 3 and 4) and its standard error.",
     "help_col": "Outline colour for the plot symbols (e.g.,<tt>black</tt>, <tt>red</tt>, <tt>green</tt>).",
     "help_colmap": "Specify one of the following colour palettes: <tt>rainbow</tt>, <tt>cm.colors</tt>, <tt>topo.colors</tt>, <tt>terrain.colors</tt>, or <tt>heat.colors</tt>.",
     "help_showdisc": "<ol><li>do not add a column with discordance measurements</li><li>estimate the discordance before common-Pb correction (if any)</li><li class='hidden show4UPb4 show4UPb5 show4UPb6 show4UPb7 show4UPb8'>estimate the discordance after common-Pb correction.</li></ol>",
