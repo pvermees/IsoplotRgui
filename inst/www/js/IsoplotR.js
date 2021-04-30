@@ -1287,7 +1287,6 @@ $(function(){
 	    $('#classical').prop('checked',set.classical=='TRUE');
 	    $('#shepard').prop('checked',set.shepard=='TRUE');
 	    $('#nnlines').prop('checked',set.nnlines=='TRUE');
-	    $('#ticks').prop('checked',set.ticks=='TRUE');
 	    $('#pch').val(set.pch);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
@@ -1662,7 +1661,6 @@ $(function(){
 	    pdsettings["classical"] = truefalse('#classical');
 	    pdsettings["shepard"] = truefalse('#shepard');
 	    pdsettings["nnlines"] = truefalse('#nnlines');
-	    pdsettings["ticks"] = truefalse('#ticks');
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["pos"] = getInt('#pos');
 	    pdsettings["col"] = $('#col').val();

@@ -368,7 +368,6 @@ function getOptions(prefs){
 	out += ",classical=" + pdsettings.classical;
 	out += ",shepard=" + pdsettings.shepard;
 	out += ",nnlines=" + pdsettings.nnlines;
-	if (pdsettings.ticks=='FALSE'){ out += ",xaxt='n',yaxt='n'"; }
 	if (pdsettings.pch=='none'){ out += ",pch=NA"; }
 	else { out += ",pch=" + pdsettings.pch; }
 	if (pdsettings.shepard=='FALSE'){ out += ",cex=" + pdsettings.cex; }
