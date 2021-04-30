@@ -546,19 +546,25 @@ $(function(){
 		$('.hide4ThU4').hide();
 		break;
 	    }
-	    switch (set.detritus){
-	    case 2:
+	    if (set.format<3){
+		switch (set.detritus){
+		case 2:
+		    $('.show4Th230corr').show();
+		    $('.show4assumedTh230corr').show();
+		    $('.show4measuredTh230corr').hide();
+		    break;
+		case 3:
+		    $('.show4Th230corr').show();
+		    $('.show4assumedTh230corr').hide();
+		    $('.show4measuredTh230corr').show();
+		    break;
+		default:
+		    $('.show4Th230corr').hide();
+		}
+	    } else {
 		$('.show4Th230corr').show();
 		$('.show4assumedTh230corr').show();
 		$('.show4measuredTh230corr').hide();
-		break;
-	    case 3:
-		$('.show4Th230corr').show();
-		$('.show4assumedTh230corr').hide();
-		$('.show4measuredTh230corr').show();
-		break;
-	    default:
-		$('.show4Th230corr').hide();
 	    }
 	    break;
 	case 'Ar-Ar':
@@ -1281,7 +1287,6 @@ $(function(){
 	    $('#classical').prop('checked',set.classical=='TRUE');
 	    $('#shepard').prop('checked',set.shepard=='TRUE');
 	    $('#nnlines').prop('checked',set.nnlines=='TRUE');
-	    $('#ticks').prop('checked',set.ticks=='TRUE');
 	    $('#pch').val(set.pch);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
@@ -1656,7 +1661,6 @@ $(function(){
 	    pdsettings["classical"] = truefalse('#classical');
 	    pdsettings["shepard"] = truefalse('#shepard');
 	    pdsettings["nnlines"] = truefalse('#nnlines');
-	    pdsettings["ticks"] = truefalse('#ticks');
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["pos"] = getInt('#pos');
 	    pdsettings["col"] = $('#col').val();

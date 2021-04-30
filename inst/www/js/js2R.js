@@ -11,8 +11,8 @@ function getOptions(prefs){
 	var maxt = check(pdsettings.maxt,null);
 	if (mint != null | maxt != null){
 	    out += ",tlim=c(";
-	    if (mint == null) { out += "0"; } else { out += mint; }
-	    if (maxt == null) { out += ",4500)"; } else { out += "," + maxt + ")"; }
+	    if (mint == null){ out += "0"; } else { out += mint; }
+	    if (maxt == null){ out += ",4500)"; } else { out += "," + maxt + ")"; }
 	} else {
 	    out += ",tlim=NULL"
 	}
@@ -49,12 +49,12 @@ function getOptions(prefs){
 	out += ",levels=selection2levels()";
 	out += ",omit=omitter(flags='x')";
 	out += ",hide=omitter(flags='X')";
-	if (pdsettings.numpeaks == 'auto') out += ",k='auto'"
-	else if (pdsettings.numpeaks == 'min') out += ",k='min'"
-	else out += ",k=" + pdsettings.numpeaks ;
-	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
-	if (pdsettings.z0 != 'auto') out += ",z0=" + pdsettings.z0;
-	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
+	if (pdsettings.numpeaks == 'auto'){ out += ",k='auto'" }
+	else if (pdsettings.numpeaks == 'min'){ out += ",k='min'" }
+	else { out += ",k=" + pdsettings.numpeaks ; }
+	if (pdsettings.mint != 'auto'){ out += ",from=" + pdsettings.mint; }
+	if (pdsettings.z0 != 'auto'){ out += ",z0=" + pdsettings.z0; }
+	if (pdsettings.maxt != 'auto'){ out += ",to=" + pdsettings.maxt; }
 	out += ",pch=" + pdsettings.pch;
 	out += ",cex=" + pdsettings.cex;
 	out += ",bg=" + pdsettings.bg;
@@ -82,7 +82,7 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) {
+	    if (type==4){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
@@ -104,12 +104,15 @@ function getOptions(prefs){
 	break;
     case 'evolution':
 	var transform = (pdsettings.transform=='TRUE');
-	if (transform & pdsettings.mint != 'auto' & pdsettings.maxt != 'auto')
+	if (transform & pdsettings.mint != 'auto' & pdsettings.maxt != 'auto'){
 	    out += ",xlim=c(" + pdsettings.mint + "," + pdsettings.maxt + ")";
-	if (!transform & pdsettings.min08 != 'auto' & pdsettings.max08 != 'auto')
+	}
+	if (!transform & pdsettings.min08 != 'auto' & pdsettings.max08 != 'auto'){
 	    out += ",xlim=c(" + pdsettings.min08 + "," + pdsettings.max08 + ")";
-	if (pdsettings.min48 != 'auto' & pdsettings.max48 != 'auto')
+	}
+	if (pdsettings.min48 != 'auto' & pdsettings.max48 != 'auto'){
 	    out += ",ylim=c(" + pdsettings.min48 + "," + pdsettings.max48 + ")";
+	}
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
@@ -126,21 +129,19 @@ function getOptions(prefs){
 	out += ",clabel='" + pdsettings.clabel + "'";
 	break;
     case 'isochron':
-	if (geochronometer!='U-Pb' & geochronometer!='Th-U' & geochronometer!='U-Th-He')
-	    out += ",inverse=" + gcsettings.inverse;
-	if (geochronometer=='Pb-Pb')
-	    out += ",growth=" + pdsettings.growth;
-	if (geochronometer=='U-Pb')
-	    out += ",type=" + pdsettings.UPbtype;
-	if (geochronometer=='Th-U')
-	    out += ",type=" + pdsettings.ThUtype;
-	if (geochronometer!='U-Th-He')
-	    out += ",exterr=" + pdsettings.exterr;
+	if (geochronometer!='U-Pb' & geochronometer!='Th-U' &
+	    geochronometer!='U-Th-He'){ out += ",inverse=" + gcsettings.inverse; }
+	if (geochronometer=='Pb-Pb'){ out += ",growth=" + pdsettings.growth; }
+	if (geochronometer=='U-Pb'){ out += ",type=" + pdsettings.UPbtype; }
+	if (geochronometer=='Th-U'){ out += ",type=" + pdsettings.ThUtype; }
+	if (geochronometer!='U-Th-He'){ out += ",exterr=" + pdsettings.exterr; }
     case 'regression':
-	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto')
+	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto'){
 	    out += ",xlim=c(" + pdsettings.minx + "," + pdsettings.maxx + ")";
-	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto')
+	}
+	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto'){
 	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")";
+	}
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
@@ -168,7 +169,7 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) {
+	    if (type==4){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
@@ -201,8 +202,8 @@ function getOptions(prefs){
 	out += ",rect.col=" + pdsettings.rectcol;
 	out += ",outlier.col=" + pdsettings.outliercol;
 	out += ",clabel='" + pdsettings.clabel + "'";
-	if (pdsettings.mint != 'auto') out += ",from=" + pdsettings.mint;
-	if (pdsettings.maxt != 'auto') out += ",to=" + pdsettings.maxt;
+	if (pdsettings.mint != 'auto'){ out += ",from=" + pdsettings.mint; }
+	if (pdsettings.maxt != 'auto'){ out += ",to=" + pdsettings.maxt; }
     out += ",omit=omitter(flags='x')";
     out += ",hide=omitter(flags='X')";
 	break;
@@ -223,11 +224,11 @@ function getOptions(prefs){
     out += ",hide=omitter(flags='X')";
 	break;
     case 'KDE':
-	if (pdsettings.minx != 'auto') { out += ",from=" + pdsettings.minx; }
+	if (pdsettings.minx != 'auto'){ out += ",from=" + pdsettings.minx; }
 	else { out += ",from=NA"; }
-	if (pdsettings.maxx != 'auto') { out += ",to=" + pdsettings.maxx; }
+	if (pdsettings.maxx != 'auto'){ out += ",to=" + pdsettings.maxx; }
 	else { out += ",to=NA"; }
-	if (pdsettings.bandwidth != 'auto') { out += ",bw=" + pdsettings.bandwidth; }
+	if (pdsettings.bandwidth != 'auto'){ out += ",bw=" + pdsettings.bandwidth; }
 	else { out += ",bw=NA"; }
 	out += ",show.hist=" + pdsettings.showhist;
 	out += ",adaptive=" + pdsettings.adaptive;
@@ -246,7 +247,7 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) {
+	    if (type==4){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
@@ -276,8 +277,11 @@ function getOptions(prefs){
 	    out += ",rug=" + pdsettings.rug;
 	}
 	out += ",log=" + pdsettings.log;
-	if (pdsettings.binwidth != 'auto') { out += ",binwidth=" + pdsettings.binwidth; }
-	else { out += ",binwidth=NA"; }
+	if (pdsettings.binwidth != 'auto'){
+	    out += ",binwidth=" + pdsettings.binwidth;
+	} else {
+	    out += ",binwidth=NA";
+	}
 	if (geochronometer=='detritals'){
 	    out += ",hide=c(" + gcsettings.hide + ')';
 	} else {
@@ -285,7 +289,7 @@ function getOptions(prefs){
 	}
 	break;
     case 'CAD':
-	if (pdsettings.pch!='none') { out += ",pch=" + pdsettings.pch; }
+	if (pdsettings.pch!='none'){ out += ",pch=" + pdsettings.pch; }
 	out += ",verticals=" + pdsettings.verticals;
 	switch (geochronometer){
 	case 'Th-U':
@@ -302,7 +306,7 @@ function getOptions(prefs){
 	case 'U-Pb':
 	    var type = gcsettings.type;
 	    out += ",type=" + type;
-	    if (type==4) {
+	    if (type==4){
 		out += ",cutoff.76=" + gcsettings.cutoff76;
 	    }
 	    if (gcsettings.cutoffdisc!=0){
@@ -343,12 +347,15 @@ function getOptions(prefs){
 	out += ",show.central.comp=" + pdsettings.showcentralcomp;
 	out += ",alpha=" + pdsettings.alpha;
 	out += ",sigdig=" + pdsettings.sigdig;
-	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto')
+	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto'){
 	    out += ",xlim=c(" + pdsettings.minx + "," + pdsettings.maxx + ")"
-	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto')
+	}
+	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto'){
 	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")"
-	if (pdsettings.fact != 'auto')
+	}
+	if (pdsettings.fact != 'auto'){
 	    out += ",fact=" + pdsettings.fact;
+	}
 	out += ",levels=selection2levels()";
 	out += ",omit=omitter(flags='x')";
 	out += ",hide=omitter(flags='X')";
@@ -361,13 +368,13 @@ function getOptions(prefs){
 	out += ",classical=" + pdsettings.classical;
 	out += ",shepard=" + pdsettings.shepard;
 	out += ",nnlines=" + pdsettings.nnlines;
-	if (pdsettings.ticks=='FALSE') out += ",xaxt='n',yaxt='n'";
-	if (pdsettings.pch=='none') { out += ",pch=NA"; }
+	if (pdsettings.pch=='none'){ out += ",pch=NA"; }
 	else { out += ",pch=" + pdsettings.pch; }
-	out += ",cex=" + pdsettings.cex;
+	if (pdsettings.shepard=='FALSE'){ out += ",cex=" + pdsettings.cex; }
 	if (pdsettings.pos==1 | pdsettings.pos==2 |
-	    pdsettings.pos==3 | pdsettings.pos==4) 
+	    pdsettings.pos==3 | pdsettings.pos==4){
 	    out += ",pos=" + pdsettings.pos;
+	}
 	out += ",col='" + pdsettings.col + "'";
 	out += ",bg='" + pdsettings.bg + "'";
 	out += ",hide=c(" + gcsettings.hide + ')';
@@ -383,8 +390,9 @@ function getOptions(prefs){
 		out += ",before=FALSE)";
 	    }
 	}
-	if (geochronometer != 'U-Th-He')
+	if (geochronometer != 'U-Th-He'){
 	    out += ",exterr=" + pdsettings.exterr;
+	}
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
@@ -438,17 +446,21 @@ function getRcommand(prefs){
 	geochronometer=='Rb-Sr' |
         geochronometer=='Sm-Nd' |
         geochronometer=='Re-Os' |
-        geochronometer=='Lu-Hf') {
+        geochronometer=='Lu-Hf'){
 	out += ",format=" + gcsettings.format;
     } else if (geochronometer=='other'){
 	out += ",format='" + plotdevice + "'";
     }
     if (geochronometer=='U-Pb' & gcsettings.diseq=='TRUE'){
 	out += ",d=IsoplotR::diseq(";
-	out += "U48=list(x=" + gcsettings.U48[0] + ",option=" + gcsettings.U48[1] + ")";
-	out += ",ThU=list(x=" + gcsettings.ThU[0] + ",option=" + gcsettings.ThU[1] + ")";
-	out += ",RaU=list(x=" + gcsettings.RaU[0] + ",option=" + gcsettings.RaU[1] + ")";
-	out += ",PaU=list(x=" + gcsettings.PaU[0] + ",option=" + gcsettings.PaU[1] + ")";
+	out += "U48=list(x=" + gcsettings.U48[0] +
+	       ",option=" + gcsettings.U48[1] + ")";
+	out += ",ThU=list(x=" + gcsettings.ThU[0] +
+	       ",option=" + gcsettings.ThU[1] + ")";
+	out += ",RaU=list(x=" + gcsettings.RaU[0] +
+	       ",option=" + gcsettings.RaU[1] + ")";
+	out += ",PaU=list(x=" + gcsettings.PaU[0] +
+	       ",option=" + gcsettings.PaU[1] + ")";
 	out += ")";
     } else if (geochronometer=='Th-U'){
 	out += ",Th02=" + concatenate(gcsettings.Th02);
@@ -670,7 +682,7 @@ function getRcommand(prefs){
     if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
 	out += "par(cex=" + prefs.settings.par.cex + ");";
     }
-    switch (plotdevice) {
+    switch (plotdevice){
     case 'concordia': 
 	out += "IsoplotR::concordia(dat"; 
 	break;
