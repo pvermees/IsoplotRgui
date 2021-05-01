@@ -1532,7 +1532,7 @@ $(function(){
 	    set.lambda.U238[0] = getNumber("#LambdaU238");
 	    set.lambda.U238[1] = getNumber("#errLambdaU238");
 	    if (gcsettings.format == 3){
-		set.mineral = $('#mineral-option').prop('value');
+		gcsettings.mineral = $('#mineral-option').prop('value');
 		set.etchfact[set.mineral] = getNumber("#etchfact");
 		set.tracklength[set.mineral] = getNumber("#tracklength");
 		set.mindens[set.mineral] = getNumber("#mindens");
