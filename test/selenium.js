@@ -41,7 +41,7 @@ describe('IsoplotRgui', function() {
         });
 
         it('is readable from the calculation engine', async function() {
-            this.timeout(8000);
+            this.timeout(20000);
             await driver.get('http://localhost:50054');
             await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
             await driver.wait(() => tryToClearGrid(driver));
@@ -54,6 +54,11 @@ describe('IsoplotRgui', function() {
             await inputTestData(driver, testData);
             await choosePlotDevice(driver, 'ages');
             await performClick(driver, 'run');
+            const homeCell = await driver.findElement(cellInTable('INPUT', 1, 1));
+            await driver.wait(async function() {
+                let text = await homeCell.getText();
+                return !isNaN(Number(text));
+            });
             const expectedResults = [
                 [251.1, 0.51, 250.86, 0.29, 253.3, 4.48, 250.88, 0.29],
                 [248.92, 0.88, 248.93, 0.19, 248.81, 8.99, 248.93, 0.19],
@@ -461,8 +466,7 @@ async function performClick(driver, element) {
     }
     await driver.actions()
         .move({origin: element})
-        .press()
-        .release()
+        .click()
         .perform();
     return element;
 }
