@@ -1,0 +1,23 @@
+{
+    "languages_supported": [
+        {
+            "code": "en",
+            "prefix": "en",
+            "name": "English",
+            "short_name": "EN"
+        },
+        {
+            "code": "zh_Hans",
+            "prefix": "zh",
+            "name": "中文",
+            "short_name": "CN"
+        },
+        {
+            "code": "es",
+            "prefix": "es",
+            "name": "Español",
+            "short_name": "ES"
+        }
+    ],
+    "translation_link": "http://lgc.es.ucl.ac.uk/weblate/translate/isoplotrgui/${FILENAME}/${LANGUAGE}?q=context%3A.${ID}"
+}

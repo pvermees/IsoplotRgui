@@ -3,6 +3,7 @@ $(function(){
     let home_id;
     let home_id_fallback;
     let settings;
+    let languages;
 
     // load fallback language and settings if required
     function withFallbackLanguage(callback) {
@@ -13,7 +14,12 @@ $(function(){
             settings = s;
             $.getJSON('../locales/en/home_id.json', function(data) {
                 home_id_fallback = data;
-                callback();
+                $.getJSON('../js/languages.json', function(langs) {
+                    languages = langs;
+                    callback();
+                }).fail(function() {
+                    console.error("Failed to load language information");
+                });
             }).fail(function() {
                 console.error("Failed to load fallback language for home page");
             });
@@ -42,7 +48,7 @@ $(function(){
     }
 
     function getFallbackText(id, language, messages) {
-        let link = settings["translation_link"]
+        let link = languages["translation_link"]
             .replace("${FILENAME}", "home_id")
             .replace("${LANGUAGE}", language)
             .replace("${ID}", id);
@@ -91,8 +97,8 @@ $(function(){
 
     withFallbackLanguage(function() {
         const languagesElement = document.getElementById("languages");
-        for (const i in settings.languages_supported) {
-            const info = settings.languages_supported[i];
+        for (const i in languages.languages_supported) {
+            const info = languages.languages_supported[i];
             const element = document.createElement("span");
             element.className = "clickable";
             const id = "lang_" + info.code;
