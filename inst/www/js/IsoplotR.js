@@ -1815,7 +1815,6 @@ $(function(){
 	let language = lang;
 	IsoplotR.settings.language = language;
 	localStorage.setItem("language", language);
-	translate();
 	showOrHide();
     }
 
@@ -2227,7 +2226,6 @@ $(function(){
 
     $.tutorial = function(){
 	$("#myplot").load( "tutorial.html" , function() {
-	    translate();
 	    showOrHide();
 	});
     }
