@@ -193,7 +193,7 @@ $(function(){
 	    break;
 	default:
 	}
-	var row, header;
+	var row;
 	var handson = {
 	    data: [],
 	    headers: []
@@ -2379,6 +2379,7 @@ $(function(){
 	    $("#geochronometer").selectmenu("refresh");
 	    selectGeochronometer()
 	    json2handson();
+	    translate();
 	}
 	reader.readAsText(file);
     });
