@@ -13,6 +13,6 @@ Imports: IsoplotR (>= 3.8),
     jsonlite (>= 1.6.1),
     later (>= 1.0)
 License: GPL-3
-URL: https://www.ucl.ac.uk/~ucfbpve/isoplotr/
+URL: https://www.ucl.ac.uk/~ucfbpve/isoplotr/, https://www.github.com/pvermees/IsoplotRgui/
 RoxygenNote: 7.1.1
 Encoding: UTF-8
