@@ -193,7 +193,7 @@ $(function(){
 	    break;
 	default:
 	}
-	var row, header;
+	var row;
 	var handson = {
 	    data: [],
 	    headers: []
@@ -327,11 +327,12 @@ $(function(){
 		IsoplotR.data4server.rhoDerr = $('#rhoDerr').val();
 		break;
 	    case 2:
-		IsoplotR.data4server. zeta = $('#zetaVal').val();
+		IsoplotR.data4server.zeta = $('#zetaVal').val();
 		IsoplotR.data4server.zetaErr = $('#zetaErr').val();
 		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    case 3:
+		IsoplotR.data4server.mineral = IsoplotR.settings.fissiontracks.mineral;
 		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    }
@@ -554,19 +555,25 @@ $(function(){
 		$('.hide4ThU4').hide();
 		break;
 	    }
-	    switch (set.detritus){
-	    case 2:
+	    if (set.format<3){
+		switch (set.detritus){
+		case 2:
+		    $('.show4Th230corr').show();
+		    $('.show4assumedTh230corr').show();
+		    $('.show4measuredTh230corr').hide();
+		    break;
+		case 3:
+		    $('.show4Th230corr').show();
+		    $('.show4assumedTh230corr').hide();
+		    $('.show4measuredTh230corr').show();
+		    break;
+		default:
+		    $('.show4Th230corr').hide();
+		}
+	    } else {
 		$('.show4Th230corr').show();
 		$('.show4assumedTh230corr').show();
 		$('.show4measuredTh230corr').hide();
-		break;
-	    case 3:
-		$('.show4Th230corr').show();
-		$('.show4assumedTh230corr').hide();
-		$('.show4measuredTh230corr').show();
-		break;
-	    default:
-		$('.show4Th230corr').hide();
 	    }
 	    break;
 	case 'Ar-Ar':
@@ -1212,7 +1219,7 @@ $(function(){
 	    if (shownumbers){ $('#radial-pch').hide(); }
 	    else { $('#radial-pch').show(); }
 	    $('#mint').val(set.mint);
-	    $('#t0').val(set.t0);
+	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
@@ -1289,7 +1296,6 @@ $(function(){
 	    $('#classical').prop('checked',set.classical=='TRUE');
 	    $('#shepard').prop('checked',set.shepard=='TRUE');
 	    $('#nnlines').prop('checked',set.nnlines=='TRUE');
-	    $('#ticks').prop('checked',set.ticks=='TRUE');
 	    $('#pch').val(set.pch);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
@@ -1535,7 +1541,7 @@ $(function(){
 	    set.lambda.U238[0] = getNumber("#LambdaU238");
 	    set.lambda.U238[1] = getNumber("#errLambdaU238");
 	    if (gcsettings.format == 3){
-		set.mineral = $('#mineral-option').prop('value');
+		gcsettings.mineral = $('#mineral-option').prop('value');
 		set.etchfact[set.mineral] = getNumber("#etchfact");
 		set.tracklength[set.mineral] = getNumber("#tracklength");
 		set.mindens[set.mineral] = getNumber("#mindens");
@@ -1591,7 +1597,7 @@ $(function(){
 	    pdsettings.transformation = getOption("#transformation");
 	    pdsettings.numpeaks = getOption("#mixtures");
 	    pdsettings.mint = check($('#mint').val(),'auto');
-	    pdsettings.t0 = check($('#t0').val(),'auto');
+	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
@@ -1664,7 +1670,6 @@ $(function(){
 	    pdsettings["classical"] = truefalse('#classical');
 	    pdsettings["shepard"] = truefalse('#shepard');
 	    pdsettings["nnlines"] = truefalse('#nnlines');
-	    pdsettings["ticks"] = truefalse('#ticks');
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["pos"] = getInt('#pos');
 	    pdsettings["col"] = $('#col').val();
@@ -1693,7 +1698,7 @@ $(function(){
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
 	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
-	    pdsettings["fact"] = check($('#fact').val(),'auto');
+	    pdsettings["fact"] = $('#fact').val();
 	    pdsettings.ellipsefill = $('#ellipsefill').val();
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#helioplot-models");
@@ -1810,7 +1815,6 @@ $(function(){
 	let language = lang;
 	IsoplotR.settings.language = language;
 	localStorage.setItem("language", language);
-	translate();
 	showOrHide();
     }
 
@@ -2222,7 +2226,6 @@ $(function(){
 
     $.tutorial = function(){
 	$("#myplot").load( "tutorial.html" , function() {
-	    translate();
 	    showOrHide();
 	});
     }
@@ -2310,6 +2313,7 @@ $(function(){
 	    $("#mindens").val(cst.mindens[mineral]);
 	    break;
 	}
+	IsoplotR.settings.fissiontracks.mineral = mineral;
     }
     
     $(".button").button()
@@ -2379,6 +2383,7 @@ $(function(){
 	    $("#geochronometer").selectmenu("refresh");
 	    selectGeochronometer()
 	    json2handson();
+	    translate();
 	}
 	reader.readAsText(file);
     });

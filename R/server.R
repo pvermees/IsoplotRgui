@@ -185,30 +185,34 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         mat[1,1:6] <- c('Luppm','errLuppm',
                         'Hfppm','errHfppm',
                         'Hf176Hf177','errHf176Hf177')
-    } else if (identical(method,"fissiontracks") & format==1){
+    } else if (identical(method,"fissiontracks")){
         mat <- matrix('',5,nc)
-        mat[1,1:2] <-c('Zeta','errZeta')
-        mat[2,1] <- input$zeta
-        mat[2,2] <- input$zetaErr
-        mat[3,1:2] <-c('rhoD','errRhoD')
-        mat[4,1] <- input$rhoD
-        mat[4,2] <- input$rhoDerr
-        mat[5,1:2] <- c('Ns','Ni')
-    } else if (identical(method,"fissiontracks") & format==2){
-        mat <- matrix('',5,nc)
-        mat[1,1:2] <-c('Zeta','errZeta')
-        mat[2,1] <- input$zeta
-        mat[2,2] <- input$zetaErr
-        mat[3,1] <-'spot-size'
-        mat[4,1] <- input$spotSize
-        mat[5,1:2] <- c('Ns','A')
-        mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
-    } else if (identical(method,"fissiontracks") & format==3){
-        mat <- matrix('',3,nc)
-        mat[1,1] <-'spot-size'
-        mat[2,1] <- input$spotSize
-        mat[3,1:2] <- c('Ns','A')
-        mat[3,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
+        if (format==1){
+            mat[1,1:2] <-c('Zeta','errZeta')
+            mat[2,1] <- input$zeta
+            mat[2,2] <- input$zetaErr
+            mat[3,1:2] <-c('rhoD','errRhoD')
+            mat[4,1] <- input$rhoD
+            mat[4,2] <- input$rhoDerr
+            mat[5,1:2] <- c('Ns','Ni')
+        } else if (format==2){
+            mat[1,1:2] <-c('Zeta','errZeta')
+            mat[2,1] <- input$zeta
+            mat[2,2] <- input$zetaErr
+            mat[3,1] <-'spot-size'
+            mat[4,1] <- input$spotSize
+            mat[5,1:2] <- c('Ns','A')
+            mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
+        } else if (format==3){
+            mat[1,1] <-'mineral'
+            mat[2,1] <- input$mineral
+            mat[3,1] <-'spot-size'
+            mat[4,1] <- input$spotSize
+            mat[5,1:2] <- c('Ns','A')
+            mat[5,3:nc] <- rep(c('U','err[U]'),(nc-1)/2)
+        } else {
+            stop('Invalid fission track format')
+        }
     } else if (identical(method,"U-Th-He")){
         mat[1,1:8] <- c('He','errHe','U','errU',
                         'Th','errTh','Sm','errSm')
@@ -219,6 +223,8 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         mat <- matrix(labels[1:nc],1,nc)
     } else if (identical(method,"other")){
         mat <- NULL
+    } else {
+        stop('Invalid method')
     }
     mat <- rbind(mat,values)
     if (!identical(method,"detritals")){
