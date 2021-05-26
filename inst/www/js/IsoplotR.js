@@ -863,6 +863,11 @@ $(function(){
 	    case 6:
 		$('.show4ages_pconc').show();
 	    }
+	    if (PD(geochronometer) & set.i2i=='TRUE'){
+		$('.show4projerr').show();
+	    } else {
+		$('.show4projerr').hide();
+	    }
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
@@ -1693,13 +1698,7 @@ $(function(){
 	    }
 	    pdsettings.sigdig = getInt('#sigdig');
 	    i2i(geochronometer);
-	    switch (geochronometer){
-	    case 'K-Ca':
-	    case 'Th-Pb':
-	    case 'Rb-Sr':
-	    case 'Sm-Nd':
-	    case 'Re-Os':
-	    case 'Lu-Hf':
+	    if (PD(geochronometer)){
 		gcsettings.projerr = truefalse("#projerr");
 	    }
 	    break;
@@ -1783,6 +1782,11 @@ $(function(){
 	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    break;
 	}
+    }
+
+    function PD(gc){
+	return(gc=='K-Ca' | gc=='Th-Pb' | gc=='Rb-Sr' |
+	       gc=='Sm-Nd' | gc=='Re-Os' | gc=='Lu-Hf');
     }
     
     function changePlotDevice(){
