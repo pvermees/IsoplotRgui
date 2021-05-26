@@ -937,7 +937,9 @@ $(function(){
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
+	    $('#errPb206Pb204').val(cst.iratio.Pb206Pb204[1]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
 	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
 	    $('#Pb208Pb206').val(cst.iratio.Pb208Pb206[0]);
 	    $('#Pb208Pb207').val(cst.iratio.Pb208Pb207[0]);
@@ -1002,8 +1004,11 @@ $(function(){
 	    $('#common-Pb-option option[value='+set.commonPb+']').
 		prop('selected', 'selected');
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
+	    $('#errPb206Pb204').val(cst.iratio.Pb206Pb204[1]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    break;
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
@@ -1013,6 +1018,7 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Th-Pb':
@@ -1023,6 +1029,7 @@ $(function(){
 	    $('#LambdaTh232').val(cst.lambda.Th232[0]),
 	    $('#errLambdaTh232').val(cst.lambda.Th232[1]),
 	    $('#i2iThPb').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'K-Ca':
@@ -1033,6 +1040,7 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iKCa').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Rb-Sr':
@@ -1049,6 +1057,7 @@ $(function(){
 	    $('#LambdaRb87').val(cst.lambda.Rb87[0]);
 	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
 	    $('#i2iRbSr').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Sm-Nd':
@@ -1081,6 +1090,7 @@ $(function(){
 	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
 	    $('#i2iSmNd').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Re-Os':
@@ -1103,6 +1113,7 @@ $(function(){
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
 	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Lu-Hf':
@@ -1123,6 +1134,7 @@ $(function(){
 	    $('#LambdaLu176').val(cst.lambda.Lu176[0]);
 	    $('#errLambdaLu176').val(cst.lambda.Lu176[1]);
 	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'U-Th-He':
@@ -1402,7 +1414,9 @@ $(function(){
 	    set.lambda.U235[0] = getNumber("#LambdaU235");
 	    set.lambda.U235[1] = getNumber("#errLambdaU235");
 	    set.iratio.Pb206Pb204[0] = getNumber('#Pb206Pb204');
+	    set.iratio.Pb206Pb204[1] = getNumber('#errPb206Pb204');
 	    set.iratio.Pb207Pb204[0] = getNumber('#Pb207Pb204');
+	    set.iratio.Pb207Pb204[1] = getNumber('#errPb207Pb204');
 	    break;
 	case 'Th-U':
 	    gcsettings.detritus = getOption("#detritus");
@@ -1687,6 +1701,9 @@ $(function(){
 	    }
 	    pdsettings.sigdig = getInt('#sigdig');
 	    i2i(geochronometer);
+	    if (projerr(geochronometer)){
+		gcsettings.projerr = truefalse("#projerr");
+	    }
 	    break;
 	case 'helioplot':
 	    pdsettings.logratio = truefalse('#logratio');
@@ -1768,6 +1785,12 @@ $(function(){
 	    gcsettings.commonPb = getOption("#common-Pb-option");
 	    break;
 	}
+    }
+
+    function projerr(gc){
+	return(gc=='Pb-Pb' | gc=='Ar-Ar' | gc=='K-Ca' |
+	       gc=='Th-Pb' | gc=='Rb-Sr' | gc=='Sm-Nd' |
+	       gc=='Re-Os' | gc=='Lu-Hf');
     }
     
     function changePlotDevice(){

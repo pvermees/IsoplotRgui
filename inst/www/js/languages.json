@@ -19,5 +19,5 @@
             "short_name": "ES"
         }
     ],
-    "translation_link": "http://lgc.es.ucl.ac.uk/weblate/translate/isoplotrgui/${FILENAME}/${LANGUAGE}?q=context%3A.${ID}"
+    "translation_link": "http://lgc.es.ucl.ac.uk/weblate/translate/isoplotrgui/${FILENAME}/${LANGUAGE}?q=context%3A${ID}"
 }
