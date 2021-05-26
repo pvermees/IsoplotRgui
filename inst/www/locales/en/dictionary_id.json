@@ -26,6 +26,7 @@
     "help_RbSr_i2i": "Use isochron intercept as initial <sup>87</sup>Sr/<sup>86</sup>Sr-ratio?",
     "help_LuHf_i2i": "Use isochron intercept as initial <sup>176</sup>Hf/<sup>177</sup>Hf-ratio?",
     "help_ThU_i2i": "Use the isochron intercept to estimate the initial <sup>230</sup>Th/<sup>238</sup>U-ratio?",
+    "help_projerr": "Propagate the uncertainty of the isochron fit?",
     "help_sigdig": "Significant digits:",
     "help_randomeffects": "Random effects model?",
     "help_outliers": "Reject outliers?",

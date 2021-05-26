@@ -396,13 +396,14 @@ function getOptions(prefs){
 	switch (geochronometer){
 	case 'Th-U':
 	    out += ",detritus=" + gcsettings.detritus;
-	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
+	    out += ",projerr=" + gcsettings.projerr;
+	case 'Ar-Ar':
 	    out += ",isochron=FALSE";
 	    out += ",i2i=" + gcsettings.i2i;
 	    break;

@@ -1023,6 +1023,7 @@ $(function(){
 	    $('#LambdaTh232').val(cst.lambda.Th232[0]),
 	    $('#errLambdaTh232').val(cst.lambda.Th232[1]),
 	    $('#i2iThPb').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'K-Ca':
@@ -1033,6 +1034,7 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iKCa').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Rb-Sr':
@@ -1049,6 +1051,7 @@ $(function(){
 	    $('#LambdaRb87').val(cst.lambda.Rb87[0]);
 	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
 	    $('#i2iRbSr').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Sm-Nd':
@@ -1081,6 +1084,7 @@ $(function(){
 	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
 	    $('#i2iSmNd').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Re-Os':
@@ -1103,6 +1107,7 @@ $(function(){
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
 	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Lu-Hf':
@@ -1123,6 +1128,7 @@ $(function(){
 	    $('#LambdaLu176').val(cst.lambda.Lu176[0]);
 	    $('#errLambdaLu176').val(cst.lambda.Lu176[1]);
 	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'U-Th-He':
@@ -1687,6 +1693,15 @@ $(function(){
 	    }
 	    pdsettings.sigdig = getInt('#sigdig');
 	    i2i(geochronometer);
+	    switch (geochronometer){
+	    case 'K-Ca':
+	    case 'Th-Pb':
+	    case 'Rb-Sr':
+	    case 'Sm-Nd':
+	    case 'Re-Os':
+	    case 'Lu-Hf':
+		gcsettings.projerr = truefalse("#projerr");
+	    }
 	    break;
 	case 'helioplot':
 	    pdsettings.logratio = truefalse('#logratio');

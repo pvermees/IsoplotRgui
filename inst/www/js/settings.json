@@ -49,31 +49,37 @@
     "Th-Pb": {
 	"format": 2,
 	"i2i": "TRUE",
+	"projerr": "FALSE",
 	"inverse": "TRUE"
     },
     "K-Ca": {
 	"format": 1,
 	"i2i": "TRUE",
+	"projerr": "FALSE",
 	"inverse": "FALSE"
     },
     "Rb-Sr": {
 	"format": 1,
 	"i2i": "TRUE",
+	"projerr": "FALSE",
 	"inverse": "FALSE"
     },
     "Sm-Nd": {
 	"format": 1,
 	"i2i": "TRUE",
+	"projerr": "FALSE",
 	"inverse": "FALSE"
     },
     "Re-Os": {
 	"format": 1,
 	"i2i": "TRUE",
+	"projerr": "FALSE",
 	"inverse": "FALSE"
     },
     "Lu-Hf": {
 	"format": 1,
 	"i2i": "TRUE",
+	"projerr": "FALSE",
 	"inverse": "FALSE"
     },
     "U-Th-He": {},
