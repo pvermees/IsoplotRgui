@@ -395,19 +395,23 @@ function getOptions(prefs){
 	}
 	switch (geochronometer){
 	case 'Th-U':
+	    out += ",i2i=" + gcsettings.i2i;
+	    out += ",isochron=FALSE";
 	    out += ",detritus=" + gcsettings.detritus;
+	    break;
 	case 'Th-Pb':
 	case 'K-Ca':
 	case 'Rb-Sr':
 	case 'Sm-Nd':
 	case 'Re-Os':
 	case 'Lu-Hf':
-	    out += ",projerr=" + gcsettings.projerr;
 	case 'Ar-Ar':
-	    out += ",isochron=FALSE";
 	    out += ",i2i=" + gcsettings.i2i;
+	    out += ",isochron=FALSE";
+	    out += ",projerr=" + gcsettings.projerr;
 	    break;
 	case 'Pb-Pb':
+	    out += ",projerr=" + gcsettings.projerr;
 	    out += ",isochron=FALSE";
 	case 'U-Pb':
 	    out += ",common.Pb=" + gcsettings.commonPb;
@@ -494,9 +498,11 @@ function getRcommand(prefs){
 	    prefs.constants.lambda.Pa231[1] + ");"
     case 'Pb-Pb':
 	out += "IsoplotR::settings('iratio','Pb206Pb204'," +
-	    prefs.constants.iratio.Pb206Pb204[0] + ");"
+	    prefs.constants.iratio.Pb206Pb204[0] + "," +
+	    prefs.constants.iratio.Pb206Pb204[1] + ");"
 	out += "IsoplotR::settings('iratio','Pb207Pb204'," +
-	    prefs.constants.iratio.Pb207Pb204[0] + ");"
+	    prefs.constants.iratio.Pb207Pb204[0] + "," +
+	    prefs.constants.iratio.Pb207Pb204[1] + ");"
 	out += "IsoplotR::settings('iratio','U238U235'," +
 	    prefs.constants.iratio.U238U235[0] + "," +
 	    prefs.constants.iratio.U238U235[1] + ");"

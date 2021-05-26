@@ -39,11 +39,13 @@
     "Pb-Pb": {
 	"format": 3,
 	"commonPb": 2,
+	"projerr": "FALSE",
 	"inverse": "TRUE"
     },
     "Ar-Ar": {
 	"format": 3,
 	"i2i": "FALSE",
+	"projerr": "FALSE",
 	"inverse": "TRUE"
     },
     "Th-Pb": {

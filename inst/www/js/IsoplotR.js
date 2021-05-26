@@ -863,11 +863,6 @@ $(function(){
 	    case 6:
 		$('.show4ages_pconc').show();
 	    }
-	    if (PD(geochronometer) & set.i2i=='TRUE'){
-		$('.show4projerr').show();
-	    } else {
-		$('.show4projerr').hide();
-	    }
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
@@ -942,7 +937,9 @@ $(function(){
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
+	    $('#errPb206Pb204').val(cst.iratio.Pb206Pb204[1]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
 	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
 	    $('#Pb208Pb206').val(cst.iratio.Pb208Pb206[0]);
 	    $('#Pb208Pb207').val(cst.iratio.Pb208Pb207[0]);
@@ -1007,8 +1004,11 @@ $(function(){
 	    $('#common-Pb-option option[value='+set.commonPb+']').
 		prop('selected', 'selected');
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
+	    $('#errPb206Pb204').val(cst.iratio.Pb206Pb204[1]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
+	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    break;
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
@@ -1018,6 +1018,7 @@ $(function(){
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
+	    $('#projerr').prop('checked',set.projerr=='TRUE');
 	    $('#inverse').prop('checked',set.inverse=='TRUE');
 	    break;
 	case 'Th-Pb':
@@ -1413,7 +1414,9 @@ $(function(){
 	    set.lambda.U235[0] = getNumber("#LambdaU235");
 	    set.lambda.U235[1] = getNumber("#errLambdaU235");
 	    set.iratio.Pb206Pb204[0] = getNumber('#Pb206Pb204');
+	    set.iratio.Pb206Pb204[1] = getNumber('#errPb206Pb204');
 	    set.iratio.Pb207Pb204[0] = getNumber('#Pb207Pb204');
+	    set.iratio.Pb207Pb204[1] = getNumber('#errPb207Pb204');
 	    break;
 	case 'Th-U':
 	    gcsettings.detritus = getOption("#detritus");
@@ -1698,7 +1701,7 @@ $(function(){
 	    }
 	    pdsettings.sigdig = getInt('#sigdig');
 	    i2i(geochronometer);
-	    if (PD(geochronometer)){
+	    if (projerr(geochronometer)){
 		gcsettings.projerr = truefalse("#projerr");
 	    }
 	    break;
@@ -1784,9 +1787,10 @@ $(function(){
 	}
     }
 
-    function PD(gc){
-	return(gc=='K-Ca' | gc=='Th-Pb' | gc=='Rb-Sr' |
-	       gc=='Sm-Nd' | gc=='Re-Os' | gc=='Lu-Hf');
+    function projerr(gc){
+	return(gc=='Pb-Pb' | gc=='Ar-Ar' | gc=='K-Ca' |
+	       gc=='Th-Pb' | gc=='Rb-Sr' | gc=='Sm-Nd' |
+	       gc=='Re-Os' | gc=='Lu-Hf');
     }
     
     function changePlotDevice(){
