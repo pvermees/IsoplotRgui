@@ -128,6 +128,9 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         mat[1,1:5] <- c('K40Ca44','errK40Ca44',
                         'Ca40Ca44','errCa40Ca44','rho')
     } else if (identical(method,"K-Ca") & format==2){
+        mat[1,1:5] <- c('K40Ca40','errK40Ca40',
+                        'Ca44Ca40','errCa44Ca40','rho')
+    } else if (identical(method,"K-Ca") & format==3){
         mat[1,1:6] <- c('K40Ca44','errK40Ca44',
                         'Ca40Ca44','errCa40Ca44',
                         'K40Ca40','errK40Ca40')
@@ -161,6 +164,9 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         mat[1,1:5] <- c('Rb87Sr86','errRb87Sr86',
                         'Sr87Sr86','errSr87Sr86','rho')
     } else if (identical(method,"Rb-Sr") & format==2){
+        mat[1,1:5] <- c('Rb87Sr87','errRb87Sr87',
+                        'Sr86Sr87','errSr86Sr87','rho')
+    } else if (identical(method,"Rb-Sr") & format==3){
         mat[1,1:6] <- c('Rbppm','errRbppm',
                         'Srppm','errSrppm',
                         'Sr87Sr86','errSr87Sr86')
@@ -168,6 +174,9 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         mat[1,1:5] <- c('Sm143Nd144','errSm143Nd144',
                         'Nd143Nd144','errNd143Nd144','rho')
     } else if (identical(method,"Sm-Nd") & format==2){
+        mat[1,1:5] <- c('Sm143Nd143','errSm143Nd143',
+                        'Nd144Nd143','errNd144Nd143','rho')
+    } else if (identical(method,"Sm-Nd") & format==3){
         mat[1,1:6] <- c('Smppm','errSmppm',
                         'Ndppm','errNdppm',
                         'Nd143Nd144','errNd143Nd144')
@@ -175,6 +184,9 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         mat[1,1:5] <- c('Re187Os188','errRe187Os188',
                         'Os187Os188','errOs187Os188','rho')
     } else if (identical(method,"Re-Os") & format==2){
+        mat[1,1:5] <- c('Re187Os188','errRe187Os187',
+                        'Os188Os187','errOs188Os187','rho')
+    } else if (identical(method,"Re-Os") & format==3){
         mat[1,1:6] <- c('Reppm','errReppm',
                         'Osppm','errOsppm',
                         'Os187Os188','errOs187Os188')
@@ -182,6 +194,9 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         mat[1,1:5] <- c('Lu176Hf177','errLu176Hf177',
                         'Hf176Hf177','errHf176Hf177','rho')
     } else if (identical(method,"Lu-Hf") & format==2){
+        mat[1,1:5] <- c('Lu176Hf176','errLu176Hf176',
+                        'Hf177Hf176','errHf177Hf176','rho')
+    } else if (identical(method,"Lu-Hf") & format==3){
         mat[1,1:6] <- c('Luppm','errLuppm',
                         'Hfppm','errHfppm',
                         'Hf176Hf177','errHf176Hf177')
