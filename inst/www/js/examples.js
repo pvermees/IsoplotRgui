@@ -899,7 +899,7 @@ function example(geochronometer,plotdevice,format){
 			"(omit)":   []
 		    }
 		});
-	    case 2:
+	    case 3:
 		return({
 		    "ierr": 1,
 		    "data": {
