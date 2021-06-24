@@ -757,6 +757,8 @@ $(function(){
 	}
 	switch (plotdevice){
 	case 'concordia':
+	    $('.show4concplot').show();
+	    $('.hide4concplot').hide();
 	    switch (pd.type){
 	    case 1:
 		$('.show4wetherill').show();
@@ -769,7 +771,7 @@ $(function(){
 	    case 3:
 		$('.show4UThPbconcordia').show();
 		$('.hide4UThPbconcordia').hide();
-		break;		
+		break;
 	    }
 	    switch (pd.showage){
 	    case 0:

@@ -172,6 +172,7 @@
     "PbPb_format_2": "2. Inverse",
     "PbPb_format_3": "3. Three ratios",
     "help_common_Pb_option": "Common Pb correction:",
+    "help_concordia_projection_option": "Concordia projection:",
     "common_Pb_correction_none": "none",
     "common_Pb_correction_nominal": "nominal",
     "common_Pb_correction_isochron": "isochron",
