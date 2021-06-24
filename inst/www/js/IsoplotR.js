@@ -941,8 +941,11 @@ $(function(){
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
 	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
 	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
+	    $('#errPb207Pb206').val(cst.iratio.Pb207Pb206[1]);
 	    $('#Pb208Pb206').val(cst.iratio.Pb208Pb206[0]);
+	    $('#errPb208Pb206').val(cst.iratio.Pb208Pb206[1]);
 	    $('#Pb208Pb207').val(cst.iratio.Pb208Pb207[0]);
+	    $('#errPb208Pb207').val(cst.iratio.Pb208Pb207[1]);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
