@@ -1560,6 +1560,8 @@ $(function(){
 	    cst.lambda.U238[0] = getNumber("#LambdaU238");
 	    cst.lambda.U238[1] = getNumber("#errLambdaU238");
 	    if (gcsettings.format == 3){
+		cst.lambda.fission[0] = getNumber("#LambdaFission");
+		cst.lambda.fission[1] = getNumber("#errLambdaFission");
 		gcsettings.mineral = $('#mineral-option').prop('value');
 		cst.etchfact[gcsettings.mineral] = getNumber("#etchfact");
 		cst.tracklength[gcsettings.mineral] = getNumber("#tracklength");
