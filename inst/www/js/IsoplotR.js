@@ -757,7 +757,7 @@ $(function(){
 	}
 	switch (plotdevice){
 	case 'concordia':
-	    $('.show4concplot').show();
+    	    $('.show4concplot').show();
 	    $('.hide4concplot').hide();
 	    switch (pd.type){
 	    case 1:
