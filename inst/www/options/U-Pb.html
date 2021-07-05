@@ -15,7 +15,7 @@
 <p></p>
 
 <div class="hide4isochron">
-  &nbsp;<help class="translate" id="help_common_Pb_option"></help>
+  &nbsp;<help class="translate hide4concplot" id="help_common_Pb_option"></help><help class="translate hidden show4concplot" id="help_concordia_projection_option"></help>
   <select id="common-Pb-option" onchange="$.register();">
     <option class="translate" id="common_Pb_correction_none" value=0></option>
     <option class="translate" id="common_Pb_correction_nominal" value=1></option>
@@ -141,21 +141,26 @@
 <tr class="hidden show4commonPbwithout204">
   <td>&nbsp;<help class="translate" id="help_Pb207Pb206"></help></td>
   <td><input type="text" id="Pb207Pb206"></td>
+  <td class="hidden"><input type="text "id="errPb207Pb206"></td>
 </tr>
 <tr class="hidden show4commonPbwith204">
   <td>&nbsp;<help class="translate" id="help_Pb206Pb204"></help></td>
   <td><input type="text" id="Pb206Pb204"></td>
+  <td class="hidden"><input type="text" id="errPb206Pb204"></td>
 </tr>
 <tr class="hidden show4commonPbwith204">
   <td>&nbsp;<help class="translate" id="help_Pb207Pb204"></help></td>
   <td><input type="text" id="Pb207Pb204"></td>
+  <td class="hidden"><input type="text" id="errPb207Pb204"></td>
 </tr>
 <tr class="hidden show4commonPbwith208">
   <td>&nbsp;<help class="translate" id="help_Pb208Pb206"></help></td>
   <td><input type="text" id="Pb208Pb206"></td>
+  <td class="hidden"><input type="text" id="errPb208Pb206"></td>
 </tr>
 <tr class="hidden show4commonPbwith208">
   <td>&nbsp;<help class="translate" id="help_Pb208Pb207"></help></td>
   <td><input type="text" id="Pb208Pb207"></td>
+  <td class="hidden"><input type="text" id="errPb208Pb207"></td>
 </tr>
 </table>

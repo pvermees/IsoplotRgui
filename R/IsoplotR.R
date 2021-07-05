@@ -73,7 +73,7 @@ sanitizeCommand <- function(command, callback) {
         'IsoplotR::discfilter', 'IsoplotR::diseq', 'list', 'input','-',
         'seq',':','rev','rainbow','topo.colors','terrain.colors',
         'heat.colors','cm.colors'
-    ))
+        ))
     if (0 < length(failures)) {
         txt <- paste(failures, collapse=", ")
         stop(paste0("non-whitelisted names used: ", txt), call.=FALSE, domain=NA)

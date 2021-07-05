@@ -757,6 +757,8 @@ $(function(){
 	}
 	switch (plotdevice){
 	case 'concordia':
+    	    $('.show4concplot').show();
+	    $('.hide4concplot').hide();
 	    switch (pd.type){
 	    case 1:
 		$('.show4wetherill').show();
@@ -769,7 +771,7 @@ $(function(){
 	    case 3:
 		$('.show4UThPbconcordia').show();
 		$('.hide4UThPbconcordia').hide();
-		break;		
+		break;
 	    }
 	    switch (pd.showage){
 	    case 0:
@@ -941,8 +943,11 @@ $(function(){
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
 	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
 	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
+	    $('#errPb207Pb206').val(cst.iratio.Pb207Pb206[1]);
 	    $('#Pb208Pb206').val(cst.iratio.Pb208Pb206[0]);
+	    $('#errPb208Pb206').val(cst.iratio.Pb208Pb206[1]);
 	    $('#Pb208Pb207').val(cst.iratio.Pb208Pb207[0]);
+	    $('#errPb208Pb207').val(cst.iratio.Pb208Pb207[1]);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
@@ -1364,7 +1369,7 @@ $(function(){
 	var plotdevice = IsoplotR.settings.plotdevice;
 	var gcsettings = IsoplotR.settings[geochronometer];
 	var pdsettings = IsoplotR.settings[plotdevice];
-	var set = IsoplotR.constants;
+	var cst = IsoplotR.constants;
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1392,31 +1397,31 @@ $(function(){
 	    gcsettings.ThU[0] = getNumber('#ThU');
 	    gcsettings.RaU[0] = getNumber('#RaU');
 	    gcsettings.PaU[0] = getNumber('#PaU');
-	    set.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
-	    set.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
-	    set.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
-	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
-	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
-	    set.lambda.U234[0] = getNumber("#LambdaU234");
-	    set.lambda.U234[1] = getNumber("#errLambdaU234");
-	    set.lambda.Th230[0] = getNumber("#LambdaTh230");
-	    set.lambda.Th230[1] = getNumber("#errLambdaTh230");
-	    set.lambda.Ra226[0] = getNumber("#LambdaRa226");
-	    set.lambda.Ra226[1] = getNumber("#errLambdaRa226");
-	    set.lambda.Pa231[0] = getNumber("#LambdaPa231");
-	    set.lambda.Pa231[1] = getNumber("#errLambdaPa231");
+	    cst.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
+	    cst.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
+	    cst.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
+	    cst.lambda.Th232[0] = getNumber("#LambdaTh232");
+	    cst.lambda.Th232[1] = getNumber("#errLambdaTh232");
+	    cst.lambda.U234[0] = getNumber("#LambdaU234");
+	    cst.lambda.U234[1] = getNumber("#errLambdaU234");
+	    cst.lambda.Th230[0] = getNumber("#LambdaTh230");
+	    cst.lambda.Th230[1] = getNumber("#errLambdaTh230");
+	    cst.lambda.Ra226[0] = getNumber("#LambdaRa226");
+	    cst.lambda.Ra226[1] = getNumber("#errLambdaRa226");
+	    cst.lambda.Pa231[0] = getNumber("#LambdaPa231");
+	    cst.lambda.Pa231[1] = getNumber("#errLambdaPa231");
 	case 'Pb-Pb':
 	    gcsettings.commonPb = getOption("#common-Pb-option");
-	    set.iratio.U238U235[0] = getNumber("#U238U235");
-	    set.iratio.U238U235[1] = getNumber("#errU238U235");
-	    set.lambda.U238[0] = getNumber("#LambdaU238");
-	    set.lambda.U238[1] = getNumber("#errLambdaU238");
-	    set.lambda.U235[0] = getNumber("#LambdaU235");
-	    set.lambda.U235[1] = getNumber("#errLambdaU235");
-	    set.iratio.Pb206Pb204[0] = getNumber('#Pb206Pb204');
-	    set.iratio.Pb206Pb204[1] = getNumber('#errPb206Pb204');
-	    set.iratio.Pb207Pb204[0] = getNumber('#Pb207Pb204');
-	    set.iratio.Pb207Pb204[1] = getNumber('#errPb207Pb204');
+	    cst.iratio.U238U235[0] = getNumber("#U238U235");
+	    cst.iratio.U238U235[1] = getNumber("#errU238U235");
+	    cst.lambda.U238[0] = getNumber("#LambdaU238");
+	    cst.lambda.U238[1] = getNumber("#errLambdaU238");
+	    cst.lambda.U235[0] = getNumber("#LambdaU235");
+	    cst.lambda.U235[1] = getNumber("#errLambdaU235");
+	    cst.iratio.Pb206Pb204[0] = getNumber('#Pb206Pb204');
+	    cst.iratio.Pb206Pb204[1] = getNumber('#errPb206Pb204');
+	    cst.iratio.Pb207Pb204[0] = getNumber('#Pb207Pb204');
+	    cst.iratio.Pb207Pb204[1] = getNumber('#errPb207Pb204');
 	    break;
 	case 'Th-U':
 	    gcsettings.detritus = getOption("#detritus");
@@ -1431,118 +1436,118 @@ $(function(){
 	    gcsettings.Th02U48[6] = getNumber("#rXY");
 	    gcsettings.Th02U48[7] = getNumber("#rXZ");
 	    gcsettings.Th02U48[8] = getNumber("#rYZ");
-	    set.lambda.Th230[0] = getNumber("#LambdaTh230");
-	    set.lambda.Th230[1] = getNumber("#errLambdaTh230");
-	    set.lambda.U234[0] = getNumber("#LambdaU234");
-	    set.lambda.U234[1] = getNumber("#errLambdaU234");
-	    set.iratio.U234U238[0] = getNumber("#U234U238");
-	    set.iratio.U234U238[1] = getNumber("#errU234U238");
-	    set.iratio.Th230Th232[0] = getNumber("#Th230Th232");
-	    set.iratio.Th230Th232[1] = getNumber("#errTh230Th232");
+	    cst.lambda.Th230[0] = getNumber("#LambdaTh230");
+	    cst.lambda.Th230[1] = getNumber("#errLambdaTh230");
+	    cst.lambda.U234[0] = getNumber("#LambdaU234");
+	    cst.lambda.U234[1] = getNumber("#errLambdaU234");
+	    cst.iratio.U234U238[0] = getNumber("#U234U238");
+	    cst.iratio.U234U238[1] = getNumber("#errU234U238");
+	    cst.iratio.Th230Th232[0] = getNumber("#Th230Th232");
+	    cst.iratio.Th230Th232[1] = getNumber("#errTh230Th232");
 	    break;
 	case 'Ar-Ar':
-	    set.iratio.Ar40Ar36[0] = getNumber("#Ar40Ar36");
-	    set.iratio.Ar40Ar36[1] = getNumber("#errAr40Ar36");
-	    set.lambda.K40[0] = getNumber("#LambdaK40");
-	    set.lambda.K40[1] = getNumber("#errLambdaK40");
+	    cst.iratio.Ar40Ar36[0] = getNumber("#Ar40Ar36");
+	    cst.iratio.Ar40Ar36[1] = getNumber("#errAr40Ar36");
+	    cst.lambda.K40[0] = getNumber("#LambdaK40");
+	    cst.lambda.K40[1] = getNumber("#errLambdaK40");
 	    break;
 	case 'Th-Pb':
-	    set.iratio.Pb208Pb204[0] = getNumber('#Pb208Pb204');
-	    set.iratio.Pb208Pb204[1] = getNumber('#errPb208Pb204');
-	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
-	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
+	    cst.iratio.Pb208Pb204[0] = getNumber('#Pb208Pb204');
+	    cst.iratio.Pb208Pb204[1] = getNumber('#errPb208Pb204');
+	    cst.lambda.Th232[0] = getNumber("#LambdaTh232");
+	    cst.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	    break;
 	case 'K-Ca':
-	    set.iratio.Ca40Ca44[0] = getNumber('#Ca40Ca44');
-	    set.iratio.Ca40Ca44[1] = getNumber('#errCa40Ca44');
-	    set.lambda.K40[0] = getNumber("#LambdaK40");
-	    set.lambda.K40[1] = getNumber("#errLambdaK40");
+	    cst.iratio.Ca40Ca44[0] = getNumber('#Ca40Ca44');
+	    cst.iratio.Ca40Ca44[1] = getNumber('#errCa40Ca44');
+	    cst.lambda.K40[0] = getNumber("#LambdaK40");
+	    cst.lambda.K40[1] = getNumber("#errLambdaK40");
 	    break;
 	case 'Rb-Sr':
-	    set.iratio.Rb85Rb87[0] = getNumber('#Rb85Rb87');
-	    set.iratio.Rb85Rb87[1] = getNumber('#errRb85Rb87');
-	    set.iratio.Sr84Sr86[0] = getNumber('#Sr84Sr86');
-	    set.iratio.Sr84Sr86[1] = getNumber('#errSr84Sr86');
-	    set.iratio.Sr87Sr86[0] = getNumber('#Sr87Sr86');
-	    set.iratio.Sr87Sr86[1] = getNumber('#errSr87Sr86');
-	    set.iratio.Sr88Sr86[0] = getNumber('#Sr88Sr86');
-	    set.iratio.Sr88Sr86[1] = getNumber('#errSr88Sr86');
-	    set.lambda.Rb87[0] = getNumber('#LambdaRb87');
-	    set.lambda.Rb87[1]= getNumber('#errLambdaRb87');
+	    cst.iratio.Rb85Rb87[0] = getNumber('#Rb85Rb87');
+	    cst.iratio.Rb85Rb87[1] = getNumber('#errRb85Rb87');
+	    cst.iratio.Sr84Sr86[0] = getNumber('#Sr84Sr86');
+	    cst.iratio.Sr84Sr86[1] = getNumber('#errSr84Sr86');
+	    cst.iratio.Sr87Sr86[0] = getNumber('#Sr87Sr86');
+	    cst.iratio.Sr87Sr86[1] = getNumber('#errSr87Sr86');
+	    cst.iratio.Sr88Sr86[0] = getNumber('#Sr88Sr86');
+	    cst.iratio.Sr88Sr86[1] = getNumber('#errSr88Sr86');
+	    cst.lambda.Rb87[0] = getNumber('#LambdaRb87');
+	    cst.lambda.Rb87[1]= getNumber('#errLambdaRb87');
 	    break;
 	case 'Sm-Nd':
-	    set.iratio.Sm144Sm152[0] = getNumber('#Sm144Sm152');
-	    set.iratio.Sm144Sm152[1] = getNumber('#errSm144Sm152');
-	    set.iratio.Sm147Sm152[0] = getNumber('#Sm147Sm152');
-	    set.iratio.Sm147Sm152[1] = getNumber('#errSm147Sm152');
-	    set.iratio.Sm148Sm152[0] = getNumber('#Sm148Sm152');
-	    set.iratio.Sm148Sm152[1] = getNumber('#errSm148Sm152');
-	    set.iratio.Sm149Sm152[0] = getNumber('#Sm149Sm152');
-	    set.iratio.Sm149Sm152[1] = getNumber('#errSm149Sm152');
-	    set.iratio.Sm150Sm152[0] = getNumber('#Sm150Sm152');
-	    set.iratio.Sm150Sm152[1] = getNumber('#errSm150Sm152');
-	    set.iratio.Sm154Sm152[0] = getNumber('#Sm154Sm152');
-	    set.iratio.Sm154Sm152[1] = getNumber('#errSm154Sm152');
-	    set.iratio.Nd142Nd144[0] = getNumber('#Nd142Nd144');
-	    set.iratio.Nd142Nd144[1] = getNumber('#errNd142Nd144');
-	    set.iratio.Nd143Nd144[0] = getNumber('#Nd143Nd144');
-	    set.iratio.Nd143Nd144[1] = getNumber('#errNd143Nd144');
-	    set.iratio.Nd145Nd144[0] = getNumber('#Nd145Nd144');
-	    set.iratio.Nd145Nd144[1] = getNumber('#errNd145Nd144');
-	    set.iratio.Nd146Nd144[0] = getNumber('#Nd146Nd144');
-	    set.iratio.Nd146Nd144[1] = getNumber('#errNd146Nd144');
-	    set.iratio.Nd148Nd144[0] = getNumber('#Nd148Nd144');
-	    set.iratio.Nd148Nd144[1] = getNumber('#errNd148Nd144');
-	    set.iratio.Nd150Nd144[0] = getNumber('#Nd150Nd144');
-	    set.iratio.Nd150Nd144[1] = getNumber('#errNd150Nd144');
-	    set.lambda.Sm147[0] = getNumber('#LambdaSm147');
-	    set.lambda.Sm147[1] = getNumber('#errLambdaSm147');
+	    cst.iratio.Sm144Sm152[0] = getNumber('#Sm144Sm152');
+	    cst.iratio.Sm144Sm152[1] = getNumber('#errSm144Sm152');
+	    cst.iratio.Sm147Sm152[0] = getNumber('#Sm147Sm152');
+	    cst.iratio.Sm147Sm152[1] = getNumber('#errSm147Sm152');
+	    cst.iratio.Sm148Sm152[0] = getNumber('#Sm148Sm152');
+	    cst.iratio.Sm148Sm152[1] = getNumber('#errSm148Sm152');
+	    cst.iratio.Sm149Sm152[0] = getNumber('#Sm149Sm152');
+	    cst.iratio.Sm149Sm152[1] = getNumber('#errSm149Sm152');
+	    cst.iratio.Sm150Sm152[0] = getNumber('#Sm150Sm152');
+	    cst.iratio.Sm150Sm152[1] = getNumber('#errSm150Sm152');
+	    cst.iratio.Sm154Sm152[0] = getNumber('#Sm154Sm152');
+	    cst.iratio.Sm154Sm152[1] = getNumber('#errSm154Sm152');
+	    cst.iratio.Nd142Nd144[0] = getNumber('#Nd142Nd144');
+	    cst.iratio.Nd142Nd144[1] = getNumber('#errNd142Nd144');
+	    cst.iratio.Nd143Nd144[0] = getNumber('#Nd143Nd144');
+	    cst.iratio.Nd143Nd144[1] = getNumber('#errNd143Nd144');
+	    cst.iratio.Nd145Nd144[0] = getNumber('#Nd145Nd144');
+	    cst.iratio.Nd145Nd144[1] = getNumber('#errNd145Nd144');
+	    cst.iratio.Nd146Nd144[0] = getNumber('#Nd146Nd144');
+	    cst.iratio.Nd146Nd144[1] = getNumber('#errNd146Nd144');
+	    cst.iratio.Nd148Nd144[0] = getNumber('#Nd148Nd144');
+	    cst.iratio.Nd148Nd144[1] = getNumber('#errNd148Nd144');
+	    cst.iratio.Nd150Nd144[0] = getNumber('#Nd150Nd144');
+	    cst.iratio.Nd150Nd144[1] = getNumber('#errNd150Nd144');
+	    cst.lambda.Sm147[0] = getNumber('#LambdaSm147');
+	    cst.lambda.Sm147[1] = getNumber('#errLambdaSm147');
 	    break;
 	case 'Re-Os':
-	    set.iratio.Re185Re187[0] = getNumber('#Re185Re187');
-	    set.iratio.Re185Re187[1] = getNumber('#errRe185Re187');
-	    set.iratio.Os184Os192[0] = getNumber('#Os184Os192');
-	    set.iratio.Os184Os192[1] = getNumber('#errOs184Os192');
-	    set.iratio.Os186Os192[0] = getNumber('#Os186Os192');
-	    set.iratio.Os186Os192[1] = getNumber('#errOs186Os192');
-	    set.iratio.Os187Os192[0] = getNumber('#Os187Os192');
-	    set.iratio.Os187Os192[1] = getNumber('#errOs187Os192');
-	    set.iratio.Os188Os192[0] = getNumber('#Os188Os192');
-	    set.iratio.Os188Os192[1] = getNumber('#errOs188Os192');
-	    set.iratio.Os189Os192[0] = getNumber('#Os189Os192');
-	    set.iratio.Os189Os192[1] = getNumber('#errOs189Os192');
-	    set.iratio.Os190Os192[0] = getNumber('#Os190Os192');
-	    set.iratio.Os190Os192[1] = getNumber('#errOs190Os192');
-	    set.lambda.Re187[0] = getNumber('#LambdaRe187');
-	    set.lambda.Re187[1] = getNumber('#errLambdaRe187');
+	    cst.iratio.Re185Re187[0] = getNumber('#Re185Re187');
+	    cst.iratio.Re185Re187[1] = getNumber('#errRe185Re187');
+	    cst.iratio.Os184Os192[0] = getNumber('#Os184Os192');
+	    cst.iratio.Os184Os192[1] = getNumber('#errOs184Os192');
+	    cst.iratio.Os186Os192[0] = getNumber('#Os186Os192');
+	    cst.iratio.Os186Os192[1] = getNumber('#errOs186Os192');
+	    cst.iratio.Os187Os192[0] = getNumber('#Os187Os192');
+	    cst.iratio.Os187Os192[1] = getNumber('#errOs187Os192');
+	    cst.iratio.Os188Os192[0] = getNumber('#Os188Os192');
+	    cst.iratio.Os188Os192[1] = getNumber('#errOs188Os192');
+	    cst.iratio.Os189Os192[0] = getNumber('#Os189Os192');
+	    cst.iratio.Os189Os192[1] = getNumber('#errOs189Os192');
+	    cst.iratio.Os190Os192[0] = getNumber('#Os190Os192');
+	    cst.iratio.Os190Os192[1] = getNumber('#errOs190Os192');
+	    cst.lambda.Re187[0] = getNumber('#LambdaRe187');
+	    cst.lambda.Re187[1] = getNumber('#errLambdaRe187');
 	    break;
 	case 'Lu-Hf':
-	    set.iratio.Lu176Lu175[0] = getNumber('#Lu176Lu175');
-	    set.iratio.Lu176Lu175[1] = getNumber('#errLu176Lu175');
-	    set.iratio.Hf174Hf177[0] = getNumber('#Hf174Hf177');
-	    set.iratio.Hf174Hf177[1] = getNumber('#errHf174Hf177');
-	    set.iratio.Hf176Hf177[0] = getNumber('#Hf176Hf177');
-	    set.iratio.Hf176Hf177[1] = getNumber('#errHf176Hf177');
-	    set.iratio.Hf178Hf177[0] = getNumber('#Hf178Hf177');
-	    set.iratio.Hf178Hf177[1] = getNumber('#errHf178Hf177');
-	    set.iratio.Hf179Hf177[0] = getNumber('#Hf179Hf177');
-	    set.iratio.Hf179Hf177[1] = getNumber('#errHf179Hf177');
-	    set.iratio.Hf180Hf177[0] = getNumber('#Hf180Hf177');
-	    set.iratio.Hf180Hf177[1] = getNumber('#errHf180Hf177');
-	    set.lambda.Lu176[0] = getNumber('#LambdaLu176');
-	    set.lambda.Lu176[1] = getNumber('#errLambdaLu176');
+	    cst.iratio.Lu176Lu175[0] = getNumber('#Lu176Lu175');
+	    cst.iratio.Lu176Lu175[1] = getNumber('#errLu176Lu175');
+	    cst.iratio.Hf174Hf177[0] = getNumber('#Hf174Hf177');
+	    cst.iratio.Hf174Hf177[1] = getNumber('#errHf174Hf177');
+	    cst.iratio.Hf176Hf177[0] = getNumber('#Hf176Hf177');
+	    cst.iratio.Hf176Hf177[1] = getNumber('#errHf176Hf177');
+	    cst.iratio.Hf178Hf177[0] = getNumber('#Hf178Hf177');
+	    cst.iratio.Hf178Hf177[1] = getNumber('#errHf178Hf177');
+	    cst.iratio.Hf179Hf177[0] = getNumber('#Hf179Hf177');
+	    cst.iratio.Hf179Hf177[1] = getNumber('#errHf179Hf177');
+	    cst.iratio.Hf180Hf177[0] = getNumber('#Hf180Hf177');
+	    cst.iratio.Hf180Hf177[1] = getNumber('#errHf180Hf177');
+	    cst.lambda.Lu176[0] = getNumber('#LambdaLu176');
+	    cst.lambda.Lu176[1] = getNumber('#errLambdaLu176');
 	    break;
 	case 'U-Th-He':
-	    set.iratio.U238U235[0] = getNumber("#U238U235");
-	    set.iratio.U238U235[1] = getNumber("#errU238U235");
-	    set.lambda.U238[0] = getNumber("#LambdaU238");
-	    set.lambda.U238[1] = getNumber("#errLambdaU238");
-	    set.lambda.U235[0] = getNumber("#LambdaU235");
-	    set.lambda.U235[1] = getNumber("#errLambdaU235");
-	    set.lambda.Th232[0] = getNumber("#LambdaTh232");
-	    set.lambda.Th232[1] = getNumber("#errLambdaTh232");
-	    set.lambda.Sm147[0] = getNumber("#LambdaSm147");
-	    set.lambda.Sm147[1] = getNumber("#errLambdaSm147");
+	    cst.iratio.U238U235[0] = getNumber("#U238U235");
+	    cst.iratio.U238U235[1] = getNumber("#errU238U235");
+	    cst.lambda.U238[0] = getNumber("#LambdaU238");
+	    cst.lambda.U238[1] = getNumber("#errLambdaU238");
+	    cst.lambda.U235[0] = getNumber("#LambdaU235");
+	    cst.lambda.U235[1] = getNumber("#errLambdaU235");
+	    cst.lambda.Th232[0] = getNumber("#LambdaTh232");
+	    cst.lambda.Th232[1] = getNumber("#errLambdaTh232");
+	    cst.lambda.Sm147[0] = getNumber("#LambdaSm147");
+	    cst.lambda.Sm147[1] = getNumber("#errLambdaSm147");
 	    break;
 	case 'detritals':
 	    gcsettings.format = $("#headers-on").prop('checked') ? 1 : 2;
@@ -1550,15 +1555,17 @@ $(function(){
 	    break;
 	case 'fissiontracks':
 	    gcsettings.format = getOption("#FT-formats");
-	    set.iratio.U238U235[0] = getNumber("#U238U235");
-	    set.iratio.U238U235[1] = getNumber("#errU238U235");
-	    set.lambda.U238[0] = getNumber("#LambdaU238");
-	    set.lambda.U238[1] = getNumber("#errLambdaU238");
+	    cst.iratio.U238U235[0] = getNumber("#U238U235");
+	    cst.iratio.U238U235[1] = getNumber("#errU238U235");
+	    cst.lambda.U238[0] = getNumber("#LambdaU238");
+	    cst.lambda.U238[1] = getNumber("#errLambdaU238");
 	    if (gcsettings.format == 3){
+		cst.lambda.fission[0] = getNumber("#LambdaFission");
+		cst.lambda.fission[1] = getNumber("#errLambdaFission");
 		gcsettings.mineral = $('#mineral-option').prop('value');
-		set.etchfact[set.mineral] = getNumber("#etchfact");
-		set.tracklength[set.mineral] = getNumber("#tracklength");
-		set.mindens[set.mineral] = getNumber("#mindens");
+		cst.etchfact[gcsettings.mineral] = getNumber("#etchfact");
+		cst.tracklength[gcsettings.mineral] = getNumber("#tracklength");
+		cst.mindens[gcsettings.mineral] = getNumber("#mindens");
 	    }
 	    break;
 	default:
