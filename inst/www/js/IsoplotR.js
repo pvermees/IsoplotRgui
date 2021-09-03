@@ -145,7 +145,7 @@ $(function(){
 	    var firstrow = $("#INPUT").handsontable('getData')[0];
 	    var nc = firstrow.length;
 	    for (var i=(nc-1); i>0; i--){
-		if (firstrow[i]!=null) return i+1;
+		if (firstrow[i]!=null && firstrow[i]!="") return i+1;
 	    }
 	case 'other':
 	    switch(IsoplotR.settings.plotdevice){
