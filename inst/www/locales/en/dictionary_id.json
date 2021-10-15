@@ -130,6 +130,7 @@
     "help_anchor_option": "Anchored discordia line?",
     "help_ThU_isochron_types": "Type:",
     "help_UPb_isochron_types": "Type:",
+    "help_joint": "3D regression?",
     "Rosholt_A": "1. <tt>0/2</tt> vs. <tt>8/2</tt> (Rosholt A)",
     "Rosholt_B": "3. <tt>4/2</tt> vs. <tt>8/2</tt> (Rosholt B)",
     "Osmond_A": "2. <tt>0/8</tt> vs. <tt>2/8</tt> (Osmond A)",

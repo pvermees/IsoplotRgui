@@ -131,6 +131,7 @@
 	"ThUtype": 2,
 	"model": 1,
 	"exterr": "FALSE",
+	"joint": "TRUE",
 	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",

@@ -132,7 +132,10 @@ function getOptions(prefs){
 	if (geochronometer!='U-Pb' & geochronometer!='Th-U' &
 	    geochronometer!='U-Th-He'){ out += ",inverse=" + gcsettings.inverse; }
 	if (geochronometer=='Pb-Pb'){ out += ",growth=" + pdsettings.growth; }
-	if (geochronometer=='U-Pb'){ out += ",type=" + pdsettings.UPbtype; }
+	if (geochronometer=='U-Pb'){
+	    out += ",type=" + pdsettings.UPbtype;
+	    out += ",joint=" + pdsettings.joint;
+	}
 	if (geochronometer=='Th-U'){ out += ",type=" + pdsettings.ThUtype; }
 	if (geochronometer!='U-Th-He'){ out += ",exterr=" + pdsettings.exterr; }
     case 'regression':
