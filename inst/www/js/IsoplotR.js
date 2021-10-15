@@ -819,6 +819,11 @@ $(function(){
 	case 'isochron':
 	    $(".hide4isochron").hide();
 	    $(".show4Th230corr").hide();
+	    if (pd.anchor == 2){
+		$('.show4tanchor').show();
+	    } else {
+		$('.show4tanchor').hide();
+	    }
 	case 'regression':
 	case 'helioplot':
 	    switch (pd.model){
@@ -1208,9 +1213,12 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
+	    $('#anchor-option option[value='+set.anchor+']').
+		prop('selected', 'selected');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
 	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
 	    $('#joint').prop('checked',set.joint=='TRUE')
+	    $('#tanchor').val(set.tanchor);
 	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#isochron-minx').val(set.minx);
@@ -1596,6 +1604,8 @@ $(function(){
 	case 'isochron':
 	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
 	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
+	    pdsettings.anchor = getOption("#anchor-option")
+	    pdsettings.tanchor = getNumber('#tanchor');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.joint = truefalse('#joint');
