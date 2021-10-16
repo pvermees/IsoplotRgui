@@ -819,6 +819,11 @@ $(function(){
 	case 'isochron':
 	    $(".hide4isochron").hide();
 	    $(".show4Th230corr").hide();
+	    if (pd.anchor == 2){
+		$('.show4tanchor').show();
+	    } else {
+		$('.show4tanchor').hide();
+	    }
 	case 'regression':
 	case 'helioplot':
 	    switch (pd.model){
@@ -1208,8 +1213,12 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
+	    $('#anchor-option option[value='+set.anchor+']').
+		prop('selected', 'selected');
 	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
 	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
+	    $('#joint').prop('checked',set.joint=='TRUE')
+	    $('#tanchor').val(set.tanchor);
 	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#isochron-minx').val(set.minx);
@@ -1595,8 +1604,11 @@ $(function(){
 	case 'isochron':
 	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
 	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
+	    pdsettings.anchor = getOption("#anchor-option")
+	    pdsettings.tanchor = getNumber('#tanchor');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
+	    pdsettings.joint = truefalse('#joint');
 	    pdsettings.model = getOption("#isochron-models");
 	    inverse(geochronometer);
 	case 'regression':
@@ -1857,9 +1869,8 @@ $(function(){
 	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    var tools = ['concordia','radial','average','KDE','CAD','ages'];
-	    if (IsoplotR.settings["U-Pb"].format>3){ tools.splice(1, 0,'isochron'); }
-	    setSelectedMenus(tools);
+	    setSelectedMenus(['concordia','isochron','radial',
+			      'average','KDE','CAD','ages']);
 	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus(['isochron','radial','spectrum',
@@ -2273,21 +2284,8 @@ $(function(){
 		$('#concordia-type option[value=2]').prop('selected', 'selected');
 	    }
 	}
-	if (upgrade | downgrade){
-	    IsoplotR.settings["U-Pb"].format = newformat;
-	    selectGeochronometer();
-	    if (pd=="isochron"){
-		IsoplotR.settings.plotdevice = "concordia";
-	    } else {
-		IsoplotR.settings.plotdevice = pd;
-	    }
-	    changePlotDevice();
-	    IsoplotR = populate(IsoplotR,true);
-	    errconvert();
-	} else {
-	    $.chooseFormat('#UPb-formats',"U-Pb");
-	    showSettings(pd);
-	}
+	$.chooseFormat('#UPb-formats',"U-Pb");
+	showSettings(pd);
 	if (IsoplotR.settings["U-Pb"].ThU[1]==3 &
 	    IsoplotR.settings["U-Pb"].format<7){
 	    IsoplotR.settings["U-Pb"].ThU[1] = 0;

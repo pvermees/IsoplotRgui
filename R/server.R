@@ -11,8 +11,7 @@
 encodePlot <- function(device, mimeType, width, height, plotFn) {
     tempFilename <- tempfile(pattern='plot', fileext='png')
     device(file=tempFilename, width=width, height=height)
-    plotFn()
-    grDevices::dev.off()
+    tryCatch(plotFn(),finally=grDevices::graphics.off())
     fileSize <- file.size(tempFilename)
     raw <- readBin(tempFilename, what="raw", n=fileSize)
     paste0("data:", mimeType, ";base64,", jsonlite::base64_enc(raw))

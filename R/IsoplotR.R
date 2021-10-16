@@ -13,8 +13,8 @@ rrpc <- function(interface) { function(ws) {
         result <- do.call(interface[[method]], df$params)
         list(result=result, error=NULL)
       }, error=function(e) {
-        error <- geterrmessage();
-        cat("ERROR:", error, "\n");
+        error <- geterrmessage()
+        cat("ERROR:", error, "\n")
         list(result=NULL, error=error)
       })
       envelope$result <- r$result
@@ -24,12 +24,33 @@ rrpc <- function(interface) { function(ws) {
   })
 }}
 
-rrpcServer <- function(interface, host='0.0.0.0', port=NULL, appDir=NULL, root="/") {
+rrpcServer <- function(interface, host='0.0.0.0', port=NULL, appDir=NULL,
+        root="/", testFunction=NULL, testEndpoint="/test") {
     app <- list(onWSOpen=rrpc(interface))
     if (!is.null(appDir)) {
         paths <- list()
         paths[[root]] <- appDir
         app$staticPaths <- paths
+        app$staticPathOptions = httpuv::staticPathOptions(fallthrough=TRUE)
+    }
+    if (!is.null(testFunction)) {
+        app$call <- function(req) {
+            resp <- list(headers=list("Content-Type"="text/plain"))
+            if (req$PATH_INFO == testEndpoint) {
+                tryCatch({
+                    testFunction()
+                    resp$status=200L
+                    resp$body="OK"
+                }, error=function() {
+                    resp$status=500L
+                    resp$body=geterrmessage()
+                })
+            } else {
+                resp$status=404L
+                resp$body="Not Found"
+            }
+            resp
+        }
     }
     if (is.null(port)) {
         port <- httpuv::randomPort(min=8192, max=40000, host=host)
@@ -133,7 +154,12 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
                     server$getCsv(com, data, "ages")
                 })
             }
-        )
+        ),
+        testFunction=function() {
+            tempFilename <- tempfile(pattern='test', fileext='png')
+            grDevices::png(file=tempFilename, width=30, height=30)
+            grDevices::dev.off()
+        }
     )
     extraMessage <- ""
     if (is.null(port)) {
