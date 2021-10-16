@@ -134,7 +134,9 @@ function getOptions(prefs){
 	if (geochronometer=='Pb-Pb'){ out += ",growth=" + pdsettings.growth; }
 	if (geochronometer=='U-Pb'){
 	    out += ",type=" + pdsettings.UPbtype;
-	    out += ",joint=" + pdsettings.joint;
+	    if (gcsettings.format>3){
+		out += ",joint=" + pdsettings.joint;
+	    }
 	    if (pdsettings.anchor==1){
 		out += ",anchor=1";
 	    } else if (pdsettings.anchor==2){
