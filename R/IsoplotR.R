@@ -157,7 +157,7 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
         ),
         testFunction=function() {
             tempFilename <- tempfile(pattern='test', fileext='png')
-            png(file=tempFilename, width=30, height=30)
+            grDevices::png(file=tempFilename, width=30, height=30)
             grDevices::dev.off()
         }
     )
