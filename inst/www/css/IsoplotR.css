@@ -31,7 +31,7 @@ a:hover {
 #myplot {
     position: absolute;
     top: 0;
-    bottom: 15;
+    bottom: 15px;
     right: 0;
     left: 0;
 }
@@ -62,11 +62,11 @@ tit {
     position: absolute;
     float: right;
     top:0;
-    right: 10;
+    right: 10px;
     color:black;
     font-family: Courier, monospace;
     font-weight: bold;
-    font-size: 24;
+    font-size: 24px;
 }
 tit:hover {
     color:red;
