@@ -335,5 +335,11 @@
     "help_Os186Os192": "proporción<sup>186</sup>Os/<sup>192</sup>Os:",
     "help_pcex": "Dibujar el símbolo de aumento?",
     "help_nnlines": "Agregar las líneas mas próximas?",
-    "help_helioplot_models": "Modelo:"
+    "help_helioplot_models": "Modelo:",
+    "UPb_isochron_type_3": "3. <tt>06c/08</tt> vs. <tt>32/08</tt>",
+    "UPb_isochron_type_4": "4. <tt>07c/08</tt> vs. <tt>32/08</tt>",
+    "help_shepard": "Plot de Shepard?",
+    "ArAr_err_3936": "Relación de la icertidumbre analítica de <sup>39</sup>Ar/<sup>36</sup>Ar-",
+    "help_rug": "Agregar gráfico de manta?",
+    "radial_sqrt": "sqrt"
 }
