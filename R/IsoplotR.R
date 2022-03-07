@@ -210,7 +210,7 @@ stopIsoplotR <- function(server=NULL) {
 #' @return This function does not return.
 #' @examples
 #' # this function runs indefinitely unless interrupted by the user.
-#' \donttest{daemon(3839)}
+#' \dontrun{daemon(3839)}
 #' @export
 daemon <- function(port=NULL, host='127.0.0.1', timeout=30) {
     IsoplotR(host=host, port=port, timeout=timeout)
