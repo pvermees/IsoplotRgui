@@ -2561,9 +2561,10 @@ $(function(){
 
     document.getElementById("PDF").onclick = function() {
 	update();
+	let fname = prompt("Please enter a file name", "IsoplotR.pdf");
 	rrpc.call("pdf", {
 	    data: IsoplotR.data4server,
-	    name: "IsoplotR",
+	    fname: fname,
 	    Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
 	    if (err) {
@@ -2579,9 +2580,10 @@ $(function(){
 
     document.getElementById("CSV").onclick = function() {
 	update();
+	let fname = prompt("Please enter a file name", "ages.csv");
 	rrpc.call("csv", {
 	    data: IsoplotR.data4server,
-	    name: "ages",
+	    fname: fname,
 	    Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
 	    if (err) {

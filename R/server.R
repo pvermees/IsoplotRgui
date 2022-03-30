@@ -335,22 +335,22 @@ server$runner <- function(Rcommand, input) {
     forJson
 }
 
-server$getPdf <- function(Rcommand, input, name) {
+server$getPdf <- function(Rcommand, input, fname) {
     forJson <- list()
     forJson$action <- "download"
-    forJson$filename <- paste0(name, ".pdf")
+    forJson$filename <- fname
     forJson$data <- encodePlotAsPdf(7, 7, function() {
         run(Rcommand, input)
     })
     forJson
 }
 
-server$getCsv <- function(Rcommand, input, name) {
+server$getCsv <- function(Rcommand, input, fname) {
     forJson <- list()
     forJson$action <- "download"
-    forJson$filename <- paste0(name, ".csv")
+    forJson$filename <- fname
     results <- run(Rcommand, input);
-    raw <- utils::capture.output(utils::write.csv(results, stdout()))
+    raw <- utils::capture.output(utils::write.csv(results, stdout(), row.names=FALSE))
     forJson$data <- paste0(
         "data:text/csv;base64,",
         jsonlite::base64_enc(raw))
