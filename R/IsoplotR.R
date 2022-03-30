@@ -144,14 +144,14 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
                     server$plotter(width, height, com, data)
                 })
             },
-            pdf=function(data, Rcommand) {
+            pdf=function(data, name, Rcommand) {
                 wrap(Rcommand, function(com) {
-                    server$getPdf(com, data)
+                    server$getPdf(com, data, name)
                 })
             },
-            csv=function(data, Rcommand) {
+            csv=function(data, name, Rcommand) {
                 wrap(Rcommand, function(com) {
-                    server$getCsv(com, data, "ages")
+                    server$getCsv(com, data, name)
                 })
             }
         ),

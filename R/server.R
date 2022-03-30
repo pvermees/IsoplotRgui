@@ -335,10 +335,10 @@ server$runner <- function(Rcommand, input) {
     forJson
 }
 
-server$getPdf <- function(Rcommand, input) {
+server$getPdf <- function(Rcommand, input, name) {
     forJson <- list()
     forJson$action <- "download"
-    forJson$filename <- "IsoplotR.pdf"
+    forJson$filename <- paste0(name, ".pdf")
     forJson$data <- encodePlotAsPdf(7, 7, function() {
         run(Rcommand, input)
     })
