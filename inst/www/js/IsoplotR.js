@@ -39,7 +39,7 @@ $(function(){
                 $('option:selected', $("#geochronometer")).attr('id');
             const languageElement = document.getElementById("language");
             const lang = localStorage.getItem("language");
-          	for (const i in languages.languages_supported) {
+            for (const i in languages.languages_supported) {
                 const s = languages.languages_supported[i];
                 if (lang !== null && lang.startsWith(s.prefix)) {
                     settings.language = s.code;
@@ -56,19 +56,19 @@ $(function(){
             // allow tests to initiate translation, even with unsupported languages
             window.translatePage = function() {
                 IsoplotR.settings.language = this.localStorage.getItem("language");
-            translate();
-        }
+		translate();
+            }
 
-        translate();
-        welcome();
-        $("#INPUT").handsontable({ // add change handler asynchronously
-            afterChange: function(changes,source){
-                getData4Server(); // placed here because we don't want to
-                handson2json();   // call the change handler until after
-            }                     // IsoplotR has been initialised
-        });
-    });
-    rrpc.initialize();
+            translate();
+            welcome();
+            $("#INPUT").handsontable({ // add change handler asynchronously
+		afterChange: function(changes,source){
+                    getData4Server(); // placed here because we don't want to
+                    handson2json();   // call the change handler until after
+		}                     // IsoplotR has been initialised
+            });
+	});
+	rrpc.initialize();
     };
 
     function dnc(){
@@ -311,12 +311,12 @@ $(function(){
 	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
 	var data = cleanData(geochronometer,d,nr,nc);
 	IsoplotR.data4server = {
-		nr, nc, data
+	    nr, nc, data
 	};
 	switch (geochronometer){
 	case  'Ar-Ar':
-		IsoplotR.data4server.J = $('#Jval').val();
-		IsoplotR.data4server.sJ = $('#Jerr').val();
+	    IsoplotR.data4server.J = $('#Jval').val();
+	    IsoplotR.data4server.sJ = $('#Jerr').val();
 	    break;
 	case 'fissiontracks':
 	    switch (IsoplotR.settings.fissiontracks.format){
@@ -2492,50 +2492,50 @@ $(function(){
 	});
     });
     
-	function displayError(message, err) {
-		console.error(message, err);
-		var par = document.createElement("p");
-		par.setAttribute("class", "ploterror"); 
-		par.textContent = err;
-		var myplot = document.getElementById("myplot");
-		myplot.textContent = '';
-		myplot.appendChild(par);
-}
+    function displayError(message, err) {
+	console.error(message, err);
+	var par = document.createElement("p");
+	par.setAttribute("class", "ploterror"); 
+	par.textContent = err;
+	var myplot = document.getElementById("myplot");
+	myplot.textContent = '';
+	myplot.appendChild(par);
+    }
 
     $("#PLOT").click(function(){
 	update();
 	$("#OUTPUT").hide();
 	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
 	var plot = function() {
-		rrpc.call("plot", {
-			data: IsoplotR.data4server,
-			width: myplot.offsetWidth,
-			height: myplot.offsetHeight,
-			Rcommand: getRcommand(IsoplotR)
-		}, function(result, err) {
-			if (err) {
-				displayError("Plot failed.", err);
-				return;
-			}
-			var img = document.createElement("img");
-			img.setAttribute("src", result.src[0]);
-			img.setAttribute("width", result.width[0]);
-			img.setAttribute("height", result.height[0]);
-			var myplot = document.getElementById("myplot");
-			myplot.textContent = '';
-			myplot.appendChild(img);
-		});
+	    rrpc.call("plot", {
+		data: IsoplotR.data4server,
+		width: myplot.offsetWidth,
+		height: myplot.offsetHeight,
+		Rcommand: getRcommand(IsoplotR)
+	    }, function(result, err) {
+		if (err) {
+		    displayError("Plot failed.", err);
+		    return;
+		}
+		var img = document.createElement("img");
+		img.setAttribute("src", result.src[0]);
+		img.setAttribute("width", result.width[0]);
+		img.setAttribute("height", result.height[0]);
+		var myplot = document.getElementById("myplot");
+		myplot.textContent = '';
+		myplot.appendChild(img);
+	    });
 	};
 	plot();
 	document.getElementsByTagName("BODY")[0].onresize = function() {
-		if (timeout.variable) {
-			window.clearTimeout(timeout.variable);
-		}
-		timeout.variable = window.setTimeout(plot, 400);
+	    if (timeout.variable) {
+		window.clearTimeout(timeout.variable);
+	    }
+	    timeout.variable = window.setTimeout(plot, 400);
 	};
     });
 
-	$("#RUN").click(function(){
+    $("#RUN").click(function(){
 	update();
 	$("#myplot").empty();
 	$("#OUTPUT").handsontable('clear');
@@ -2543,57 +2543,61 @@ $(function(){
 	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
 	$("#OUTPUT").show();
 	rrpc.call("run", {
-		data: IsoplotR.data4server,
-		Rcommand: getRcommand(IsoplotR)
+	    data: IsoplotR.data4server,
+	    Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
-		if (err) {
-			displayError('Run failed.', err);
-			return;
-		}
-		$('#OUTPUT').handsontable('populateFromArray', 0, 0,
-			result.data);
-		const hot = $('#OUTPUT').data('handsontable');
-		hot.updateSettings({
-			colHeaders: result.headers
-		});
+	    if (err) {
+		displayError('Run failed.', err);
+		return;
+	    }
+	    $('#OUTPUT').handsontable('populateFromArray', 0, 0,
+				      result.data);
+	    const hot = $('#OUTPUT').data('handsontable');
+	    hot.updateSettings({
+		colHeaders: result.headers
+	    });
 	});
     });
 
-	document.getElementById("PDF").onclick = function() {
+    document.getElementById("PDF").onclick = function() {
 	update();
+	let fname = prompt("Please enter a file name", "IsoplotR.pdf");
 	rrpc.call("pdf", {
-		data: IsoplotR.data4server,
-		Rcommand: getRcommand(IsoplotR)
+	    data: IsoplotR.data4server,
+	    fname: fname,
+	    Rcommand: getRcommand(IsoplotR)
 	}, function(result, err) {
-		if (err) {
-			displayError('Get PDF failed.', err);
-			return;
-		}
-		const downloader = document.getElementById("downloader");
-		downloader.setAttribute("download", result.filename[0]);
-		downloader.setAttribute("href", result.data[0]);
-		downloader.click();
+	    if (err) {
+		displayError('Get PDF failed.', err);
+		return;
+	    }
+	    const downloader = document.getElementById("downloader");
+	    downloader.setAttribute("download", result.filename[0]);
+	    downloader.setAttribute("href", result.data[0]);
+	    downloader.click();
 	});
-	}
+    }
 
-	document.getElementById("CSV").onclick = function() {
-		update();
-		rrpc.call("csv", {
-			data: IsoplotR.data4server,
-			Rcommand: getRcommand(IsoplotR)
-		}, function(result, err) {
-			if (err) {
-				displayError('Get CSV failed.', err);
-				return;
-			}
-			const downloader = document.getElementById("downloader");
-			downloader.setAttribute("download", result.filename[0]);
-			downloader.setAttribute("href", result.data[0]);
-			downloader.click();
-		});
-		}
-	
-	$("#home").click(function(){
+    document.getElementById("CSV").onclick = function() {
+	update();
+	let fname = prompt("Please enter a file name", "ages.csv");
+	rrpc.call("csv", {
+	    data: IsoplotR.data4server,
+	    fname: fname,
+	    Rcommand: getRcommand(IsoplotR)
+	}, function(result, err) {
+	    if (err) {
+		displayError('Get CSV failed.', err);
+		return;
+	    }
+	    const downloader = document.getElementById("downloader");
+	    downloader.setAttribute("download", result.filename[0]);
+	    downloader.setAttribute("href", result.data[0]);
+	    downloader.click();
+	});
+    }
+    
+    $("#home").click(function(){
 	localStorage.setItem("language",IsoplotR.settings.language);
 	$(location).attr('href','home/index.html');
     });
@@ -2601,11 +2605,11 @@ $(function(){
     var IsoplotR;
     var contextual_help = {};
     var dictionary_id = {};
-	var dictionary_class = {};
-	var contextual_help_fallback;
-	var dictionary_id_fallback;
-	var dictionary_class_fallback;
-	var loaded_language = null;
-	const timeout = {};
+    var dictionary_class = {};
+    var contextual_help_fallback;
+    var dictionary_id_fallback;
+    var dictionary_class_fallback;
+    var loaded_language = null;
+    const timeout = {};
     initialise();
 });
