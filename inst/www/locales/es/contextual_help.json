@@ -30,7 +30,7 @@
     "help_mindens": "La densidad mineral es necesaria para convertir la concentración de uranio de ppm a átomos por unidad de volumen.",
     "help_tracklength": "La longitud inicial del track es necesaria para convertir la densidad de superficie (tracs por unidad de área) en densidad de volumen (tracks por unidad de volumen)",
     "help_etchfact": "El factor de eficiencia corrije el sesgo causado por procesos de corte. El valor por defecto para apatito está basado en el promedio de 3 medidas por Iwano & Danhara (1998) y 1 medición por Jonckheere (2003).",
-    "help_LambdaRe187": "Los valores por defecto de la constante de decaimiento de <sup>187</sup>Re y su error estándar son tomados de Selby et al. (2007).",
+    "help_LambdaRe187": "Los valores por defecto de la constante de decaimiento de <sup>187</sup>Re y su error estándar son tomados de Moliar et al. (1996).",
     "help_LambdaSm147": "Los valores por defecto de la constante de decaimiento de <sup>147</sup>Sm y su error estándar son tomados de Villa et al. (2020).",
     "help_rug": "Si es seleccionado, agrega un diagrama de alfombra al KDE, p. ej. un conjunto de líneas verticales que marcan las medidas.",
     "help_LambdaU238": "Los valores por defecto para la constante de decaimiento de <sup>238</sup>U y su error estándar son tomados de Jaffey et al. (1971).",
@@ -45,5 +45,11 @@
     "help_sigdig": "El número de dígitos significativos para el resultado numérico debe ser redondeado. Por ejemplo, si este número es 2, entonces 1.23456 &plusmn; 0.01234 is redondeado to 1.234 &plusmn; 0.012.",
     "help_U238U235": "La relación de la abundancia natural isotópica del Uranio y su error estándar. Valores por defecto son tomados de Hiess et al. (2012). Para usar el valor recomendado de la IUGS de Steiger and J&auml;ger (1977), cambie este a 137.88&plusmn; 0.",
     "help_cex": "El factor por el cual las etiquetas de texto deberían ser ampliadas relativas al valor por defecto (el cual es 1).",
-    "help_pcex": "El factor por el cual los símbolos de ploteo deberían ser aumentados relativos al valor por defecto (el cual es 1)"
+    "help_pcex": "El factor por el cual los símbolos de ploteo deberían ser aumentados relativos al valor por defecto (el cual es 1)",
+    "help_LambdaFission": "El valor por defecto de la constante de decaimiento de fisión es el valor de consenso de Holden and Hoffman (2000). ",
+    "help_projerr": "Al seleccionar este cuadro, propaga la incertidumbre de la correción de la hija inicial en errores de edad de grano único. Tome en cuenta que este procedimiento podría producir considerables correlaciones de error, los cuales no son reportados en la tabla de resultados (output).",
+    "help_LambdaPa231": "El valor por defecto de la constante de decaimiento de <sup>231</sup>Pa, es tomado de Audi et al. (2003).",
+    "help_LambdaRa226": "El valor por defecto de la constante de decaimiento de <sup>226</sup>Ra es tomado de Audi et al. (2003).",
+    "help_LambdaU234": "El valor por defecto de la constante de decaimiento <sup>234</sup>U es tomado de Cheng et al. (2013). Su error estándar excluye todas las fuentes covariantes de incertidumbre analítica con <sup>230</sup>Th.",
+    "help_LambdaTh230": "El valor por defecto de la constante de decaimiento de <sup>230</sup>Th es tomada de Cheng et al. (2013). El error estándar exluye todas las fuentes covariantes de incertidumbre analítica con <sup>234</sup>U."
 }
