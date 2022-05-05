@@ -824,6 +824,13 @@ $(function(){
 	    } else {
 		$('.show4tanchor').hide();
 	    }
+	    if (pd.y0option==2){
+		$('.show4y0option2').show();
+	    } else if (pd.y0option==3){
+		$('.show4y0option3').show();
+	    } else {
+		$('.show4y0option1').show();
+	    }
 	case 'regression':
 	case 'helioplot':
 	    switch (pd.model){
