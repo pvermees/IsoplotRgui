@@ -129,6 +129,7 @@
     "isochron": {
 	"UPbtype": 1,
 	"ThUtype": 2,
+	"y0option": 1,
 	"model": 1,
 	"exterr": "FALSE",
 	"joint": "TRUE",

@@ -143,7 +143,10 @@ function getOptions(prefs){
 		out += ",anchor=c(2," + pdsettings.tanchor + ")";
 	    }
 	}
-	if (geochronometer=='Th-U'){ out += ",type=" + pdsettings.ThUtype; }
+	if (geochronometer=='Th-U'){
+	    out += ",type=" + pdsettings.ThUtype;
+	    out += ",y0option=" + pdsettings.y0option;
+	}
 	if (geochronometer!='U-Th-He'){ out += ",exterr=" + pdsettings.exterr; }
     case 'regression':
 	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto'){

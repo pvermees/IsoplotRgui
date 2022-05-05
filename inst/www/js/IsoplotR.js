@@ -1211,6 +1211,8 @@ $(function(){
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.ThUtype+']').
 		prop('selected', 'selected');
+	    $('#y0option option[value='+set.y0option+']').
+		prop('selected', 'selected');
 	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
 	    $('#anchor-option option[value='+set.anchor+']').
@@ -1604,6 +1606,7 @@ $(function(){
 	case 'isochron':
 	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
 	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
+	    pdsettings.y0option = getOption("#y0option");
 	    pdsettings.anchor = getOption("#anchor-option")
 	    pdsettings.tanchor = getNumber('#tanchor');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
