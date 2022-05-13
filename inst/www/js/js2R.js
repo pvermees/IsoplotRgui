@@ -481,7 +481,7 @@ function getRcommand(prefs){
 	       ",option=" + gcsettings.PaU[1] + ")";
 	out += ")";
     } else if (geochronometer=='Th-U'){
-	out += ",Th02=" + concatenate(gcsettings.Th02);
+	out += ",Th02i=" + concatenate(gcsettings.Th02i);
 	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
     }
     out += ",ierr=" + prefs.settings.ierr;

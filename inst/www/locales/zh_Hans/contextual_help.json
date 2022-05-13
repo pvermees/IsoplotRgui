@@ -64,7 +64,7 @@
     "help_rYZ_detritus": "指定测得的碎屑的现代<sup>232</sup>Th/<sup>238</sup>U和<sup>234</sup>U/<sup>238</sup>U比值之间的误差相关性。",
     "help_rXZ_detritus": "指定测得的碎屑的现代<sup>230</sup>Th/<sup>238</sup>U和<sup>234</sup>U/<sup>238</sup>U比值之间的误差相关性。",
     "help_rXY_detritus": "指定测得的碎屑的现代<sup>230</sup>Th/<sup>238</sup>U和<sup>232</sup>Th/<sup>238</sup>U比值之间的误差相关性。",
-    "help_Th02_ThU": "指定假定的碎屑初始<sup>230</sup>Th/<sup>232</sup>Th活度比activity ratio及其标准误差。",
+    "help_Th02i_ThU": "指定假定的碎屑初始<sup>230</sup>Th/<sup>232</sup>Th活度比activity ratio及其标准误差。",
     "help_col": "绘图符号的轮廓颜色（例如，<tt>black</tt>，<tt>red</tt>，<tt>green</tt>）。",
     "help_colmap": "指定以下调色板之一：<tt>rainbow</tt>, <tt>cm.colors</tt>, <tt>topo.colors</tt>, <tt>terrain.colors</tt> 或 <tt>heat.colors</tt>。",
     "help_alpha": "设置误差椭圆的概率临界值（α）和100(1-α)%置信区间。",

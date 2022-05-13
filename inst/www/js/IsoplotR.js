@@ -537,6 +537,20 @@ $(function(){
 	case 'Th-U':
 	    $('.show4ThU').show();
 	    $('.hide4ThU').hide();
+	    switch (set.detritus){
+	    case 2:
+		$('.show4Th230corr').show();
+		$('.show4assumedTh230corr').show();
+		$('.show4measuredTh230corr').hide();
+		break;
+	    case 3:
+		$('.show4Th230corr').show();
+		$('.show4assumedTh230corr').hide();
+		$('.show4measuredTh230corr').show();
+		break;
+	    default:
+		$('.show4Th230corr').hide();
+	    }
 	    switch (set.format){
 	    case 1:
 		$('.show4ThU1').show();
@@ -554,26 +568,6 @@ $(function(){
 		$('.show4ThU4').show();
 		$('.hide4ThU4').hide();
 		break;
-	    }
-	    if (set.format<3){
-		switch (set.detritus){
-		case 2:
-		    $('.show4Th230corr').show();
-		    $('.show4assumedTh230corr').show();
-		    $('.show4measuredTh230corr').hide();
-		    break;
-		case 3:
-		    $('.show4Th230corr').show();
-		    $('.show4assumedTh230corr').hide();
-		    $('.show4measuredTh230corr').show();
-		    break;
-		default:
-		    $('.show4Th230corr').hide();
-		}
-	    } else {
-		$('.show4Th230corr').show();
-		$('.show4assumedTh230corr').show();
-		$('.show4measuredTh230corr').hide();
 	    }
 	    break;
 	case 'Ar-Ar':
@@ -989,8 +983,8 @@ $(function(){
 	    $('#detritus option[value='+set.detritus+']').
 		prop('selected', 'selected');
 	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
-	    $('#Th02').val(set.Th02[0]);
-	    $('#errTh02').val(set.Th02[1]);
+	    $('#Th02i').val(set.Th02i[0]);
+	    $('#errTh02i').val(set.Th02i[1]);
 	    $('#Th0U8').val(set.Th02U48[0]);
 	    $('#errTh0U8').val(set.Th02U48[1]);
 	    $('#Th2U8').val(set.Th02U48[2]);
@@ -1443,8 +1437,8 @@ $(function(){
 	    break;
 	case 'Th-U':
 	    gcsettings.detritus = getOption("#detritus");
-	    gcsettings.Th02[0] = getNumber("#Th02");
-	    gcsettings.Th02[1] = getNumber("#errTh02");
+	    gcsettings.Th02i[0] = getNumber("#Th02i");
+	    gcsettings.Th02i[1] = getNumber("#errTh02i");
 	    gcsettings.Th02U48[0] = getNumber("#Th0U8");
 	    gcsettings.Th02U48[1] = getNumber("#errTh0U8");
 	    gcsettings.Th02U48[2] = getNumber("#Th2U8");
