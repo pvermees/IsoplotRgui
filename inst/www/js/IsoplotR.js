@@ -541,16 +541,18 @@ $(function(){
 	    case 2:
 		$('.show4assumedTh230corr').hide();
 		$('.show4measuredTh230corr').show();
-		if (set.format>2) $('.show4Th0i2').show();
-		else $('.show4Th0i2').hide();
+		if (set.format>2) $('.show4U8Th2').show();
+		else $('.show4U8Th2').hide();
 		break;
 	    case 3:
 		$('.show4assumedTh230corr').show();
 		$('.show4measuredTh230corr').hide();
+		$('.show4U8Th2').hide();
 		break;
 	    default:
 		$('.show4assumedTh230corr').hide();
 		$('.show4measuredTh230corr').hide();
+		$('.show4U8Th2').hide();
 	    }
 	    switch (set.format){
 	    case 1:
@@ -813,7 +815,6 @@ $(function(){
 	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
-	    $(".show4Th230corr").hide();
 	    if (pd.anchor == 2){
 		$('.show4tanchor').show();
 	    } else {
@@ -2312,10 +2313,23 @@ $(function(){
 	}
     }
     
+    $.Th0i = function(){
+	let set = IsoplotR.settings['Th-U'];
+	if (set.format>2 && set.Th0i>2){
+	    set.Th0i = 0;
+	    $('#Th0i option[value=0]').prop('selected', 'selected');
+	}
+    }
+
+
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
-	if (chronometer=='fissiontracks'){
+	switch (chronometer){
+	case 'fissiontracks':
 	    $.transformation();
+	    break;
+	case 'Th-U':
+	    $.Th0i();
 	}
 	IsoplotR = populate(IsoplotR,true);
 	errconvert();

@@ -226,6 +226,7 @@
     "help_LambdaSm147": "<sup>147</sup>Sm decay constant:",
     "help_plateau": "Extract plateau?",
     "help_Th0i": "initial <sup>230</sup>Th correction:",
+    "help_U8Th2": "whole rock <sup>238</sup>U/<sup>232</sup>Th:",
     "help_LambdaU234": "<sup>234</sup>U decay constant:",
     "help_LambdaTh230": "<sup>230</sup>Th decay constant:",
     "detrital_correction_isochron": "isochron",
