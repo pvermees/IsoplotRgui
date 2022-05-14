@@ -537,19 +537,20 @@ $(function(){
 	case 'Th-U':
 	    $('.show4ThU').show();
 	    $('.hide4ThU').hide();
-	    switch (set.detritus){
+	    switch (set.Th0i){
 	    case 2:
-		$('.show4Th230corr').show();
+		$('.show4assumedTh230corr').hide();
+		$('.show4measuredTh230corr').show();
+		if (set.format>2) $('.show4Th0i2').show();
+		else $('.show4Th0i2').hide();
+		break;
+	    case 3:
 		$('.show4assumedTh230corr').show();
 		$('.show4measuredTh230corr').hide();
 		break;
-	    case 3:
-		$('.show4Th230corr').show();
-		$('.show4assumedTh230corr').hide();
-		$('.show4measuredTh230corr').show();
-		break;
 	    default:
-		$('.show4Th230corr').hide();
+		$('.show4assumedTh230corr').hide();
+		$('.show4measuredTh230corr').hide();
 	    }
 	    switch (set.format){
 	    case 1:
@@ -982,9 +983,9 @@ $(function(){
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('#detritus option[value='+set.detritus+']').
+	    $('#Th0i option[value='+set.Th0i+']').
 		prop('selected', 'selected');
-	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
+	    $('#U8Th2').val(set.U8Th2);
 	    $('#Th02i').val(set.Th02i[0]);
 	    $('#errTh02i').val(set.Th02i[1]);
 	    $('#Th0U8').val(set.Th02U48[0]);
@@ -1438,7 +1439,8 @@ $(function(){
 	    cst.iratio.Pb207Pb204[1] = getNumber('#errPb207Pb204');
 	    break;
 	case 'Th-U':
-	    gcsettings.detritus = getOption("#detritus");
+	    gcsettings.Th0i = getOption("#Th0i");
+	    gcsettings.U8Th2 = getNumber("#U8Th2");
 	    gcsettings.Th02i[0] = getNumber("#Th02i");
 	    gcsettings.Th02i[1] = getNumber("#errTh02i");
 	    gcsettings.Th02U48[0] = getNumber("#Th0U8");
@@ -1765,7 +1767,6 @@ $(function(){
 	    pdsettings.model = getOption("#evolution-isochron-models");
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
 	    break;
 	default:
 	}
@@ -1790,9 +1791,6 @@ $(function(){
 	    break;
 	case 'K-Ca':
 	    gcsettings.i2i = truefalse("#i2iKCa");
-	    break;
-	case 'Th-U':
-	    gcsettings.i2i = truefalse("#i2iThU");
 	    break;
 	case 'Rb-Sr':
 	    gcsettings.i2i = truefalse("#i2iRbSr");

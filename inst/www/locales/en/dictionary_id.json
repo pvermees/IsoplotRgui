@@ -225,7 +225,7 @@
     "help_Nd150Nd144": "<sup>150</sup>Nd/<sup>144</sup>Nd ratio:",
     "help_LambdaSm147": "<sup>147</sup>Sm decay constant:",
     "help_plateau": "Extract plateau?",
-    "help_detritus": "detrital <sup>230</sup>Th correction:",
+    "help_Th0i": "initial <sup>230</sup>Th correction:",
     "help_LambdaU234": "<sup>234</sup>U decay constant:",
     "help_LambdaTh230": "<sup>230</sup>Th decay constant:",
     "detrital_correction_isochron": "isochron",

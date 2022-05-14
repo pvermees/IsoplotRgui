@@ -69,7 +69,8 @@ function getOptions(prefs){
 	}
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -117,7 +118,7 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
-	out += ",detritus=" + gcsettings.detritus;
+	out += ",Th0i=" + gcsettings.Th0i;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels()";
@@ -169,7 +170,8 @@ function getOptions(prefs){
     case 'average':
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -247,7 +249,8 @@ function getOptions(prefs){
 	out += ",adaptive=" + pdsettings.adaptive;
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -306,7 +309,8 @@ function getOptions(prefs){
 	out += ",verticals=" + pdsettings.verticals;
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -408,9 +412,8 @@ function getOptions(prefs){
 	}
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",i2i=" + gcsettings.i2i;
 	    out += ",isochron=FALSE";
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
 	    break;
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -481,6 +484,7 @@ function getRcommand(prefs){
 	       ",option=" + gcsettings.PaU[1] + ")";
 	out += ")";
     } else if (geochronometer=='Th-U'){
+	out += ",U8Th2=" + gcsettings.U8Th2;
 	out += ",Th02i=" + concatenate(gcsettings.Th02i);
 	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
     }

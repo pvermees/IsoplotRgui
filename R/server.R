@@ -43,7 +43,7 @@ encodePlotAsPdf <- function(width, height, plotFn) {
 }
 
 selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
-                           Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
+                           U8Th2=0,Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
     nr <- as.numeric(input$nc)
     nc <- as.numeric(input$nc)
     values <- matrix(as.character(input$data), ncol=nc)
@@ -247,8 +247,8 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
     if (identical(method,'U-Pb')){
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,d=d)
     } else if (identical(method,'Th-U')){
-        out <- IsoplotR::read.data(mat,method=method,format=format,
-                                    ierr=ierr,Th02i=Th02i,Th02U48=Th02U48)
+        out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,
+                                   U8Th2=U8Th2,Th02i=Th02i,Th02U48=Th02U48)
     } else {
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr)
     }
