@@ -1,0 +1,7 @@
+start=39201
+end=39201
+cmd=$1
+shift
+for p in $(seq ${start} ${end})
+do systemctl --no-pager ${cmd} isoplotr@${p} $@
+done
