@@ -18,7 +18,7 @@ With a Debian-based Linux distribution (such as Ubuntu) you
 can use our installer to set up IsoplotR quickly and easily.
 
 ```sh
-sudo apt install isoplotr_1.0-1.deb
+sudo apt install isoplotr.deb
 ```
 
 Now please skip to the **Configuring IsoplotR** section
@@ -75,10 +75,10 @@ sudo -Hu wwwrunner Rscript -e \
 
 ### Create a systemd service for *IsoplotR*
 
-Copy the file `isoplotr_1.0-1/etc/systemd/system/isoplotr@.service` into
+Copy the file `isoplotr/etc/systemd/system/isoplotr@.service` into
 `/etc/systemd/system/`.
 
-Copy all the files in `isoplotr_1.0-1/usr/local/sbin/` into
+Copy all the files in `isoplotr/usr/local/sbin/` into
 `/usr/local/sbin/`. `isoplotrctl` is your script for interacting with the
 **isoplotr** service; you can start it with:
 
@@ -94,8 +94,8 @@ Instead of `start`, you can also use the following verbs:
 
 ### Expose *IsoplotR* with *nginx*
 
-Copy the file `isoplotr_1.0-1/etc/nginx/app.d/isoplotr.conf` into
-`/etc/nginx/app.d/` and `isoplotr_1.0-1/etc/nginx/conf.d/isoplotr.conf`
+Copy the file `isoplotr/etc/nginx/app.d/isoplotr.conf` into
+`/etc/nginx/app.d/` and `isoplotr/etc/nginx/conf.d/isoplotr.conf`
 into `/etc/nginx/conf.d/`. Now restart *nginx* with:
 
 ```sh
@@ -112,7 +112,7 @@ section below.
 To ensure that **IsoplotR** is up-to-date, it is a good idea to set up
 auto-updating.
 
-Copy the file `isoplotr_1.0-1/etc/cron.weekly/isoplotr` into
+Copy the file `isoplotr/etc/cron.weekly/isoplotr` into
 `/etc/cron.weekly/`. This sets up the updating script to run every
 week (normally Sunday morning). You can run it yourself at any
 time with:
