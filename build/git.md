@@ -222,8 +222,8 @@ we have been using scrolls to the end of the log so that you are
 looking at the most recent entries immediately.
 
 If you need to set a custom timeout (say, to 6.5 seconds in this
-example), change the `ExecStart` line in `isoplotr.service` like this:
+example), change the `ExecStart` line in `isoplotr@.service` like this:
 
 ```sh
-ExecStart=/usr/bin/Rscript -e IsoplotRgui::daemon(3839, timeout=6.5)
+ExecStart=/usr/bin/Rscript -e "IsoplotRgui::daemon(host='127.0.0.1', port=%i, timeout=6.5)"
 ```
