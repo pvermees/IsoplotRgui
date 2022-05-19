@@ -537,6 +537,23 @@ $(function(){
 	case 'Th-U':
 	    $('.show4ThU').show();
 	    $('.hide4ThU').hide();
+	    switch (set.Th0i){
+	    case 2:
+		$('.show4assumedTh230corr').hide();
+		$('.show4measuredTh230corr').show();
+		if (set.format>2) $('.show4U8Th2').show();
+		else $('.show4U8Th2').hide();
+		break;
+	    case 3:
+		$('.show4assumedTh230corr').show();
+		$('.show4measuredTh230corr').hide();
+		$('.show4U8Th2').hide();
+		break;
+	    default:
+		$('.show4assumedTh230corr').hide();
+		$('.show4measuredTh230corr').hide();
+		$('.show4U8Th2').hide();
+	    }
 	    switch (set.format){
 	    case 1:
 		$('.show4ThU1').show();
@@ -554,26 +571,6 @@ $(function(){
 		$('.show4ThU4').show();
 		$('.hide4ThU4').hide();
 		break;
-	    }
-	    if (set.format<3){
-		switch (set.detritus){
-		case 2:
-		    $('.show4Th230corr').show();
-		    $('.show4assumedTh230corr').show();
-		    $('.show4measuredTh230corr').hide();
-		    break;
-		case 3:
-		    $('.show4Th230corr').show();
-		    $('.show4assumedTh230corr').hide();
-		    $('.show4measuredTh230corr').show();
-		    break;
-		default:
-		    $('.show4Th230corr').hide();
-		}
-	    } else {
-		$('.show4Th230corr').show();
-		$('.show4assumedTh230corr').show();
-		$('.show4measuredTh230corr').hide();
 	    }
 	    break;
 	case 'Ar-Ar':
@@ -818,11 +815,19 @@ $(function(){
 	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
-	    $(".show4Th230corr").hide();
 	    if (pd.anchor == 2){
 		$('.show4tanchor').show();
 	    } else {
 		$('.show4tanchor').hide();
+	    }
+	    if (geochronometer=='Th-U' & set.format<3){
+		if (pd.y0option==2){
+		    $('.show4y0option2').show();
+		} else if (pd.y0option==3){
+		    $('.show4y0option3').show();
+		} else {
+		    $('.show4y0option1').show();
+		}
 	    }
 	case 'regression':
 	case 'helioplot':
@@ -979,11 +984,11 @@ $(function(){
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
 		prop('selected', 'selected');
-	    $('#detritus option[value='+set.detritus+']').
+	    $('#Th0i option[value='+set.Th0i+']').
 		prop('selected', 'selected');
-	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
-	    $('#Th02').val(set.Th02[0]);
-	    $('#errTh02').val(set.Th02[1]);
+	    $('#U8Th2').val(set.U8Th2);
+	    $('#Th02i').val(set.Th02i[0]);
+	    $('#errTh02i').val(set.Th02i[1]);
 	    $('#Th0U8').val(set.Th02U48[0]);
 	    $('#errTh0U8').val(set.Th02U48[1]);
 	    $('#Th2U8').val(set.Th02U48[2]);
@@ -1211,6 +1216,8 @@ $(function(){
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.ThUtype+']').
 		prop('selected', 'selected');
+	    $('#y0option option[value='+set.y0option+']').
+		prop('selected', 'selected');
 	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
 	    $('#anchor-option option[value='+set.anchor+']').
@@ -1433,9 +1440,10 @@ $(function(){
 	    cst.iratio.Pb207Pb204[1] = getNumber('#errPb207Pb204');
 	    break;
 	case 'Th-U':
-	    gcsettings.detritus = getOption("#detritus");
-	    gcsettings.Th02[0] = getNumber("#Th02");
-	    gcsettings.Th02[1] = getNumber("#errTh02");
+	    gcsettings.Th0i = getOption("#Th0i");
+	    gcsettings.U8Th2 = getNumber("#U8Th2");
+	    gcsettings.Th02i[0] = getNumber("#Th02i");
+	    gcsettings.Th02i[1] = getNumber("#errTh02i");
 	    gcsettings.Th02U48[0] = getNumber("#Th0U8");
 	    gcsettings.Th02U48[1] = getNumber("#errTh0U8");
 	    gcsettings.Th02U48[2] = getNumber("#Th2U8");
@@ -1604,6 +1612,7 @@ $(function(){
 	case 'isochron':
 	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
 	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
+	    pdsettings.y0option = getOption("#y0option");
 	    pdsettings.anchor = getOption("#anchor-option")
 	    pdsettings.tanchor = getNumber('#tanchor');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
@@ -1759,7 +1768,6 @@ $(function(){
 	    pdsettings.model = getOption("#evolution-isochron-models");
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
-	    i2i(geochronometer);
 	    break;
 	default:
 	}
@@ -1784,9 +1792,6 @@ $(function(){
 	    break;
 	case 'K-Ca':
 	    gcsettings.i2i = truefalse("#i2iKCa");
-	    break;
-	case 'Th-U':
-	    gcsettings.i2i = truefalse("#i2iThU");
 	    break;
 	case 'Rb-Sr':
 	    gcsettings.i2i = truefalse("#i2iRbSr");
@@ -2308,10 +2313,23 @@ $(function(){
 	}
     }
     
+    $.Th0i = function(){
+	let set = IsoplotR.settings['Th-U'];
+	if (set.format>2 && set.Th0i>2){
+	    set.Th0i = 0;
+	    $('#Th0i option[value=0]').prop('selected', 'selected');
+	}
+    }
+
+
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
-	if (chronometer=='fissiontracks'){
+	switch (chronometer){
+	case 'fissiontracks':
 	    $.transformation();
+	    break;
+	case 'Th-U':
+	    $.Th0i();
 	}
 	IsoplotR = populate(IsoplotR,true);
 	errconvert();

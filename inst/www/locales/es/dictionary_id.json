@@ -231,7 +231,7 @@
     "detrital_correction_isochron": "isocrón",
     "help_LambdaTh230": "constante de decaimiento <sup>230</sup>Th:",
     "help_LambdaU234": "constante de decaimiento <sup>234</sup>U",
-    "help_detritus": "correción detrítica <sup>230</sup>Th",
+    "help_Th0i": "correción detrítica <sup>230</sup>Th",
     "help_U48_UPb": "desequilibrio <sup>234</sup>U:",
     "discoption_p": "valor \"p\"",
     "discoption_c": "distancia de concordia",
