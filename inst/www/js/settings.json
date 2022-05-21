@@ -202,7 +202,6 @@
 	"ncol": "auto",
 	"xlab": "age [Ma]",
 	"showhist": "TRUE",
-	"binwidth": "auto",
 	"bw": "auto",
 	"samebandwidth": "TRUE",
 	"normalise": "TRUE",
