@@ -1,0 +1,12 @@
+[Unit]
+Description=isoplotr
+After=network.target
+
+[Service]
+Type=simple
+User=wwwrunner
+ExecStart=/usr/bin/Rscript -e "IsoplotRgui::daemon(host='127.0.0.1', port=%i)"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
