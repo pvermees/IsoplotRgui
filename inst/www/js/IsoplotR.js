@@ -1865,7 +1865,7 @@ $(function(){
 	showOrHide();
     }
 
-    function selectGeochronometer(){
+    function selectGeochronometer(open=false){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
 	$("#Jdiv").hide();
@@ -1875,11 +1875,11 @@ $(function(){
 	switch (geochronometer){
 	case 'U-Pb':
 	    setSelectedMenus(['concordia','isochron','radial',
-			      'average','KDE','CAD','ages']);
+			      'average','KDE','CAD','ages'],open);
 	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus(['isochron','radial','spectrum',
-			      'average','KDE','CAD','ages']);
+			      'average','KDE','CAD','ages'],open);
 	    $("#Jdiv").show();
 	    $(".helioplot").hide()
 	    break;
@@ -1891,43 +1891,43 @@ $(function(){
 	case 'Re-Os':
 	case 'Lu-Hf':
 	    setSelectedMenus(['isochron','radial','average',
-			      'KDE','CAD','ages']);
+			      'KDE','CAD','ages'],open);
 	    break;
 	case 'U-Th-He':
 	    setSelectedMenus(['helioplot','isochron',
 			      'radial','average',
-			      'KDE','CAD','ages']);
+			      'KDE','CAD','ages'],open);
 	    break;
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    setSelectedMenus(['radial','average','KDE',
-			      'CAD','set-zeta','ages']);
+			      'CAD','set-zeta','ages'],open);
 	    if (format < 3){ $("#zetaDiv").show(); }
 	    if (format < 2){ $("#rhoDdiv").show(); }
 	    if (format > 1){ $("#spotSizeDiv").show(); }
 	    break;
 	case 'Th-U':
 	    setSelectedMenus(['evolution','isochron','radial',
-			      'average','KDE','CAD','ages']);
+			      'average','KDE','CAD','ages'],open);
 	    break;
 	case 'detritals':
-	    setSelectedMenus(['KDE','CAD','MDS']);
+	    setSelectedMenus(['KDE','CAD','MDS'],open);
 	    break;
 	case 'other':
 	    setSelectedMenus(['radial','regression','spectrum',
-			      'average','KDE','CAD']);
+			      'average','KDE','CAD'],open);
 	    break;
 	default:
 	    setSelectedMenus(['concordia','helioplot','evolution','isochron',
 			      'radial','regression','spectrum','average',
-			      'KDE','CAD','set-zeta','MDS','ages']);
+			      'KDE','CAD','set-zeta','MDS','ages'],open);
 	}
 	IsoplotR = populate(IsoplotR,false);
 	errconvert();
 	$("#plotdevice").selectmenu("refresh");
     }
 
-    function setSelectedMenus(options){
+    function setSelectedMenus(options,open=false){
 	var html = '';
 	if ($.inArray('concordia',options)>-1)
 	    html += '<option id="concordia" value="concordia">concordia</option>';
@@ -1957,8 +1957,12 @@ $(function(){
 	    html += '<option id="ages" value="ages">ages</option>';
 	$('#plotdevice').html(html);
 	$(options[0]).prop('selected',true);
-	IsoplotR.settings.plotdevice = 
-	    $('option:selected', $("#plotdevice")).attr('value');
+	if (open){
+	    $('#plotdevice').val(IsoplotR.settings.plotdevice);
+	} else {
+	    IsoplotR.settings.plotdevice = 
+		$('option:selected', $("#plotdevice")).attr('value');
+	}
     }
 
     // populate the handsontable with stored data
@@ -2427,7 +2431,7 @@ $(function(){
 	    var set = IsoplotR.settings;
 	    $("#" + set.geochronometer ).prop("selected",true);
 	    $("#geochronometer").selectmenu("refresh");
-	    selectGeochronometer()
+	    selectGeochronometer(true)
 	    json2handson();
 	    translate();
 	}
