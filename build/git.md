@@ -132,7 +132,7 @@ sudo systemctl restart nginx
 sudo isoplotrctl start
 ```
 
-and visited [http://localhost/isoplotr/] but only got a '502 Bad
+and visited [http://localhost/isoplotr/] but only got a `502 Bad
 Gateway` error, nginx is probably not including the configuration
 file `/etc/nginx/app.d/isoplotr.conf`. Check the file
 `/etc/nginx/sites-available/default` and look for the `server` block

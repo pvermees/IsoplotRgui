@@ -56,19 +56,22 @@ $(function(){
             // allow tests to initiate translation, even with unsupported languages
             window.translatePage = function() {
                 IsoplotR.settings.language = this.localStorage.getItem("language");
-		translate();
+                translate();
             }
 
             translate();
             welcome();
             $("#INPUT").handsontable({ // add change handler asynchronously
-		afterChange: function(changes,source){
+                afterChange: function(changes,source){
                     getData4Server(); // placed here because we don't want to
                     handson2json();   // call the change handler until after
-		}                     // IsoplotR has been initialised
+                }                     // IsoplotR has been initialised
             });
-	});
-	rrpc.initialize();
+            if (shinylight_initial_data) {
+                applyJSON(shinylight_initial_data);
+            }
+        });
+        rrpc.initialize();
     };
 
     function dnc(){
@@ -2400,11 +2403,8 @@ $(function(){
 	showOrHide();
     });
 
-    $("#OPEN").on('change', function(e){
-	var file = e.target.files[0];
-	var reader = new FileReader();
-	reader.onload = function(e){
-	    var newIsoplotR = JSON.parse(this.result);
+    function applyJSON(json) {
+	    var newIsoplotR = JSON.parse(json);
 	    IsoplotR = patchJSON(newIsoplotR,IsoplotR);
 	    var set = IsoplotR.settings;
 	    $("#" + set.geochronometer ).prop("selected",true);
@@ -2412,8 +2412,15 @@ $(function(){
 	    selectGeochronometer()
 	    json2handson();
 	    translate();
-	}
-	reader.readAsText(file);
+    }
+
+    $("#OPEN").on('change', function(e){
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e){
+            applyJSON(this.result);
+        }
+        reader.readAsText(file);
     });
 
     $("#SAVE").click(function( event ) {
