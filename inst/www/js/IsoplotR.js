@@ -71,7 +71,7 @@ $(function(){
                 applyJSON(shinylight_initial_data);
             }
         });
-        rrpc.initialize();
+        shinylight.initialize();
     };
 
     function dnc(){
@@ -463,7 +463,7 @@ $(function(){
 		$(".show4cutoffdisc").show();
 		break;
 	    }
-	    if (set.diseq=='TRUE'){
+	    if (set.diseq){
 		$(".show4diseq").show();
 		if (set.U48[1]>0){
 		    $(".show4U48diseq").show();
@@ -811,7 +811,7 @@ $(function(){
 	    }
 	    break;
 	case 'average':
-	    if (pd.randomeffects=='TRUE'){
+	    if (pd.randomeffects){
 		$('.show4randomeffects').show();
 		$('.hide4randomeffects').hide();
 	    } else {
@@ -845,7 +845,7 @@ $(function(){
 	    }
 	    break;
 	case 'radial':
-	    if (pd.shownumbers=='TRUE'){
+	    if (pd.shownumbers){
 		$('#radial-pch').hide();
 	    } else {
 		$('#radial-pch').show();
@@ -876,14 +876,14 @@ $(function(){
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
-	    if (pd.transform=='TRUE'){
+	    if (pd.transform){
 		$('.show4evotrans').show();
 		$('.hide4evotrans').hide();
 	    } else {
 		$('.show4evotrans').hide();
 		$('.hide4evotrans').show();
 	    }
-	    if (pd.isochron=='TRUE'){
+	    if (pd.isochron){
 		switch (pd.model){
 		case 1:
 		    $('.show4model1').show();
@@ -908,7 +908,7 @@ $(function(){
 	    $(".hide4zeta").hide();
 	    break;
 	case 'MDS':
-	    if (pd.classical=='TRUE'){
+	    if (pd.classical){
 		$('#shepard-box').hide();
 	    } else {
 		$('#shepard-box').show();
@@ -943,7 +943,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#PaU-diseq option[value='+set.PaU[1]+']').
 		prop('selected', 'selected');
-	    $('#diseq').prop('checked',set.diseq=='TRUE');
+	    $('#diseq').prop('checked',set.diseq);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
@@ -984,7 +984,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#detritus option[value='+set.detritus+']').
 		prop('selected', 'selected');
-	    $('#i2iThU').prop('checked',set.i2i=='TRUE');
+	    $('#i2iThU').prop('checked',set.i2i);
 	    $('#Th02').val(set.Th02[0]);
 	    $('#errTh02').val(set.Th02[1]);
 	    $('#Th0U8').val(set.Th02U48[0]);
@@ -1020,8 +1020,8 @@ $(function(){
 	    $('#errPb206Pb204').val(cst.iratio.Pb206Pb204[1]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
 	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
+	    $('#inverse').prop('checked',set.inverse);
+	    $('#projerr').prop('checked',set.projerr);
 	    break;
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
@@ -1030,9 +1030,9 @@ $(function(){
 	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
-	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iArAr').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Th-Pb':
 	    $('#ThPb-formats option[value='+set.format+']').
@@ -1041,9 +1041,9 @@ $(function(){
 	    $('#errPb208Pb204').val(cst.iratio.Pb208Pb204[1]);
 	    $('#LambdaTh232').val(cst.lambda.Th232[0]),
 	    $('#errLambdaTh232').val(cst.lambda.Th232[1]),
-	    $('#i2iThPb').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iThPb').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'K-Ca':
 	    $('#KCa-formats option[value='+set.format+']').
@@ -1052,9 +1052,9 @@ $(function(){
 	    $('#errCa40Ca44').val(cst.iratio.Ca40Ca44[1]);
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
-	    $('#i2iKCa').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iKCa').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Rb-Sr':
 	    $('#RbSr-formats option[value='+set.format+']').
@@ -1069,9 +1069,9 @@ $(function(){
 	    $('#errSr88Sr86').val(cst.iratio.Sr88Sr86[1]);
 	    $('#LambdaRb87').val(cst.lambda.Rb87[0]);
 	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
-	    $('#i2iRbSr').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iRbSr').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Sm-Nd':
 	    $('#SmNd-formats option[value='+set.format+']').
@@ -1102,9 +1102,9 @@ $(function(){
 	    $('#errNd150Nd144').val(cst.iratio.Nd150Nd144[1]);
 	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
-	    $('#i2iSmNd').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iSmNd').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Re-Os':
 	    $('#ReOs-formats option[value='+set.format+']').
@@ -1125,9 +1125,9 @@ $(function(){
 	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]);
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
-	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iReOs').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Lu-Hf':
 	    $('#LuHf-formats option[value='+set.format+']').
@@ -1146,9 +1146,9 @@ $(function(){
 	    $('#errHf180Hf177').val(cst.iratio.Hf180Hf177[1]);
 	    $('#LambdaLu176').val(cst.lambda.Lu176[0]);
 	    $('#errLambdaLu176').val(cst.lambda.Lu176[1]);
-	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iLuHf').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'U-Th-He':
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -1201,8 +1201,8 @@ $(function(){
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
 	    $('#alpha').val(set.alpha);
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
+	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#sigdig').val(set.sigdig);
 	    $('#ellipsefill').val(set.ellipsefill);
 	    $('#ellipsestroke').val(set.ellipsestroke);
@@ -1218,12 +1218,12 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#anchor-option option[value='+set.anchor+']').
 		prop('selected', 'selected');
-	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
-	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
-	    $('#joint').prop('checked',set.joint=='TRUE')
+	    $('#isochron-exterr').prop('checked',set.exterr)
+	    $('#PbPb-growth').prop('checked',set.growth)
+	    $('#joint').prop('checked',set.joint)
 	    $('#tanchor').val(set.tanchor);
 	case 'regression':
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#isochron-minx').val(set.minx);
 	    $('#isochron-maxx').val(set.maxx);
 	    $('#isochron-miny').val(set.miny);
@@ -1242,7 +1242,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#mixtures option[value='+set.numpeaks+']').
 		prop('selected', 'selected');
-	    var shownumbers = (set.shownumbers=='TRUE');
+	    var shownumbers = (set.shownumbers);
 	    $('#shownumbers').prop('checked',shownumbers);
 	    $('#pch').val(set.pch);
 	    if (shownumbers){ $('#radial-pch').hide(); }
@@ -1256,13 +1256,13 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
 	    break;
 	case 'average':
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#outliers').prop('checked',set.outliers=='TRUE');
-	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
-	    $('#ranked').prop('checked',set.ranked=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
+	    $('#outliers').prop('checked',set.outliers);
+	    $('#randomeffects').prop('checked',set.randomeffects);
+	    $('#ranked').prop('checked',set.ranked);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#mint').val(set.mint);
@@ -1273,9 +1273,9 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'spectrum':
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#plateau').prop('checked',set.plateau=='TRUE');
-	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
+	    $('#plateau').prop('checked',set.plateau);
+	    $('#randomeffects').prop('checked',set.randomeffects);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(IsoplotR.settings.par.cex);
@@ -1284,21 +1284,21 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'KDE':
-	    $('#showhist').prop('checked',set.showhist=='TRUE');
-	    $('#adaptive').prop('checked',set.adaptive=='TRUE');
-	    $('#samebandwidth').prop('checked',set.samebandwidth=='TRUE');
-	    $('#normalise').prop('checked',set.normalise=='TRUE');
-	    $('#log').prop('checked',set.log=='TRUE');
+	    $('#showhist').prop('checked',set.showhist);
+	    $('#adaptive').prop('checked',set.adaptive);
+	    $('#samebandwidth').prop('checked',set.samebandwidth);
+	    $('#normalise').prop('checked',set.normalise);
+	    $('#log').prop('checked',set.log);
 	    $('#minx').val(set.minx);
 	    $('#maxx').val(set.maxx);
 	    $('#bandwidth').val(set.bandwidth);
 	    $('#binwidth').val(set.binwidth);
-	    $('#rugdetritals').prop('checked',set.rugdetritals=='TRUE');
-	    $('#rug').prop('checked',set.rug=='TRUE');
+	    $('#rugdetritals').prop('checked',set.rugdetritals);
+	    $('#rug').prop('checked',set.rug);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'CAD':
-	    $('#verticals').prop('checked',set.verticals=='TRUE');
+	    $('#verticals').prop('checked',set.verticals);
 	    $('#pch').val(set.pch);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    $('#colmap').val(set.colmap);
@@ -1306,7 +1306,7 @@ $(function(){
 	case 'set-zeta':
 	    $('.show4zeta').show();
 	    $('.hide4zeta').hide();
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
 	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'ages':
@@ -1317,14 +1317,14 @@ $(function(){
 		    prop('selected', 'selected');
 	    }
 	    if (geochronometer != 'U-Th-He') {
-		$('#age-exterr').prop('checked',set.exterr=='TRUE');
+		$('#age-exterr').prop('checked',set.exterr);
 	    }
 	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'MDS':
-	    $('#classical').prop('checked',set.classical=='TRUE');
-	    $('#shepard').prop('checked',set.shepard=='TRUE');
-	    $('#nnlines').prop('checked',set.nnlines=='TRUE');
+	    $('#classical').prop('checked',set.classical);
+	    $('#shepard').prop('checked',set.shepard);
+	    $('#nnlines').prop('checked',set.nnlines);
 	    $('#pch').val(set.pch);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
@@ -1333,9 +1333,9 @@ $(function(){
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'helioplot':
-	    $('#logratio').prop('checked',set.logratio=='TRUE');
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
-	    $('#showcentralcomp').prop('checked',set.showcentralcomp=='TRUE');
+	    $('#logratio').prop('checked',set.logratio);
+	    $('#shownumbers').prop('checked',set.shownumbers);
+	    $('#showcentralcomp').prop('checked',set.showcentralcomp);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#minx').val(set.minx);
@@ -1351,12 +1351,12 @@ $(function(){
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'evolution':
-	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
+	    if (set.isochron){ $('.show4evolutionIsochron').show(); }
 	    else { $('.show4evolutionIsochron').hide(); }
-	    $('#transform-evolution').prop('checked',set.transform=='TRUE');
-	    $('#isochron-evolution').prop('checked',set.isochron=='TRUE');
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#transform-evolution').prop('checked',set.transform);
+	    $('#isochron-evolution').prop('checked',set.isochron);
+	    $('#shownumbers').prop('checked',set.shownumbers);
+	    $('#exterr').prop('checked',set.exterr);
 	    $('#min08').val(set.min08);
 	    $('#max08').val(set.max08);
 	    $('#min48').val(set.min48);
@@ -2510,36 +2510,29 @@ $(function(){
     }
 
     $("#PLOT").click(function(){
-	update();
-	$("#OUTPUT").hide();
-	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
-	var plot = function() {
-	    rrpc.call("plot", {
-		data: IsoplotR.data4server,
-		width: myplot.offsetWidth,
-		height: myplot.offsetHeight,
-		Rcommand: getRcommand(IsoplotR)
-	    }, function(result, err) {
-		if (err) {
-		    displayError("Plot failed.", err);
-		    return;
-		}
-		var img = document.createElement("img");
-		img.setAttribute("src", result.src[0]);
-		img.setAttribute("width", result.width[0]);
-		img.setAttribute("height", result.height[0]);
-		var myplot = document.getElementById("myplot");
-		myplot.textContent = '';
-		myplot.appendChild(img);
-	    });
-	};
-	plot();
-	document.getElementsByTagName("BODY")[0].onresize = function() {
-	    if (timeout.variable) {
-		window.clearTimeout(timeout.variable);
-	    }
-	    timeout.variable = window.setTimeout(plot, 400);
-	};
+        update();
+        $("#OUTPUT").hide();
+        var myplot = $("#myplot");
+        myplot.html("<div id='loader' class='blink_me'>Processing...</div>");
+        var img = document.createElement('IMG');
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        shinylight.call('isoplotr', input, myplot.get(0), {
+            imgType: 'svg',
+        }).then(function(result) {
+            console.log(result);
+            img.setAttribute('src', result.plot[0]);
+            myplot.empty();
+            myplot.append(img);
+        }).catch(function(error) {
+            displayError("Plot failed.", error);
+        });
+        document.getElementsByTagName("BODY")[0].onresize = function() {
+            if (timeout.variable) {
+                window.clearTimeout(timeout.variable);
+            }
+            timeout.variable = window.setTimeout(plot, 400);
+        };
     });
 
     $("#RUN").click(function(){

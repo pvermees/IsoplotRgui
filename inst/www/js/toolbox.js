@@ -8,13 +8,7 @@ function check(x,val){
 }
 
 function truefalse(id){
-    var out = $(id).prop('checked') ? 'TRUE' : 'FALSE';
-    return(out);
-}
-
-function falsetrue(id){
-    var out = $(id).prop('checked') ? 'FALSE' : 'TRUE';
-    return(out);
+    return $(id).prop('checked');
 }
 
 function getOption(id){

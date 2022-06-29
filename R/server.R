@@ -44,10 +44,9 @@ encodePlotAsPdf <- function(width, height, plotFn) {
 
 selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
                            Th02=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
-    nr <- as.numeric(input$nc)
     nc <- as.numeric(input$nc)
-    values <- matrix(as.character(input$data), ncol=nc)
-    mat <- matrix('',1,nc) # header
+    values <- matrix(as.character(input$data), ncol = nc)
+    mat <- matrix("", 1, nc) # header
     if (identical(method,"U-Pb") & format==1) {
         mat[1,1:5] <- c('Pb207U235','errPb207U235',
                         'Pb206U238','errPb206U238','rho')

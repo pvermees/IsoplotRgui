@@ -1,105 +1,77 @@
-rrpc <- function(interface) { function(ws) {
-  ws$onMessage(function(binary, message) {
-    df <- jsonlite::fromJSON(message);
-    method <- df$method
-    envelope <- list()
-    envelope$jsonrpc <- "2.0"
-    envelope$id <- df$id
-    if (is.null(interface[[method]])) {
-      envelope$error <- "no such method"
-      envelope$result <- NULL
-    } else {
-      r <- tryCatch({
-        result <- do.call(interface[[method]], df$params)
-        list(result=result, error=NULL)
-      }, error=function(e) {
-        error <- geterrmessage()
-        cat("ERROR:", error, "\n")
-        list(result=NULL, error=error)
-      })
-      envelope$result <- r$result
-      envelope$error <- r$error
-    }
-    ws$send(jsonlite::toJSON(envelope))
-  })
-}}
+selection2levels <- function(dat, nc) {
+    values <- matrix(dat, ncol = nc)
+    lc <- nc - 1
+    as.numeric(values[, lc])
+}
 
-rrpcServer <- function(interface, host='0.0.0.0', port=NULL, appDir=NULL,
-        root="/", testFunction=NULL, testEndpoint="/test") {
-    app <- list(onWSOpen=rrpc(interface))
-    if (!is.null(appDir)) {
-        paths <- list()
-        paths[[root]] <- appDir
-        app$staticPaths <- paths
-        app$staticPathOptions = httpuv::staticPathOptions(fallthrough=TRUE)
+omitter <- function(dat, nc, flags = c("x", "X")) {
+    values <- matrix(dat, ncol = nc)
+    oc <- nc
+    o <- values[, oc]
+    which(o %in% flags)
+}
+
+getdiscfilter <- function(cd) {
+    if (is.null(cd)) {
+        return(NULL)
     }
-    if (!is.null(testFunction)) {
-        app$call <- function(req) {
-            resp <- list(headers=list("Content-Type"="text/plain"))
-            if (req$PATH_INFO == testEndpoint) {
-                tryCatch({
-                    testFunction()
-                    resp$status=200L
-                    resp$body="OK"
-                }, error=function() {
-                    resp$status=500L
-                    resp$body=geterrmessage()
-                })
-            } else {
-                resp$status=404L
-                resp$body="Not Found"
-            }
-            resp
+    if (is.null(cd$cutoff)) {
+        return(IsoplotR::discfilter(
+            option = cd$option,
+            before = cd$before
+        ))
+    }
+    IsoplotR::discfilter(
+        option = cd$option,
+        cutoff = cd$cutoff,
+        before = cd$before
+    )
+}
+
+getomitter <- function(om, dat, nc) {
+    if (is.null(om)) {
+        return(NULL)
+    }
+    if (is.null(om$flags)) {
+        return(om)
+    }
+    omitter(dat = dat, nc = nc, flags = om$flags)
+}
+
+isoplotr_env <- environment(IsoplotR::concordia)
+
+call.isoplotr <- function(fn, params, data, s2d, settings,
+        cex = NULL, york = NULL) {
+    if (!is.null(s2d$diseq)) {
+        s2d$params$d <- do.call(
+            IsoplotR::diseq,
+            s2d$diseq
+        )
+    }
+    s2d$params$input <- data
+    params$x <- do.call(selection2data, s2d$params)
+    for (method.name in names(settings)) {
+        method <- settings[[method.name]]
+        for (clock.name in names(method)) {
+            vs <- method[[clock.name]]
+            do.call(IsoplotR::settings, list(method.name, clock.name, vs))
         }
     }
-    if (is.null(port)) {
-        port <- httpuv::randomPort(min=8192, max=40000, host=host)
+    nc <- as.numeric(data$nc)
+    params$cutoff.disc <- getdiscfilter(params$cutoff.disc)
+    params$discordance <- getdiscfilter(params$discordance)
+    params$omit <- getomitter(params$omit, data$data, nc)
+    params$hide <- getomitter(params$hide, data$data, nc)
+    if (!is.null(params$levels)) {
+        params$levels <- selection2levels(data$data, nc)
     }
-    httpuv::startServer(host=host, port=port, app=app)
-}
-
-# Finds all names in an expression
-# but the result needs flattening
-findNames <- function(exp) {
-  # don't care about is.atomic
-  if (is.name(exp)) {
-    exp
-  } else if (is.pairlist(exp)) {
-    Map(findNames, exp)
-  } else if (is.call(exp)) {
-    if ("::" == exp[[1]] && is.name(exp[[2]]) && is.name(exp[[3]])) {
-      paste0(exp[2], "::", exp[3])
-    } else {
-      Map(findNames, exp)
+    if (!is.null(cex)) {
+        par(cex)
     }
-  }
-}
-
-nameCheck <- function(exps, allowed) {
-  symbls <- unlist(Map(findNames, exps))
-  nams <- unique(Map(as.character, symbls))
-  setdiff(nams, allowed)
-}
-
-sanitizeCommand <- function(command, callback) {
-    com <- parse(text=command)
-    failures <- nameCheck(com, c(
-        'IsoplotR::settings', '<-', 'dat', 'selection2data', 'par', 'c',
-        'rgb', 'selection2levels', 'omitter', 'IsoplotR::concordia',
-        'IsoplotR::read.data', 'IsoplotR::data2york', 'IsoplotR::kde',
-        'IsoplotR::cad', 'IsoplotR::mds', 'IsoplotR::isochron',
-        'IsoplotR::evolution', 'IsoplotR::radialplot',
-        'IsoplotR::agespectrum', 'IsoplotR::weightedmean',
-        'IsoplotR::set.zeta', 'IsoplotR::helioplot', 'IsoplotR::age',
-        'IsoplotR::discfilter', 'IsoplotR::diseq', 'list', 'input','-',
-        'seq',':','rev','rainbow','topo.colors','terrain.colors',
-        'heat.colors','cm.colors'
-        ))
-    if (0 < length(failures)) {
-        txt <- paste(failures, collapse=", ")
-        stop(paste0("non-whitelisted names used: ", txt), call.=FALSE, domain=NA)
+    if (!is.null(york)) {
+        params$x <- IsoplotR::data2york(params$x, format = york$format)
     }
-    callback(com)
+    do.call(fn, params, envir = isoplotr_env)
 }
 
 #' Start the \code{IsoplotR} GUI
@@ -123,43 +95,14 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
         stop("Could not find www directory. Try re-installing `IsoplotRgui`.",
              call. = FALSE)
     }
-    wrap <- function(Rcommand, callback) {
-      sanitizeCommand(Rcommand, function(com) {
-        setTimeLimit(elapsed=timeout)
-        on.exit({
-          setTimeLimit(elapsed=Inf)
-        })
-        callback(com)
-      })
-    }
-    s <- rrpcServer(host=host, port=port, appDir=appDir, root="/",
-        interface=list(
-            run=function(data, Rcommand) {
-                wrap(Rcommand, function(com) {
-                    server$runner(com, data)
-                })
-            },
-            plot=function(data, width, height, Rcommand) {
-                wrap(Rcommand, function(com) {
-                    server$plotter(width, height, com, data)
-                })
-            },
-            pdf=function(data, fname, Rcommand) {
-                wrap(Rcommand, function(com) {
-                    server$getPdf(com, data, fname)
-                })
-            },
-            csv=function(data, fname, Rcommand) {
-                wrap(Rcommand, function(com) {
-                    server$getCsv(com, data, fname)
-                })
-            }
-        ),
-        testFunction=function() {
-            tempFilename <- tempfile(pattern='test', fileext='png')
-            grDevices::png(file=tempFilename, width=30, height=30)
-            grDevices::dev.off()
-        }
+    s <- shinylight::slServer(
+        host = host,
+        port = port,
+        appDir = appDir,
+        daemonize = !is.null(port),
+        interface = list(
+            isoplotr = call.isoplotr
+        )
     )
     extraMessage <- ""
     if (is.null(port)) {
@@ -189,11 +132,7 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
 #' }
 #' @export
 stopIsoplotR <- function(server=NULL) {
-    if (is.null(server)) {
-        httpuv::stopAllServers()
-    } else {
-        server$stop()
-    }
+    shinylight::slStop(server)
 }
 
 #' Start the \code{IsoplotR} GUI without exiting

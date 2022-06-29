@@ -23,7 +23,7 @@
 	"mindisc": [-50,-5,-0.3,-2,-2],
 	"maxdisc": [140,15,1,6,7],
 	"commonPb": 0,
-	"diseq": "FALSE",
+	"diseq": false,
 	"U48": [1,0],
 	"ThU": [1,0],
 	"RaU": [1,0],
@@ -34,55 +34,55 @@
 	"detritus": 0,
 	"Th02": [0,0],
 	"Th02U48": [0,0,1e6,0,0,0,0,0,0],
-	"i2i": "TRUE"
+	"i2i": true
     },
     "Pb-Pb": {
 	"format": 3,
 	"commonPb": 2,
-	"projerr": "FALSE",
-	"inverse": "TRUE"
+	"projerr": false,
+	"inverse": true
     },
     "Ar-Ar": {
 	"format": 3,
-	"i2i": "FALSE",
-	"projerr": "FALSE",
-	"inverse": "TRUE"
+	"i2i": false,
+	"projerr": false,
+	"inverse": true
     },
     "Th-Pb": {
 	"format": 2,
-	"i2i": "TRUE",
-	"projerr": "FALSE",
-	"inverse": "TRUE"
+	"i2i": true,
+	"projerr": false,
+	"inverse": true
     },
     "K-Ca": {
 	"format": 1,
-	"i2i": "TRUE",
-	"projerr": "FALSE",
-	"inverse": "FALSE"
+	"i2i": true,
+	"projerr": false,
+	"inverse": false
     },
     "Rb-Sr": {
 	"format": 1,
-	"i2i": "TRUE",
-	"projerr": "FALSE",
-	"inverse": "FALSE"
+	"i2i": true,
+	"projerr": false,
+	"inverse": false
     },
     "Sm-Nd": {
 	"format": 1,
-	"i2i": "TRUE",
-	"projerr": "FALSE",
-	"inverse": "FALSE"
+	"i2i": true,
+	"projerr": false,
+	"inverse": false
     },
     "Re-Os": {
 	"format": 1,
-	"i2i": "TRUE",
-	"projerr": "FALSE",
-	"inverse": "FALSE"
+	"i2i": true,
+	"projerr": false,
+	"inverse": false
     },
     "Lu-Hf": {
 	"format": 1,
-	"i2i": "TRUE",
-	"projerr": "FALSE",
-	"inverse": "FALSE"
+	"i2i": true,
+	"projerr": false,
+	"inverse": false
     },
     "U-Th-He": {},
     "other": {
@@ -97,8 +97,8 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"type": 1,
-	"exterr": "FALSE",
-	"shownumbers": "FALSE",
+	"exterr": false,
+	"shownumbers": false,
 	"showage": 0,
 	"anchor":0,
 	"tanchor":0,
@@ -116,10 +116,10 @@
 	"mint": "auto",
 	"maxt": "auto",
 	"alpha": 0.05,
-	"transform": "FALSE",
-	"exterr": "FALSE",
-	"isochron": "FALSE",
-	"shownumbers": "FALSE",
+	"transform": false,
+	"exterr": false,
+	"isochron": false,
+	"shownumbers": false,
 	"sigdig": 2,
 	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"ellipsestroke": "'black'",
@@ -130,11 +130,11 @@
 	"UPbtype": 1,
 	"ThUtype": 2,
 	"model": 1,
-	"exterr": "FALSE",
-	"joint": "TRUE",
+	"exterr": false,
+	"joint": true,
 	"anchor":0,
 	"tanchor":0,
-	"shownumbers": "FALSE",
+	"shownumbers": false,
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
@@ -143,12 +143,12 @@
 	"sigdig": 2,
 	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"ellipsestroke": "'black'",
-	"growth": "FALSE",
+	"growth": false,
 	"clabel": ""
     },
     "regression": {
 	"model": 1,
-	"shownumbers": "FALSE",
+	"shownumbers": false,
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
@@ -169,30 +169,30 @@
 	"bg": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"sigdig": 2,
 	"alpha": 0.05,
-	"shownumbers": "FALSE",
+	"shownumbers": false,
 	"numpeaks": 0,
 	"clabel": "",
-	"exterr": "FALSE"
+	"exterr": false
     },
     "average": {
-	"outliers": "TRUE",
-	"exterr": "FALSE",
+	"outliers": true,
+	"exterr": false,
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "FALSE",
+	"randomeffects": false,
 	"mint": "auto",
 	"maxt": "auto",
-	"ranked": "FALSE",
+	"ranked": false,
 	"rectcol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"outliercol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "spectrum": {
-	"plateau": "TRUE",
-	"exterr": "FALSE",
+	"plateau": true,
+	"exterr": false,
 	"alpha": 0.05,
 	"sigdig": 2,
-	"randomeffects": "FALSE",
+	"randomeffects": false,
 	"plateaucol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"nonplateaucol": "rgb(0,1,1,0.5)",
 	"clabel": ""
@@ -200,32 +200,32 @@
     "KDE": {
 	"ncol": "auto",
 	"xlab": "age [Ma]",
-	"showhist": "TRUE",
+	"showhist": true,
 	"bw": "auto",
-	"samebandwidth": "TRUE",
-	"normalise": "TRUE",
-	"log": "FALSE",
-	"adaptive": "TRUE",
+	"samebandwidth": true,
+	"normalise": true,
+	"log": false,
+	"adaptive": true,
 	"minx": "auto",
 	"maxx": "auto",
 	"bandwidth": "auto",
 	"binwidth": "auto",
-	"rugdetritals": "FALSE",
-	"rug": "TRUE"
+	"rugdetritals": false,
+	"rug": true
     },
     "CAD": {
 	"pch": "none",
-	"verticals": "TRUE",
+	"verticals": true,
 	"colmap": "heat.colors"
     },
     "set-zeta": {
 	"sigdig": 2,
-	"exterr": "FALSE"
+	"exterr": false
     },
     "MDS": {
-	"classical": "FALSE",
-	"shepard": "FALSE",
-        "nnlines": "FALSE",
+	"classical": false,
+	"shepard": false,
+        "nnlines": false,
 	"pch": 21,
 	"pos": 0,
 	"cex": 5,
@@ -233,9 +233,9 @@
 	"bg": "white"
     },
     "helioplot": {
-	"logratio": "TRUE",
-	"shownumbers": "FALSE",
-	"showcentralcomp": "TRUE",
+	"logratio": true,
+	"shownumbers": false,
+	"showcentralcomp": true,
 	"alpha": 0.05,
 	"sigdig": 2,
 	"minx": "auto",
@@ -251,7 +251,7 @@
     "ages": {
 	"showdisc": 0,
 	"discoption": 5,
-	"exterr": "FALSE",
+	"exterr": false,
 	"sigdig": 2
     }
 }
