@@ -2520,7 +2520,6 @@ $(function(){
         shinylight.call('isoplotr', input, myplot.get(0), {
             imgType: 'svg',
         }).then(function(result) {
-            console.log(result);
             img.setAttribute('src', result.plot[0]);
             myplot.empty();
             myplot.append(img);

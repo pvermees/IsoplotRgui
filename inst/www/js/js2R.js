@@ -67,10 +67,10 @@ function isChar(c, s, n) {
 function parseListOf(fn, s, n) {
     var len = s.length;
     n = skipSpace(s, n);
-    if (len < n || s[n] !== '(') {
+    if (!isChar('(', s, n)) {
         return null;
     }
-    n = skipSpace(s, n);
+    n = skipSpace(s, n + 1);
     if (isChar(')', s, n)) {
         return [[], n+1];
     }
@@ -88,6 +88,7 @@ function parseListOf(fn, s, n) {
         if (!isChar(',', s, n)) {
             return null;
         }
+        ++n;
     }
     return null;
 }
@@ -99,7 +100,6 @@ function parseNumber(s, n) {
     var v = 0;
     while (n < len && s[n] !== '.') {
         var c = s[n];
-        ++n;
         if ('0' <= c && c <= '9') {
             seen = true;
             v = v * 10 + c.charCodeAt(0) - zero;
@@ -109,12 +109,12 @@ function parseNumber(s, n) {
             }
             return null;
         }
+        ++n;
     }
     ++n;
     var mag = 0.1;
     while (n < len) {
         var c = s[n];
-        ++n;
         if ('0' <= c && c <= '9') {
             seen = true;
             v += mag * (c.charCodeAt(0) - zero);
@@ -125,7 +125,23 @@ function parseNumber(s, n) {
             }
             return null;
         }
+        ++n;
     }
+    return [v, n];
+}
+
+function toHh(p) {
+    p = Math.floor(255 * p + 0.5);
+    if (p <= 0) {
+        return '00';
+    }
+    if (255 <= p) {
+        return 'FF';
+    }
+    var m = Math.floor(p / 16);
+    var cs = '0123456789ABCDEF';
+    var s = cs[m];
+    return s + cs[p - 16 * m];
 }
 
 function parseRgb(s, n) {
@@ -142,9 +158,7 @@ function parseRgb(s, n) {
     if (lst === null) {
         return null;
     }
-    return [{
-        'rgb': lst[0]
-    }, lst[1]];
+    return ['#' + lst[0].map(toHh).join(''), lst[1]];
 }
 
 function parseColourList(s, n) {
@@ -152,7 +166,7 @@ function parseColourList(s, n) {
     if (!isChar('c', s, n)) {
         return null;
     }
-    return parseListOf(parseColour, s, n);
+    return parseListOf(parseColour, s, n + 1);
 }
 
 function parseColour(s, n) {
@@ -209,8 +223,8 @@ function getOptions(prefs){
         params['show.age'] = pdsettings.showage;
         params.sigdig = pdsettings.sigdig;
         params['common.Pb'] = gcsettings.commonPb;
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill);
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke);
+        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
+        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
         params.levels = true;
         params.omit = { flags: 'x' };
         params.hide = { flags: 'X' };
@@ -234,7 +248,7 @@ function getOptions(prefs){
         if (pdsettings.maxt != 'auto'){ params.to = pdsettings.maxt; }
         params.pch = pdsettings.pch;
         params.cex = pdsettings.cex;
-        params.bg = getColour(pdsettings.bg);
+        params.bg = getColour(pdsettings.bg, 'yellow');
         params.alpha = pdsettings.alpha;
         params.sigdig = pdsettings.sigdig;
         params['show.numbers'] = pdsettings.shownumbers;
@@ -288,8 +302,8 @@ function getOptions(prefs){
         params.levels = true;
         params.omit = { flags: 'x' };
         params.hide = { flags: 'X' };
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill);
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke);
+        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
+        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
         params.model = pdsettings.model;
         params.clabel = pdsettings.clabel;
         break;
@@ -325,8 +339,8 @@ function getOptions(prefs){
         params.levels = true;
         params.omit = { flags: 'x' };
         params.hide = { flags: 'X' };
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill);
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke);
+        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
+        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
         break;
     case 'average':
 	switch (geochronometer){
@@ -363,8 +377,8 @@ function getOptions(prefs){
         params['random.effects'] = pdsettings.randomeffects;
         params.ranked = pdsettings.ranked;
         params.levels = true;
-        params['rect.col'] = getColour(pdsettings.rectcol);
-        params['outlier.col'] = getColour(pdsettings.outliercol);
+        params['rect.col'] = getColour(pdsettings.rectcol, 'red');
+        params['outlier.col'] = getColour(pdsettings.outliercol, 'green');
         params.clabel = pdsettings.clabel;
         if (pdsettings.mint !== 'auto') { params.from = pdsettings.mint; }
         if (pdsettings.maxt !== 'auto') { params.to = pdsettings.maxt; }
@@ -381,8 +395,8 @@ function getOptions(prefs){
         params.alpha = pdsettings.alpha;
         params.sigdig = pdsettings.sigdig;
         params.levels = true;
-        params['plateau.col'] = getColour(pdsettings.plateaucol);
-        params['non.plateau.col'] = getColour(pdsettings.nonplateaucol);
+        params['plateau.col'] = getColour(pdsettings.plateaucol, 'cyan');
+        params['non.plateau.col'] = getColour(pdsettings.nonplateaucol, 'red');
         params.clabel = pdsettings.clabel;
         params.omit = { flags: 'x' };
         params.hide = { flags: 'X' };
@@ -459,7 +473,7 @@ function getOptions(prefs){
         default:
         }
         if (geochronometer === 'detritals') {
-            params.col = getColour(pdsettings.colmap);
+            params.col = getColour(pdsettings.colmap, 'green');
             params.hide = gcsettings.hide.split(',');
         } else {
             params.hide = { flags: [ 'x', 'X' ] };
@@ -490,8 +504,8 @@ function getOptions(prefs){
         params.levels = true;
         params.omit = { flags: 'x' };
         params.hide = { flags: 'X' };
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill);
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke);
+        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
+        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
         params.model = pdsettings.model;
         params.clabel = pdsettings.clabel;
         break;
@@ -505,8 +519,8 @@ function getOptions(prefs){
             pdsettings.pos === 3 || pdsettings.pos === 4) {
             params.pos = pdsettings.pos;
         }
-        params.col = getColour(pdsettings.col);
-        params.bg = getColour(pdsettings.bg);
+        params.col = getColour(pdsettings.col, 'black');
+        params.bg = getColour(pdsettings.bg, 'yellow');
         params.hide = gcsettings.hide.split(',');
         break;
     case 'ages':
