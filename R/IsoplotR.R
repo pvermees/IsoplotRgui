@@ -54,7 +54,7 @@ call.isoplotr <- function(fn, params, data, s2d, settings,
         method <- settings[[method.name]]
         for (clock.name in names(method)) {
             vs <- method[[clock.name]]
-            do.call(IsoplotR::settings, list(method.name, clock.name, vs))
+            do.call(IsoplotR::settings, as.list(c(method.name, clock.name, vs)))
         }
     }
     nc <- as.numeric(data$nc)
