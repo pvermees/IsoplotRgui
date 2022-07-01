@@ -2535,65 +2535,60 @@ $(function(){
     });
 
     $("#RUN").click(function(){
-	update();
-	$("#myplot").empty();
-	$("#OUTPUT").handsontable('clear');
-	$("#OUTPUT").handsontable('deselectCell');
-	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
-	$("#OUTPUT").show();
-	rrpc.call("run", {
-	    data: IsoplotR.data4server,
-	    Rcommand: getRcommand(IsoplotR)
-	}, function(result, err) {
-	    if (err) {
-		displayError('Run failed.', err);
-		return;
-	    }
-	    $('#OUTPUT').handsontable('populateFromArray', 0, 0,
-				      result.data);
-	    const hot = $('#OUTPUT').data('handsontable');
-	    hot.updateSettings({
-		colHeaders: result.headers
-	    });
-	});
+        update();
+        $("#myplot").empty();
+        $("#OUTPUT").handsontable('clear');
+        $("#OUTPUT").handsontable('deselectCell');
+        $("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
+        $("#OUTPUT").show();
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        shinylight.call('isoplotr', input, null, {}).then(function(result) {
+            $('#OUTPUT').handsontable('populateFromArray', 0, 0,
+                result.data);
+            const hot = $('#OUTPUT').data('handsontable');
+            hot.updateSettings({
+                colHeaders: result.headers
+            });
+        }).catch(function(error) {
+            displayError("Run failed.", error);
+        });
     });
 
     document.getElementById("PDF").onclick = function() {
-	update();
-	let fname = prompt("Please enter a file name", "IsoplotR.pdf");
-	rrpc.call("pdf", {
-	    data: IsoplotR.data4server,
-	    fname: fname,
-	    Rcommand: getRcommand(IsoplotR)
-	}, function(result, err) {
-	    if (err) {
-		displayError('Get PDF failed.', err);
-		return;
-	    }
-	    const downloader = document.getElementById("downloader");
-	    downloader.setAttribute("download", result.filename[0]);
-	    downloader.setAttribute("href", result.data[0]);
-	    downloader.click();
-	});
+        update();
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        input['rrpc.resultformat'] = {
+            type: 'pdf',
+            width: 7,
+            height: 7
+        };
+        shinylight.call('isoplotr', input, null, {}).then(function(result) {
+            const downloader = document.createElement("A");
+            downloader.setAttribute("download", 'IsoplotR.pdf');
+            downloader.setAttribute("href", result.plot[0]);
+            console.log(downloader);
+            downloader.click();
+        }).catch(function(error) {
+            displayError("Get PDF failed.", error);
+        });
     }
 
     document.getElementById("CSV").onclick = function() {
-	update();
-	let fname = prompt("Please enter a file name", "ages.csv");
-	rrpc.call("csv", {
-	    data: IsoplotR.data4server,
-	    fname: fname,
-	    Rcommand: getRcommand(IsoplotR)
-	}, function(result, err) {
-	    if (err) {
-		displayError('Get CSV failed.', err);
-		return;
-	    }
-	    const downloader = document.getElementById("downloader");
-	    downloader.setAttribute("download", result.filename[0]);
-	    downloader.setAttribute("href", result.data[0]);
-	    downloader.click();
-	});
+        update();
+        let fname = prompt("Please enter a file name", "ages.csv");
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        shinylight.call('isoplotr', input, null, {}).then(function(result) {
+            const rs = result.data.map(function(cs) { return cs.join(','); });
+            const downloader = document.createElement("A");
+            downloader.setAttribute("download", fname);
+            downloader.setAttribute("href", 'data:text/csv;base64,' + btoa(rs.join('\n')));
+            downloader.click();
+        }).catch(function(error) {
+            displayError("Run failed.", error);
+        });
     }
     
     $("#home").click(function(){
