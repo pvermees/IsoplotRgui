@@ -2559,12 +2559,9 @@ $(function(){
         update();
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        input['rrpc.resultformat'] = {
-            type: 'pdf',
-            width: 7,
-            height: 7
-        };
-        shinylight.call('isoplotr', input, null, {}).then(function(result) {
+        shinylight.call('isoplotr', input, null, {
+            imgType: 'pdf'
+        }).then(function(result) {
             const downloader = document.createElement("A");
             downloader.setAttribute("download", 'IsoplotR.pdf');
             downloader.setAttribute("href", result.plot[0]);
