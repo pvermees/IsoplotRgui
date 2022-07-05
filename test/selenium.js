@@ -54,7 +54,7 @@ describe('IsoplotRgui', function() {
             await inputTestData(driver, testData);
             await choosePlotDevice(driver, 'ages');
             await performClick(driver, 'run');
-            const homeCell = await driver.findElement(cellInTable('INPUT', 1, 1));
+            const homeCell = await driver.findElement(cellInTable('OUTPUT', 1, 1));
             await driver.wait(async function() {
                 let text = await homeCell.getText();
                 return !isNaN(Number(text));
@@ -120,8 +120,10 @@ describe('IsoplotRgui', function() {
             // test contextual_help.json
             await clickButton(driver, 'help_ierr');
             await assertTextContains(driver, 'helpmenu', inputErrorHelpEN);
+            await closeContextualHelp(driver);
             await clickButton(driver, 'help_mint_concordia');
             await assertTextContains(driver, 'helpmenu', 'XXminimum age limit.');
+            await closeContextualHelp(driver);
             // test home_id.json
             await clickButton(driver, 'home');
             await waitForFunctionToBeInstalled(driver, 'translateHomePage');
@@ -695,9 +697,13 @@ async function findMenuItem(driver, text) {
     assert(false, "No ui menu item found with text '" + text + "'");
 }
 
+async function closeContextualHelp(driver) {
+    await driver.findElement(By.css('.ui-icon-closethick')).click();
+}
+
 async function clickButton(driver, id) {
     const button = await driver.wait(until.elementLocated(By.id(id)));
-    button.click();
+    await button.click();
 }
 
 async function goToCell(driver, tableId, row, column) {
