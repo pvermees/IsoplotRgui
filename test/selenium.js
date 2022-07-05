@@ -151,9 +151,10 @@ describe('IsoplotRgui', function() {
             const options = {
                 U238U235: 137.818,
                 errU238U235: 0.0225,
+                // must be tick values
                 minx: 0.260,
-                maxx: 0.282,
-                miny: 0.0368,
+                maxx: 0.280,
+                miny: 0.0360,
                 maxy: 0.0400,
                 ellipsefill: "'green'",
                 ellipsestroke: "'green'"
@@ -163,11 +164,18 @@ describe('IsoplotRgui', function() {
             const img = await driver.wait(until.elementLocated(By.css('#myplot img')));
             const imgSrc = await img.getAttribute('src');
             const imgB64 = imgSrc.split(',')[1];
+            const svg = getSvg(imgB64);
+            const axes = svg.getAxes();
             testData.forEach((data) => {
-                const failures = assertConcordiaBlob(imgB64, options, data, 1500);
-                // some failures are caused by other marks on the graph; labels or
-                // other blobs, for example.
-                assert(failures.length <= 20, 'Too many failures: ' + failures.join(', '));
+                const [u238pb206, xerr, pb207pb206, yerr, dummy0, dummy1, omit] = data;
+                const pb207u235 = options.U238U235 * pb207pb206 / u238pb206;
+                const pb206u238 = 1 / u238pb206;
+                const coords = plotToGraph(axes, options, pb207u235, pb206u238);
+                if (omit) {
+                    assert(svg.isOmittedPoint(coords.x, coords.y));
+                } else {
+                    assert(svg.isPoint(coords.x, coords.y));
+                }
             });
         });
     });
@@ -179,40 +187,195 @@ describe('IsoplotRgui', function() {
         await performClick(driver, 'plot');
         await driver.wait(until.elementLocated(By.css('#myplot img')));
       });
-
-      it('illegal Rcommands are rejected', function(done) {
-        driver.executeAsyncScript(
-          'var callback = arguments[arguments.length-1];' +
-          'window.rrpc.call("plot", { data: [], width: 99, height: 99, Rcommand:' +
-          '"print(\\"gotcha!\\")"' +
-          '}, function(result, err) {' +
-          'callback(err);' +
-          '});'
-        ).then(err => {
-          assert.strictEqual(err.length, 1);
-          assert(err[0].includes('whitelist'),
-              `Expected error message '${err[0]}' to include the word 'whitelist'`);
-          done();
-        });
-      });
-
-      it('error-causing Rcommands are reported', function(done) {
-        driver.executeAsyncScript(
-          'var callback = arguments[arguments.length-1];' +
-          'window.rrpc.call("plot", { data: [], width: 99, height: 99, Rcommand:' +
-          '"selection2data(rgb)"' +
-          '}, function(result, err) {' +
-          'callback(err);' +
-          '});'
-        ).then(err => {
-          assert.strictEqual(err.length, 1, 'Expected some error');
-          done();
-        });
-      });
     });
 });
 
-function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
+function plotToGraph(svg, options, x, y) {
+    return {
+        x: svg.leftTick + (svg.rightTick - svg.leftTick) * (x - options.minx) / (options.maxx - options.minx),
+        y: svg.bottomTick - (svg.bottomTick - svg.topTick) * (y - options.miny) / (options.maxy - options.miny)
+    };
+}
+
+// isAbove(x, y, x0, y0, x1, y1) returns true if and only if
+// a line drawn directly down (increasing y) from y would intersect
+// the line from (x0,y0) to (x1,y1), including the point on the left
+// but not on the right.
+function isAbove(x, y, x0, y0, x1, y1) {
+    // (x0,y0) should be the left hand point
+    if (x1 <= x0) {
+        if (x0 === x1) {
+            // special case -- vertical line must never be hit
+            return false;
+        }
+        const xt = x0;
+        x0 = x1;
+        x1 = xt;
+        const yt = y0;
+        y0 = y1;
+        y1 = yt;
+    }
+    if (x1 <= x) {
+        // missed to the right
+        return false;
+    }
+    if (x < x0) {
+        // missed to the left
+        return false;
+    }
+    // find y value of intersection of vertical line through (x,y)
+    const py = y0 + (y1 - y0) * (x - x0) / (x1 - x0);
+    return y < py;
+}
+
+// cs is alternating x and y co-ordinates of the vertices of a polygon.
+// Returns true if and only if (x,y) is within that polygon.
+function isWithin(x, y, cs) {
+    let aboveCount = 0;
+    let x0 = cs[cs.length - 2];
+    let y0 = cs[cs.length - 1];
+    for (let j = 0; j < cs.length; j += 2) {
+        const x1 = cs[j];
+        const y1 = cs[j + 1];
+        if (isAbove(x, y, x0, y0, x1, y1)) {
+            ++aboveCount;
+        }
+        x0 = x1;
+        y0 = y1;
+    }
+    return (aboveCount & 1) == 1;
+}
+
+function getSvg(imgB64) {
+    const data = Buffer.from(imgB64, 'base64').toString();
+    const quads = data.match(/<path\b[^>]+\bd="M *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+/mg);
+    if (!quads) {
+        console.error("no rectangular paths in SVG!");
+        console.log(data);
+        return null;
+    }
+    let plotArea = 0;
+    let plotLeft = null;
+    let plotRight = null;
+    let plotTop = null;
+    let plotBottom = null;
+    quads.forEach(quad => {
+        const qs = quad.match(/\bd="M *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+)/m);
+        // biggest polygon is probably the plot area
+        if (qs) {
+            const vs = [];
+            for (let i = 1; i !== qs.length; ++i) {
+                vs.push(Number(qs[i]));
+            }
+            const xmin = Math.min(vs[0], vs[2], vs[4], vs[6]);
+            const xmax = Math.max(vs[0], vs[2], vs[4], vs[6]);
+            const ymin = Math.min(vs[1], vs[3], vs[5], vs[7]);
+            const ymax = Math.max(vs[1], vs[3], vs[5], vs[7]);
+            const area = (xmax - xmin) * (ymax - ymin);
+            if (plotArea < area) {
+                plotArea = area;
+                plotLeft = xmin;
+                plotRight = xmax;
+                plotTop = ymin;
+                plotBottom = ymax;
+            }
+        }
+    });
+    const width = plotRight - plotLeft;
+    const height = plotBottom - plotTop;
+    const maxTickProportion = 0.04;
+    const potentialTicks = data.match(/<path [^>]*\bd="M *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+ *"/mg);
+    let xTicks = [];
+    let yTicks = [];
+    potentialTicks.forEach(pt => {
+        const gs = pt.match(/\bd="M *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+) *"/m);
+        let x0 = Number(gs[1]);
+        let x1 = Number(gs[3]);
+        let y0 = Number(gs[2]);
+        let y1 = Number(gs[4]);
+        if (gs && x0 === x1 && Math.abs(y1 - y0) < maxTickProportion * height) {
+            xTicks.push(x0);
+        }
+        if (gs && y0 === y1 && Math.abs(x1 - x0) < maxTickProportion * width) {
+            yTicks.push(y0);
+        }
+    });
+    xTicks.sort((x,y) => x - y);
+    yTicks.sort((x,y) => x - y);
+    let potentialPoints = data.match(/<path [^>]*style="([^";]+;)*\bfill: *rgb[^>]*>/mg);
+    if (!potentialPoints) {
+        potentialPoints = [];
+    }
+    const coords = [];
+    potentialPoints.forEach(pp => {
+        const rgb = pp.match(/\bstyle="[^"]*\bfill: *rgb\(([0-9]+)%,([0-9]+)%,([0-9]+)%\)/m);
+        if (rgb && Number(rgb[1]) < 20 && 60 < Number(rgb[2]) && Number(rgb[3]) < 20) {
+            const d = pp.match(/\bd="([^"]*)"/m);
+            if (d) {
+                const xytexts = d[1].match(/[0-9.]+/mg);
+                const xys = xytexts.map(t => Number(t));
+                coords.push(xys);
+            }
+        }
+    });
+    let potentialOmitteds = data.match(/<path [^>]*style="([^";]+;)*\bfill: *none[^>]*>/mg);
+    if (!potentialOmitteds) {
+        potentialOmitteds = [];
+    }
+    const omitteds = [];
+    potentialOmitteds.forEach(po => {
+        const rgb = po.match(/\bstyle="[^"]*\bstroke: *rgb\(([0-9.]+)%,([0-9.]+)%,([0-9.]+)%\)/m);
+        if (rgb) {
+            const r = Number(rgb[1]);
+            const g = Number(rgb[2]);
+            const b = Number(rgb[3]);
+            if (40 < r && r < 85 && 40 < g && g < 85 && 40 < b && b < 85) {
+                const d = po.match(/\bd="([^"]*)"/m);
+                if (d) {
+                    const xytexts = d[1].match(/[0-9.]+/mg);
+                    const xys = xytexts.map(t => Number(t));
+                    omitteds.push(xys);
+                }
+            }
+        }
+    });
+    if (xTicks.length ===0 || yTicks.length === 0) {
+        console.error('no ticks in SVG');
+        return null;
+    }
+    return {
+        getAxes: function() {
+            return {
+                bottom: plotBottom,
+                left: plotLeft,
+                height: height,
+                width: width,
+                leftTick: xTicks[0],
+                rightTick: xTicks[xTicks.length - 1],
+                topTick: yTicks[0],
+                bottomTick: yTicks[yTicks.length - 1]
+            }
+        },
+        isPoint: function(x, y) {
+            for (let i = 0; i !== coords.length; ++i) {
+                if (isWithin(x, y, coords[i])) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        isOmittedPoint: function(x, y) {
+            for (let i = 0; i !== omitteds.length; ++i) {
+                if (isWithin(x, y, omitteds[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
+}
+
+function assertConcordiaBlobPng(imgB64, options, testData, sampleCount) {
     const png = PNG.sync.read(Buffer.from(imgB64, 'base64'));
     const axes = getAxes(png);
     const ranges = getRanges(options);
