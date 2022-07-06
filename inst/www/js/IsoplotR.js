@@ -2517,7 +2517,8 @@ $(function(){
         var img = document.createElement('IMG');
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        shinylight.call('isoplotr', input, myplot.get(0), {
+        var fn = ['concordia'].indexOf(input.fn) < 0? 'isoplotr' : input.fn;
+        shinylight.call(fn, input, myplot.get(0), {
             imgType: 'svg',
         }).then(function(result) {
             img.setAttribute('src', result.plot[0]);

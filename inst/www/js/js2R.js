@@ -197,44 +197,14 @@ function getOptions(prefs){
     var gcsettings = prefs.settings[geochronometer];
     switch (plotdevice){
     case 'concordia':
-        var mint = check(pdsettings.mint,null);
-        var maxt = check(pdsettings.maxt,null);
-        if (mint !== null || maxt !== null) {
-            params.tlim = [
-                mint === null? 0 : mint,
-                maxt === null? 4500 : maxt
-            ];
-        } else {
-            params.tlim = null;
-        }
-        if (pdsettings.minx !== 'auto' && pdsettings.maxx !== 'auto') {
-            params.xlim = [ pdsettings.minx, pdsettings.maxx ];
-        }
-        if (pdsettings.miny !== 'auto' && pdsettings.maxy !== 'auto') {
-            params.ylim = [ pdsettings.miny, pdsettings.maxy ];
-        }
-        if (pdsettings.ticks !== 'auto') {
-            params.ticks = [ pdsettings.ticks ];
-        }
-        params.alpha = pdsettings.alpha;
-        params.type = pdsettings.type;
-        params.exterr = pdsettings.exterr;
-        params['show.numbers'] = pdsettings.shownumbers;
-        params['show.age'] = pdsettings.showage;
-        params.sigdig = pdsettings.sigdig;
-        params['common.Pb'] = gcsettings.commonPb;
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
-        params.levels = true;
-        params.omit = { flags: 'x' };
-        params.hide = { flags: 'X' };
-        params.clabel = pdsettings.clabel;
-        if (pdsettings.anchor==1) {
-            params.anchor = 1;
-        } else if (pdsettings.anchor==2) {
-            params.anchor = [ 2, pdsettings.tanchor ];
-        }
-        break;
+        return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
+            pdsettings: pdsettings,
+            gcsettings: gcsettings,
+            ellipsefill: getColour(pdsettings.ellipsefill, 'cyan'),
+            ellipsestroke: getColour(pdsettings.ellipsestroke, 'black')
+        };
     case 'radial':
         params.transformation = pdsettings.transformation;
         params.levels = true;

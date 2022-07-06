@@ -74,6 +74,71 @@ call.isoplotr <- function(fn, params, data, s2d, settings,
     do.call(fn, params, envir = isoplotr_env)
 }
 
+getcolour <- function(text, default) {
+    # Fix this
+    eval(parse(text=text))
+}
+
+getlimits <- function(min, max) {
+    if (min == "auto" || max == "auto") {
+        return(NULL)
+    }
+    return(as.numeric(c(min, max)))
+}
+
+gettimelimits <- function(min, max) {
+    if ((is.null(min) || min == "auto")
+        && (is.null(max) || max == "auto")) {
+        return(NULL)
+    }
+    return(as.numeric(c(
+        if (is.null(min) || min == "auto") 0 else min,
+        if (is.null(max) || max == "auto") 4500 else max
+    )))
+}
+
+concordia <- function(fn, params, data, s2d, settings, cex) {
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    if (!is.null(s2d$diseq)) {
+        s2d$params$d <- do.call(
+            IsoplotR::diseq,
+            s2d$diseq
+        )
+    }
+    s2d$params$input <- data
+    args <- list(
+        x = do.call(selection2data, s2d$params),
+        alpha = pd$alpha,
+        type = pd$type,
+        exterr = pd$exterr,
+        show.numbers = pd$shownumbers,
+        show.age = pd$showage,
+        sigdig = pd$sigdig,
+        common.Pb = params$gcsettings$commonPb,
+        ellipse.fill = params$ellipsefill,
+        ellipse.stroke = params$ellipsestroke,
+        levels = selection2levels(data$data, nc),
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),
+        clabel = pd$clabel
+    )
+    # These cannot go into the initializer list, or they will end up with NULLs
+    args$tlim <- gettimelimits(pd$mint, pd$maxt)
+    args$xlim <- getlimits(pd$minx, pd$maxx)
+    args$ylim <- getlimits(pd$miny, pd$maxy)
+    if (pd$ticks != "auto") {
+        args$ticks <- pd$ticks
+    }
+    if (pd$anchor == 1) {
+        args$anchor <- 1
+    } else if (pd$anchor == 2) {
+        args$anchor <- c(2, pd$tanchor)
+    }
+    par(cex)
+    do.call(IsoplotR::concordia, args)
+}
+
 #' Start the \code{IsoplotR} GUI
 #'
 #' Opens a web-browser with a Graphical User Interface (GUI) for the
@@ -101,7 +166,8 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
         appDir = appDir,
         daemonize = !is.null(port),
         interface = list(
-            isoplotr = call.isoplotr
+            isoplotr = call.isoplotr,
+            concordia = concordia
         )
     )
     extraMessage <- ""
