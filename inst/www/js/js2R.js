@@ -197,6 +197,9 @@ function getOptions(prefs){
     var gcsettings = prefs.settings[geochronometer];
     switch (plotdevice){
     case 'concordia':
+    case 'evolution':
+    case 'isochron':
+    case 'regression':
         return {
             geochronometer: geochronometer,
             plotdevice: plotdevice,
@@ -206,256 +209,52 @@ function getOptions(prefs){
             ellipsestroke: getColour(pdsettings.ellipsestroke, 'black')
         };
     case 'radial':
-        params.transformation = pdsettings.transformation;
-        params.levels = true;
-        params.omit = { flags: 'x' };
-        params.hide = { flags: 'X' };
-        if (pdsettings.numpeaks == 'auto') { params.k = 'auto'; }
-        else if (pdsettings.numpeaks == 'min'){ params.k = 'min'; }
-        else { params.k = pdsettings.numpeaks; }
-        if (pdsettings.mint != 'auto'){ params.from = pdsettings.mint; }
-        if (pdsettings.z0 != 'auto'){ params.z0 = pdsettings.z0; }
-        if (pdsettings.maxt != 'auto'){ params.to = pdsettings.maxt; }
-        params.pch = pdsettings.pch;
-        params.cex = pdsettings.cex;
-        params.bg = getColour(pdsettings.bg, 'yellow');
-        params.alpha = pdsettings.alpha;
-        params.sigdig = pdsettings.sigdig;
-        params['show.numbers'] = pdsettings.shownumbers;
-        params.clabel = pdsettings.clabel;
-        if (geochronometer !== "other" &&
-            geochronometer !== "Th-U" &&
-            geochronometer !== 'U-Th-He') {
-                params.exterr = pdsettings.exterr;
-        }
-        switch (geochronometer){
-        case 'Th-U':
-            params.detritus= + gcsettings.detritus;
-        case 'Ar-Ar':
-        case 'Th-Pb':
-        case 'K-Ca':
-        case 'Rb-Sr':
-        case 'Sm-Nd':
-        case 'Re-Os':
-        case 'Lu-Hf':
-            params.i2i = gcsettings.i2i;
-            break;
-        case 'U-Pb':
-            var type = gcsettings.type;
-            params.type = type;
-            if (type === 4) {
-                params['cutoff.76'] = gcsettings.cutoff76;
-            }
-            setCutoffDisc(params, gcsettings);
-        case 'Pb-Pb':
-            params['common.Pb'] = gcsettings.commonPb;
-            default:
-        }
-        break;
-    case 'evolution':
-        if (pdsettings.transform && pdsettings.mint !== 'auto' && pdsettings.maxt !== 'auto'){
-            params.xlim = [ pdsettings.mint, pdsettings.maxt ];
-        }
-        if (!pdsettings.transform && pdsettings.min08 !== 'auto' && pdsettings.max08 !== 'auto'){
-            params.xlim = [ pdsettings.min08, pdsettings.max08 ];
-        }
-        if (pdsettings.min48 != 'auto' & pdsettings.max48 != 'auto'){
-            params.ylim = [ pdsettings.min48, pdsettings.max48 ];
-        }
-        params.alpha = pdsettings.alpha;
-        params['show.numbers'] = pdsettings.shownumbers;
-        params.sigdig = pdsettings.sigdig;
-        params.transform = pdsettings.transform;
-        params.detritus = gcsettings.detritus;
-        params.exterr = pdsettings.exterr;
-        params.isochron = pdsettings.isochron;
-        params.levels = true;
-        params.omit = { flags: 'x' };
-        params.hide = { flags: 'X' };
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
-        params.model = pdsettings.model;
-        params.clabel = pdsettings.clabel;
-        break;
-    case 'isochron':
-        if (geochronometer !== 'U-Pb' && geochronometer !== 'Th-U' &&
-            geochronometer !=='U-Th-He') { params.inverse = gcsettings.inverse; }
-        if (geochronometer === 'Pb-Pb') { params.growth = pdsettings.growth; }
-        if (geochronometer=='U-Pb') {
-            params.type = pdsettings.UPbtype;
-            if (gcsettings.format > 3) {
-                params.joint = pdsettings.joint;
-            }
-            if (pdsettings.anchor === 1) {
-                params.anchor = 1;
-            } else if (pdsettings.anchor === 2) {
-                params.anchor = [2, pdsettings.tanchor ];
-            }
-        }
-        if (geochronometer=='Th-U') { params.type = pdsettings.ThUtype; }
-        if (geochronometer!='U-Th-He') { params.exterr = pdsettings.exterr; }
-    case 'regression':
-        if (pdsettings.minx !== 'auto' && pdsettings.maxx !== 'auto') {
-            params.xlim = [ pdsettings.minx, pdsettings.maxx ];
-        }
-        if (pdsettings.miny !== 'auto' && pdsettings.maxy !== 'auto') {
-            params.ylim = [ pdsettings.miny, pdsettings.maxy ];
-        }
-        params.alpha = pdsettings.alpha;
-        params['show.numbers'] = pdsettings.shownumbers;
-        params.sigdig = pdsettings.sigdig;
-        params.model = pdsettings.model;
-        params.clabel = pdsettings.clabel;
-        params.levels = true;
-        params.omit = { flags: 'x' };
-        params.hide = { flags: 'X' };
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
-        break;
+        return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
+            pdsettings: pdsettings,
+            gcsettings: gcsettings,
+            bg: getColour(pdsettings.bg, 'yellow')
+        };
     case 'average':
-	switch (geochronometer){
-        case 'Th-U':
-            params.detritus = gcsettings.detritus;
-        case 'Ar-Ar':
-        case 'Th-Pb':
-        case 'K-Ca':
-        case 'Rb-Sr':
-        case 'Sm-Nd':
-        case 'Re-Os':
-        case 'Lu-Hf':
-            params.i2i = gcsettings.i2i;
-            break;
-        case 'U-Pb':
-            var type = gcsettings.type;
-            params.type = type;
-            if (type === 4) {
-                params['cutoff.76'] = gcsettings.cutoff76;
-            }
-            setCutoffDisc(params, gcsettings);
-        case 'Pb-Pb':
-            params['common.Pb'] = gcsettings.commonPb;
-            break;
-        }
-        if (geochronometer !== "other" &&
-            geochronometer !== "Th-U" &&
-            geochronometer !== 'U-Th-He') {
-            params.exterr = pdsettings.exterr;
-        }
-        params['detect.outliers'] = pdsettings.outliers;
-        params.alpha = pdsettings.alpha;
-        params.sigdig = pdsettings.sigdig;
-        params['random.effects'] = pdsettings.randomeffects;
-        params.ranked = pdsettings.ranked;
-        params.levels = true;
-        params['rect.col'] = getColour(pdsettings.rectcol, 'red');
-        params['outlier.col'] = getColour(pdsettings.outliercol, 'green');
-        params.clabel = pdsettings.clabel;
-        if (pdsettings.mint !== 'auto') { params.from = pdsettings.mint; }
-        if (pdsettings.maxt !== 'auto') { params.to = pdsettings.maxt; }
-        params.omit = { flags: 'x' };
-        params.hide = { flags: 'X' };
-        break;
+        return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
+            pdsettings: pdsettings,
+            gcsettings: gcsettings,
+            rectcol: getColour(pdsettings.rectcol, 'green'),
+            outliercol: getColour(pdsettings.outliercol, 'red')
+        };
     case 'spectrum':
-        if (geochronometer=='Ar-Ar'){
-            params.i2i = gcsettings.i2i;
-            params.exterr = pdsettings.exterr;
-        }
-        params.plateau = pdsettings.plateau;
-        param['random.effects'] = pdsettings.randomeffects;
-        params.alpha = pdsettings.alpha;
-        params.sigdig = pdsettings.sigdig;
-        params.levels = true;
-        params['plateau.col'] = getColour(pdsettings.plateaucol, 'cyan');
-        params['non.plateau.col'] = getColour(pdsettings.nonplateaucol, 'red');
-        params.clabel = pdsettings.clabel;
-        params.omit = { flags: 'x' };
-        params.hide = { flags: 'X' };
-        break;
+        return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
+            pdsettings: pdsettings,
+            gcsettings: gcsettings,
+            plateaucol: getColour(pdsettings.plateaucol, 'cyan'),
+            nonplateaucol: getColour(pdsettings.nonplateaucol, 'red')
+        };
     case 'KDE':
-        params.from = pdsettings.minx === 'auto'? NA : pdsettings.minx;
-        params.to = pdsettings.maxx === 'auto'? NA : pdsettings.maxx;
-        params.bw = pdsettings.bandwidth === 'auto'? NA : pdsettings.bandwidth;
-        params['show.hist'] = pdsettings.showhist;
-        params.adaptive = pdsettings.adaptive;
-        switch (geochronometer){
-        case 'Th-U':
-            params.detritus = gcsettings.detritus;
-        case 'Ar-Ar':
-        case 'Th-Pb':
-        case 'K-Ca':
-        case 'Rb-Sr':
-        case 'Sm-Nd':
-        case 'Re-Os':
-        case 'Lu-Hf':
-            params.i2i = gcsettings.i2i;
-            break;
-        case 'U-Pb':
-            var type = gcsettings.type;
-            params.type = type;
-            if (type === 4) {
-                params['cutoff.76'] = gcsettings.cutoff76;
-            }
-            setCutoffDisc(params, gcsettings);
-        case 'Pb-Pb':
-            params['common.Pb'] = gcsettings.commonPb;
-            break;
-        case 'detritals':
-            params.samebandwidth = pdsettings.samebandwidth;
-            params.normalise = pdsettings.normalise;
-            break;
-        default:
-        }
-        params.rug = geochronometer === "detritals"?
-            pdsettings.rugdetritals : pdsettings.rug;
-        params.log = pdsettings.log;
-        params.binwidth = pdsettings.binwidth === 'auto'? NA : pdsettings.binwidth;
-        if (geochronometer === 'detritals') {
-            params.hide = gcsettings.hide;
-        } else {
-            params.hide = { flags: [ 'x', 'X' ] };
-        }
-        break;
+        return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
+            pdsettings: pdsettings,
+            gcsettings: gcsettings
+        };
     case 'CAD':
-        if (pdsettings.pch !== 'none') { params.pch = pdsettings.pch; }
-        params.verticals = pdsettings.verticals;
-        switch (geochronometer){
-        case 'Th-U':
-            params.detritus = gcsettings.detritus;
-        case 'Ar-Ar':
-        case 'Th-Pb':
-        case 'K-Ca':
-        case 'Rb-Sr':
-        case 'Sm-Nd':
-        case 'Re-Os':
-        case 'Lu-Hf':
-            params.i2i = gcsettings.i2i;
-            break;
-        case 'U-Pb':
-            var type = gcsettings.type;
-            params.type = type;
-            if (type === 4) {
-                params['cutoff.76'] = gcsettings.cutoff76;
-            }
-            setCutoffDisc(params, gcsettings);
-        case 'Pb-Pb':
-            params['common.Pb'] = gcsettings.commonPb;
-            break;
-        default:
-        }
-        if (geochronometer === 'detritals') {
-            params.col = getColour(pdsettings.colmap, 'green');
-            params.hide = gcsettings.hide.split(',');
-        } else {
-            params.hide = { flags: [ 'x', 'X' ] };
-        }
-        break;
+        return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
+            pdsettings: pdsettings,
+            gcsettings: gcsettings,
+            colmap: getColour(pdsettings.colmap, 'green'),
+            hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : []
+        };
     case 'set-zeta':
-        var data = prefs.data.fissiontracks;
-        params.tst = data.age;
-        params.exterr = pdsettings.exterr;
-        params.sigdig = pdsettings.sigdig;
-        params.update = false;
-        break;
+        return {
+            pdsettings: pdsettings,
+            data: prefs.data.fissiontracks
+        };
     case 'helioplot':
         params.logratio = pdsettings.logratio;
         params['show.numbers'] = pdsettings.shownumbers;

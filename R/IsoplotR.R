@@ -40,6 +40,16 @@ getomitter <- function(om, dat, nc) {
 
 isoplotr_env <- environment(IsoplotR::concordia)
 
+applysettings <- function(settings) {
+    for (methodname in names(settings)) {
+        method <- settings[[methodname]]
+        for (gc in names(method)) {
+            vs <- method[[gc]]
+            do.call(IsoplotR::settings, as.list(c(methodname, gc, vs)))
+        }
+    }
+}
+
 call.isoplotr <- function(fn, params, data, s2d, settings,
         cex = NULL, york = NULL) {
     if (!is.null(s2d$diseq)) {
@@ -50,13 +60,7 @@ call.isoplotr <- function(fn, params, data, s2d, settings,
     }
     s2d$params$input <- data
     params$x <- do.call(selection2data, s2d$params)
-    for (method.name in names(settings)) {
-        method <- settings[[method.name]]
-        for (clock.name in names(method)) {
-            vs <- method[[clock.name]]
-            do.call(IsoplotR::settings, as.list(c(method.name, clock.name, vs)))
-        }
-    }
+    applysettings(settings)
     nc <- as.numeric(data$nc)
     params$cutoff.disc <- getdiscfilter(params$cutoff.disc)
     params$discordance <- getdiscfilter(params$discordance)
@@ -91,15 +95,21 @@ gettimelimits <- function(min, max) {
         && (is.null(max) || max == "auto")) {
         return(NULL)
     }
-    return(as.numeric(c(
-        if (is.null(min) || min == "auto") 0 else min,
-        if (is.null(max) || max == "auto") 4500 else max
-    )))
+    return(c(
+        if (is.null(min) || min == "auto") 0 else as.numeric(min),
+        if (is.null(max) || max == "auto") 4500 else as.numeric(max)
+    ))
 }
 
-concordia <- function(fn, params, data, s2d, settings, cex) {
-    pd <- params$pdsettings
-    nc <- as.numeric(data$nc)
+notauto <- function(v) {
+    return(if (v == "auto") NULL else as.numeric(v))
+}
+
+naifauto <- function(v) {
+    return(if (v == "auto") NA else as.numeric(v))
+}
+
+getdata <- function(params, data, s2d) {
     if (!is.null(s2d$diseq)) {
         s2d$params$d <- do.call(
             IsoplotR::diseq,
@@ -107,8 +117,15 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
         )
     }
     s2d$params$input <- data
+    do.call(selection2data, s2d$params)
+}
+
+concordia <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
     args <- list(
-        x = do.call(selection2data, s2d$params),
+        x = getdata(params, data, s2d),
         alpha = pd$alpha,
         type = pd$type,
         exterr = pd$exterr,
@@ -139,6 +156,341 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     do.call(IsoplotR::concordia, args)
 }
 
+radialplot <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    args <- list(
+        x = getdata(params, data, s2d),
+        transformation = pd$transformation,
+        pch = pd$pch,
+        show.numbers = pd$shownumbers,
+        k = pd$numpeaks,
+        alpha = pd$alpha,
+        sigdig = pd$sigdig,
+        bg = params$bg,
+        levels = selection2levels(data$data, nc),
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),        exterr = pd$exterr,
+
+        clabel = pd$clabel
+    )
+    args$from <- notauto(pd$mint)
+    args$to <- notauto(pd$maxt)
+    args$z0 <- notauto(pd$z0)
+    if (!(params$geochronometer %in% c("other", "Th-U", "U-Th-He"))) {
+        args$exterr <- pd$exterr
+    }
+    if (params$geochronometer == "Th-U") {
+        args$detritus <- params$gcsettings$detritus
+    }
+    if (params$geochronometer %in%
+            c("Th-U", "Ar-Ar", "Th-Pb", "K-Ca",
+            "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")) {
+        args$i2i <- params$gcsettings$i2i
+    }
+    if (params$geochronometer == "U-Pb") {
+        type <- params$gcsettings$type
+        args$type <- type
+        if (type == 4) {
+            args$cutoff.76 <- params$gcsettings$cutoff76
+        }
+        if (params$gcsettings$cutoffdisc != 0) {
+            opt <- params$gcsettings$discoption
+            cutoff <- c(
+                params$gcsettings$mindisc[opt - 1],
+                params$gcsettings$maxdisc[opt - 1]
+            )
+            IsoplotR::discfilter(
+                option = opt,
+                cutoff = cutoff,
+                before = params$gcsettings$cutoffdisc == 1
+            )
+        }
+    }
+    if (params$geochronometer == "Pb-Pb") {
+        args$common.Pb <- params$gcsettings$commonPb
+    }
+    par(cex)
+    do.call(IsoplotR::radialplot, args)
+}
+
+evolution <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    args <- list(
+        x = getdata(params, data, s2d),
+        alpha = pd$alpha,
+        show.numbers = pd$shownumbers,
+        sigdig = pd$sigdig,
+        transform = pd$transform,
+        detritus = params$gcsettings$detritus,
+        exterr = pd$exterr,
+        isochron = pd$isochron,
+        levels = selection2levels(data$data, nc),
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),
+        ellipse.fill = params$ellipsefill,
+        ellipse.stroke = params$ellipsestroke,
+        model = pd$model,
+        clabel = pd$clabel
+    )
+    args$tlim <- gettimelimits(pd$mint, pd$maxt)
+    args$xlim <- getlimits(pd$min08, pd$max08)
+    args$ylim <- getlimits(pd$min48, pd$max48)
+    par(cex)
+    do.call(IsoplotR::evolution, args)
+}
+
+isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    args <- list(
+        x = getdata(params, data, s2d),
+        alpha = pd$alpha,
+        show.numbers = pd$shownumbers,
+        sigdig = pd$sigdig,
+        levels = selection2levels(data$data, nc),
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),
+        ellipse.fill = params$ellipsefill,
+        ellipse.stroke = params$ellipsestroke,
+        model = pd$model,
+        clabel = pd$clabel
+    )
+    gc <- params$geochronometer
+    if (gc %in% c("U-Pb", "Th-U", "U-Th-He", "Pb-Pb")) {
+        args$inverse <- params$gcsettings$inverse
+    }
+    if (gc == "Pb-Pb") {
+        args$growth <- params$pdsettings$growth
+    }
+    if (gc == "U-Pb") {
+        args$type <- params$pdsettings$UPbtype;
+        if (params$gcsettings$format > 3) {
+            args$joint <- params$pdsettings$joint
+        }
+        anchor <- params$pdsettings$anchor
+        if (anchor == 1) {
+            args$anchor <- 1
+        } else if (anchor == 2) {
+            args$anchor <- c(2, params$pdsettings$tanchor)
+        }
+    }
+    if (gc == "Th-U") {
+        args$type <- params$pdsettings$ThUtype
+    }
+    if (gc != "U-Th-He") {
+        args$exterr <- params$pdsettings$exterr
+    }
+    args$xlim <- getlimits(pd$minx, pd$maxx)
+    args$ylim <- getlimits(pd$miny, pd$maxy)
+    if (!is.null(york)) {
+        args$x <- IsoplotR::data2york(args$x, format = york$format)
+    }
+    par(cex)
+    do.call(IsoplotR::isochron, args)
+}
+
+weightedmean <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    args <- list(
+        x = getdata(params, data, s2d),
+        detect.outliers = pd$outliers,
+        alpha = pd$alpha,
+        sigdig = pd$sigdig,
+        random.effects = pd$randomeffects,
+        ranked = pd$ranked,
+        levels = selection2levels(data$data, nc),
+        rect.col = params$rectcol,
+        outlier.col = params$outliercol,
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),
+        clabel = pd$clabel
+    )
+    args$from <- notauto(pd$mint)
+    args$to <- notauto(pd$maxt)
+    gc <- params$geochronometer
+    if (gc %in% c(
+        "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-HF"
+    )) {
+        args$i2i <- params$gcsettings$i2i
+    }
+    if (gc == "U-Pb") {
+        type <- params$gcsettings$type
+        args$type <- type
+        if (type == 4) {
+            args$cutoff.76 <- params$gcsettings$cutoff76
+        }
+        if (params$gcsettings$cutoffdisc != 0) {
+            opt <- params$gcsettings$discoption
+            args$cutoff.disc <- IsoplotR::discfilter(
+                option = opt,
+                before = params$gcsettings.cutoffdisc == 1,
+                cutoff = c(
+                    params$gcsettings$mindisc[opt - 1],
+                    params$gcsettings$maxdisc[opt - 1]
+                )
+            )
+        }
+    }
+    if (gc %in% c("U-Pb", "Pb-Pb")) {
+        args$common.Pb <- params$gcsettings$commonPb
+    }
+    if (gc == "Th-U") {
+        args$detritus <- params$gcsettings$detritus
+    }
+    if (!(gc %in% c("other", "Th-U", "U-Th-He"))) {
+        args$exterr <- params$pdsettings$exterr
+    }
+    par(cex)
+    do.call(IsoplotR::weightedmean, args)
+}
+
+agespectrum <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    args <- list(
+        x = getdata(params, data, s2d),
+        plateau = pd$plateau,
+        plateau.col = params$plateaucol,
+        non.plateau.col = params$nonplateaucol,
+        detect.outliers = pd$outliers,
+        alpha = pd$alpha,
+        sigdig = pd$sigdig,
+        random.effects = pd$randomeffects,
+        levels = selection2levels(data$data, nc),
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),
+        clabel = pd$clabel
+    )
+    gc <- params$geochronometer
+    if (gc == "Ar-Ar") {
+        args$i2i <- params$gcsettings$i2i
+        args$exterr <- pd$exterr
+    }
+    par(cex)
+    do.call(IsoplotR::agespectrum, args)
+}
+
+kde <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    gc <- params$geochronometer
+    args <- list(
+        x = getdata(params, data, s2d),
+        hide =
+            if (gc == "detritals") params$gcsettings$hide
+            else omitter(data$data, nc, c("x", "X")),
+        rug = if (gc == "detritals") pd$rugdetritals else pd$rug,
+        log = pd$log,
+        binwidth = naifauto(pd$binwidth),
+        from = naifauto(pd$minx),
+        to = naifauto(pd$maxx),
+        bw = naifauto(pd$bandwidth),
+        show.hist = pd$showhist,
+        adaptive = pd$adaptive
+    )
+    if (gc == "Th-U") {
+        args$detritus <- params$gcsettings$detritus
+    }
+    if (gc %in% c(
+        "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
+    ) {
+        args$i2i <- params$gcsettings$i2i
+    }
+    if (gc == "U-Pb") {
+        type <- params$gcsettings$type
+        args$type <- type
+        if (type == 4) {
+            args$cutoff.76 <- params$gcsettings$cutoff76
+        }
+        args$cutoff.disc <- IsoplotR::discfilter(
+            option = opt,
+            before = params$gcsettings.cutoffdisc == 1,
+            cutoff = c(
+                params$gcsettings$mindisc[opt - 1],
+                params$gcsettings$maxdisc[opt - 1]
+            )
+        )
+    }
+    if (gc %in% c("U-Pb", "Pb-Pb")) {
+        args$common.Pb <- params$gcsettings$commonPb
+    }
+    if (gc == "detritals") {
+        args$samebandwidth <- pd$samebandwidth
+        args$normalise <- pd$normalise
+    }
+    par(cex)
+    do.call(IsoplotR::kde, args)
+}
+
+cad <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    args <- list(
+        x = getdata(params, data, s2d),
+        verticals = pd$verticals
+    )
+    if (pd$pch != "none") {
+        args$pch <- pd$pch
+    }
+    gc <- params$geochronometer
+    if (gc == "Th-U") {
+        args$detritus <- params$gcsettings$detritus
+    }
+    if (gc %in% c(
+        "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
+    ) {
+        args$i2i <- params$gcsettings$i2i
+    }
+    if (gc == "U-Pb") {
+        type <- params$gcsettings$type
+        args$type <- type
+        if (type == 4) {
+            args$cutoff.76 <- params$gcsettings$cutoff76
+        }
+        args$cutoff.disc <- IsoplotR::discfilter(
+            option = opt,
+            before = params$gcsettings.cutoffdisc == 1,
+            cutoff = c(
+                params$gcsettings$mindisc[opt - 1],
+                params$gcsettings$maxdisc[opt - 1]
+            )
+        )
+    }
+    if (gc %in% c("U-Pb", "Pb-Pb")) {
+        args$common.Pb <- params$gcsettings$commonPb
+    }
+    if (gc == "detritals") {
+        args$col <- params$colmap
+        args$hide <- params$hide
+    } else {
+        args$hide <- omitter(data$data, nc, c("x", "X"))
+    }
+    par(cex)
+    do.call(IsoplotR::cad, args)
+}
+
+set.zeta <- function(fn, params, data, s2d, settings) {
+    applysettings(settings)
+    args <- list(
+        x = getdata(params, data, s2d),
+        tst = as.numeric(params$data$age),
+        exterr = params$pdsettings$exterr,
+        sigdig = params$pdsettings$sigdig,
+        update = FALSE
+    )
+    do.call(IsoplotR::set.zeta, args)
+}
+
 #' Start the \code{IsoplotR} GUI
 #'
 #' Opens a web-browser with a Graphical User Interface (GUI) for the
@@ -167,7 +519,15 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
         daemonize = !is.null(port),
         interface = list(
             isoplotr = call.isoplotr,
-            concordia = concordia
+            concordia = concordia,
+            radialplot = radialplot,
+            evolution = evolution,
+            isochron = isochron,
+            weightedmean = weightedmean,
+            agespectrum = agespectrum,
+            kde = kde,
+            cad = cad,
+            set.zeta = set.zeta
         )
     )
     extraMessage <- ""
