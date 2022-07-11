@@ -404,45 +404,9 @@ function getRcommand(prefs) {
     if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
         input.cex = prefs.settings.par.cex;
     }
-    switch (plotdevice){
-    case 'concordia': 
-        input.fn = 'concordia';
-        break;
-    case 'evolution': 
-        input.fn = 'evolution';
-        break;
-    case 'regression':
+    if (plotdevice == 'regression') {
         input.york = { format: prefs.settings.other.format };
-    case 'isochron':
-        input.fn = 'isochron';
-        break;
-    case 'radial':
-        input.fn = 'radialplot';
-        break;
-    case 'spectrum':
-        input.fn = 'agespectrum';
-        break;
-    case 'average':
-        input.fn = 'weightedmean';
-        break;
-    case 'KDE':
-        input.fn = 'kde';
-        break;
-    case 'CAD':
-        input.fn = 'cad';
-        break;
-    case 'set-zeta':
-        input.fn = 'set.zeta';
-        break;
-    case 'helioplot':
-        input.fn = 'helioplot';
-        break;
-    case 'MDS':
-        input.fn = 'mds';
-        break;
-    case 'ages':
-        input.fn = 'age';
-        break;
     }
+    input.fn = plotdevice;
     return input;
 }

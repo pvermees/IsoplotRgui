@@ -544,17 +544,18 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
         daemonize = !is.null(port),
         interface = list(
             concordia = concordia,
-            radialplot = radialplot,
+            radial = radialplot,
             evolution = evolution,
             isochron = isochron,
-            weightedmean = weightedmean,
-            agespectrum = agespectrum,
-            kde = kde,
-            cad = cad,
-            set.zeta = set.zeta,
+            regression = isochron,
+            average = weightedmean,
+            spectrum = agespectrum,
+            KDE = kde,
+            CAD = cad,
+            "set-zeta" = set.zeta,
             helioplot = helioplot,
-            mds = mds,
-            age = age
+            MDS = mds,
+            ages = age
         )
     )
     extraMessage <- ""
