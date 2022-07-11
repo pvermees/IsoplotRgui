@@ -114,8 +114,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         bg = params$bg,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
-        hide = omitter(data$data, nc, c("X")),        exterr = pd$exterr,
-
+        hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
     )
     args$from <- notauto(pd$mint)
