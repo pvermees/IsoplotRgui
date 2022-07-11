@@ -2517,8 +2517,7 @@ $(function(){
         var img = document.createElement('IMG');
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        var fn = ['concordia', 'radialplot', 'evolution', 'isochron', 'weightedmean', 'agespectrum', 'kde', 'cad', 'set.zeta'].indexOf(input.fn) < 0? 'isoplotr' : input.fn;
-        shinylight.call(fn, input, myplot.get(0), {
+        shinylight.call(input.fn, input, myplot.get(0), {
             imgType: 'svg',
         }).then(function(result) {
             img.setAttribute('src', result.plot[0]);
@@ -2544,10 +2543,7 @@ $(function(){
         $("#OUTPUT").show();
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        var fn = ['concordia', 'radialplot', 'evolution', 'isochron', 'weightedmean', 'agespectrum', 'kde', 'cad', 'set.zeta'].indexOf(input.fn) < 0? 'isoplotr' : input.fn;
-        console.log(fn);
-        console.log(input);
-        shinylight.call(fn, input, null, {}).then(function(result) {
+        shinylight.call(input.fn, input, null, {}).then(function(result) {
             $('#OUTPUT').handsontable('populateFromArray', 0, 0,
                 result.data);
             const hot = $('#OUTPUT').data('handsontable');

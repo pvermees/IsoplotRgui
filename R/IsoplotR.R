@@ -11,35 +11,6 @@ omitter <- function(dat, nc, flags = c("x", "X")) {
     which(o %in% flags)
 }
 
-getdiscfilter <- function(cd) {
-    if (is.null(cd)) {
-        return(NULL)
-    }
-    if (is.null(cd$cutoff)) {
-        return(IsoplotR::discfilter(
-            option = cd$option,
-            before = cd$before
-        ))
-    }
-    IsoplotR::discfilter(
-        option = cd$option,
-        cutoff = cd$cutoff,
-        before = cd$before
-    )
-}
-
-getomitter <- function(om, dat, nc) {
-    if (is.null(om)) {
-        return(NULL)
-    }
-    if (is.null(om$flags)) {
-        return(om)
-    }
-    omitter(dat = dat, nc = nc, flags = om$flags)
-}
-
-isoplotr_env <- environment(IsoplotR::concordia)
-
 applysettings <- function(settings) {
     for (methodname in names(settings)) {
         method <- settings[[methodname]]
@@ -50,37 +21,11 @@ applysettings <- function(settings) {
     }
 }
 
-call.isoplotr <- function(fn, params, data, s2d, settings,
-        cex = NULL, york = NULL) {
-    if (!is.null(s2d$diseq)) {
-        s2d$params$d <- do.call(
-            IsoplotR::diseq,
-            s2d$diseq
-        )
+getpch <- function(pch) {
+    if (pch == "none") {
+        return(NULL)
     }
-    s2d$params$input <- data
-    params$x <- do.call(selection2data, s2d$params)
-    applysettings(settings)
-    nc <- as.numeric(data$nc)
-    params$cutoff.disc <- getdiscfilter(params$cutoff.disc)
-    params$discordance <- getdiscfilter(params$discordance)
-    params$omit <- getomitter(params$omit, data$data, nc)
-    params$hide <- getomitter(params$hide, data$data, nc)
-    if (!is.null(params$levels)) {
-        params$levels <- selection2levels(data$data, nc)
-    }
-    if (!is.null(cex)) {
-        par(cex)
-    }
-    if (!is.null(york)) {
-        params$x <- IsoplotR::data2york(params$x, format = york$format)
-    }
-    do.call(fn, params, envir = isoplotr_env)
-}
-
-getcolour <- function(text, default) {
-    # Fix this
-    eval(parse(text=text))
+    as.numeric(pch)
 }
 
 getlimits <- function(min, max) {
@@ -144,9 +89,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     args$tlim <- gettimelimits(pd$mint, pd$maxt)
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
-    if (pd$ticks != "auto") {
-        args$ticks <- pd$ticks
-    }
+    args$ticks <- notauto(pd$ticks)
     if (pd$anchor == 1) {
         args$anchor <- 1
     } else if (pd$anchor == 2) {
@@ -163,7 +106,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
     args <- list(
         x = getdata(params, data, s2d),
         transformation = pd$transformation,
-        pch = pd$pch,
+        pch = getpch(pd$pch),
         show.numbers = pd$shownumbers,
         k = pd$numpeaks,
         alpha = pd$alpha,
@@ -437,11 +380,9 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     nc <- as.numeric(data$nc)
     args <- list(
         x = getdata(params, data, s2d),
-        verticals = pd$verticals
+        verticals = pd$verticals,
+        pch = getpch(pd$pch)
     )
-    if (pd$pch != "none") {
-        args$pch <- pd$pch
-    }
     gc <- params$geochronometer
     if (gc == "Th-U") {
         args$detritus <- params$gcsettings$detritus
@@ -491,6 +432,90 @@ set.zeta <- function(fn, params, data, s2d, settings) {
     do.call(IsoplotR::set.zeta, args)
 }
 
+helioplot <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    nc <- as.numeric(data$nc)
+    args <- list(
+        x = getdata(params, data, s2d),
+        alpha = pd$alpha,
+        show.numbers = pd$shownumbers,
+        sigdig = pd$sigdig,
+        levels = selection2levels(data$data, nc),
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),
+        ellipse.fill = params$ellipsefill,
+        ellipse.stroke = params$ellipsestroke,
+        model = pd$model,
+        clabel = pd$clabel
+    )
+    args$xlim <- getlimits(pd$minx, pd$maxx)
+    args$ylim <- getlimits(pd$miny, pd$maxy)
+    args$fact <- notauto(pd$fact)
+    par(cex)
+    do.call(IsoplotR::helioplot, args)
+}
+
+mds <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(settings)
+    pd <- params$pdsettings
+    args <- list(
+        x = getdata(params, data, s2d),
+        sigdig = pd$sigdig,
+        classical = pd$classical,
+        shepard = pd$shepard,
+        nnlines = pd$nnlines,
+        pch = getpch(pd$pch),
+        col = params$col,
+        bg = params$bg,
+        hide = params$hide,
+    )
+    if (pd$pos %in% c(1, 2, 3, 4)) {
+        args$pos <- pd$pos
+    }
+    if (!pd$shepard) {
+        par(cex)
+    }
+    do.call(IsoplotR::mds, args)
+}
+
+age <- function(fn, params, data, s2d, settings) {
+    applysettings(settings)
+    args <- list(
+        x = getdata(params, data, s2d)
+    )
+    gc <- params$geochronometer
+    if (gc == "U-Pb" && params$pdsettings$showdisc != 0) {
+        IsoplotR::discfilter(
+            option = params$pdsettings$discoption,
+            before = params$pdsettings$showdisc == 1
+        )
+    }
+    if (gc == "U-TH-He") {
+        args$exterr <- params$pdsettings$exterr
+    }
+    if (gc == "Th-U") {
+        args$i2i <- params$gcsettings$i2i
+        args$isochron <- FALSE
+        args$detritus <- params$gcsettings$detritus
+    }
+    if (gc %in% c(
+        "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
+    ) {
+        args$i2i <- params$gcsettings$i2i
+        args$isochron <- FALSE
+        args$projerr <- params$gcsettings$projerr
+    }
+    if (gc == "Pb-Pb") {
+        args$projerr <- params$gcsettings$projerr
+        args$isochron <- FALSE
+    }
+    if (gc %in% c("U-Pb", "Pb-Pb")) {
+        args$common.Pb <- params$gcsettings$commonPb
+    }
+    do.call(IsoplotR::age, args)
+}
+
 #' Start the \code{IsoplotR} GUI
 #'
 #' Opens a web-browser with a Graphical User Interface (GUI) for the
@@ -518,7 +543,6 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
         appDir = appDir,
         daemonize = !is.null(port),
         interface = list(
-            isoplotr = call.isoplotr,
             concordia = concordia,
             radialplot = radialplot,
             evolution = evolution,
@@ -527,7 +551,10 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
             agespectrum = agespectrum,
             kde = kde,
             cad = cad,
-            set.zeta = set.zeta
+            set.zeta = set.zeta,
+            helioplot = helioplot,
+            mds = mds,
+            age = age
         )
     )
     extraMessage <- ""

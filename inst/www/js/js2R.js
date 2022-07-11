@@ -189,7 +189,6 @@ function getColour(s, def) {
 
 // turns the options into a string to feed into R
 function getOptions(prefs){
-    var NA = [null];
     var params = {};
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
@@ -200,6 +199,7 @@ function getOptions(prefs){
     case 'evolution':
     case 'isochron':
     case 'regression':
+    case 'helioplot':
         return {
             geochronometer: geochronometer,
             plotdevice: plotdevice,
@@ -235,6 +235,7 @@ function getOptions(prefs){
             nonplateaucol: getColour(pdsettings.nonplateaucol, 'red')
         };
     case 'KDE':
+    case 'ages':
         return {
             geochronometer: geochronometer,
             plotdevice: plotdevice,
@@ -255,80 +256,16 @@ function getOptions(prefs){
             pdsettings: pdsettings,
             data: prefs.data.fissiontracks
         };
-    case 'helioplot':
-        params.logratio = pdsettings.logratio;
-        params['show.numbers'] = pdsettings.shownumbers;
-        params['show.central.comp'] = pdsettings.showcentralcomp;
-        params.alpha = pdsettings.alpha;
-        params.sigdig = pdsettings.sigdig;
-        if (pdsettings.minx !== 'auto' && pdsettings.maxx !== 'auto') {
-            params.xlim = [ pdsettings.minx, pdsettings.maxx ];
-        }
-        if (pdsettings.miny !== 'auto' && pdsettings.maxy !== 'auto') {
-            params.ylim = [ pdsettings.miny, pdsettings.maxy ];
-        }
-        if (pdsettings.fact !== 'auto') {
-            params.fact = pdsettings.fact;
-        }
-        params.levels = true;
-        params.omit = { flags: 'x' };
-        params.hide = { flags: 'X' };
-        params['ellipse.fill'] = getColour(pdsettings.ellipsefill, 'cyan');
-        params['ellipse.stroke'] = getColour(pdsettings.ellipsestroke, 'black');
-        params.model = pdsettings.model;
-        params.clabel = pdsettings.clabel;
-        break;
     case 'MDS':
-        params.classical = pdsettings.classical;
-        params.shepard = pdsettings.shepard;
-        params.nnlines = pdsettings.nnlines;
-        params.pch = pdsettings.pch === 'none'? NA : pdsettings.pch;
-        if (!pdsettings.shepard) { params.cex = pdsettings.cex; }
-        if (pdsettings.pos === 1 || pdsettings.pos === 2 ||
-            pdsettings.pos === 3 || pdsettings.pos === 4) {
-            params.pos = pdsettings.pos;
+        return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
+            pdsettings: pdsettings,
+            gcsettings: gcsettings,
+            bg: getColour(pdsettings.bg, 'yellow'),
+            col: getColour(pdsettings.col, 'blue'),
+            hide: gcsettings.hide.split(',')
         }
-        params.col = getColour(pdsettings.col, 'black');
-        params.bg = getColour(pdsettings.bg, 'yellow');
-        params.hide = gcsettings.hide.split(',');
-        break;
-    case 'ages':
-        if (geochronometer === 'U-Pb' && pdsettings.showdisc !== 0) {
-            params.discordance = {
-                option: pdsettings.discoption,
-                before: pdsettings.showdisc === 1
-            };
-        }
-        if (geochronometer !== 'U-Th-He') {
-            params.exterr = pdsettings.exterr;
-        }
-        switch (geochronometer){
-        case 'Th-U':
-            params.i2i = gcsettings.i2i;
-            params.isochron = false;
-            params.detritus = gcsettings.detritus;
-            break;
-        case 'Th-Pb':
-        case 'K-Ca':
-        case 'Rb-Sr':
-        case 'Sm-Nd':
-        case 'Re-Os':
-        case 'Lu-Hf':
-        case 'Ar-Ar':
-            params.i2i = gcsettings.i2i;
-            params.isochron = false;
-            params.projerr = gcsettings.projerr;
-            break;
-        case 'Pb-Pb':
-            params.projerr = gcsettings.projerr;
-            params.isochron = false;
-        case 'U-Pb':
-            params['common.Pb'] = gcsettings.commonPb;
-            break;
-        default:
-        }
-        params.sigdig = pdsettings.sigdig;
-        break;
     default: // do nothing
     }
     return params;
