@@ -253,7 +253,10 @@ function getOptions(prefs){
         };
     case 'set-zeta':
         return {
+            geochronometer: geochronometer,
+            plotdevice: plotdevice,
             pdsettings: pdsettings,
+            gcsettings: gcsettings,
             data: prefs.data.fissiontracks
         };
     case 'MDS':
@@ -271,19 +274,6 @@ function getOptions(prefs){
     return params;
 }
 
-function applySettings(dst, src, which) {
-    for(var method in which) {
-        var vs = which[method];
-        if (!(method in dst)) {
-            dst[method] = {};
-        }
-        for(var n in vs) {
-            var v = vs[n];
-            dst[method][v] = src[method][v];
-        }
-    }
-}
-
 function getRcommand(prefs) {
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
@@ -296,7 +286,7 @@ function getRcommand(prefs) {
             }
         },
         params: getOptions(prefs),
-        settings: {}
+        settings: prefs.constants
     };
     if (['detritals', 'fissiontracks','U-Pb', 'Pb-Pb', 'Ar-Ar', 'Th-Pb',
         'K-Ca', 'Th-U', 'Rb-Sr', 'Sm-Nd', 'Re-Os', 'Lu-Hf'
@@ -315,91 +305,6 @@ function getRcommand(prefs) {
     } else if (geochronometer === 'Th-U') {
         input.s2d.Th02 = gcsettings.Th02;
         input.s2d.Th02U48 = gcsettings.Th02U48;
-    }
-    switch (geochronometer){
-    case 'U-Pb':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Pb207Pb206', 'Pb208Pb206', 'Pb208Pb207'],
-            'lambda': ['Th232', 'U234', 'Th230', 'Ra226', 'Pa231']
-        });
-    case 'Pb-Pb':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Pb206Pb204', 'Pb207Pb204', 'U238U235'],
-            'lambda': ['U238', 'U235']
-        });
-        break;
-    case 'Th-U':
-        applySettings(input.settings, prefs.constants, {
-            'lambda': ['Th230', 'U234']
-        });
-        break;
-    case 'Ar-Ar':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Ar40Ar36'],
-            'lambda': ['K40']
-        });
-        break;
-    case 'Th-Pb':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Pb208Pb204'],
-            'lambda': ['Th232']
-        });
-        break;
-    case 'K-Ca':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Ca40Ca44'],
-            'lambda': ['K40']
-        });
-        break;
-    case 'Sm-Nd':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Sm144Sm152', 'Sm147Sm152', 'Sm148Sm152',
-            'Sm149Sm152', 'Sm150Sm152', 'Sm154Sm152', 'Nd142Nd144',
-            'Nd143Nd144', 'Nd145Nd144', 'Nd146Nd144', 'Nd148Nd144',
-            'Nd150Nd144'],
-            'lambda': ['Sm147']
-        });
-        break;
-    case 'Re-Os':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Os184Os192', 'Os186Os192', 'Os187Os192',
-            'Os188Os192', 'Os190Os192'],
-            'lambda': ['Re187']
-        });
-        break;
-    case 'Rb-Sr':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Rb85Rb87', 'Sr84Sr86', 'Sr87Sr86', 'Sr88Sr86'],
-            'lambda': ['Rb87']
-        });
-        break;
-    case 'Lu-Hf':
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['Lu176Lu175', 'Hf174Hf177', 'Hf176Hf177',
-            'Hf178Hf177', 'Hf179Hf177', 'Hf180Hf177'],
-            'lambda': ['Lu176']
-        });
-        break;
-    case 'U-Th-He': 
-        applySettings(input.settings, prefs.constants, {
-            'iratio': ['U238U235'],
-            'lambda': ['U238', 'U235', 'Th232', 'Sm147']
-        });
-        break;
-    case 'fissiontracks':
-        if (prefs.settings.fissiontracks.format == 3){
-            var mineral = prefs.settings.fissiontracks.mineral;
-            applySettings(input.settings, prefs.constants, {
-                'iratio': ['U238U235'],
-                'lambda': ['U238', 'fission'],
-                'etchfact': [mineral],
-                'tracklength': [mineral],
-                'mindens': [mineral]
-            });
-        }
-        break;
-    case 'detritals':
-        break;
     }
     if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
         input.cex = prefs.settings.par.cex;

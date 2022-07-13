@@ -11,14 +11,72 @@ omitter <- function(dat, nc, flags = c("x", "X")) {
     which(o %in% flags)
 }
 
-applysettings <- function(settings) {
-    for (methodname in names(settings)) {
-        method <- settings[[methodname]]
-        for (gc in names(method)) {
-            vs <- method[[gc]]
-            do.call(IsoplotR::settings, as.list(c(methodname, gc, vs)))
+settingsiratio <- list(
+    "U-Pb" = c("Pb207Pb206", "Pb208Pb206", "Pb208Pb207"),
+    "Pb-Pb" = c("Pb206Pb204", "Pb207Pb204", "U238U235"),
+    "Th-U" = c(),
+    "Ar-Ar" = c("Ar40Ar36"),
+    "Th-Pb" = c("Pb208Pb204"),
+    "K-Ca" = c("Ca40Ca44"),
+    "Sm-Nd" = c("Sm144Sm152", "Sm147Sm152", "Sm148Sm152",
+        "Sm149Sm152", "Sm150Sm152", "Sm154Sm152", "Nd142Nd144",
+        "Nd143Nd144", "Nd145Nd144", "Nd146Nd144", "Nd148Nd144",
+        "Nd150Nd144"
+    ),
+    "Re-Os" = c("Os184Os192", "Os186Os192", "Os187Os192",
+        "Os188Os192", "Os190Os192"
+    ),
+    "Rb-Sr" = c("Rb85Rb87", "Sr84Sr86", "Sr87Sr86", "Sr88Sr86"),
+    "Lu-Hf" = c(
+        "Lu176Lu175", "Hf174Hf177", "Hf176Hf177",
+        "Hf178Hf177", "Hf179Hf177", "Hf180Hf177"
+    ),
+    "U-Th-He" = c("U238U235"),
+    "detritals" = c()
+)
+
+settingslambda <- list(
+    "U-Pb" = c("Th232", "U234", "Th230", "Ra226", "Pa231"),
+    "Pb-Pb" = c("U238", "U235"),
+    "Th-U" = c("Th230", "U234"),
+    "Ar-Ar" = c("K40"),
+    "Th-Pb" = c("Th232"),
+    "K-Ca" = c("K40"),
+    "Sm-Nd" = c("Sm147"),
+    "Re-Os" = c("Re187"),
+    "Rb-Sr" = c("Rb87"),
+    "Lu-Hf" = c("Lu176"),
+    "U-Th-He" = c("U238", "U235", "Th232", "Sm147"),
+    "detritals" = c()
+)
+
+applysettings <- function(geochronometer, settings, gcsettings) {
+    if (geochronometer == "fissiontracks") {
+        if (gcsettings$format == 3) {
+            v <- settings$iratio$U238U235
+            IsoplotR::settings("iratio", "U238U235", v[[1]], v[[2]])
+            v <- settings$iratio$U238
+            IsoplotR::settings("lambda", "U238", v[[1]], v[[2]])
+            v <- settings$iratio$fission
+            IsoplotR::settings("lambda", "fission", v[[1]], v[[2]])
+            mineral <- settings$fissiontracks$mineral
+            v <- settings$etchfact[[mineral]]
+            IsoplotR::settings("etchfact", mineral, v)
+            v <- settings$tracklength[[mineral]]
+            IsoplotR::settings("tracklength", mineral, v)
+            v <- settings$mindens[[mineral]]
+            IsoplotR::settings("mindens", mineral, v)
         }
+        return(NULL)
     }
+    mapply(function(mineral) {
+        v <- settings$iratio[[mineral]]
+        IsoplotR::settings("iratio", mineral, v[[1]], v[[2]])
+    }, settingsiratio[[geochronometer]])
+    mapply(function(mineral) {
+        v <- settings$lambda[[mineral]]
+        IsoplotR::settings("lambda", mineral, v[[1]], v[[2]])
+    }, settingslambda[[geochronometer]])
 }
 
 getpch <- function(pch) {
@@ -35,14 +93,17 @@ getlimits <- function(min, max) {
     return(as.numeric(c(min, max)))
 }
 
+isnullorauto <- function(v) {
+    is.null(v) || v == "auto"
+}
+
 gettimelimits <- function(min, max) {
-    if ((is.null(min) || min == "auto")
-        && (is.null(max) || max == "auto")) {
+    if (isnullorauto(min) && isnullorauto(max)) {
         return(NULL)
     }
     return(c(
-        if (is.null(min) || min == "auto") 0 else as.numeric(min),
-        if (is.null(max) || max == "auto") 4500 else as.numeric(max)
+        if (isnullorauto(min)) 0 else as.numeric(min),
+        if (isnullorauto(max)) 4500 else as.numeric(max)
     ))
 }
 
@@ -66,7 +127,7 @@ getdata <- function(params, data, s2d) {
 }
 
 concordia <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -100,7 +161,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
 }
 
 radialplot <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -158,7 +219,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
 }
 
 evolution <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -186,7 +247,7 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
 }
 
 isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -237,7 +298,7 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
 }
 
 weightedmean <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -272,7 +333,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
             opt <- params$gcsettings$discoption
             args$cutoff.disc <- IsoplotR::discfilter(
                 option = opt,
-                before = params$gcsettings.cutoffdisc == 1,
+                before = params$gcsettings$cutoffdisc == 1,
                 cutoff = c(
                     params$gcsettings$mindisc[opt - 1],
                     params$gcsettings$maxdisc[opt - 1]
@@ -294,7 +355,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
 }
 
 agespectrum <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -321,7 +382,7 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
 }
 
 kde <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     gc <- params$geochronometer
@@ -353,9 +414,10 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
+        opt <- params$gcsettings$discoption
         args$cutoff.disc <- IsoplotR::discfilter(
             option = opt,
-            before = params$gcsettings.cutoffdisc == 1,
+            before = params$gcsettings$cutoffdisc == 1,
             cutoff = c(
                 params$gcsettings$mindisc[opt - 1],
                 params$gcsettings$maxdisc[opt - 1]
@@ -374,7 +436,7 @@ kde <- function(fn, params, data, s2d, settings, cex) {
 }
 
 cad <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -397,9 +459,10 @@ cad <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
+        opt <- params$gcsettings$discoption
         args$cutoff.disc <- IsoplotR::discfilter(
             option = opt,
-            before = params$gcsettings.cutoffdisc == 1,
+            before = params$gcsettings$cutoffdisc == 1,
             cutoff = c(
                 params$gcsettings$mindisc[opt - 1],
                 params$gcsettings$maxdisc[opt - 1]
@@ -419,8 +482,8 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     do.call(IsoplotR::cad, args)
 }
 
-set.zeta <- function(fn, params, data, s2d, settings) {
-    applysettings(settings)
+setzeta <- function(fn, params, data, s2d, settings) {
+    applysettings(params$geochronometer, settings, params$gcsettings)
     args <- list(
         x = getdata(params, data, s2d),
         tst = as.numeric(params$data$age),
@@ -432,7 +495,7 @@ set.zeta <- function(fn, params, data, s2d, settings) {
 }
 
 helioplot <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -456,7 +519,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
 }
 
 mds <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     args <- list(
         x = getdata(params, data, s2d),
@@ -479,9 +542,10 @@ mds <- function(fn, params, data, s2d, settings, cex) {
 }
 
 age <- function(fn, params, data, s2d, settings) {
-    applysettings(settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     args <- list(
-        x = getdata(params, data, s2d)
+        x = getdata(params, data, s2d),
+        sigdig = params$pdsettings$sigdig
     )
     gc <- params$geochronometer
     if (gc == "U-Pb" && params$pdsettings$showdisc != 0) {
@@ -551,7 +615,7 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
             spectrum = agespectrum,
             KDE = kde,
             CAD = cad,
-            "set-zeta" = set.zeta,
+            "set-zeta" = setzeta,
             helioplot = helioplot,
             MDS = mds,
             ages = age
