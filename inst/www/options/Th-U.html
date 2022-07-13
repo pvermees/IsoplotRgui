@@ -24,41 +24,45 @@
     <td><input type="text" id="errLambdaU234"></td>
     <td>kyr<sup>-1</sup></td>
     <td></td>
-  </tr><tr class="hidden show4Th230corr show4assumedTh230corr">
-    <td>&nbsp;<help id="help_Th02_ThU"><sup>230</sup>Th/<sup>232</sup>Th:</help></td>
-    <td><input type="text" id="Th02"> &plusmn;</td>
-    <td><input type="text" id="errTh02"></td>
-    <td></td>
-    <td></td>
-  </tr><tr class="hidden show4Th230corr show4measuredTh230corr hide4ThU3 hide4ThU4">
+  </tr><tr class="hidden hide4isochron show4assumedTh230corr hide4ThU3 hide4ThU4">
+    <td>&nbsp;<help id="help_Th02i_ThU">[<sup>230</sup>Th/<sup>232</sup>Th]<sub>0</sub>:</help></td>
+    <td><input type="text" id="Th02i"> &plusmn;</td>
+    <td><input type="text" id="errTh02i"></td>
+    <td></td><td></td>
+  </tr><tr class="hidden show4U8Th2">
+    <td>&nbsp;<help class="translate" id="help_U8Th2"></help></td>
+    <td><input type="text" id="U8Th2"></td>
+    <td></td><td></td><td></td>
+  </tr><tr class="hidden hide4isochron show4measuredTh230corr hide4ThU3 hide4ThU4">
     <td>&nbsp;<help id="help_Th0U8_ThU">X=<sup>230</sup>Th/<sup>238</sup>U:</help></td>
     <td><input type="text" id="Th0U8"> &plusmn;</td>
     <td><input type="text" id="errTh0U8"></td>
-    <td>, <help id="help_rXY_detritus">r[X,Y]:</help></td>
+    <td>, <help id="help_rXY_Th0i">r[X,Y]:</help></td>
     <td><input type="text" id="rXY"></td>
-  </tr><tr class="hidden show4Th230corr show4measuredTh230corr hide4ThU3 hide4ThU4">
+  </tr><tr class="hidden hide4isochron show4measuredTh230corr hide4ThU3 hide4ThU4">
     <td>&nbsp;<help id="help_Th2U8_ThU">Y=<sup>232</sup>Th/<sup>238</sup>U:</help></td>
     <td><input type="text" id="Th2U8"> &plusmn;</td>
     <td><input type="text" id="errTh2U8"></td>
-    <td>, <help id="help_rXZ_detritus">r[X,Z]:</help></td>
+    <td>, <help id="help_rXZ_Th0i">r[X,Z]:</help></td>
     <td><input type="text" id="rXZ"></td>
-  </tr><tr class="hidden show4Th230corr show4measuredTh230corr hide4ThU3 hide4ThU4">
+  </tr><tr class="hidden hide4isochron show4measuredTh230corr hide4ThU3 hide4ThU4">
     <td>&nbsp;<help id="help_U48_ThU">Z=<sup>234</sup>U/<sup>238</sup>U:</help></td>
     <td><input type="text" id="U48"> &plusmn;</td>
     <td><input type="text" id="errU48"></td>
-    <td>, <help id="help_rYZ_detritus">r[Y,Z]:</help></td>
+    <td>, <help id="help_rYZ_Th0i">r[Y,Z]:</help></td>
     <td><input type="text" id="rYZ"></td>
   </tr>
 </table>
-
 <div class="hide4isochron">
-  <div class="show4ThU1 show4ThU2 hide4ThU3 hide4ThU4">
-    &nbsp;<help class="translate" id="help_detritus"></help>
-    <select id="detritus" onchange="$.register();">
+  <p></p>
+  <div class="show4ThU">
+    &nbsp;<help class="translate" id="help_Th0i"></help>
+    <select id="Th0i" onchange="$.register();">
       <option class="translate" id="detrital_correction_none" value=0></option>
       <option class="translate" id="detrital_correction_isochron" value=1></option>
-      <option class="translate" id="detrital_correction_assumed" value=2></option>
-      <option class="translate" id="detrital_correction_measured" value=3></option>
+      <option class="translate" id="detrital_correction_measured" value=2></option>
+      <option class="translate show4ThU1 show4ThU2 hide4ThU3 hide4ThU4"
+	      id="detrital_correction_assumed" value=3></option>
     </select>
   </div>
 </div>
