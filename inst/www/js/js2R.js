@@ -183,95 +183,34 @@ function parseColour(s, n) {
 
 // parse an R colour and turn it into something we can send as JSON
 function getColour(s, def) {
+    if (typeof(s) !== 'string') {
+        return def;
+    }
     var c = parseColour(s, 0);
     return c === null? def : c[0];
 }
 
 // turns the options into a string to feed into R
 function getOptions(prefs){
-    var params = {};
     var geochronometer = prefs.settings.geochronometer;
     var plotdevice = prefs.settings.plotdevice;
     var pdsettings = prefs.settings[plotdevice];
     var gcsettings = prefs.settings[geochronometer];
-    switch (plotdevice){
-    case 'concordia':
-    case 'evolution':
-    case 'isochron':
-    case 'regression':
-    case 'helioplot':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings,
-            ellipsefill: getColour(pdsettings.ellipsefill, 'cyan'),
-            ellipsestroke: getColour(pdsettings.ellipsestroke, 'black')
-        };
-    case 'radial':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings,
-            bg: getColour(pdsettings.bg, 'yellow')
-        };
-    case 'average':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings,
-            rectcol: getColour(pdsettings.rectcol, 'green'),
-            outliercol: getColour(pdsettings.outliercol, 'red')
-        };
-    case 'spectrum':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings,
-            plateaucol: getColour(pdsettings.plateaucol, 'cyan'),
-            nonplateaucol: getColour(pdsettings.nonplateaucol, 'red')
-        };
-    case 'KDE':
-    case 'ages':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings
-        };
-    case 'CAD':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings,
-            colmap: getColour(pdsettings.colmap, 'green'),
-            hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : []
-        };
-    case 'set-zeta':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings,
-            data: prefs.data.fissiontracks
-        };
-    case 'MDS':
-        return {
-            geochronometer: geochronometer,
-            plotdevice: plotdevice,
-            pdsettings: pdsettings,
-            gcsettings: gcsettings,
-            bg: getColour(pdsettings.bg, 'yellow'),
-            col: getColour(pdsettings.col, 'blue'),
-            hide: gcsettings.hide.split(',')
-        }
-    default: // do nothing
-    }
-    return params;
+    return {
+        geochronometer: geochronometer,
+        plotdevice: plotdevice,
+        pdsettings: pdsettings,
+        gcsettings: gcsettings,
+        ellipsefill: getColour(pdsettings.ellipsefill, 'cyan'),
+        ellipsestroke: getColour(pdsettings.ellipsestroke, 'black'),
+        bg: getColour(pdsettings.bg, 'yellow'),
+        col: getColour(pdsettings.col, 'blue'),
+        rectcol: getColour(pdsettings.rectcol, 'green'),
+        outliercol: getColour(pdsettings.outliercol, 'red'),
+        plateaucol: getColour(pdsettings.plateaucol, 'cyan'),
+        nonplateaucol: getColour(pdsettings.nonplateaucol, 'red'),
+        hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : []
+    };
 }
 
 function getRcommand(prefs) {

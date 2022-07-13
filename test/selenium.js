@@ -190,10 +190,11 @@ describe('IsoplotRgui', function() {
             "concordia": ["U-Pb"],
             "helioplot": ["U-Th-He"],
             "evolution": ["U-series"],
-            "isochron": ["Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "U-series"],
+            "isochron": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "U-series"],
             "radial plot": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "other"],
             "regression": ["other"],
             "weighted mean": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "other"],
+            "age spectrum": ["Ar-Ar", "other"],
             "KDE": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "detritals", "other"],
             "CAD": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "detritals", "other"],
             "MDS": ["detritals"]
@@ -207,25 +208,7 @@ describe('IsoplotRgui', function() {
                 await driver.wait(until.elementLocated(By.css('#myplot img')));
             });
         });
-        const errorDevices = {
-            "isochron": ["U-Pb"],
-        };
-        forEachOfArrayValue(errorDevices, function(device, gc) {
-            it(gc + ' on ' + device + ' gets an error', async function() {
-                this.timeout(3000);
-                await chooseGeochronometer(driver, gc);
-                await choosePlotDevice(driver, device);
-                await performClick(driver, 'plot');
-                var el = await driver.wait(
-                    until.elementLocated(By.css('#myplot .ploterror'))
-                );
-                await driver.wait(
-                    until.elementTextContains(el, 'Isochron regression is not available')
-                );
-            });
-        });
         const tableDevices = {
-            "age spectrum": ["Ar-Ar", "other"],
             "get \u03B6": ["fission tracks"],
             "ages": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series"]
         };

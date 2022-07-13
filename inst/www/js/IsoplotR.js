@@ -339,6 +339,10 @@ $(function(){
 		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    }
+        if (IsoplotR.settings.plotdevice === 'set-zeta') {
+            IsoplotR.data4server.age = $('#standAgeVal').val();
+            IsoplotR.data4server.ageErr = $('#standAgeErr').val();
+        }
 	    break;
 	}
     }
@@ -2559,20 +2563,22 @@ $(function(){
     $("#RUN").click(function(){
         update();
         $("#myplot").empty();
-        $("#OUTPUT").handsontable('clear');
-        $("#OUTPUT").handsontable('deselectCell');
-        $("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
-        $("#OUTPUT").show();
+        var grid = $('#OUTPUT');
+        grid.handsontable('clear');
+        grid.handsontable('deselectCell');
+        grid.handsontable('setDataAtCell',0,0,'Processing...');
+        grid.show();
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         shinylight.call(input.fn, input, null, {}).then(function(result) {
-            $('#OUTPUT').handsontable('populateFromArray', 0, 0,
+            grid.handsontable('populateFromArray', 0, 0,
                 result.data);
-            const hot = $('#OUTPUT').data('handsontable');
+            const hot = grid.data('handsontable');
             hot.updateSettings({
                 colHeaders: result.headers
             });
         }).catch(function(error) {
+            grid.hide();
             displayError("Run failed.", error);
         });
     });

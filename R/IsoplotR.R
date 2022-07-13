@@ -59,7 +59,7 @@ applysettings <- function(geochronometer, settings, gcsettings) {
             IsoplotR::settings("lambda", "U238", v[[1]], v[[2]])
             v <- settings$iratio$fission
             IsoplotR::settings("lambda", "fission", v[[1]], v[[2]])
-            mineral <- settings$fissiontracks$mineral
+            mineral <- gcsettings$mineral
             v <- settings$etchfact[[mineral]]
             IsoplotR::settings("etchfact", mineral, v)
             v <- settings$tracklength[[mineral]]
@@ -93,6 +93,18 @@ getlimits <- function(min, max) {
     return(as.numeric(c(min, max)))
 }
 
+coerceabletonumeric <- function(v) {
+    grepl(
+        "^\\s*(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(e[-+]?[0-9]*)?\\s*$",
+        v,
+        useBytes = TRUE
+    )
+}
+
+maybenumeric <- function(v) {
+    if (!is.null(v) && coerceabletonumeric(v)) as.numeric(v) else v
+}
+
 isnullorauto <- function(v) {
     is.null(v) || v == "auto"
 }
@@ -124,6 +136,12 @@ getdata <- function(params, data, s2d) {
     }
     s2d$params$input <- data
     do.call(selection2data, s2d$params)
+}
+
+sanitizecolmap <- function(v) {
+    if (v %in% c(
+        "rainbow", "cm.colors", "topo.colors", "terrain.colors", "heat.colors"
+    )) v else "rainbow"
 }
 
 concordia <- function(fn, params, data, s2d, settings, cex) {
@@ -169,9 +187,10 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         transformation = pd$transformation,
         pch = getpch(pd$pch),
         show.numbers = pd$shownumbers,
-        k = pd$numpeaks,
+        k = maybenumeric(pd$numpeaks),
         alpha = pd$alpha,
         sigdig = pd$sigdig,
+        cex = cex,
         bg = params$bg,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
@@ -185,11 +204,11 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         args$exterr <- pd$exterr
     }
     if (params$geochronometer == "Th-U") {
-        args$detritus <- params$gcsettings$detritus
+        args$Th0i <- params$gcsettings$Th0i
     }
-    if (params$geochronometer %in%
-            c("Th-U", "Ar-Ar", "Th-Pb", "K-Ca",
-            "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")) {
+    if (params$geochronometer %in% c(
+        "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf"
+    )) {
         args$i2i <- params$gcsettings$i2i
     }
     if (params$geochronometer == "U-Pb") {
@@ -246,7 +265,7 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
     do.call(IsoplotR::evolution, args)
 }
 
-isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
+setregression <- function(params, data, s2d, settings) {
     applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
@@ -263,8 +282,23 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
         model = pd$model,
         clabel = pd$clabel
     )
+    args$xlim <- getlimits(pd$minx, pd$maxx)
+    args$ylim <- getlimits(pd$miny, pd$maxy)
+    args
+}
+
+regression <- function(fn, params, data, s2d, settings, cex, york) {
+    args <- setregression(params, data, s2d, settings)
+    args$x <- IsoplotR::data2york(args$x, format = york$format)
+    par(cex)
+    do.call(IsoplotR::isochron, args)
+}
+
+isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
+    args <- setregression(params, data, s2d, settings)
+    applysettings(params$geochronometer, settings, params$gcsettings)
     gc <- params$geochronometer
-    if (gc %in% c("U-Pb", "Th-U", "U-Th-He", "Pb-Pb")) {
+    if (!(gc %in% c("U-Pb", "Th-U", "U-Th-He"))) {
         args$inverse <- params$gcsettings$inverse
     }
     if (gc == "Pb-Pb") {
@@ -284,14 +318,10 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
     }
     if (gc == "Th-U") {
         args$type <- params$pdsettings$ThUtype
+        args$y0option <- params$pdsettings$y0option
     }
     if (gc != "U-Th-He") {
         args$exterr <- params$pdsettings$exterr
-    }
-    args$xlim <- getlimits(pd$minx, pd$maxx)
-    args$ylim <- getlimits(pd$miny, pd$maxy)
-    if (!is.null(york)) {
-        args$x <- IsoplotR::data2york(args$x, format = york$format)
     }
     par(cex)
     do.call(IsoplotR::isochron, args)
@@ -319,7 +349,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
     args$to <- notauto(pd$maxt)
     gc <- params$geochronometer
     if (gc %in% c(
-        "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-HF"
+        "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-HF"
     )) {
         args$i2i <- params$gcsettings$i2i
     }
@@ -345,7 +375,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         args$common.Pb <- params$gcsettings$commonPb
     }
     if (gc == "Th-U") {
-        args$detritus <- params$gcsettings$detritus
+        args$Th0i <- params$gcsettings$Th0i
     }
     if (!(gc %in% c("other", "Th-U", "U-Th-He"))) {
         args$exterr <- params$pdsettings$exterr
@@ -446,10 +476,10 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     )
     gc <- params$geochronometer
     if (gc == "Th-U") {
-        args$detritus <- params$gcsettings$detritus
+        args$Th0i <- params$gcsettings$Th0i
     }
     if (gc %in% c(
-        "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
+        "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
     ) {
         args$i2i <- params$gcsettings$i2i
     }
@@ -473,7 +503,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
         args$common.Pb <- params$gcsettings$commonPb
     }
     if (gc == "detritals") {
-        args$col <- params$colmap
+        args$col <- sanitizecolmap(pd$colmap)
         args$hide <- params$hide
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
@@ -486,12 +516,12 @@ setzeta <- function(fn, params, data, s2d, settings) {
     applysettings(params$geochronometer, settings, params$gcsettings)
     args <- list(
         x = getdata(params, data, s2d),
-        tst = as.numeric(params$data$age),
+        tst = as.numeric(c(data$age, data$ageErr)),
         exterr = params$pdsettings$exterr,
         sigdig = params$pdsettings$sigdig,
         update = FALSE
     )
-    do.call(IsoplotR::set.zeta, args)
+    matrix(do.call(IsoplotR::set.zeta, args))
 }
 
 helioplot <- function(fn, params, data, s2d, settings, cex) {
@@ -530,14 +560,15 @@ mds <- function(fn, params, data, s2d, settings, cex) {
         pch = getpch(pd$pch),
         col = params$col,
         bg = params$bg,
-        hide = params$hide,
+        hide = params$hide
     )
     if (pd$pos %in% c(1, 2, 3, 4)) {
         args$pos <- pd$pos
     }
     if (!pd$shepard) {
-        par(cex)
+        args$cex <- cex
     }
+    par(cex)
     do.call(IsoplotR::mds, args)
 }
 
@@ -558,12 +589,11 @@ age <- function(fn, params, data, s2d, settings) {
         args$exterr <- params$pdsettings$exterr
     }
     if (gc == "Th-U") {
-        args$i2i <- params$gcsettings$i2i
         args$isochron <- FALSE
-        args$detritus <- params$gcsettings$detritus
+        args$Th0i <- params$gcsettings$Th0i
     }
     if (gc %in% c(
-        "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
+        "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
     ) {
         args$i2i <- params$gcsettings$i2i
         args$isochron <- FALSE
@@ -610,7 +640,7 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
             radial = radialplot,
             evolution = evolution,
             isochron = isochron,
-            regression = isochron,
+            regression = regression,
             average = weightedmean,
             spectrum = agespectrum,
             KDE = kde,
