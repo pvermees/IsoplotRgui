@@ -235,10 +235,11 @@ function getRcommand(prefs) {
         input.s2d.params.format = plotdevice;
     }
     if (geochronometer=='U-Pb' && gcsettings.diseq) {
+        input.s2d.diseq = {};
         ['U48', 'ThU', 'RaU', 'PaU'].forEach(function(e) {
             input.s2d.diseq[e] = {
-                x: gcsettings[d][0],
-                option: gcsettings[d][1]
+                x: gcsettings[e][0],
+                option: gcsettings[e][1]
             };
         });
     } else if (geochronometer === 'Th-U') {

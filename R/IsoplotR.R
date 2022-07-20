@@ -585,7 +585,7 @@ age <- function(fn, params, data, s2d, settings) {
             before = params$pdsettings$showdisc == 1
         )
     }
-    if (gc == "U-TH-He") {
+    if (gc == "U-Th-He") {
         args$exterr <- params$pdsettings$exterr
     }
     if (gc == "Th-U") {

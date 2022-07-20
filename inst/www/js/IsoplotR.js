@@ -67,7 +67,7 @@ $(function(){
                     handson2json();   // call the change handler until after
                 }                     // IsoplotR has been initialised
             });
-            if (shinylight_initial_data) {
+            if (typeof(shinylight_initial_data) === 'string') {
                 applyJSON(shinylight_initial_data);
             }
         });
@@ -2593,7 +2593,6 @@ $(function(){
             const downloader = document.createElement("A");
             downloader.setAttribute("download", 'IsoplotR.pdf');
             downloader.setAttribute("href", result.plot[0]);
-            console.log(downloader);
             downloader.click();
         }).catch(function(error) {
             displayError("Get PDF failed.", error);
