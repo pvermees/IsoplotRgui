@@ -126,7 +126,12 @@
 	"isochron": false,
 	"shownumbers": false,
 	"sigdig": 2,
-	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": {
+        "option": "custom_ramp",
+        "alpha": 0.5,
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"ellipsestroke": "'black'",
 	"model": 1,
 	"clabel": ""
@@ -147,7 +152,12 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": {
+        "option": "custom_ramp",
+        "alpha": 0.5,
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"ellipsestroke": "'black'",
 	"growth": false,
 	"clabel": ""
@@ -161,7 +171,12 @@
 	"maxy": "auto",
 	"alpha": 0.05,
 	"sigdig": 2,
-	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": {
+        "option": "custom_ramp",
+        "alpha": 0.5,
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"ellipsestroke": "'black'",
 	"clabel": ""
     },
@@ -249,7 +264,12 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"fact": "auto",
-	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": {
+        "option": "custom_ramp",
+        "alpha": 0.5,
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"ellipsestroke": "'black'",
 	"model": 1,
 	"clabel": ""

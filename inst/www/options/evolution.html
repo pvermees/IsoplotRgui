@@ -50,9 +50,38 @@
     <td><input type="text" id="alpha"></td></tr>
   <tr><td>&nbsp;<help class="translate" id="help_sigdig"></help></td>
     <td><input type="text" id="sigdig"></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_ellipsefill"></help></td>
-    <td><input type="text" id="ellipsefill"></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_ellipsestroke"></help></td>
+    <tr>
+        <td>&nbsp;<help class="translate" id="help_ellipsefill"></help></td>
+        <td>
+          <div>
+            <input type="radio" name="ellipsefill_option" value="custom_ramp" id="ellipsefilll_option_custom_ramp" onchange="$.register();" checked>
+            &nbsp;<label class="translate" for="ellipsefill_option_custom_ramp" id="help_ellipsefilll_option_custom_ramp"></label>
+            <input type="radio" name="ellipsefill_option" value="custom_colour" id="ellipsefilll_option_custom_colour" onchange="$.register();">
+            &nbsp;<label class="translate" for="ellipsefill_option_custom_colour" id="help_ellipsefilll_option_custom_colour"></label>
+            <input type="radio" name="ellipsefill_option" value="rainbow" id="ellipsefilll_option_custom_rainbow" onchange="$.register();">
+            &nbsp;<label class="translate" for="ellipsefill_option_rainbow" id="help_ellipsefilll_option_rainbow"></label>
+            <input type="radio" name="ellipsefill_option" value="heat" id="ellipsefilll_option_heat" onchange="$.register();">
+            &nbsp;<label class="translate" for="ellipsefill_option_heat" id="help_ellipsefilll_option_heat"></label>
+            <input type="radio" name="ellipsefill_option" value="viridis" id="ellipsefilll_option_viridis" onchange="$.register();">
+            &nbsp;<label class="translate" for="ellipsefill_option_viridis" id="help_ellipsefilll_option_viridis"></label>
+            <input type="radio" name="ellipsefill_option" value="rocket" id="ellipsefilll_option_rocket" onchange="$.register();">
+            &nbsp;<label class="translate" for="ellipsefill_option_rocket" id="help_ellipsefilll_option_rocket"></label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;<help class="translate" id="help_ellipsefill_alpha"></help></td>
+        <td><input type="text" id="ellipsefill_alpha"></td>
+      </tr>
+      <tr class="show4customellipsecolor">
+        <td>&nbsp;<help class="translate" id="help_ellipsefill_ramp_start"></help></td>
+        <td><input type="color" id="ellipsefill_ramp_start"></td>
+      </tr>
+      <tr class="show4customellipseramp">
+        <td>&nbsp;<help class="translate" id="help_ellipsefill_ramp_end"></help></td>
+        <td><input type="color" id="ellipsefill_ramp_end"></td>
+      </tr>
+      <tr><td>&nbsp;<help class="translate" id="help_ellipsestroke"></help></td>
     <td><input type="text" id="ellipsestroke"></td></tr>
   <tr><td>&nbsp;<help class="translate" id="help_cex"></help></td>
     <td><input type="text" id="cex"></td></tr>

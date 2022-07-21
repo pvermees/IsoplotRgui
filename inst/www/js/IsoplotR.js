@@ -390,7 +390,24 @@ $(function(){
 	}
 	return(clean);
     }
-    
+
+    function setEllipseFillVisibility(option) {
+        switch (option) {
+        case "custom_ramp":
+            $('.show4customellipsecolor').show();
+            $('.show4customellipseramp').show();
+            break;
+        case "custom_colour":
+            $('.show4customellipsecolor').show();
+            $('.show4customellipseramp').hide();
+            break;
+        default:
+            $('.show4customellipsecolor').hide();
+            $('.show4customellipseramp').hide();
+            break;
+        }
+    }
+
     function showOrHide(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -810,20 +827,7 @@ $(function(){
 	    } else {
 		$('.show4tanchor').hide();
             }
-            switch (pd.ellipsefill.option) {
-            case "custom_ramp":
-                $('.show4customellipsecolor').show();
-                $('.show4customellipseramp').show();
-                break;
-            case "custom_colour":
-                $('.show4customellipsecolor').show();
-                $('.show4customellipseramp').hide();
-                break;
-            default:
-                $('.show4customellipsecolor').hide();
-                $('.show4customellipseramp').hide();
-                break;
-            }
+            setEllipseFillVisibility(pd.ellipsefill.option);
             break;
 	case 'average':
 	    if (pd.randomeffects){
@@ -866,6 +870,7 @@ $(function(){
 		$('.hide4model3').hide();
 		break;
 	    }
+            setEllipseFillVisibility(pd.ellipsefill.option);
 	    break;
 	case 'radial':
 	    if (pd.shownumbers){
@@ -925,6 +930,7 @@ $(function(){
 	    } else {
 		$('.show4evolutionIsochron').hide();
 	    }
+            setEllipseFillVisibility(pd.ellipsefill.option);
 	    break;
 	case 'set-zeta':
 	    $(".show4zeta").show();
@@ -1260,7 +1266,10 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    $('#isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
-	    $('#ellipsefill').val(set.ellipsefill);
+            setRadio('ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
 	    $('#cex').val(IsoplotR.settings.par.cex);
@@ -1371,7 +1380,10 @@ $(function(){
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
 	    $('#fact').val(set.fact);
-	    $('#ellipsefill').val(set.ellipsefill);
+            setRadio('ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#helioplot-models option[value='+set.model+']').
 		prop('selected', 'selected');
@@ -1393,7 +1405,10 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
-	    $('#ellipsefill').val(set.ellipsefill);
+            setRadio('ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#evolution-isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
@@ -1656,7 +1671,12 @@ $(function(){
 	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
 	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
 	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+            option: getRadio('ellipsefill_option'),
+            alpha: $('#ellipsefill_alpha').val(),
+            ramp_start: $('#ellipsefill_ramp_start').val(),
+            ramp_end: $('#ellipsefill_ramp_end').val()
+        };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.alpha = getNumber('#alpha');
@@ -1773,7 +1793,12 @@ $(function(){
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
 	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
 	    pdsettings["fact"] = $('#fact').val();
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+            option: getRadio('ellipsefill_option'),
+            alpha: $('#ellipsefill_alpha').val(),
+            ramp_start: $('#ellipsefill_ramp_start').val(),
+            ramp_end: $('#ellipsefill_ramp_end').val()
+        };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#helioplot-models");
 	    pdsettings.clabel = $('#clabel').val();
@@ -1792,7 +1817,12 @@ $(function(){
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+            option: getRadio('ellipsefill_option'),
+            alpha: $('#ellipsefill_alpha').val(),
+            ramp_start: $('#ellipsefill_ramp_start').val(),
+            ramp_end: $('#ellipsefill_ramp_end').val()
+        };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#evolution-isochron-models");
 	    pdsettings.clabel = $('#clabel').val();
@@ -1848,7 +1878,6 @@ $(function(){
     
     function changePlotDevice(){
 	var gc = IsoplotR.settings.geochronometer;
-	var opd = IsoplotR.settings.plotdevice; // old plot device
 	var npd = $('option:selected', $("#plotdevice")).attr('value');
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
