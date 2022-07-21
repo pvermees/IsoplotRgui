@@ -17,6 +17,15 @@ function getOption(id){
     return(out);
 }
 
+function getRadio(name){
+    return $('input[name="' + name + '"]:checked').val();
+}
+
+function setRadio(name, val) {
+    $('input[name="' + name + '"][value="' + val +'"]').prop('checked', true);
+}
+
+
 function getNumber(id){
     return(Number($(id).val()));
 }

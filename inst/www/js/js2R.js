@@ -190,6 +190,37 @@ function getColour(s, def) {
     return c === null? def : c[0];
 }
 
+function addAlpha(alpha, colours) {
+    var hh = toHh(alpha);
+    return colours.map(function(x) { return x + hh; });
+}
+
+function getSolidColourRamp(s) {
+    switch (s.option) {
+    case 'rainbow':
+        return ['#FF0000', '#FF8000', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#FF00FF'];
+    case 'heat':
+        return ['#800000', '#FF0000', '#FF8000', '#FFFF00', '#FFFF88', '#FFFFFF'];
+    case 'viridis':
+        return ['#440154', '#46337E', '#365C8D', '#277F8E', '#1FA187', '#4AC16D', '#9FDA3A', '#FDE725'];
+    case 'rocket':
+        return ['#03051A', '#36193E', '#701F57', '#AE1759', '#E13342', '#F37651', '#F6B48E', '#FAEBDD'];
+    }
+    return [s.ramp_start, s.ramp_end];
+}
+
+function getColourRamp(s, def) {
+    if (!('option' in s)) {
+        return def;
+    }
+    if (s.option === 'custom_colour') {
+        var col = addAlpha(s.alpha, [s.ramp_start]);
+        col.push(s.ramp_start + '00');
+        return col;
+    }
+    return addAlpha(s.alpha, getSolidColourRamp(s));
+}
+
 // turns the options into a string to feed into R
 function getOptions(prefs){
     var geochronometer = prefs.settings.geochronometer;
@@ -201,7 +232,7 @@ function getOptions(prefs){
         plotdevice: plotdevice,
         pdsettings: pdsettings,
         gcsettings: gcsettings,
-        ellipsefill: getColour(pdsettings.ellipsefill, 'cyan'),
+        ellipsefill: getColourRamp(pdsettings.ellipsefill, '#00FF0080'),
         ellipsestroke: getColour(pdsettings.ellipsestroke, 'black'),
         bg: getColour(pdsettings.bg, 'yellow'),
         col: getColour(pdsettings.col, 'blue'),

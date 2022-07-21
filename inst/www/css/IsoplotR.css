@@ -171,3 +171,21 @@ cn {
 .hidden {
     display:none;
 }
+
+#help_ellipsefilll_option_rainbow {
+    background: linear-gradient(to right, #F00, #F80, #FF0, #0F0, #0FF, #00F, #F0F);
+}
+
+#help_ellipsefilll_option_heat {
+    background: linear-gradient(to right, #800, #F00, #F80, #FF0, #FF8, #FFF);
+}
+
+#help_ellipsefilll_option_viridis {
+    background: linear-gradient(to right, #440154, #46337E, #365C8D, #277F8E, #1FA187, #4AC16D, #9FDA3A, #FDE725);
+    color: white;
+}
+
+#help_ellipsefilll_option_rocket {
+    background: linear-gradient(to right, #03051A, #36193E, #701F57, #AE1759, #E13342, #F37651, #F6B48E, #FAEBDD);
+    color: white;
+}

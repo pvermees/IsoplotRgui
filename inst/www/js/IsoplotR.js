@@ -809,8 +809,22 @@ $(function(){
 		$('.show4tanchor').show();
 	    } else {
 		$('.show4tanchor').hide();
-	    }
-	    break;
+            }
+            switch (pd.ellipsefill.option) {
+            case "custom_ramp":
+                $('.show4customellipsecolor').show();
+                $('.show4customellipseramp').show();
+                break;
+            case "custom_colour":
+                $('.show4customellipsecolor').show();
+                $('.show4customellipseramp').hide();
+                break;
+            default:
+                $('.show4customellipsecolor').hide();
+                $('.show4customellipseramp').hide();
+                break;
+            }
+            break;
 	case 'average':
 	    if (pd.randomeffects){
 		$('.show4randomeffects').show();
@@ -1213,7 +1227,10 @@ $(function(){
 	    $('#exterr').prop('checked',set.exterr);
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#sigdig').val(set.sigdig);
-	    $('#ellipsefill').val(set.ellipsefill);
+        setRadio('ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
 	    $('#ticks').val(set.ticks);
@@ -1606,7 +1623,12 @@ $(function(){
 	    pdsettings.maxx = check($('#maxx').val(),'auto');
 	    pdsettings.miny = check($('#miny').val(),'auto');
 	    pdsettings.maxy = check($('#maxy').val(),'auto');
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+            option: getRadio('ellipsefill_option'),
+            alpha: $('#ellipsefill_alpha').val(),
+            ramp_start: $('#ellipsefill_ramp_start').val(),
+            ramp_end: $('#ellipsefill_ramp_end').val()
+        };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.ticks = $('#ticks').val();

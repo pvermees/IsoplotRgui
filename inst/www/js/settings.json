@@ -103,7 +103,12 @@
 	"anchor":0,
 	"tanchor":0,
 	"sigdig": 2,
-	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsefill": {
+        "option": "custom_ramp",
+        "alpha": 0.5,
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"ellipsestroke": "'black'",
 	"clabel": "",
 	"ticks": "auto"
