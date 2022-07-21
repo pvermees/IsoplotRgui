@@ -210,7 +210,7 @@ function getSolidColourRamp(s) {
 }
 
 function getColourRamp(s, def) {
-    if (!('option' in s)) {
+    if (typeof(s) !== 'object' || !('option' in s)) {
         return def;
     }
     if (s.option === 'custom_colour') {

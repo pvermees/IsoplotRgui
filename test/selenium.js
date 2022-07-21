@@ -6,14 +6,45 @@ const { describe, before, after, it } = require('mocha');
 const clipboardy = require("clipboardy");
 const assert = require("assert");
 const { PNG } = require("pngjs");
-const floor = Math.floor;
+const net = require('net');
+
+function wait(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}
+
+async function retry(attempts, ms, untilFn) {
+    while (!await untilFn()) {
+        if (--attempts === 0) {
+            return false;
+        }
+        await wait(ms);
+    }
+    return true;
+}
+
+function checkPort(port) {
+    return new Promise(resolve => {
+        const c = new net.Socket();
+        c.on('connect', () => resolve(true));
+        c.on('error', () => resolve(false));
+        c.connect(port, 'localhost');
+    });
+}
+
+async function portIsOpen(port) {
+    return await retry(10, 300, checkPort.bind(null, port));
+}
 
 describe('IsoplotRgui', function() {
     let rProcess;
     let driver;
 
-    before(function() {
-        rProcess = spawn('Rscript', ['build/start-gui.R', '50054'], { stdio: [ 'ignore', 'inherit', 'inherit' ] });
+    before(async function() {
+        const port = 50054;
+        rProcess = spawn('Rscript', ['build/start-gui.R', '' + port], { stdio: [ 'ignore', 'inherit', 'inherit' ] });
+        await portIsOpen(port);
         driver = new Builder().forBrowser('firefox').build();
     });
 
@@ -154,7 +185,6 @@ describe('IsoplotRgui', function() {
                 maxx: 0.280,
                 miny: 0.0360,
                 maxy: 0.0400,
-                ellipsefill: "'green'",
                 ellipsestroke: "'green'"
             };
             await performType(driver, options);
@@ -519,10 +549,17 @@ async function performClick(driver, element) {
     return element;
 }
 
+function scrollIntoView(element) {
+    const driver = element.getDriver();
+    return driver.executeScript("const e = arguments[0]; e.scrollIntoView(true);", element);
+}
+
 // super robust typing into input box
 async function performType(driver, idToKeys) {
     for (const k in idToKeys) {
-        const input = await performClick(driver, k);
+        const element = await driver.wait(until.elementLocated(By.id(k)));
+        await scrollIntoView(element);
+        const input = await performClick(driver, element);
         await input.clear();
         await input.sendKeys(idToKeys[k]);
     }
