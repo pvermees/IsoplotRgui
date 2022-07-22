@@ -61,7 +61,30 @@
   </tr>
   <tr class="hidden show4detritals">
     <td>&nbsp;<help class="translate" id="help_colmap"></help></td>
-    <td><input type="text" id="colmap"></td>
+    <td>
+      <table class="radio">
+        <tr>
+          <td><input type="radio" name="colmap_option" value="rainbow" id="colmap_option_custom_rainbow" onchange="$.register();"></td>
+          <td><label class="translate background_rainbow" for="colmap_option_rainbow" id="help_ramp_rainbow"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="colmap_option" value="heat.colors" id="colmap_option_heat" onchange="$.register();"></td>
+          <td><label class="translate background_heat" for="colmap_option_heat" id="help_ramp_heat"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="colmap_option" value="topo.colors" id="colmap_option_topo" onchange="$.register();"></td>
+          <td><label class="translate background_topo" for="colmap_option_topo" id="help_ramp_topo"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="colmap_option" value="terrain.colors" id="colmap_option_terrain" onchange="$.register();"></td>
+          <td><label class="translate background_terrain" for="colmap_option_terrain" id="help_ramp_terrain"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="colmap_option" value="cm.colors" id="colmap_option_cm" onchange="$.register();"></td>
+          <td><label class="translate background_cm" for="colmap_option_cm" id="help_ramp_cm"></label></td>
+        </tr>
+      </table>
+    </td>
   </tr>
 </table>
 

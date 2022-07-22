@@ -138,12 +138,6 @@ getdata <- function(params, data, s2d) {
     do.call(selection2data, s2d$params)
 }
 
-sanitizecolmap <- function(v) {
-    if (v %in% c(
-        "rainbow", "cm.colors", "topo.colors", "terrain.colors", "heat.colors"
-    )) v else "rainbow"
-}
-
 concordia <- function(fn, params, data, s2d, settings, cex) {
     applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
@@ -158,7 +152,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
         sigdig = pd$sigdig,
         common.Pb = params$gcsettings$commonPb,
         ellipse.fill = params$ellipsefill,
-        ellipse.stroke = params$ellipsestroke,
+        ellipse.stroke = pd$ellipsestroke,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
@@ -254,7 +248,7 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
         ellipse.fill = params$ellipsefill,
-        ellipse.stroke = params$ellipsestroke,
+        ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
         clabel = pd$clabel
     )
@@ -278,7 +272,7 @@ setregression <- function(params, data, s2d, settings) {
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
         ellipse.fill = params$ellipsefill,
-        ellipse.stroke = params$ellipsestroke,
+        ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
         clabel = pd$clabel
     )
@@ -339,7 +333,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         random.effects = pd$randomeffects,
         ranked = pd$ranked,
         levels = selection2levels(data$data, nc),
-        rect.col = params$rectcol,
+        rect.col = params$bg,
         outlier.col = params$outliercol,
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
@@ -391,7 +385,7 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
     args <- list(
         x = getdata(params, data, s2d),
         plateau = pd$plateau,
-        plateau.col = params$plateaucol,
+        plateau.col = params$bg,
         non.plateau.col = params$nonplateaucol,
         detect.outliers = pd$outliers,
         alpha = pd$alpha,
@@ -503,7 +497,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
         args$common.Pb <- params$gcsettings$commonPb
     }
     if (gc == "detritals") {
-        args$col <- sanitizecolmap(pd$colmap)
+        args$col <- pd$colmap
         args$hide <- params$hide
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
@@ -537,7 +531,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
         ellipse.fill = params$ellipsefill,
-        ellipse.stroke = params$ellipsestroke,
+        ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
         clabel = pd$clabel
     )

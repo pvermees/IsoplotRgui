@@ -184,8 +184,7 @@ describe('IsoplotRgui', function() {
                 minx: 0.260,
                 maxx: 0.280,
                 miny: 0.0360,
-                maxy: 0.0400,
-                ellipsestroke: "'green'"
+                maxy: 0.0400
             };
             await performType(driver, options);
             await performClick(driver, 'plot');

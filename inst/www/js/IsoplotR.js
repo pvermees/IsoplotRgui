@@ -408,6 +408,23 @@ $(function(){
         }
     }
 
+    function setBgFillVisibility(option) {
+        switch (option) {
+        case "custom_ramp":
+            $('.show4custombgcolor').show();
+            $('.show4custombgramp').show();
+            break;
+        case "custom_colour":
+            $('.show4custombgcolor').show();
+            $('.show4custombgramp').hide();
+            break;
+        default:
+            $('.show4custombgcolor').hide();
+            $('.show4custombgramp').hide();
+            break;
+        }
+    }
+
     function showOrHide(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -835,8 +852,9 @@ $(function(){
 		$('.hide4randomeffects').hide();
 	    } else {
 		$('.show4randomeffects').hide();
-		$('.hide4randomeffects').show();		
+		$('.hide4randomeffects').show();
 	    }
+            setBgFillVisibility(pd.bg.option);
 	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
@@ -872,6 +890,9 @@ $(function(){
 	    }
             setEllipseFillVisibility(pd.ellipsefill.option);
 	    break;
+        case 'spectrum':
+            setBgFillVisibility(pd.bg.option);
+            break;
 	case 'radial':
 	    if (pd.shownumbers){
 		$('#radial-pch').hide();
@@ -942,7 +963,8 @@ $(function(){
 	    } else {
 		$('#shepard-box').show();
 	    }
-	    break;
+            setBgFillVisibility(pd.bg.option);
+            break;
 	}
     }
 
@@ -1289,8 +1311,10 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
-	    $('#bg').val(set.bg);
-	    $('#clabel').val(set.clabel);
+            setRadio('bg_option', set.bg.option);
+            $('#bg_ramp_start').val(set.bg.ramp_start);
+            $('#bg_ramp_end').val(set.bg.ramp_end);
+        $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    $('#exterr').prop('checked',set.exterr);
@@ -1305,8 +1329,10 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#rectcol').val(set.rectcol);
-	    $('#outliercol').val(set.outliercol);
+            setRadio('bg_option', set.bg.option);
+            $('#bg_ramp_start').val(set.bg.ramp_start);
+            $('#bg_ramp_end').val(set.bg.ramp_end);
+            $('#outliercol').val(set.outliercol);
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'spectrum':
@@ -1316,7 +1342,9 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#plateaucol').val(set.plateaucol);
+            setRadio('bg_option', set.bg.option);
+	    $('#bg_ramp_start').val(set.bg.ramp_start);
+	    $('#bg_ramp_end').val(set.bg.ramp_end);
 	    $('#nonplateaucol').val(set.nonplateaucol);
 	    $('#clabel').val(set.clabel);
 	    break;
@@ -1338,7 +1366,7 @@ $(function(){
 	    $('#verticals').prop('checked',set.verticals);
 	    $('#pch').val(set.pch);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#colmap').val(set.colmap);
+	    setRadio('colmap_option', set.colmap);
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
@@ -1365,7 +1393,9 @@ $(function(){
 	    $('#pch').val(set.pch);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
-	    $('#bg').val(set.bg);
+            setRadio('bg_option', set.bg.option);
+            $('#bg_ramp_start').val(set.bg.ramp_start);
+            $('#bg_ramp_end').val(set.bg.ramp_end);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
@@ -1406,6 +1436,8 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
             setRadio('ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
@@ -1640,7 +1672,7 @@ $(function(){
 	    pdsettings.maxy = check($('#maxy').val(),'auto');
 	    pdsettings.ellipsefill = {
             option: getRadio('ellipsefill_option'),
-            alpha: $('#ellipsefill_alpha').val(),
+            alpha: check($('#ellipsefill_alpha').val(), 1),
             ramp_start: $('#ellipsefill_ramp_start').val(),
             ramp_end: $('#ellipsefill_ramp_end').val()
         };
@@ -1673,7 +1705,7 @@ $(function(){
 	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
 	    pdsettings.ellipsefill = {
             option: getRadio('ellipsefill_option'),
-            alpha: $('#ellipsefill_alpha').val(),
+            alpha: check($('#ellipsefill_alpha').val(), 1),
             ramp_start: $('#ellipsefill_ramp_start').val(),
             ramp_end: $('#ellipsefill_ramp_end').val()
         };
@@ -1693,7 +1725,11 @@ $(function(){
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.pch = $('#pch').val();
-	    pdsettings.bg = $('#bg').val();
+            pdsettings.bg = {
+                option: getRadio('bg_option'),
+                ramp_start: $('#bg_ramp_start').val(),
+                ramp_end: $('#bg_ramp_end').val()
+            };
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings["cex"] = getNumber('#pcex');
 	    pdsettings.exterr = truefalse('#exterr');
@@ -1709,7 +1745,11 @@ $(function(){
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.rectcol = $('#rectcol').val();
+	    pdsettings.bg = {
+            option: getRadio('bg_option'),
+            ramp_start: $('#bg_ramp_start').val(),
+            ramp_end: $('#bg_ramp_end').val()
+        };
 	    pdsettings.outliercol = $('#outliercol').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
@@ -1721,7 +1761,11 @@ $(function(){
 	    pdsettings.randomeffects = truefalse('#randomeffects');
 	    pdsettings.alpha = getNumber('#alpha');
 	    pdsettings.sigdig = getInt('#sigdig');
-	    pdsettings.plateaucol = $('#plateaucol').val();
+	    pdsettings.bg = {
+            option: getRadio('bg_option'),
+            ramp_start: $('#bg_ramp_start').val(),
+            ramp_end: $('#bg_ramp_end').val()
+        };
 	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
@@ -1744,7 +1788,7 @@ $(function(){
 	    break;
 	case 'CAD':
 	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["colmap"] = $('#colmap').val();
+	    pdsettings["colmap"] = getRadio('colmap_option');
 	    pdsettings["verticals"] = truefalse('#verticals');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
@@ -1764,7 +1808,11 @@ $(function(){
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["pos"] = getInt('#pos');
 	    pdsettings["col"] = $('#col').val();
-	    pdsettings["bg"] = $('#bg').val();
+            pdsettings.bg = {
+                option: getRadio('bg_option'),
+                ramp_start: $('#bg_ramp_start').val(),
+                ramp_end: $('#bg_ramp_end').val()
+            };
 	    pdsettings["cex"] = getNumber('#pcex');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
@@ -1795,7 +1843,7 @@ $(function(){
 	    pdsettings["fact"] = $('#fact').val();
 	    pdsettings.ellipsefill = {
             option: getRadio('ellipsefill_option'),
-            alpha: $('#ellipsefill_alpha').val(),
+            alpha: check($('#ellipsefill_alpha').val(), 1),
             ramp_start: $('#ellipsefill_ramp_start').val(),
             ramp_end: $('#ellipsefill_ramp_end').val()
         };
@@ -1819,7 +1867,7 @@ $(function(){
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.ellipsefill = {
             option: getRadio('ellipsefill_option'),
-            alpha: $('#ellipsefill_alpha').val(),
+            alpha: check($('#ellipsefill_alpha').val(), 1),
             ramp_start: $('#ellipsefill_ramp_start').val(),
             ramp_end: $('#ellipsefill_ramp_end').val()
         };

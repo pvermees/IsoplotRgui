@@ -213,12 +213,13 @@ function getColourRamp(s, def) {
     if (typeof(s) !== 'object' || !('option' in s)) {
         return def;
     }
+    var alpha = typeof(s.alpha) === 'number'? s.alpha : 1;
     if (s.option === 'custom_colour') {
-        var col = addAlpha(s.alpha, [s.ramp_start]);
+        var col = addAlpha(alpha, [s.ramp_start]);
         col.push(s.ramp_start + '00');
         return col;
     }
-    return addAlpha(s.alpha, getSolidColourRamp(s));
+    return addAlpha(alpha, getSolidColourRamp(s));
 }
 
 // turns the options into a string to feed into R
@@ -233,12 +234,9 @@ function getOptions(prefs){
         pdsettings: pdsettings,
         gcsettings: gcsettings,
         ellipsefill: getColourRamp(pdsettings.ellipsefill, '#00FF0080'),
-        ellipsestroke: getColour(pdsettings.ellipsestroke, 'black'),
-        bg: getColour(pdsettings.bg, 'yellow'),
+        bg: getColourRamp(pdsettings.bg, 'yellow'),
         col: getColour(pdsettings.col, 'blue'),
-        rectcol: getColour(pdsettings.rectcol, 'green'),
         outliercol: getColour(pdsettings.outliercol, 'red'),
-        plateaucol: getColour(pdsettings.plateaucol, 'cyan'),
         nonplateaucol: getColour(pdsettings.nonplateaucol, 'red'),
         hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : []
     };

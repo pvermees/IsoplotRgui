@@ -29,7 +29,42 @@
   </tr>
   <tr>
     <td>&nbsp;<help class="translate" id="help_bg"></help></td>
-    <td><input type="text" id="plateaucol"></td>
+    <td>
+      <table class="radio">
+        <tr>
+          <td><input type="radio" name="bg_option" value="custom_ramp" id="bg_option_custom_ramp" onchange="$.register();" checked></td>
+          <td><label class="translate" for="bg_option_custom_ramp" id="help_ramp_custom_ramp"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="bg_option" value="custom_colour" id="bg_option_custom_colour" onchange="$.register();"></td>
+          <td><label class="translate" for="bg_option_custom_colour" id="help_ramp_custom_colour"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="bg_option" value="rainbow" id="bg_option_custom_rainbow" onchange="$.register();"></td>
+          <td><label class="translate background_rainbow" for="bg_option_rainbow" id="help_ramp_rainbow"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="bg_option" value="heat" id="bg_option_heat" onchange="$.register();"></td>
+          <td><label class="translate background_heat" for="bg_option_heat" id="help_ramp_heat"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="bg_option" value="viridis" id="bg_option_viridis" onchange="$.register();"></td>
+          <td><label class="translate background_viridis" for="bg_option_viridis" id="help_ramp_viridis"></label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="bg_option" value="rocket" id="bg_option_rocket" onchange="$.register();"></td>
+          <td><label class="translate background_rocket" for="bg_option_rocket" id="help_ramp_rocket"></label></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="show4custombgcolor">
+    <td>&nbsp;<help class="translate" id="help_bg_ramp_start"></help></td>
+    <td><input type="color" id="bg_ramp_start"></td>
+  </tr>
+  <tr class="show4custombgramp">
+    <td>&nbsp;<help class="translate" id="help_bg_ramp_end"></help></td>
+    <td><input type="color" id="bg_ramp_end"></td>
   </tr>
   <tr>
     <td>&nbsp;<help class="translate" id="help_outlier_col"></help></td>

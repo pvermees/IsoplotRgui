@@ -109,7 +109,7 @@
         "ramp_start": "#00FF00",
         "ramp_end": "#FF0000"
     },
-	"ellipsestroke": "'black'",
+	"ellipsestroke": "#000000",
 	"clabel": "",
 	"ticks": "auto"
     },
@@ -132,7 +132,7 @@
         "ramp_start": "#00FF00",
         "ramp_end": "#FF0000"
     },
-	"ellipsestroke": "'black'",
+	"ellipsestroke": "#000000",
 	"model": 1,
 	"clabel": ""
     },
@@ -158,7 +158,7 @@
         "ramp_start": "#00FF00",
         "ramp_end": "#FF0000"
     },
-	"ellipsestroke": "'black'",
+	"ellipsestroke": "#000000",
 	"growth": false,
 	"clabel": ""
     },
@@ -177,7 +177,7 @@
         "ramp_start": "#00FF00",
         "ramp_end": "#FF0000"
     },
-	"ellipsestroke": "'black'",
+	"ellipsestroke": "#000000",
 	"clabel": ""
     },
     "radial": {
@@ -187,7 +187,11 @@
 	"maxt": "auto",
 	"pch": 21,
 	"cex": 1,
-	"bg": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"bg": {
+        "option": "custom_ramp",
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"sigdig": 2,
 	"alpha": 0.05,
 	"shownumbers": false,
@@ -204,7 +208,11 @@
 	"mint": "auto",
 	"maxt": "auto",
 	"ranked": false,
-	"rectcol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"bg": {
+        "option": "custom_ramp",
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"outliercol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
@@ -214,7 +222,11 @@
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": false,
-	"plateaucol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"bg": {
+        "option": "custom_ramp",
+        "ramp_start": "#00FF00",
+        "ramp_end": "#FF0000"
+    },
 	"nonplateaucol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
@@ -251,7 +263,11 @@
 	"pos": 0,
 	"cex": 5,
 	"col": "black",
-	"bg": "white"
+        "bg": {
+            "option": "custom_ramp",
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000"
+        }
     },
     "helioplot": {
 	"logratio": true,
@@ -270,7 +286,7 @@
         "ramp_start": "#00FF00",
         "ramp_end": "#FF0000"
     },
-	"ellipsestroke": "'black'",
+	"ellipsestroke": "#000000",
 	"model": 1,
 	"clabel": ""
     },
