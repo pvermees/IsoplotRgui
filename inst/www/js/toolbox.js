@@ -26,8 +26,9 @@ function setRadio(name, val) {
 }
 
 
-function getNumber(id){
-    return(Number($(id).val()));
+function getNumber(id, def){
+    var x = Number($(id).val());
+    return isNaN(x) && typeof(def) !== 'undefined'? def : x;
 }
 
 function getInt(id){

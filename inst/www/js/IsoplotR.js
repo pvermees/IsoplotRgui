@@ -899,6 +899,7 @@ $(function(){
 	    } else {
 		$('#radial-pch').show();
 	    }
+            setBgFillVisibility(pd.bg.option);
 	    break;
 	case 'ages':
 	    switch (pd.showdisc){
@@ -1333,6 +1334,7 @@ $(function(){
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
             $('#outliercol').val(set.outliercol);
+            $('#rect_alpha').val(set.rect_alpha);
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'spectrum':
@@ -1346,6 +1348,7 @@ $(function(){
 	    $('#bg_ramp_start').val(set.bg.ramp_start);
 	    $('#bg_ramp_end').val(set.bg.ramp_end);
 	    $('#nonplateaucol').val(set.nonplateaucol);
+        $('#nonplateau_alpha').val(set.nonplateau_alpha);
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'KDE':
@@ -1751,6 +1754,7 @@ $(function(){
             ramp_end: $('#bg_ramp_end').val()
         };
 	    pdsettings.outliercol = $('#outliercol').val();
+        pdsettings.rect_alpha = getNumber('#rect_alpha', 1);
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
@@ -1759,7 +1763,7 @@ $(function(){
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.plateau = truefalse('#plateau');
 	    pdsettings.randomeffects = truefalse('#randomeffects');
-	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.alpha = getNumber('#alpha', 1);
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.bg = {
             option: getRadio('bg_option'),
@@ -1767,6 +1771,7 @@ $(function(){
             ramp_end: $('#bg_ramp_end').val()
         };
 	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
+        pdsettings.nonplateau_alpha = getNumber('#nonplateau_alpha', 1);
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
@@ -1834,7 +1839,7 @@ $(function(){
 	    pdsettings.logratio = truefalse('#logratio');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
-	    pdsettings["alpha"] = getNumber('#alpha');
+	    pdsettings["alpha"] = getNumber('#alpha', 1);
 	    pdsettings["sigdig"] = getInt('#sigdig');
 	    pdsettings["minx"] = check($('#minx').val(),'auto');
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
@@ -1863,7 +1868,7 @@ $(function(){
 	    pdsettings.max48 = check($('#max48').val(),'auto');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = getNumber('#alpha');
+	    pdsettings.alpha = getNumber('#alpha', 1);
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.ellipsefill = {
             option: getRadio('ellipsefill_option'),

@@ -209,11 +209,12 @@
 	"maxt": "auto",
 	"ranked": false,
 	"bg": {
-        "option": "custom_ramp",
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
-    },
-	"outliercol": "rgb(0,1,1,0.5)",
+            "option": "custom_ramp",
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000"
+        },
+        "outliercol": "#00FFFF",
+        "rect_alpha": 0.5,
 	"clabel": ""
     },
     "spectrum": {
@@ -226,8 +227,9 @@
         "option": "custom_ramp",
         "ramp_start": "#00FF00",
         "ramp_end": "#FF0000"
-    },
-	"nonplateaucol": "rgb(0,1,1,0.5)",
+        },
+        "nonplateaucol": "#00FFFF",
+        "nonplateau_alpha": 0.5,
 	"clabel": ""
     },
     "KDE": {
@@ -262,7 +264,7 @@
 	"pch": 21,
 	"pos": 0,
 	"cex": 5,
-	"col": "black",
+	"col": "#000000",
         "bg": {
             "option": "custom_ramp",
             "ramp_start": "#00FF00",

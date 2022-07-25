@@ -79,13 +79,6 @@ applysettings <- function(geochronometer, settings, gcsettings) {
     }, settingslambda[[geochronometer]])
 }
 
-getpch <- function(pch) {
-    if (pch == "none") {
-        return(NULL)
-    }
-    as.numeric(pch)
-}
-
 getlimits <- function(min, max) {
     if (min == "auto" || max == "auto") {
         return(NULL)
@@ -101,8 +94,12 @@ coerceabletonumeric <- function(v) {
     )
 }
 
-maybenumeric <- function(v) {
-    if (!is.null(v) && coerceabletonumeric(v)) as.numeric(v) else v
+maybenumeric <- function(v, ifnotnumeric = v) {
+    if (!is.null(v) && coerceabletonumeric(v)) as.numeric(v) else ifnotnumeric
+}
+
+getpch <- function(pch) {
+    maybenumeric(pch, NA)
 }
 
 isnullorauto <- function(v) {
@@ -168,7 +165,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     } else if (pd$anchor == 2) {
         args$anchor <- c(2, pd$tanchor)
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::concordia, args)
 }
 
@@ -180,11 +177,11 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         x = getdata(params, data, s2d),
         transformation = pd$transformation,
         pch = getpch(pd$pch),
+        cex = pd$cex,
         show.numbers = pd$shownumbers,
         k = maybenumeric(pd$numpeaks),
         alpha = pd$alpha,
         sigdig = pd$sigdig,
-        cex = cex,
         bg = params$bg,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
@@ -227,7 +224,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
     if (params$geochronometer == "Pb-Pb") {
         args$common.Pb <- params$gcsettings$commonPb
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::radialplot, args)
 }
 
@@ -255,7 +252,7 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
     args$tlim <- gettimelimits(pd$mint, pd$maxt)
     args$xlim <- getlimits(pd$min08, pd$max08)
     args$ylim <- getlimits(pd$min48, pd$max48)
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::evolution, args)
 }
 
@@ -284,7 +281,7 @@ setregression <- function(params, data, s2d, settings) {
 regression <- function(fn, params, data, s2d, settings, cex, york) {
     args <- setregression(params, data, s2d, settings)
     args$x <- IsoplotR::data2york(args$x, format = york$format)
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::isochron, args)
 }
 
@@ -317,8 +314,13 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
     if (gc != "U-Th-He") {
         args$exterr <- params$pdsettings$exterr
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::isochron, args)
+}
+
+addalpha <- function(colour, alpha) {
+    chs <- col2rgb(colour)
+    rgb(chs[1,], chs[2,], chs[3,], 255 * alpha, maxColorValue = 255)
 }
 
 weightedmean <- function(fn, params, data, s2d, settings, cex) {
@@ -333,8 +335,8 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         random.effects = pd$randomeffects,
         ranked = pd$ranked,
         levels = selection2levels(data$data, nc),
-        rect.col = params$bg,
-        outlier.col = params$outliercol,
+        rect.col = addalpha(params$bg, pd$rect_alpha),
+        outlier.col = addalpha(pd$outliercol, pd$rect_alpha),
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
@@ -374,7 +376,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
     if (!(gc %in% c("other", "Th-U", "U-Th-He"))) {
         args$exterr <- params$pdsettings$exterr
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::weightedmean, args)
 }
 
@@ -385,8 +387,8 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
     args <- list(
         x = getdata(params, data, s2d),
         plateau = pd$plateau,
-        plateau.col = params$bg,
-        non.plateau.col = params$nonplateaucol,
+        plateau.col = addalpha(params$bg, pd$nonplateau_alpha),
+        non.plateau.col = addalpha(pd$nonplateaucol, pd$nonplateau_alpha),
         detect.outliers = pd$outliers,
         alpha = pd$alpha,
         sigdig = pd$sigdig,
@@ -401,7 +403,7 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
         args$i2i <- params$gcsettings$i2i
         args$exterr <- pd$exterr
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::agespectrum, args)
 }
 
@@ -455,7 +457,7 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         args$samebandwidth <- pd$samebandwidth
         args$normalise <- pd$normalise
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::kde, args)
 }
 
@@ -466,7 +468,8 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     args <- list(
         x = getdata(params, data, s2d),
         verticals = pd$verticals,
-        pch = getpch(pd$pch)
+        pch = getpch(pd$pch),
+        cex = pd$cex
     )
     gc <- params$geochronometer
     if (gc == "Th-U") {
@@ -502,7 +505,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::cad, args)
 }
 
@@ -538,7 +541,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
     args$fact <- notauto(pd$fact)
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::helioplot, args)
 }
 
@@ -552,6 +555,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
         shepard = pd$shepard,
         nnlines = pd$nnlines,
         pch = getpch(pd$pch),
+        cex = pd$cex,
         col = params$col,
         bg = params$bg,
         hide = params$hide
@@ -562,7 +566,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
     if (!pd$shepard) {
         args$cex <- cex
     }
-    par(cex)
+    par(cex = cex)
     do.call(IsoplotR::mds, args)
 }
 
