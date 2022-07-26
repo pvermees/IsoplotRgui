@@ -1,0 +1,9 @@
+Package: isoplotr
+Version: 1.0-1
+Section: science
+Priority: optional
+Architecture: all
+Depends: nginx (>= 1.18.0), git (>= 1:2.25.1), r-base (>= 3.6.3), r-base-dev (>= 3.6.3)
+Maintainer: Tim Band <t.band@ucl.ac.uk>
+Description: Graphical User Interface to the **IsoplotR** R package for
+ radiometric geochronology.

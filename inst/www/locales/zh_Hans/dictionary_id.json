@@ -197,7 +197,7 @@
     "help_Nd150Nd144": "<sup>150</sup>Nd/<sup>144</sup>Nd 比值：",
     "help_LambdaSm147": "<sup>147</sup>Sm 衰变常数:",
     "help_plateau": "显示年龄坪？",
-    "help_detritus": "碎屑成因<sup>230</sup>Th校正：",
+    "help_Th0i": "碎屑成因<sup>230</sup>Th校正：",
     "help_LambdaU234": "<sup>234</sup>U 衰变常数:",
     "help_LambdaTh230": "<sup>230</sup>Th 衰变常数:",
     "detrital_correction_isochron": "等时线",

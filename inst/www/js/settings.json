@@ -31,10 +31,10 @@
     },
     "Th-U": {
 	"format": 2,
-	"detritus": 0,
-	"Th02": [0,0],
-	"Th02U48": [0,0,1e6,0,0,0,0,0,0],
-	"i2i": "TRUE"
+	"Th0i": 0,
+	"U8Th2": 0,
+	"Th02i": [0,0],
+	"Th02U48": [0,0,1e6,0,0,0,0,0,0]
     },
     "Pb-Pb": {
 	"format": 3,
@@ -129,6 +129,7 @@
     "isochron": {
 	"UPbtype": 1,
 	"ThUtype": 2,
+	"y0option": 1,
 	"model": 1,
 	"exterr": "FALSE",
 	"joint": "TRUE",
@@ -201,7 +202,6 @@
 	"ncol": "auto",
 	"xlab": "age [Ma]",
 	"showhist": "TRUE",
-	"binwidth": "auto",
 	"bw": "auto",
 	"samebandwidth": "TRUE",
 	"normalise": "TRUE",

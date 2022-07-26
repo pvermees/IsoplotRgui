@@ -1,23 +1,27 @@
 <p></p>
 
 <div class="hidden show4ThU">
-  &nbsp;<help class="translate" id="help_ThU_isochron_types">
-    <translate class="type"></translate>
-  </help>
+  &nbsp;<help class="translate" id="help_ThU_isochron_types"></help>
   <select id="ThU-isochron-types" onchange="$.register();">
     <option class="translate" id="Rosholt_A" value=1></option>
     <option class="translate" id="Osmond_A" value=2></option>
     <option class="translate hide4ThU3 hide4ThU4" id="Rosholt_B" value=3></option>
     <option class="translate hide4ThU3 hide4ThU4" id="Osmond_B" value=4></option>
   </select>
+  <span class="show4ThU1 show4ThU2 hide4ThU3 hide4ThU4">
+    &nbsp;<help class="translate" id="help_ThU_y0option"></help>
+    <select id="y0option" onchange="$.register();">
+      <option id="U45_0" value=1><sup>234</sup>U/<sup>238</sup>U</option>
+      <option id="Th02_0" value=2><sup>230</sup>Th/<sup>232</sup>Th</option>
+      <option id="Th08_0" value=3><sup>230</sup>Th/<sup>238</sup>U</option>
+    </select>
+  </span>
   <p></p>
 </div>
 
 <div class="hidden hide4UPb1 hide4UPb2 hide4UPb3 show4UPb4 
             show4UPb5 show4UPb6 show4UPb7 show4UPb8">
-  &nbsp;<help class="translate" id="help_UPb_isochron_types">
-    <translate class="type"></translate>
-  </help>
+  &nbsp;<help class="translate" id="help_UPb_isochron_types"></help>
   <select id="UPb-isochron-types" onchange="$.register();">
     <option class="translate" id="UPb_isochron_type_1" value=1></option>
     <option class="translate" id="UPb_isochron_type_2" value=2></option>
@@ -38,16 +42,17 @@
   <option class="translate" id="isochron_model_2" value=2></option>
   <option class="translate" id="isochron_model_3" value=3></option>
 </select>
-
 <p></p>
 
-&nbsp;<help class="translate" id="help_isochron_anchor_option"></help>
-<select id="anchor-option" onchange="$.register();">
-  <option class="translate" id="no_anchor" value=0></option>
-  <option value=1>Pb</option>
-  <option class="translate" id="age_anchor" value=2></option>
-</select>
-<p></p>
+<div class="hidden show4UPb">
+  &nbsp;<help class="translate" id="help_isochron_anchor_option"></help>
+  <select id="anchor-option" onchange="$.register();">
+    <option class="translate" id="no_anchor" value=0></option>
+    <option value=1>Pb</option>
+    <option class="translate" id="age_anchor" value=2></option>
+  </select>
+  <p></p>
+</div>
 
 <div class="hide4UThHe hide4ThU show4ArAr show4KCa show4PbPb 
             show4RbSr show4SmNd show4ReOs show4LuHf hide4UPb">

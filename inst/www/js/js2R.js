@@ -69,7 +69,8 @@ function getOptions(prefs){
 	}
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -117,7 +118,7 @@ function getOptions(prefs){
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
-	out += ",detritus=" + gcsettings.detritus;
+	out += ",Th0i=" + gcsettings.Th0i;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",isochron=" + pdsettings.isochron;
 	out += ",levels=selection2levels()";
@@ -143,7 +144,10 @@ function getOptions(prefs){
 		out += ",anchor=c(2," + pdsettings.tanchor + ")";
 	    }
 	}
-	if (geochronometer=='Th-U'){ out += ",type=" + pdsettings.ThUtype; }
+	if (geochronometer=='Th-U'){
+	    out += ",type=" + pdsettings.ThUtype;
+	    out += ",y0option=" + pdsettings.y0option;
+	}
 	if (geochronometer!='U-Th-He'){ out += ",exterr=" + pdsettings.exterr; }
     case 'regression':
 	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto'){
@@ -166,7 +170,8 @@ function getOptions(prefs){
     case 'average':
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -244,7 +249,8 @@ function getOptions(prefs){
 	out += ",adaptive=" + pdsettings.adaptive;
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -303,7 +309,8 @@ function getOptions(prefs){
 	out += ",verticals=" + pdsettings.verticals;
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
+	    break;
 	case 'Ar-Ar':
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -405,9 +412,8 @@ function getOptions(prefs){
 	}
 	switch (geochronometer){
 	case 'Th-U':
-	    out += ",i2i=" + gcsettings.i2i;
 	    out += ",isochron=FALSE";
-	    out += ",detritus=" + gcsettings.detritus;
+	    out += ",Th0i=" + gcsettings.Th0i;
 	    break;
 	case 'Th-Pb':
 	case 'K-Ca':
@@ -478,7 +484,8 @@ function getRcommand(prefs){
 	       ",option=" + gcsettings.PaU[1] + ")";
 	out += ")";
     } else if (geochronometer=='Th-U'){
-	out += ",Th02=" + concatenate(gcsettings.Th02);
+	out += ",U8Th2=" + gcsettings.U8Th2;
+	out += ",Th02i=" + concatenate(gcsettings.Th02i);
 	out += ",Th02U48=" + concatenate(gcsettings.Th02U48);
     }
     out += ",ierr=" + prefs.settings.ierr;
