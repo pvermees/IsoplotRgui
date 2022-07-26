@@ -61,6 +61,7 @@
     "help_bg": "Fill colour:",
     "help_bg_ramp_start": "Custom fill colour:",
     "help_bg_ramp_end": "Custom fill ramp end:",
+    "help_ramp_reverse": "Reverse colour ramp:",
     "help_cex": "Font magnification:",
     "help_col": "Outline colour:",
     "help_colmap": "Colour map:",

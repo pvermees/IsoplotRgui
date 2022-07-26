@@ -43,10 +43,7 @@ function getSolidColourRamp(s) {
     return [s.ramp_start, s.ramp_end];
 }
 
-function getColourRamp(s, def) {
-    if (typeof(s) !== 'object' || !('option' in s)) {
-        return def;
-    }
+function getColourRampUpwards(s) {
     var alpha = typeof(s.alpha) === 'number'? s.alpha : 1;
     if (s.option === 'custom_colour') {
         var col = addAlpha(alpha, [s.ramp_start]);
@@ -54,6 +51,21 @@ function getColourRamp(s, def) {
         return col;
     }
     return addAlpha(alpha, getSolidColourRamp(s));
+}
+
+function getColourRamp(s, def) {
+    if (typeof(s) !== 'object' || !('option' in s)) {
+        return def;
+    }
+    var ramp = getColourRampUpwards(s);
+    if (!('reverse' in s && s.reverse)) {
+        return ramp;
+    }
+    var rev = [];
+    for (var i = ramp.length - 1; i >= 0; --i) {
+        rev.push(ramp[i]);
+    }
+    return rev;
 }
 
 // turns the options into a string to feed into R

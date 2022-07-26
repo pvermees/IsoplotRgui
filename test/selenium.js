@@ -43,6 +43,7 @@ describe('IsoplotRgui', function() {
 
     before(async function() {
         const port = 50054;
+        this.timeout(5000);
         rProcess = spawn('Rscript', ['build/start-gui.R', '' + port], { stdio: [ 'ignore', 'inherit', 'inherit' ] });
         await portIsOpen(port);
         driver = new Builder().forBrowser('firefox').build();

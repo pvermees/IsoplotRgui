@@ -107,7 +107,8 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
+        "ramp_end": "#FF0000",
+        "reverse": false
     },
 	"ellipsestroke": "#000000",
 	"clabel": "",
@@ -130,7 +131,8 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
+        "ramp_end": "#FF0000",
+        "reverse": false
     },
 	"ellipsestroke": "#000000",
 	"model": 1,
@@ -156,7 +158,8 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
+        "ramp_end": "#FF0000",
+        "reverse": false
     },
 	"ellipsestroke": "#000000",
 	"growth": false,
@@ -175,7 +178,8 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
+        "ramp_end": "#FF0000",
+        "reverse": false
     },
 	"ellipsestroke": "#000000",
 	"clabel": ""
@@ -190,7 +194,8 @@
 	"bg": {
         "option": "custom_ramp",
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
+        "ramp_end": "#FF0000",
+        "reverse": false
     },
 	"sigdig": 2,
 	"alpha": 0.05,
@@ -211,7 +216,8 @@
 	"bg": {
             "option": "custom_ramp",
             "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000"
+            "ramp_end": "#FF0000",
+            "reverse": false
         },
         "outliercol": "#00FFFF",
         "rect_alpha": 0.5,
@@ -223,10 +229,11 @@
 	"alpha": 0.05,
 	"sigdig": 2,
 	"randomeffects": false,
-	"bg": {
-        "option": "custom_ramp",
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
+        "bg": {
+            "option": "custom_ramp",
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000",
+            "reverse": false
         },
         "nonplateaucol": "#00FFFF",
         "nonplateau_alpha": 0.5,
@@ -268,7 +275,8 @@
         "bg": {
             "option": "custom_ramp",
             "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000"
+            "ramp_end": "#FF0000",
+            "reverse": false
         }
     },
     "helioplot": {
@@ -286,7 +294,8 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
+        "ramp_end": "#FF0000",
+        "reverse": false
     },
 	"ellipsestroke": "#000000",
 	"model": 1,

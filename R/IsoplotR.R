@@ -563,9 +563,6 @@ mds <- function(fn, params, data, s2d, settings, cex) {
     if (pd$pos %in% c(1, 2, 3, 4)) {
         args$pos <- pd$pos
     }
-    if (!pd$shepard) {
-        args$cex <- cex
-    }
     par(cex = cex)
     do.call(IsoplotR::mds, args)
 }
