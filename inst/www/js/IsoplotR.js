@@ -2701,8 +2701,8 @@ $(function(){
         update();
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        shinylight.call('isoplotr', input, null, {
-            imgType: 'pdf'
+        shinylight.call(input.fn, input, null, {
+            imgType: 'pdf',
         }).then(function(result) {
             const downloader = document.createElement("A");
             downloader.setAttribute("download", 'IsoplotR.pdf');
@@ -2718,7 +2718,7 @@ $(function(){
         let fname = prompt("Please enter a file name", "ages.csv");
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        shinylight.call('isoplotr', input, null, {}).then(function(result) {
+        shinylight.call(input.fn, input, null, {}).then(function(result) {
             const rs = result.data.map(function(cs) { return cs.join(','); });
             const downloader = document.createElement("A");
             downloader.setAttribute("download", fname);
