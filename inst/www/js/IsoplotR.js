@@ -425,6 +425,14 @@ $(function(){
         }
     }
 
+    function hide4(id, pred) {
+        if (pred) {
+            $('.hide4' + id).hide();
+        } else {
+            $('.hide4' + id).show();
+        }
+    }
+
     function showOrHide(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -958,15 +966,12 @@ $(function(){
 	    $(".show4zeta").show();
 	    $(".hide4zeta").hide();
 	    break;
-	case 'MDS':
-	    if (pd.classical){
-		$('#shepard-box').hide();
-	    } else {
-		$('#shepard-box').show();
-	    }
+        case 'MDS':
+            hide4('classical', pd.classical);
+            hide4('shepard', pd.shepard);
             setBgFillVisibility(pd.bg.option);
             break;
-	}
+        }
     }
 
     function showSettings(option){
@@ -1400,10 +1405,7 @@ $(function(){
 	    $('#pch').val(set.pch);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
-            setRadio('bg_option', set.bg.option);
-            $('#bg_ramp_start').val(set.bg.ramp_start);
-            $('#bg_ramp_end').val(set.bg.ramp_end);
-            $('#ramp_reverse').prop('checked', set.bg.reverse);
+        $('#bg_solid').val(set.bg);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
@@ -1823,12 +1825,7 @@ $(function(){
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["pos"] = getInt('#pos');
 	    pdsettings["col"] = $('#col').val();
-            pdsettings.bg = {
-                option: getRadio('bg_option'),
-                ramp_start: $('#bg_ramp_start').val(),
-                ramp_end: $('#bg_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
-            };
+            pdsettings["bg"] = $('#bg_solid').val();
 	    pdsettings["cex"] = getNumber('#pcex');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;

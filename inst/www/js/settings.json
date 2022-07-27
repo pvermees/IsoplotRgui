@@ -272,12 +272,7 @@
 	"pos": 0,
 	"cex": 5,
 	"col": "#000000",
-        "bg": {
-            "option": "custom_ramp",
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000",
-            "reverse": false
-        }
+        "bg": "#FF0000"
     },
     "helioplot": {
 	"logratio": true,

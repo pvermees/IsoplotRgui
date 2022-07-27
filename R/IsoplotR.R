@@ -94,12 +94,15 @@ coerceabletonumeric <- function(v) {
     )
 }
 
-maybenumeric <- function(v, ifnotnumeric = v) {
-    if (!is.null(v) && coerceabletonumeric(v)) as.numeric(v) else ifnotnumeric
+maybenumeric <- function(v) {
+    if (!is.null(v) && coerceabletonumeric(v)) as.numeric(v) else v
 }
 
 getpch <- function(pch) {
-    maybenumeric(pch, NA)
+    if (pch == "NA") {
+        return(NA);
+    }
+    maybenumeric(pch)
 }
 
 isnullorauto <- function(v) {
@@ -548,18 +551,21 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
 mds <- function(fn, params, data, s2d, settings, cex) {
     applysettings(params$geochronometer, settings, params$gcsettings)
     pd <- params$pdsettings
+    shepard <- !pd$classical && pd$shepard
     args <- list(
         x = getdata(params, data, s2d),
         sigdig = pd$sigdig,
         classical = pd$classical,
-        shepard = pd$shepard,
+        shepard = shepard,
         nnlines = pd$nnlines,
         pch = getpch(pd$pch),
-        cex = pd$cex,
-        col = params$col,
-        bg = params$bg,
+        col = pd$col,
+        bg = pd$bg,
         hide = params$hide
     )
+    if (!shepard) {
+        args$cex <- pd$cex
+    }
     if (pd$pos %in% c(1, 2, 3, 4)) {
         args$pos <- pd$pos
     }

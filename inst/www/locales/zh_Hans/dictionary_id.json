@@ -39,6 +39,7 @@
     "help_clabel": "标注颜色：",
     "help_outlier_col": "异常值颜色：",
     "help_bg": "充填颜色：",
+    "help_bg_solid": "充填颜色：",
     "help_cex": "字体放大倍数：",
     "help_col": "轮廓颜色：",
     "help_colmap": "颜色表：",

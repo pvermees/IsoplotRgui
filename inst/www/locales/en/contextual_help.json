@@ -147,6 +147,7 @@
     "help_plateau": "If checked, <tt>IsoplotR</tt> computes the weighted mean of the longest succession of steps that pass the generalised Chauvenet Criterion for outliers, and marks the steps belonging to this plateau in a different colour.",
     "help_isochron_evolution": "Fit an isochron through the data using the algorithm of Ludwig and Titterington (1994)?",
     "help_bg": "Fill colour for the plot symbols, if the symbol chosen is between 21 and 25. This can either be a single colour, two colours to form a colour ramp or a predefined colour ramp. The choice of colour is determined by the value you put into the (C) column.",
+    "help_bg_solid": "Fill colour for the plot symbols, if the symbol chosen is between 21 and 25.",
     "help_bg_ramp_start": "The colour of the plot symbols, or, if the (C) column is filled in, the colour of those symbols towards the maximum value entered into this column",
     "help_bg_ramp_end": "If the (C) column is filled in, the colour of the plot symbols towards the minimum value entered into this column",
     "help_ramp_reverse": "Reverse the direction of the colour ramp",
