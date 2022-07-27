@@ -2657,8 +2657,13 @@ $(function(){
         var img = document.createElement('IMG');
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
+        var wantSvg = true;
+        if (wantSvg) {
+            // for some reason R gives us fatter margins with SVG by default
+            input.cex *= 0.75;
+        }
         shinylight.call(input.fn, input, myplot.get(0), {
-            imgType: 'svg',
+            imgType: wantSvg? 'svg' : 'pdf',
         }).then(function(result) {
             img.setAttribute('src', result.plot[0]);
             myplot.empty();
