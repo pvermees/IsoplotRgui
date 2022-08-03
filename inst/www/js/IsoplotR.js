@@ -741,14 +741,6 @@ $(function(){
 		$('.show4weightedmean').show();
 		$('.hide4weightedmean').hide();
 		break;
-	    case 'KDE':
-		$('.show4kde').show();
-		$('.hide4kde').hide();
-		break;
-	    case 'CAD':
-		$('.show4cad').show();
-		$('.hide4cad').hide();
-		break;
 	    }
 	    break;
 	}
@@ -915,6 +907,14 @@ $(function(){
 	    } else {
 		$('#shepard-box').show();
 	    }
+	    break;
+	case 'KDE':
+	    $('.show4kde').show();
+	    $('.hide4kde').hide();
+	    break;
+	case 'CAD':
+	    $('.show4cad').show();
+	    $('.hide4cad').hide();
 	    break;
 	}
     }
