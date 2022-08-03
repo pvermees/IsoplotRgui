@@ -128,7 +128,7 @@
     "ci_abs": "ci (abs)",
     "1se_rel": "1se (%)",
     "2se_rel": "2se (%)",
-    "ci_rel": "ci (rel)",
+    "ci_rel": "ci (%)",
     "help_conc_age_option": "Calculate",
     "help_anchor_option": "Anchored discordia line?",
     "help_isochron_anchor_option": "Anchored isochron line?",
