@@ -3,7 +3,7 @@
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
-    "oerr": 3,
+    "oerr": 2,
     "alpha": 0.05,
     "sigdig": 2,
     "par": {
