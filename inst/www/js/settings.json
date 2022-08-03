@@ -3,6 +3,9 @@
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
+    "oerr": 3,
+    "alpha": 0.05,
+    "sigdig": 2,
     "par": {
 	"cex": 1
     },
@@ -95,14 +98,12 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"alpha": 0.05,
 	"type": 1,
 	"exterr": "FALSE",
 	"shownumbers": "FALSE",
 	"showage": 0,
 	"anchor":0,
 	"tanchor":0,
-	"sigdig": 2,
 	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"ellipsestroke": "'black'",
 	"clabel": "",
@@ -115,12 +116,10 @@
 	"max48": "auto",
 	"mint": "auto",
 	"maxt": "auto",
-	"alpha": 0.05,
 	"transform": "FALSE",
 	"exterr": "FALSE",
 	"isochron": "FALSE",
 	"shownumbers": "FALSE",
-	"sigdig": 2,
 	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"ellipsestroke": "'black'",
 	"model": 1,
@@ -140,8 +139,6 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"alpha": 0.05,
-	"sigdig": 2,
 	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"ellipsestroke": "'black'",
 	"growth": "FALSE",
@@ -154,8 +151,6 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"alpha": 0.05,
-	"sigdig": 2,
 	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"ellipsestroke": "'black'",
 	"clabel": ""
@@ -168,8 +163,6 @@
 	"pch": 21,
 	"cex": 1,
 	"bg": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
-	"sigdig": 2,
-	"alpha": 0.05,
 	"shownumbers": "FALSE",
 	"numpeaks": 0,
 	"clabel": "",
@@ -178,8 +171,6 @@
     "average": {
 	"outliers": "TRUE",
 	"exterr": "FALSE",
-	"alpha": 0.05,
-	"sigdig": 2,
 	"randomeffects": "FALSE",
 	"mint": "auto",
 	"maxt": "auto",
@@ -191,8 +182,6 @@
     "spectrum": {
 	"plateau": "TRUE",
 	"exterr": "FALSE",
-	"alpha": 0.05,
-	"sigdig": 2,
 	"randomeffects": "FALSE",
 	"plateaucol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
 	"nonplateaucol": "rgb(0,1,1,0.5)",
@@ -220,7 +209,6 @@
 	"colmap": "heat.colors"
     },
     "set-zeta": {
-	"sigdig": 2,
 	"exterr": "FALSE"
     },
     "MDS": {
@@ -237,8 +225,6 @@
 	"logratio": "TRUE",
 	"shownumbers": "FALSE",
 	"showcentralcomp": "TRUE",
-	"alpha": 0.05,
-	"sigdig": 2,
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
@@ -252,7 +238,6 @@
     "ages": {
 	"showdisc": 0,
 	"discoption": 5,
-	"exterr": "FALSE",
-	"sigdig": 2
+	"exterr": "FALSE"
     }
 }

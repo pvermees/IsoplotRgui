@@ -925,6 +925,10 @@ $(function(){
 	showOrHide();
 	$('#ierr option[value='+IsoplotR.settings.ierr+']').
 	    prop('selected', 'selected');
+	$('#oerr option[value='+IsoplotR.settings.oerr+']').
+	    prop('selected', 'selected');
+	$('#alpha').val(IsoplotR.settings.alpha);
+	$('#sigdig').val(IsoplotR.settings.sigdig);
 	switch (option){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
@@ -1202,10 +1206,8 @@ $(function(){
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
-	    $('#alpha').val(set.alpha);
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
-	    $('#sigdig').val(set.sigdig);
 	    $('#ellipsefill').val(set.ellipsefill);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
@@ -1232,8 +1234,6 @@ $(function(){
 	    $('#isochron-maxx').val(set.maxx);
 	    $('#isochron-miny').val(set.miny);
 	    $('#isochron-maxy').val(set.maxy);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
 	    $('#ellipsefill').val(set.ellipsefill);
@@ -1254,8 +1254,6 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#bg').val(set.bg);
 	    $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
@@ -1267,8 +1265,6 @@ $(function(){
 	    $('#outliers').prop('checked',set.outliers=='TRUE');
 	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
 	    $('#ranked').prop('checked',set.ranked=='TRUE');
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#cex').val(IsoplotR.settings.par.cex);
@@ -1280,8 +1276,6 @@ $(function(){
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
 	    $('#plateau').prop('checked',set.plateau=='TRUE');
 	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    $('#plateaucol').val(set.plateaucol);
 	    $('#nonplateaucol').val(set.nonplateaucol);
@@ -1311,7 +1305,6 @@ $(function(){
 	    $('.show4zeta').show();
 	    $('.hide4zeta').hide();
 	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
@@ -1323,7 +1316,6 @@ $(function(){
 	    if (geochronometer != 'U-Th-He') {
 		$('#age-exterr').prop('checked',set.exterr=='TRUE');
 	    }
-	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'MDS':
 	    $('#classical').prop('checked',set.classical=='TRUE');
@@ -1340,8 +1332,6 @@ $(function(){
 	    $('#logratio').prop('checked',set.logratio=='TRUE');
 	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
 	    $('#showcentralcomp').prop('checked',set.showcentralcomp=='TRUE');
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#minx').val(set.minx);
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
@@ -1367,8 +1357,6 @@ $(function(){
 	    $('#max48').val(set.max48);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#ellipsefill').val(set.ellipsefill);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#evolution-isochron-models option[value='+set.model+']').
@@ -1381,11 +1369,15 @@ $(function(){
     }
 
     function recordSettings(){
-	var geochronometer = IsoplotR.settings.geochronometer;
-	var plotdevice = IsoplotR.settings.plotdevice;
-	var gcsettings = IsoplotR.settings[geochronometer];
-	var pdsettings = IsoplotR.settings[plotdevice];
+	var set = IsoplotR.settings;
+	var geochronometer = set.geochronometer;
+	var plotdevice = set.plotdevice;
+	var gcsettings = set[geochronometer];
+	var pdsettings = set[plotdevice];
 	var cst = IsoplotR.constants;
+	set.oerr = getInt("#oerr");
+	set.alpha = getNumber("#alpha");
+	set.sigdig = getNumber("#sigdig");
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1603,8 +1595,6 @@ $(function(){
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.ticks = $('#ticks').val();
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.anchor = getOption("#anchor-option")
 	    pdsettings.tanchor = getNumber('#tanchor');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
@@ -1630,8 +1620,6 @@ $(function(){
 	    pdsettings.ellipsefill = $('#ellipsefill').val();
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'radial':
@@ -1641,8 +1629,6 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.pch = $('#pch').val();
 	    pdsettings.bg = $('#bg').val();
 	    pdsettings.clabel = $('#clabel').val();
@@ -1656,8 +1642,6 @@ $(function(){
 	    pdsettings["outliers"] = truefalse('#outliers');
 	    pdsettings["randomeffects"] = truefalse('#randomeffects');
 	    pdsettings["ranked"] = truefalse('#ranked');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.rectcol = $('#rectcol').val();
@@ -1670,8 +1654,6 @@ $(function(){
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.plateau = truefalse('#plateau');
 	    pdsettings.randomeffects = truefalse('#randomeffects');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.plateaucol = $('#plateaucol').val();
 	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
 	    pdsettings.clabel = $('#clabel').val();
@@ -1737,8 +1719,6 @@ $(function(){
 	    pdsettings.logratio = truefalse('#logratio');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
-	    pdsettings["alpha"] = getNumber('#alpha');
-	    pdsettings["sigdig"] = getInt('#sigdig');
 	    pdsettings["minx"] = check($('#minx').val(),'auto');
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
@@ -1761,8 +1741,6 @@ $(function(){
 	    pdsettings.max48 = check($('#max48').val(),'auto');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.ellipsefill = $('#ellipsefill').val();
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#evolution-isochron-models");

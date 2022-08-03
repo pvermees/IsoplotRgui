@@ -25,12 +25,12 @@ function getOptions(prefs){
 	if (pdsettings.ticks != 'auto'){
 	    out += ",ticks=c(" + pdsettings.ticks + ")";
 	}
-	out += ",alpha=" + pdsettings.alpha;
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	out += ",type=" + pdsettings.type;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",show.age=" + pdsettings.showage;
-	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",common.Pb=" + gcsettings.commonPb;
 	out += ",ellipse.fill=" + pdsettings.ellipsefill;
 	out += ",ellipse.stroke=" + pdsettings.ellipsestroke;
@@ -58,8 +58,8 @@ function getOptions(prefs){
 	out += ",pch=" + pdsettings.pch;
 	out += ",cex=" + pdsettings.cex;
 	out += ",bg=" + pdsettings.bg;
-	out += ",alpha=" + pdsettings.alpha;
-	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",clabel='" + pdsettings.clabel + "'";
 	if (geochronometer != "other" &
@@ -114,9 +114,9 @@ function getOptions(prefs){
 	if (pdsettings.min48 != 'auto' & pdsettings.max48 != 'auto'){
 	    out += ",ylim=c(" + pdsettings.min48 + "," + pdsettings.max48 + ")";
 	}
-	out += ",alpha=" + pdsettings.alpha;
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
-	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",transform=" + pdsettings.transform;
 	out += ",Th0i=" + gcsettings.Th0i;
 	out += ",exterr=" + pdsettings.exterr;
@@ -156,9 +156,9 @@ function getOptions(prefs){
 	if (pdsettings.miny != 'auto' & pdsettings.maxy != 'auto'){
 	    out += ",ylim=c(" + pdsettings.miny + "," + pdsettings.maxy + ")";
 	}
-	out += ",alpha=" + pdsettings.alpha;
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	out += ",show.numbers=" + pdsettings.shownumbers;
-	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",model=" + pdsettings.model;
 	out += ",clabel='" + pdsettings.clabel + "'";
     out += ",levels=selection2levels()";
@@ -209,8 +209,8 @@ function getOptions(prefs){
 	    out += ",exterr=" + pdsettings.exterr;
 	}
 	out += ",detect.outliers=" + pdsettings.outliers;
-	out += ",alpha=" + pdsettings.alpha;
-	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	out += ",random.effects=" + pdsettings.randomeffects;
 	out += ",ranked=" + pdsettings.ranked;
 	out += ",levels=selection2levels()";
@@ -229,8 +229,8 @@ function getOptions(prefs){
 	}
 	out += ",plateau=" + pdsettings.plateau;
 	out += ",random.effects=" + pdsettings.randomeffects;
-	out += ",alpha=" + pdsettings.alpha;
-	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	out += ",levels=selection2levels()";
 	out += ",plateau.col=" + pdsettings.plateaucol;	
 	out += ",non.plateau.col=" + pdsettings.nonplateaucol;
@@ -362,8 +362,8 @@ function getOptions(prefs){
 	out += ",logratio=" + pdsettings.logratio;
 	out += ",show.numbers=" + pdsettings.shownumbers;
 	out += ",show.central.comp=" + pdsettings.showcentralcomp;
-	out += ",alpha=" + pdsettings.alpha;
-	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	if (pdsettings.minx != 'auto' & pdsettings.maxx != 'auto'){
 	    out += ",xlim=c(" + pdsettings.minx + "," + pdsettings.maxx + ")"
 	}
@@ -434,7 +434,7 @@ function getOptions(prefs){
 	    break;
 	default:
 	}
-	out += ",sigdig=" + pdsettings.sigdig;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	break;
     default: // do nothing
     }
@@ -490,6 +490,7 @@ function getRcommand(prefs){
     }
     out += ",ierr=" + prefs.settings.ierr;
     out += ");";
+    out += "IsoplotR::settings('alpha'," + prefs.settings.alpha + ");";
     switch (geochronometer){
     case 'U-Pb':
 	out += "IsoplotR::settings('iratio','Pb207Pb206'," +
