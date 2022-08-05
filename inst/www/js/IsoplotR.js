@@ -2567,8 +2567,11 @@ $(function(){
 	var fname = prompt("Please enter a file name", "IsoplotR.json");
 	if (fname != null){
 	    handson2json();
-	    $('#fname').attr("href","data:text/plain," +
-			     JSON.stringify(IsoplotR));
+        var blob = new Blob([JSON.stringify(IsoplotR)], {
+            type: 'data:text/plain'
+        });
+        var href = URL.createObjectURL(blob);
+	    $('#fname').attr("href", href);
 	    $('#fname').attr("download",fname);
 	    $('#fname')[0].click();
 	}
