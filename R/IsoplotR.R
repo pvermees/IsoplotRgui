@@ -99,8 +99,9 @@ maybenumeric <- function(v) {
 }
 
 getpch <- function(pch) {
-    if (pch == "NA") {
-        return(NA);
+    p <- trimws(toupper(pch))
+    if (p %in% c("NA", "NONE")) {
+        return(NA)
     }
     maybenumeric(pch)
 }
