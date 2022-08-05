@@ -813,12 +813,18 @@ $(function(){
 		$('.show4tanchor').hide();
 	    }
 	    if (geochronometer=='Th-U' & set.format<3){
-		if (pd.y0option==2){
-		    $('.show4y0option2').show();
-		} else if (pd.y0option==3){
-		    $('.show4y0option3').show();
-		} else {
+		switch (pd.y0option){
+		case 1:
 		    $('.show4y0option1').show();
+		    break;
+		case 2:
+		    $('.show4y0option2').show();
+		    break;
+		case 3:
+		    $('.show4y0option3').show();
+		    break;
+		default:
+		    $('.show4y0option4').show();
 		}
 	    }
 	case 'regression':
