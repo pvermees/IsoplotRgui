@@ -33,12 +33,20 @@ function getSolidColourRamp(s) {
     switch (s.option) {
     case 'rainbow':
         return ['#FF0000', '#FF8000', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#FF00FF'];
+    case 'rainbow_reversed':
+        return ['#FF00FF', '#0000FF', '#00FFFF', '#00FF00', '#FFFF00', '#FF8000', '#FF0000'];
     case 'heat':
         return ['#800000', '#FF0000', '#FF8000', '#FFFF00', '#FFFF88', '#FFFFFF'];
+    case 'heat_reversed':
+        return ['#FFFFFF', '#FFFF88', '#FFFF00', '#FF8000', '#FF0000', '#800000'];
     case 'viridis':
         return ['#440154', '#46337E', '#365C8D', '#277F8E', '#1FA187', '#4AC16D', '#9FDA3A', '#FDE725'];
+    case 'viridis_reversed':
+        return ['#FDE725', '#9FDA3A', '#4AC16D', '#1FA187', '#277F8E', '#365C8D', '#46337E', '#440154'];
     case 'rocket':
         return ['#03051A', '#36193E', '#701F57', '#AE1759', '#E13342', '#F37651', '#F6B48E', '#FAEBDD'];
+    case 'rocket_reversed':
+        return ['#FAEBDD', '#F6B48E', '#F37651', '#E13342', '#AE1759', '#701F57', '#36193E', '#03051A'];
     }
     return [s.ramp_start, s.ramp_end];
 }

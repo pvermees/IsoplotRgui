@@ -396,14 +396,24 @@ $(function(){
         case "custom_ramp":
             $('.show4customellipsecolor').show();
             $('.show4customellipseramp').show();
+            $('.hide4customellipseramp').hide();
             break;
         case "custom_colour":
             $('.show4customellipsecolor').show();
             $('.show4customellipseramp').hide();
+            $('.hide4customellipseramp').show();
             break;
         default:
+            var preview = $('#ellipseramp_preview');
+            var contents = getItem(
+                'help_ramp_' + option,
+                dictionary_id, dictionary_id_fallback, 'dictionary_id'
+            );
+            preview.html(contents);
+            preview.attr('class', 'background_' + option);
             $('.show4customellipsecolor').hide();
             $('.show4customellipseramp').hide();
+            $('.hide4customellipseramp').show();
             break;
         }
     }
@@ -1261,7 +1271,7 @@ $(function(){
 	    $('#exterr').prop('checked',set.exterr);
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#sigdig').val(set.sigdig);
-        setRadio('ellipsefill_option', set.ellipsefill.option);
+        setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
@@ -1295,7 +1305,7 @@ $(function(){
 	    $('#sigdig').val(set.sigdig);
 	    $('#isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
-            setRadio('ellipsefill_option', set.ellipsefill.option);
+            setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
@@ -1420,7 +1430,7 @@ $(function(){
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
 	    $('#fact').val(set.fact);
-            setRadio('ellipsefill_option', set.ellipsefill.option);
+            setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
@@ -1446,7 +1456,7 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
-            setRadio('ellipsefill_option', set.ellipsefill.option);
+            setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
             $('#ramp_reverse').prop('checked', set.ellipsefill.reverse);
@@ -1681,7 +1691,7 @@ $(function(){
 	    pdsettings.miny = check($('#miny').val(),'auto');
 	    pdsettings.maxy = check($('#maxy').val(),'auto');
 	    pdsettings.ellipsefill = {
-                option: getRadio('ellipsefill_option'),
+                option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
                 ramp_end: $('#ellipsefill_ramp_end').val(),
@@ -1715,7 +1725,7 @@ $(function(){
 	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
 	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
 	    pdsettings.ellipsefill = {
-                option: getRadio('ellipsefill_option'),
+                option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
                 ramp_end: $('#ellipsefill_ramp_end').val(),
@@ -1855,7 +1865,7 @@ $(function(){
 	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
 	    pdsettings["fact"] = $('#fact').val();
 	    pdsettings.ellipsefill = {
-                option: getRadio('ellipsefill_option'),
+                option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
                 ramp_end: $('#ellipsefill_ramp_end').val(),
@@ -1880,7 +1890,7 @@ $(function(){
 	    pdsettings.alpha = getNumber('#alpha', 1);
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.ellipsefill = {
-                option: getRadio('ellipsefill_option'),
+                option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
                 ramp_end: $('#ellipsefill_ramp_end').val(),
