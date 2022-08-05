@@ -398,11 +398,6 @@ $(function(){
             $('.show4customellipseramp').show();
             $('.hide4customellipseramp').hide();
             break;
-        case "custom_colour":
-            $('.show4customellipsecolor').show();
-            $('.show4customellipseramp').hide();
-            $('.hide4customellipseramp').show();
-            break;
         default:
             var preview = $('#ellipseramp_preview');
             var contents = getItem(
@@ -420,20 +415,25 @@ $(function(){
 
     function setBgFillVisibility(option) {
         switch (option) {
-        case "custom_ramp":
-            $('.show4custombgcolor').show();
-            $('.show4custombgramp').show();
-            break;
-        case "custom_colour":
-            $('.show4custombgcolor').show();
-            $('.show4custombgramp').hide();
-            break;
-        default:
-            $('.show4custombgcolor').hide();
-            $('.show4custombgramp').hide();
-            break;
+            case "custom_ramp":
+                $('.show4custombgcolor').show();
+                $('.show4custombgramp').show();
+                $('.hide4custombgramp').hide();
+                break;
+            default:
+                var preview = $('#bgramp_preview');
+                var contents = getItem(
+                    'help_ramp_' + option,
+                    dictionary_id, dictionary_id_fallback, 'dictionary_id'
+                );
+                preview.html(contents);
+                preview.attr('class', 'background_' + option);
+                $('.show4custombgcolor').hide();
+                $('.show4custombgramp').hide();
+                $('.hide4custombgramp').show();
+                break;
+            }
         }
-    }
 
     function hide4(id, pred) {
         if (pred) {
@@ -1275,7 +1275,6 @@ $(function(){
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
-            $('#ramp_reverse').prop('checked', set.ellipsefill.reverse);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
 	    $('#ticks').val(set.ticks);
@@ -1309,7 +1308,6 @@ $(function(){
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
-            $('#ramp_reverse').prop('checked', set.ellipsefill.reverse);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
 	    $('#cex').val(IsoplotR.settings.par.cex);
@@ -1328,10 +1326,9 @@ $(function(){
 	    $('#maxt').val(set.maxt);
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
-            setRadio('bg_option', set.bg.option);
+            setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
-            $('#ramp_reverse').prop('checked', set.bg.reverse);
         $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
@@ -1347,10 +1344,9 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-            setRadio('bg_option', set.bg.option);
+            setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
-            $('#ramp_reverse').prop('checked', set.bg.reverse);
             $('#outliercol').val(set.outliercol);
             $('#rect_alpha').val(set.rect_alpha);
 	    $('#clabel').val(set.clabel);
@@ -1362,10 +1358,9 @@ $(function(){
 	    $('#alpha').val(set.alpha);
 	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-            setRadio('bg_option', set.bg.option);
+            setOption('#bg_option', set.bg.option);
 	    $('#bg_ramp_start').val(set.bg.ramp_start);
 	    $('#bg_ramp_end').val(set.bg.ramp_end);
-            $('#ramp_reverse').prop('checked', set.bg.reverse);
 	    $('#nonplateaucol').val(set.nonplateaucol);
         $('#nonplateau_alpha').val(set.nonplateau_alpha);
 	    $('#clabel').val(set.clabel);
@@ -1434,7 +1429,6 @@ $(function(){
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
-            $('#ramp_reverse').prop('checked', set.ellipsefill.reverse);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#helioplot-models option[value='+set.model+']').
 		prop('selected', 'selected');
@@ -1459,7 +1453,6 @@ $(function(){
             setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
-            $('#ramp_reverse').prop('checked', set.ellipsefill.reverse);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#evolution-isochron-models option[value='+set.model+']').
@@ -1748,7 +1741,7 @@ $(function(){
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.pch = $('#pch').val();
             pdsettings.bg = {
-                option: getRadio('bg_option'),
+                option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),
                 ramp_end: $('#bg_ramp_end').val(),
                 reverse: $('#ramp_reverse').prop('checked')
@@ -1769,7 +1762,7 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.bg = {
-                option: getRadio('bg_option'),
+                option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),
                 ramp_end: $('#bg_ramp_end').val(),
                 reverse: $('#ramp_reverse').prop('checked')
@@ -1787,7 +1780,7 @@ $(function(){
 	    pdsettings.alpha = getNumber('#alpha', 1);
 	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.bg = {
-                option: getRadio('bg_option'),
+                option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),
                 ramp_end: $('#bg_ramp_end').val(),
                 reverse: $('#ramp_reverse').prop('checked')

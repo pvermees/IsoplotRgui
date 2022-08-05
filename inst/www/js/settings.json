@@ -107,8 +107,7 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000",
-        "reverse": false
+        "ramp_end": "#FF0000"
     },
 	"ellipsestroke": "#000000",
 	"clabel": "",
@@ -131,8 +130,7 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000",
-        "reverse": false
+        "ramp_end": "#FF0000"
     },
 	"ellipsestroke": "#000000",
 	"model": 1,
@@ -158,8 +156,7 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000",
-        "reverse": false
+        "ramp_end": "#FF0000"
     },
 	"ellipsestroke": "#000000",
 	"growth": false,
@@ -178,8 +175,7 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000",
-        "reverse": false
+        "ramp_end": "#FF0000"
     },
 	"ellipsestroke": "#000000",
 	"clabel": ""
@@ -289,8 +285,7 @@
         "option": "custom_ramp",
         "alpha": 0.5,
         "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000",
-        "reverse": false
+        "ramp_end": "#FF0000"
     },
 	"ellipsestroke": "#000000",
 	"model": 1,
