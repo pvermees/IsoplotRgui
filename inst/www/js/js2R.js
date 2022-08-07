@@ -355,7 +355,6 @@ function getOptions(prefs){
 	out += ",tst=c(" + data.age[0] +
 	             "," + data.age[1] + ")";
 	out += ",exterr=" + pdsettings.exterr;
-	out += ",sigdig=" + pdsettings.sigdig;
 	out += ",update=FALSE";
 	break;
     case 'helioplot':
@@ -397,6 +396,8 @@ function getOptions(prefs){
 	out += ",hide=c(" + gcsettings.hide + ')';
 	break;
     case 'ages':
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	if (geochronometer == 'U-Pb' & pdsettings.showdisc!=0){
 	    out += ",discordance=IsoplotR::discfilter(option=";
 	    if (pdsettings.showdisc==1){
@@ -434,7 +435,6 @@ function getOptions(prefs){
 	    break;
 	default:
 	}
-	out += ",sigdig=" + prefs.settings.sigdig;
 	break;
     default: // do nothing
     }
