@@ -352,8 +352,9 @@ function getOptions(prefs){
 	break;
     case 'set-zeta':
 	var data = prefs.data.fissiontracks;
-	out += ",tst=c(" + data.age[0] +
-	             "," + data.age[1] + ")";
+	out += ",tst=c(" + data.age[0] + "," + data.age[1] + ")";
+	out += ",oerr=" + prefs.settings.oerr;
+	out += ",sigdig=" + prefs.settings.sigdig;
 	out += ",exterr=" + pdsettings.exterr;
 	out += ",update=FALSE";
 	break;
