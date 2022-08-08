@@ -408,6 +408,32 @@ $(function(){
 	    $('.hide4ierr4').hide();
 	    break;
 	}
+	switch (IsoplotR.settings.oerr){
+	case 1:
+	    $('.show4oerr1').show();
+	    $('.hide4oerr1').hide();
+	    break;
+	case 2:
+	    $('.show4oerr2').show();
+	    $('.hide4oerr2').hide();
+	    break;
+	case 3:
+	    $('.show4oerr3').show();
+	    $('.hide4oerr3').hide();
+	    break;
+	case 4:
+	    $('.show4oerr4').show();
+	    $('.hide4oerr4').hide();
+	    break;
+	case 5:
+	    $('.show4oerr5').show();
+	    $('.hide4oerr5').hide();
+	    break;
+	case 6:
+	    $('.show4oerr6').show();
+	    $('.hide4oerr6').hide();
+	    break;
+	}
 	switch (geochronometer){
 	case 'U-Pb':
 	    $('.show4UPb').show();
