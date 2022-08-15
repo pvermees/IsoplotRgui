@@ -2696,12 +2696,6 @@ $(function(){
         }).catch(function(error) {
             displayError("Plot failed.", error);
         });
-        document.getElementsByTagName("BODY")[0].onresize = function() {
-            if (timeout.variable) {
-                window.clearTimeout(timeout.variable);
-            }
-            timeout.variable = window.setTimeout(plot, 400);
-        };
     });
 
     $("#RUN").click(function(){
