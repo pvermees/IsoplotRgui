@@ -467,6 +467,32 @@ $(function(){
 	    $('.hide4ierr4').hide();
 	    break;
 	}
+	switch (IsoplotR.settings.oerr){
+	case 1:
+	    $('.show4oerr1').show();
+	    $('.hide4oerr1').hide();
+	    break;
+	case 2:
+	    $('.show4oerr2').show();
+	    $('.hide4oerr2').hide();
+	    break;
+	case 3:
+	    $('.show4oerr3').show();
+	    $('.hide4oerr3').hide();
+	    break;
+	case 4:
+	    $('.show4oerr4').show();
+	    $('.hide4oerr4').hide();
+	    break;
+	case 5:
+	    $('.show4oerr5').show();
+	    $('.hide4oerr5').hide();
+	    break;
+	case 6:
+	    $('.show4oerr6').show();
+	    $('.hide4oerr6').hide();
+	    break;
+	}
 	switch (geochronometer){
 	case 'U-Pb':
 	    $('.show4UPb').show();
@@ -800,14 +826,6 @@ $(function(){
 		$('.show4weightedmean').show();
 		$('.hide4weightedmean').hide();
 		break;
-	    case 'KDE':
-		$('.show4kde').show();
-		$('.hide4kde').hide();
-		break;
-	    case 'CAD':
-		$('.show4cad').show();
-		$('.hide4cad').hide();
-		break;
 	    }
 	    break;
 	}
@@ -882,12 +900,18 @@ $(function(){
 		$('.show4tanchor').hide();
 	    }
 	    if (geochronometer=='Th-U' & set.format<3){
-		if (pd.y0option==2){
-		    $('.show4y0option2').show();
-		} else if (pd.y0option==3){
-		    $('.show4y0option3').show();
-		} else {
+		switch (pd.y0option){
+		case 1:
 		    $('.show4y0option1').show();
+		    break;
+		case 2:
+		    $('.show4y0option2').show();
+		    break;
+		case 3:
+		    $('.show4y0option3').show();
+		    break;
+		default:
+		    $('.show4y0option4').show();
 		}
 	    }
 	case 'regression':
@@ -981,6 +1005,14 @@ $(function(){
             hide4('shepard', pd.shepard);
             setBgFillVisibility(pd.bg.option);
             break;
+	case 'KDE':
+	    $('.show4kde').show();
+	    $('.hide4kde').hide();
+	    break;
+	case 'CAD':
+	    $('.show4cad').show();
+	    $('.hide4cad').hide();
+	    break;
         }
     }
 
@@ -990,6 +1022,10 @@ $(function(){
 	showOrHide();
 	$('#ierr option[value='+IsoplotR.settings.ierr+']').
 	    prop('selected', 'selected');
+	$('#oerr option[value='+IsoplotR.settings.oerr+']').
+	    prop('selected', 'selected');
+	$('#alpha').val(IsoplotR.settings.alpha);
+	$('#sigdig').val(IsoplotR.settings.sigdig);
 	switch (option){
 	case 'U-Pb':
 	    $('#UPb-formats option[value='+set.format+']').
@@ -1267,10 +1303,8 @@ $(function(){
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
-	    $('#alpha').val(set.alpha);
 	    $('#exterr').prop('checked',set.exterr);
 	    $('#shownumbers').prop('checked',set.shownumbers);
-	    $('#sigdig').val(set.sigdig);
         setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
@@ -1300,8 +1334,6 @@ $(function(){
 	    $('#isochron-maxx').val(set.maxx);
 	    $('#isochron-miny').val(set.miny);
 	    $('#isochron-maxy').val(set.maxy);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
             setOption('#ellipsefill_option', set.ellipsefill.option);
@@ -1324,9 +1356,7 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
-            setOption('#bg_option', set.bg.option);
+           setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
         $('#clabel').val(set.clabel);
@@ -1339,8 +1369,6 @@ $(function(){
 	    $('#outliers').prop('checked',set.outliers);
 	    $('#randomeffects').prop('checked',set.randomeffects);
 	    $('#ranked').prop('checked',set.ranked);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#cex').val(IsoplotR.settings.par.cex);
@@ -1355,8 +1383,6 @@ $(function(){
 	    $('#exterr').prop('checked',set.exterr);
 	    $('#plateau').prop('checked',set.plateau);
 	    $('#randomeffects').prop('checked',set.randomeffects);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#cex').val(IsoplotR.settings.par.cex);
             setOption('#bg_option', set.bg.option);
 	    $('#bg_ramp_start').val(set.bg.ramp_start);
@@ -1389,7 +1415,6 @@ $(function(){
 	    $('.show4zeta').show();
 	    $('.hide4zeta').hide();
 	    $('#exterr').prop('checked',set.exterr);
-	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
@@ -1401,7 +1426,6 @@ $(function(){
 	    if (geochronometer != 'U-Th-He') {
 		$('#age-exterr').prop('checked',set.exterr);
 	    }
-	    $('#sigdig').val(set.sigdig);
 	    break;
 	case 'MDS':
 	    $('#classical').prop('checked',set.classical);
@@ -1418,8 +1442,6 @@ $(function(){
 	    $('#logratio').prop('checked',set.logratio);
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#showcentralcomp').prop('checked',set.showcentralcomp);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
 	    $('#minx').val(set.minx);
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
@@ -1448,8 +1470,6 @@ $(function(){
 	    $('#max48').val(set.max48);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
-	    $('#alpha').val(set.alpha);
-	    $('#sigdig').val(set.sigdig);
             setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
@@ -1465,11 +1485,15 @@ $(function(){
     }
 
     function recordSettings(){
-	var geochronometer = IsoplotR.settings.geochronometer;
-	var plotdevice = IsoplotR.settings.plotdevice;
-	var gcsettings = IsoplotR.settings[geochronometer];
-	var pdsettings = IsoplotR.settings[plotdevice];
+	var set = IsoplotR.settings;
+	var geochronometer = set.geochronometer;
+	var plotdevice = set.plotdevice;
+	var gcsettings = set[geochronometer];
+	var pdsettings = set[plotdevice];
 	var cst = IsoplotR.constants;
+	set.oerr = getInt("#oerr");
+	set.alpha = getNumber("#alpha");
+	set.sigdig = getNumber("#sigdig");
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
@@ -1693,8 +1717,6 @@ $(function(){
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.ticks = $('#ticks').val();
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.anchor = getOption("#anchor-option")
 	    pdsettings.tanchor = getNumber('#tanchor');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
@@ -1726,8 +1748,6 @@ $(function(){
             };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'radial':
@@ -1737,8 +1757,6 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.pch = $('#pch').val();
             pdsettings.bg = {
                 option: getOption('#bg_option'),
@@ -1757,8 +1775,6 @@ $(function(){
 	    pdsettings["outliers"] = truefalse('#outliers');
 	    pdsettings["randomeffects"] = truefalse('#randomeffects');
 	    pdsettings["ranked"] = truefalse('#ranked');
-	    pdsettings.alpha = getNumber('#alpha');
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.bg = {
@@ -1777,8 +1793,6 @@ $(function(){
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.plateau = truefalse('#plateau');
 	    pdsettings.randomeffects = truefalse('#randomeffects');
-	    pdsettings.alpha = getNumber('#alpha', 1);
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.bg = {
                 option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),
@@ -1850,8 +1864,6 @@ $(function(){
 	    pdsettings.logratio = truefalse('#logratio');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
-	    pdsettings["alpha"] = getNumber('#alpha', 1);
-	    pdsettings["sigdig"] = getInt('#sigdig');
 	    pdsettings["minx"] = check($('#minx').val(),'auto');
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
@@ -1880,8 +1892,6 @@ $(function(){
 	    pdsettings.max48 = check($('#max48').val(),'auto');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.alpha = getNumber('#alpha', 1);
-	    pdsettings.sigdig = getInt('#sigdig');
 	    pdsettings.ellipsefill = {
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),

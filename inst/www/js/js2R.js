@@ -89,7 +89,10 @@ function getOptions(prefs){
         gcsettings: gcsettings,
         ellipsefill: getColourRamp(pdsettings.ellipsefill, '#00FF0080'),
         bg: getColourRamp(pdsettings.bg, '#00FF0080'),
-        hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : []
+        hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : [],
+        oerr: prefs.settings.oerr,
+        sigdig: prefs.settings.sigdig,
+        alpha: prefs.settings.alpha
     };
 }
 
@@ -105,7 +108,7 @@ function getRcommand(prefs) {
             }
         },
         params: getOptions(prefs),
-        settings: prefs.constants
+        settings: prefs.constants,
     };
     if (['detritals', 'fissiontracks','U-Pb', 'Pb-Pb', 'Ar-Ar', 'Th-Pb',
         'K-Ca', 'Th-U', 'Rb-Sr', 'Sm-Nd', 'Re-Os', 'Lu-Hf'

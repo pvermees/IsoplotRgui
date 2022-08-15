@@ -3,6 +3,9 @@
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
+    "oerr": 2,
+    "alpha": 0.05,
+    "sigdig": 2,
     "par": {
 	"cex": 1
     },
@@ -95,14 +98,12 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"alpha": 0.05,
 	"type": 1,
 	"exterr": false,
 	"shownumbers": false,
 	"showage": 0,
 	"anchor":0,
 	"tanchor":0,
-	"sigdig": 2,
 	"ellipsefill": {
         "option": "custom_ramp",
         "alpha": 0.5,
@@ -120,12 +121,10 @@
 	"max48": "auto",
 	"mint": "auto",
 	"maxt": "auto",
-	"alpha": 0.05,
 	"transform": false,
 	"exterr": false,
 	"isochron": false,
 	"shownumbers": false,
-	"sigdig": 2,
 	"ellipsefill": {
         "option": "custom_ramp",
         "alpha": 0.5,
@@ -150,8 +149,6 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"alpha": 0.05,
-	"sigdig": 2,
 	"ellipsefill": {
         "option": "custom_ramp",
         "alpha": 0.5,
@@ -169,8 +166,6 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"alpha": 0.05,
-	"sigdig": 2,
 	"ellipsefill": {
         "option": "custom_ramp",
         "alpha": 0.5,
@@ -193,8 +188,6 @@
         "ramp_end": "#FF0000",
         "reverse": false
     },
-	"sigdig": 2,
-	"alpha": 0.05,
 	"shownumbers": false,
 	"numpeaks": 0,
 	"clabel": "",
@@ -203,8 +196,6 @@
     "average": {
 	"outliers": true,
 	"exterr": false,
-	"alpha": 0.05,
-	"sigdig": 2,
 	"randomeffects": false,
 	"mint": "auto",
 	"maxt": "auto",
@@ -222,8 +213,6 @@
     "spectrum": {
 	"plateau": true,
 	"exterr": false,
-	"alpha": 0.05,
-	"sigdig": 2,
 	"randomeffects": false,
         "bg": {
             "option": "custom_ramp",
@@ -257,7 +246,6 @@
 	"colmap": "heat.colors"
     },
     "set-zeta": {
-	"sigdig": 2,
 	"exterr": false
     },
     "MDS": {
@@ -274,8 +262,6 @@
 	"logratio": true,
 	"shownumbers": false,
 	"showcentralcomp": true,
-	"alpha": 0.05,
-	"sigdig": 2,
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
@@ -294,7 +280,6 @@
     "ages": {
 	"showdisc": 0,
 	"discoption": 5,
-	"exterr": false,
-	"sigdig": 2
+	"exterr": false
     }
 }

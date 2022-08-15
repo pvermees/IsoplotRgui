@@ -52,7 +52,7 @@ done
 sed -e 's/^start=\(.*\)$/start='${newstart}/ -e 's/^end=\(.*\)$/end='${newend}/ -i ${scfile}
 
 # Write out nginx file
-echo 'upstream ${name} {' > ${nxfile}
+echo "upstream ${name} {" > ${nxfile}
 echo '  least_conn;' >> ${nxfile}
 for p in $(seq ${newstart} ${newend})
 do

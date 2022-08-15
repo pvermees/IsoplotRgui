@@ -50,7 +50,9 @@ settingslambda <- list(
     "detritals" = c()
 )
 
-applysettings <- function(geochronometer, settings, gcsettings) {
+applysettings <- function(params, settings) {
+    geochronometer <- params$geochronometer
+    gcsettings <- params$gcsettings
     if (geochronometer == "fissiontracks") {
         if (gcsettings$format == 3) {
             v <- settings$iratio$U238U235
@@ -77,6 +79,7 @@ applysettings <- function(geochronometer, settings, gcsettings) {
         v <- settings$lambda[[mineral]]
         IsoplotR::settings("lambda", mineral, v[[1]], v[[2]])
     }, settingslambda[[geochronometer]])
+    IsoplotR::settings("alpha", params$alpha)
 }
 
 getlimits <- function(min, max) {
@@ -140,17 +143,17 @@ getdata <- function(params, data, s2d) {
 }
 
 concordia <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
         x = getdata(params, data, s2d),
-        alpha = pd$alpha,
+        oerr = params$oerr,
         type = pd$type,
         exterr = pd$exterr,
         show.numbers = pd$shownumbers,
         show.age = pd$showage,
-        sigdig = pd$sigdig,
+        sigdig = params$sigdig,
         common.Pb = params$gcsettings$commonPb,
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
@@ -174,7 +177,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
 }
 
 radialplot <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -184,8 +187,8 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         cex = pd$cex,
         show.numbers = pd$shownumbers,
         k = maybenumeric(pd$numpeaks),
-        alpha = pd$alpha,
-        sigdig = pd$sigdig,
+        oerr = params$oerr,
+        sigdig = params$sigdig,
         bg = params$bg,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
@@ -233,14 +236,14 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
 }
 
 evolution <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
         x = getdata(params, data, s2d),
-        alpha = pd$alpha,
+        oerr = params$oerr,
+        sigdig = params$sigdig,
         show.numbers = pd$shownumbers,
-        sigdig = pd$sigdig,
         transform = pd$transform,
         detritus = params$gcsettings$detritus,
         exterr = pd$exterr,
@@ -261,14 +264,14 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
 }
 
 setregression <- function(params, data, s2d, settings) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
         x = getdata(params, data, s2d),
-        alpha = pd$alpha,
+        oerr = params$oerr,
+        sigdig = params$sigdig,
         show.numbers = pd$shownumbers,
-        sigdig = pd$sigdig,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
@@ -291,7 +294,7 @@ regression <- function(fn, params, data, s2d, settings, cex, york) {
 
 isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
     args <- setregression(params, data, s2d, settings)
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     gc <- params$geochronometer
     if (!(gc %in% c("U-Pb", "Th-U", "U-Th-He"))) {
         args$inverse <- params$gcsettings$inverse
@@ -328,14 +331,14 @@ addalpha <- function(colour, alpha) {
 }
 
 weightedmean <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
         x = getdata(params, data, s2d),
         detect.outliers = pd$outliers,
-        alpha = pd$alpha,
-        sigdig = pd$sigdig,
+        oerr = params$oerr,
+        sigdig = params$sigdig,
         random.effects = pd$randomeffects,
         ranked = pd$ranked,
         levels = selection2levels(data$data, nc),
@@ -385,7 +388,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
 }
 
 agespectrum <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -394,8 +397,8 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
         plateau.col = addalpha(params$bg, pd$nonplateau_alpha),
         non.plateau.col = addalpha(pd$nonplateaucol, pd$nonplateau_alpha),
         detect.outliers = pd$outliers,
-        alpha = pd$alpha,
-        sigdig = pd$sigdig,
+        oerr = params$oerr,
+        sigdig = params$sigdig,
         random.effects = pd$randomeffects,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
@@ -412,7 +415,7 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
 }
 
 kde <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     gc <- params$geochronometer
@@ -466,7 +469,7 @@ kde <- function(fn, params, data, s2d, settings, cex) {
 }
 
 cad <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
@@ -514,26 +517,27 @@ cad <- function(fn, params, data, s2d, settings, cex) {
 }
 
 setzeta <- function(fn, params, data, s2d, settings) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     args <- list(
         x = getdata(params, data, s2d),
         tst = as.numeric(c(data$age, data$ageErr)),
         exterr = params$pdsettings$exterr,
-        sigdig = params$pdsettings$sigdig,
+        oerr = params$oerr,
+        sigdig = params$sigdig,
         update = FALSE
     )
     matrix(do.call(IsoplotR::set.zeta, args))
 }
 
 helioplot <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
     args <- list(
         x = getdata(params, data, s2d),
         alpha = pd$alpha,
         show.numbers = pd$shownumbers,
-        sigdig = pd$sigdig,
+        sigdig = params$sigdig,
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
@@ -550,7 +554,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
 }
 
 mds <- function(fn, params, data, s2d, settings, cex) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     pd <- params$pdsettings
     shepard <- !pd$classical && pd$shepard
     args <- list(
@@ -575,10 +579,11 @@ mds <- function(fn, params, data, s2d, settings, cex) {
 }
 
 age <- function(fn, params, data, s2d, settings) {
-    applysettings(params$geochronometer, settings, params$gcsettings)
+    applysettings(params, settings)
     args <- list(
         x = getdata(params, data, s2d),
-        sigdig = params$pdsettings$sigdig
+        oerr = params$oerr,
+        sigdig = params$sigdig
     )
     gc <- params$geochronometer
     if (gc == "U-Pb" && params$pdsettings$showdisc != 0) {
