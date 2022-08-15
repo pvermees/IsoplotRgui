@@ -1,7 +1,16 @@
 $(function(){
 
+    function getJSON(filename, callback) {
+        return $.ajax({
+            dataType: 'json',
+            url: filename,
+            success: callback,
+            cache: false
+        });
+    }
+
     function loadJson(filename, callback) {
-        $.getJSON(filename, callback).fail(function() {
+        getJSON(filename, callback).fail(function() {
             console.error("Failed to load " + filename);
         });
     }
@@ -2294,9 +2303,9 @@ $(function(){
 
     function loadLanguage(language, callback) {
 	const dir = './locales/' + language + '/';
-	$.getJSON(dir + 'dictionary_id.json', function(tags) {
-	    return $.getJSON(dir + 'dictionary_class.json', function(classes) {
-		return $.getJSON(dir + 'contextual_help.json', function(helps) {
+	getJSON(dir + 'dictionary_id.json', function(tags) {
+	    return getJSON(dir + 'dictionary_class.json', function(classes) {
+		return getJSON(dir + 'contextual_help.json', function(helps) {
 		    callback(tags, classes, helps);
 		});
 	    });
@@ -2630,10 +2639,10 @@ $(function(){
     $("#DEFAULTS").click(function(){
 	$("#myplot").empty();
 	var cfile = './js/constants.json';
-	$.getJSON(cfile, function(constants){
+	getJSON(cfile, function(constants){
 	    IsoplotR.constants = constants;
 	    var sfile = './js/settings.json';
-	    $.getJSON(sfile, function(settings){
+	    getJSON(sfile, function(settings){
 		var chronometer = IsoplotR.settings.geochronometer;
 		var plotdevice = IsoplotR.settings.plotdevice;
 		var format = IsoplotR.settings[chronometer].format;
