@@ -60,8 +60,6 @@
     "help_fill_alpha": "Fill colour opacity",
     "help_bg": "Fill colour:",
     "help_bg_solid": "Fill colour:",
-    "help_bg_ramp_start": "Custom fill colour:",
-    "help_bg_ramp_end": "Custom fill ramp end:",
     "help_ramp_reverse": "Reverse colour ramp:",
     "ramp_from": "from: ",
     "ramp_to": "to: ",
