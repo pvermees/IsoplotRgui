@@ -1,7 +1,16 @@
 $(function(){
 
+    function getJSON(filename, callback) {
+        return $.ajax({
+            dataType: 'json',
+            url: filename,
+            success: callback,
+            cache: false
+        });
+    }
+
     function loadJson(filename, callback) {
-        $.getJSON(filename, callback).fail(function() {
+        getJSON(filename, callback).fail(function() {
             console.error("Failed to load " + filename);
         });
     }
@@ -56,19 +65,22 @@ $(function(){
             // allow tests to initiate translation, even with unsupported languages
             window.translatePage = function() {
                 IsoplotR.settings.language = this.localStorage.getItem("language");
-		translate();
+                translate();
             }
 
             translate();
             welcome();
             $("#INPUT").handsontable({ // add change handler asynchronously
-		afterChange: function(changes,source){
+                afterChange: function(changes,source){
                     getData4Server(); // placed here because we don't want to
                     handson2json();   // call the change handler until after
-		}                     // IsoplotR has been initialised
+                }                     // IsoplotR has been initialised
             });
-	});
-	rrpc.initialize();
+            if (typeof(shinylight_initial_data) === 'string') {
+                applyJSON(shinylight_initial_data);
+            }
+        });
+        shinylight.initialize();
     };
 
     function dnc(){
@@ -336,6 +348,10 @@ $(function(){
 		IsoplotR.data4server.spotSize = $('#spotSizeVal').val();
 		break;
 	    }
+        if (IsoplotR.settings.plotdevice === 'set-zeta') {
+            IsoplotR.data4server.age = $('#standAgeVal').val();
+            IsoplotR.data4server.ageErr = $('#standAgeErr').val();
+        }
 	    break;
 	}
     }
@@ -383,7 +399,59 @@ $(function(){
 	}
 	return(clean);
     }
-    
+
+    function setEllipseFillVisibility(option) {
+        switch (option) {
+        case "custom_ramp":
+            $('.show4customellipsecolor').show();
+            $('.show4customellipseramp').show();
+            $('.hide4customellipseramp').hide();
+            break;
+        default:
+            var preview = $('#ellipseramp_preview');
+            var contents = getItem(
+                'help_ramp_' + option,
+                dictionary_id, dictionary_id_fallback, 'dictionary_id'
+            );
+            preview.html(contents);
+            preview.attr('class', 'background_' + option);
+            $('.show4customellipsecolor').hide();
+            $('.show4customellipseramp').hide();
+            $('.hide4customellipseramp').show();
+            break;
+        }
+    }
+
+    function setBgFillVisibility(option) {
+        switch (option) {
+            case "custom_ramp":
+                $('.show4custombgcolor').show();
+                $('.show4custombgramp').show();
+                $('.hide4custombgramp').hide();
+                break;
+            default:
+                var preview = $('#bgramp_preview');
+                var contents = getItem(
+                    'help_ramp_' + option,
+                    dictionary_id, dictionary_id_fallback, 'dictionary_id'
+                );
+                preview.html(contents);
+                preview.attr('class', 'background_' + option);
+                $('.show4custombgcolor').hide();
+                $('.show4custombgramp').hide();
+                $('.hide4custombgramp').show();
+                break;
+            }
+        }
+
+    function hide4(id, pred) {
+        if (pred) {
+            $('.hide4' + id).hide();
+        } else {
+            $('.hide4' + id).show();
+        }
+    }
+
     function showOrHide(){
 	var geochronometer = IsoplotR.settings.geochronometer;
 	var plotdevice = IsoplotR.settings.plotdevice;
@@ -486,7 +554,7 @@ $(function(){
 		$(".show4cutoffdisc").show();
 		break;
 	    }
-	    if (set.diseq=='TRUE'){
+	    if (set.diseq){
 		$(".show4diseq").show();
 		if (set.U48[1]>0){
 		    $(".show4U48diseq").show();
@@ -820,16 +888,18 @@ $(function(){
 		$('.show4tanchor').show();
 	    } else {
 		$('.show4tanchor').hide();
-	    }
-	    break;
+            }
+            setEllipseFillVisibility(pd.ellipsefill.option);
+            break;
 	case 'average':
-	    if (pd.randomeffects=='TRUE'){
+	    if (pd.randomeffects){
 		$('.show4randomeffects').show();
 		$('.hide4randomeffects').hide();
 	    } else {
 		$('.show4randomeffects').hide();
-		$('.hide4randomeffects').show();		
+		$('.hide4randomeffects').show();
 	    }
+            setBgFillVisibility(pd.bg.option);
 	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
@@ -869,13 +939,18 @@ $(function(){
 		$('.hide4model3').hide();
 		break;
 	    }
+            setEllipseFillVisibility(pd.ellipsefill.option);
 	    break;
+        case 'spectrum':
+            setBgFillVisibility(pd.bg.option);
+            break;
 	case 'radial':
-	    if (pd.shownumbers=='TRUE'){
+	    if (pd.shownumbers){
 		$('#radial-pch').hide();
 	    } else {
 		$('#radial-pch').show();
 	    }
+            setBgFillVisibility(pd.bg.option);
 	    break;
 	case 'ages':
 	    switch (pd.showdisc){
@@ -902,14 +977,14 @@ $(function(){
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
-	    if (pd.transform=='TRUE'){
+	    if (pd.transform){
 		$('.show4evotrans').show();
 		$('.hide4evotrans').hide();
 	    } else {
 		$('.show4evotrans').hide();
 		$('.hide4evotrans').show();
 	    }
-	    if (pd.isochron=='TRUE'){
+	    if (pd.isochron){
 		switch (pd.model){
 		case 1:
 		    $('.show4model1').show();
@@ -928,18 +1003,17 @@ $(function(){
 	    } else {
 		$('.show4evolutionIsochron').hide();
 	    }
+            setEllipseFillVisibility(pd.ellipsefill.option);
 	    break;
 	case 'set-zeta':
 	    $(".show4zeta").show();
 	    $(".hide4zeta").hide();
 	    break;
-	case 'MDS':
-	    if (pd.classical=='TRUE'){
-		$('#shepard-box').hide();
-	    } else {
-		$('#shepard-box').show();
-	    }
-	    break;
+        case 'MDS':
+            hide4('classical', pd.classical);
+            hide4('shepard', pd.shepard);
+            setBgFillVisibility(pd.bg.option);
+            break;
 	case 'KDE':
 	    $('.show4kde').show();
 	    $('.hide4kde').hide();
@@ -948,7 +1022,7 @@ $(function(){
 	    $('.show4cad').show();
 	    $('.hide4cad').hide();
 	    break;
-	}
+        }
     }
 
     function showSettings(option){
@@ -981,7 +1055,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#PaU-diseq option[value='+set.PaU[1]+']').
 		prop('selected', 'selected');
-	    $('#diseq').prop('checked',set.diseq=='TRUE');
+	    $('#diseq').prop('checked',set.diseq);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#errU238U235').val(cst.iratio.U238U235[1]);
 	    $('#Pb206Pb204').val(cst.iratio.Pb206Pb204[0]);
@@ -1058,8 +1132,8 @@ $(function(){
 	    $('#errPb206Pb204').val(cst.iratio.Pb206Pb204[1]);
 	    $('#Pb207Pb204').val(cst.iratio.Pb207Pb204[0]);
 	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
+	    $('#inverse').prop('checked',set.inverse);
+	    $('#projerr').prop('checked',set.projerr);
 	    break;
 	case 'Ar-Ar':
 	    $('#ArAr-formats option[value='+set.format+']').
@@ -1068,9 +1142,9 @@ $(function(){
 	    $('#errAr40Ar36').val(cst.iratio.Ar40Ar36[1]),
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
-	    $('#i2iArAr').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iArAr').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Th-Pb':
 	    $('#ThPb-formats option[value='+set.format+']').
@@ -1079,9 +1153,9 @@ $(function(){
 	    $('#errPb208Pb204').val(cst.iratio.Pb208Pb204[1]);
 	    $('#LambdaTh232').val(cst.lambda.Th232[0]),
 	    $('#errLambdaTh232').val(cst.lambda.Th232[1]),
-	    $('#i2iThPb').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iThPb').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'K-Ca':
 	    $('#KCa-formats option[value='+set.format+']').
@@ -1090,9 +1164,9 @@ $(function(){
 	    $('#errCa40Ca44').val(cst.iratio.Ca40Ca44[1]);
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
-	    $('#i2iKCa').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iKCa').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Rb-Sr':
 	    $('#RbSr-formats option[value='+set.format+']').
@@ -1107,9 +1181,9 @@ $(function(){
 	    $('#errSr88Sr86').val(cst.iratio.Sr88Sr86[1]);
 	    $('#LambdaRb87').val(cst.lambda.Rb87[0]);
 	    $('#errLambdaRb87').val(cst.lambda.Rb87[1]);
-	    $('#i2iRbSr').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iRbSr').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Sm-Nd':
 	    $('#SmNd-formats option[value='+set.format+']').
@@ -1140,9 +1214,9 @@ $(function(){
 	    $('#errNd150Nd144').val(cst.iratio.Nd150Nd144[1]);
 	    $('#LambdaSm147').val(cst.lambda.Sm147[0]);
 	    $('#errLambdaSm147').val(cst.lambda.Sm147[1]);
-	    $('#i2iSmNd').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iSmNd').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Re-Os':
 	    $('#ReOs-formats option[value='+set.format+']').
@@ -1163,9 +1237,9 @@ $(function(){
 	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]);
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
-	    $('#i2iReOs').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iReOs').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'Lu-Hf':
 	    $('#LuHf-formats option[value='+set.format+']').
@@ -1184,9 +1258,9 @@ $(function(){
 	    $('#errHf180Hf177').val(cst.iratio.Hf180Hf177[1]);
 	    $('#LambdaLu176').val(cst.lambda.Lu176[0]);
 	    $('#errLambdaLu176').val(cst.lambda.Lu176[1]);
-	    $('#i2iLuHf').prop('checked',set.i2i=='TRUE');
-	    $('#projerr').prop('checked',set.projerr=='TRUE');
-	    $('#inverse').prop('checked',set.inverse=='TRUE');
+	    $('#i2iLuHf').prop('checked',set.i2i);
+	    $('#projerr').prop('checked',set.projerr);
+	    $('#inverse').prop('checked',set.inverse);
 	    break;
 	case 'U-Th-He':
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -1238,9 +1312,12 @@ $(function(){
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
-	    $('#ellipsefill').val(set.ellipsefill);
+	    $('#exterr').prop('checked',set.exterr);
+	    $('#shownumbers').prop('checked',set.shownumbers);
+        setOption('#ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
 	    $('#ticks').val(set.ticks);
@@ -1256,19 +1333,22 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#anchor-option option[value='+set.anchor+']').
 		prop('selected', 'selected');
-	    $('#isochron-exterr').prop('checked',set.exterr=='TRUE')
-	    $('#PbPb-growth').prop('checked',set.growth=='TRUE')
-	    $('#joint').prop('checked',set.joint=='TRUE')
+	    $('#isochron-exterr').prop('checked',set.exterr)
+	    $('#PbPb-growth').prop('checked',set.growth)
+	    $('#joint').prop('checked',set.joint)
 	    $('#tanchor').val(set.tanchor);
 	case 'regression':
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
+	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#isochron-minx').val(set.minx);
 	    $('#isochron-maxx').val(set.maxx);
 	    $('#isochron-miny').val(set.miny);
 	    $('#isochron-maxy').val(set.maxy);
 	    $('#isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
-	    $('#ellipsefill').val(set.ellipsefill);
+            setOption('#ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
 	    $('#cex').val(IsoplotR.settings.par.cex);
@@ -1278,65 +1358,72 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#mixtures option[value='+set.numpeaks+']').
 		prop('selected', 'selected');
-	    var shownumbers = (set.shownumbers=='TRUE');
-	    $('#shownumbers').prop('checked',shownumbers);
+	    $('#shownumbers').prop('checked', set.shownumbers);
 	    $('#pch').val(set.pch);
-	    if (shownumbers){ $('#radial-pch').hide(); }
+	    if (set.shownumbers){ $('#radial-pch').hide(); }
 	    else { $('#radial-pch').show(); }
 	    $('#mint').val(set.mint);
 	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
-	    $('#bg').val(set.bg);
-	    $('#clabel').val(set.clabel);
+           setOption('#bg_option', set.bg.option);
+            $('#bg_ramp_start').val(set.bg.ramp_start);
+            $('#bg_ramp_end').val(set.bg.ramp_end);
+        $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
 	    break;
 	case 'average':
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#outliers').prop('checked',set.outliers=='TRUE');
-	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
-	    $('#ranked').prop('checked',set.ranked=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
+	    $('#outliers').prop('checked',set.outliers);
+	    $('#randomeffects').prop('checked',set.randomeffects);
+	    $('#ranked').prop('checked',set.ranked);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#rectcol').val(set.rectcol);
-	    $('#outliercol').val(set.outliercol);
+            setOption('#bg_option', set.bg.option);
+            $('#bg_ramp_start').val(set.bg.ramp_start);
+            $('#bg_ramp_end').val(set.bg.ramp_end);
+            $('#outliercol').val(set.outliercol);
+            $('#rect_alpha').val(set.rect_alpha);
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'spectrum':
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
-	    $('#plateau').prop('checked',set.plateau=='TRUE');
-	    $('#randomeffects').prop('checked',set.randomeffects=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
+	    $('#plateau').prop('checked',set.plateau);
+	    $('#randomeffects').prop('checked',set.randomeffects);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#plateaucol').val(set.plateaucol);
+            setOption('#bg_option', set.bg.option);
+	    $('#bg_ramp_start').val(set.bg.ramp_start);
+	    $('#bg_ramp_end').val(set.bg.ramp_end);
 	    $('#nonplateaucol').val(set.nonplateaucol);
+        $('#nonplateau_alpha').val(set.nonplateau_alpha);
 	    $('#clabel').val(set.clabel);
 	    break;
 	case 'KDE':
-	    $('#showhist').prop('checked',set.showhist=='TRUE');
-	    $('#adaptive').prop('checked',set.adaptive=='TRUE');
-	    $('#samebandwidth').prop('checked',set.samebandwidth=='TRUE');
-	    $('#normalise').prop('checked',set.normalise=='TRUE');
-	    $('#log').prop('checked',set.log=='TRUE');
+	    $('#showhist').prop('checked',set.showhist);
+	    $('#adaptive').prop('checked',set.adaptive);
+	    $('#samebandwidth').prop('checked',set.samebandwidth);
+	    $('#normalise').prop('checked',set.normalise);
+	    $('#log').prop('checked',set.log);
 	    $('#minx').val(set.minx);
 	    $('#maxx').val(set.maxx);
 	    $('#bandwidth').val(set.bandwidth);
 	    $('#binwidth').val(set.binwidth);
-	    $('#rugdetritals').prop('checked',set.rugdetritals=='TRUE');
-	    $('#rug').prop('checked',set.rug=='TRUE');
+	    $('#rugdetritals').prop('checked',set.rugdetritals);
+	    $('#rug').prop('checked',set.rug);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'CAD':
-	    $('#verticals').prop('checked',set.verticals=='TRUE');
+	    $('#verticals').prop('checked',set.verticals);
 	    $('#pch').val(set.pch);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#colmap').val(set.colmap);
+	    setRadio('colmap_option', set.colmap);
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
 	    $('.hide4zeta').hide();
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#exterr').prop('checked',set.exterr);
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
@@ -1346,30 +1433,33 @@ $(function(){
 		    prop('selected', 'selected');
 	    }
 	    if (geochronometer != 'U-Th-He') {
-		$('#age-exterr').prop('checked',set.exterr=='TRUE');
+		$('#age-exterr').prop('checked',set.exterr);
 	    }
 	    break;
 	case 'MDS':
-	    $('#classical').prop('checked',set.classical=='TRUE');
-	    $('#shepard').prop('checked',set.shepard=='TRUE');
-	    $('#nnlines').prop('checked',set.nnlines=='TRUE');
+	    $('#classical').prop('checked',set.classical);
+	    $('#shepard').prop('checked',set.shepard);
+	    $('#nnlines').prop('checked',set.nnlines);
 	    $('#pch').val(set.pch);
 	    $('#pos').val(set.pos);
 	    $('#col').val(set.col);
-	    $('#bg').val(set.bg);
+        $('#bg_solid').val(set.bg);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'helioplot':
-	    $('#logratio').prop('checked',set.logratio=='TRUE');
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
-	    $('#showcentralcomp').prop('checked',set.showcentralcomp=='TRUE');
+	    $('#logratio').prop('checked',set.logratio);
+	    $('#shownumbers').prop('checked',set.shownumbers);
+	    $('#showcentralcomp').prop('checked',set.showcentralcomp);
 	    $('#minx').val(set.minx);
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
 	    $('#fact').val(set.fact);
-	    $('#ellipsefill').val(set.ellipsefill);
+            setOption('#ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#helioplot-models option[value='+set.model+']').
 		prop('selected', 'selected');
@@ -1377,19 +1467,22 @@ $(function(){
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    break;
 	case 'evolution':
-	    if (set.isochron=="TRUE"){ $('.show4evolutionIsochron').show(); }
+	    if (set.isochron){ $('.show4evolutionIsochron').show(); }
 	    else { $('.show4evolutionIsochron').hide(); }
-	    $('#transform-evolution').prop('checked',set.transform=='TRUE');
-	    $('#isochron-evolution').prop('checked',set.isochron=='TRUE');
-	    $('#shownumbers').prop('checked',set.shownumbers=='TRUE');
-	    $('#exterr').prop('checked',set.exterr=='TRUE');
+	    $('#transform-evolution').prop('checked',set.transform);
+	    $('#isochron-evolution').prop('checked',set.isochron);
+	    $('#shownumbers').prop('checked',set.shownumbers);
+	    $('#exterr').prop('checked',set.exterr);
 	    $('#min08').val(set.min08);
 	    $('#max08').val(set.max08);
 	    $('#min48').val(set.min48);
 	    $('#max48').val(set.max48);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
-	    $('#ellipsefill').val(set.ellipsefill);
+            setOption('#ellipsefill_option', set.ellipsefill.option);
+	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
+	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
+	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#evolution-isochron-models option[value='+set.model+']').
 		prop('selected', 'selected');
@@ -1623,7 +1716,13 @@ $(function(){
 	    pdsettings.maxx = check($('#maxx').val(),'auto');
 	    pdsettings.miny = check($('#miny').val(),'auto');
 	    pdsettings.maxy = check($('#maxy').val(),'auto');
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+                option: getOption('#ellipsefill_option'),
+                alpha: check($('#ellipsefill_alpha').val(), 1),
+                ramp_start: $('#ellipsefill_ramp_start').val(),
+                ramp_end: $('#ellipsefill_ramp_end').val(),
+                reverse: $('#ramp_reverse').prop('checked')
+            };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.ticks = $('#ticks').val();
@@ -1649,7 +1748,13 @@ $(function(){
 	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
 	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
 	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+                option: getOption('#ellipsefill_option'),
+                alpha: check($('#ellipsefill_alpha').val(), 1),
+                ramp_start: $('#ellipsefill_ramp_start').val(),
+                ramp_end: $('#ellipsefill_ramp_end').val(),
+                reverse: $('#ramp_reverse').prop('checked')
+            };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
@@ -1662,7 +1767,12 @@ $(function(){
 	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.pch = $('#pch').val();
-	    pdsettings.bg = $('#bg').val();
+            pdsettings.bg = {
+                option: getOption('#bg_option'),
+                ramp_start: $('#bg_ramp_start').val(),
+                ramp_end: $('#bg_ramp_end').val(),
+                reverse: $('#ramp_reverse').prop('checked')
+            };
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings["cex"] = getNumber('#pcex');
 	    pdsettings.exterr = truefalse('#exterr');
@@ -1676,8 +1786,14 @@ $(function(){
 	    pdsettings["ranked"] = truefalse('#ranked');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.rectcol = $('#rectcol').val();
+	    pdsettings.bg = {
+                option: getOption('#bg_option'),
+                ramp_start: $('#bg_ramp_start').val(),
+                ramp_end: $('#bg_ramp_end').val(),
+                reverse: $('#ramp_reverse').prop('checked')
+            };
 	    pdsettings.outliercol = $('#outliercol').val();
+        pdsettings.rect_alpha = getNumber('#rect_alpha', 1);
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
@@ -1686,8 +1802,14 @@ $(function(){
 	    pdsettings.exterr = truefalse('#exterr');
 	    pdsettings.plateau = truefalse('#plateau');
 	    pdsettings.randomeffects = truefalse('#randomeffects');
-	    pdsettings.plateaucol = $('#plateaucol').val();
+	    pdsettings.bg = {
+                option: getOption('#bg_option'),
+                ramp_start: $('#bg_ramp_start').val(),
+                ramp_end: $('#bg_ramp_end').val(),
+                reverse: $('#ramp_reverse').prop('checked')
+            };
 	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
+        pdsettings.nonplateau_alpha = getNumber('#nonplateau_alpha', 1);
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
@@ -1709,7 +1831,7 @@ $(function(){
 	    break;
 	case 'CAD':
 	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["colmap"] = $('#colmap').val();
+	    pdsettings["colmap"] = getRadio('colmap_option');
 	    pdsettings["verticals"] = truefalse('#verticals');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
@@ -1729,7 +1851,7 @@ $(function(){
 	    pdsettings["pch"] = $('#pch').val();
 	    pdsettings["pos"] = getInt('#pos');
 	    pdsettings["col"] = $('#col').val();
-	    pdsettings["bg"] = $('#bg').val();
+            pdsettings["bg"] = $('#bg_solid').val();
 	    pdsettings["cex"] = getNumber('#pcex');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
@@ -1756,7 +1878,13 @@ $(function(){
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
 	    pdsettings["maxy"] = check($('#maxy').val(),'auto');
 	    pdsettings["fact"] = $('#fact').val();
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+                option: getOption('#ellipsefill_option'),
+                alpha: check($('#ellipsefill_alpha').val(), 1),
+                ramp_start: $('#ellipsefill_ramp_start').val(),
+                ramp_end: $('#ellipsefill_ramp_end').val(),
+                reverse: $('#ramp_reverse').prop('checked')
+            };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#helioplot-models");
 	    pdsettings.clabel = $('#clabel').val();
@@ -1773,7 +1901,13 @@ $(function(){
 	    pdsettings.max48 = check($('#max48').val(),'auto');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.ellipsefill = $('#ellipsefill').val();
+	    pdsettings.ellipsefill = {
+                option: getOption('#ellipsefill_option'),
+                alpha: check($('#ellipsefill_alpha').val(), 1),
+                ramp_start: $('#ellipsefill_ramp_start').val(),
+                ramp_end: $('#ellipsefill_ramp_end').val(),
+                reverse: $('#ramp_reverse').prop('checked')
+            };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#evolution-isochron-models");
 	    pdsettings.clabel = $('#clabel').val();
@@ -1829,7 +1963,6 @@ $(function(){
     
     function changePlotDevice(){
 	var gc = IsoplotR.settings.geochronometer;
-	var opd = IsoplotR.settings.plotdevice; // old plot device
 	var npd = $('option:selected', $("#plotdevice")).attr('value');
 	IsoplotR.settings.plotdevice = npd;
 	IsoplotR.optionschanged = false;
@@ -2170,9 +2303,9 @@ $(function(){
 
     function loadLanguage(language, callback) {
 	const dir = './locales/' + language + '/';
-	$.getJSON(dir + 'dictionary_id.json', function(tags) {
-	    return $.getJSON(dir + 'dictionary_class.json', function(classes) {
-		return $.getJSON(dir + 'contextual_help.json', function(helps) {
+	getJSON(dir + 'dictionary_id.json', function(tags) {
+	    return getJSON(dir + 'dictionary_class.json', function(classes) {
+		return getJSON(dir + 'contextual_help.json', function(helps) {
 		    callback(tags, classes, helps);
 		});
 	    });
@@ -2432,11 +2565,8 @@ $(function(){
 	showOrHide();
     });
 
-    $("#OPEN").on('change', function(e){
-	var file = e.target.files[0];
-	var reader = new FileReader();
-	reader.onload = function(e){
-	    var newIsoplotR = JSON.parse(this.result);
+    function applyJSON(json) {
+	    var newIsoplotR = JSON.parse(json);
 	    IsoplotR = patchJSON(newIsoplotR,IsoplotR);
 	    var set = IsoplotR.settings;
 	    $("#" + set.geochronometer ).prop("selected",true);
@@ -2444,16 +2574,26 @@ $(function(){
 	    selectGeochronometer(true)
 	    json2handson();
 	    translate();
-	}
-	reader.readAsText(file);
+    }
+
+    $("#OPEN").on('change', function(e){
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e){
+            applyJSON(this.result);
+        }
+        reader.readAsText(file);
     });
 
     $("#SAVE").click(function( event ) {
 	var fname = prompt("Please enter a file name", "IsoplotR.json");
 	if (fname != null){
 	    handson2json();
-	    $('#fname').attr("href","data:text/plain," +
-			     JSON.stringify(IsoplotR));
+        var blob = new Blob([JSON.stringify(IsoplotR)], {
+            type: 'data:text/plain'
+        });
+        var href = URL.createObjectURL(blob);
+	    $('#fname').attr("href", href);
 	    $('#fname').attr("download",fname);
 	    $('#fname')[0].click();
 	}
@@ -2499,10 +2639,10 @@ $(function(){
     $("#DEFAULTS").click(function(){
 	$("#myplot").empty();
 	var cfile = './js/constants.json';
-	$.getJSON(cfile, function(constants){
+	getJSON(cfile, function(constants){
 	    IsoplotR.constants = constants;
 	    var sfile = './js/settings.json';
-	    $.getJSON(sfile, function(settings){
+	    getJSON(sfile, function(settings){
 		var chronometer = IsoplotR.settings.geochronometer;
 		var plotdevice = IsoplotR.settings.plotdevice;
 		var format = IsoplotR.settings[chronometer].format;
@@ -2535,98 +2675,82 @@ $(function(){
     }
 
     $("#PLOT").click(function(){
-	update();
-	$("#OUTPUT").hide();
-	$("#myplot").html("<div id='loader' class='blink_me'>Processing...</div>");
-	var plot = function() {
-	    rrpc.call("plot", {
-		data: IsoplotR.data4server,
-		width: myplot.offsetWidth,
-		height: myplot.offsetHeight,
-		Rcommand: getRcommand(IsoplotR)
-	    }, function(result, err) {
-		if (err) {
-		    displayError("Plot failed.", err);
-		    return;
-		}
-		var img = document.createElement("img");
-		img.setAttribute("src", result.src[0]);
-		img.setAttribute("width", result.width[0]);
-		img.setAttribute("height", result.height[0]);
-		var myplot = document.getElementById("myplot");
-		myplot.textContent = '';
-		myplot.appendChild(img);
-	    });
-	};
-	plot();
-	document.getElementsByTagName("BODY")[0].onresize = function() {
-	    if (timeout.variable) {
-		window.clearTimeout(timeout.variable);
-	    }
-	    timeout.variable = window.setTimeout(plot, 400);
-	};
+        update();
+        $("#OUTPUT").hide();
+        var myplot = $("#myplot");
+        myplot.html("<div id='loader' class='blink_me'>Processing...</div>");
+        var img = document.createElement('IMG');
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        var wantSvg = true;
+        if (wantSvg) {
+            // for some reason R gives us fatter margins with SVG by default
+            input.cex *= 0.75;
+        }
+        shinylight.call(input.fn, input, myplot.get(0), {
+            imgType: wantSvg? 'svg' : 'pdf',
+        }).then(function(result) {
+            img.setAttribute('src', result.plot[0]);
+            myplot.empty();
+            myplot.append(img);
+        }).catch(function(error) {
+            displayError("Plot failed.", error);
+        });
     });
 
     $("#RUN").click(function(){
-	update();
-	$("#myplot").empty();
-	$("#OUTPUT").handsontable('clear');
-	$("#OUTPUT").handsontable('deselectCell');
-	$("#OUTPUT").handsontable('setDataAtCell',0,0,'Processing...');
-	$("#OUTPUT").show();
-	rrpc.call("run", {
-	    data: IsoplotR.data4server,
-	    Rcommand: getRcommand(IsoplotR)
-	}, function(result, err) {
-	    if (err) {
-		displayError('Run failed.', err);
-		return;
-	    }
-	    $('#OUTPUT').handsontable('populateFromArray', 0, 0,
-				      result.data);
-	    const hot = $('#OUTPUT').data('handsontable');
-	    hot.updateSettings({
-		colHeaders: result.headers
-	    });
-	});
+        update();
+        $("#myplot").empty();
+        var grid = $('#OUTPUT');
+        grid.handsontable('clear');
+        grid.handsontable('deselectCell');
+        grid.handsontable('setDataAtCell',0,0,'Processing...');
+        grid.show();
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        shinylight.call(input.fn, input, null, {}).then(function(result) {
+            grid.handsontable('populateFromArray', 0, 0,
+                result.data);
+            const hot = grid.data('handsontable');
+            hot.updateSettings({
+                colHeaders: result.headers
+            });
+        }).catch(function(error) {
+            grid.hide();
+            displayError("Run failed.", error);
+        });
     });
 
     document.getElementById("PDF").onclick = function() {
-	update();
-	let fname = prompt("Please enter a file name", "IsoplotR.pdf");
-	rrpc.call("pdf", {
-	    data: IsoplotR.data4server,
-	    fname: fname,
-	    Rcommand: getRcommand(IsoplotR)
-	}, function(result, err) {
-	    if (err) {
-		displayError('Get PDF failed.', err);
-		return;
-	    }
-	    const downloader = document.getElementById("downloader");
-	    downloader.setAttribute("download", result.filename[0]);
-	    downloader.setAttribute("href", result.data[0]);
-	    downloader.click();
-	});
+        update();
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        shinylight.call(input.fn, input, null, {
+            imgType: 'pdf',
+        }).then(function(result) {
+            const downloader = document.createElement("A");
+            downloader.setAttribute("download", 'IsoplotR.pdf');
+            downloader.setAttribute("href", result.plot[0]);
+            downloader.click();
+        }).catch(function(error) {
+            displayError("Get PDF failed.", error);
+        });
     }
 
     document.getElementById("CSV").onclick = function() {
-	update();
-	let fname = prompt("Please enter a file name", "ages.csv");
-	rrpc.call("csv", {
-	    data: IsoplotR.data4server,
-	    fname: fname,
-	    Rcommand: getRcommand(IsoplotR)
-	}, function(result, err) {
-	    if (err) {
-		displayError('Get CSV failed.', err);
-		return;
-	    }
-	    const downloader = document.getElementById("downloader");
-	    downloader.setAttribute("download", result.filename[0]);
-	    downloader.setAttribute("href", result.data[0]);
-	    downloader.click();
-	});
+        update();
+        let fname = prompt("Please enter a file name", "ages.csv");
+        var input = getRcommand(IsoplotR)
+        input.data = IsoplotR.data4server;
+        shinylight.call(input.fn, input, null, {}).then(function(result) {
+            const rs = result.data.map(function(cs) { return cs.join(','); });
+            const downloader = document.createElement("A");
+            downloader.setAttribute("download", fname);
+            downloader.setAttribute("href", 'data:text/csv;base64,' + btoa(rs.join('\n')));
+            downloader.click();
+        }).catch(function(error) {
+            displayError("Run failed.", error);
+        });
     }
     
     $("#home").click(function(){

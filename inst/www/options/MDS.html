@@ -3,8 +3,8 @@
 &nbsp;<input type="checkbox" id="classical" onchange="$.register();">
       <help class="translate" id="help_classical"></help>
 <p></p>
-<div id="shepard-box">
-&nbsp;<input type="checkbox" id="shepard">
+<div class="hide4classical">
+&nbsp;<input type="checkbox" id="shepard" onchange="$.register();">
       <help class="translate" id="help_shepard"></help>
 <p></p>
 </div>
@@ -13,16 +13,18 @@
 <p></p>
 
 <table>
-<tr><td>&nbsp;<help id="help_pch_MDS"><translate class="pch"></translate></help></td>
+    <tr><td>&nbsp;<help id="help_pch_MDS"><translate class="pch"></translate></help></td>
     <td><input type="text" id="pch"></td></tr>
-<tr><td>&nbsp;<help class="translate" id="help_pcex"></help></td>
-    <td><input type="text" id="pcex"></td></tr>
-<tr><td>&nbsp;<help class="translate" id="help_cex"></help></td>
-  <td><input type="text" id="cex"></td></tr>
-<tr><td>&nbsp;<help class="translate" id="help_pos"></help></td>
+    <tr class="hide4shepard">
+        <td>&nbsp;<help class="translate" id="help_pcex"></help></td>
+        <td><input type="text" id="pcex"></td>
+    </tr>
+    <tr><td>&nbsp;<help class="translate" id="help_cex"></help></td>
+    <td><input type="text" id="cex"></td></tr>
+    <tr><td>&nbsp;<help class="translate" id="help_pos"></help></td>
     <td><input type="text" id="pos"></td></tr>
-<tr><td>&nbsp;<help class="translate" id="help_col"></help></td>
-    <td><input type="text" id="col"></td></tr>
-<tr><td>&nbsp;<help class="translate" id="help_bg"></help></td>
-    <td><input type="text" id="bg"></td></tr>
+    <tr><td>&nbsp;<help class="translate" id="help_col"></help></td>
+    <td><input type="color" id="col"></td></tr>
+    <tr><td>&nbsp;<help class="translate" id="help_bg_solid"></help></td>
+    <td><input type="color" id="bg_solid"></td></tr>
 </table>
