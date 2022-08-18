@@ -1809,7 +1809,7 @@ $(function(){
                 reverse: $('#ramp_reverse').prop('checked')
             };
 	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
-        pdsettings.nonplateau_alpha = getNumber('#nonplateau_alpha', 1);
+            pdsettings.nonplateau_alpha = getNumber('#nonplateau_alpha', 1);
 	    pdsettings.clabel = $('#clabel').val();
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);
@@ -1831,7 +1831,7 @@ $(function(){
 	    break;
 	case 'CAD':
 	    pdsettings["pch"] = $('#pch').val();
-	    pdsettings["colmap"] = getRadio('colmap_option');
+	    pdsettings["colmap"] = getOption('#colmap_option');
 	    pdsettings["verticals"] = truefalse('#verticals');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    i2i(geochronometer);

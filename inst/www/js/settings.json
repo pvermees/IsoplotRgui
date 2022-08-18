@@ -243,7 +243,7 @@
     "CAD": {
 	"pch": "none",
 	"verticals": true,
-	"colmap": "heat.colors"
+	"colmap": "rainbow"
     },
     "set-zeta": {
 	"exterr": false
@@ -256,7 +256,7 @@
 	"pos": 0,
 	"cex": 5,
 	"col": "#000000",
-        "bg": "#FF0000"
+        "bg": "#FFFFFF"
     },
     "helioplot": {
 	"logratio": true,
