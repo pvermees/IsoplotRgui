@@ -51,5 +51,12 @@
     "help_LambdaPa231": "El valor por defecto de la constante de decaimiento de <sup>231</sup>Pa, es tomado de Audi et al. (2003).",
     "help_LambdaRa226": "El valor por defecto de la constante de decaimiento de <sup>226</sup>Ra es tomado de Audi et al. (2003).",
     "help_LambdaU234": "El valor por defecto de la constante de decaimiento <sup>234</sup>U es tomado de Cheng et al. (2013). Su error estándar excluye todas las fuentes covariantes de incertidumbre analítica con <sup>230</sup>Th.",
-    "help_LambdaTh230": "El valor por defecto de la constante de decaimiento de <sup>230</sup>Th es tomada de Cheng et al. (2013). El error estándar exluye todas las fuentes covariantes de incertidumbre analítica con <sup>234</sup>U."
+    "help_LambdaTh230": "El valor por defecto de la constante de decaimiento de <sup>230</sup>Th es tomada de Cheng et al. (2013). El error estándar exluye todas las fuentes covariantes de incertidumbre analítica con <sup>234</sup>U.",
+    "help_bandwidth": "El ancho de banda del KDE afecta la suavidad del estimado de densidad. En escalas lineales, este valor tienen unidades de edad (en Ma). En una escala logarítmica, el ancho de banda es un valor fraccional. Por ejemplo, en el último caso, un valor de 0.1 indica un ancho de banda de kernel que es el 10% de la edad. Ajustando el ancho de banda a <tt>auto</tt> automáticamente selecciona un valor basado en el algoritmo de Botev et al. (2010).",
+    "help_pch-cad": "El inicio de cada paso CAD puede ser marcado por un carácter del gráfico. Este puede ser o un número (1-25) o un solo carácter como 'o', '*', or '+'. Alternativamente, ingrese <tt>none</tt> para omitir el carácter del gráfico.",
+    "help_cutoff76": "El método <sup>206</sup>Pb/<sup>238</sup>U es más preciso que el método <sup>207</sup>Pb/<sup>206</sup>Pb para edades jóvenes, mientras que el opuesto es verdadero para edades mas antiguas. Este cuadro ajusta la edad límite para según ello usarse el método <sup>206</sup>Pb/<sup>238</sup>U, y para el método <sup>207</sup>Pb/<sup>206</sup>Pb.",
+    "help_clabel": "Etiqueta de texto para la escala de color (opcional)",
+    "help_U48_ThU": "Especificar la relación de actividad medida de <sup>234</sup>U/<sup>238</sup>U a la actualiad de los detritos y su error estándar.",
+    "help_Th2U8_ThU": "Especificar la relación de actividad actual medida <sup>232</sup>Th/<sup>238</sup> de los detritos y su error estándar.",
+    "help_Th0U8_ThU": "Especificar la relación de actividad presente medida <sup>230</sup>Th/<sup>238</sup>U de los detritos y su error estándar."
 }
