@@ -25,14 +25,41 @@
     <td><input type="text" id="isochron-miny"></td></tr>
   <tr><td>&nbsp;<help class="translate" id="help_isochron_maxy"></help></td>
     <td><input type="text" id="isochron-maxy"></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_alpha"></help></td>
-    <td><input type="text" id="alpha"></td></tr>
   <tr><td>&nbsp;<help class="translate" id="help_sigdig"></help></td>
     <td><input type="text" id="sigdig"></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_ellipsefill"></help></td>
-    <td><input type="text" id="ellipsefill"></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_ellipsestroke"></help></td>
-    <td><input type="text" id="ellipsestroke"></td></tr>
+    <tr>
+        <td>&nbsp;<help class="translate" id="help_ellipsefill"></help></td>
+        <td>
+          <select id="ellipsefill_option" onchange="$.register();">
+            <option class="translate background_custom_ramp" id="help_ramp_custom_ramp" value="custom_ramp"></option>
+            <option class="translate background_rainbow" id="help_ramp_rainbow" value="rainbow"></option>
+            <option class="translate background_rainbow_reversed" id="help_ramp_rainbow_reversed" value="rainbow_reversed"></option>
+            <option class="translate background_heat" id="help_ramp_heat" value="heat"></option>
+            <option class="translate background_heat_reversed" id="help_ramp_heat_reversed" value="heat_reversed"></option>
+            <option class="translate background_viridis" id="help_ramp_viridis" value="viridis"></option>
+            <option class="translate background_viridis_reversed" id="help_ramp_viridis_reversed" value="viridis_reversed"></option>
+            <option class="translate background_rocket" id="help_ramp_rocket" value="rocket"></option>
+            <option class="translate background_rocket_reversed" id="help_ramp_rocket_reversed" value="rocket_reversed"></option>
+          </select>
+        </td>
+      </tr>
+      <tr class="show4customellipseramp">
+        <td></td>
+        <td>
+            <span class="translate" id="ramp_from"></span><input type="color" id="ellipsefill_ramp_start">
+            <span class="translate" id="ramp_to"></span><input type="color" id="ellipsefill_ramp_end">
+        </td>
+      </tr>
+      <tr class="hide4customellipseramp">
+        <td></td>
+        <td id="ellipseramp_preview"></td>
+      </tr>
+      <tr>
+        <td>&nbsp;<help class="translate" id="help_ellipsefill_alpha"></help></td>
+        <td><input type="text" id="ellipsefill_alpha"></td>
+      </tr>
+          <tr><td>&nbsp;<help class="translate" id="help_ellipsestroke"></help></td>
+    <td><input type="color" id="ellipsestroke"></td></tr>
   <tr><td>&nbsp;<help class="translate" id="help_cex"></help></td>
     <td><input type="text" id="cex"></td></tr>
   <tr><td>&nbsp;<help class="translate" id="help_clabel"></help></td>

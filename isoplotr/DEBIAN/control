@@ -7,3 +7,4 @@ Depends: nginx (>= 1.18.0), git (>= 1:2.25.1), r-base (>= 3.6.3), r-base-dev (>=
 Maintainer: Tim Band <t.band@ucl.ac.uk>
 Description: Graphical User Interface to the **IsoplotR** R package for
  radiometric geochronology.
+Installed-Size: 60000
