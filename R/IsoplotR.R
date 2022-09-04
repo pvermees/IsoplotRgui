@@ -172,7 +172,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     } else if (pd$anchor == 2) {
         args$anchor <- c(2, pd$tanchor)
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::concordia, args)
 }
 
@@ -231,7 +231,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
     if (params$geochronometer == "Pb-Pb") {
         args$common.Pb <- params$gcsettings$commonPb
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::radialplot, args)
 }
 
@@ -259,7 +259,7 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
     args$tlim <- gettimelimits(pd$mint, pd$maxt)
     args$xlim <- getlimits(pd$min08, pd$max08)
     args$ylim <- getlimits(pd$min48, pd$max48)
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::evolution, args)
 }
 
@@ -288,7 +288,7 @@ setregression <- function(params, data, s2d, settings) {
 regression <- function(fn, params, data, s2d, settings, cex, york) {
     args <- setregression(params, data, s2d, settings)
     args$x <- IsoplotR::data2york(args$x, format = york$format)
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::isochron, args)
 }
 
@@ -321,13 +321,13 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
     if (gc != "U-Th-He") {
         args$exterr <- params$pdsettings$exterr
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::isochron, args)
 }
 
 addalpha <- function(colour, alpha) {
-    chs <- col2rgb(colour)
-    rgb(chs[1,], chs[2,], chs[3,], 255 * alpha, maxColorValue = 255)
+    chs <- grDevices::col2rgb(colour)
+    grDevices::rgb(chs[1,], chs[2,], chs[3,], 255 * alpha, maxColorValue = 255)
 }
 
 weightedmean <- function(fn, params, data, s2d, settings, cex) {
@@ -383,7 +383,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
     if (!(gc %in% c("other", "Th-U", "U-Th-He"))) {
         args$exterr <- params$pdsettings$exterr
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::weightedmean, args)
 }
 
@@ -410,7 +410,7 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
         args$i2i <- params$gcsettings$i2i
         args$exterr <- pd$exterr
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::agespectrum, args)
 }
 
@@ -464,7 +464,7 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         args$samebandwidth <- pd$samebandwidth
         args$normalise <- pd$normalise
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::kde, args)
 }
 
@@ -512,7 +512,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::cad, args)
 }
 
@@ -549,7 +549,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
     args$fact <- notauto(pd$fact)
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::helioplot, args)
 }
 
@@ -574,7 +574,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
     if (pd$pos %in% c(1, 2, 3, 4)) {
         args$pos <- pd$pos
     }
-    par(cex = cex)
+    graphics::par(cex = cex)
     do.call(IsoplotR::mds, args)
 }
 

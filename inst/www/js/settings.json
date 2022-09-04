@@ -105,11 +105,11 @@
 	"anchor":0,
 	"tanchor":0,
 	"ellipsefill": {
-        "option": "custom_ramp",
-        "alpha": 0.5,
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
-    },
+            "option": "custom_ramp",
+            "alpha": 0.5,
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000"
+	},
 	"ellipsestroke": "#000000",
 	"clabel": "",
 	"ticks": "auto"
@@ -126,11 +126,11 @@
 	"isochron": false,
 	"shownumbers": false,
 	"ellipsefill": {
-        "option": "custom_ramp",
-        "alpha": 0.5,
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
-    },
+            "option": "custom_ramp",
+            "alpha": 0.5,
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000"
+	},
 	"ellipsestroke": "#000000",
 	"model": 1,
 	"clabel": ""
@@ -150,11 +150,11 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"ellipsefill": {
-        "option": "custom_ramp",
-        "alpha": 0.5,
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
-    },
+            "option": "custom_ramp",
+            "alpha": 0.5,
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000"
+	},
 	"ellipsestroke": "#000000",
 	"growth": false,
 	"clabel": ""
@@ -167,11 +167,11 @@
 	"miny": "auto",
 	"maxy": "auto",
 	"ellipsefill": {
-        "option": "custom_ramp",
-        "alpha": 0.5,
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
-    },
+            "option": "custom_ramp",
+            "alpha": 0.5,
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000"
+	},
 	"ellipsestroke": "#000000",
 	"clabel": ""
     },
@@ -183,11 +183,11 @@
 	"pch": 21,
 	"cex": 1,
 	"bg": {
-        "option": "custom_ramp",
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000",
-        "reverse": false
-    },
+            "option": "custom_ramp",
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000",
+            "reverse": false
+	},
 	"shownumbers": false,
 	"numpeaks": 0,
 	"clabel": "",
@@ -268,11 +268,11 @@
 	"maxy": "auto",
 	"fact": "auto",
 	"ellipsefill": {
-        "option": "custom_ramp",
-        "alpha": 0.5,
-        "ramp_start": "#00FF00",
-        "ramp_end": "#FF0000"
-    },
+            "option": "custom_ramp",
+            "alpha": 0.5,
+            "ramp_start": "#00FF00",
+            "ramp_end": "#FF0000"
+	},
 	"ellipsestroke": "#000000",
 	"model": 1,
 	"clabel": ""
