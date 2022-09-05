@@ -535,7 +535,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
     nc <- as.numeric(data$nc)
     args <- list(
         x = getdata(params, data, s2d),
-        alpha = pd$alpha,
+        logratio = pd$logratio,
         show.numbers = pd$shownumbers,
         sigdig = params$sigdig,
         levels = selection2levels(data$data, nc),

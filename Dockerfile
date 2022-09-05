@@ -3,7 +3,7 @@ FROM pvermees/docker-isoplotr
 WORKDIR /isoplotrgui
 
 RUN ["Rscript",  "-e", \
-    "install.packages(c('later','jsonlite','httpuv'), \
+    "install.packages(c('shinylight','later'), \
     repos='https://cran.rstudio.com')"]
 
 COPY DESCRIPTION /isoplotrgui/DESCRIPTION
