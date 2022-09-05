@@ -3,9 +3,6 @@
     "geochronometer": "U-Pb",
     "plotdevice": "concordia",
     "ierr": 1,
-    "oerr": 2,
-    "alpha": 0.05,
-    "sigdig": 2,
     "par": {
 	"cex": 1
     },
@@ -26,7 +23,7 @@
 	"mindisc": [-50,-5,-0.3,-2,-2],
 	"maxdisc": [140,15,1,6,7],
 	"commonPb": 0,
-	"diseq": false,
+	"diseq": "FALSE",
 	"U48": [1,0],
 	"ThU": [1,0],
 	"RaU": [1,0],
@@ -42,50 +39,50 @@
     "Pb-Pb": {
 	"format": 3,
 	"commonPb": 2,
-	"projerr": false,
-	"inverse": true
+	"projerr": "FALSE",
+	"inverse": "TRUE"
     },
     "Ar-Ar": {
 	"format": 3,
-	"i2i": false,
-	"projerr": false,
-	"inverse": true
+	"i2i": "FALSE",
+	"projerr": "FALSE",
+	"inverse": "TRUE"
     },
     "Th-Pb": {
 	"format": 2,
-	"i2i": true,
-	"projerr": false,
-	"inverse": true
+	"i2i": "TRUE",
+	"projerr": "FALSE",
+	"inverse": "TRUE"
     },
     "K-Ca": {
 	"format": 1,
-	"i2i": true,
-	"projerr": false,
-	"inverse": false
+	"i2i": "TRUE",
+	"projerr": "FALSE",
+	"inverse": "FALSE"
     },
     "Rb-Sr": {
 	"format": 1,
-	"i2i": true,
-	"projerr": false,
-	"inverse": false
+	"i2i": "TRUE",
+	"projerr": "FALSE",
+	"inverse": "FALSE"
     },
     "Sm-Nd": {
 	"format": 1,
-	"i2i": true,
-	"projerr": false,
-	"inverse": false
+	"i2i": "TRUE",
+	"projerr": "FALSE",
+	"inverse": "FALSE"
     },
     "Re-Os": {
 	"format": 1,
-	"i2i": true,
-	"projerr": false,
-	"inverse": false
+	"i2i": "TRUE",
+	"projerr": "FALSE",
+	"inverse": "FALSE"
     },
     "Lu-Hf": {
 	"format": 1,
-	"i2i": true,
-	"projerr": false,
-	"inverse": false
+	"i2i": "TRUE",
+	"projerr": "FALSE",
+	"inverse": "FALSE"
     },
     "U-Th-He": {},
     "other": {
@@ -98,19 +95,16 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
+	"alpha": 0.05,
 	"type": 1,
-	"exterr": false,
-	"shownumbers": false,
+	"exterr": "FALSE",
+	"shownumbers": "FALSE",
 	"showage": 0,
 	"anchor":0,
 	"tanchor":0,
-	"ellipsefill": {
-            "option": "custom_ramp",
-            "alpha": 0.5,
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000"
-	},
-	"ellipsestroke": "#000000",
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"clabel": "",
 	"ticks": "auto"
     },
@@ -121,17 +115,14 @@
 	"max48": "auto",
 	"mint": "auto",
 	"maxt": "auto",
-	"transform": false,
-	"exterr": false,
-	"isochron": false,
-	"shownumbers": false,
-	"ellipsefill": {
-            "option": "custom_ramp",
-            "alpha": 0.5,
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000"
-	},
-	"ellipsestroke": "#000000",
+	"alpha": 0.05,
+	"transform": "FALSE",
+	"exterr": "FALSE",
+	"isochron": "FALSE",
+	"shownumbers": "FALSE",
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"model": 1,
 	"clabel": ""
     },
@@ -140,39 +131,33 @@
 	"ThUtype": 2,
 	"y0option": 1,
 	"model": 1,
-	"exterr": false,
-	"joint": true,
+	"exterr": "FALSE",
+	"joint": "TRUE",
 	"anchor":0,
 	"tanchor":0,
-	"shownumbers": false,
+	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"ellipsefill": {
-            "option": "custom_ramp",
-            "alpha": 0.5,
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000"
-	},
-	"ellipsestroke": "#000000",
-	"growth": false,
+	"alpha": 0.05,
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
+	"growth": "FALSE",
 	"clabel": ""
     },
     "regression": {
 	"model": 1,
-	"shownumbers": false,
+	"shownumbers": "FALSE",
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
-	"ellipsefill": {
-            "option": "custom_ramp",
-            "alpha": 0.5,
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000"
-	},
-	"ellipsestroke": "#000000",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"clabel": ""
     },
     "radial": {
@@ -182,104 +167,92 @@
 	"maxt": "auto",
 	"pch": 21,
 	"cex": 1,
-	"bg": {
-            "option": "custom_ramp",
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000",
-            "reverse": false
-	},
-	"shownumbers": false,
+	"bg": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"sigdig": 2,
+	"alpha": 0.05,
+	"shownumbers": "FALSE",
 	"numpeaks": 0,
 	"clabel": "",
-	"exterr": false
+	"exterr": "FALSE"
     },
     "average": {
-	"outliers": true,
-	"exterr": false,
-	"randomeffects": false,
+	"outliers": "TRUE",
+	"exterr": "FALSE",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"randomeffects": "FALSE",
 	"mint": "auto",
 	"maxt": "auto",
-	"ranked": false,
-	"bg": {
-            "option": "custom_ramp",
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000",
-            "reverse": false
-        },
-        "outliercol": "#00FFFF",
-        "rect_alpha": 0.5,
+	"ranked": "FALSE",
+	"rectcol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"outliercol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "spectrum": {
-	"plateau": true,
-	"exterr": false,
-	"randomeffects": false,
-        "bg": {
-            "option": "custom_ramp",
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000",
-            "reverse": false
-        },
-        "nonplateaucol": "#00FFFF",
-        "nonplateau_alpha": 0.5,
+	"plateau": "TRUE",
+	"exterr": "FALSE",
+	"alpha": 0.05,
+	"sigdig": 2,
+	"randomeffects": "FALSE",
+	"plateaucol": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"nonplateaucol": "rgb(0,1,1,0.5)",
 	"clabel": ""
     },
     "KDE": {
 	"ncol": "auto",
 	"xlab": "age [Ma]",
-	"showhist": true,
+	"showhist": "TRUE",
 	"bw": "auto",
-	"samebandwidth": true,
-	"normalise": true,
-	"log": false,
-	"adaptive": true,
+	"samebandwidth": "TRUE",
+	"normalise": "TRUE",
+	"log": "FALSE",
+	"adaptive": "TRUE",
 	"minx": "auto",
 	"maxx": "auto",
 	"bandwidth": "auto",
 	"binwidth": "auto",
-	"rugdetritals": false,
-	"rug": true
+	"rugdetritals": "FALSE",
+	"rug": "TRUE"
     },
     "CAD": {
 	"pch": "none",
-	"verticals": true,
-	"colmap": "rainbow"
+	"verticals": "TRUE",
+	"colmap": "heat.colors"
     },
     "set-zeta": {
-	"exterr": false
+	"sigdig": 2,
+	"exterr": "FALSE"
     },
     "MDS": {
-	"classical": false,
-	"shepard": false,
-        "nnlines": false,
+	"classical": "FALSE",
+	"shepard": "FALSE",
+        "nnlines": "FALSE",
 	"pch": 21,
 	"pos": 0,
 	"cex": 5,
-	"col": "#000000",
-        "bg": "#FFFFFF"
+	"col": "black",
+	"bg": "white"
     },
     "helioplot": {
-	"logratio": true,
-	"shownumbers": false,
-	"showcentralcomp": true,
+	"logratio": "TRUE",
+	"shownumbers": "FALSE",
+	"showcentralcomp": "TRUE",
+	"alpha": 0.05,
+	"sigdig": 2,
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
 	"fact": "auto",
-	"ellipsefill": {
-            "option": "custom_ramp",
-            "alpha": 0.5,
-            "ramp_start": "#00FF00",
-            "ramp_end": "#FF0000"
-	},
-	"ellipsestroke": "#000000",
+	"ellipsefill": "c(rgb(0,1,0,0.5),rgb(1,0,0,0.5))",
+	"ellipsestroke": "'black'",
 	"model": 1,
 	"clabel": ""
     },
     "ages": {
 	"showdisc": 0,
 	"discoption": 5,
-	"exterr": false
+	"exterr": "FALSE",
+	"sigdig": 2
     }
 }

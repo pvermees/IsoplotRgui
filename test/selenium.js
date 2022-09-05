@@ -6,46 +6,14 @@ const { describe, before, after, it } = require('mocha');
 const clipboardy = require("clipboardy");
 const assert = require("assert");
 const { PNG } = require("pngjs");
-const net = require('net');
-
-function wait(ms) {
-    return new Promise(resolve => {
-        setTimeout(resolve, ms);
-    });
-}
-
-async function retry(attempts, ms, untilFn) {
-    while (!await untilFn()) {
-        if (--attempts === 0) {
-            return false;
-        }
-        await wait(ms);
-    }
-    return true;
-}
-
-function checkPort(port) {
-    return new Promise(resolve => {
-        const c = new net.Socket();
-        c.on('connect', () => resolve(true));
-        c.on('error', () => resolve(false));
-        c.connect(port, 'localhost');
-    });
-}
-
-async function portIsOpen(port) {
-    return await retry(10, 300, checkPort.bind(null, port));
-}
+const floor = Math.floor;
 
 describe('IsoplotRgui', function() {
     let rProcess;
     let driver;
 
-    before(async function() {
-        const port = 50054;
-        this.timeout(5000);
-        rProcess = spawn('Rscript', ['build/start-gui.R', '' + port], { stdio: [ 'ignore', 'inherit', 'inherit' ] });
-        await portIsOpen(port);
+    before(function() {
+        rProcess = spawn('Rscript', ['build/start-gui.R', '50054'], { stdio: [ 'ignore', 'inherit', 'inherit' ] });
         driver = new Builder().forBrowser('firefox').build();
     });
 
@@ -86,7 +54,11 @@ describe('IsoplotRgui', function() {
             await inputTestData(driver, testData);
             await choosePlotDevice(driver, 'ages');
             await performClick(driver, 'run');
-            await tableAppears(driver);
+            const homeCell = await driver.findElement(cellInTable('INPUT', 1, 1));
+            await driver.wait(async function() {
+                let text = await homeCell.getText();
+                return !isNaN(Number(text));
+            });
             const expectedResults = [
                 [251.1, 0.51, 250.86, 0.29, 253.3, 4.48, 250.88, 0.29],
                 [248.92, 0.88, 248.93, 0.19, 248.81, 8.99, 248.93, 0.19],
@@ -148,10 +120,8 @@ describe('IsoplotRgui', function() {
             // test contextual_help.json
             await clickButton(driver, 'help_ierr');
             await assertTextContains(driver, 'helpmenu', inputErrorHelpEN);
-            await closeContextualHelp(driver);
             await clickButton(driver, 'help_mint_concordia');
             await assertTextContains(driver, 'helpmenu', 'XXminimum age limit.');
-            await closeContextualHelp(driver);
             // test home_id.json
             await clickButton(driver, 'home');
             await waitForFunctionToBeInstalled(driver, 'translateHomePage');
@@ -181,285 +151,245 @@ describe('IsoplotRgui', function() {
             const options = {
                 U238U235: 137.818,
                 errU238U235: 0.0225,
-                // must be tick values
                 minx: 0.260,
-                maxx: 0.280,
-                miny: 0.0360,
-                maxy: 0.0400
+                maxx: 0.282,
+                miny: 0.0368,
+                maxy: 0.0400,
+                ellipsefill: "'green'",
+                ellipsestroke: "'green'"
             };
             await performType(driver, options);
             await performClick(driver, 'plot');
             const img = await driver.wait(until.elementLocated(By.css('#myplot img')));
             const imgSrc = await img.getAttribute('src');
             const imgB64 = imgSrc.split(',')[1];
-            const svg = getSvg(imgB64);
-            const axes = svg.getAxes();
             testData.forEach((data) => {
-                const [u238pb206, xerr, pb207pb206, yerr, dummy0, dummy1, omit] = data;
-                const pb207u235 = options.U238U235 * pb207pb206 / u238pb206;
-                const pb206u238 = 1 / u238pb206;
-                const coords = plotToGraph(axes, options, pb207u235, pb206u238);
-                if (omit) {
-                    assert(svg.isOmittedPoint(coords.x, coords.y));
-                } else {
-                    assert(svg.isPoint(coords.x, coords.y));
-                }
+                const failures = assertConcordiaBlob(imgB64, options, data, 1500);
+                // some failures are caused by other marks on the graph; labels or
+                // other blobs, for example.
+                assert(failures.length <= 20, 'Too many failures: ' + failures.join(', '));
             });
         });
     });
 
-    describe('smoke test', function() {
-        before(async function() {
-            await driver.get('http://localhost:50054');
-            var el = await driver.wait(
-                until.elementLocated(By.css('#geochronometer-button .ui-selectmenu-text'))
-            );
-            await driver.wait(until.elementIsVisible(el));
+    describe('error conditions', function() {
+      before(async function() {
+        await driver.get('http://localhost:50054');
+        // ensure that we have the websocket connection by getting a plot
+        await performClick(driver, 'plot');
+        await driver.wait(until.elementLocated(By.css('#myplot img')));
+      });
+
+      it('illegal Rcommands are rejected', function(done) {
+        driver.executeAsyncScript(
+          'var callback = arguments[arguments.length-1];' +
+          'window.rrpc.call("plot", { data: [], width: 99, height: 99, Rcommand:' +
+          '"print(\\"gotcha!\\")"' +
+          '}, function(result, err) {' +
+          'callback(err);' +
+          '});'
+        ).then(err => {
+          assert.strictEqual(err.length, 1);
+          assert(err[0].includes('whitelist'),
+              `Expected error message '${err[0]}' to include the word 'whitelist'`);
+          done();
         });
-        const graphDevices = {
-            "concordia": ["U-Pb"],
-            "helioplot": ["U-Th-He"],
-            "evolution": ["U-series"],
-            "isochron": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "U-series"],
-            "radial plot": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "other"],
-            "regression": ["other"],
-            "weighted mean": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "other"],
-            "age spectrum": ["Ar-Ar", "other"],
-            "KDE": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "detritals", "other"],
-            "CAD": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series", "detritals", "other"],
-            "MDS": ["detritals"]
-        };
-        forEachOfArrayValue(graphDevices, function(device, gc) {
-            it(gc + ' on ' + device + ' gets a plot', async function() {
-                this.timeout(5000);
-                await chooseGeochronometer(driver, gc);
-                await choosePlotDevice(driver, device);
-                await performClick(driver, 'plot');
-                await driver.wait(until.elementLocated(By.css('#myplot img')));
-            });
+      });
+
+      it('error-causing Rcommands are reported', function(done) {
+        driver.executeAsyncScript(
+          'var callback = arguments[arguments.length-1];' +
+          'window.rrpc.call("plot", { data: [], width: 99, height: 99, Rcommand:' +
+          '"selection2data(rgb)"' +
+          '}, function(result, err) {' +
+          'callback(err);' +
+          '});'
+        ).then(err => {
+          assert.strictEqual(err.length, 1, 'Expected some error');
+          done();
         });
-        const tableDevices = {
-            "get \u03B6": ["fission tracks"],
-            "ages": ["U-Pb", "Pb-Pb", "Th-Pb", "Ar-Ar", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf", "U-Th-He", "fission tracks", "U-series"]
-        };
-        forEachOfArrayValue(tableDevices, function(device, gc) {
-            it(gc + ' on ' + device + ' gets a table', async function() {
-                this.timeout(3000);
-                await chooseGeochronometer(driver, gc);
-                await choosePlotDevice(driver, device);
-                await performClick(driver, 'run');
-                var el = await driver.wait(
-                    until.elementLocated(By.css('#OUTPUT .handsontable'))
-                );
-                await driver.wait(until.elementIsVisible(el));
-                await tableAppears(driver);
-            });
-        });
+      });
     });
 });
 
-function forEachOfArrayValue(kToVs, f) {
-    for (var k in kToVs) {
-        kToVs[k].forEach(function(v) { f(k, v); });
+function assertConcordiaBlob(imgB64, options, testData, sampleCount) {
+    const png = PNG.sync.read(Buffer.from(imgB64, 'base64'));
+    const axes = getAxes(png);
+    const ranges = getRanges(options);
+    const [u38pb06, u38pb06err, pb07pb06, pb07pb06err,
+        dummy0, dummy1, omit] = testData;
+    const innerColour = ['x', 'X'].includes(omit)? 'W' : 'G';
+    const { U238U235 } = options;
+    const u38pb06rev = varianceOfRelativeError(u38pb06, u38pb06err);
+    const pb07pb06rev = varianceOfRelativeError(pb07pb06, pb07pb06err);
+    // y is Pb206 / U238
+    const y = 1 / u38pb06;
+    // x is Pb207 / U235
+    const x = pb07pb06 * U238U235 / u38pb06;
+    const yErr = y * Math.sqrt(u38pb06rev);
+    const xErrBy3806 = x * Math.sqrt(u38pb06rev);
+    const xErrBy0706 = x * Math.sqrt(pb07pb06rev);
+    // the zone of ambiguity seems to be 5 <= h2 <= 8. I don't know why.
+    const minimumDistanceSquared = 5;
+    const maximumDistanceSquared = 8;
+    let failures = [];
+    for (let i = 0; i != sampleCount; ++i) {
+        // So, let's choose a random dot
+        // tv = amount of pb07pb06 error we have
+        const tv = Math.random() * 6 - 3;
+        // tw = amount of u38pb06 error we have
+        const tw = Math.random() * 6 - 3;
+        const h2 = tv * tv + tw * tw;
+        const gx = x + tv * xErrBy0706 + tw * xErrBy3806;
+        const gy = y + tw * yErr;
+        // we think if h2 < 1 the transformed dot wll be green
+        const pixel = toPixel(axes, ranges, gx, gy);
+        const col = colour(png, pixel);
+        const expectedCol = h2 < minimumDistanceSquared ? innerColour : 'W';
+        if (expectedCol !== col
+            && (h2 < minimumDistanceSquared
+                || maximumDistanceSquared < h2)) {
+            failures.push('Expected colour ' + expectedCol
+                + ' but got ' + col + ' at distance^2 ' + h2);
+        }
     }
+    return failures;
 }
 
-function plotToGraph(svg, options, x, y) {
+function varianceOfRelativeError(value, standardDeviation) {
+    const r = standardDeviation / value;
+    return r*r;
+}
+
+function colour(png, pixel) {
+    const index = (pixel.x + png.width * pixel.y) * 4;
+    const r = png.data[index];
+    const g = png.data[index + 1];
+    const b = png.data[index + 2];
+    const bright = Math.max(r,g,b,20);
+    const threshold = bright * 0.6;
+    const colour =
+        (r < threshold? 0 : 1) +
+        (g < threshold? 0 : 2) +
+        (b < threshold? 0 : 4);
+    return "KRGYBMCW"[colour];
+}
+
+function isLinePixel(png, index) {
+    const d = png.data;
+    const brightness = d[index] + d[index + 1] + d[index + 2];
+    return brightness < 350;
+}
+
+function isOnHorizontalLine(png, index) {
+    const pixelsToCheck = floor(png.width / 10);
+    index -= floor(pixelsToCheck / 2) * 4;
+    let lastIndex = index + pixelsToCheck * 4;
+    for (; index < lastIndex; index += 4) {
+        if (!isLinePixel(png, index)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function findBottomLine(png) {
+    const width = png.width;
+    const row = width * 4;
+    const endIndex = row * png.height;
+    let index = endIndex - floor(width / 2) * 4
+    // search the bottom third of the image
+    const giveUp = index - row * floor(png.height / 3);
+    for (; giveUp <= index; index -= row) {
+        if (isLinePixel(png, index) && isOnHorizontalLine(png, index)) {
+            return floor(index / row);
+        }
+    }
+    return null;
+}
+
+function isOnVerticalLine(png, index) {
+    const pixelsToCheck = floor(png.height / 10);
+    const row = 4 * png.width;
+    index -= floor(pixelsToCheck / 2) * row;
+    let lastIndex = index + pixelsToCheck * row;
+    for (; index < lastIndex; index += row) {
+        if (!isLinePixel(png, index)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function findLeftLine(png) {
+    const width = png.width;
+    const row = width * 4;
+    let startIndex = floor(png.height / 2) * row;
+    // search the left third of the image
+    const giveUp = startIndex + floor(width / 3) * 4;
+    for (let index = startIndex; index < giveUp; index += 4) {
+        if (isLinePixel(png, index) && isOnVerticalLine(png, index)) {
+            return floor((index - startIndex) / 4);
+        }
+    }
+    return null;
+}
+
+function lineEndIndex(png, index, dIndex) {
+    let result = index;
+    let gap = 0;
+    while (gap < 4) {
+        if (isLinePixel(png, index)) {
+            result = index;
+            gap = 0;
+        } else {
+            ++gap;
+        }
+        index += dIndex;
+    }
+    return result;
+}
+
+function getAxes(png) {
+    const originX = findLeftLine(png);
+    const originY = findBottomLine(png);
+    const row = png.width * 4;
+    const originRowStart = originY * row;
+    const originIndex = originRowStart + originX * 4;
+    const topIndex = lineEndIndex(png, originIndex, -row);
+    const rightIndex = lineEndIndex(png, originIndex, 4);
     return {
-        x: svg.leftTick + (svg.rightTick - svg.leftTick) * (x - options.minx) / (options.maxx - options.minx),
-        y: svg.bottomTick - (svg.bottomTick - svg.topTick) * (y - options.miny) / (options.maxy - options.miny)
+        bottom: originY,
+        left: originX,
+        height: originY - floor(topIndex / row),
+        width: floor((rightIndex - originRowStart) / 4) - originX
     };
 }
 
-// isAbove(x, y, x0, y0, x1, y1) returns true if and only if
-// a line drawn directly down (increasing y) from y would intersect
-// the line from (x0,y0) to (x1,y1), including the point on the left
-// but not on the right.
-function isAbove(x, y, x0, y0, x1, y1) {
-    // (x0,y0) should be the left hand point
-    if (x1 <= x0) {
-        if (x0 === x1) {
-            // special case -- vertical line must never be hit
-            return false;
-        }
-        const xt = x0;
-        x0 = x1;
-        x1 = xt;
-        const yt = y0;
-        y0 = y1;
-        y1 = yt;
-    }
-    if (x1 <= x) {
-        // missed to the right
-        return false;
-    }
-    if (x < x0) {
-        // missed to the left
-        return false;
-    }
-    // find y value of intersection of vertical line through (x,y)
-    const py = y0 + (y1 - y0) * (x - x0) / (x1 - x0);
-    return y < py;
-}
-
-// cs is alternating x and y co-ordinates of the vertices of a polygon.
-// Returns true if and only if (x,y) is within that polygon.
-function isWithin(x, y, cs) {
-    let aboveCount = 0;
-    let x0 = cs[cs.length - 2];
-    let y0 = cs[cs.length - 1];
-    for (let j = 0; j < cs.length; j += 2) {
-        const x1 = cs[j];
-        const y1 = cs[j + 1];
-        if (isAbove(x, y, x0, y0, x1, y1)) {
-            ++aboveCount;
-        }
-        x0 = x1;
-        y0 = y1;
-    }
-    return (aboveCount & 1) == 1;
-}
-
-function getSvg(imgB64) {
-    const data = Buffer.from(imgB64, 'base64').toString();
-    const quads = data.match(/<path\b[^>]+\bd="M *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+/mg);
-    if (!quads) {
-        console.error("no rectangular paths in SVG!");
-        console.log(data);
-        return null;
-    }
-    let plotArea = 0;
-    let plotLeft = null;
-    let plotRight = null;
-    let plotTop = null;
-    let plotBottom = null;
-    quads.forEach(quad => {
-        const qs = quad.match(/\bd="M *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+)/m);
-        // biggest polygon is probably the plot area
-        if (qs) {
-            const vs = [];
-            for (let i = 1; i !== qs.length; ++i) {
-                vs.push(Number(qs[i]));
-            }
-            const xmin = Math.min(vs[0], vs[2], vs[4], vs[6]);
-            const xmax = Math.max(vs[0], vs[2], vs[4], vs[6]);
-            const ymin = Math.min(vs[1], vs[3], vs[5], vs[7]);
-            const ymax = Math.max(vs[1], vs[3], vs[5], vs[7]);
-            const area = (xmax - xmin) * (ymax - ymin);
-            if (plotArea < area) {
-                plotArea = area;
-                plotLeft = xmin;
-                plotRight = xmax;
-                plotTop = ymin;
-                plotBottom = ymax;
-            }
-        }
-    });
-    const width = plotRight - plotLeft;
-    const height = plotBottom - plotTop;
-    const maxTickProportion = 0.04;
-    const potentialTicks = data.match(/<path [^>]*\bd="M *[0-9\.]+ +[0-9\.]+ +L *[0-9\.]+ +[0-9\.]+ *"/mg);
-    let xTicks = [];
-    let yTicks = [];
-    potentialTicks.forEach(pt => {
-        const gs = pt.match(/\bd="M *([0-9\.]+) +([0-9\.]+) +L *([0-9\.]+) +([0-9\.]+) *"/m);
-        let x0 = Number(gs[1]);
-        let x1 = Number(gs[3]);
-        let y0 = Number(gs[2]);
-        let y1 = Number(gs[4]);
-        if (gs && x0 === x1 && Math.abs(y1 - y0) < maxTickProportion * height) {
-            xTicks.push(x0);
-        }
-        if (gs && y0 === y1 && Math.abs(x1 - x0) < maxTickProportion * width) {
-            yTicks.push(y0);
-        }
-    });
-    xTicks.sort((x,y) => x - y);
-    yTicks.sort((x,y) => x - y);
-    let potentialPoints = data.match(/<path [^>]*style="([^";]+;)*\bfill: *rgb[^>]*>/mg);
-    if (!potentialPoints) {
-        potentialPoints = [];
-    }
-    const coords = [];
-    potentialPoints.forEach(pp => {
-        const rgb = pp.match(/\bstyle="[^"]*\bfill: *rgb\(([0-9]+)%,([0-9]+)%,([0-9]+)%\)/m);
-        if (rgb && Number(rgb[1]) < 20 && 60 < Number(rgb[2]) && Number(rgb[3]) < 20) {
-            const d = pp.match(/\bd="([^"]*)"/m);
-            if (d) {
-                const xytexts = d[1].match(/[0-9.]+/mg);
-                const xys = xytexts.map(t => Number(t));
-                coords.push(xys);
-            }
-        }
-    });
-    let potentialOmitteds = data.match(/<path [^>]*style="([^";]+;)*\bfill: *none[^>]*>/mg);
-    if (!potentialOmitteds) {
-        potentialOmitteds = [];
-    }
-    const omitteds = [];
-    potentialOmitteds.forEach(po => {
-        const rgb = po.match(/\bstyle="[^"]*\bstroke: *rgb\(([0-9.]+)%,([0-9.]+)%,([0-9.]+)%\)/m);
-        if (rgb) {
-            const r = Number(rgb[1]);
-            const g = Number(rgb[2]);
-            const b = Number(rgb[3]);
-            if (40 < r && r < 85 && 40 < g && g < 85 && 40 < b && b < 85) {
-                const d = po.match(/\bd="([^"]*)"/m);
-                if (d) {
-                    const xytexts = d[1].match(/[0-9.]+/mg);
-                    const xys = xytexts.map(t => Number(t));
-                    omitteds.push(xys);
-                }
-            }
-        }
-    });
-    if (xTicks.length ===0 || yTicks.length === 0) {
-        console.error('no ticks in SVG');
-        return null;
-    }
+function getRanges(options) {
+    const centreX = (options.maxx + options.minx) / 2;
+    // R expands its ranges by on each side 4%, it seems
+    const halfRangeX = (options.maxx - options.minx) * 0.54;
+    const centreY = (options.maxy + options.miny) / 2;
+    const halfRangeY = (options.maxy - options.miny) * 0.54;
     return {
-        getAxes: function() {
-            return {
-                bottom: plotBottom,
-                left: plotLeft,
-                height: height,
-                width: width,
-                leftTick: xTicks[0],
-                rightTick: xTicks[xTicks.length - 1],
-                topTick: yTicks[0],
-                bottomTick: yTicks[yTicks.length - 1]
-            }
-        },
-        isPoint: function(x, y) {
-            for (let i = 0; i !== coords.length; ++i) {
-                if (isWithin(x, y, coords[i])) {
-                    return true;
-                }
-            }
-            return false;
-        },
-        isOmittedPoint: function(x, y) {
-            for (let i = 0; i !== omitteds.length; ++i) {
-                if (isWithin(x, y, omitteds[i])) {
-                    return true;
-                }
-            }
-            return false;
-        }
+        minx: centreX - halfRangeX,
+        sizex: 2 * halfRangeX,
+        miny: centreY - halfRangeY,
+        sizey: 2 * halfRangeY
+    };
+}
+
+function toPixel(axes, range, x, y) {
+    return {
+        x: floor(0.5 + axes.left + axes.width * (x - range.minx) / range.sizex),
+        y: floor(0.5 + axes.bottom - axes.height * (y - range.miny) / range.sizey)
     };
 }
 
 async function waitForFunctionToBeInstalled(driver, functionName) {
     await driver.wait(async function () {
         return await driver.executeScript('return !!window.' + functionName);
-    });
-}
-
-async function tableAppears(driver) {
-    const homeCell = await driver.findElement(cellInTable('OUTPUT', 1, 1));
-    await driver.wait(async function() {
-        let text = await homeCell.getText();
-        return !isNaN(Number(text));
     });
 }
 
@@ -513,20 +443,12 @@ function assertNearlyEqual(a, b) {
     assert(b - db < a && a < b + db, a + ' is not nearly ' + b);
 }
 
-async function chooseFromMenu(driver, choiceText, buttonId, menuId) {
-    await performClick(driver, buttonId);
-    const menu = await driver.findElement(By.id(menuId));
+async function choosePlotDevice(driver, choiceText) {
+    await performClick(driver, 'plotdevice-button');
+    const menu = await driver.findElement(By.id('plotdevice-menu'));
     const choice = await menu.findElement(By.xpath("//li/div[contains(text(),'" + choiceText + "')]"));
     await driver.wait(until.elementIsVisible(choice));
     await performClick(driver, choice);
-}
-
-function choosePlotDevice(driver, choiceText) {
-    return chooseFromMenu(driver, choiceText, 'plotdevice-button', 'plotdevice-menu');
-}
-
-function chooseGeochronometer(driver, choiceText) {
-    return chooseFromMenu(driver, choiceText, 'geochronometer-button', 'geochronometer-menu');
 }
 
 async function chooseLanguage(driver, languageText) {
@@ -549,17 +471,10 @@ async function performClick(driver, element) {
     return element;
 }
 
-function scrollIntoView(element) {
-    const driver = element.getDriver();
-    return driver.executeScript("const e = arguments[0]; e.scrollIntoView(true);", element);
-}
-
 // super robust typing into input box
 async function performType(driver, idToKeys) {
     for (const k in idToKeys) {
-        const element = await driver.wait(until.elementLocated(By.id(k)));
-        await scrollIntoView(element);
-        const input = await performClick(driver, element);
+        const input = await performClick(driver, k);
         await input.clear();
         await input.sendKeys(idToKeys[k]);
     }
@@ -617,13 +532,9 @@ async function findMenuItem(driver, text) {
     assert(false, "No ui menu item found with text '" + text + "'");
 }
 
-async function closeContextualHelp(driver) {
-    await driver.findElement(By.css('.ui-icon-closethick')).click();
-}
-
 async function clickButton(driver, id) {
     const button = await driver.wait(until.elementLocated(By.id(id)));
-    await button.click();
+    button.click();
 }
 
 async function goToCell(driver, tableId, row, column) {

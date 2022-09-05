@@ -6,18 +6,22 @@
 
 <ol>
   <li>
-    central age = x &plusmn; y
+    central age = t &plusmn; x | y
     <p></p>
     <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
-	<td>x:</td>
+	<td>t:</td>
 	<td class="translate" id="radial_t"></td>
       </tr>
       <tr>
+	<td>x:</td>
+	<td class="translate" id="radial_t_x"></td>
+      </tr>
+      <tr>
 	<td>y:</td>
-	<td><translate class="err"></translate></td>
+	<td class="translate" id="radial_t_y"></td>
       </tr>
       <tr class="hide4other hide4fissiontracks hide4UThHe">
 	<td>*</td>
@@ -44,18 +48,22 @@
   </li>
 
   <li>
-    dispersion = x &plusmn; y
+    dispersion = &omega; + u /- l %
     <p></p>
     <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
-	<td>x:</td>
+	<td>&omega;:</td>
 	<td class="translate" id="radial_omega"></td>
       </tr>
       <tr>
-	<td>y:</td>
-	<td><translate class="err"></translate></td>
+	<td>u:</td>
+	<td><translate class="omega_u"></translate></td>
+      </tr>
+      <tr>
+	<td>l:</td>
+	<td><translate class="omega_l"></translate></td>
       </tr>
     </table>
   </li>

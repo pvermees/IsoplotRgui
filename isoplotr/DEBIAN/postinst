@@ -1,11 +1,10 @@
 #! /bin/sh
-set -eu
 getent passwd wwwrunner || useradd -mr wwwrunner
-sudo -Hu wwwrunner sh -c 'mkdir -p ~/R'
+sudo -Hu wwwrunner sh -c 'mkdir ~/R'
 sudo -Hu wwwrunner sh -c 'echo R_LIBS_USER=~/R > ~/.Renviron'
 sudo -Hu wwwrunner Rscript -e "install.packages(pkgs=c('remotes'),lib='~/R')"
 sudo -Hu wwwrunner Rscript -e "remotes::install_github(repo=c('pvermees/IsoplotR','pvermees/IsoplotRgui'),lib='~/R')"
 /usr/local/sbin/updateIsoplotR.sh
 /usr/local/sbin/isoplotrctl enable
 /usr/local/sbin/isoplotrctl start
-systemctl try-restart nginx
+systemctl restart nginx

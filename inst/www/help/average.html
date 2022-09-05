@@ -6,7 +6,7 @@
 
 <ol>
   <li>
-    mean = &mu; &plusmn; x <span class="hide4randomeffects">(| y)</span>
+    mean = &mu; &plusmn; x | y <span class="hide4randomeffects">(| z)</span>
     <p></p>
     <translate class="where"></translate>
     <p></p>
@@ -17,11 +17,15 @@
       </tr>
       <tr>
 	<td>x:</td>
-	<td class="translate" id="mu_err"></td>
+	<td class="translate" id="average_mu_x"></td>
+      </tr>
+      <tr>
+	<td>y:</td>
+	<td class="translate" id="average_mu_y"></td>
       </tr>
       <tr class="hide4randomeffects">
-	<td>y:</td>
-	<td class="translate" id="mu_err_disp"></td>
+	<td>z:</td>
+	<td class="translate" id="average_mu_z"></td>
       </tr>
       <tr class="hide4other hide4fissiontracks hide4UThHe">
 	<td>*</td>
@@ -50,18 +54,22 @@
   </li>
 
   <li class="show4randomeffects">
-    dispersion = x &plusmn; y
+    dispersion = &omega; + &omega;<sub>u</sub> /- &omega;<sub>l</sub>
     <p></p>
     <translate class="where"></translate>
     <p></p>
     <table>
       <tr>
-	<td>x:</td>
+	<td>&omega;:</td>
 	<td class="translate" id="average_omega"></td>
       </tr>
       <tr>
-	<td>y:</td>
-	<td><translate class="err"></translate></td>
+	<td>&omega;<sub>u</sub>:</td>
+	<td><translate class="omega_u"></translate></td>
+      </tr>
+      <tr>
+	<td>&omega;<sub>l</sub>:</td>
+	<td><translate class="omega_l"></translate></td>
       </tr>
     </table>
   </li>
@@ -73,4 +81,4 @@
 
 Ludwig, K. R. User's manual for Isoplot 3.00:
 a geochronological toolkit for Microsoft Excel.
-<i>Berkeley Geochronology Center Special Publication</i>, 2003.
+<i>Berkeley Geochronology Center Special Pulication</i>, 2003.
