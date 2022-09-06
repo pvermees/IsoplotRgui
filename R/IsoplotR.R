@@ -215,17 +215,17 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        if (params$gcsettings$cutoffdisc != 0) {
+        if (params$gcsettings$cutoffdisc > 0) {
             opt <- params$gcsettings$discoption
             cutoff <- c(
-                params$gcsettings$mindisc[opt - 1],
-                params$gcsettings$maxdisc[opt - 1]
+                params$gcsettings$mindisc[opt],
+                params$gcsettings$maxdisc[opt]
             )
-            IsoplotR::discfilter(
-                option = opt,
-                cutoff = cutoff,
-                before = params$gcsettings$cutoffdisc == 1
-            )
+            args$cutoff.disc <- IsoplotR::discfilter(
+                 option = opt,
+                 cutoff = cutoff,
+                 before = params$gcsettings$cutoffdisc == 1
+           )
         }
     }
     if (params$geochronometer == "Pb-Pb") {
@@ -362,15 +362,14 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        if (params$gcsettings$cutoffdisc != 0) {
+        if (params$gcsettings$cutoffdisc > 0) {
             opt <- params$gcsettings$discoption
             args$cutoff.disc <- IsoplotR::discfilter(
-                option = opt,
-                before = params$gcsettings$cutoffdisc == 1,
-                cutoff = c(
-                    params$gcsettings$mindisc[opt - 1],
-                    params$gcsettings$maxdisc[opt - 1]
-                )
+                 option = opt,
+                 before = params$gcsettings$cutoffdisc == 1,
+                 cutoff = c(params$gcsettings$mindisc[opt],
+                            params$gcsettings$maxdisc[opt]
+                 )
             )
         }
     }
@@ -447,15 +446,15 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        opt <- params$gcsettings$discoption
-        args$cutoff.disc <- IsoplotR::discfilter(
-            option = opt,
-            before = params$gcsettings$cutoffdisc == 1,
-            cutoff = c(
-                params$gcsettings$mindisc[opt - 1],
-                params$gcsettings$maxdisc[opt - 1]
+        if (params$gcsettings$cutoffdisc>0){
+            opt <- params$gcsettings$discoption
+            args$cutoff.disc <- IsoplotR::discfilter(
+                 option = opt,
+                 before = params$gcsettings$cutoffdisc == 1,
+                 cutoff = c(params$gcsettings$mindisc[opt],
+                            params$gcsettings$maxdisc[opt])
             )
-        )
+        }
     }
     if (gc %in% c("U-Pb", "Pb-Pb")) {
         args$common.Pb <- params$gcsettings$commonPb
@@ -493,15 +492,15 @@ cad <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        opt <- params$gcsettings$discoption
-        args$cutoff.disc <- IsoplotR::discfilter(
-            option = opt,
-            before = params$gcsettings$cutoffdisc == 1,
-            cutoff = c(
-                params$gcsettings$mindisc[opt - 1],
-                params$gcsettings$maxdisc[opt - 1]
+        if (params$gcsettings$cutoffdisc>0){
+            opt <- params$gcsettings$discoption
+            args$cutoff.disc <- IsoplotR::discfilter(
+                 option = opt,
+                 before = params$gcsettings$cutoffdisc == 1,
+                 cutoff = c(params$gcsettings$mindisc[opt],
+                            params$gcsettings$maxdisc[opt])
             )
-        )
+        }
     }
     if (gc %in% c("U-Pb", "Pb-Pb")) {
         args$common.Pb <- params$gcsettings$commonPb
@@ -587,12 +586,12 @@ age <- function(fn, params, data, s2d, settings) {
     )
     gc <- params$geochronometer
     if (gc == "U-Pb" && params$pdsettings$showdisc != 0) {
-        IsoplotR::discfilter(
-            option = params$pdsettings$discoption,
-            before = params$pdsettings$showdisc == 1
+        args$discordance <- IsoplotR::discfilter(
+             option = params$pdsettings$discoption,
+             before = params$pdsettings$showdisc == 1
         )
     }
-    if (gc == "U-Th-He") {
+    if (gc != "U-Th-He") {
         args$exterr <- params$pdsettings$exterr
     }
     if (gc == "Th-U") {
