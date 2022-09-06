@@ -1314,7 +1314,7 @@ $(function(){
 	    $('#maxy').val(set.maxy);
 	    $('#exterr').prop('checked',set.exterr);
 	    $('#shownumbers').prop('checked',set.shownumbers);
-        setOption('#ellipsefill_option', set.ellipsefill.option);
+            setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
@@ -1502,7 +1502,9 @@ $(function(){
 	var cst = IsoplotR.constants;
 	set.oerr = getInt("#oerr");
 	set.alpha = getNumber("#alpha");
-	set.sigdig = getNumber("#sigdig");
+	if (['KDE','CAD','MDS'].indexOf(plotdevice) < 0){
+	    set.sigdig = getNumber("#sigdig");
+	}
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice == 'average' | plotdevice == 'KDE' |
