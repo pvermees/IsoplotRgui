@@ -1,9 +1,9 @@
-FROM pvermees/docker-isoplotr
+FROM r-base:4.2.1
 
 WORKDIR /isoplotrgui
 
 RUN ["Rscript",  "-e", \
-    "install.packages(c('shinylight','later'), \
+    "install.packages(c('IsoplotR','shinylight'), \
     repos='https://cran.rstudio.com')"]
 
 COPY DESCRIPTION /isoplotrgui/DESCRIPTION
