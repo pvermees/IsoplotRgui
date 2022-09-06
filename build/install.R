@@ -1,1 +1,1 @@
-install.packages(c('httpuv', 'IsoplotR'))
+install.packages(c('shinylight', 'IsoplotR'))

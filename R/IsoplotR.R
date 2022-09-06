@@ -630,17 +630,22 @@ age <- function(fn, params, data, s2d, settings) {
 #' @examples
 #' \donttest{IsoplotR()}
 #' @export
-IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
-    appDir <- system.file("www", package = "IsoplotRgui")
-    if (appDir == "") {
+IsoplotR <- function(
+    host = "0.0.0.0",
+    port = NULL,
+    timeout = Inf,
+    daemonize = !is.null(port)
+) {
+    appdir <- system.file("www", package = "IsoplotRgui")
+    if (appdir == "") {
         stop("Could not find www directory. Try re-installing `IsoplotRgui`.",
              call. = FALSE)
     }
     s <- shinylight::slServer(
         host = host,
         port = port,
-        appDir = appDir,
-        daemonize = !is.null(port),
+        appDir = appdir,
+        daemonize = daemonize,
         interface = list(
             concordia = concordia,
             radial = radialplot,
@@ -657,7 +662,7 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
             ages = age
         )
     )
-    extraMessage <- ""
+    extramessage <- NULL
     if (is.null(port)) {
         protocol <- "http://"
         if (grepl("://", host, fixed=TRUE)) {
@@ -665,11 +670,16 @@ IsoplotR <- function(host='0.0.0.0', port=NULL, timeout=Inf) {
         }
         port <- s$getPort()
         utils::browseURL(paste0(protocol,
-          if (host == '0.0.0.0') '127.0.0.1' else host,
+          if (host == "0.0.0.0") "127.0.0.1" else host,
           ":", port))
-        extraMessage <- "Call IsoplotRgui::stopIsoplotR() to stop serving IsoplotR\n"
+        extramessage <- (
+            "Call IsoplotRgui::stopIsoplotR() to stop serving IsoplotR"
+        )
     }
-    cat(sprintf("Listening on %s:%d\n%s", host, port, extraMessage))
+    message("Listening on ", host, ":", port)
+    if (!is.null(extramessage)) {
+        message(extramessage)
+    }
     invisible(s)
 }
 
@@ -704,9 +714,6 @@ stopIsoplotR <- function(server=NULL) {
 #' # this function runs indefinitely unless interrupted by the user.
 #' \dontrun{daemon(3839)}
 #' @export
-daemon <- function(port=NULL, host='127.0.0.1', timeout=30) {
-    IsoplotR(host=host, port=port, timeout=timeout)
-    while (TRUE) {
-        later::run_now(9999)
-    }
+daemon <- function(port = NULL, host = "127.0.0.1", timeout = 30) {
+    IsoplotR(host = host, port = port, timeout = timeout, daemonize = TRUE)
 }
