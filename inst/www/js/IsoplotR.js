@@ -1418,7 +1418,8 @@ $(function(){
 	    $('#verticals').prop('checked',set.verticals);
 	    $('#pch').val(set.pch);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    setRadio('colmap_option', set.colmap);
+	    $('#colmap_option option[value="'+set.colmap+'"]').
+		prop('selected', 'selected');
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
