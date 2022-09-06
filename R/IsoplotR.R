@@ -242,6 +242,7 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
     args <- list(
         x = getdata(params, data, s2d),
         oerr = params$oerr,
+        Th0i = params$gcsettings$Th0i,
         sigdig = params$sigdig,
         show.numbers = pd$shownumbers,
         transform = pd$transform,
@@ -256,8 +257,8 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
         model = pd$model,
         clabel = pd$clabel
     )
-    args$tlim <- gettimelimits(pd$mint, pd$maxt)
-    args$xlim <- getlimits(pd$min08, pd$max08)
+    if (pd$transform) args$xlim <- gettimelimits(pd$mint, pd$maxt)
+    else args$xlim <- getlimits(pd$min08, pd$max08)
     args$ylim <- getlimits(pd$min48, pd$max48)
     graphics::par(cex = cex)
     do.call(IsoplotR::evolution, args)

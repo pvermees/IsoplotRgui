@@ -126,8 +126,9 @@ function getRcommand(prefs) {
             };
         });
     } else if (geochronometer === 'Th-U') {
-        input.s2d.Th02 = gcsettings.Th02;
-        input.s2d.Th02U48 = gcsettings.Th02U48;
+        input.s2d.params.Th02i = gcsettings.Th02i;
+        input.s2d.params.U8Th2 = gcsettings.U8Th2;
+	input.s2d.params.Th02U48 = gcsettings.Th02U48;
     }
     if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
         input.cex = prefs.settings.par.cex;
