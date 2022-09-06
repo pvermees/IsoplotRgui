@@ -215,7 +215,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        if (params$gcsettings$cutoffdisc != 0) {
+        if (params$gcsettings$cutoffdisc > 0) {
             opt <- params$gcsettings$discoption
             cutoff <- c(
                 params$gcsettings$mindisc[opt],
@@ -362,7 +362,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        if (params$gcsettings$cutoffdisc != 0) {
+        if (params$gcsettings$cutoffdisc > 0) {
             opt <- params$gcsettings$discoption
             args$cutoff.disc <- IsoplotR::discfilter(
                  option = opt,
@@ -370,7 +370,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
                  cutoff = c(params$gcsettings$mindisc[opt],
                             params$gcsettings$maxdisc[opt]
                  )
-           )
+            )
         }
     }
     if (gc %in% c("U-Pb", "Pb-Pb")) {
@@ -446,15 +446,15 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        opt <- params$gcsettings$discoption
-        args$cutoff.disc <- IsoplotR::discfilter(
-             option = opt,
-             before = params$gcsettings$cutoffdisc == 1,
-             cutoff = c(
-                 params$gcsettings$mindisc[opt],
-                 params$gcsettings$maxdisc[opt]
-             )
-        )
+        if (params$gcsettings$cutoffdisc>0){
+            opt <- params$gcsettings$discoption
+            args$cutoff.disc <- IsoplotR::discfilter(
+                 option = opt,
+                 before = params$gcsettings$cutoffdisc == 1,
+                 cutoff = c(params$gcsettings$mindisc[opt],
+                            params$gcsettings$maxdisc[opt])
+            )
+        }
     }
     if (gc %in% c("U-Pb", "Pb-Pb")) {
         args$common.Pb <- params$gcsettings$commonPb
@@ -492,15 +492,15 @@ cad <- function(fn, params, data, s2d, settings, cex) {
         if (type == 4) {
             args$cutoff.76 <- params$gcsettings$cutoff76
         }
-        opt <- params$gcsettings$discoption
-        args$cutoff.disc <- IsoplotR::discfilter(
-             option = opt,
-             before = params$gcsettings$cutoffdisc == 1,
-             cutoff = c(
-                 params$gcsettings$mindisc[opt],
-                 params$gcsettings$maxdisc[opt]
-             )
-        )
+        if (params$gcsettings$cutoffdisc>0){
+            opt <- params$gcsettings$discoption
+            args$cutoff.disc <- IsoplotR::discfilter(
+                 option = opt,
+                 before = params$gcsettings$cutoffdisc == 1,
+                 cutoff = c(params$gcsettings$mindisc[opt],
+                            params$gcsettings$maxdisc[opt])
+            )
+        }
     }
     if (gc %in% c("U-Pb", "Pb-Pb")) {
         args$common.Pb <- params$gcsettings$commonPb
@@ -511,7 +511,6 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
     }
-    print(args)
     graphics::par(cex = cex)
     do.call(IsoplotR::cad, args)
 }
