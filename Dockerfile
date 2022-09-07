@@ -2,9 +2,8 @@ FROM r-base:4.2.1
 
 WORKDIR /isoplotrgui
 
-RUN ["Rscript",  "-e", \
-    "install.packages(c('IsoplotR','shinylight'), \
-    repos='https://cran.rstudio.com')"]
+RUN Rscript --vanilla -e \
+    "install.packages('shinylight', repos='https://cran.rstudio.com/')"
 
 COPY DESCRIPTION /isoplotrgui/DESCRIPTION
 COPY NAMESPACE /isoplotrgui/NAMESPACE
