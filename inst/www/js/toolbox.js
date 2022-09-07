@@ -8,13 +8,7 @@ function check(x,val){
 }
 
 function truefalse(id){
-    var out = $(id).prop('checked') ? 'TRUE' : 'FALSE';
-    return(out);
-}
-
-function falsetrue(id){
-    var out = $(id).prop('checked') ? 'FALSE' : 'TRUE';
-    return(out);
+    return $(id).prop('checked');
 }
 
 function getOption(id){
@@ -23,8 +17,21 @@ function getOption(id){
     return(out);
 }
 
-function getNumber(id){
-    return(Number($(id).val()));
+function setOption(id, val) {
+    $(id + ' option[value=' + val + ']').prop('selected', 'selected');
+}
+
+function getRadio(name){
+    return $('input[name="' + name + '"]:checked').val();
+}
+
+function setRadio(name, val) {
+    $('input[name="' + name + '"][value="' + val +'"]').prop('checked', true);
+}
+
+function getNumber(id, def){
+    var x = Number($(id).val());
+    return isNaN(x) && typeof(def) !== 'undefined'? def : x;
 }
 
 function getInt(id){

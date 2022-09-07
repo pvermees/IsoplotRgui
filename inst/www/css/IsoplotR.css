@@ -171,3 +171,91 @@ cn {
 .hidden {
     display:none;
 }
+
+.background_rainbow {
+    background: linear-gradient(to right, #F00, #F80, #FF0, #0F0, #0FF, #00F, #F0F);
+    display: flex;
+    justify-content: center;
+}
+
+.background_rainbow_reversed {
+    background: linear-gradient(to right, #F0F, #00F, #0FF, #0F0, #FF0, #F80, #F00);
+    display: flex;
+    justify-content: center;
+}
+
+.background_heat {
+    background: linear-gradient(to right, #800, #F00, #F80, #FF0, #FF8, #FFF);
+    display: flex;
+    justify-content: center;
+}
+
+.background_heat_reversed {
+    background: linear-gradient(to right, #FFF, #FF8, #FF0, #F80, #F00, #800);
+    display: flex;
+    justify-content: center;
+}
+
+.background_viridis {
+    background: linear-gradient(to right, #440154, #46337E, #365C8D, #277F8E, #1FA187, #4AC16D, #9FDA3A, #FDE725);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_viridis_reversed {
+    background: linear-gradient(to right, #FDE725, #9FDA3A, #4AC16D, #1FA187, #277F8E, #365C8D, #46337E, #440154);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rocket {
+    background: linear-gradient(to right, #03051A, #36193E, #701F57, #AE1759, #E13342, #F37651, #F6B48E, #FAEBDD);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rocket_reversed {
+    background: linear-gradient(to right, #FAEBDD, #F6B48E, #F37651, #E13342, #AE1759, #701F57, #36193E, #03051A);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_cm {
+    background: linear-gradient(to right, #80FFFF, #FFFFFF, #FF80FF);
+    display: flex;
+    justify-content: center;
+}
+
+.background_cm_reversed {
+    background: linear-gradient(to right, #FF80FF, #FFFFFF, #80FFFF);
+    display: flex;
+    justify-content: center;
+}
+
+.background_topo {
+    background: linear-gradient(to right, #4C00FF, #004CFF, #00E5FF, #00FF4D, #4DFF00, #E6FF00, #FFFF00, #FFDE59, #FFE0B3);
+    display: flex;
+    justify-content: center;
+}
+
+.background_topo_reversed {
+    background: linear-gradient(to right, #FFE0B3, #FFDE59, #FFFF00, #E6FF00, #4DFF00, #00FF4D, #00E5FF, #004CFF, #4C00FF);
+    display: flex;
+    justify-content: center;
+}
+
+.background_terrain {
+    background: linear-gradient(to right, #00A600, #E6E600, #EAB64E, #EEB99F, #F2F2F2);
+    display: flex;
+    justify-content: center;
+}
+
+.background_terrain_reversed {
+    background: linear-gradient(to right, #F2F2F2, #EEB99F, #EAB64E, #E6E600, #00A600);
+    display: flex;
+    justify-content: center;
+}

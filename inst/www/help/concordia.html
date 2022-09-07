@@ -7,28 +7,22 @@
 
   <ol>
     <li>
-      concordia age = &tau; &plusmn; x | y | z
+      concordia age = x &plusmn; y (| z)
       <p></p>
       <translate class="where"></translate>
       <p></p>
       <table>
 	<tr>
-	  <td>&tau;:</td>
+	  <td>x:</td>
 	  <td class="translate" id="conc_t"></td>
 	</tr>
 	<tr>
-	  <td>x:</td>
-	  <td class="translate" id="conc_t_x"></td>
-	</tr>
-	<tr>
 	  <td>y:</td>
-	  <td class="translate" id="conc_t_y"></td>
+	  <td><translate class="err"></translate></td>
 	</tr>
 	<tr>
-	  <td>
-	    z:
-	  </td>
-	  <td class="translate" id="conc_t_z"></td>
+	  <td>z:</td>
+	  <td><translate class="err_disp"></translate></td>
 	</tr>
       </table>
     </li>
@@ -83,49 +77,48 @@
     <li>
       <span class="show4wetherill hide4terawasserburg hide4UThPbconcordia">
 	<span class="translate" id="lowint">lower intercept</span>
-	= &tau; &plusmn; x | y
+	= x &plusmn; y 
 	<span class="hidden show4model1 hide4model2 hide4model3">
-	  | z 
+	  (| z)
 	</span><br>
 	<span class="translate" id="upint">upper intercept</span>
-	= &tau; &plusmn; x | y
+	= x &plusmn; y 
 	<span class="hidden show4model1 hide4model2 hide4model3">
-	  | z
+	  (| z)
 	</span><br>
       </span>
       <span class="hide4wetherill show4terawasserburg show4UThPbconcordia">
-	age = &tau;
-	&plusmn; x | y
+	age = x	&plusmn; y 
 	<span class="hidden show4model1 hide4model2 hide4model3">
-	  | z
+	  (| z)
 	</span><br>
 	<span class="show4UPb1 show4UPb2 show4UPb3 hide4UPb4 
 		     hide4UPb5 hide4UPb6 hide4UPb7 hide4UPb8">
-	  (<sup>207</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = &tau; &plusmn; x | y
+	  (<sup>207</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = x &plusmn; y 
 	  <span class="hidden show4model1 hide4model2 hide4model3">
-	    | z
+	    (| z)
 	  </span><br>
 	</span>
 	<span class="hide4UPb1 hide4UPb2 hide4UPb3 show4UPb4 
 		     show4UPb5 show4UPb6 hide4UPb7 hide4UPb8">
-	  (<sup>206</sup>Pb/<sup>204</sup>Pb)<sub>o</sub> = &tau; &plusmn; x | y
+	  (<sup>206</sup>Pb/<sup>204</sup>Pb)<sub>o</sub> = x &plusmn; y 
 	  <span class="hidden show4model1 hide4model2 hide4model3">
-	    | z
+	    (| z)
 	  </span><br>
-	  (<sup>207</sup>Pb/<sup>204</sup>Pb)<sub>o</sub> = &tau; &plusmn; x | y
+	  (<sup>207</sup>Pb/<sup>204</sup>Pb)<sub>o</sub> = x &plusmn; y 
 	  <span class="hidden show4model1 hide4model2 hide4model3">
-	    | z
+	    (| z)
 	  </span><br>
 	</span>
 	<span class="hide4UPb1 hide4UPb2 hide4UPb3 hide4UPb4 
 		     hide4UPb5 hide4UPb6 show4UPb7 show4UPb8">
-	  (<sup>208</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = &tau; &plusmn; x | y
+	  (<sup>208</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = x &plusmn; y 
 	  <span class="hidden show4model1 hide4model2 hide4model3">
-	    | z
+	    (| z)
 	  </span><br>
-	  (<sup>208</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = &tau; &plusmn; x | y
+	  (<sup>208</sup>Pb/<sup>206</sup>Pb)<sub>o</sub> = x &plusmn; y 
 	  <span class="hidden show4model1 hide4model2 hide4model3">
-	    | z
+	    (| z)
 	  </span><br>
 	</span>
       </span>
@@ -134,22 +127,16 @@
       <p></p>
       <table>
 	<tr>
-	  <td>&tau;:</td>
+	  <td>x:</td>
 	  <td class="translate" id="disc_t"></td>
 	</tr>
 	<tr>
-	  <td>x:</td>
-	  <td class="translate" id="disc_x"></td>
-	</tr>
-	<tr>
 	  <td>y:</td>
-	  <td class="translate" id="disc_y"></td>
+	  <td><translate class="err"></translate></td>
 	</tr>
 	<tr class="show4model1 hide4model2 hide4model3">
-	  <td>
-	    z:
-	  </td>
-	  <td class="translate" id="disc_z"></td>
+	  <td>z:</td>
+	  <td><translate class="err_disp"></translate></td>
 	</tr>
       </table>
     </li>
@@ -172,22 +159,18 @@
     </li>
 
     <li class="hide4model1 hide4model2 show4model3">
-      overdispersion = &omega; + u /- l Ma</p>
+      overdispersion = x &plusmn; y Ma</p>
       <p></p>
       <translate class="where"></translate>
       <p></p>
       <table>
 	<tr>
-	  <td>&omega;:</td>
+	  <td>x:</td>
 	  <td class="translate" id="disc_omega"></td>
 	</tr>
 	<tr>
-	  <td>u:</td>
-	  <td><translate class="omega_u"></translate></td>
-	</tr>
-	<tr>
-	  <td>l:</td>
-	  <td><translate class="omega_l"></translate></td>
+	  <td>y:</td>
+	  <td><translate class="err"></translate></td>
 	</tr>
       </table>
     </li>

@@ -2,11 +2,38 @@
 
 &nbsp;<help id="help_ArAr_formats"><translate class="input"></translate></help>
 <select id="ArAr-formats" onchange="$.chooseFormat('#ArAr-formats','Ar-Ar');">
-  <option class="translate" id="ArAr_format_1" value=1'></option>
+  <option class="translate" id="ArAr_format_1" value=1></option>
   <option class="translate" id="ArAr_format_2" value=2></option>
   <option class="translate" id="ArAr_format_3" value=3></option>
 </select>
+
 <p></p>
+
+&nbsp;<help class="translate" id="help_ierr"></help>
+<select id="ierr" onchange="$.switchErr();">
+  <option class="translate" id="1se_abs" value=1></option>
+  <option class="translate" id="2se_abs" value=2></option>
+  <option class="translate" id="1se_rel" value=3></option>
+  <option class="translate" id="2se_rel" value=4></option>
+</select>
+
+<p></p>
+
+<div class="hide4kde hide4cad">
+  &nbsp;<help class="translate" id="help_oerr"></help>
+  <select id="oerr">
+    <option class="translate" id="1se_abs" value=1></option>
+    <option class="translate" id="2se_abs" value=2></option>
+    <option class="translate" id="ci_abs" value=3></option>
+    <option class="translate" id="1se_rel" value=4></option>
+    <option class="translate" id="2se_rel" value=5></option>
+    <option class="translate" id="ci_rel" value=6></option>
+  </select>
+  <p></p>
+  &nbsp;<help class="translate" id="help_alpha"></help>
+  <input type="text" id="alpha">
+  <p></p>
+</div>
 
 <table>
 <tr><td>&nbsp;<help class="translate" id="help_Ar40Ar36"></help></td>

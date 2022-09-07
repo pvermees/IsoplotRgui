@@ -14,8 +14,35 @@
 
 <p></p>
 
+&nbsp;<help class="translate" id="help_ierr"></help>
+<select id="ierr" onchange="$.switchErr();">
+  <option class="translate" id="1se_abs" value=1></option>
+  <option class="translate" id="2se_abs" value=2></option>
+  <option class="translate" id="1se_rel" value=3></option>
+  <option class="translate" id="2se_rel" value=4></option>
+</select>
+
+<p></p>
+
+<div class="hide4kde hide4cad">
+  &nbsp;<help class="translate" id="help_oerr"></help>
+  <select id="oerr">
+    <option class="translate" id="1se_abs" value=1></option>
+    <option class="translate" id="2se_abs" value=2></option>
+    <option class="translate" id="ci_abs" value=3></option>
+    <option class="translate" id="1se_rel" value=4></option>
+    <option class="translate" id="2se_rel" value=5></option>
+    <option class="translate" id="ci_rel" value=6></option>
+  </select>
+  <p></p>
+  &nbsp;<help class="translate" id="help_alpha"></help>
+  <input type="text" id="alpha">
+  <p></p>
+</div>
+
 <div class="hide4isochron">
-  &nbsp;<help class="translate hide4concplot" id="help_common_Pb_option"></help><help class="translate hidden show4concplot" id="help_concordia_projection_option"></help>
+  &nbsp;<help class="translate hide4concplot" id="help_common_Pb_option"></help>
+  <help class="translate hidden show4concplot" id="help_concordia_projection_option"></help>
   <select id="common-Pb-option" onchange="$.register();">
     <option class="translate" id="common_Pb_correction_none" value=0></option>
     <option class="translate" id="common_Pb_correction_nominal" value=1></option>
