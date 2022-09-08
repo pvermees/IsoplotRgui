@@ -1,4 +1,4 @@
-FROM r-base:4.2.1
+FROM pvermees/docker-isoplotr
 
 WORKDIR /isoplotrgui
 
