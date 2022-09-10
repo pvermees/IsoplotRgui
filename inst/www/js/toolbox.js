@@ -58,6 +58,8 @@ function cleanbool(n){
 	    return(false);
 	} else if (n==="'black'"){
 	    return("#000000");
+	} else if (n==="rgb(0,1,1,0.5)"){
+	    return("#00FFFF");
 	} else {
 	    return(n);
 	}
