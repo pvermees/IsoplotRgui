@@ -49,14 +49,35 @@ function setSignificantDigits(x,n){
     return Number.parseFloat(x).toPrecision(n);
 }
 
+// temporary fix for migration from 4.4 to 5.0
+function cleanbool(n){
+    if ($.type(n) !== 'object'){
+	if (n==='TRUE'){
+	    return(true);
+	} else if (n==='FALSE'){
+	    return(false);
+	} else if (n==="'black'"){
+	    return("#000000");
+	} else {
+	    return(n);
+	}
+    } else {
+	for (var k in n){
+	    n[k] = cleanbool(n[k]);
+	}
+	return(n)
+    }
+}
+
 function patchJSON(n,o){
     if ($.type(o) !== 'object'){
-        return n;
+        return cleanbool(n);
     }
     for (var k in o){
-	 if (k in n){
-	     o[k] = (k === 'data') ? n[k] : patchJSON(n[k],o[k]);
-	 }
+	if (k in n){
+	    o[k] = (k==='data' | $.type(n[k])!== 'object') ?
+		cleanbool(n[k]) :  patchJSON(n[k],o[k]);
+	}
     }
     return o;
 }
