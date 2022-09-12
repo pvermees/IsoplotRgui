@@ -17,6 +17,12 @@
             "prefix": "es",
             "name": "Español",
             "short_name": "ES"
+        },
+        {
+            "code": "cy",
+            "prefix": "cy",
+            "name": "Cymraeg",
+            "short_name": "CY"
         }
     ],
     "translation_link": "http://lgc.es.ucl.ac.uk/weblate/translate/isoplotrgui/${FILENAME}/${LANGUAGE}?q=context%3A${ID}"

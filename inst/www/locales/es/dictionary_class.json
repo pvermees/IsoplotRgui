@@ -7,8 +7,6 @@
     "where": "donde:",
     "references": "<u>Referencias:</u>",
     "legend": "<u>Leyenda:</u>",
-    "omega_u": "ancho de la mitad superor de un (1-&alpha;)% intervalo de confianza para &omega;.",
-    "omega_l": "ancho de la mitad inferior de un (1-&alpha;)% intervalo de confianza para &omega;.",
     "C": "Variable opcional para ser usada como colores de relleno en gráficos de isocrón y radiales.",
     "inverse": "Isocrona inversa?",
     "pch": "Trazar caracter:"
