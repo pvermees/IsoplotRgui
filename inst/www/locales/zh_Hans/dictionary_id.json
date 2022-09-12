@@ -426,7 +426,6 @@
     "regression_s_x": "s的估算误差(&sigma;)。",
     "regression_s_y": "合适自由度下s的100(1-&alpha;)%置信区间。",
     "regression_s_z": "过度离散下s的近似100(1-&alpha;)%置信区间，其中z=y&radic;MSWD。",
-    "regression_i": "线性回归获得截距",
     "regression_i_x": "i的估算误差(&sigma;)。",
     "regression_i_y": "合适自由度下i的100(1-&alpha;)%置信区间。",
     "regression_i_z": "过度离散下i的近似100(1-&alpha;)%置信区间，其中z=y&radic;MSWD（当MSWD>1时报道）。",
