@@ -623,10 +623,11 @@ age <- function(fn, params, data, s2d, settings) {
 #' provided at \url{https://www.ucl.ac.uk/~ucfbpve/isoplotr/}
 #' @param host IP address of the virtual server, default is 0.0.0.0
 #' @param port Internet port of the virtual server. If not defined, a
-#' random free port will be chosen and the browser will be opened
-#' to show the GUI.
+#'     random free port will be chosen and the browser will be opened
+#'     to show the GUI.
 #' @param timeout How long (in wall-clock time) an operation may take
-#' before returning with a timeout error. Default: no limit.
+#'     before returning with a timeout error. Default: no limit.
+#' @param daemonize logical. If \code{TRUE}, runs as daemon.
 #' @return server object
 #' @examples
 #' \donttest{IsoplotR()}

@@ -4,7 +4,12 @@
 \alias{IsoplotR}
 \title{Start the \code{IsoplotR} GUI}
 \usage{
-IsoplotR(host = "0.0.0.0", port = NULL, timeout = Inf)
+IsoplotR(
+  host = "0.0.0.0",
+  port = NULL,
+  timeout = Inf,
+  daemonize = !is.null(port)
+)
 }
 \arguments{
 \item{host}{IP address of the virtual server, default is 0.0.0.0}
@@ -15,6 +20,8 @@ to show the GUI.}
 
 \item{timeout}{How long (in wall-clock time) an operation may take
 before returning with a timeout error. Default: no limit.}
+
+\item{daemonize}{logical. If \code{TRUE}, runs as daemon.}
 }
 \value{
 server object
