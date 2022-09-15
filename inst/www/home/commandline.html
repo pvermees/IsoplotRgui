@@ -9,60 +9,60 @@ install.packages('IsoplotR')
 <span class="translate" id="commandline_2"></span>
 
 <pre class="prettyprint">
-# load the IsoplotR package:  
-library(IsoplotR)  
+# load the IsoplotR package:
+library(IsoplotR)
 
 # navigate to the system directory that stores the built-in data files:  
-setwd(system.file(package='IsoplotR'))  
+setwd(system.file(package='IsoplotR'))
 
 # Rb-Sr isochron:
-RbSr <- read.data('RbSr1.csv',method='Rb-Sr',format=1)  
-isochron(RbSr)  
+RbSr <- read.data('RbSr1.csv',method='Rb-Sr',format=1)
+isochron(RbSr)
 
 # Weighted mean plot:
-meandat <- read.data('LudwigMean.csv',method='other')  
-weightedmean(meandat)  
+meandat <- read.data('LudwigMean.csv',method='other')
+weightedmean(meandat)
 
 # Cumulative Age Distribution:
-densdat <- read.data('LudwigKDE.csv',method='other')  
-cad(densdat)  
+densdat <- read.data('LudwigKDE.csv',method='other')
+cad(densdat)
 
 # Kernel Density Estimate:
-mixture <- read.data('LudwigMixture.csv',method='other')  
-kde(densdat,pch='|')  
+kde(densdat,rug=TRUE)
 
 # Radial plot with minimum age estimate:
+mixture <- read.data('LudwigMixture.csv',method='other')
 radialplot(mixture,k='min',bg='yellow')  
 
 # 40Ar/39Ar release spectrum:
-ArAr <- read.data('ArAr3.csv',method='Ar-Ar',format=3)  
-agespectrum(ArAr)  
+ArAr <- read.data('ArAr3.csv',method='Ar-Ar',format=3)
+agespectrum(ArAr)
 
 # Concordia diagram of common-Pb corrected data with concordia age:
-UPb <- read.data('UPb6.csv',method='U-Pb',format=6)  
+UPb <- read.data('UPb6.csv',method='U-Pb',format=6)
 concordia(UPb,common.Pb=2,show.age=1,exterr=TRUE)
 
 # U-series evolution diagram:
-ThU <- read.data('ThU1.csv',method='Th-U',format=1)  
-evolution(ThU,levels=ThU$x[,'U238Th232'],  
-          clabel=expression(paste(""^"238","U/"^"232","Th")))  
+ThU <- read.data('ThU1.csv',method='Th-U',format=1)
+evolution(ThU,levels=ThU$x[,'U238Th232'],
+          clabel=expression(paste(""^"238","U/"^"232","Th")))
 
 # U-series age vs. initial 234U/238U diagram:
 evolution(ThU,transform=TRUE,detrital=TRUE,  
           ellipse.col=rgb(1,0,0,0.2),  
-          show.numbers=TRUE,isochron=TRUE)  
+          show.numbers=TRUE,isochron=TRUE)
 
 # Logratio plot of U-Th-Sm-He data:
-UThSmHe <- read.data('UThSmHe.csv',method='U-Th-He')  
+UThSmHe <- read.data('UThSmHe.csv',method='U-Th-He')
 helioplot(UThSmHe,model=3,  
           levels=log10(UThSmHe[,'Sm']),  
-          clabel=expression("log[Sm]"))  
+          clabel=expression("log[Sm]"))
 
 # Ternary diagram of U-Th-Sm-He data: 
-helioplot(UThSmHe,model=1,logratio=FALSE,ellipse.col='lightblue')  
+helioplot(UThSmHe,model=1,logratio=FALSE,ellipse.col='lightblue')
 
 # Multidimensional Scaling (MDS) configuration of detrital ages:
-DZ <- read.data('DZ.csv',method='detritals')  
+DZ <- read.data('DZ.csv',method='detritals')
 mds(DZ)
 </pre>
 
