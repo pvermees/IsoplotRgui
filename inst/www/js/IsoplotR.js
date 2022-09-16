@@ -1723,8 +1723,7 @@ $(function(){
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
-                ramp_end: $('#ellipsefill_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
+                ramp_end: $('#ellipsefill_ramp_end').val()
             };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
@@ -1755,8 +1754,7 @@ $(function(){
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
-                ramp_end: $('#ellipsefill_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
+                ramp_end: $('#ellipsefill_ramp_end').val()
             };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
@@ -1773,8 +1771,7 @@ $(function(){
             pdsettings.bg = {
                 option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),
-                ramp_end: $('#bg_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
+                ramp_end: $('#bg_ramp_end').val()
             };
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings["cex"] = getNumber('#pcex');
@@ -1792,8 +1789,7 @@ $(function(){
 	    pdsettings.bg = {
                 option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),
-                ramp_end: $('#bg_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
+                ramp_end: $('#bg_ramp_end').val()
             };
 	    pdsettings.outliercol = $('#outliercol').val();
         pdsettings.rect_alpha = getNumber('#rect_alpha', 1);
@@ -1808,8 +1804,7 @@ $(function(){
 	    pdsettings.bg = {
                 option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),
-                ramp_end: $('#bg_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
+                ramp_end: $('#bg_ramp_end').val()
             };
 	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
             pdsettings.nonplateau_alpha = getNumber('#nonplateau_alpha', 1);
@@ -1885,8 +1880,7 @@ $(function(){
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
-                ramp_end: $('#ellipsefill_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
+                ramp_end: $('#ellipsefill_ramp_end').val()
             };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#helioplot-models");
@@ -1908,8 +1902,7 @@ $(function(){
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
                 ramp_start: $('#ellipsefill_ramp_start').val(),
-                ramp_end: $('#ellipsefill_ramp_end').val(),
-                reverse: $('#ramp_reverse').prop('checked')
+                ramp_end: $('#ellipsefill_ramp_end').val()
             };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#evolution-isochron-models");

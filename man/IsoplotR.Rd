@@ -5,7 +5,7 @@
 \title{Start the \code{IsoplotR} GUI}
 \usage{
 IsoplotR(
-  host = "0.0.0.0",
+  host = if (daemonize) "0.0.0.0" else "127.0.0.1",
   port = NULL,
   timeout = Inf,
   daemonize = !is.null(port)
