@@ -633,7 +633,7 @@ age <- function(fn, params, data, s2d, settings) {
 #' \donttest{IsoplotR()}
 #' @export
 IsoplotR <- function(
-    host = "0.0.0.0",
+    host = if (daemonize) "0.0.0.0" else "127.0.0.1",
     port = NULL,
     timeout = Inf,
     daemonize = !is.null(port)
@@ -664,24 +664,6 @@ IsoplotR <- function(
             ages = age
         )
     )
-    extramessage <- NULL
-    if (is.null(port)) {
-        protocol <- "http://"
-        if (grepl("://", host, fixed=TRUE)) {
-            protocol <- ""
-        }
-        port <- s$getPort()
-        utils::browseURL(paste0(protocol,
-          if (host == "0.0.0.0") "127.0.0.1" else host,
-          ":", port))
-        extramessage <- (
-            "Call IsoplotRgui::stopIsoplotR() to stop serving IsoplotR"
-        )
-    }
-    message("Listening on ", host, ":", port)
-    if (!is.null(extramessage)) {
-        message(extramessage)
-    }
     invisible(s)
 }
 
