@@ -172,7 +172,7 @@
     "help_shownumbers": "将标签添加每一列数据对应的数据点或误差椭圆（即输入表中的行号）。",
     "help_adaptive": "自适应KDE允许内核的带宽沿时间轴变化，因此在密集采样区域中密度估计的“分辨率”很高（并且带宽很小），并且在稀疏采样区域中分辨率很低（大带宽）。IsoplotR使用Abramson (1984)开发的一种简单算法来修改带宽，该带宽与非自适应“导频(pilot)”KDE的平方根成比例。",
     "help_pos": "标签的位置说明符。值1，2，3和4分别表示MDS坐标下方，左侧，上方和右侧的位置。",
-    "help_hide_detritals": "以逗号分隔的样本名称表或列号表，应从图中省略。 示例：<tt>1, 2, 15</tt>或 <tt>'N1', 'N2', 'T8'</tt>。",
+    "help_hide_detritals": "以逗号分隔的样本名称表或列号表，应从图中省略。 示例：<tt>1, 2, 15</tt>或 <tt>N1,N2,T8</tt>。",
     "help_randomeffects": "<ul><li>\n若选中，则使用具有两个不确定性来源（分析不确定度和过度离散项）的随机效应模型计算加权平均值。\n</li><li>\n否则将计算普通加权平均值，任何过度分散将被归因于低估分析不确定性。后一种方法是Isoplot采用的方法。\n</li></ul>",
     "help_concordia_type": "<ol>\n<li>Wetherill谐和曲线: <sup>206</sup>Pb/<sup>238</sup>U vs. <sup>207</sup>Pb/<sup>235</sup>U</li>\n<li>Tera-Wasserburg谐和曲线: <sup>207</sup>Pb/<sup>206</sup>Pb vs. <sup>238</sup>U/<sup>206</sup>Pb</li>\n<li class='hidden show4UPb7 show4UPb8'>U-Th-Pb谐和曲线: <sup>208</sup>Pb/<sup>232</sup>Th vs. <sup>206</sup>Pb/<sup>238</sup>U</li>\n</ol>",
     "help_LambdaLu176": "<sup>176</sup>Lu衰减常数的默认值及其标准误差取自Söderlund et al. (2004)。",
