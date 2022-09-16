@@ -123,6 +123,13 @@ gettimelimits <- function(min, max) {
     ))
 }
 
+str2vec <- function(s) {
+    if (s == "auto") return(NULL)
+    v <- unlist(strsplit(s,split=','))
+    if (all(coerceabletonumeric(v))) return(as.numeric(v))
+    else return(v)
+}
+
 notauto <- function(v) {
     return(if (v == "auto") NULL else as.numeric(v))
 }
@@ -166,7 +173,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     args$tlim <- gettimelimits(pd$mint, pd$maxt)
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
-    args$ticks <- notauto(pd$ticks)
+    args$ticks <- str2vec(pd$ticks)
     if (pd$anchor == 1) {
         args$anchor <- 1
     } else if (pd$anchor == 2) {
@@ -421,9 +428,8 @@ kde <- function(fn, params, data, s2d, settings, cex) {
     gc <- params$geochronometer
     args <- list(
         x = getdata(params, data, s2d),
-        hide =
-            if (gc == "detritals") params$gcsettings$hide
-            else omitter(data$data, nc, c("x", "X")),
+        hide = if (gc == "detritals") str2vec(params$gcsettings$hide)
+               else omitter(data$data, nc, c("x", "X")),
         rug = if (gc == "detritals") pd$rugdetritals else pd$rug,
         log = pd$log,
         binwidth = naifauto(pd$binwidth),
@@ -508,7 +514,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     }
     if (gc == "detritals") {
         args$col <- pd$colmap
-        args$hide <- params$hide
+        args$hide <- str2vec(params$hide)
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
     }
@@ -566,7 +572,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
         pch = getpch(pd$pch),
         col = pd$col,
         bg = pd$bg,
-        hide = params$hide
+        hide = str2vec(params$hide)
     )
     if (!shepard) {
         args$cex <- pd$cex
