@@ -57,9 +57,9 @@ applysettings <- function(params, settings) {
         if (gcsettings$format == 3) {
             v <- settings$iratio$U238U235
             IsoplotR::settings("iratio", "U238U235", v[[1]], v[[2]])
-            v <- settings$iratio$U238
+            v <- settings$lambda$U238
             IsoplotR::settings("lambda", "U238", v[[1]], v[[2]])
-            v <- settings$iratio$fission
+            v <- settings$lambda$fission
             IsoplotR::settings("lambda", "fission", v[[1]], v[[2]])
             mineral <- gcsettings$mineral
             v <- settings$etchfact[[mineral]]
@@ -71,13 +71,15 @@ applysettings <- function(params, settings) {
         }
         return(NULL)
     }
-    mapply(function(mineral) {
-        v <- settings$iratio[[mineral]]
-        IsoplotR::settings("iratio", mineral, v[[1]], v[[2]])
+    mapply(function(ratio) {
+        print(ratio)
+        v <- settings$iratio[[ratio]]
+        IsoplotR::settings("iratio", ratio, v[[1]], v[[2]])
     }, settingsiratio[[geochronometer]])
-    mapply(function(mineral) {
-        v <- settings$lambda[[mineral]]
-        IsoplotR::settings("lambda", mineral, v[[1]], v[[2]])
+    mapply(function(nuclide) {
+        print(nuclide)
+        v <- settings$lambda[[nuclide]]
+        IsoplotR::settings("lambda", nuclide, v[[1]], v[[2]])
     }, settingslambda[[geochronometer]])
     IsoplotR::settings("alpha", params$alpha)
 }
