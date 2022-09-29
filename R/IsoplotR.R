@@ -12,31 +12,27 @@ omitter <- function(dat, nc, flags = c("x", "X")) {
 }
 
 settingsiratio <- list(
-    "U-Pb" = c("Pb207Pb206", "Pb208Pb206", "Pb208Pb207"),
-    "Pb-Pb" = c("Pb206Pb204", "Pb207Pb204", "U238U235"),
+    "U-Pb" = c("U238U235", "Pb207Pb206", "Pb206Pb204",
+               "Pb207Pb204", "Pb208Pb206", "Pb208Pb207"),
+    "Pb-Pb" = c("U238U235", "Pb206Pb204", "Pb207Pb204"),
     "Th-U" = c(),
     "Ar-Ar" = c("Ar40Ar36"),
     "Th-Pb" = c("Pb208Pb204"),
     "K-Ca" = c("Ca40Ca44"),
-    "Sm-Nd" = c("Sm144Sm152", "Sm147Sm152", "Sm148Sm152",
-        "Sm149Sm152", "Sm150Sm152", "Sm154Sm152", "Nd142Nd144",
-        "Nd143Nd144", "Nd145Nd144", "Nd146Nd144", "Nd148Nd144",
-        "Nd150Nd144"
-    ),
-    "Re-Os" = c("Os184Os192", "Os186Os192", "Os187Os192",
-        "Os188Os192", "Os190Os192"
-    ),
+    "Sm-Nd" = c("Sm144Sm152", "Sm147Sm152", "Sm148Sm152","Sm149Sm152",
+                "Sm150Sm152", "Sm154Sm152", "Nd142Nd144","Nd143Nd144",
+                "Nd145Nd144", "Nd146Nd144", "Nd148Nd144","Nd150Nd144"),
+    "Re-Os" = c("Re185Re187", "Os184Os192", "Os186Os192",
+                "Os187Os192", "Os188Os192", "Os190Os192"),
     "Rb-Sr" = c("Rb85Rb87", "Sr84Sr86", "Sr87Sr86", "Sr88Sr86"),
-    "Lu-Hf" = c(
-        "Lu176Lu175", "Hf174Hf177", "Hf176Hf177",
-        "Hf178Hf177", "Hf179Hf177", "Hf180Hf177"
-    ),
+    "Lu-Hf" = c("Lu176Lu175", "Hf174Hf177", "Hf176Hf177",
+                "Hf178Hf177", "Hf179Hf177", "Hf180Hf177"),
     "U-Th-He" = c("U238U235"),
     "detritals" = c()
 )
 
 settingslambda <- list(
-    "U-Pb" = c("Th232", "U234", "Th230", "Ra226", "Pa231"),
+    "U-Pb" = c("U238", "U235", "Th232", "U234", "Th230", "Ra226", "Pa231"),
     "Pb-Pb" = c("U238", "U235"),
     "Th-U" = c("Th230", "U234"),
     "Ar-Ar" = c("K40"),
@@ -57,9 +53,9 @@ applysettings <- function(params, settings) {
         if (gcsettings$format == 3) {
             v <- settings$iratio$U238U235
             IsoplotR::settings("iratio", "U238U235", v[[1]], v[[2]])
-            v <- settings$iratio$U238
+            v <- settings$lambda$U238
             IsoplotR::settings("lambda", "U238", v[[1]], v[[2]])
-            v <- settings$iratio$fission
+            v <- settings$lambda$fission
             IsoplotR::settings("lambda", "fission", v[[1]], v[[2]])
             mineral <- gcsettings$mineral
             v <- settings$etchfact[[mineral]]
@@ -71,13 +67,13 @@ applysettings <- function(params, settings) {
         }
         return(NULL)
     }
-    mapply(function(mineral) {
-        v <- settings$iratio[[mineral]]
-        IsoplotR::settings("iratio", mineral, v[[1]], v[[2]])
+    mapply(function(ratio) {
+        v <- settings$iratio[[ratio]]
+        IsoplotR::settings("iratio", ratio, v[[1]], v[[2]])
     }, settingsiratio[[geochronometer]])
-    mapply(function(mineral) {
-        v <- settings$lambda[[mineral]]
-        IsoplotR::settings("lambda", mineral, v[[1]], v[[2]])
+    mapply(function(nuclide) {
+        v <- settings$lambda[[nuclide]]
+        IsoplotR::settings("lambda", nuclide, v[[1]], v[[2]])
     }, settingslambda[[geochronometer]])
     IsoplotR::settings("alpha", params$alpha)
 }
