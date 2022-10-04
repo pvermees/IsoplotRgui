@@ -2642,10 +2642,10 @@ $(function(){
 		var chronometer = IsoplotR.settings.geochronometer;
 		var plotdevice = IsoplotR.settings.plotdevice;
 		var format = IsoplotR.settings[chronometer].format;
-		IsoplotR.settings[plotdevice] = settings[plotdevice];
-		IsoplotR.settings[chronometer] = settings[chronometer];
+		IsoplotR.settings = settings;
+		IsoplotR.settings.geochronometer = chronometer; // restore
+		IsoplotR.settings.plotdevice = plotdevice;      // restore
 		IsoplotR.settings[chronometer].format = format; // restore
-		IsoplotR.settings.par = settings.par;
 		IsoplotR = populate(IsoplotR,false);
 	    });
 	});
