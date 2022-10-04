@@ -120,7 +120,7 @@ gettimelimits <- function(min, max) {
 }
 
 str2vec <- function(s) {
-    if (s == "auto") return(NULL)
+    if (length(s) == 0 || s == "auto") return(NULL)
     v <- unlist(strsplit(s,split=','))
     if (all(coerceabletonumeric(v))) return(as.numeric(v))
     else return(v)
