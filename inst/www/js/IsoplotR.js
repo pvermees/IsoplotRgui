@@ -1033,7 +1033,7 @@ $(function(){
 	    prop('selected', 'selected');
 	$('#oerr option[value='+IsoplotR.settings.oerr+']').
 	    prop('selected', 'selected');
-	$('#alpha').val(IsoplotR.settings.alpha);
+	$('#alpha').val(cst.alpha);
 	$('#sigdig').val(IsoplotR.settings.sigdig);
 	switch (option){
 	case 'U-Pb':
@@ -1502,7 +1502,7 @@ $(function(){
 	var pdsettings = set[plotdevice];
 	var cst = IsoplotR.constants;
 	set.oerr = getInt("#oerr");
-	set.alpha = getNumber("#alpha");
+	cst.alpha = getNumber("#alpha");
 	if (['KDE','CAD','MDS'].indexOf(plotdevice) < 0){
 	    set.sigdig = getNumber("#sigdig");
 	}

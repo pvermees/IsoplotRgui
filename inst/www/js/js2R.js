@@ -91,8 +91,7 @@ function getOptions(prefs){
         bg: getColourRamp(pdsettings.bg, '#00FF0080'),
         hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : [],
         oerr: prefs.settings.oerr,
-        sigdig: prefs.settings.sigdig,
-        alpha: prefs.settings.alpha
+        sigdig: prefs.settings.sigdig
     };
 }
 
