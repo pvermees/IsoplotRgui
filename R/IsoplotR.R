@@ -75,7 +75,7 @@ applysettings <- function(params, settings) {
         v <- settings$lambda[[nuclide]]
         IsoplotR::settings("lambda", nuclide, v[[1]], v[[2]])
     }, settingslambda[[geochronometer]])
-    IsoplotR::settings("alpha", params$alpha)
+    IsoplotR::settings("alpha", settings$alpha)
 }
 
 getlimits <- function(min, max) {
