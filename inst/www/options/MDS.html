@@ -3,6 +3,12 @@
 &nbsp;<input type="checkbox" id="classical" onchange="$.register();">
       <help class="translate" id="help_classical"></help>
 <p></p>
+&nbsp;<help id="help_diss" class="translate"></help>
+<select id="diss" onchange="$.register();">
+  <option value='KS'>Kolmogorov-Smirnov</option>
+  <option value='W2'>Wasserstein-2</option>
+</select>
+<p></p>
 <div class="hide4classical">
 &nbsp;<input type="checkbox" id="shepard" onchange="$.register();">
       <help class="translate" id="help_shepard"></help>

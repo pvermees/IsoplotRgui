@@ -249,6 +249,7 @@
     },
     "MDS": {
 	"classical": false,
+	"diss": "KS",
 	"shepard": false,
         "nnlines": false,
 	"pch": 21,

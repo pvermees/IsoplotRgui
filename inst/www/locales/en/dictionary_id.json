@@ -185,6 +185,7 @@
     "help_Hf180Hf177": "<sup>180</sup>Hf/<sup>177</sup>Hf ratio:",
     "help_LambdaLu176": "<sup>176</sup>Lu decay constant:",
     "help_classical": "Classical MDS?",
+    "help_diss": "Dissimilarity measure",
     "help_shepard": "Shepard plot?",
     "help_nnlines": "Add nearest neighbour lines?",
     "help_rug": "Add rug plot?",

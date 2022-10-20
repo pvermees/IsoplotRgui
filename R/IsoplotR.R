@@ -563,6 +563,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
         x = getdata(params, data, s2d),
         sigdig = pd$sigdig,
         classical = pd$classical,
+        method = pd$diss,
         shepard = shepard,
         nnlines = pd$nnlines,
         pch = getpch(pd$pch),

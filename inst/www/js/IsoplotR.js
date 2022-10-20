@@ -1439,6 +1439,7 @@ $(function(){
 	    break;
 	case 'MDS':
 	    $('#classical').prop('checked',set.classical);
+	    $('#diss').val(set.diss);
 	    $('#shepard').prop('checked',set.shepard);
 	    $('#nnlines').prop('checked',set.nnlines);
 	    $('#pch').val(set.pch);
@@ -1844,6 +1845,7 @@ $(function(){
 	    break;
 	case 'MDS':
 	    pdsettings["classical"] = truefalse('#classical');
+	    pdsettings["diss"] = getOption('#diss');
 	    pdsettings["shepard"] = truefalse('#shepard');
 	    pdsettings["nnlines"] = truefalse('#nnlines');
 	    pdsettings["pch"] = $('#pch').val();
