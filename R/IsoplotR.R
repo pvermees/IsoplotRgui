@@ -528,7 +528,7 @@ setzeta <- function(fn, params, data, s2d, settings) {
         sigdig = params$sigdig,
         update = FALSE
     )
-    matrix(do.call(IsoplotR::set.zeta, args))
+    do.call(IsoplotR::set.zeta, args)
 }
 
 helioplot <- function(fn, params, data, s2d, settings, cex) {
