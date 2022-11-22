@@ -556,16 +556,16 @@ $(function(){
 	    }
 	    if (set.diseq){
 		$(".show4diseq").show();
-		if (set.U48[1]>0){
+		if (set.U48[2]>0){
 		    $(".show4U48diseq").show();
 		} else {
 		    $(".show4U48diseq").hide();
 		}
-		if (set.ThU[1]==3){
+		if (set.ThU[2]==3){
 		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").hide();
 		    $(".show4ThUdiseq3").show();
-		} else if (set.ThU[1]>0){
+		} else if (set.ThU[2]>0){
 		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").show();
 		    $(".show4ThUdiseq3").hide();
@@ -574,12 +574,12 @@ $(function(){
 		    $(".show4ThUdiseq12").hide();
 		    $(".show4ThUdiseq3").hide();
 		}
-		if (set.RaU[1]>0){
+		if (set.RaU[2]>0){
 		    $(".show4RaUdiseq").show();
 		} else {
 		    $(".show4RaUdiseq").hide();
 		}
-		if (set.PaU[1]>0){
+		if (set.PaU[2]>0){
 		    $(".show4PaUdiseq").show();
 		} else {
 		    $(".show4PaUdiseq").hide();
@@ -1047,13 +1047,13 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#discoption option[value='+set.discoption+']').
 		prop('selected', 'selected');	    
-	    $('#U48-diseq option[value='+set.U48[1]+']').
+	    $('#U48-diseq option[value='+set.U48[2]+']').
 		prop('selected', 'selected');
-	    $('#ThU-diseq option[value='+set.ThU[1]+']').
+	    $('#ThU-diseq option[value='+set.ThU[2]+']').
 		prop('selected', 'selected');
-	    $('#RaU-diseq option[value='+set.RaU[1]+']').
+	    $('#RaU-diseq option[value='+set.RaU[2]+']').
 		prop('selected', 'selected');
-	    $('#PaU-diseq option[value='+set.PaU[1]+']').
+	    $('#PaU-diseq option[value='+set.PaU[2]+']').
 		prop('selected', 'selected');
 	    $('#diseq').prop('checked',set.diseq);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -1090,6 +1090,10 @@ $(function(){
 	    $('#ThU').val(set.ThU[0]);
 	    $('#RaU').val(set.RaU[0]);
 	    $('#PaU').val(set.PaU[0]);
+	    $('#sU48').val(set.U48[1]);
+	    $('#sThU').val(set.ThU[1]);
+	    $('#sRaU').val(set.RaU[1]);
+	    $('#sPaU').val(set.PaU[1]);
 	    break;
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
@@ -1523,10 +1527,10 @@ $(function(){
 		gcsettings.type = 4;
 	    }
 	    gcsettings.diseq = truefalse('#diseq');
-	    gcsettings.U48[1] = getOption('#U48-diseq');
-	    gcsettings.ThU[1] = getOption('#ThU-diseq');
-	    gcsettings.RaU[1] = getOption('#RaU-diseq');
-	    gcsettings.PaU[1] = getOption('#PaU-diseq');
+	    gcsettings.U48[2] = getOption('#U48-diseq');
+	    gcsettings.ThU[2] = getOption('#ThU-diseq');
+	    gcsettings.RaU[2] = getOption('#RaU-diseq');
+	    gcsettings.PaU[2] = getOption('#PaU-diseq');
 	    if (gcsettings.format<7 & gcsettings.ThU[1]==3){
 		gcsettings.ThU[1] = 2;
 	    }
@@ -1534,6 +1538,10 @@ $(function(){
 	    gcsettings.ThU[0] = getNumber('#ThU');
 	    gcsettings.RaU[0] = getNumber('#RaU');
 	    gcsettings.PaU[0] = getNumber('#PaU');
+	    gcsettings.U48[1] = getNumber('#sU48');
+	    gcsettings.ThU[1] = getNumber('#sThU');
+	    gcsettings.RaU[1] = getNumber('#sRaU');
+	    gcsettings.PaU[1] = getNumber('#sPaU');
 	    cst.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	    cst.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
 	    cst.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');

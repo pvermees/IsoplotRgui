@@ -526,7 +526,7 @@
     "ThU_rho_2808": "Error correlation between the <sup>232</sup>Th/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U activity ratios <span class='show4ThU4'>(optional)</span>",
     "ThU_rho_4808": "Error correlation between the <sup>234</sup>U/<sup>238</sup>U- and <sup>230</sup>Th/<sup>238</sup>U activity ratios.",
     "ThU_C": "Optional variable to be used as fill colours in evolution diagrams, isochrons and radial plots.",
-    "UThHe": "Measured He, U, Th and (optionally) Sm abundance or concentration, in any kind of atomic units (fmol, mol/g, atoms, ...).",
+    "UThHe": "Measured He, U, Th and (optionally) Sm abundance or concentration, in any kind of atomic units (fmol, mol/g, atoms, ...). Note that any &alpha;-ejection correction must be applied to the data <i>before</i> entry into <tt>IsoplotR</tt>.",
     "UThHe_err": "Analytical uncertainty of the He, U, Th and (optionally) Sm measurements",
     "UThHe_C": "Optional variable to be used as fill colours in radial plots, ternary diagrams and logratio plots.",
     "RbSr_err_Rb87Sr86": "Analytical uncertainty of the <sup>87</sup>Rb/<sup>86</sup>Sr-ratios",
