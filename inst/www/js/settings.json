@@ -142,7 +142,7 @@
 	"exterr": false,
 	"joint": true,
 	"anchor":0,
-	"tanchor":0,
+	"tanchor":[0,0],
 	"shownumbers": false,
 	"minx": "auto",
 	"maxx": "auto",
