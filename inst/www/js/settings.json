@@ -102,7 +102,7 @@
 	"shownumbers": false,
 	"showage": 0,
 	"anchor":0,
-	"tanchor":0,
+	"tanchor":[0,0],
 	"ellipsefill": {
             "option": "custom_ramp",
             "alpha": 0.5,

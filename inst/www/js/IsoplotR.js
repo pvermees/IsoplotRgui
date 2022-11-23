@@ -1326,7 +1326,8 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    $('#ticks').val(set.ticks);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#tanchor').val(set.tanchor);
+	    $('#tanchor').val(set.tanchor[0]);
+	    $('#stanchor').val(set.tanchor[1]);
 	    break;
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.ThUtype+']').
@@ -1340,7 +1341,8 @@ $(function(){
 	    $('#isochron-exterr').prop('checked',set.exterr)
 	    $('#PbPb-growth').prop('checked',set.growth)
 	    $('#joint').prop('checked',set.joint)
-	    $('#tanchor').val(set.tanchor);
+	    $('#tanchor').val(set.tanchor[0]);
+	    $('#stanchor').val(set.tanchor[1]);
 	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#isochron-minx').val(set.minx);
@@ -1738,7 +1740,8 @@ $(function(){
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.ticks = $('#ticks').val();
 	    pdsettings.anchor = getOption("#anchor-option")
-	    pdsettings.tanchor = getNumber('#tanchor');
+	    pdsettings.tanchor[0] = getNumber('#tanchor');
+	    pdsettings.tanchor[1] = getNumber('#stanchor');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'isochron':
@@ -1746,7 +1749,8 @@ $(function(){
 	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
 	    pdsettings.y0option = getOption("#y0option");
 	    pdsettings.anchor = getOption("#anchor-option")
-	    pdsettings.tanchor = getNumber('#tanchor');
+	    pdsettings.tanchor[0] = getNumber('#tanchor');
+	    pdsettings.tanchor[1] = getNumber('#stanchor');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.joint = truefalse('#joint');
