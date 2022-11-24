@@ -908,19 +908,34 @@ $(function(){
 	    } else {
 		$('.show4tanchor').hide();
 	    }
-	    if (geochronometer=='Th-U' & set.format<3){
-		switch (pd.y0option){
-		case 1:
-		    $('.show4y0option1').show();
-		    break;
+	    if (geochronometer=='U-Pb'){
+		switch (pd.UPb_y0option){
 		case 2:
-		    $('.show4y0option2').show();
+		    $('.show4UPby0option2').show();
+		    $('.hide4UPby0option2').hide();
 		    break;
 		case 3:
-		    $('.show4y0option3').show();
+		    $('.show4UPby0option3').show();
+		    $('.hide4UPby0option3').hide();
 		    break;
 		default:
-		    $('.show4y0option4').show();
+		    $('.show4UPby0option1').show();
+		    $('.hide4UPby0option1').hide();
+		}
+	    }
+	    if (geochronometer=='Th-U' & set.format<3){
+		switch (pd.ThU_y0option){
+		case 1:
+		    $('.show4ThUy0option1').show();
+		    break;
+		case 2:
+		    $('.show4ThUy0option2').show();
+		    break;
+		case 3:
+		    $('.show4ThUy0option3').show();
+		    break;
+		default:
+		    $('.show4ThUy0option4').show();
 		}
 	    }
 	case 'regression':
@@ -1332,7 +1347,9 @@ $(function(){
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.ThUtype+']').
 		prop('selected', 'selected');
-	    $('#y0option option[value='+set.y0option+']').
+	    $('#UPb_y0option option[value='+set.UPb_y0option+']').
+		prop('selected', 'selected');
+	    $('#ThU_y0option option[value='+set.ThU_y0option+']').
 		prop('selected', 'selected');
 	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
@@ -1747,7 +1764,8 @@ $(function(){
 	case 'isochron':
 	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
 	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
-	    pdsettings.y0option = getOption("#y0option");
+	    pdsettings.UPb_y0option = getOption("#UPb_y0option");
+	    pdsettings.ThU_y0option = getOption("#ThU_y0option");
 	    pdsettings.anchor = getOption("#anchor-option")
 	    pdsettings.tanchor[0] = getNumber('#tanchor');
 	    pdsettings.tanchor[1] = getNumber('#stanchor');

@@ -317,10 +317,11 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
         } else if (anchor == 2) {
             args$anchor <- c(2, params$pdsettings$tanchor)
         }
+        args$y0option <- params$pdsettings$UPb_y0option
     }
     if (gc == "Th-U") {
         args$type <- params$pdsettings$ThUtype
-        args$y0option <- params$pdsettings$y0option
+        args$y0option <- params$pdsettings$ThU_y0option
     }
     if (gc != "U-Th-He") {
         args$exterr <- params$pdsettings$exterr
