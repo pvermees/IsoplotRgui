@@ -1564,6 +1564,9 @@ $(function(){
 	    cst.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	    cst.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
 	    cst.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
+	    cst.iratio.Pb207Pb206[1] = getNumber('#errPb207Pb206');
+	    cst.iratio.Pb208Pb206[1] = getNumber('#errPb208Pb206');
+	    cst.iratio.Pb208Pb207[1] = getNumber('#errPb208Pb207');
 	    cst.lambda.Th232[0] = getNumber("#LambdaTh232");
 	    cst.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	    cst.lambda.U234[0] = getNumber("#LambdaU234");
