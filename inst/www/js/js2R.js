@@ -121,7 +121,8 @@ function getRcommand(prefs) {
         ['U48', 'ThU', 'RaU', 'PaU'].forEach(function(e) {
             input.s2d.diseq[e] = {
                 x: gcsettings[e][0],
-                option: gcsettings[e][1]
+		sx: gcsettings[e][1],
+                option: gcsettings[e][2]
             };
         });
     } else if (geochronometer === 'Th-U') {

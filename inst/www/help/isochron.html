@@ -31,25 +31,36 @@
   
   <li>
     <span class="hidden show4PbPb">
-      (<sup>207</sup>Pb/<sup>204</sup>Pb)<sub>0</sub></span>
+      (<sup>207</sup>Pb/<sup>204</sup>Pb)<sub>c</sub></span>
     <span class="hidden show4ArAr">
       (<sup>40</sup>Ar/<sup>36</sup>Ar)<sub>0</sub></span>
-    <span class="hidden show4y0option1">
-      (<sup>234</sup>U/<sup>238</sup>U)<sub>0</sub>
+    <span class="hidden show4UPby0option1">
+      (Pb/Pb)<sub>c</sub>
     </span>
-    <span class="hidden show4ThU3 show4ThU4 show4y0option2">
-      (<sup>230</sup>Th/<sup>232</sup>Th)<sub>0</sub>
-    </span>
-    <span class="hidden show4y0option3">
-      (<sup>230</sup>Th/<sup>238</sup>U)<sub>0</sub>
-    </span>
-    <span class="hidden show4y0option4">
+    <span class="hidden show4UPby0option2">
       (<sup>234</sup>U/<sup>238</sup>U)<sub>i</sub>
     </span>
-    <span class="hide4PbPb hide4ArAr hide4ThU">intercept</span>
+    <span class="hidden show4UPby0option3">
+      (<sup>230</sup>Th/<sup>238</sup>U)<sub>i</sub>
+    </span>
+    <span class="hidden show4ThUy0option1">
+      (<sup>234</sup>U/<sup>238</sup>U)<sub>a</sub>
+    </span>
+    <span class="hidden show4ThU3 show4ThU4 show4ThUy0option2">
+      (<sup>230</sup>Th/<sup>232</sup>Th)<sub>d</sub>
+    </span>
+    <span class="hidden show4ThUy0option3">
+      (<sup>230</sup>Th/<sup>238</sup>U)<sub>a</sub>
+    </span>
+    <span class="hidden show4ThUy0option4">
+      (<sup>234</sup>U/<sup>238</sup>U)<sub>i</sub>
+    </span>
+    <span class="hide4UPb hide4PbPb hide4ArAr hide4ThU">intercept</span>
     = x &plusmn; y 
     <span class="show4model1 hide4model2 hide4model3">
-      (| z)
+      <span class="hide4UPby0option2 hide4UPby0option3">
+	(| z)
+      </span>
     </span>
     <p></p>
     <translate class="where"></translate>
@@ -65,11 +76,15 @@
 	</td>
 	<td><translate class="err"></translate></td>
       </tr>
-      <tr class="show4model1 hide4model2 hide4model3">
+      <tr class="show4model1 hide4model2 hide4model3 hide4UPby0option2 hide4UPby0option3">
 	<td>
-	  z:
+	  <span class="hide4UPby0option2 hide4UPby0option3">z:</span>
 	</td>
-	<td><translate class="err_disp"></translate></td>
+	<td>
+	  <span class="hide4UPby0option2 hide4UPby0option3">
+	    <translate class="err_disp"></translate>
+	  </span>
+	</td>
       </tr>
     </table>
   </li>
@@ -101,11 +116,11 @@
     <table>
       <tr>
 	<td>x:</td>
-	<td class="translate hide4UPb show4PbPb show4ArAr show4KCa show4RbSr 
-		   show4SmNd show4ReOs show4LuHf show4UThHe show4ThU",
+	<td class="translate hidden show4ThU1 show4ThU2",
 	    id="isochron_omega_a"></td>
-	<td class="translate show4UPb hide4PbPb hide4ArAr hide4KCa hide4RbSr 
-		   hide4SmNd hide4ReOs hide4LuHf hide4UThHe hide4ThU"
+	<td class="translate show4UPb show4PbPb show4ArAr show4KCa 
+		   show4RbSr show4SmNd show4ReOs show4LuHf show4UThHe 
+		   hide4ThU1 hide4ThU2 show4ThU3 show4ThU4"
 	    id="isochron_omega_b"></td>
       </tr>
       <tr>

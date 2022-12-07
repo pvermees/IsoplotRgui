@@ -259,3 +259,7 @@ cn {
     display: flex;
     justify-content: center;
 }
+
+input[type="text"]{
+    width: 100px;
+}
