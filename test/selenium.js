@@ -88,9 +88,9 @@ describe('IsoplotRgui', function() {
             await performClick(driver, 'run');
             await tableAppears(driver);
             const expectedResults = [
-                [251.1, 0.51, 250.86, 0.29, 253.3, 4.48, 250.88, 0.29],
-                [248.92, 0.88, 248.93, 0.19, 248.81, 8.99, 248.93, 0.19],
-                [235.59, 0.22, 233.591, 0.085, 255.54, 2.24, 233.619, 0.085]
+                [251.1, 1.02, 250.86, 0.59, 253.3, 8.97, 250.88, 0.58],
+                [248.92, 1.76, 248.93, 0.38, 248.81, 17.98, 248.93, 0.38],
+                [235.59, 0.44, 233.591, 0.17, 255.54, 4.48, 233.619, 0.17]
             ];
             await chainWithIndex(expectedResults, (row, rowNumber) =>
                 chainWithIndex(row, (value, columnNumber) => {
