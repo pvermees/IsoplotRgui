@@ -556,16 +556,16 @@ $(function(){
 	    }
 	    if (set.diseq){
 		$(".show4diseq").show();
-		if (set.U48[2]>0){
+		if (set.U48[1]>0){
 		    $(".show4U48diseq").show();
 		} else {
 		    $(".show4U48diseq").hide();
 		}
-		if (set.ThU[2]==3){
+		if (set.ThU[1]==3){
 		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").hide();
 		    $(".show4ThUdiseq3").show();
-		} else if (set.ThU[2]>0){
+		} else if (set.ThU[1]>0){
 		    $(".show4ThUdiseq").show();
 		    $(".show4ThUdiseq12").show();
 		    $(".show4ThUdiseq3").hide();
@@ -574,12 +574,12 @@ $(function(){
 		    $(".show4ThUdiseq12").hide();
 		    $(".show4ThUdiseq3").hide();
 		}
-		if (set.RaU[2]>0){
+		if (set.RaU[1]>0){
 		    $(".show4RaUdiseq").show();
 		} else {
 		    $(".show4RaUdiseq").hide();
 		}
-		if (set.PaU[2]>0){
+		if (set.PaU[1]>0){
 		    $(".show4PaUdiseq").show();
 		} else {
 		    $(".show4PaUdiseq").hide();
@@ -908,34 +908,19 @@ $(function(){
 	    } else {
 		$('.show4tanchor').hide();
 	    }
-	    if (geochronometer=='U-Pb'){
-		switch (pd.UPb_y0option){
-		case 2:
-		    $('.show4UPby0option2').show();
-		    $('.hide4UPby0option2').hide();
-		    break;
-		case 3:
-		    $('.show4UPby0option3').show();
-		    $('.hide4UPby0option3').hide();
-		    break;
-		default:
-		    $('.show4UPby0option1').show();
-		    $('.hide4UPby0option1').hide();
-		}
-	    }
 	    if (geochronometer=='Th-U' & set.format<3){
-		switch (pd.ThU_y0option){
+		switch (pd.y0option){
 		case 1:
-		    $('.show4ThUy0option1').show();
+		    $('.show4y0option1').show();
 		    break;
 		case 2:
-		    $('.show4ThUy0option2').show();
+		    $('.show4y0option2').show();
 		    break;
 		case 3:
-		    $('.show4ThUy0option3').show();
+		    $('.show4y0option3').show();
 		    break;
 		default:
-		    $('.show4ThUy0option4').show();
+		    $('.show4y0option4').show();
 		}
 	    }
 	case 'regression':
@@ -1062,13 +1047,13 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#discoption option[value='+set.discoption+']').
 		prop('selected', 'selected');	    
-	    $('#U48-diseq option[value='+set.U48[2]+']').
+	    $('#U48-diseq option[value='+set.U48[1]+']').
 		prop('selected', 'selected');
-	    $('#ThU-diseq option[value='+set.ThU[2]+']').
+	    $('#ThU-diseq option[value='+set.ThU[1]+']').
 		prop('selected', 'selected');
-	    $('#RaU-diseq option[value='+set.RaU[2]+']').
+	    $('#RaU-diseq option[value='+set.RaU[1]+']').
 		prop('selected', 'selected');
-	    $('#PaU-diseq option[value='+set.PaU[2]+']').
+	    $('#PaU-diseq option[value='+set.PaU[1]+']').
 		prop('selected', 'selected');
 	    $('#diseq').prop('checked',set.diseq);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
@@ -1105,10 +1090,6 @@ $(function(){
 	    $('#ThU').val(set.ThU[0]);
 	    $('#RaU').val(set.RaU[0]);
 	    $('#PaU').val(set.PaU[0]);
-	    $('#sU48').val(set.U48[1]);
-	    $('#sThU').val(set.ThU[1]);
-	    $('#sRaU').val(set.RaU[1]);
-	    $('#sPaU').val(set.PaU[1]);
 	    break;
 	case 'Th-U':
 	    $('#ThU-formats option[value='+set.format+']').
@@ -1341,15 +1322,12 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    $('#ticks').val(set.ticks);
 	    $('#cex').val(IsoplotR.settings.par.cex);
-	    $('#tanchor').val(set.tanchor[0]);
-	    $('#stanchor').val(set.tanchor[1]);
+	    $('#tanchor').val(set.tanchor);
 	    break;
 	case 'isochron':
 	    $('#ThU-isochron-types option[value='+set.ThUtype+']').
 		prop('selected', 'selected');
-	    $('#UPb_y0option option[value='+set.UPb_y0option+']').
-		prop('selected', 'selected');
-	    $('#ThU_y0option option[value='+set.ThU_y0option+']').
+	    $('#y0option option[value='+set.y0option+']').
 		prop('selected', 'selected');
 	    $('#UPb-isochron-types option[value='+set.UPbtype+']').
 		prop('selected', 'selected');
@@ -1358,8 +1336,7 @@ $(function(){
 	    $('#isochron-exterr').prop('checked',set.exterr)
 	    $('#PbPb-growth').prop('checked',set.growth)
 	    $('#joint').prop('checked',set.joint)
-	    $('#tanchor').val(set.tanchor[0]);
-	    $('#stanchor').val(set.tanchor[1]);
+	    $('#tanchor').val(set.tanchor);
 	case 'regression':
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#isochron-minx').val(set.minx);
@@ -1462,7 +1439,6 @@ $(function(){
 	    break;
 	case 'MDS':
 	    $('#classical').prop('checked',set.classical);
-	    $('#diss').val(set.diss);
 	    $('#shepard').prop('checked',set.shepard);
 	    $('#nnlines').prop('checked',set.nnlines);
 	    $('#pch').val(set.pch);
@@ -1546,10 +1522,10 @@ $(function(){
 		gcsettings.type = 4;
 	    }
 	    gcsettings.diseq = truefalse('#diseq');
-	    gcsettings.U48[2] = getOption('#U48-diseq');
-	    gcsettings.ThU[2] = getOption('#ThU-diseq');
-	    gcsettings.RaU[2] = getOption('#RaU-diseq');
-	    gcsettings.PaU[2] = getOption('#PaU-diseq');
+	    gcsettings.U48[1] = getOption('#U48-diseq');
+	    gcsettings.ThU[1] = getOption('#ThU-diseq');
+	    gcsettings.RaU[1] = getOption('#RaU-diseq');
+	    gcsettings.PaU[1] = getOption('#PaU-diseq');
 	    if (gcsettings.format<7 & gcsettings.ThU[1]==3){
 		gcsettings.ThU[1] = 2;
 	    }
@@ -1557,16 +1533,9 @@ $(function(){
 	    gcsettings.ThU[0] = getNumber('#ThU');
 	    gcsettings.RaU[0] = getNumber('#RaU');
 	    gcsettings.PaU[0] = getNumber('#PaU');
-	    gcsettings.U48[1] = getNumber('#sU48');
-	    gcsettings.ThU[1] = getNumber('#sThU');
-	    gcsettings.RaU[1] = getNumber('#sRaU');
-	    gcsettings.PaU[1] = getNumber('#sPaU');
 	    cst.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
 	    cst.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
 	    cst.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
-	    cst.iratio.Pb207Pb206[1] = getNumber('#errPb207Pb206');
-	    cst.iratio.Pb208Pb206[1] = getNumber('#errPb208Pb206');
-	    cst.iratio.Pb208Pb207[1] = getNumber('#errPb208Pb207');
 	    cst.lambda.Th232[0] = getNumber("#LambdaTh232");
 	    cst.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	    cst.lambda.U234[0] = getNumber("#LambdaU234");
@@ -1760,18 +1729,15 @@ $(function(){
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.ticks = $('#ticks').val();
 	    pdsettings.anchor = getOption("#anchor-option")
-	    pdsettings.tanchor[0] = getNumber('#tanchor');
-	    pdsettings.tanchor[1] = getNumber('#stanchor');
+	    pdsettings.tanchor = getNumber('#tanchor');
 	    IsoplotR.settings.par.cex = getNumber('#cex');
 	    break;
 	case 'isochron':
 	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
 	    pdsettings.ThUtype = getOption("#ThU-isochron-types");
-	    pdsettings.UPb_y0option = getOption("#UPb_y0option");
-	    pdsettings.ThU_y0option = getOption("#ThU_y0option");
+	    pdsettings.y0option = getOption("#y0option");
 	    pdsettings.anchor = getOption("#anchor-option")
-	    pdsettings.tanchor[0] = getNumber('#tanchor');
-	    pdsettings.tanchor[1] = getNumber('#stanchor');
+	    pdsettings.tanchor = getNumber('#tanchor');
 	    pdsettings.exterr = truefalse('#isochron-exterr');
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.joint = truefalse('#joint');
@@ -1878,7 +1844,6 @@ $(function(){
 	    break;
 	case 'MDS':
 	    pdsettings["classical"] = truefalse('#classical');
-	    pdsettings["diss"] = getOption('#diss');
 	    pdsettings["shepard"] = truefalse('#shepard');
 	    pdsettings["nnlines"] = truefalse('#nnlines');
 	    pdsettings["pch"] = $('#pch').val();
