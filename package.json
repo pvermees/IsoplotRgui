@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "selenium-webdriver": "^4.0.0-alpha.7",
-        "mocha": "^7.1.1",
+        "mocha": "^10.2.0",
         "clipboardy": "^2.3.0",
         "node-stream-zip": "^1.11.1",
         "pngjs": "5.0.0"
