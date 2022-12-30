@@ -190,6 +190,7 @@
 	},
 	"shownumbers": false,
 	"numpeaks": 0,
+	"np4": false,
 	"clabel": "",
 	"exterr": false
     },

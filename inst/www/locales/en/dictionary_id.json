@@ -213,6 +213,7 @@
     "peakfit_none": "0 (none)",
     "peakfit_auto": "auto",
     "peakfit_min": "minimum",
+    "help_np4": "4 parameters",
     "help_discordance_filter": "Discordance filter:",
     "help_verticals": "Draw vertical lines at steps?",
     "help_mint_radial": "Minimum value:",

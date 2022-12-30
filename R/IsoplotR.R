@@ -190,6 +190,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         cex = pd$cex,
         show.numbers = pd$shownumbers,
         k = maybenumeric(pd$numpeaks),
+        np = ifelse(pd$np4,4,3),
         oerr = params$oerr,
         sigdig = params$sigdig,
         bg = params$bg,

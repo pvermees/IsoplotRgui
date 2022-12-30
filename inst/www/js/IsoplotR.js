@@ -966,6 +966,11 @@ $(function(){
 		$('#radial-pch').show();
 	    }
             setBgFillVisibility(pd.bg.option);
+	    if (pd.numpeaks=='min'){
+		$('.show4peakfit_min').show();
+	    } else {
+		$('.show4peakfit_min').hide();
+	    }
 	    break;
 	case 'ages':
 	    switch (pd.showdisc){
@@ -1381,6 +1386,7 @@ $(function(){
 		prop('selected', 'selected');
 	    $('#mixtures option[value='+set.numpeaks+']').
 		prop('selected', 'selected');
+	    $('#np4').prop('checked', set.np4);
 	    $('#shownumbers').prop('checked', set.shownumbers);
 	    $('#pch').val(set.pch);
 	    if (set.shownumbers){ $('#radial-pch').hide(); }
@@ -1798,6 +1804,7 @@ $(function(){
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.transformation = getOption("#transformation");
 	    pdsettings.numpeaks = getOption("#mixtures");
+	    pdsettings.np4 = truefalse('#np4');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
