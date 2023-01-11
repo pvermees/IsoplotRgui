@@ -328,7 +328,21 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
         args$exterr <- params$pdsettings$exterr
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::isochron, args)
+    withCallingHandlers(
+        do.call(IsoplotR::isochron, args),
+        message = function(cond) {
+            text <- cond$message
+            r <- regexec("Iteration (\\d+)/(\\d+)", text)[[1]]
+            if (0 <= r[1]) {
+                ends <- r + attr(r, "match.length") - 1
+                num <- strtoi(substr(text, r[2], ends[2]))
+                den <- strtoi(substr(text, r[3], ends[3]))
+                shinylight::sendProgress(num, den)
+            } else {
+                shinylight::sendInfoText(text)
+            }
+        }
+    )
 }
 
 addalpha <- function(colour, alpha) {

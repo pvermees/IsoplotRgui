@@ -2717,6 +2717,7 @@ $(function(){
         $("#OUTPUT").hide();
         var myplot = $("#myplot");
         myplot.html("<div id='loader' class='blink_me'>Processing...</div>");
+        var loader = $('#loader');
         var img = document.createElement('IMG');
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
@@ -2727,12 +2728,25 @@ $(function(){
         }
         shinylight.call(input.fn, input, myplot.get(0), {
             imgType: wantSvg? 'svg' : 'pdf',
+            info: function(text) {
+                loader.removeClass('blink_me');
+                loader.text(text);
+            },
+            progress: function(num, den) {
+                var p = num / den * 100;
+                var bg = (
+                    "linear-gradient(to right, #c5e3c5 0%, green "
+                    + p + "%, white " + p + "%, #c8d8d8 100%)"
+                );
+                console.log(p, num, den, bg);
+                loader.css("background-image", bg);
+            }
         }).then(function(result) {
             img.setAttribute('src', result.plot[0]);
             myplot.empty();
             myplot.append(img);
         }).catch(function(error) {
-            displayError("Plot failed.", error);
+            //displayError("Plot failed.", error);
         });
     });
 
@@ -2746,7 +2760,11 @@ $(function(){
         grid.show();
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        shinylight.call(input.fn, input, null, {}).then(function(result) {
+        shinylight.call(input.fn, input, null, {
+            info: function(text) {
+                grid.handsontable('setDataAtCell',0,0,text);
+            }
+        }).then(function(result) {
             grid.handsontable('populateFromArray', 0, 0,
                 result.data);
             const hot = grid.data('handsontable');
