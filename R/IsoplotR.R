@@ -134,6 +134,28 @@ naifauto <- function(v) {
     return(if (v == "auto") NA else as.numeric(v))
 }
 
+calculate <- function(fn, args) {
+    withCallingHandlers(
+        do.call(fn, args),
+        message = function(cond) {
+            text <- cond$message
+            r <- regexec("^(.*?)(\\W+?)(\\d+)/(\\d+)(\\W*)$", text)[[1]]
+            if (0 <= r[1]) {
+                ends <- r + attr(r, "match.length") - 1
+                msg <- substr(text, r[2], ends[2])
+                if (msg != "Iteration") {
+                    shinylight::sendInfoText(msg)
+                }
+                num <- strtoi(substr(text, r[4], ends[4]))
+                den <- strtoi(substr(text, r[5], ends[5]))
+                shinylight::sendProgress(num, den)
+            } else {
+                shinylight::sendInfoText(text)
+            }
+        }
+    )
+}
+
 getdata <- function(params, data, s2d) {
     if (!is.null(s2d$diseq)) {
         s2d$params$d <- do.call(
@@ -176,7 +198,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
         args$anchor <- c(2, pd$tanchor)
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::concordia, args)
+    calculate(IsoplotR::concordia, args)
 }
 
 radialplot <- function(fn, params, data, s2d, settings, cex) {
@@ -236,7 +258,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         args$common.Pb <- params$gcsettings$commonPb
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::radialplot, args)
+    calculate(IsoplotR::radialplot, args)
 }
 
 evolution <- function(fn, params, data, s2d, settings, cex) {
@@ -265,7 +287,7 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
     else args$xlim <- getlimits(pd$min08, pd$max08)
     args$ylim <- getlimits(pd$min48, pd$max48)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::evolution, args)
+    calculate(IsoplotR::evolution, args)
 }
 
 setregression <- function(params, data, s2d, settings) {
@@ -294,7 +316,7 @@ regression <- function(fn, params, data, s2d, settings, cex, york) {
     args <- setregression(params, data, s2d, settings)
     args$x <- IsoplotR::data2york(args$x, format = york$format)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::isochron, args)
+    calculate(IsoplotR::isochron, args)
 }
 
 isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
@@ -328,21 +350,7 @@ isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
         args$exterr <- params$pdsettings$exterr
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    withCallingHandlers(
-        do.call(IsoplotR::isochron, args),
-        message = function(cond) {
-            text <- cond$message
-            r <- regexec("Iteration (\\d+)/(\\d+)", text)[[1]]
-            if (0 <= r[1]) {
-                ends <- r + attr(r, "match.length") - 1
-                num <- strtoi(substr(text, r[2], ends[2]))
-                den <- strtoi(substr(text, r[3], ends[3]))
-                shinylight::sendProgress(num, den)
-            } else {
-                shinylight::sendInfoText(text)
-            }
-        }
-    )
+    calculate(IsoplotR::isochron, args)
 }
 
 addalpha <- function(colour, alpha) {
@@ -403,7 +411,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         args$exterr <- params$pdsettings$exterr
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::weightedmean, args)
+    calculate(IsoplotR::weightedmean, args)
 }
 
 agespectrum <- function(fn, params, data, s2d, settings, cex) {
@@ -430,7 +438,7 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
         args$exterr <- pd$exterr
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::agespectrum, args)
+    calculate(IsoplotR::agespectrum, args)
 }
 
 kde <- function(fn, params, data, s2d, settings, cex) {
@@ -483,7 +491,7 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         args$normalise <- pd$normalise
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::kde, args)
+    calculate(IsoplotR::kde, args)
 }
 
 cad <- function(fn, params, data, s2d, settings, cex) {
@@ -531,7 +539,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
         args$hide <- omitter(data$data, nc, c("x", "X"))
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::cad, args)
+    calculate(IsoplotR::cad, args)
 }
 
 setzeta <- function(fn, params, data, s2d, settings) {
@@ -544,7 +552,7 @@ setzeta <- function(fn, params, data, s2d, settings) {
         sigdig = params$sigdig,
         update = FALSE
     )
-    do.call(IsoplotR::set.zeta, args)
+    calculate(IsoplotR::set.zeta, args)
 }
 
 helioplot <- function(fn, params, data, s2d, settings, cex) {
@@ -568,7 +576,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
     args$ylim <- getlimits(pd$miny, pd$maxy)
     args$fact <- notauto(pd$fact)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::helioplot, args)
+    calculate(IsoplotR::helioplot, args)
 }
 
 mds <- function(fn, params, data, s2d, settings, cex) {
@@ -594,7 +602,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
         args$pos <- pd$pos
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
-    do.call(IsoplotR::mds, args)
+    calculate(IsoplotR::mds, args)
 }
 
 age <- function(fn, params, data, s2d, settings) {

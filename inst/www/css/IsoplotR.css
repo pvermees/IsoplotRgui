@@ -29,6 +29,7 @@ a:hover {
     top: 40%;
     bottom: 40%;
     padding: 20px;
+    z-index: 4;
 }
 
 #myplot {

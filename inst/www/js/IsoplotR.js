@@ -2703,22 +2703,49 @@ $(function(){
     });
     
     function displayError(message, err) {
-	console.error(message, err);
-	var par = document.createElement("p");
-	par.setAttribute("class", "ploterror"); 
-	par.textContent = err;
-	var myplot = document.getElementById("myplot");
-	myplot.textContent = '';
-	myplot.appendChild(par);
+        console.error(message, err);
+        var elt = $('#error');
+        elt.textContent = err;
+        elt.show();
+        $('#OUTPUT').hide();
+        $('#myplot').hide();
+        $('#loader').hide();
+    }
+
+    function showProcessingMessage() {
+        var loader = $('#loader');
+        loader.empty();
+        loader.append($('<p class="blink_me">Processing...</p>'));
+        loader.css('background-image', '');
+        loader.css('background-color', 'white');
+        loader.show();
+    }
+
+    function showInfoMessage(text) {
+        var loader = $('#loader');
+        loader.empty();
+        loader.text(text);
+    }
+
+    function showProgress(num, den) {
+        var p = num / den * 100;
+        var bg = (
+            "linear-gradient(to right, #c5e3c5 0%, green "
+            + p + "%, white " + p + "%, #c8d8d8 100%)"
+        );
+        $('#loader').css("background-image", bg);
     }
 
     $("#PLOT").click(function(){
         update();
-        $("#OUTPUT").hide();
+        showProcessingMessage();
         var myplot = $("#myplot");
-        myplot.html("<div id='loader' class='blink_me'>Processing...</div>");
-        var loader = $('#loader');
+        myplot.empty();
+        myplot.show();
         var img = document.createElement('IMG');
+        img.style.width = '100%';
+        img.style.height = '100%';
+        myplot.append(img);
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         var wantSvg = true;
@@ -2726,45 +2753,36 @@ $(function(){
             // for some reason R gives us fatter margins with SVG by default
             input.cex *= 0.75;
         }
-        shinylight.call(input.fn, input, myplot.get(0), {
+        shinylight.call(input.fn, input, img, {
             imgType: wantSvg? 'svg' : 'pdf',
-            info: function(text) {
-                loader.removeClass('blink_me');
-                loader.text(text);
-            },
-            progress: function(num, den) {
-                var p = num / den * 100;
-                var bg = (
-                    "linear-gradient(to right, #c5e3c5 0%, green "
-                    + p + "%, white " + p + "%, #c8d8d8 100%)"
-                );
-                console.log(p, num, den, bg);
-                loader.css("background-image", bg);
-            }
+            info: showInfoMessage,
+            progress: showProgress
         }).then(function(result) {
-            img.setAttribute('src', result.plot[0]);
-            myplot.empty();
-            myplot.append(img);
+            $(loader).hide();
+            $('#error').hide();
+            $('#OUTPUT').hide();
+            myplot.show();
         }).catch(function(error) {
-            //displayError("Plot failed.", error);
+            displayError("Plot failed.", error);
         });
     });
 
     $("#RUN").click(function(){
         update();
-        $("#myplot").empty();
-        var grid = $('#OUTPUT');
-        grid.handsontable('clear');
-        grid.handsontable('deselectCell');
-        grid.handsontable('setDataAtCell',0,0,'Processing...');
-        grid.show();
+        showProcessingMessage();
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         shinylight.call(input.fn, input, null, {
-            info: function(text) {
-                grid.handsontable('setDataAtCell',0,0,text);
-            }
+            info: showInfoMessage,
+            progress: showProgress
         }).then(function(result) {
+            $('#myplot').hide();
+            $('#error').hide();
+            $('#loader').hide();
+            var grid = $('#OUTPUT');
+            grid.handsontable('clear');
+            grid.handsontable('deselectCell');
+            grid.show();
             grid.handsontable('populateFromArray', 0, 0,
                 result.data);
             const hot = grid.data('handsontable');
@@ -2772,22 +2790,25 @@ $(function(){
                 colHeaders: result.headers
             });
         }).catch(function(error) {
-            grid.hide();
             displayError("Run failed.", error);
         });
     });
 
     document.getElementById("PDF").onclick = function() {
         update();
+        showProcessingMessage();
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         shinylight.call(input.fn, input, null, {
             imgType: 'pdf',
+            info: showInfoMessage,
+            progress: showProgress
         }).then(function(result) {
             const downloader = document.createElement("A");
             downloader.setAttribute("download", 'IsoplotR.pdf');
             downloader.setAttribute("href", result.plot[0]);
             downloader.click();
+            $('#loader').hide();
         }).catch(function(error) {
             displayError("Get PDF failed.", error);
         });
@@ -2795,15 +2816,20 @@ $(function(){
 
     document.getElementById("CSV").onclick = function() {
         update();
+        showProcessingMessage();
         let fname = prompt("Please enter a file name", "ages.csv");
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
-        shinylight.call(input.fn, input, null, {}).then(function(result) {
+        shinylight.call(input.fn, input, null, {
+            info: showInfoMessage,
+            progress: showProgress
+        }).then(function(result) {
             const rs = result.data.map(function(cs) { return cs.join(','); });
             const downloader = document.createElement("A");
             downloader.setAttribute("download", fname);
             downloader.setAttribute("href", 'data:text/csv;base64,' + btoa(rs.join('\n')));
             downloader.click();
+            $('#loader').hide();
         }).catch(function(error) {
             displayError("Run failed.", error);
         });
@@ -2822,6 +2848,5 @@ $(function(){
     var dictionary_id_fallback;
     var dictionary_class_fallback;
     var loaded_language = null;
-    const timeout = {};
     initialise();
 });
