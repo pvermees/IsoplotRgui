@@ -81,6 +81,8 @@ $(function(){
             }
         });
         shinylight.initialize();
+        // indicate to the tests that the test can start
+        window.initalisationComplete = true;
     };
 
     function dnc(){
@@ -2705,7 +2707,7 @@ $(function(){
     function displayError(message, err) {
         console.error(message, err);
         var elt = $('#error');
-        elt.textContent = err;
+        elt.text(err);
         elt.show();
         $('#OUTPUT').hide();
         $('#myplot').hide();

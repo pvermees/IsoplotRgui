@@ -12,7 +12,6 @@ const fs = require('node:fs/promises');
 
 const Chrome = require('selenium-webdriver/chrome');
 const Firefox = require('selenium-webdriver/firefox');
-const { async } = require('node-stream-zip');
 
 function getBrowser() {
     const br = /--browser=(.*)/;
@@ -138,27 +137,29 @@ describe('IsoplotRgui', function() {
         });
     })
 
+    beforeEach(async function() {
+        await driver.get('http://localhost:50054');
+        await installationOf(driver, 'initalisationComplete');
+    });
+
     describe('table implementation', function() {
         it('undoes mistakes', async function() {
             this.timeout(12000);
-            await driver.get('http://localhost:50054');
             await testUndoInTable(driver);
         });
 
         it('resists script injection attempts', async function() {
             this.timeout(6000);
-            await driver.get('http://localhost:50054');
-            await goToCell(driver, 'INPUT', 1, 1);
-            const input = await driver.switchTo().activeElement();
+            await waitUntilCellTextIs(driver, 1, 1, text => 0 < text.length);
             const text = "<script>alert('bad!')</script>";
-            await input.sendKeys(text, Key.TAB);
-            const box = await driver.findElement(cellInTable('INPUT', 1,1));
+            await typeInCell(driver, 1, 1, [text, Key.TAB]);
+            const loc = cellInTable('INPUT', 1,1);
+            const box = await driver.findElement(loc);
             await driver.wait(until.elementTextContains(box, text));
         });
 
         it('is readable from the calculation engine', async function() {
             this.timeout(20000);
-            await driver.get('http://localhost:50054');
             await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
             await driver.wait(() => tryToClearGrid(driver));
             const testData = [
@@ -197,9 +198,6 @@ describe('IsoplotRgui', function() {
         const ratiosEN = 'ratios.';
         const helpEN = 'Help';
         this.timeout(25000);
-        before(async function() {
-            await driver.get('http://localhost:50054');
-        });
         it('displays the correct language', async function() {
             // test that English is working without choosing it
             await testTranslation(driver, false, helpEN, ratiosEN,
@@ -220,7 +218,7 @@ describe('IsoplotRgui', function() {
         it('displays English where no translation is available', async function() {
             await driver.executeScript('window.localStorage.setItem("language", "xxtest");');
             await driver.get('http://localhost:50054');
-            await waitForFunctionToBeInstalled(driver, 'translatePage');
+            await installationOf(driver, 'translatePage');
             await driver.executeScript('window.translatePage();');
 
             // test dictionary_id.json
@@ -228,7 +226,7 @@ describe('IsoplotRgui', function() {
             await clickButton(driver, 'help');
             await assertTextContains(driver, 'UPb_86', ratiosEN);
             // test dictionary_class.json
-            await clickButton(driver, 'options');
+            await switchToOptionsPage(driver);
             await assertTextContains(driver, 'help_exterr_UPb', propagateEN);
             await assertTextContains(driver, 'help_UPb_formats', 'XXinput format:');
             // test contextual_help.json
@@ -240,7 +238,7 @@ describe('IsoplotRgui', function() {
             await closeContextualHelp(driver);
             // test home_id.json
             await clickButton(driver, 'home');
-            await waitForFunctionToBeInstalled(driver, 'translateHomePage');
+            await installationOf(driver, 'translateHomePage');
             await driver.executeScript('window.translateHomePage();');
             await assertTextContains(driver, 'online_tab', 'XXonline');
             await assertTextContains(driver, 'intro', introEN);
@@ -250,7 +248,6 @@ describe('IsoplotRgui', function() {
     describe('the plotter', function() {
         it('can plot a concordia graph', async function() {
             this.timeout(25000);
-            await driver.get('http://localhost:50054');
             // 38/06, err, 07/06, err
             const testData = [
                 [25.2, 0.03, 0.0513, 0.0001, '', '', ''],
@@ -258,12 +255,13 @@ describe('IsoplotRgui', function() {
                 [27.1, 0.01, 0.05135, 0.00005, '', '', ''],
                 [26.1, 0.025, 0.0512, 0.0002, '', '', 'x']
             ];
+            await driver.wait(until.elementLocated(cellInTable('INPUT', 1, 1)));
             await driver.wait(() => tryToClearGrid(driver));
             await inputTestData(driver, testData);
             // remove selection
             await driver.switchTo().activeElement().sendKeys(Key.ARROW_RIGHT);
             await choosePlotDevice(driver, 'concordia');
-            await performClick(driver, 'options');
+            await switchToOptionsPage(driver);
             const options = {
                 U238U235: 137.818,
                 errU238U235: 0.0225,
@@ -275,7 +273,7 @@ describe('IsoplotRgui', function() {
             };
             await performType(driver, options);
             await performClick(driver, 'plot');
-            const img = await driver.wait(until.elementLocated(By.css('#myplot img[src]')));
+            const img = await plotDisplayed(driver);
             await driver.wait(until.elementIsVisible(img));
             const imgSrc = await img.getAttribute('src');
             const flatImg = imgSrc.replace(/%0A/g, '');
@@ -296,13 +294,41 @@ describe('IsoplotRgui', function() {
         });
     });
 
+    describe('progress info', function() {
+        it('text works', async function() {
+            this.timeout(40000);
+            await driver.get('http://localhost:50054');
+            await choosePlotDevice(driver, 'isochron');
+            await switchToOptionsPage(driver);
+            await optionsLoaded(driver);
+            await clickCheckbox(driver, 'diseq');
+            await select(driver, 'U48-diseq', '2');
+            await performType(driver, { 'sU48': '0.1' });
+            await performClick(driver, 'plot');
+            await assertTextContains(driver, 'loader', 'Obtaining U48i search limits');
+            await assertProgressBetween(driver, 0, 20);
+            await assertTextContains(driver, 'loader', 'Calculating posterior distribution of the initial activity ratios');
+            await assertProgressBetween(driver, 50, 80);
+            await assertTextContains(driver, 'loader', 'Calculating posterior distribution of the age');
+            await plotDisplayed(driver);
+        }); 
+    });
+
+    describe('errors', function() {
+        it('are displayed', async function() {
+            this.timeout(10000);
+            await driver.get('http://localhost:50054');
+            await switchToOptionsPage(driver);
+            await optionsLoaded(driver);
+            await performType(driver, { 'cex': 'NaN' });
+            await performClick(driver, 'plot');
+            await assertErrorTextContains(driver, 'cex');
+        });
+    });
+
     describe('smoke test', function() {
         before(async function() {
             await driver.get('http://localhost:50054');
-            var el = await driver.wait(
-                until.elementLocated(By.css('#geochronometer-button .ui-selectmenu-text'))
-            );
-            await driver.wait(until.elementIsVisible(el));
         });
         const graphDevices = {
             "concordia": ["U-Pb"],
@@ -323,7 +349,7 @@ describe('IsoplotRgui', function() {
                 await chooseGeochronometer(driver, gc);
                 await choosePlotDevice(driver, device);
                 await performClick(driver, 'plot');
-                await driver.wait(until.elementLocated(By.css('#myplot img[src]')));
+                await plotDisplayed(driver);
             });
         });
         const tableDevices = {
@@ -335,7 +361,7 @@ describe('IsoplotRgui', function() {
                 this.timeout(4000);
                 await chooseGeochronometer(driver, gc);
                 await choosePlotDevice(driver, device);
-                await performClick(driver, 'run');
+                await clickButton(driver, 'run');
                 var el = await driver.wait(
                     until.elementLocated(By.css('#OUTPUT .handsontable'))
                 );
@@ -537,9 +563,22 @@ function getSvg(imgB64) {
     };
 }
 
-async function waitForFunctionToBeInstalled(driver, functionName) {
+async function installationOf(driver, name) {
     await driver.wait(async function () {
-        return await driver.executeScript('return !!window.' + functionName);
+        return await driver.executeScript('return !!window.' + name);
+    });
+}
+
+async function plotDisplayed(driver) {
+    return await driver.wait(until.elementLocated(
+        By.css('#myplot img[src]')
+    ));
+}
+
+async function optionsLoaded(driver) {
+    await driver.wait(async () => {
+        const es = await driver.findElements(By.css('input#cex'));
+        return 0 < es.length && 'NaN' !== await es[0].getAttribute('value')
     });
 }
 
@@ -561,6 +600,7 @@ async function testTranslation(driver, language, help, ratios,
         await removeDefaultLanguage(driver);
     }
     await driver.get('http://localhost:50054');
+    await installationOf(driver, 'translatePage');
     if (language) {
         await chooseLanguage(driver, language);
     } else {
@@ -573,7 +613,7 @@ async function testTranslation(driver, language, help, ratios,
     await clickButton(driver, 'help');
     await assertTextContains(driver, 'UPb_86', ratios);
     // test dictionary_class.json
-    await clickButton(driver, 'options');
+    await switchToOptionsPage(driver);
     await assertTextContains(driver, 'help_exterr_UPb', propagate);
     // test contextual_help.json
     await clickButton(driver, 'help_ierr');
@@ -586,7 +626,22 @@ async function testTranslation(driver, language, help, ratios,
 
 async function assertTextContains(driver, id, text) {
     const element = await driver.wait(until.elementLocated(By.id(id)));
+    await driver.wait(until.elementIsVisible(element));
     await driver.wait(until.elementTextContains(element, text));
+}
+
+async function assertProgressBetween(driver, lower, upper) {
+    const regex = /background-image:\s*linear-gradient\(to right,.*green\s+([0-9\.]+)%/;
+    const element = await driver.wait(until.elementLocated(By.id('loader')));
+    await driver.wait(async () => {
+        const style = await element.getAttribute('style');
+        const result = style.match(regex);
+        return result && lower <= result[1] && result[1] <= upper;
+    });
+}
+
+async function assertErrorTextContains(driver, text) {
+    await assertTextContains(driver, 'error', text);
 }
 
 function areNearlyEqual(a, b) {
@@ -594,21 +649,47 @@ function areNearlyEqual(a, b) {
     return (b - db < a && a < b + db, a + ' is not nearly ' + b);
 }
 
+async function select(driver, selectId, optionId) {
+    var elt = await driver.wait(async () => {
+        const s = await driver.findElement(By.id(selectId));
+        await s.click();
+        return await driver.findElement(By.css(
+            '#' + selectId + ' option[value="' + optionId + '"]'
+        ));
+    });
+    await elt.click();
+}
+
 async function chooseFromMenu(driver, choiceText, buttonId, menuId) {
-    await performClick(driver, buttonId);
-    await driver.findElement(By.id(menuId));
     const loc = By.xpath("//li/div[contains(text(),'" + choiceText + "')]");
-    const choice = await driver.wait(until.elementLocated(loc));
-    await driver.wait(until.elementIsVisible(choice));
+    const choice = await driver.wait(async () => {
+        await performClick(driver, buttonId);
+        await driver.findElement(By.id(menuId));
+        var es = await driver.findElements(loc);
+        if (0 < es.length && await es[0].isDisplayed()) {
+            return es[0];
+        }
+        return null;
+    });
     await performClick(driver, choice);
 }
 
-function choosePlotDevice(driver, choiceText) {
-    return chooseFromMenu(driver, choiceText, 'plotdevice-button', 'plotdevice-menu');
+async function choosePlotDevice(driver, choiceText) {
+    const loc = By.css('#plotdevice-button .ui-selectmenu-text');
+    var el = await driver.findElement(loc);
+    await driver.wait(until.elementIsVisible(el));
+    await chooseFromMenu(driver, choiceText, 'plotdevice-button', 'plotdevice-menu');
+    el = await driver.findElement(loc);
+    await driver.wait(until.elementTextContains(el, choiceText));
 }
 
-function chooseGeochronometer(driver, choiceText) {
-    return chooseFromMenu(driver, choiceText, 'geochronometer-button', 'geochronometer-menu');
+async function chooseGeochronometer(driver, choiceText) {
+    const loc = By.css('#geochronometer-button .ui-selectmenu-text');
+    var el = await driver.wait(until.elementLocated(loc));
+    await driver.wait(until.elementIsVisible(el));
+    await chooseFromMenu(driver, choiceText, 'geochronometer-button', 'geochronometer-menu');
+    el = await driver.wait(until.elementLocated(loc));
+    await driver.wait(until.elementTextContains(el, choiceText));
 }
 
 async function chooseLanguage(driver, languageText) {
@@ -629,7 +710,17 @@ async function chooseLanguage(driver, languageText) {
     await performClick(driver, choice);
 }
 
-// to be used when normal clicks mysteriously don't work
+async function switchToOptionsPage(driver) {
+    await driver.wait(async () => {
+        await clickButton(driver, 'options');
+        const es = await driver.findElements(By.css('help.translate'));
+        return 0 < es.length && await es[0].isDisplayed();
+    });
+}
+
+// To be used when normal clicks mysteriously don't work.
+// This is probably a bad idea, perhaps it only works more
+// often because it is slower.
 async function performClick(driver, element) {
     if (typeof(element) === 'string') {
         element = await driver.wait(until.elementLocated(By.id(element)));
@@ -639,6 +730,14 @@ async function performClick(driver, element) {
         .click()
         .perform();
     return element;
+}
+
+async function clickCheckbox(driver, id) {
+    await driver.wait(async () => {
+        const elt = await driver.findElement(By.id(id));
+        await elt.click();
+        return await elt.isSelected();
+    });
 }
 
 function scrollIntoView(element) {
@@ -719,10 +818,32 @@ async function clickButton(driver, id) {
     await button.click();
 }
 
-async function goToCell(driver, tableId, row, column) {
-    await driver.wait(until.elementLocated(cellInTable(tableId, row, column))).click();
+async function typeInCell(driver, row, column, keys) {
+    await goToCell(driver, 'INPUT', row, column);
+    let input = await driver.switchTo().activeElement();
+    await input.sendKeys.apply(input, keys);
+}
+
+function goToCell(driver, tableId, row, column) {
+    return driver.wait(until.elementLocated(cellInTable(tableId, row, column))).click();
 }
 
 function cellInTable(tableId, row, column) {
-    return By.css('#' + tableId + ' table tbody tr:nth-of-type(' + row + ') td:nth-of-type(' + column + ')');
+    return By.css(
+        '#' + tableId
+        + ' table tbody tr:nth-of-type(' + row
+        + ') td:nth-of-type(' + column + ')'
+    );
+}
+
+function waitUntilCellTextIs(driver, row, column, pred) {
+    const loc = cellInTable('INPUT', row, column);
+    return driver.wait(async () => {
+        const es = await driver.findElements(loc);
+        if (es.length === 0) {
+            return false;
+        }
+        const t = await es[0].getText();
+        return pred(t);
+    });
 }
