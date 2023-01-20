@@ -62,8 +62,12 @@
   <tr class="hidden show4detritals">
     <td>&nbsp;<help class="translate" id="help_colmap"></help></td>
     <td>
-      <select id="colmap_option" onchange="$.register();">
+      <select id="colmap_option" onchange="$.register();copy_background('colmap_option');">
         <option class="translate background_rainbow" id="help_ramp_rainbow" value="rainbow"></option>
+        <option class="translate background_rainbow_plus" id="help_ramp_rainbow_plus" value="colour_rainbow_plus"></option>
+        <option class="translate background_iridesce" id="help_ramp_iridesce" value="colour_iridesce"></option>
+        <option class="translate background_red_blue_black" id="help_ramp_red_blue_black" value="colour_red_blue_black"></option>
+        <option class="translate background_salmon" id="help_ramp_salmon" value="colour_salmon"></option>
         <option class="translate background_heat" id="help_ramp_heat" value="heat.colors"></option>
         <option class="translate background_topo" id="help_ramp_topo" value="topo.colors"></option>
         <option class="translate background_terrain" id="help_ramp_terrain" value="terrain.colors"></option>
