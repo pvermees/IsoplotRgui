@@ -24,8 +24,12 @@ a:hover {
 
 #loader {
     position:absolute;
-    left:50%;
-    top:50%
+    left: 10%;
+    right: 10%;
+    top: 40%;
+    bottom: 40%;
+    padding: 20px;
+    z-index: 4;
 }
 
 #myplot {
