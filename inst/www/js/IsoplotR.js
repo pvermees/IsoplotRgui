@@ -1451,6 +1451,7 @@ $(function(){
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    $('#colmap_option option[value="'+set.colmap+'"]').
 		prop('selected', 'selected');
+        copy_background('colmap_option');
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
@@ -2852,3 +2853,19 @@ $(function(){
     var loaded_language = null;
     initialise();
 });
+
+function copy_background(id) {
+    var select = $('#' + id);
+    var value = select.val();
+    var option = $('#' + id + ' option[value="' + value + '"]');
+    var classes = option.attr('class').split(' ');
+    var prefix = /^background_/;
+    for (var i in classes) {
+        var cls = classes[i];
+        if (cls.match(prefix)) {
+            console.log('adding ' + cls);
+            select.attr('class', cls);
+            return;
+        }
+    }
+}
