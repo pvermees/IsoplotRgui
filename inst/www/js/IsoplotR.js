@@ -1451,7 +1451,7 @@ $(function(){
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    $('#colmap_option option[value="'+set.colmap+'"]').
 		prop('selected', 'selected');
-        copy_background('colmap_option');
+            copy_background('colmap_option');
 	    break;
 	case 'set-zeta':
 	    $('.show4zeta').show();
@@ -1534,10 +1534,10 @@ $(function(){
 	var gcsettings = set[geochronometer];
 	var pdsettings = set[plotdevice];
 	var cst = IsoplotR.constants;
-	set.oerr = getInt("#oerr");
-	cst.alpha = getNumber("#alpha");
 	if (['KDE','CAD','MDS'].indexOf(plotdevice) < 0){
 	    set.sigdig = getNumber("#sigdig");
+	    set.oerr = getInt("#oerr");
+	    cst.alpha = getNumber("#alpha");
 	}
 	switch (geochronometer){
 	case 'U-Pb':
