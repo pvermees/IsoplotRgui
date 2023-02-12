@@ -24,8 +24,12 @@ a:hover {
 
 #loader {
     position:absolute;
-    left:50%;
-    top:50%
+    left: 10%;
+    right: 10%;
+    top: 40%;
+    bottom: 40%;
+    padding: 20px;
+    z-index: 4;
 }
 
 #myplot {
@@ -174,24 +178,84 @@ cn {
 
 .background_rainbow {
     background: linear-gradient(to right, #F00, #F80, #FF0, #0F0, #0FF, #00F, #F0F);
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_rainbow_reversed {
     background: linear-gradient(to right, #F0F, #00F, #0FF, #0F0, #FF0, #F80, #F00);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rainbow_plus {
+    background: linear-gradient(to right, #000, #F00, #F80, #FF0, #0F0, #0FF, #00F, #F0F);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_rainbow_plus_reversed {
+    background: linear-gradient(to right, #F0F, #00F, #0FF, #0F0, #FF0, #F80, #F00, #000);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.background_iridesce {
+    background: linear-gradient(to right, #000, #450045, #8B008B, #00008B, #00555D, #00AA2E, #00FF00, #FFFF00);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_iridesce_reversed {
+    background: linear-gradient(to right, #FFFF00, #00FF00, #00AA2E, #00555D, #00008B, #8B008B, #450045, #000);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_red_blue_black {
+    background: linear-gradient(to right, #FF0000, #FF0055, #FF00AA, #FF00FF, #0000FF, #0000AA, #000055, #000);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_red_blue_black_reversed {
+    background: linear-gradient(to right, #000, #000055, #0000AA, #0000FF, #FF00FF, #FF00AA, #FF0055, #FF0000);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_salmon {
+    background: linear-gradient(to right, #000000, #550000, #AA0000, #FF0000, #FF3033, #FF6065, #FF9098, #FFC0C9);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.background_salmon_reversed {
+    background: linear-gradient(to right, #FFC0C9, #FF9098, #FF6065, #FF3033, #FF0000, #AA0000, #550000, #000000);
+    color: white;
     display: flex;
     justify-content: center;
 }
 
 .background_heat {
     background: linear-gradient(to right, #800, #F00, #F80, #FF0, #FF8, #FFF);
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_heat_reversed {
     background: linear-gradient(to right, #FFF, #FF8, #FF0, #F80, #F00, #800);
+    color: black;
     display: flex;
     justify-content: center;
 }
@@ -226,36 +290,42 @@ cn {
 
 .background_cm {
     background: linear-gradient(to right, #80FFFF, #FFFFFF, #FF80FF);
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_cm_reversed {
     background: linear-gradient(to right, #FF80FF, #FFFFFF, #80FFFF);
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_topo {
     background: linear-gradient(to right, #4C00FF, #004CFF, #00E5FF, #00FF4D, #4DFF00, #E6FF00, #FFFF00, #FFDE59, #FFE0B3);
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_topo_reversed {
     background: linear-gradient(to right, #FFE0B3, #FFDE59, #FFFF00, #E6FF00, #4DFF00, #00FF4D, #00E5FF, #004CFF, #4C00FF);
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_terrain {
     background: linear-gradient(to right, #00A600, #E6E600, #EAB64E, #EEB99F, #F2F2F2);
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_terrain_reversed {
     background: linear-gradient(to right, #F2F2F2, #EEB99F, #EAB64E, #E6E600, #00A600);
+    color: black;
     display: flex;
     justify-content: center;
 }
