@@ -114,10 +114,10 @@
 	"ticks": "auto"
     },
     "evolution": {
-	"min08": "auto",
-	"max08": "auto",
-	"min48": "auto",
-	"max48": "auto",
+	"min08or82": "auto",
+	"max08or82": "auto",
+	"min48or02": "auto",
+	"max48or02": "auto",
 	"mint": "auto",
 	"maxt": "auto",
 	"transform": false,

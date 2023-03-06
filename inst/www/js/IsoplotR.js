@@ -1507,10 +1507,10 @@ $(function(){
 	    $('#isochron-evolution').prop('checked',set.isochron);
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#exterr').prop('checked',set.exterr);
-	    $('#min08').val(set.min08);
-	    $('#max08').val(set.max08);
-	    $('#min48').val(set.min48);
-	    $('#max48').val(set.max48);
+	    $('#min08or82').val(set.min08or82);
+	    $('#max08or82').val(set.max08or82);
+	    $('#min48or02').val(set.min48or02);
+	    $('#max48or02').val(set.max48or02);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
             setOption('#ellipsefill_option', set.ellipsefill.option);
@@ -1937,10 +1937,10 @@ $(function(){
 	    pdsettings.isochron = truefalse('#isochron-evolution');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.exterr = truefalse('#exterr');
-	    pdsettings.min08 = check($('#min08').val(),'auto');
-	    pdsettings.max08 = check($('#max08').val(),'auto');
-	    pdsettings.min48 = check($('#min48').val(),'auto');
-	    pdsettings.max48 = check($('#max48').val(),'auto');
+	    pdsettings.min08or82 = check($('#min08or82').val(),'auto');
+	    pdsettings.max08or82 = check($('#max08or82').val(),'auto');
+	    pdsettings.min48or02 = check($('#min48or02').val(),'auto');
+	    pdsettings.max48or02 = check($('#max48or02').val(),'auto');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
 	    pdsettings.ellipsefill = {
