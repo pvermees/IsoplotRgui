@@ -2800,6 +2800,7 @@ $(function(){
     document.getElementById("PDF").onclick = function() {
         update();
         showProcessingMessage();
+        let fname = prompt("Please enter a file name", "IsoplotR.pdf");
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         shinylight.call(input.fn, input, null, {
@@ -2808,7 +2809,7 @@ $(function(){
             progress: showProgress
         }).then(function(result) {
             const downloader = document.createElement("A");
-            downloader.setAttribute("download", 'IsoplotR.pdf');
+            downloader.setAttribute("download", fname);
             downloader.setAttribute("href", result.plot[0]);
             downloader.click();
             $('#loader').hide();
