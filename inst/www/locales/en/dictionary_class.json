@@ -3,7 +3,7 @@
     "where": "where:",
     "references": "<u>References:</u>",
     "legend": "<u>Legend:</u>",
-    "err": "the analytical uncertainty of x (<span class=\"hidden show4oerr1 show4oerr2 show4oerr3\">absolute</span><span class=\"hidden show4oerr4 show4oerr5 show4oerr6\">relative</span> <span class=\"hidden show4oerr1 show4oerr4\">1&sigma;</span><span class=\"hidden show4oerr2 show4oerr5\">2&sigma;</span><span class=\"hidden show4oerr3 show4oerr6\">100(1-&alpha;)%</span> confidence interval).",
+    "err": "the analytical uncertainty of x",
     "err_disp": "the analytical uncertainty for x with overdispersion, calculated as z = y <span class='hidden show4oerr3 show4oerr6'>t</span> &radic;MSWD<span class='hidden show4oerr3 show4oerr6'>, where t is the 1-&alpha;/2 percentile of a t-distribution with the appropriate degrees of freedom (only reported if the p-value of the chi-square test is < &alpha;).</span>",
     "omit": "Optional variable used to hide or ignore aliquots. Aliquots marked as (lowercase) '<tt>x</tt>' are plotted (except on KDEs and CADs) but ignored for numerical analysis; Aliquots marked as (uppercase) '<tt>X</tt>' are removed from both plots and calculations.",
     "C": "Optional variable to be used as fill colours in isochron and radial plots.",
@@ -11,5 +11,6 @@
     "input": "Input format:",
     "pch": "Plot character:",
     "exterr": "Propagate external uncertainties?",
-    "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)"
+    "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)",
+    "12sigmaci": "(<span class=\"hidden show4oerr1 show4oerr4\">1</span><span class=\"hidden show4oerr2 show4oerr5\">2</span><span class=\"hide4oerr3 hide4oerr6\">&sigma;</span><span class=\"hidden show4oerr4 show4oerr5\">%</span><span class=\"hidden show4oerr3\">absolute </span><span class=\"hidden show4oerr6\">relative </span><span class=\"hidden show4oerr3 show4oerr6\">100(1-&alpha;)% confidence interval</span>)"
 }
