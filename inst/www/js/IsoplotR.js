@@ -164,8 +164,10 @@ $(function(){
 	case 'other':
 	    switch(IsoplotR.settings.plotdevice){
 	    case 'regression':
-		if (IsoplotR.settings["other"].format == 1){ return 7; }
-		else {return 8;}
+		switch (IsoplotR.settings['other'].format){
+		case 3: return 8;
+		default: return 7;
+		}
 	    case 'spectrum':
 		return 5;
 	    case 'radial':
@@ -2270,16 +2272,17 @@ $(function(){
 	var ThU12 = (gc=='Th-U' && format<3);
 	var ThU34 = (gc=='Th-U' && format>2);
 	var radial = (gc=='other' && pd=='radial');
-	var regression = (gc=='other' && pd=='regression');
+	var regression1 = (gc=='other' && pd=='regression' && format==1);
+	var regression3 = (gc=='other' && pd=='regression' && format==3);
 	var spectrum = (gc=='other' && pd=='spectrum');
 	var average = (gc=='other' && pd=='average');
 	if (UPb12 || PbPb12 || ArAr12 || ThPb12 ||
 	    KCa12 || RbSr12 || SmNd12 || ReOs12 ||
-	    LuHf12 || ThU34 || regression){
+	    LuHf12 || ThU34 || regression1){
 	    cols = [1,3];
 	} else if (UPb345 || PbPb3 || ArAr3 || ThPb3 ||
 		   KCa3 || RbSr3 || SmNd3 || ReOs3 ||
-		   LuHf3 || UThHe || ThU12){
+		   LuHf3 || UThHe || ThU12 || regression3){
 	    cols = [1,3,5];
 	} else if (UPb78){
 	    cols = [1,3,5,7];
