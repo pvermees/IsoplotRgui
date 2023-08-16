@@ -882,11 +882,11 @@ function example(geochronometer,plotdevice,format){
 		}
 	    });
 	}
-    case 'other': 
+    case 'other':
 	switch (plotdevice){
 	case 'regression':
 	    switch (format){
-	    case 1:
+	    case 4:
 		return({
 		    "ierr": 1,
 		    "data": {
@@ -899,7 +899,7 @@ function example(geochronometer,plotdevice,format){
 			"(omit)":   []
 		    }
 		});
-	    case 3:
+	    case 5:
 		return({
 		    "ierr": 1,
 		    "data": {
@@ -925,7 +925,7 @@ function example(geochronometer,plotdevice,format){
 			"(omit)":   []
 		    }
 		});
-	    case 4:
+	    case 6:
 		return({
 		    "data": {
 			"[X,Y]": [442.18E-03,962.09E-06,513.45E-03,720.14E-06,563.04E-03,611.31E-06,

@@ -1,4 +1,4 @@
-selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
+selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
                            U8Th2=0,Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
     nc <- as.numeric(input$nc)
     values <- matrix(as.character(input$data), ncol = nc)
@@ -185,7 +185,7 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
     } else if (identical(method,"U-Th-He")){
         mat[1,1:8] <- c('He','errHe','U','errU',
                         'Th','errTh','Sm','errSm')
-    } else if (identical(method,"detritals") & format==1){
+    } else if (identical(method,"detritals") & format!=1){
         mat <- NULL
     } else if (identical(method,"detritals") & format!=1){
         labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
@@ -196,9 +196,9 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
         stop('Invalid method')
     }
     mat <- rbind(mat,values)
-    if (!identical(method,"detritals")){
-        mat <- subset(mat,select=-nc) # the last column may contain letters
-    }
+    omit <- !(identical(method,"detritals") ||
+              (identical(method,"other") && format==6))
+    if (omit) mat <- subset(mat,select=-nc) # remove the omit column
     if (identical(method,'U-Pb')){
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,d=d)
     } else if (identical(method,'Th-U')){

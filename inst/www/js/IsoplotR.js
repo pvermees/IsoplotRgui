@@ -162,20 +162,19 @@ $(function(){
 		if (firstrow[i]!=null && firstrow[i]!="") return i+1;
 	    }
 	case 'other':
-	    switch(IsoplotR.settings.plotdevice){
-	    case 'regression':
-		switch (IsoplotR.settings['other'].format){
-		case 3: return 8;
-		default: return 7;
+	    var format = IsoplotR.settings[gc].format;
+	    switch (format){
+	    case 1: return 2;
+	    case 2: return 4;
+	    case 3: return 5;
+	    case 4: return 7;
+	    case 5: return 8;
+	    case 6:
+		var firstrow = $("#INPUT").handsontable('getData')[0];
+		var nc = firstrow.length;
+		for (var i=(nc-1); i>0; i--){
+		    if (firstrow[i]!=null && firstrow[i]!="") return i+1;
 		}
-	    case 'spectrum':
-		return 5;
-	    case 'radial':
-	    case 'average':
-		return 4;
-	    case 'KDE':
-	    case 'CAD':
-		return 2;
 	    }
 	}
 	return 0;
@@ -2028,6 +2027,24 @@ $(function(){
 	    $('#CSV').hide();
         }
 	if (gc == "other"){
+	    let fmt = null;
+	    switch (npd){
+	    case "KDE":
+	    case "CAD":
+		fmt = 1;
+		break;
+	    case "radial":
+	    case "average":
+		fmt = 2;
+		break;
+	    case "spectrum":
+		fmt = 3;
+		break;
+	    case "regression":
+		fmt = 4;
+		break;
+	    }
+	    IsoplotR.settings[gc].format = fmt;
 	    populate(IsoplotR,true);
 	    errconvert();
 	} else {
@@ -2272,17 +2289,17 @@ $(function(){
 	var ThU12 = (gc=='Th-U' && format<3);
 	var ThU34 = (gc=='Th-U' && format>2);
 	var radial = (gc=='other' && pd=='radial');
-	var regression1 = (gc=='other' && pd=='regression' && format==1);
-	var regression3 = (gc=='other' && pd=='regression' && format==3);
+	var regression4 = (gc=='other' && pd=='regression' && format==4);
+	var regression5 = (gc=='other' && pd=='regression' && format==5);
 	var spectrum = (gc=='other' && pd=='spectrum');
 	var average = (gc=='other' && pd=='average');
 	if (UPb12 || PbPb12 || ArAr12 || ThPb12 ||
 	    KCa12 || RbSr12 || SmNd12 || ReOs12 ||
-	    LuHf12 || ThU34 || regression1){
+	    LuHf12 || ThU34 || regression4){
 	    cols = [1,3];
 	} else if (UPb345 || PbPb3 || ArAr3 || ThPb3 ||
 		   KCa3 || RbSr3 || SmNd3 || ReOs3 ||
-		   LuHf3 || UThHe || ThU12 || regression3){
+		   LuHf3 || UThHe || ThU12 || regression5){
 	    cols = [1,3,5];
 	} else if (UPb78){
 	    cols = [1,3,5,7];

@@ -109,12 +109,8 @@ function getRcommand(prefs) {
         params: getOptions(prefs),
         settings: prefs.constants,
     };
-    if (['detritals', 'fissiontracks','U-Pb', 'Pb-Pb', 'Ar-Ar', 'Th-Pb',
-        'K-Ca', 'Th-U', 'Rb-Sr', 'Sm-Nd', 'Re-Os', 'Lu-Hf'
-        ].indexOf(geochronometer) >= 0) {
+    if (geochronometer !== 'U-Th-He') {
         input.s2d.params.format = gcsettings.format;
-    } else if (geochronometer === 'other') {
-        input.s2d.params.format = plotdevice;
     }
     if (geochronometer=='U-Pb' && gcsettings.diseq) {
         input.s2d.diseq = {};
