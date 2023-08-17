@@ -170,10 +170,9 @@ $(function(){
 	    case 4: return 7;
 	    case 5: return 8;
 	    case 6:
-		var firstrow = $("#INPUT").handsontable('getData')[0];
-		var nc = firstrow.length;
-		for (var i=(nc-1); i>0; i--){
-		    if (firstrow[i]!=null && firstrow[i]!="") return i+1;
+		let dat = $("#INPUT").handsontable('getData');
+		for (var i=0; i<dat.length; i++){
+		    if (dat[i][0]==null | dat[i][0]=="") return i+1;
 		}
 	    }
 	}

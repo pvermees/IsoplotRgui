@@ -129,9 +129,6 @@ function getRcommand(prefs) {
     if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
         input.cex = prefs.settings.par.cex;
     }
-    if (plotdevice == 'regression') {
-        input.york = { format: prefs.settings.other.format };
-    }
     input.fn = plotdevice;
     return input;
 }

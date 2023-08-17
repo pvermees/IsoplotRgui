@@ -198,7 +198,9 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
     mat <- rbind(mat,values)
     omit <- !(identical(method,"detritals") ||
               (identical(method,"other") && format==6))
-    if (omit) mat <- subset(mat,select=-nc) # remove the omit column
+    if (omit){ # remove the last two columns
+        mat <- subset(mat,select=-c(nc-1,nc))
+    }
     if (identical(method,'U-Pb')){
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,d=d)
     } else if (identical(method,'Th-U')){

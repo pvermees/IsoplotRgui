@@ -294,14 +294,21 @@ setregression <- function(params, data, s2d, settings) {
     applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
+    if (identical(params$geochronometer,"other") && params$gcsettings$format==6){
+        L <- NA
+        O <- NULL
+        H <- NULL
+    } else {
+        L <- selection2levels(data$data, nc)
+        O <- omitter(data$data, nc, c("x"))
+        H <- omitter(data$data, nc, c("X"))
+    }
     args <- list(
         x = getdata(params, data, s2d),
         oerr = params$oerr,
         sigdig = params$sigdig,
         show.numbers = pd$shownumbers,
-        levels = selection2levels(data$data, nc),
-        omit = omitter(data$data, nc, c("x")),
-        hide = omitter(data$data, nc, c("X")),
+        levels = L, omit = O, hide = H,
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
@@ -312,14 +319,13 @@ setregression <- function(params, data, s2d, settings) {
     args
 }
 
-regression <- function(fn, params, data, s2d, settings, cex, york) {
+regression <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
-    args$x <- IsoplotR::data2york(args$x, format = york$format)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::isochron, args)
 }
 
-isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
+isochron <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
     applysettings(params, settings)
     gc <- params$geochronometer
