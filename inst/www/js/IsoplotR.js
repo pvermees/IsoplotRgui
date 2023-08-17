@@ -839,6 +839,11 @@ $(function(){
 	case 'other':
 	    $('.show4other').show();
 	    $('.hide4other').hide();
+	    if (set.format==6){
+		$('.hide4ogls').hide();
+	    } else {
+		$('.show4nonogls').show();
+	    }
 	    switch (plotdevice){
 	    case 'radial':
 		$('.show4radial').show();

@@ -191,7 +191,22 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
         labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
         mat <- matrix(labels[1:nc],1,nc)
     } else if (identical(method,"other")){
-        mat <- NULL
+        if (format==1){
+            mat[1,1] <- c('X')
+        } else if (format==2){
+            mat[1,1:2] <- c('X','err[X]')
+        } else if (format==3){
+            mat[1,1:3] <- c('f','X','err[X]')
+        } else if (format==4){
+            mat[1,1:5] <- c('X','err[X]','Y','err[Y]','rho')
+        } else if (format==5){
+            mat[1,1:6] <- c('X/Z','err[X/Z]','Y/Z','err[Y/Z]','X/Y','err[X/Y]')
+        } else if (format==6){
+            ns <- (nc-3)/2
+            mat[1:(nc-2)] <- c('[X,Y]',
+                               paste0('s[,X',1:ns,']'),
+                               paste0('s[,Y',1:ns,']'))
+        }
     } else {
         stop('Invalid method')
     }
