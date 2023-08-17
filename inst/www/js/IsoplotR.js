@@ -290,8 +290,8 @@ $(function(){
 	    H[0] = '[X,Y]';
 	    mydata.data[0] = $("#INPUT").handsontable('getDataAtCol',0);
 	    for (let k=1; k<(ns+1); k++){
-		H[k] = '[,X'+k+']';
-		H[k+ns] = '[,Y'+k+']';
+		H[k] = 's[,X'+k+']';
+		H[k+ns] = 's[,Y'+k+']';
 		mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',k);
 		mydata.data[k+ns] = $("#INPUT").handsontable('getDataAtCol',k+ns);
 	    }
@@ -839,10 +839,15 @@ $(function(){
 	case 'other':
 	    $('.show4other').show();
 	    $('.hide4other').hide();
-	    if (set.format==6){
-		$('.hide4ogls').hide();
-	    } else {
-		$('.show4nonogls').show();
+	    if (set.format==4){
+		$('.hide4other4').hide();
+		$('.show4other4').show();
+	    } else if (set.format==5){
+		$('.hide4other5').hide();
+		$('.show4other5').show();
+	    } else if (set.format==6){
+		$('.hide4other6').hide();
+		$('.show4other6').show();
 	    }
 	    switch (plotdevice){
 	    case 'radial':

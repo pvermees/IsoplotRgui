@@ -4,13 +4,13 @@
 <select id="regression-format" onchange="$.chooseFormat('#regression-format','other');">
   <option value=4>X, s[X], Y, s[Y], rXY</option>
   <option value=5>X/Z, s[X/Z], Y/Z, s[Y/Z], X/Y, s[X/Y]</option>
-  <option value=6>Full covariance matrix</option>
+  <option value=6>[X,Y],s[,Xi],s[Yi]</option>
 </select>
 <p></p>
 </div>
 
 <div class="hide4kde hide4cad">
-  <span class="hide4ogls show4nonogls">
+  <span class="show4other4 show4other5 hide4other6">
     &nbsp;<help class="translate" id="help_ierr"></help>
     <select id="ierr" onchange="$.switchErr();">
       <option class="translate" id="1se_abs" value=1></option>
