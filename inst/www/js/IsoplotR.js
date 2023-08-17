@@ -172,7 +172,7 @@ $(function(){
 	    case 6:
 		let dat = $("#INPUT").handsontable('getData');
 		for (var i=0; i<dat.length; i++){
-		    if (dat[i][0]==null | dat[i][0]=="") return i+1;
+		    if (dat[i][0]==null | dat[i][0]=="") return i+3;
 		}
 	    }
 	}

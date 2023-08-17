@@ -294,21 +294,14 @@ setregression <- function(params, data, s2d, settings) {
     applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
-    if (identical(params$geochronometer,"other") && params$gcsettings$format==6){
-        L <- NA
-        O <- NULL
-        H <- NULL
-    } else {
-        L <- selection2levels(data$data, nc)
-        O <- omitter(data$data, nc, c("x"))
-        H <- omitter(data$data, nc, c("X"))
-    }
     args <- list(
         x = getdata(params, data, s2d),
         oerr = params$oerr,
         sigdig = params$sigdig,
         show.numbers = pd$shownumbers,
-        levels = L, omit = O, hide = H,
+        levels = selection2levels(data$data, nc),
+        omit = omitter(data$data, nc, c("x")),
+        hide = omitter(data$data, nc, c("X")),
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,

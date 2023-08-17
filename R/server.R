@@ -196,9 +196,7 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
         stop('Invalid method')
     }
     mat <- rbind(mat,values)
-    omit <- !(identical(method,"detritals") ||
-              (identical(method,"other") && format==6))
-    if (omit){ # remove the last two columns
+    if (!identical(method,"detritals")){ # remove the last two columns
         mat <- subset(mat,select=-c(nc-1,nc))
     }
     if (identical(method,'U-Pb')){
