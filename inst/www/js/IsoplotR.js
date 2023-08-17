@@ -169,11 +169,7 @@ $(function(){
 	    case 3: return 5;
 	    case 4: return 7;
 	    case 5: return 8;
-	    case 6:
-		let dat = $("#INPUT").handsontable('getData');
-		for (var i=0; i<dat.length; i++){
-		    if (dat[i][0]==null | dat[i][0]=="") return i+3;
-		}
+	    case 6: return countRows()+3;
 	    }
 	}
 	return 0;
@@ -238,7 +234,7 @@ $(function(){
     }
     
     // overwrites the data in the IsoplotR 
-    // preferences based on the handsontable
+    // settings based on the handsontable
     function handson2json(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
@@ -284,6 +280,29 @@ $(function(){
 		mydata.data[label] =
 		    $("#INPUT").handsontable('getDataAtCol',k);
 	    }
+	} else if (geochronometer=='other' &
+		   plotdevice=='regression' &
+		   out.settings.other.format==6){
+	    mydata.data = {}; // clear the object
+	    let nr = countRows();
+	    let ns = Math.round(nr/2);
+	    let H = new Array(nr+3);
+	    H[0] = '[X,Y]';
+	    mydata.data[0] = $("#INPUT").handsontable('getDataAtCol',0);
+	    for (let k=1; k<(ns+1); k++){
+		H[k] = '[,X'+k+']';
+		H[k+ns] = '[,Y'+k+']';
+		mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',k);
+		mydata.data[k+ns] = $("#INPUT").handsontable('getDataAtCol',k+ns);
+	    }
+	    H[nr+1] = '(C)';
+	    H[nr+2] = '(omit)';
+	    mydata.data[nr+1] = $("#INPUT").handsontable('getDataAtCol',nr+1);
+	    mydata.data[nr+2] = $("#INPUT").handsontable('getDataAtCol',nr+2);
+	    let ht = $("#INPUT").handsontable('getInstance');
+	    ht.updateSettings({
+		colHeaders: H
+	    });
 	} else {
 	    var i = 0;
 	    $.each(mydata.data, function(k, v) {
@@ -2887,5 +2906,12 @@ function copy_background(id) {
             select.attr('class', cls);
             return;
         }
+    }
+}
+
+function countRows(){
+    let fr = $("#INPUT").handsontable('getDataAtCol',0);
+    for (var i=0; i<fr.length; i++){
+	if (fr[i]==null | fr[i]=="") return i;
     }
 }
