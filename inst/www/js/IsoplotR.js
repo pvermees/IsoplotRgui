@@ -2924,4 +2924,5 @@ function countRows(){
     for (var i=0; i<fr.length; i++){
 	if (fr[i]==null | fr[i]=="") return i;
     }
+    return fr.length;
 }
