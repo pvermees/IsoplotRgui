@@ -92,7 +92,7 @@
     "help_mindens": "矿物密度：",
     "help_log": "取对数？",
     "help_logratio": "对数比率投图？",
-    "help_showcentralcomp": "显示中心的组成",
+    "help_showbarycentre": "显示中心的组成",
     "help_helioplot_models": "模型：",
     "helioplot_model_1": "1. 加权平均",
     "helioplot_model_2": "2. 非加权平均",

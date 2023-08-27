@@ -1513,7 +1513,7 @@ $(function(){
 	case 'helioplot':
 	    $('#logratio').prop('checked',set.logratio);
 	    $('#shownumbers').prop('checked',set.shownumbers);
-	    $('#showcentralcomp').prop('checked',set.showcentralcomp);
+	    $('#showbarycentre').prop('checked',set.showbarycentre);
 	    $('#minx').val(set.minx);
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
@@ -1944,7 +1944,7 @@ $(function(){
 	case 'helioplot':
 	    pdsettings.logratio = truefalse('#logratio');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
-	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
+	    pdsettings.showbarycentre = truefalse('#showbarycentre');
 	    pdsettings["minx"] = check($('#minx').val(),'auto');
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');

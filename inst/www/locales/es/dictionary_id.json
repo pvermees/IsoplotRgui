@@ -119,7 +119,7 @@
     "help_mindens": "densidad del mineral:",
     "help_log": "Tomar logaritmos?",
     "help_logratio": "Gráfico Log-distribución?",
-    "help_showcentralcomp": "Mostrar la composición central?",
+    "help_showbarycentre": "Mostrar la composición central?",
     "helioplot_model_1": "1. Promedio ponderado",
     "helioplot_model_3": "3. Promedio ponderado con sobre-dispersión",
     "help_minx_helioplot": "Límite mínimo log[U/He]:",
