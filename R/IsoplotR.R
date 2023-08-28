@@ -561,6 +561,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
     args <- list(
         x = getdata(params, data, s2d),
         logratio = pd$logratio,
+        show.barycentre = pd$showbarycentre,
         show.numbers = pd$shownumbers,
         sigdig = params$sigdig,
         levels = selection2levels(data$data, nc),
