@@ -162,18 +162,14 @@ $(function(){
 		if (firstrow[i]!=null && firstrow[i]!="") return i+1;
 	    }
 	case 'other':
-	    switch(IsoplotR.settings.plotdevice){
-	    case 'regression':
-		if (IsoplotR.settings["other"].format == 1){ return 7; }
-		else {return 8;}
-	    case 'spectrum':
-		return 5;
-	    case 'radial':
-	    case 'average':
-		return 4;
-	    case 'KDE':
-	    case 'CAD':
-		return 2;
+	    var format = IsoplotR.settings[gc].format;
+	    switch (format){
+	    case 1: return 2;
+	    case 2: return 4;
+	    case 3: return 5;
+	    case 4: return 7;
+	    case 5: return 8;
+	    case 6: return countRows()+3;
 	    }
 	}
 	return 0;
@@ -238,7 +234,7 @@ $(function(){
     }
     
     // overwrites the data in the IsoplotR 
-    // preferences based on the handsontable
+    // settings based on the handsontable
     function handson2json(){
 	var out = $.extend(true, {}, IsoplotR); // clone
 	var geochronometer = out.settings.geochronometer;
@@ -284,6 +280,29 @@ $(function(){
 		mydata.data[label] =
 		    $("#INPUT").handsontable('getDataAtCol',k);
 	    }
+	} else if (geochronometer=='other' &
+		   plotdevice=='regression' &
+		   out.settings.other.format==6){
+	    mydata.data = {}; // clear the object
+	    let nr = countRows();
+	    let ns = Math.round(nr/2);
+	    let H = new Array(nr+3);
+	    H[0] = '[X,Y]';
+	    mydata.data[0] = $("#INPUT").handsontable('getDataAtCol',0);
+	    for (let k=1; k<(ns+1); k++){
+		H[k] = 's[,X'+k+']';
+		H[k+ns] = 's[,Y'+k+']';
+		mydata.data[k] = $("#INPUT").handsontable('getDataAtCol',k);
+		mydata.data[k+ns] = $("#INPUT").handsontable('getDataAtCol',k+ns);
+	    }
+	    H[nr+1] = '(C)';
+	    H[nr+2] = '(omit)';
+	    mydata.data[nr+1] = $("#INPUT").handsontable('getDataAtCol',nr+1);
+	    mydata.data[nr+2] = $("#INPUT").handsontable('getDataAtCol',nr+2);
+	    let ht = $("#INPUT").handsontable('getInstance');
+	    ht.updateSettings({
+		colHeaders: H
+	    });
 	} else {
 	    var i = 0;
 	    $.each(mydata.data, function(k, v) {
@@ -820,6 +839,16 @@ $(function(){
 	case 'other':
 	    $('.show4other').show();
 	    $('.hide4other').hide();
+	    if (set.format==4){
+		$('.hide4other4').hide();
+		$('.show4other4').show();
+	    } else if (set.format==5){
+		$('.hide4other5').hide();
+		$('.show4other5').show();
+	    } else if (set.format==6){
+		$('.hide4other6').hide();
+		$('.show4other6').show();
+	    }
 	    switch (plotdevice){
 	    case 'radial':
 		$('.show4radial').show();
@@ -1484,7 +1513,7 @@ $(function(){
 	case 'helioplot':
 	    $('#logratio').prop('checked',set.logratio);
 	    $('#shownumbers').prop('checked',set.shownumbers);
-	    $('#showcentralcomp').prop('checked',set.showcentralcomp);
+	    $('#showbarycentre').prop('checked',set.showbarycentre);
 	    $('#minx').val(set.minx);
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
@@ -1915,7 +1944,7 @@ $(function(){
 	case 'helioplot':
 	    pdsettings.logratio = truefalse('#logratio');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
-	    pdsettings.showcentralcomp = truefalse('#showcentralcomp');
+	    pdsettings.showbarycentre = truefalse('#showbarycentre');
 	    pdsettings["minx"] = check($('#minx').val(),'auto');
 	    pdsettings["maxx"] = check($('#maxx').val(),'auto');
 	    pdsettings["miny"] = check($('#miny').val(),'auto');
@@ -2026,6 +2055,24 @@ $(function(){
 	    $('#CSV').hide();
         }
 	if (gc == "other"){
+	    let fmt = null;
+	    switch (npd){
+	    case "KDE":
+	    case "CAD":
+		fmt = 1;
+		break;
+	    case "radial":
+	    case "average":
+		fmt = 2;
+		break;
+	    case "spectrum":
+		fmt = 3;
+		break;
+	    case "regression":
+		fmt = 4;
+		break;
+	    }
+	    IsoplotR.settings[gc].format = fmt;
 	    populate(IsoplotR,true);
 	    errconvert();
 	} else {
@@ -2270,16 +2317,17 @@ $(function(){
 	var ThU12 = (gc=='Th-U' && format<3);
 	var ThU34 = (gc=='Th-U' && format>2);
 	var radial = (gc=='other' && pd=='radial');
-	var regression = (gc=='other' && pd=='regression');
+	var regression4 = (gc=='other' && pd=='regression' && format==4);
+	var regression5 = (gc=='other' && pd=='regression' && format==5);
 	var spectrum = (gc=='other' && pd=='spectrum');
 	var average = (gc=='other' && pd=='average');
 	if (UPb12 || PbPb12 || ArAr12 || ThPb12 ||
 	    KCa12 || RbSr12 || SmNd12 || ReOs12 ||
-	    LuHf12 || ThU34 || regression){
+	    LuHf12 || ThU34 || regression4){
 	    cols = [1,3];
 	} else if (UPb345 || PbPb3 || ArAr3 || ThPb3 ||
 		   KCa3 || RbSr3 || SmNd3 || ReOs3 ||
-		   LuHf3 || UThHe || ThU12){
+		   LuHf3 || UThHe || ThU12 || regression5){
 	    cols = [1,3,5];
 	} else if (UPb78){
 	    cols = [1,3,5,7];
@@ -2869,4 +2917,12 @@ function copy_background(id) {
             return;
         }
     }
+}
+
+function countRows(){
+    let fr = $("#INPUT").handsontable('getDataAtCol',0);
+    for (var i=0; i<fr.length; i++){
+	if (fr[i]==null | fr[i]=="") return i;
+    }
+    return fr.length;
 }

@@ -2,21 +2,24 @@
 <div class="hidden show4regression">
 &nbsp;<help id="help_regression_format"><translate class="input"></translate></help>
 <select id="regression-format" onchange="$.chooseFormat('#regression-format','other');">
-  <option value=1>X, s[X], Y, s[Y], rXY</option>
-  <option value=3>X/Z, s[X/Z], Y/Z, s[Y/Z], X/Y, s[X/Y]</option>
+  <option value=4>X, s[X], Y, s[Y], rXY</option>
+  <option value=5>X/Z, s[X/Z], Y/Z, s[Y/Z], X/Y, s[X/Y]</option>
+  <option value=6>[X,Y],s[,Xi],s[Yi]</option>
 </select>
 <p></p>
 </div>
 
 <div class="hide4kde hide4cad">
-  &nbsp;<help class="translate" id="help_ierr"></help>
-  <select id="ierr" onchange="$.switchErr();">
-    <option class="translate" id="1se_abs" value=1></option>
-    <option class="translate" id="2se_abs" value=2></option>
-    <option class="translate" id="1se_rel" value=3></option>
-    <option class="translate" id="2se_rel" value=4></option>
-  </select>
-  <p></p>
+  <span class="show4other4 show4other5 hide4other6">
+    &nbsp;<help class="translate" id="help_ierr"></help>
+    <select id="ierr" onchange="$.switchErr();">
+      <option class="translate" id="1se_abs" value=1></option>
+      <option class="translate" id="2se_abs" value=2></option>
+      <option class="translate" id="1se_rel" value=3></option>
+      <option class="translate" id="2se_rel" value=4></option>
+    </select>
+    <p></p>
+  </span>
   &nbsp;<help class="translate" id="help_oerr"></help>
   <select id="oerr">
     <option class="translate" id="1se_abs" value=1></option>

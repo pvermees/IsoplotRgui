@@ -263,7 +263,7 @@
     "helioplot": {
 	"logratio": true,
 	"shownumbers": false,
-	"showcentralcomp": true,
+	"showbarycentre": true,
 	"minx": "auto",
 	"maxx": "auto",
 	"miny": "auto",

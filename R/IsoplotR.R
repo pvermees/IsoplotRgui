@@ -312,14 +312,13 @@ setregression <- function(params, data, s2d, settings) {
     args
 }
 
-regression <- function(fn, params, data, s2d, settings, cex, york) {
+regression <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
-    args$x <- IsoplotR::data2york(args$x, format = york$format)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::isochron, args)
 }
 
-isochron <- function(fn, params, data, s2d, settings, cex, york = NULL) {
+isochron <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
     applysettings(params, settings)
     gc <- params$geochronometer
@@ -562,6 +561,7 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
     args <- list(
         x = getdata(params, data, s2d),
         logratio = pd$logratio,
+        show.barycentre = pd$showbarycentre,
         show.numbers = pd$shownumbers,
         sigdig = params$sigdig,
         levels = selection2levels(data$data, nc),

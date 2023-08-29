@@ -1,4 +1,4 @@
-selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
+selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
                            U8Th2=0,Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
     nc <- as.numeric(input$nc)
     values <- matrix(as.character(input$data), ncol = nc)
@@ -185,19 +185,36 @@ selection2data <- function(input, method="U-Pb",format=1,ierr=1,d=IsoplotR::dise
     } else if (identical(method,"U-Th-He")){
         mat[1,1:8] <- c('He','errHe','U','errU',
                         'Th','errTh','Sm','errSm')
-    } else if (identical(method,"detritals") & format==1){
+    } else if (identical(method,"detritals") & format!=1){
         mat <- NULL
     } else if (identical(method,"detritals") & format!=1){
         labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
         mat <- matrix(labels[1:nc],1,nc)
     } else if (identical(method,"other")){
-        mat <- NULL
+        if (format==1){
+            mat[1,1] <- c('X')
+        } else if (format==2){
+            mat[1,1:2] <- c('X','err[X]')
+        } else if (format==3){
+            mat[1,1:3] <- c('f','X','err[X]')
+        } else if (format==4){
+            mat[1,1:5] <- c('X','err[X]','Y','err[Y]','rho')
+        } else if (format==5){
+            mat[1,1:6] <- c('X/Z','err[X/Z]','Y/Z','err[Y/Z]','X/Y','err[X/Y]')
+        } else if (format==6){
+            ns <- (nc-3)/2
+            mat[1:(nc-2)] <- c('[X,Y]',
+                               paste0('s[,X',1:ns,']'),
+                               paste0('s[,Y',1:ns,']'))
+        }
     } else {
         stop('Invalid method')
     }
     mat <- rbind(mat,values)
-    if (!identical(method,"detritals")){
-        mat <- subset(mat,select=-nc) # the last column may contain letters
+    if (identical(method,"other") & format==1){ # remove the last column
+        mat <- subset(mat,select=-nc)
+    } else if (!identical(method,"detritals")){ # remove the last two columns
+        mat <- subset(mat,select=-c(nc-1,nc))
     }
     if (identical(method,'U-Pb')){
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,d=d)
