@@ -34,18 +34,18 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1043"
+     inkscape:window-height="1046"
      id="namedview4"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="1.0085051"
-     inkscape:cx="1261.7685"
-     inkscape:cy="383.2405"
+     inkscape:zoom="1.0285713"
+     inkscape:cx="697.56956"
+     inkscape:cy="398.61118"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="34"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:pagecheckerboard="0" /><g
@@ -1511,7 +1511,31 @@
      id="tspan11925-5-9"
      sodipodi:role="line">London</tspan></text>
 
-</a>
+</a><a
+   id="a4887-2"
+   xlink:href="https://isoplotr.geoaltay.eu/"
+   xlink:title="UCL"
+   transform="translate(232.9539,-57.496447)"><rect
+     y="170.94063"
+     x="553.37976"
+     height="35.333931"
+     width="99.666328"
+     id="rect11871-5-6-5"
+     style="fill:#fffc00;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /></a><a
+   id="a5697-3"
+   xlink:href="https://isoplotr.geoaltay.eu/"
+   xlink:title="Karlova"
+   transform="translate(232.9539,-59.496447)"><text
+     id="text11927-3-2-4"
+     y="196.26062"
+     x="570.47192"
+     style="font-style:normal;font-weight:normal;font-size:18.6667px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"><tspan
+       style="text-align:start;text-anchor:start"
+       y="196.26062"
+       x="570.47192"
+       id="tspan11925-5-9-9"
+       sodipodi:role="line">Prague</tspan></text></a>
 
 <path
    style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -1523,8 +1547,13 @@
    d="m 653.26816,189.89784 42.26182,-34.35411"
    id="path11992-0-9"
    inkscape:connector-curvature="0"
+   sodipodi:nodetypes="cc" /><path
+   style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+   d="m 742.67481,165.14932 42.26182,-34.35411"
+   id="path11992-0-9-0"
+   inkscape:connector-curvature="0"
    sodipodi:nodetypes="cc" /><a
-   transform="translate(388.9123,121.34263)"
+   transform="translate(388.9123,41.342627)"
    id="a4890-9"
    xlink:href="http://chinageology.org:8080/"
    xlink:title="Hunan University of Technology and Business"><rect
@@ -1534,7 +1563,7 @@
      width="115.53139"
      id="rect11871-5-3"
      style="fill:#fffe00;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /></a><a
-   transform="translate(393.86042,116.85244)"
+   transform="translate(393.86042,36.852436)"
    id="a5693-1"
    xlink:href="http://chinageology.org:8080/"
    xlink:title="Hunan University of Technology and Business"><text
@@ -1549,7 +1578,7 @@
      id="tspan11925-5-4"
      sodipodi:role="line"><tspan
        class="translate"
-       id="Changsha">Changsha</tspan></tspan></text>
+       id="CAS">Beijing-1</tspan></tspan></text>
 
 </a><path
    style="fill:none;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1560,7 +1589,7 @@
    xlink:title="Chinese Academy of Sciences"
    xlink:href="http://www.isoplotr.com/isoplotr/"
    id="a1190"
-   transform="translate(388.9123,41.342626)"><rect
+   transform="translate(388.9123,81.342628)"><rect
      style="fill:#fffe00;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="rect1188"
      width="97.683174"
@@ -1570,25 +1599,25 @@
    xlink:title="Chinese Academy of Sciences"
    xlink:href="http://www.isoplotr.com/isoplotr/"
    id="a1196"
-   transform="translate(389.86042,38.852437)"><text
+   transform="translate(389.86042,78.852439)"><text
    xml:space="preserve"
    style="font-style:normal;font-weight:normal;font-size:18.6667px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-   x="580.21259"
+   x="570.21259"
    y="134.60785"
    id="text1194"><tspan
      sodipodi:role="line"
      id="tspan1192"
-     x="580.21259"
+     x="570.21259"
      y="134.60785"
      style="text-align:start;text-anchor:start"><tspan
        class="translate"
-       id="Beijing">Beijing</tspan></tspan></text>
+       id="HUTB">Beijing-2</tspan></tspan></text>
 
 </a><path
    sodipodi:nodetypes="cc"
    inkscape:connector-curvature="0"
    id="path1199"
-   d="m 1049.5642,251.36808 23.7759,-9.40366"
+   d="m 1049.5642,191.36808 23.7759,-9.40366"
    style="fill:none;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" /><rect
    y="464.29852"
    x="446.37714"
