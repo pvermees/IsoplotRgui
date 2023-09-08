@@ -185,11 +185,13 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
     } else if (identical(method,"U-Th-He")){
         mat[1,1:8] <- c('He','errHe','U','errU',
                         'Th','errTh','Sm','errSm')
-    } else if (identical(method,"detritals") & format!=1){
-        mat <- NULL
-    } else if (identical(method,"detritals") & format!=1){
-        labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
-        mat <- matrix(labels[1:nc],1,nc)
+    } else if (identical(method,"detritals")){
+        if (format==1){
+            mat <- NULL
+        } else {
+            labels <- c(LETTERS,unlist(lapply(LETTERS,'paste0',LETTERS)))
+            mat <- matrix(labels[1:nc],1,nc)
+        }
     } else if (identical(method,"other")){
         if (format==1){
             mat[1,1] <- c('X')
