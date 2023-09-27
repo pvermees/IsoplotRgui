@@ -2,7 +2,7 @@
     "exterr": "Propagar incertidumbres externas?",
     "age": "edad",
     "input": "Formato de ingreso:",
-    "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span>\n<span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;\n<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)",
+    "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)",
     "omit": "Variable opcional usada para esconder o ignorar alícuotas. Alícuotas marcadas como (minúscula) '<tt>x</tt>' son graficadas (excepto en KDEs y CADs) pero ignoradas para análisis numéricos; Alícuotas marcadas como (mayúscula) '<tt>X</tt>' son removidas de gráficos y cálculos.",
     "where": "donde:",
     "references": "<u>Referencias:</u>",
