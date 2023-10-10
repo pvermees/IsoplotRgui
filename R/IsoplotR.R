@@ -456,7 +456,9 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         to = naifauto(pd$maxx),
         bw = naifauto(pd$bandwidth),
         show.hist = pd$showhist,
-        adaptive = pd$adaptive
+        adaptive = pd$adaptive,
+        nmodes = pd$nmodes,
+        sigdig = params$sigdig
     )
     if (gc == "Th-U") {
         args$detritus <- params$gcsettings$detritus

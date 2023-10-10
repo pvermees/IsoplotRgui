@@ -239,7 +239,8 @@
 	"bandwidth": "auto",
 	"binwidth": "auto",
 	"rugdetritals": false,
-	"rug": true
+	"rug": true,
+	"nmodes": 0
     },
     "CAD": {
 	"pch": "none",
