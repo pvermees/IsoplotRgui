@@ -53,7 +53,23 @@
     <td><input type="text" id="binwidth"></td></tr>
   <tr><td>&nbsp;<help class="translate" id="help_cex"></help></td>
     <td><input type="text" id="cex"></td></tr>
+  <tr><td>&nbsp;<help class="translate" id="help_sigdig"></help></td>
+    <td><input type="text" id="sigdig"></td></tr>
 </table>
+
+<p></p>
+
+&nbsp;<help class="translate" id="help_nmodes"></help>
+<select id="nmodes" onchange="$.register();">
+  <option value=0>0</option>
+  <option value=1>1</option>
+  <option value=2>2</option>
+  <option value=3>3</option>
+  <option value=4>4</option>
+  <option value=5>5</option>
+  <option class="translate" id="nmodes_all" value="all"></option>
+</select>
+<span class="translate" id="modes"></span>
 
 <p></p>
 &nbsp;<input type="checkbox" id="log">
