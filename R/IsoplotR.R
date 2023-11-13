@@ -192,11 +192,8 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
     args$ticks <- str2vec(pd$ticks)
-    if (pd$anchor == 1) {
-        args$anchor <- 1
-    } else if (pd$anchor == 2) {
-        args$anchor <- c(2, pd$tanchor)
-    }
+    args$anchor <- pd$anchor
+    if (pd$anchor == 2) args$anchor <- append(args$anchor,pd$tanchor)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::concordia, args)
 }
@@ -322,31 +319,30 @@ isochron <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
     applysettings(params, settings)
     gc <- params$geochronometer
+    pd <- params$pdsettings
+    args$anchor <- pd$anchor
+    if (args$anchor == 2){
+        args$anchor <- append(args$anchor, pd$tanchor)
+    }
     if (!(gc %in% c("U-Pb", "Th-U", "U-Th-He"))) {
         args$inverse <- params$gcsettings$inverse
     }
     if (gc == "Pb-Pb") {
-        args$growth <- params$pdsettings$growth
+        args$growth <- pd$growth
     }
     if (gc == "U-Pb") {
-        args$type <- params$pdsettings$UPbtype;
+        args$type <- pd$UPbtype;
         if (params$gcsettings$format > 3) {
-            args$joint <- params$pdsettings$joint
+            args$joint <- pd$joint
         }
-        anchor <- params$pdsettings$anchor
-        if (anchor == 1) {
-            args$anchor <- 1
-        } else if (anchor == 2) {
-            args$anchor <- c(2, params$pdsettings$tanchor)
-        }
-        args$y0option <- params$pdsettings$UPb_y0option
+        args$y0option <- pd$UPb_y0option
     }
     if (gc == "Th-U") {
-        args$type <- params$pdsettings$ThUtype
-        args$y0option <- params$pdsettings$ThU_y0option
+        args$type <- pd$ThUtype
+        args$y0option <- pd$ThU_y0option
     }
     if (gc != "U-Th-He") {
-        args$exterr <- params$pdsettings$exterr
+        args$exterr <- pd$exterr
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::isochron, args)

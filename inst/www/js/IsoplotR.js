@@ -934,6 +934,14 @@ $(function(){
 	    break;
 	case 'isochron':
 	    $(".hide4isochron").hide();
+	    if (geochronometer!='U-Pb' && pd.anchor==3){
+		pd.anchor=0; // reset
+	    }
+	    if (pd.anchor == 1){
+		$('.show4ianchor').show();
+	    } else {
+		$('.show4ianchor').hide();
+	    }
 	    if (pd.anchor == 2){
 		$('.show4tanchor').show();
 	    } else {
