@@ -18,7 +18,7 @@
     "ArAr_format_1": "1. Normal",
     "ArAr_format_2": "2. Inverse",
     "ArAr_format_3": "3. Three ratios",
-    "help_Ar40Ar36": "Atmospheric <sup>40</sup>Ar/<sup>36</sup>Ar ratio:",
+    "help_Ar40Ar36": "Non-radiogenic <sup>40</sup>Ar/<sup>36</sup>Ar ratio:",
     "help_LambdaK40": "<sup>40</sup>K decay constant:",
     "help_ArAr_i2i": "Use isochron intercept as initial <sup>40</sup>Ar/<sup>36</sup>Ar-ratio?",
     "help_KCa_i2i": "Use isochron intercept as initial <sup>40</sup>Ca/<sup>44</sup>Ca-ratio?",

@@ -47,7 +47,7 @@
     "help_LambdaRe187": "The default values of the <sup>187</sup>Re decay constant and its standard error are taken from Smoliar et al. (1996).",
     "help_LambdaSm147": "The default values of the <sup>147</sup>Sm decay constant and its standard error are taken from Villa et al. (2020).",
     "help_LambdaK40": "The default values for the decay constant of <sup>40</sup>K and its standard error are taken from Renne et al. (2011).",
-    "help_Ar40Ar36": "The default values for the atmospheric ('excess') argon ratio and its standard error are taken from Lee et al. (2006).",
+    "help_Ar40Ar36": "The default values for the non-radiogenic ('excess') argon ratio and its standard error are the atmospheric values taken from Lee et al. (2006).",
     "help_LambdaU234": "The default value of the <sup>234</sup>U decay constant is taken from Cheng et al. (2013). Its standard error excludes all covariant sources of analytical uncertainty with <sup>230</sup>Th.",
     "help_LambdaPa231": "The default value of the <sup>231</sup>Pa decay constant is taken from Audi et al. (2003).",
     "help_LambdaTh230": "The default value of the <sup>230</sup>Th decay constant is taken from Cheng et al. (2013). Its standard error excludes all covariant sources of analytical uncertainty with <sup>234</sup>U.",
