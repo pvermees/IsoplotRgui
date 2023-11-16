@@ -961,8 +961,7 @@ $(function(){
 		    $('.show4UPby0option1').show();
 		    $('.hide4UPby0option1').hide();
 		}
-	    }
-	    if (geochronometer=='Th-U' & set.format<3){
+	    } else if (geochronometer=='Th-U' & set.format<3){
 		switch (pd.ThU_y0option){
 		case 1:
 		    $('.show4ThUy0option1').show();
@@ -978,6 +977,11 @@ $(function(){
 		}
 	    }
 	case 'regression':
+	    if (['U-Pb','Th-U'].indexOf(geochronometer)<0 & pd.model==3){
+		$('.show4wtype').show();
+	    } else {
+		$('.show4wtype').hide();
+	    }
 	case 'helioplot':
 	    switch (pd.model){
 	    case 1:
@@ -1371,6 +1375,7 @@ $(function(){
 	    $('#tanchor').val(set.tanchor[0]);
 	    $('#stanchor').val(set.tanchor[1]);
 	case 'regression':
+	    $("#wtype").prop('checked',set.wtype==2);
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#isochron-minx').val(set.minx);
 	    $('#isochron-maxx').val(set.maxx);
@@ -1785,6 +1790,7 @@ $(function(){
 	    pdsettings.model = getOption("#isochron-models");
 	    inverse(geochronometer);
 	case 'regression':
+	    pdsettings.wtype = truefalse('#wtype') ? 2 : 1;
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.model = getOption("#isochron-models");
 	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
@@ -2540,14 +2546,14 @@ $(function(){
 	errconvert();
 	showOrHide();
     }
-
+    
     $.chooseDiscFilter = function(){
 	var opt = getOption("#discoption");
 	var set = IsoplotR.settings['U-Pb'];
 	set.discoption = opt;
 	$('#mindisc').val(set.mindisc[opt-1]);
 	$('#maxdisc').val(set.maxdisc[opt-1]);
-    }    
+    }
     
     $.chooseMineral = function(){
 	var cst = IsoplotR.constants;

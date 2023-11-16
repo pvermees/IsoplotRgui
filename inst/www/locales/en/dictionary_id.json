@@ -128,6 +128,8 @@
     "isochron_model_3": "3. Maximum likelihood with overdispersion",
     "isochron_model_2": "2. Total least squares",
     "isochron_model_1": "1. Maximum likelihood",
+    "help_wtype": "Age dispersion?",
+    "help_wtype_regression": "Dispersed slope?",
     "apatite": "apatite",
     "zircon": "zircon",
     "help_U238U235": "<sup>238</sup>U/<sup>235</sup>U ratio:",

@@ -140,6 +140,7 @@
 	"UPb_y0option": 1,
 	"ThU_y0option": 1,
 	"model": 1,
+	"wtype": 2,
 	"exterr": false,
 	"joint": true,
 	"anchor": 0,
@@ -161,6 +162,7 @@
     },
     "regression": {
 	"model": 1,
+	"wtype": 1,
 	"shownumbers": false,
 	"minx": "auto",
 	"maxx": "auto",

@@ -302,6 +302,7 @@ setregression <- function(params, data, s2d, settings) {
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
+        wtype = pd$wtype,
         clabel = pd$clabel
     )
     args$xlim <- getlimits(pd$minx, pd$maxx)
