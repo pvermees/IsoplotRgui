@@ -945,6 +945,7 @@ $(function(){
 	    if (pd.anchor[0]==2){
 		$('.show4tanchor').show();
 	    } else if (pd.anchor[0]>0 & geochronometer=='U-Th-He'){
+		$('.show4tanchor').hide();
 		$('.show4HeAnchor').show();
 	    } else {
 		$('.show4tanchor').hide();
