@@ -163,6 +163,7 @@
     "regression": {
 	"model": 1,
 	"wtype": 1,
+	"anchor": [0,0,0],
 	"shownumbers": false,
 	"minx": "auto",
 	"maxx": "auto",

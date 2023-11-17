@@ -303,7 +303,8 @@ setregression <- function(params, data, s2d, settings) {
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
         wtype = pd$wtype,
-        clabel = pd$clabel
+        clabel = pd$clabel,
+        anchor = pd$anchor
     )
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
@@ -318,13 +319,12 @@ regression <- function(fn, params, data, s2d, settings, cex) {
 
 isochron <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
-    applysettings(params, settings)
-    gc <- params$geochronometer
-    pd <- params$pdsettings
-    args$anchor <- pd$anchor
     if (args$anchor == 2){
         args$anchor <- append(args$anchor, pd$tanchor)
     }
+    applysettings(params, settings)
+    gc <- params$geochronometer
+    pd <- params$pdsettings
     if (!(gc %in% c("U-Pb", "Th-U", "U-Th-He"))) {
         args$inverse <- params$gcsettings$inverse
     }

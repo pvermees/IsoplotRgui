@@ -982,6 +982,11 @@ $(function(){
 	    } else {
 		$('.show4wtype').hide();
 	    }
+	    if (geochronometer=='other' & pd.anchor[0]>0){
+		$('.show4anchor').show();
+	    } else {
+		$('.show4anchor').hide();
+	    }
 	case 'helioplot':
 	    switch (pd.model){
 	    case 1:
@@ -1376,6 +1381,9 @@ $(function(){
 	    $('#stanchor').val(set.tanchor[1]);
 	case 'regression':
 	    $("#wtype").prop('checked',set.wtype==2);
+	    setOption('#regression-anchor-option',set.anchor[0]);
+	    $('#regression-anchor').val(set.anchor[1]);
+	    $('#regression-anchor-err').val(set.anchor[2]);
 	    $('#shownumbers').prop('checked',set.shownumbers);
 	    $('#isochron-minx').val(set.minx);
 	    $('#isochron-maxx').val(set.maxx);
@@ -1791,6 +1799,9 @@ $(function(){
 	    inverse(geochronometer);
 	case 'regression':
 	    pdsettings.wtype = truefalse('#wtype') ? 2 : 1;
+	    pdsettings.anchor[0] = getOption("#regression-anchor-option");
+	    pdsettings.anchor[1] = getNumber('#regression-anchor');
+	    pdsettings.anchor[2] = getNumber('#regression-anchor-err');
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.model = getOption("#isochron-models");
 	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
