@@ -193,7 +193,6 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     args$ylim <- getlimits(pd$miny, pd$maxy)
     args$ticks <- str2vec(pd$ticks)
     args$anchor <- pd$anchor
-    if (pd$anchor == 2) args$anchor <- append(args$anchor,pd$tanchor)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::concordia, args)
 }
@@ -319,9 +318,6 @@ regression <- function(fn, params, data, s2d, settings, cex) {
 
 isochron <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
-    if (args$anchor == 2){
-        args$anchor <- append(args$anchor, pd$tanchor)
-    }
     applysettings(params, settings)
     gc <- params$geochronometer
     pd <- params$pdsettings
