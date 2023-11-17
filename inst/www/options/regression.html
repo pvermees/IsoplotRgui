@@ -1,14 +1,29 @@
 <p></p>
 
-<div>
 &nbsp;<help class="translate" id="help_regression_models"></help>
-<select id="isochron-models">
+<select id="isochron-models" onchange="$.register();">
   <option class="translate" id="isochron_model_1" value=1></option>
   <option class="translate" id="isochron_model_2" value=2></option>
   <option class="translate" id="isochron_model_3" value=3></option>
 </select>
-</div>
+<span class="hidden show4wtype">
+  <help class="translate" id="help_wtype_regression"></help>
+  <input type="checkbox" id="wtype" onchange="$.register();">
+</span>
+<p></p>
 
+&nbsp;<help class="translate" id="help_regression_anchor_option"></help>
+<select id="regression-anchor-option" onchange="$.register();">
+  <option class="translate" id="no_anchor" value=0></option>
+  <option class="translate" id="intercept_anchor" value=1></option>
+  <option class="translate" id="slope_anchor" value=2></option>
+</select>
+<span class="hidden show4anchor">
+  <translate class="at"></translate>
+  <input type="text" id="regression-anchor">
+  &plusmn;
+  <input type="text" id="regression-anchor-err">
+</span>
 <p></p>
 
 &nbsp;<input type="checkbox" id="shownumbers"> 

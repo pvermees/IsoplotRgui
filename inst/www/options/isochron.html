@@ -52,52 +52,63 @@
   <option class="translate" id="isochron_model_2" value=2></option>
   <option class="translate" id="isochron_model_3" value=3></option>
 </select>
+<span class="hidden show4wtype">
+  <help class="translate" id="help_wtype"></help>
+  <input type="checkbox" id="wtype" onchange="$.register();">
+</span>
 <p></p>
 
-<div class="hidden show4UPb">
+<div class="hide4ThU">
   &nbsp;<help class="translate" id="help_isochron_anchor_option"></help>
   <select id="anchor-option" onchange="$.register();">
     <option class="translate" id="no_anchor" value=0></option>
-    <option value=1>Pb</option>
+    <option class="translate" id="common_anchor" value=1></option>
     <option class="translate" id="age_anchor" value=2></option>
+    <option class="translate hidden show4UPb" id="sk_anchor" value=3></option>
   </select>
+  <span class="hidden show4tanchor show4HeAnchor">
+    <translate class="at"></translate>
+    <input type="text" id="anchor"> &plusmn;
+    <input type="text" id="anchor-err">
+    <span class="hidden show4tanchor"> Ma</span>
+  </span>
   <p></p>
 </div>
 
 <div class="hide4UThHe hide4ThU show4ArAr show4KCa show4PbPb 
             show4RbSr show4SmNd show4ReOs show4LuHf hide4UPb">
-&nbsp;<input type="checkbox" id="inverse">
-<help id="help_PbPb_inverse" class="hidden show4PbPb">
-  <translate class="inverse"></translate>
-</help>
-<help id="help_ArAr_inverse" class="hidden show4ArAr">
-  <translate class="inverse"></translate>
-</help>
-<help id="help_ThPb_inverse" class="hidden show4ThPb">
-  <translate class="inverse"></translate>
-</help>
-<help id="help_KCa_inverse" class="hidden show4KCa">
-  <translate class="inverse"></translate>
-</help>
-<help id="help_RbSr_inverse" class="hidden show4RbSr">
-  <translate class="inverse"></translate>
-</help>
-<help id="help_SmNd_inverse" class="hidden show4SmNd">
-  <translate class="inverse"></translate>
-</help>
-<help id="help_ReOs_inverse" class="hidden show4ReOs">
-  <translate class="inverse"></translate>
-</help>
-<help id="help_LuHf_inverse" class="hidden show4LuHf">
-  <translate class="inverse"></translate>
-</help>
-<p></p>
+  &nbsp;<input type="checkbox" id="inverse">
+  <help id="help_PbPb_inverse" class="hidden show4PbPb">
+    <translate class="inverse"></translate>
+  </help>
+  <help id="help_ArAr_inverse" class="hidden show4ArAr">
+    <translate class="inverse"></translate>
+  </help>
+  <help id="help_ThPb_inverse" class="hidden show4ThPb">
+    <translate class="inverse"></translate>
+  </help>
+  <help id="help_KCa_inverse" class="hidden show4KCa">
+    <translate class="inverse"></translate>
+  </help>
+  <help id="help_RbSr_inverse" class="hidden show4RbSr">
+    <translate class="inverse"></translate>
+  </help>
+  <help id="help_SmNd_inverse" class="hidden show4SmNd">
+    <translate class="inverse"></translate>
+  </help>
+  <help id="help_ReOs_inverse" class="hidden show4ReOs">
+    <translate class="inverse"></translate>
+  </help>
+  <help id="help_LuHf_inverse" class="hidden show4LuHf">
+    <translate class="inverse"></translate>
+  </help>
+  <p></p>
 </div>
 
 <div class="hidden show4PbPb">
-&nbsp;<input type="checkbox" id="PbPb-growth"> 
-<help class="translate" id="help_PbPb_growth"></help>
-<p></p>
+  &nbsp;<input type="checkbox" id="PbPb-growth"> 
+  <help class="translate" id="help_PbPb_growth"></help>
+  <p></p>
 </div>
 
 <table>

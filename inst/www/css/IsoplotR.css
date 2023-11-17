@@ -206,42 +206,42 @@ cn {
 
 .background_iridesce {
     background: linear-gradient(to right, #000, #450045, #8B008B, #00008B, #00555D, #00AA2E, #00FF00, #FFFF00);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_iridesce_reversed {
     background: linear-gradient(to right, #FFFF00, #00FF00, #00AA2E, #00555D, #00008B, #8B008B, #450045, #000);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_red_blue_black {
     background: linear-gradient(to right, #FF0000, #FF0055, #FF00AA, #FF00FF, #0000FF, #0000AA, #000055, #000);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_red_blue_black_reversed {
     background: linear-gradient(to right, #000, #000055, #0000AA, #0000FF, #FF00FF, #FF00AA, #FF0055, #FF0000);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_salmon {
     background: linear-gradient(to right, #000000, #550000, #AA0000, #FF0000, #FF3033, #FF6065, #FF9098, #FFC0C9);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_salmon_reversed {
     background: linear-gradient(to right, #FFC0C9, #FF9098, #FF6065, #FF3033, #FF0000, #AA0000, #550000, #000000);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
@@ -262,28 +262,28 @@ cn {
 
 .background_viridis {
     background: linear-gradient(to right, #440154, #46337E, #365C8D, #277F8E, #1FA187, #4AC16D, #9FDA3A, #FDE725);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_viridis_reversed {
     background: linear-gradient(to right, #FDE725, #9FDA3A, #4AC16D, #1FA187, #277F8E, #365C8D, #46337E, #440154);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_rocket {
     background: linear-gradient(to right, #03051A, #36193E, #701F57, #AE1759, #E13342, #F37651, #F6B48E, #FAEBDD);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
 
 .background_rocket_reversed {
     background: linear-gradient(to right, #FAEBDD, #F6B48E, #F37651, #E13342, #AE1759, #701F57, #36193E, #03051A);
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
 }
