@@ -608,7 +608,12 @@ $(function(){
 	    } else {
 		$(".show4diseq").hide();
 	    }
-	    if (set.commonPb!=1 & pd.anchor[0]!=1){
+	    if (['concordia','isochron'].indexOf(plotdevice)<0){
+		noPb0anchor = true
+	    } else {
+		noPb0anchor = pd.anchor[0]!=1
+	    }
+	    if (set.commonPb!=1 & noPb0anchor){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').hide();
@@ -1415,7 +1420,7 @@ $(function(){
             setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
-        $('#clabel').val(set.clabel);
+            $('#clabel').val(set.clabel);
 	    $('#pcex').val(set.cex);
 	    $('#cex').val(IsoplotR.settings.par.cex);
 	    $('#exterr').prop('checked',set.exterr);
@@ -1427,7 +1432,6 @@ $(function(){
 	    $('#ranked').prop('checked',set.ranked);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
-	    $('#cex').val(IsoplotR.settings.par.cex);
             setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
