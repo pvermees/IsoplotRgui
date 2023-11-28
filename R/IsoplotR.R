@@ -371,9 +371,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
     args$from <- notauto(pd$mint)
     args$to <- notauto(pd$maxt)
     gc <- params$geochronometer
-    if (gc %in% c(
-        "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-HF"
-    )) {
+    if (gc %in% c("Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")) {
         args$i2i <- params$gcsettings$i2i
     }
     if (gc == "U-Pb") {
