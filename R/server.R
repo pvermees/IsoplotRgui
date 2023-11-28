@@ -39,11 +39,11 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
                          'rhoYZ','rhoYW','rhoZW')
     } else if (identical(method,"U-Pb") & format==8) {
         mat[1,1:14] <- c('U238Pb206','errU238Pb206',
-                            'Pb207Pb206','errPb207Pb206',
-                            'Pb208Pb206','errPb208Pb206',
-                            'Th232U238','errTh232U238',
-                            'rhoXY','rhoXZ','rhoXW',
-                            'rhoYZ','rhoYW','rhoZW')
+                         'Pb207Pb206','errPb207Pb206',
+                         'Pb208Pb206','errPb208Pb206',
+                         'Th232U238','errTh232U238',
+                         'rhoXY','rhoXZ','rhoXW',
+                         'rhoYZ','rhoYW','rhoZW')
     } else if (identical(method,"Pb-Pb") & format==1) {
         mat[1,1:5] <- c('Pb206Pb204','errPb206Pb204',
                         'Pb207Pb204','errPb207Pb204','rho')
