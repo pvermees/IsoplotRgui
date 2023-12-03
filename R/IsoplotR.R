@@ -1,12 +1,12 @@
 selection2levels <- function(dat, nc) {
     values <- matrix(dat, ncol = nc)
-    lc <- nc - 1
+    lc <- nc - 2
     as.numeric(values[, lc])
 }
 
 omitter <- function(dat, nc, flags = c("x", "X")) {
     values <- matrix(dat, ncol = nc)
-    oc <- nc
+    oc <- nc - 1
     o <- values[, oc]
     which(o %in% flags)
 }
