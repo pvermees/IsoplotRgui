@@ -44,6 +44,21 @@ a:hover {
     text-align: center;
 }
 
+.nogrow {
+    flex-grow: 0;
+}
+
+.hot-sizer {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.hot-container {
+    overflow: scroll;
+    height: 100%;
+}
+
 .ulcorner {
     position: absolute;
     float: left;
@@ -104,6 +119,8 @@ footer {
 left {
     overflow:hidden;
     position:fixed;
+    display: flex;
+    flex-direction: column;
     left:0;
     right:50%;
     top:50px; 
