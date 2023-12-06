@@ -92,56 +92,56 @@ $(function(){
 	    var format = IsoplotR.settings["U-Pb"].format;
 	    switch (format){
 	    case 1:
-	    case 2: return 7;
-	    case 3: return 10;
+	    case 2: return 8;
+	    case 3: return 11;
 	    case 4:
-	    case 5: return 11;
-	    case 6: return 14;
+	    case 5: return 12;
+	    case 6: return 15;
 	    case 7:
-	    case 8: return 16;
+	    case 8: return 17;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
 	    switch (format){
 	    case 1:
-	    case 2: return 7;
-	    case 3: return 8;
+	    case 2: return 8;
+	    case 3: return 9;
 	    }
 	case 'Ar-Ar':
 	    var format = IsoplotR.settings["Ar-Ar"].format;
 	    switch (format){
 	    case 1:
-	    case 2: return 8;
-	    case 3: return 9;
+	    case 2: return 9;
+	    case 3: return 10;
 	    }
 	case 'Th-Pb':
 	    var format = IsoplotR.settings["Th-Pb"].format;
 	    switch (format){
 	    case 1:
-	    case 2: return 7;
-	    case 3: return 8;
+	    case 2: return 8;
+	    case 3: return 9;
 	    }
 	case 'K-Ca':
 	    var format = IsoplotR.settings["K-Ca"].format;
 	    switch (format){
 	    case 1:
-	    case 2: return 7;
-	    case 3: return 8;
+	    case 2: return 8;
+	    case 3: return 9;
 	    }
 	case 'Th-U':
 	    var format = IsoplotR.settings["Th-U"].format;
 	    switch (format){
 	    case 1:
-	    case 2: return 11;
+	    case 2: return 12;
 	    case 3:
-	    case 4: return 7;
+	    case 4: return 8;
 	    }
 	case 'fissiontracks':
 	    var format = IsoplotR.settings.fissiontracks.format;
 	    if (format<2){
-		return 4;
+		return 5;
 	    } else {
-		return 14;
+		return 15;
 	    }
 	case 'Rb-Sr':
 	case 'Sm-Nd':
@@ -150,11 +150,11 @@ $(function(){
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
 	    case 1:
-	    case 2: return 7;
-	    case 3: return 8;
+	    case 2: return 8;
+	    case 3: return 9;
 	    }
 	case 'U-Th-He':
-	    return 10;
+	    return 11;
 	case 'detritals':
 	    var firstrow = $("#INPUT").handsontable('getData')[0];
 	    var nc = firstrow.length;
@@ -164,12 +164,12 @@ $(function(){
 	case 'other':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
-	    case 1: return 2;
-	    case 2: return 4;
-	    case 3: return 5;
-	    case 4: return 7;
-	    case 5: return 8;
-	    case 6: return countRows()+3;
+	    case 1: return 3;
+	    case 2: return 5;
+	    case 3: return 6;
+	    case 4: return 8;
+	    case 5: return 9;
+	    case 6: return countRows()+4;
 	    }
 	}
 	return 0;
@@ -286,7 +286,7 @@ $(function(){
 	    mydata.data = {}; // clear the object
 	    let nr = countRows();
 	    let ns = Math.round(nr/2);
-	    let H = new Array(nr+3);
+	    let H = new Array(nr+4);
 	    H[0] = '[X,Y]';
 	    mydata.data[0] = $("#INPUT").handsontable('getDataAtCol',0);
 	    for (let k=1; k<(ns+1); k++){
@@ -297,8 +297,10 @@ $(function(){
 	    }
 	    H[nr+1] = '(C)';
 	    H[nr+2] = '(omit)';
+	    H[nr+3] = '(comment)';
 	    mydata.data[nr+1] = $("#INPUT").handsontable('getDataAtCol',nr+1);
 	    mydata.data[nr+2] = $("#INPUT").handsontable('getDataAtCol',nr+2);
+	    mydata.data[nr+3] = $("#INPUT").handsontable('getDataAtCol',nr+3);
 	    let ht = $("#INPUT").handsontable('getInstance');
 	    ht.updateSettings({
 		colHeaders: H
@@ -407,7 +409,7 @@ $(function(){
 			row.push(0);
 		    } else if ((ArAr1 & j==5)|(ArAr2 & j==5)|(ArAr3 & j==6)) { // Ar39
 			row.push(1);
-		    } else if (omissable & j==(nc-1) & val!=null){ // omit
+		    } else if (omissable & j==(nc-2) & val!=null){ // omit
 			row.push(val);
 		    } else {
 			row.push('');
@@ -1131,10 +1133,10 @@ $(function(){
 	    $('#errPb207Pb204').val(cst.iratio.Pb207Pb204[1]);
 	    $('#Pb207Pb206').val(cst.iratio.Pb207Pb206[0]);
 	    $('#errPb207Pb206').val(cst.iratio.Pb207Pb206[1]);
-	    $('#Pb208Pb206').val(cst.iratio.Pb208Pb206[0]);
-	    $('#errPb208Pb206').val(cst.iratio.Pb208Pb206[1]);
-	    $('#Pb208Pb207').val(cst.iratio.Pb208Pb207[0]);
-	    $('#errPb208Pb207').val(cst.iratio.Pb208Pb207[1]);
+	    $('#Pb206Pb208').val(cst.iratio.Pb206Pb208[0]);
+	    $('#errPb206Pb208').val(cst.iratio.Pb206Pb208[1]);
+	    $('#Pb207Pb208').val(cst.iratio.Pb207Pb208[0]);
+	    $('#errPb207Pb208').val(cst.iratio.Pb207Pb208[1]);
 	    $('#U238U235').val(cst.iratio.U238U235[0]);
 	    $('#LambdaU238').val(cst.lambda.U238[0]);
 	    $('#errLambdaU238').val(cst.lambda.U238[1]);
@@ -1583,11 +1585,11 @@ $(function(){
 	    gcsettings.RaU[1] = getNumber('#sRaU');
 	    gcsettings.PaU[1] = getNumber('#sPaU');
 	    cst.iratio.Pb207Pb206[0] = getNumber('#Pb207Pb206');
-	    cst.iratio.Pb208Pb206[0] = getNumber('#Pb208Pb206');
-	    cst.iratio.Pb208Pb207[0] = getNumber('#Pb208Pb207');
+	    cst.iratio.Pb206Pb208[0] = getNumber('#Pb206Pb208');
+	    cst.iratio.Pb207Pb208[0] = getNumber('#Pb207Pb208');
 	    cst.iratio.Pb207Pb206[1] = getNumber('#errPb207Pb206');
-	    cst.iratio.Pb208Pb206[1] = getNumber('#errPb208Pb206');
-	    cst.iratio.Pb208Pb207[1] = getNumber('#errPb208Pb207');
+	    cst.iratio.Pb206Pb208[1] = getNumber('#errPb206Pb208');
+	    cst.iratio.Pb207Pb208[1] = getNumber('#errPb207Pb208');
 	    cst.lambda.Th232[0] = getNumber("#LambdaTh232");
 	    cst.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	    cst.lambda.U234[0] = getNumber("#LambdaU234");

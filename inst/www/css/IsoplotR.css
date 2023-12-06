@@ -1,5 +1,5 @@
 body {
-    font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
+    font-family: Verdana,Arial,sans-serif;
 }
 
 td {
@@ -151,6 +151,11 @@ right {
     z-index:3;
 }
 
+.handsontable {
+    font-family: font-family: Verdana,Arial,sans-serif;
+    font-size: medium;
+    color: black;
+}
 .handsontable table th {
     background: white;
     color: black;
