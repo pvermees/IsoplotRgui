@@ -2585,7 +2585,6 @@ $(function(){
     $(".button").button()
     
     $("#INPUT").handsontable({
-	licenseKey: "non-commercial-and-evaluation",
 	data : [[]],
 	minRows: 100,
 	minCols: 26,
@@ -2599,7 +2598,6 @@ $(function(){
     });
 
     $("#OUTPUT").handsontable({
-	licenseKey: "non-commercial-and-evaluation",
 	data : [[]],
 	minRows: 100,
 	minCols: 26,

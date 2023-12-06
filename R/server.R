@@ -212,6 +212,7 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
     } else {
         stop('Invalid method')
     }
+    if (method%in%'detritals') mat <- c(mat,'(C)','(omit)')
     val <- matrix(values,ncol=nc)
     mat <- rbind(mat,val[,1:ncol(mat)])
     if (identical(method,'U-Pb')){
