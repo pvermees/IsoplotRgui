@@ -214,7 +214,11 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
     }
     val <- matrix(values,ncol=nc)
     if (method%in%'detritals'){
-        mat <- val
+        if (format==1){
+            mat <- val
+        } else {
+            mat <- rbind(mat,val[,1:ncol(mat)])
+        }
     } else {
         mat <- cbind(mat,'(C)','(omit)')
         mat <- rbind(mat,val[,1:ncol(mat)])
