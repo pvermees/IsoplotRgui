@@ -987,7 +987,7 @@ $(function(){
 		}
 	    }
 	case 'regression':
-	    if (['U-Pb','Th-U'].indexOf(geochronometer)<0 & pd.model==3){
+	    if (['U-Pb','Th-U'].indexOf(geochronometer)<0 & pd.model==3 & pd.anchor[0]<1){
 		$('.show4wtype').show();
 	    } else {
 		$('.show4wtype').hide();
