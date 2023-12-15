@@ -12,7 +12,7 @@ install an **IsoplotR** mirror.
 Instructions for offline use are provided in the main
 [README](../README.md) file.
 
-### Using the installer ###
+### Using the installer
 
 With a Debian-based Linux distribution (such as Ubuntu) you
 can use our installer to set up IsoplotR quickly and easily.
@@ -23,7 +23,7 @@ sudo apt install isoplotr.deb
 
 Now please skip to the **Configuring IsoplotR** section
 
-### By Hand ###
+### By Hand
 
 Here is a way to set up a mirror on a Linux machine using the
 following ingredients:
@@ -121,9 +121,9 @@ time with:
 sudo /usr/local/sbin/updateIsoplotR.sh
 ```
 
-## Configuring IsoplotR ##
+## Configuring IsoplotR
 
-### 502 Bad Gateway ###
+### 502 Bad Gateway
 
 If you have run:
 
@@ -167,7 +167,7 @@ server {
 Now restart nginx with `sudo systemctl restart nginx` and see if
 visiting [http://localhost/isoplotr/] works now.
 
-### Horizontal Scaling ###
+### Horizontal Scaling
 
 The installation described (either with the installer or manually)
 is fine for one user, but if many users are accessing the server

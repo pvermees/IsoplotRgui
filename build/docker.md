@@ -51,6 +51,10 @@ docker run --restart unless-stopped -d --name isoplotr -p 3839:80 pvermees/isopl
 (note that the absence of `set -eu` is not a mistake;
 execution should continue in the presence of errors)
 
+> Note: You can change `3839` to which ever port number you like, as long
+> as you change the same number in `/etc/nginx/conf.d/isoplotr.conf`
+> described below.
+
 And begin:
 
 ```sh
@@ -74,24 +78,80 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
+    include /etc/nginx/app.d/*.conf;
+
     root /var/www/html;
 
     index index.html;
 
     server_name _;
-
-    location /isoplotr/ {
-        proxy_pass http://127.0.0.1:3839/;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-    }
 }
 ```
 
 If you already have a file called `/etc/nginx/sites-enabled/default`,
-you will need to copy just the `location {...}` block into the
-appropriate `server {...}` block in the existing file.
+if should already have a `server {}` block that includes the line
+`listen 80 default_server;`. If so you only need to ensure that it
+includes the line `include /etc/nginx/app.d/*.conf`. Some Linux
+distributions include this line, but some (such as Ubuntu) do not.
+
+Now add a file `/etc/nginx/app.d/isoplotr.conf` with the following
+contents:
+
+```
+location /isoplotr/ {
+    proxy_pass http://isoplotr/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+```
+
+And a file called `/etc/nginx/conf.d/isoplotr.conf` with the
+following contents:
+
+```
+upstream isoplotr {
+  least_conn;
+  server 127.0.0.1:3839;
+}
+```
+
+#### Horizontal scaling
+
+It is relatively easy to horizontally scale this solution, albeit manually.
+Let's scale it to four docker containers running on ports `38001` to `38004`.
+
+Firstly, let's change `/etc/nginx/conf.d/isoplotr.conf` to the following:
+
+```
+upstream isoplotr {
+  least_conn;
+  server 127.0.0.1:38001;
+  server 127.0.0.1:38002;
+  server 127.0.0.1:38003;
+  server 127.0.0.1:38004;
+}
+```
+
+Next we should change `/usr/local/sbin/isoplotr-start` to:
+
+```sh
+docker pull pvermees/isoplotr
+docker stop $(docker container ls -q --filter name=isoplotr)
+docker rm $(docker container ls -q -a --filter name=isoplotr)
+docker images -qf dangling=true pvermees/isoplotr | xargs -r docker rmi
+for p in $(seq 38001 38004)
+do
+docker run --restart unless-stopped -d --name isoplotr-${p} -p ${p}:80 pvermees/isoplotr
+done
+```
+
+Now we can restart nginx and start isoplotr:
+
+```
+sudo systemctl restart nginx
+isoplotr-start
+```
 
 ### crontab to keep *IsoplotR* up-to-date
 
