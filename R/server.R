@@ -217,10 +217,10 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
         if (format==1){
             mat <- val
         } else {
-            mat <- rbind(mat,val[,1:ncol(mat)])
+            mat <- rbind(mat,val[,1:ncol(mat),drop=FALSE])
         }
     } else {
-        mat <- rbind(mat,val[,1:ncol(mat)])
+        mat <- rbind(mat,val[,1:ncol(mat),drop=FALSE])
     }
     if (identical(method,'U-Pb')){
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,d=d)
