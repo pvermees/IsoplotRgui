@@ -99,6 +99,10 @@ $(function(){
 	    case 6: return 15;
 	    case 7:
 	    case 8: return 17;
+	    case 9: return 8;
+	    case 10: return 8;
+	    case 11: return 12;
+	    case 12: return 12;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
@@ -566,6 +570,22 @@ $(function(){
 	    case 8:
 		$(".show4UPb8").show();
 		$('.hide4UPb8').hide();
+		break;
+	    case 9:
+		$(".show4UPb9").show();
+		$('.hide4UPb9').hide();
+		break;
+	    case 10:
+		$(".show4UPb10").show();
+		$('.hide4UPb10').hide();
+		break;
+	    case 11:
+		$(".show4UPb11").show();
+		$('.hide4UPb11').hide();
+		break;
+	    case 12:
+		$(".show4UPb12").show();
+		$('.hide4UPb12').hide();
 		break;
 	    }
 	    switch (set.cutoffdisc){
@@ -2280,6 +2300,8 @@ $(function(){
 	var UPb345 = (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1));
 	var UPb6 = (gc=='U-Pb' && format==6);
 	var UPb78 = (gc=='U-Pb' && ($.inArray(format,[7,8])>-1));
+	var UPb910 = (gc=='U-Pb' && ($.inArray(format,[9,10])>-1));
+	var UPb1112 = (gc=='U-Pb' && ($.inArray(format,[11,12])>-1));
 	var PbPb12 = (gc=='Pb-Pb' && ($.inArray(format,[1,2])>-1));
 	var PbPb3 = (gc=='Pb-Pb' && format==3);
 	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
@@ -2305,13 +2327,13 @@ $(function(){
 	var regression5 = (gc=='other' && pd=='regression' && format==5);
 	var spectrum = (gc=='other' && pd=='spectrum');
 	var average = (gc=='other' && pd=='average');
-	if (UPb12 || PbPb12 || ArAr12 || ThPb12 ||
-	    KCa12 || RbSr12 || SmNd12 || ReOs12 ||
-	    LuHf12 || ThU34 || regression4){
+	if (UPb12  || UPb910 || PbPb12 || ArAr12 ||
+	    ThPb12 || KCa12  || RbSr12 || SmNd12 ||
+	    ReOs12 || LuHf12 || ThU34  || regression4){
 	    cols = [1,3];
-	} else if (UPb345 || PbPb3 || ArAr3 || ThPb3 ||
-		   KCa3 || RbSr3 || SmNd3 || ReOs3 ||
-		   LuHf3 || UThHe || ThU12 || regression5){
+	} else if (UPb345 || UPb1112 || PbPb3 || ArAr3 ||
+		   ThPb3  || KCa3    || RbSr3 || SmNd3 ||
+		   ReOs3  || LuHf3   || UThHe || ThU12 || regression5){
 	    cols = [1,3,5];
 	} else if (UPb78){
 	    cols = [1,3,5,7];
