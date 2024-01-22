@@ -2110,8 +2110,10 @@ $(function(){
 	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus(['concordia','isochron','radial',
-			      'average','KDE','CAD','ages'],open);
+	    let menus = IsoplotR.settings['U-Pb'].format<9 ?
+		['concordia','isochron','radial','average','KDE','CAD','ages'] :
+		['isochron','radial','average','KDE','CAD','ages'] ;
+	    setSelectedMenus(menus,open);
 	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus(['isochron','radial','spectrum',
@@ -2135,7 +2137,7 @@ $(function(){
 			      'KDE','CAD','ages'],open);
 	    break;
 	case 'fissiontracks':
-	    var format = IsoplotR.settings.fissiontracks.format;
+	    let format = IsoplotR.settings.fissiontracks.format;
 	    setSelectedMenus(['radial','average','KDE',
 			      'CAD','set-zeta','ages'],open);
 	    if (format < 3){ $("#zetaDiv").show(); }
@@ -2519,19 +2521,22 @@ $(function(){
     }
 
     $.chooseUPbFormat = function(){
-	var oldformat = IsoplotR.settings["U-Pb"].format;
-	var newformat = getInt('#UPb-formats');
-	var upgrade = (oldformat<4 & newformat>3);
-	var downgrade = (oldformat>3 & newformat<4);
-	var pd = IsoplotR.settings.plotdevice;
+	let oldformat = IsoplotR.settings["U-Pb"].format;
+	let newformat = getInt('#UPb-formats');
+	let pd = IsoplotR.settings.plotdevice;
 	if (pd=='concordia'){
-	    IsoplotR.settings.concordia.type = getOption('#concordia-type');
-	    if (newformat<7 & IsoplotR.settings.concordia.type==3){
+	    if (newformat<7 && getOption('#concordia-type')==3){
 		IsoplotR.settings.concordia.type = 2;
 		setOption("#concordia-type",2);
+	    } else if (newformat>8){
+		pd = 'isochron';
 	    }
 	}
 	$.chooseFormat('#UPb-formats',"U-Pb");
+	if ((oldformat<9 & newformat>8) | (oldformat>8 & newformat<9)){
+	    changePlotDevice();
+	    selectGeochronometer();
+	}
 	showSettings(pd);
 	if (IsoplotR.settings["U-Pb"].ThU[1]==3 &
 	    IsoplotR.settings["U-Pb"].format<7){
