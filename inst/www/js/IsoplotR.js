@@ -2521,26 +2521,29 @@ $(function(){
     }
 
     $.chooseUPbFormat = function(){
-	let oldformat = IsoplotR.settings["U-Pb"].format;
+	let set = IsoplotR.settings["U-Pb"];
+	let oldformat = set.format;
 	let newformat = getInt('#UPb-formats');
+	let D3D2 = oldformat<9 & newformat>8;
+	let D2D3 = oldformat>8 & newformat<9;
 	let pd = IsoplotR.settings.plotdevice;
-	if (pd=='concordia'){
-	    if (newformat<7 && getOption('#concordia-type')==3){
-		IsoplotR.settings.concordia.type = 2;
-		setOption("#concordia-type",2);
-	    } else if (newformat>8){
-		pd = 'isochron';
-	    }
+	if (D3D2){
+	    if (pd=='concordia'){ pd = 'isochron'; }
+	    set.cutoffdisc = 0;
+	    set.type = [10,12].includes(newformat) ? 1 : 2;
+	}
+	if (pd=='concordia' & newformat<7 & getOption('#concordia-type')==3){
+	    IsoplotR.settings.concordia.type = 2;
+	    setOption("#concordia-type",2);
 	}
 	$.chooseFormat('#UPb-formats',"U-Pb");
-	if ((oldformat<9 & newformat>8) | (oldformat>8 & newformat<9)){
+	if (D3D2 | D2D3){
 	    changePlotDevice();
 	    selectGeochronometer();
 	}
 	showSettings(pd);
-	if (IsoplotR.settings["U-Pb"].ThU[1]==3 &
-	    IsoplotR.settings["U-Pb"].format<7){
-	    IsoplotR.settings["U-Pb"].ThU[1] = 0;
+	if (set.ThU[1]==3 & set.format<7){
+	    set.ThU[1] = 0;
 	}
     }
 
