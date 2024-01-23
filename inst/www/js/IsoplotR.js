@@ -630,10 +630,10 @@ $(function(){
 	    } else {
 		$(".show4diseq").hide();
 	    }
-	    if (['concordia','isochron'].indexOf(plotdevice)<0){
-		noPb0anchor = true
-	    } else {
+	    if (['concordia','isochron'].includes(plotdevice)){
 		noPb0anchor = pd.anchor[0]!=1
+	    } else {
+		noPb0anchor = true
 	    }
 	    if (set.commonPb!=1 & noPb0anchor){
 		$('.show4commonPbwithout204').hide();
@@ -643,11 +643,11 @@ $(function(){
 		$('.show4commonPbwithout204').show();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').hide();
-	    } else if (set.format<7){
+	    } else if ([4,5,6,9,10].includes(set.format)){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').show();
 		$('.show4commonPbwith208').hide();
-	    } else {
+	    } else if ([7,8,11,12].includes(set.format)){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').show();
