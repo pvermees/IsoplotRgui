@@ -99,6 +99,10 @@ $(function(){
 	    case 6: return 15;
 	    case 7:
 	    case 8: return 17;
+	    case 9: return 8;
+	    case 10: return 8;
+	    case 11: return 12;
+	    case 12: return 12;
 	    }
 	case 'Pb-Pb':
 	    var format = IsoplotR.settings["Pb-Pb"].format;
@@ -567,6 +571,22 @@ $(function(){
 		$(".show4UPb8").show();
 		$('.hide4UPb8').hide();
 		break;
+	    case 9:
+		$(".show4UPb9").show();
+		$('.hide4UPb9').hide();
+		break;
+	    case 10:
+		$(".show4UPb10").show();
+		$('.hide4UPb10').hide();
+		break;
+	    case 11:
+		$(".show4UPb11").show();
+		$('.hide4UPb11').hide();
+		break;
+	    case 12:
+		$(".show4UPb12").show();
+		$('.hide4UPb12').hide();
+		break;
 	    }
 	    switch (set.cutoffdisc){
 	    case 0:
@@ -610,10 +630,10 @@ $(function(){
 	    } else {
 		$(".show4diseq").hide();
 	    }
-	    if (['concordia','isochron'].indexOf(plotdevice)<0){
-		noPb0anchor = true
-	    } else {
+	    if (['concordia','isochron'].includes(plotdevice)){
 		noPb0anchor = pd.anchor[0]!=1
+	    } else {
+		noPb0anchor = true
 	    }
 	    if (set.commonPb!=1 & noPb0anchor){
 		$('.show4commonPbwithout204').hide();
@@ -623,11 +643,11 @@ $(function(){
 		$('.show4commonPbwithout204').show();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').hide();
-	    } else if (set.format<7){
+	    } else if ([4,5,6,9,10].includes(set.format)){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').show();
 		$('.show4commonPbwith208').hide();
-	    } else {
+	    } else if ([7,8,11,12].includes(set.format)){
 		$('.show4commonPbwithout204').hide();
 		$('.show4commonPbwith204').hide();
 		$('.show4commonPbwith208').show();
@@ -2090,8 +2110,10 @@ $(function(){
 	$("#spotSizeDiv").hide();
 	switch (geochronometer){
 	case 'U-Pb':
-	    setSelectedMenus(['concordia','isochron','radial',
-			      'average','KDE','CAD','ages'],open);
+	    let menus = IsoplotR.settings['U-Pb'].format<9 ?
+		['concordia','isochron','radial','average','KDE','CAD','ages'] :
+		['isochron','radial','average','KDE','CAD','ages'] ;
+	    setSelectedMenus(menus,open);
 	    break;
 	case 'Ar-Ar':
 	    setSelectedMenus(['isochron','radial','spectrum',
@@ -2115,7 +2137,7 @@ $(function(){
 			      'KDE','CAD','ages'],open);
 	    break;
 	case 'fissiontracks':
-	    var format = IsoplotR.settings.fissiontracks.format;
+	    let format = IsoplotR.settings.fissiontracks.format;
 	    setSelectedMenus(['radial','average','KDE',
 			      'CAD','set-zeta','ages'],open);
 	    if (format < 3){ $("#zetaDiv").show(); }
@@ -2280,6 +2302,8 @@ $(function(){
 	var UPb345 = (gc=='U-Pb' && ($.inArray(format,[3,4,5])>-1));
 	var UPb6 = (gc=='U-Pb' && format==6);
 	var UPb78 = (gc=='U-Pb' && ($.inArray(format,[7,8])>-1));
+	var UPb910 = (gc=='U-Pb' && ($.inArray(format,[9,10])>-1));
+	var UPb1112 = (gc=='U-Pb' && ($.inArray(format,[11,12])>-1));
 	var PbPb12 = (gc=='Pb-Pb' && ($.inArray(format,[1,2])>-1));
 	var PbPb3 = (gc=='Pb-Pb' && format==3);
 	var ArAr12 = (gc=='Ar-Ar' && ($.inArray(format,[1,2])>-1));
@@ -2305,13 +2329,13 @@ $(function(){
 	var regression5 = (gc=='other' && pd=='regression' && format==5);
 	var spectrum = (gc=='other' && pd=='spectrum');
 	var average = (gc=='other' && pd=='average');
-	if (UPb12 || PbPb12 || ArAr12 || ThPb12 ||
-	    KCa12 || RbSr12 || SmNd12 || ReOs12 ||
-	    LuHf12 || ThU34 || regression4){
+	if (UPb12  || UPb910 || PbPb12 || ArAr12 ||
+	    ThPb12 || KCa12  || RbSr12 || SmNd12 ||
+	    ReOs12 || LuHf12 || ThU34  || regression4){
 	    cols = [1,3];
-	} else if (UPb345 || PbPb3 || ArAr3 || ThPb3 ||
-		   KCa3 || RbSr3 || SmNd3 || ReOs3 ||
-		   LuHf3 || UThHe || ThU12 || regression5){
+	} else if (UPb345 || UPb1112 || PbPb3 || ArAr3 ||
+		   ThPb3  || KCa3    || RbSr3 || SmNd3 ||
+		   ReOs3  || LuHf3   || UThHe || ThU12 || regression5){
 	    cols = [1,3,5];
 	} else if (UPb78){
 	    cols = [1,3,5,7];
@@ -2497,23 +2521,29 @@ $(function(){
     }
 
     $.chooseUPbFormat = function(){
-	var oldformat = IsoplotR.settings["U-Pb"].format;
-	var newformat = getInt('#UPb-formats');
-	var upgrade = (oldformat<4 & newformat>3);
-	var downgrade = (oldformat>3 & newformat<4);
-	var pd = IsoplotR.settings.plotdevice;
-	if (pd=='concordia'){
-	    IsoplotR.settings.concordia.type = getOption('#concordia-type');
-	    if (newformat<7 & IsoplotR.settings.concordia.type==3){
-		IsoplotR.settings.concordia.type = 2;
-		setOption("#concordia-type",2);
-	    }
+	let set = IsoplotR.settings["U-Pb"];
+	let oldformat = set.format;
+	let newformat = getInt('#UPb-formats');
+	let D3D2 = oldformat<9 & newformat>8;
+	let D2D3 = oldformat>8 & newformat<9;
+	let pd = IsoplotR.settings.plotdevice;
+	if (D3D2){
+	    if (pd=='concordia'){ pd = 'isochron'; }
+	    set.cutoffdisc = 0;
+	    set.type = [10,12].includes(newformat) ? 1 : 2;
+	}
+	if (pd=='concordia' & newformat<7 & getOption('#concordia-type')==3){
+	    IsoplotR.settings.concordia.type = 2;
+	    setOption("#concordia-type",2);
 	}
 	$.chooseFormat('#UPb-formats',"U-Pb");
+	if (D3D2 | D2D3){
+	    changePlotDevice();
+	    selectGeochronometer();
+	}
 	showSettings(pd);
-	if (IsoplotR.settings["U-Pb"].ThU[1]==3 &
-	    IsoplotR.settings["U-Pb"].format<7){
-	    IsoplotR.settings["U-Pb"].ThU[1] = 0;
+	if (set.ThU[1]==3 & set.format<7){
+	    set.ThU[1] = 0;
 	}
     }
 

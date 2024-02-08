@@ -250,7 +250,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
            )
         }
     }
-    if (params$geochronometer == "Pb-Pb") {
+    if (params$geochronometer %in% c("U-Pb", "Pb-Pb")) {
         args$common.Pb <- params$gcsettings$commonPb
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))

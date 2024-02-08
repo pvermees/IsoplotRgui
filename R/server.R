@@ -43,7 +43,23 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
                         'Th232U238','errTh232U238',
                         'rXY','rXZ','rXW',
                         'rYZ','rYW','rZW'),nrow=1)
-        } else if (identical(method,"Pb-Pb") & format==1) {
+    } else if (identical(method,"U-Pb") & format==9) {
+        mat <- matrix(c('U238Pb206','errU238Pb206',
+                        'Pb204Pb206','errPb204Pb206','rXY'),nrow=1)
+    } else if (identical(method,"U-Pb") & format==10) {
+        mat <- matrix(c('U235Pb207','errU235Pb207',
+                        'Pb204Pb207','errPb204Pb207','rXY'),nrow=1)
+    } else if (identical(method,"U-Pb") & format==11) {
+        mat <- matrix(c('U238Pb206','errU238Pb206',
+                        'Pb208Pb206','errPb208Pb206',
+                        'Th232U238','errTh232U238',
+                        'rXY','rXZ','rYZ'),nrow=1)
+    } else if (identical(method,"U-Pb") & format==12) {
+        mat <- matrix(c('U235Pb207','errU235Pb207',
+                        'Pb208Pb207','errPb208Pb207',
+                        'Th232U238','errTh232U238',
+                        'rXY','rXZ','rYZ'),nrow=1)
+    } else if (identical(method,"Pb-Pb") & format==1) {
         mat <- matrix(c('Pb206Pb204','errPb206Pb204',
                         'Pb207Pb204','errPb207Pb204','rXY'),nrow=1)
     } else if (identical(method,"Pb-Pb") & format==2) {
