@@ -1,5 +1,5 @@
 rm(list=ls())
-setwd('~/Documents/Programming/R/')
+setwd('~/git')
 install.packages('IsoplotR/.',repos=NULL,type='source',force=TRUE)
 install.packages('IsoplotRgui/.',repos=NULL,type='source',force=TRUE)
 cat(as.character(packageVersion('IsoplotRgui')),
