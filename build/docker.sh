@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home=${1:-"/home/pvermees/Documents/Programming/R"}
+home=${1:-"/home/pvermees/git/"}
 
 docker build -t pvermees/docker-isoplotr "$home/IsoplotR"
 docker build -t pvermees/isoplotr "$home/IsoplotRgui"
