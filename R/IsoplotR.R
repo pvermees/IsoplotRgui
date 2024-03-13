@@ -13,7 +13,7 @@ omitter <- function(dat, nc, flags = c("x", "X")) {
 
 settingsiratio <- list(
     "U-Pb" = c("U238U235", "Pb207Pb206", "Pb206Pb204",
-               "Pb207Pb204", "Pb207Pb208", "Pb207Pb208"),
+               "Pb207Pb204", "Pb206Pb208", "Pb207Pb208"),
     "Pb-Pb" = c("U238U235", "Pb206Pb204", "Pb207Pb204"),
     "Th-U" = c(),
     "Ar-Ar" = c("Ar40Ar36"),
