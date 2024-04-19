@@ -55,7 +55,7 @@ a:hover {
 }
 
 .hot-container {
-    overflow: scroll;
+    overflow: auto;
     height: 100%;
 }
 
