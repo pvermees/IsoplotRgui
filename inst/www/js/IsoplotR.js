@@ -1411,6 +1411,7 @@ $(function(){
 	    $('#joint').prop('checked',set.joint)
 	    $('#anchor').val(set.anchor[1]);
 	    $('#anchor-err').val(set.anchor[2]);
+	    $('#taxis').prop('checked',set.taxis)
 	case 'regression':
 	    $("#wtype").prop('checked',set.wtype==2);
 	    setOption('#regression-anchor-option',set.anchor[0]);
@@ -1821,6 +1822,7 @@ $(function(){
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.joint = truefalse('#joint');
 	    pdsettings.model = getOption("#isochron-models");
+	    pdsettings.taxis = truefalse('#taxis');
 	    inverse(geochronometer);
 	case 'regression':
 	    pdsettings.wtype = truefalse('#wtype') ? 2 : 1;

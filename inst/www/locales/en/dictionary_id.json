@@ -180,6 +180,7 @@
     "UPb_isochron_type_4": "4. <tt>07c/08</tt> vs. <tt>32/08</tt>",
     "help_isochron_models": "Model:",
     "help_regression_models": "Model:",
+    "help_taxis": "Label the x-axis by geologic time?",
     "help_PbPb_growth": "Add Stacey-Kramers Pb-Pb growth curve?",
     "help_isochron_minx": "Minimum X:",
     "help_isochron_maxx": "Maximum X:",

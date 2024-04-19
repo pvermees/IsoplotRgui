@@ -321,8 +321,12 @@ isochron <- function(fn, params, data, s2d, settings, cex) {
     applysettings(params, settings)
     gc <- params$geochronometer
     pd <- params$pdsettings
-    if (!(gc %in% c("U-Pb", "Th-U", "U-Th-He"))) {
+    if (!(gc %in% c("U-Pb","Th-U","U-Th-He"))) {
         args$inverse <- params$gcsettings$inverse
+    }
+    if (gc %in% c("U-Pb","Th-Pb","Ar-Ar","K-Ca",
+                  "Rb-Sr","Sm-Nd","Lu-Hf","Re-Os")){
+        args$taxis <- pd$taxis
     }
     if (gc == "Pb-Pb") {
         args$growth <- pd$growth
