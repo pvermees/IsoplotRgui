@@ -156,7 +156,8 @@
 	},
 	"ellipsestroke": "#000000",
 	"growth": false,
-	"clabel": ""
+	"clabel": "",
+	"taxis": false
     },
     "regression": {
 	"model": 1,

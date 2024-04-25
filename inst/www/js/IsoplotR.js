@@ -1306,18 +1306,18 @@ $(function(){
 	    setOption('#ReOs-formats',set.format);
 	    $('#Re185Re187').val(cst.iratio.Re185Re187[0]);
 	    $('#errRe185Re187').val(cst.iratio.Re185Re187[1]);
-	    $('#Os184Os192').val(cst.iratio.Os184Os192[0]);
-	    $('#errOs184Os192').val(cst.iratio.Os184Os192[1]);
-	    $('#Os186Os192').val(cst.iratio.Os186Os192[0]);
-	    $('#errOs186Os192').val(cst.iratio.Os186Os192[1]);
-	    $('#Os187Os192').val(cst.iratio.Os187Os192[0]);
-	    $('#errOs187Os192').val(cst.iratio.Os187Os192[1]);
-	    $('#Os188Os192').val(cst.iratio.Os188Os192[0]);
-	    $('#errOs188Os192').val(cst.iratio.Os188Os192[1]);
-	    $('#Os189Os192').val(cst.iratio.Os189Os192[0]);
-	    $('#errOs189Os192').val(cst.iratio.Os189Os192[1]);
-	    $('#Os190Os192').val(cst.iratio.Os190Os192[0]);
-	    $('#errOs190Os192').val(cst.iratio.Os190Os192[1]);
+	    $('#Os184Os188').val(cst.iratio.Os184Os188[0]);
+	    $('#errOs184Os188').val(cst.iratio.Os184Os188[1]);
+	    $('#Os186Os188').val(cst.iratio.Os186Os188[0]);
+	    $('#errOs186Os188').val(cst.iratio.Os186Os188[1]);
+	    $('#Os187Os188').val(cst.iratio.Os187Os188[0]);
+	    $('#errOs187Os188').val(cst.iratio.Os187Os188[1]);
+	    $('#Os189Os188').val(cst.iratio.Os189Os188[0]);
+	    $('#errOs189Os188').val(cst.iratio.Os189Os188[1]);
+	    $('#Os190Os188').val(cst.iratio.Os190Os188[0]);
+	    $('#errOs190Os188').val(cst.iratio.Os190Os188[1]);
+	    $('#Os192Os188').val(cst.iratio.Os192Os188[0]);
+	    $('#errOs192Os188').val(cst.iratio.Os192Os188[1]);
 	    $('#LambdaRe187').val(cst.lambda.Re187[0]);
 	    $('#errLambdaRe187').val(cst.lambda.Re187[1]);
 	    $('#i2iReOs').prop('checked',set.i2i);
@@ -1411,6 +1411,7 @@ $(function(){
 	    $('#joint').prop('checked',set.joint)
 	    $('#anchor').val(set.anchor[1]);
 	    $('#anchor-err').val(set.anchor[2]);
+	    $('#taxis').prop('checked',set.taxis)
 	case 'regression':
 	    $("#wtype").prop('checked',set.wtype==2);
 	    setOption('#regression-anchor-option',set.anchor[0]);
@@ -1717,18 +1718,18 @@ $(function(){
 	case 'Re-Os':
 	    cst.iratio.Re185Re187[0] = getNumber('#Re185Re187');
 	    cst.iratio.Re185Re187[1] = getNumber('#errRe185Re187');
-	    cst.iratio.Os184Os192[0] = getNumber('#Os184Os192');
-	    cst.iratio.Os184Os192[1] = getNumber('#errOs184Os192');
-	    cst.iratio.Os186Os192[0] = getNumber('#Os186Os192');
-	    cst.iratio.Os186Os192[1] = getNumber('#errOs186Os192');
-	    cst.iratio.Os187Os192[0] = getNumber('#Os187Os192');
-	    cst.iratio.Os187Os192[1] = getNumber('#errOs187Os192');
-	    cst.iratio.Os188Os192[0] = getNumber('#Os188Os192');
-	    cst.iratio.Os188Os192[1] = getNumber('#errOs188Os192');
-	    cst.iratio.Os189Os192[0] = getNumber('#Os189Os192');
-	    cst.iratio.Os189Os192[1] = getNumber('#errOs189Os192');
-	    cst.iratio.Os190Os192[0] = getNumber('#Os190Os192');
-	    cst.iratio.Os190Os192[1] = getNumber('#errOs190Os192');
+	    cst.iratio.Os184Os188[0] = getNumber('#Os184Os188');
+	    cst.iratio.Os184Os188[1] = getNumber('#errOs184Os188');
+	    cst.iratio.Os186Os188[0] = getNumber('#Os186Os188');
+	    cst.iratio.Os186Os188[1] = getNumber('#errOs186Os188');
+	    cst.iratio.Os187Os188[0] = getNumber('#Os187Os188');
+	    cst.iratio.Os187Os188[1] = getNumber('#errOs187Os188');
+	    cst.iratio.Os189Os188[0] = getNumber('#Os189Os188');
+	    cst.iratio.Os189Os188[1] = getNumber('#errOs189Os188');
+	    cst.iratio.Os190Os188[0] = getNumber('#Os190Os188');
+	    cst.iratio.Os190Os188[1] = getNumber('#errOs190Os188');
+	    cst.iratio.Os192Os188[0] = getNumber('#Os192Os188');
+	    cst.iratio.Os192Os188[1] = getNumber('#errOs192Os188');
 	    cst.lambda.Re187[0] = getNumber('#LambdaRe187');
 	    cst.lambda.Re187[1] = getNumber('#errLambdaRe187');
 	    break;
@@ -1821,6 +1822,7 @@ $(function(){
 	    pdsettings.growth = truefalse('#PbPb-growth');
 	    pdsettings.joint = truefalse('#joint');
 	    pdsettings.model = getOption("#isochron-models");
+	    pdsettings.taxis = truefalse('#taxis');
 	    inverse(geochronometer);
 	case 'regression':
 	    pdsettings.wtype = truefalse('#wtype') ? 2 : 1;

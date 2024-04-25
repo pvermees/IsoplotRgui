@@ -22,8 +22,8 @@ settingsiratio <- list(
     "Sm-Nd" = c("Sm144Sm152", "Sm147Sm152", "Sm148Sm152","Sm149Sm152",
                 "Sm150Sm152", "Sm154Sm152", "Nd142Nd144","Nd143Nd144",
                 "Nd145Nd144", "Nd146Nd144", "Nd148Nd144","Nd150Nd144"),
-    "Re-Os" = c("Re185Re187", "Os184Os192", "Os186Os192",
-                "Os187Os192", "Os188Os192", "Os190Os192"),
+    "Re-Os" = c("Re185Re187", "Os184Os188", "Os186Os188",
+                "Os187Os188", "Os189Os188", "Os190Os188", "Os192Os188"),
     "Rb-Sr" = c("Rb85Rb87", "Sr84Sr86", "Sr87Sr86", "Sr88Sr86"),
     "Lu-Hf" = c("Lu176Lu175", "Hf174Hf177", "Hf176Hf177",
                 "Hf178Hf177", "Hf179Hf177", "Hf180Hf177"),
@@ -321,8 +321,12 @@ isochron <- function(fn, params, data, s2d, settings, cex) {
     applysettings(params, settings)
     gc <- params$geochronometer
     pd <- params$pdsettings
-    if (!(gc %in% c("U-Pb", "Th-U", "U-Th-He"))) {
+    if (!(gc %in% c("U-Pb","Th-U","U-Th-He"))) {
         args$inverse <- params$gcsettings$inverse
+    }
+    if (gc %in% c("U-Pb","Th-Pb","Ar-Ar","K-Ca",
+                  "Rb-Sr","Sm-Nd","Lu-Hf","Re-Os")){
+        args$taxis <- pd$taxis
     }
     if (gc == "Pb-Pb") {
         args$growth <- pd$growth
