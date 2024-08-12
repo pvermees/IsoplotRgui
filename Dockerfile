@@ -3,7 +3,7 @@ FROM pvermees/docker-isoplotr
 WORKDIR /isoplotrgui
 
 RUN Rscript --vanilla -e \
-    "install.packages('shinylight', repos='https://cran.rstudio.com/')"
+    "install.packages('shinylight', repos='https://cran.r-project.org/')"
 
 COPY DESCRIPTION /isoplotrgui/DESCRIPTION
 COPY NAMESPACE /isoplotrgui/NAMESPACE
