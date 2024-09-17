@@ -76,7 +76,7 @@
     },
     "Re-Os": {
 	"format": 1,
-	"i2i": true,
+	"i2i": false,
 	"projerr": false,
 	"inverse": false
     },
