@@ -2892,7 +2892,9 @@ $(function(){
             info: showInfoMessage,
             progress: showProgress
         }).then(function(result) {
-            const rs = result.data.map(function(cs) { return cs.join(','); });
+	    const header = [result.headers.join(',')];
+	    const values = result.data.map(function(cs) { return cs.join(','); });
+	    const rs = header.concat(values);
             const downloader = document.createElement("A");
             downloader.setAttribute("download", fname);
             downloader.setAttribute("href", 'data:text/csv;base64,' + btoa(rs.join('\n')));
