@@ -220,6 +220,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
     args$from <- notauto(pd$mint)
     args$to <- notauto(pd$maxt)
     args$z0 <- notauto(pd$z0)
+    args$xlim <- notauto(pd$xlim)
     if (!(params$geochronometer %in% c("other", "Th-U", "U-Th-He"))) {
         args$exterr <- pd$exterr
     }

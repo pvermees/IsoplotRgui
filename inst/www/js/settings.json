@@ -182,6 +182,7 @@
 	"mint": "auto",
 	"z0": "auto",
 	"maxt": "auto",
+	"xlim": "auto",
 	"pch": 21,
 	"cex": 1,
 	"bg": {

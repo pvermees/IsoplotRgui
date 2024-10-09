@@ -85,6 +85,7 @@
     "help_maxt_evolution": "Set the maximum Th-U age limit for the evolution diagram. Type <tt>auto</tt> to have  <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_maxt_average": "Set the maximum age limit for the y-axis of the weighted mean plot. Type <tt>auto</tt> to have  <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_maxt_radial": "Set the maximum age limit for the radial scale. Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
+    "help_xlim_radial": "Set the maximum limit for the x-axis of the radial plot. Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_maxt_concordia": "Set the maximum age limit for the concordia diagram (a number between 0 and 4568 Ma). Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_z0": "Set the central value of the radial scale. Type <tt>auto</tt> to have <tt>IsoplotR</tt> automatically set a suitable value.",
     "help_RbSr_inverse": "Selecting this box plots <sup>86</sup>Sr/<sup>87</sup>Sr against <sup>87</sup>Rb/<sup>87</sup>Sr. Otherwise, <tt>IsoplotR</tt> plots <sup>87</sup>Sr/<sup>86</sup>Sr against <sup>87</sup>Rb/<sup>86</sup>Sr.",

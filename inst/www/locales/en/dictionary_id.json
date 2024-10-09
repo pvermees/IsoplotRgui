@@ -239,6 +239,7 @@
     "help_mint_radial": "Minimum value:",
     "help_z0": "Central value:",
     "help_maxt_radial": "Maximum value:",
+    "help_xlim_radial": "Maximum precision:",
     "PD_format_1": "1. Normal",
     "PD_format_2": "2. Inverse",
     "PD_format_3": "3. Concentrations",
