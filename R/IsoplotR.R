@@ -87,7 +87,7 @@ getlimits <- function(min, max) {
 
 coerceabletonumeric <- function(v) {
     grepl(
-        "^\\s*(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(e[-+]?[0-9]*)?\\s*$",
+        "^\\s*((Inf)|([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(e[-+]?[0-9]*)?\\s*$",
         v,
         useBytes = TRUE
     )
