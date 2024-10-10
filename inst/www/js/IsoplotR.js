@@ -388,8 +388,7 @@ $(function(){
 	var ArAr2 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==2);
 	var ArAr3 = (geochronometer=='Ar-Ar') & (IsoplotR.settings['Ar-Ar'].format==3);
 	var ThU34 = (geochronometer=='Th-U') & (IsoplotR.settings['Th-U'].format>2);
-	var detrital1 = (geochronometer=='detritals') &
-	    (IsoplotR.settings['detritals'].format==1);
+	var detrital = (geochronometer=='detritals');
 	var omitters = ["U-Pb","Pb-Pb","Th-Pb","Ar-Ar","K-Ca","Rb-Sr","Sm-Nd",
 			"Re-Os","Lu-Hf","U-Th-He","fissiontracks","Th-U","other"];
 	var omissable = ($.inArray(geochronometer,omitters)>-1);
@@ -406,7 +405,7 @@ $(function(){
 		    row.push(Number(val));
 		    good = true;
 		} else {
-		    if (detrital1 & i==0){ // col names
+		    if (detrital & i==0){ // col names
 			row.push(val);
 			good = true;
 		    } else if ((ArAr2 & j==4)|(ThU34 & j==4)) { // rho
