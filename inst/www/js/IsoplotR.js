@@ -1556,6 +1556,8 @@ $(function(){
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    setOption('#evolution-isochron-models',set.model);
 	    $('#clabel').val(set.clabel);
+	    $('#tticks').val(set.tticks);
+	    $('#aticks').val(set.aticks);
 	    break;
 	default:
 	}
@@ -1991,6 +1993,8 @@ $(function(){
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#evolution-isochron-models");
 	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings.tticks = $('#tticks').val();
+	    pdsettings.aticks = $('#aticks').val();
 	    break;
 	default:
 	}

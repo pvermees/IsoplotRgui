@@ -283,6 +283,8 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
     if (pd$transform) args$xlim <- gettimelimits(pd$mint, pd$maxt)
     else args$xlim <- getlimits(pd$min08or82, pd$max08or82)
     args$ylim <- getlimits(pd$min48or02, pd$max48or02)
+    args$tticks <- str2vec(pd$tticks)
+    args$aticks <- str2vec(pd$aticks)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::evolution, args)
 }

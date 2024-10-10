@@ -114,6 +114,8 @@
     "help_ellipsefill_alpha": "Ellipse fill opacity",
     "help_ellipsestroke": "Ellipse stroke colour:",
     "help_concordia_ticks": "Age ticks:",
+    "help_evolution_tticks": "Age ticks:",
+    "help_evolution_aticks": "Activity ticks:",
     "help_shownumbers": "Show sample numbers?",
     "help_headers_on": "Sample names on first row?",
     "help_hide_detritals": "Samples to omit:",
