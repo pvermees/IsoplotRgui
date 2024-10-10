@@ -87,7 +87,7 @@ getlimits <- function(min, max) {
 
 coerceabletonumeric <- function(v) {
     grepl(
-        "^\\s*(([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(e[-+]?[0-9]*)?\\s*$",
+        "^\\s*((Inf)|([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(e[-+]?[0-9]*)?\\s*$",
         v,
         useBytes = TRUE
     )
@@ -220,6 +220,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
     args$from <- notauto(pd$mint)
     args$to <- notauto(pd$maxt)
     args$z0 <- notauto(pd$z0)
+    args$xlim <- notauto(pd$xlim)
     if (!(params$geochronometer %in% c("other", "Th-U", "U-Th-He"))) {
         args$exterr <- pd$exterr
     }
@@ -282,6 +283,8 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
     if (pd$transform) args$xlim <- gettimelimits(pd$mint, pd$maxt)
     else args$xlim <- getlimits(pd$min08or82, pd$max08or82)
     args$ylim <- getlimits(pd$min48or02, pd$max48or02)
+    args$tticks <- str2vec(pd$tticks)
+    args$aticks <- str2vec(pd$aticks)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::evolution, args)
 }

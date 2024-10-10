@@ -131,7 +131,9 @@
 	},
 	"ellipsestroke": "#000000",
 	"model": 1,
-	"clabel": ""
+	"clabel": "",
+	"tticks": "auto",
+	"aticks": "auto"
     },
     "isochron": {
 	"UPbtype": 1,
@@ -182,6 +184,7 @@
 	"mint": "auto",
 	"z0": "auto",
 	"maxt": "auto",
+	"xlim": "auto",
 	"pch": 21,
 	"cex": 1,
 	"bg": {
