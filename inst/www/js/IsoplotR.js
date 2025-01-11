@@ -317,7 +317,6 @@ $(function(){
 	    });
 	}
 	out.data[geochronometer] = mydata;
-	out.optionschanged = false;
 	IsoplotR = out;
     }
     
@@ -2866,7 +2865,7 @@ $(function(){
         });
     });
 
-    document.getElementById("PDF").onclick = function() {
+    $("#PDF").click(function() {
         update();
         showProcessingMessage();
         let fname = prompt("Please enter a file name", "IsoplotR.pdf");
@@ -2885,9 +2884,9 @@ $(function(){
         }).catch(function(error) {
             displayError("Get PDF failed.", error);
         });
-    }
-
-    document.getElementById("CSV").onclick = function() {
+    })
+    
+    $("#CSV").click(function() {
         update();
         showProcessingMessage();
         let fname = prompt("Please enter a file name", "ages.csv");
@@ -2908,7 +2907,7 @@ $(function(){
         }).catch(function(error) {
             displayError("Run failed.", error);
         });
-    }
+    })
     
     $("#home").click(function(){
 	localStorage.setItem("language",IsoplotR.settings.language);
