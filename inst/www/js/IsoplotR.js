@@ -1577,8 +1577,7 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    if (plotdevice == 'average' | plotdevice == 'KDE' |
-		plotdevice == 'CAD' | plotdevice == 'radial'){
+	    if (plotdevice != 'isochron'){
 		gcsettings.type = getOption("#UPb-age-type");
 		gcsettings.cutoff76 = getNumber('#cutoff76');
 		gcsettings.cutoffdisc = getOption("#discordance-filter");

@@ -36,10 +36,35 @@
       <span class="hidden show4tanchor"> Ma</span>
     </span>
   </div>
-<p></p>
+  <p></p>
+  &nbsp;<help class="translate" id="help_discordance_filter"></help>
+  <select id="discordance-filter" onchange="$.register();">
+    <option class="translate" id="discordance_none" value=0></option>
+    <option class="translate" id="discordance_before_common_Pb" value=1></option>
+    <option class="translate hide4UPb1 hide4UPb2 hide4UPb3 
+		   show4UPb4 show4UPb5 show4UPb6 show4UPb7 show4UPb8"
+	    id="discordance_after_common_Pb" value=2></option>
+  </select>
+  <span class="show4cutoffdisc">
+    &nbsp;<help class="translate" id="help_discfilter"></help>
+    <select id="discoption" onchange="$.chooseDiscFilter();">
+      <option class="translate" id="discoption_t" value=1></option>
+      <option class="translate" id="discoption_r" value=2></option>
+      <option class="translate" id="discoption_sk" value=3></option>
+      <option class="translate" id="discoption_a" value=4></option>
+      <option class="translate" id="discoption_c" value=5></option>
+    </select>
+  </span>
+  <p></p>
 </div>
 
 <table>
+  <tr class="hidden show4UPb show4cutoffdisc">
+    <td>&nbsp;<help class="translate" id="help_mindisc"></help></td>
+    <td><input type="text" id="mindisc"></td></tr>
+  <tr class="hidden show4UPb show4cutoffdisc">
+    <td>&nbsp;<help class="translate" id="help_maxdisc"></help></td>
+    <td><input type="text" id="maxdisc"></td></tr>
   <tr>
     <td>&nbsp;<help class="translate" id="help_mint_concordia"></help></td>
     <td><input type="text" id="mint"></td>
