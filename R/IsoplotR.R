@@ -193,6 +193,15 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     args$ylim <- getlimits(pd$miny, pd$maxy)
     args$ticks <- str2vec(pd$ticks)
     args$anchor <- pd$anchor
+    if (params$gcsettings$cutoffdisc>0){
+        opt <- params$gcsettings$discoption
+        args$cutoff.disc <- IsoplotR::discfilter(
+                                          option = opt,
+                                          before = (params$gcsettings$cutoffdisc == 1),
+                                          cutoff = c(params$gcsettings$mindisc[opt],
+                                                     params$gcsettings$maxdisc[opt])
+                                      )
+    }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::concordia, args)
 }
@@ -247,7 +256,7 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
             args$cutoff.disc <- IsoplotR::discfilter(
                  option = opt,
                  cutoff = cutoff,
-                 before = params$gcsettings$cutoffdisc == 1
+                 before = (params$gcsettings$cutoffdisc == 1)
            )
         }
     }
@@ -391,7 +400,7 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
             opt <- params$gcsettings$discoption
             args$cutoff.disc <- IsoplotR::discfilter(
                  option = opt,
-                 before = params$gcsettings$cutoffdisc == 1,
+                 before = (params$gcsettings$cutoffdisc == 1),
                  cutoff = c(params$gcsettings$mindisc[opt],
                             params$gcsettings$maxdisc[opt]
                  )
@@ -476,7 +485,7 @@ kde <- function(fn, params, data, s2d, settings, cex) {
             opt <- params$gcsettings$discoption
             args$cutoff.disc <- IsoplotR::discfilter(
                  option = opt,
-                 before = params$gcsettings$cutoffdisc == 1,
+                 before = (params$gcsettings$cutoffdisc == 1),
                  cutoff = c(params$gcsettings$mindisc[opt],
                             params$gcsettings$maxdisc[opt])
             )
@@ -522,7 +531,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
             opt <- params$gcsettings$discoption
             args$cutoff.disc <- IsoplotR::discfilter(
                  option = opt,
-                 before = params$gcsettings$cutoffdisc == 1,
+                 before = (params$gcsettings$cutoffdisc == 1),
                  cutoff = c(params$gcsettings$mindisc[opt],
                             params$gcsettings$maxdisc[opt])
             )
@@ -616,7 +625,7 @@ age <- function(fn, params, data, s2d, settings) {
     if (gc == "U-Pb" && params$pdsettings$showdisc != 0) {
         args$discordance <- IsoplotR::discfilter(
              option = params$pdsettings$discoption,
-             before = params$pdsettings$showdisc == 1
+             before = (params$pdsettings$showdisc == 1)
         )
     }
     if (gc != "U-Th-He") {
