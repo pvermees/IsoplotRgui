@@ -58,6 +58,7 @@
     },
     "K-Ca": {
 	"format": 1,
+	"sister": 44,
 	"i2i": true,
 	"projerr": false,
 	"inverse": false

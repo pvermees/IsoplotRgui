@@ -766,6 +766,24 @@ $(function(){
 		$('.hide4KCa3').hide();
 		break;
 	    }
+	    switch (set.sister){
+	    case 42:
+		$('.show4Ca42').show();
+		$('.hide4Ca42').hide();
+		break;
+	    case 43:
+		$('.show4Ca43').show();
+		$('.hide4Ca43').hide();
+		break;
+	    case 44:
+		$('.show4Ca44').show();
+		$('.hide4Ca44').hide();
+		break;
+	    case 48:
+		$('.show4Ca48').show();
+		$('.hide4Ca48').hide();
+		break;
+	    }
 	    break;
 	case 'Rb-Sr':
 	    $('.show4RbSr').show();
@@ -1244,8 +1262,15 @@ $(function(){
 	    break;
 	case 'K-Ca':
 	    setOption('#KCa-formats',set.format);
+	    setOption('#KCa-sister',set.sister);
+	    $('#Ca40Ca42').val(cst.iratio.Ca40Ca42[0]);
+	    $('#errCa40Ca42').val(cst.iratio.Ca40Ca42[1]);
+	    $('#Ca40Ca43').val(cst.iratio.Ca40Ca43[0]);
+	    $('#errCa40Ca43').val(cst.iratio.Ca40Ca43[1]);
 	    $('#Ca40Ca44').val(cst.iratio.Ca40Ca44[0]);
 	    $('#errCa40Ca44').val(cst.iratio.Ca40Ca44[1]);
+	    $('#Ca40Ca48').val(cst.iratio.Ca40Ca48[0]);
+	    $('#errCa40Ca48').val(cst.iratio.Ca40Ca48[1]);
 	    $('#LambdaK40').val(cst.lambda.K40[0]),
 	    $('#errLambdaK40').val(cst.lambda.K40[1]),
 	    $('#i2iKCa').prop('checked',set.i2i);
@@ -1670,10 +1695,18 @@ $(function(){
 	    cst.lambda.Th232[1] = getNumber("#errLambdaTh232");
 	    break;
 	case 'K-Ca':
+	    cst.iratio.Ca40Ca42[0] = getNumber('#Ca40Ca42');
+	    cst.iratio.Ca40Ca42[1] = getNumber('#errCa40Ca42');
+	    cst.iratio.Ca40Ca43[0] = getNumber('#Ca40Ca43');
+	    cst.iratio.Ca40Ca43[1] = getNumber('#errCa40Ca43');
 	    cst.iratio.Ca40Ca44[0] = getNumber('#Ca40Ca44');
 	    cst.iratio.Ca40Ca44[1] = getNumber('#errCa40Ca44');
+	    cst.iratio.Ca40Ca48[0] = getNumber('#Ca40Ca48');
+	    cst.iratio.Ca40Ca48[1] = getNumber('#errCa40Ca48');
 	    cst.lambda.K40[0] = getNumber("#LambdaK40");
 	    cst.lambda.K40[1] = getNumber("#errLambdaK40");
+	    gcsettings.sister = getInt('#KCa-sister');
+	    setKCaHeaders();
 	    break;
 	case 'Rb-Sr':
 	    cst.iratio.Rb85Rb87[0] = getNumber('#Rb85Rb87');
@@ -2506,6 +2539,32 @@ $(function(){
 	    const helpTitle = 'help' in contextual_help?
 		  contextual_help['help'] : contextual_help_fallback['help'];
 	    $("#helpmenu").dialog('option', 'title', helpTitle);
+	});
+    }
+
+    function setKCaHeaders(){
+	var fmt = IsoplotR.settings["K-Ca"].format;
+	var sister = IsoplotR.settings["K-Ca"].sister;
+	var headers;
+	switch (fmt){
+	case 1:
+	    headers = ["K40/Ca"+sister,"err[K40/Ca"+sister+"]",
+		       "Ca40/Ca"+sister,"err[Ca40/Ca"+sister+"]",
+		       "rho"];
+	    break;
+	case 2:
+	    headers = ["K40/Ca40","err[K40/Ca40]",
+		       "Ca"+sister+"/Ca40","err[Ca"+sister+"/Ca40]",
+		       "rho"];
+	    break;
+	case 3:
+	    headers = ["K40/Ca"+sister,"err[K40/Ca"+sister+"]",
+		       "Ca40/Ca"+sister,"err[Ca40/Ca"+sister+"]",
+		       "K40/Ca40","err[K40/Ca40]"];
+	    break;
+	}
+	$("#INPUT").data('handsontable').updateSettings({
+	    colHeaders: headers
 	});
     }
     
