@@ -310,9 +310,15 @@ $(function(){
 		colHeaders: H
 	    });
 	} else {
-	    var i = 0;
+	    var headers = $("#INPUT").handsontable("getColHeader");
+	    var i = 0
 	    $.each(mydata.data, function(k, v) {
-		mydata.data[k] =
+		Object.defineProperty( // rename the data columns
+		    mydata.data, headers[i],
+		    Object.getOwnPropertyDescriptor(mydata.data, k)
+		);
+		delete mydata.data[k];
+		mydata.data[headers[i]] =
 		    $("#INPUT").handsontable('getDataAtCol',i++);
 	    });
 	}
@@ -2545,27 +2551,24 @@ $(function(){
     function setKCaHeaders(){
 	var fmt = IsoplotR.settings["K-Ca"].format;
 	var sister = IsoplotR.settings["K-Ca"].sister;
-	var headers;
+	var headers = $("#INPUT").handsontable("getColHeader");
 	switch (fmt){
 	case 1:
-	    headers = ["K40/Ca"+sister,"err[K40/Ca"+sister+"]",
-		       "Ca40/Ca"+sister,"err[Ca40/Ca"+sister+"]",
-		       "rho"];
+	case 3:
+	    headers[0] = "K40/Ca"+sister;
+	    headers[1] = "err[K40/Ca"+sister+"]";
+	    headers[2] = "Ca40/Ca"+sister;
+	    headers[3] = "err[Ca40/Ca"+sister+"]";
 	    break;
 	case 2:
-	    headers = ["K40/Ca40","err[K40/Ca40]",
-		       "Ca"+sister+"/Ca40","err[Ca"+sister+"/Ca40]",
-		       "rho"];
-	    break;
-	case 3:
-	    headers = ["K40/Ca"+sister,"err[K40/Ca"+sister+"]",
-		       "Ca40/Ca"+sister,"err[Ca40/Ca"+sister+"]",
-		       "K40/Ca40","err[K40/Ca40]"];
+	    headers[2] = "Ca"+sister+"/Ca40";
+	    headers[3] = "err[Ca"+sister+"/Ca40]";
 	    break;
 	}
 	$("#INPUT").data('handsontable').updateSettings({
 	    colHeaders: headers
 	});
+	handson2json();
     }
     
     $.switchErr = function(){
