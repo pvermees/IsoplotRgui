@@ -790,6 +790,7 @@ $(function(){
 		$('.hide4Ca48').hide();
 		break;
 	    }
+	    setKCaHeaders();
 	    break;
 	case 'Rb-Sr':
 	    $('.show4RbSr').show();
@@ -1712,7 +1713,6 @@ $(function(){
 	    cst.lambda.K40[0] = getNumber("#LambdaK40");
 	    cst.lambda.K40[1] = getNumber("#errLambdaK40");
 	    gcsettings.sister = getInt('#KCa-sister');
-	    setKCaHeaders();
 	    break;
 	case 'Rb-Sr':
 	    cst.iratio.Rb85Rb87[0] = getNumber('#Rb85Rb87');
