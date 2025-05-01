@@ -505,6 +505,7 @@
     "radial_m": "the Mean Square of the Weighted Deviates a.k.a. the reduced chi-squared statistic. p-values less than &alpha; suggest that the dataset under consideration is overdispersed with respect to the analyical uncertainties.",
     "radial_p": "the p-value of a chi-square probability for homogeneity. High values of p (>0.05, say) indicate that there is not enough evidence for overdispersion.",
     "radial_omega": "the dispersion defined by eq. 1.",
+    "pooled_age": "the pooled age, obtained by taking the sum of all the spontaneous tracks and combining it with the sum of all the induced tracks (for the EDM), or the area-weighted average of the uranium-concentrations (for ICP-MS data).",
     "RbSr_Rb": "Rb concentration, in ppm.",
     "RbSr_err_Rb": "Analytical uncertainty of the Rb concentration, in ppm",
     "RbSr_Sr": "Sr concentration, in ppm.",
