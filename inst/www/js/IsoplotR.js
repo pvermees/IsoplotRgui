@@ -2691,7 +2691,9 @@ $(function(){
 	observeChanges: true,
 	manualColumnResize: true,
 	outsideClickDeselects: false,
-	selectionMode: 'range'
+	selectionMode: 'range',
+	columnSorting: true,
+	sortIndicator: true
     });
 
     $("#OUTPUT").handsontable({
