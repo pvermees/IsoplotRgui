@@ -6,6 +6,13 @@
   <option class="translate" id="KCa_format_2" value=2></option>
   <option class="translate" id="KCa_format_3" value=3></option>
 </select>
+<help class="translate" id="help_KCa_sister"></help>
+<select id="KCa-sister" onchange="$.register();">
+  <option id="Ca42" value=42>Ca42</option>
+  <option id="Ca43" value=43>Ca43</option>
+  <option id="Ca44" value=44>Ca44</option>
+  <option id="Ca48" value=48>Ca48</option>
+</select>
 
 <p></p>
 
@@ -39,9 +46,24 @@
   <tr><td>&nbsp;<help class="translate" id="help_LambdaK40"></help></td>
     <td><input type="text" id="LambdaK40"> &plusmn;</td>
     <td><input type="text" id="errLambdaK40"> Myr<sup>-1</sup></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_Ca40Ca44"></help></td>
+</table>
+<table class="show4ianchor">
+  <tr class="show4Ca42 hide4Ca43 hide4Ca44 hide4Ca48">
+    <td>&nbsp;<help class="translate" id="help_Ca40Ca42"></help></td>
+    <td><input type="text" id="Ca40Ca42"> &plusmn;</td>
+    <td><input type="text" id="errCa40Ca42"></td></tr>
+  <tr class="hide4Ca42 show4Ca43 hide4Ca44 hide4Ca48">
+    <td>&nbsp;<help class="translate" id="help_Ca40Ca43"></help></td>
+    <td><input type="text" id="Ca40Ca43"> &plusmn;</td>
+    <td><input type="text" id="errCa40Ca43"></td></tr>
+  <tr class="hide4Ca42 hide4Ca43 show4Ca44 hide4Ca48">
+    <td>&nbsp;<help class="translate" id="help_Ca40Ca44"></help></td>
     <td><input type="text" id="Ca40Ca44"> &plusmn;</td>
     <td><input type="text" id="errCa40Ca44"></td></tr>
+  <tr class="hide4Ca42 hide4Ca43 hide4Ca44 show4Ca48">
+    <td>&nbsp;<help class="translate" id="help_Ca40Ca48"></help></td>
+    <td><input type="text" id="Ca40Ca48"> &plusmn;</td>
+    <td><input type="text" id="errCa40Ca48"></td></tr>
 </table>
 
 <p></p>

@@ -1,5 +1,7 @@
-selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq(),
-                           U8Th2=0,Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0)){
+selection2data <- function(input,method="U-Pb",format=1,ierr=1,
+                           d=IsoplotR::diseq(),
+                           U8Th2=0,Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0),
+                           sister=44){
     nc <- as.numeric(input$nc)
     values <- matrix(as.character(input$data), ncol = nc)
     if (identical(method,"U-Pb") & format==1) {
@@ -94,14 +96,21 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
                         'Ar36Ar40','errAr36Ar40',
                         'Ar39Ar36','errAr39Ar36','Ar39')
     } else if (identical(method,"K-Ca") & format==1){
-        mat <- matrix(c('K40Ca44','errK40Ca44',
-                        'Ca40Ca44','errCa40Ca44','rXY'),nrow=1)
+        mat <- matrix(c(paste0('K40Ca',sister),
+                        paste0('errK40Ca',sister),
+                        paste0('Ca40Ca',sister),
+                        paste0('errCa40Ca',sister),
+                        'rXY'),nrow=1)
     } else if (identical(method,"K-Ca") & format==2){
         mat <- matrix(c('K40Ca40','errK40Ca40',
-                        'Ca44Ca40','errCa44Ca40','rXY'),nrow=1)
+                        paste0('Ca',sister,'Ca40'),
+                        paste0('errCa',sister,'Ca40'),
+                        'rXY'),nrow=1)
     } else if (identical(method,"K-Ca") & format==3){
-        mat <- matrix(c('K40Ca44','errK40Ca44',
-                        'Ca40Ca44','errCa40Ca44',
+        mat <- matrix(c(paste0('K40Ca',sister,),
+                        paste0('errK40Ca',sister),
+                        paste0('Ca40Ca',sister),
+                        paste0('errCa40Ca',sister),
                         'K40Ca40','errK40Ca40'),nrow=1)
     } else if (identical(method,"Th-Pb") & format==1){
         mat <- matrix(c('Th232Pb204','errTh232Pb204',
@@ -243,6 +252,9 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,d=IsoplotR::diseq
     } else if (identical(method,'Th-U')){
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr,
                                    U8Th2=U8Th2,Th02i=Th02i,Th02U48=Th02U48)
+    } else if (identical(method,'K-Ca')){
+        out <- IsoplotR::read.data(mat,method=method,format=format,
+                                   ierr=ierr,sister=sister)
     } else {
         out <- IsoplotR::read.data(mat,method=method,format=format,ierr=ierr)
     }

@@ -18,7 +18,7 @@ settingsiratio <- list(
     "Th-U" = c(),
     "Ar-Ar" = c("Ar40Ar36"),
     "Th-Pb" = c("Pb208Pb204"),
-    "K-Ca" = c("Ca40Ca44"),
+    "K-Ca" = c("Ca40Ca42", "Ca40Ca43", "Ca40Ca44", "Ca40Ca48"),
     "Sm-Nd" = c("Sm144Sm152", "Sm147Sm152", "Sm148Sm152","Sm149Sm152",
                 "Sm150Sm152", "Sm154Sm152", "Nd142Nd144","Nd143Nd144",
                 "Nd145Nd144", "Nd146Nd144", "Nd148Nd144","Nd150Nd144"),
