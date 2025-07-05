@@ -1,12 +1,12 @@
 Package: IsoplotRgui
 Title: Web Interface to 'IsoplotR'
-Version: 6.6
-Date: 2025-05-01
+Version: 6.6.2
+Date: 2025-07-04
 Authors@R: c(person("Pieter", "Vermeesch", email = "p.vermeesch@ucl.ac.uk", role = c("aut", "cre")), person("Tim","Band",role="ctb"))
 Description: Provides a graphical user interface to the 'IsoplotR' package for radiometric geochronology. The GUI runs in an internet browser and can either be used offline, or hosted on a server to provide online access to the 'IsoplotR' toolbox.
 Author: Pieter Vermeesch [aut, cre], Tim Band [ctb]
 Maintainer: Pieter Vermeesch <p.vermeesch@ucl.ac.uk>
-Imports: IsoplotR (>= 6.5),
+Imports: IsoplotR (>= 6.6),
 	 shinylight (>= 1.2)
 License: GPL-3
 URL: https://github.com/pvermees/IsoplotRgui/, https://isoplotr.es.ucl.ac.uk/

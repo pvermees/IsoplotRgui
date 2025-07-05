@@ -338,15 +338,12 @@ $(function(){
 	var c2 = selection[3];
 	var nr = 1+Math.abs(r2-r1);
 	var nc = 1+Math.abs(c2-c1);
-	var DNC = dnc();
-	var toofewcols = (geochronometer!='detritals') & (nc < DNC);
-	var onerow = ((geochronometer=='other' |
-		       geochronometer=='detritals') &
-		      (nr==1));
-	if (toofewcols | onerow) {
-	    nc = DNC;
+	if (geochronometer!="detritals" | nr==1){
+	    nc = dnc();
 	    c1 = 0;
 	    c2 = nc-1;
+	}
+	if (nr==1) {
 	    nr = $("#INPUT").handsontable('countRows');
 	    r1 = 0;
 	    r2 = nr-1;
