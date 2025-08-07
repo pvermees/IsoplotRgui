@@ -9,7 +9,7 @@
         "bad-translation-ids": "node build/find_translation_prefixes.js"
     },
     "devDependencies": {
-        "selenium-webdriver": "^4.0.0-alpha.7",
+        "selenium-webdriver": "^4.34.0",
         "mocha": "^10.8.2",
         "clipboardy": "^2.3.0",
         "node-stream-zip": "^1.11.1",
