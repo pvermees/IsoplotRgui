@@ -344,9 +344,11 @@ isochron <- function(fn, params, data, s2d, settings, cex) {
         args$growth <- pd$growth
     }
     if (gc == "U-Pb") {
-        args$type <- pd$UPbtype;
         if (params$gcsettings$format > 3) {
             args$joint <- pd$joint
+            args$type <- pd$UPbtype
+        } else {
+            args$type <- 2
         }
         args$y0option <- pd$UPb_y0option
     }
