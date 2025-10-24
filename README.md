@@ -36,7 +36,7 @@ IsoplotRgui::IsoplotR()
 
 at the command prompt. Alternatively, the program can also be accessed
 online via the **IsoplotR** website at
-[https://isoplotr.london-geochron.com](https://www.ucl.ac.uk/~ucfbpve/isoplotr/),
+[https://isoplotr.es.ucl.ac.uk](https://isoplotr.es.ucl.ac.uk/),
 or from your own server as discussed in the next section.
 
 ## Setting up your own online mirror
@@ -55,11 +55,11 @@ Click on the links for further instructions.
 
 ## Further information
 
-See [https://isoplotr.london-geochron.com](https://www.ucl.ac.uk/~ucfbpve/isoplotr/index.html)
+See [https://isoplotr.es.ucl.ac.uk/home/index.html](https://isoplotr.es.ucl.ac.uk/home/index.html)
 
 ## Author
 
-[Pieter Vermeesch](https://www.ucl.ac.uk/~ucfbpve/index.html)
+[Pieter Vermeesch](https://pieter-vermeesch.es.ucl.ac.uk)
 
 ## License
 
