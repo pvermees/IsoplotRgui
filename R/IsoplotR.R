@@ -431,7 +431,6 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
         plateau = pd$plateau,
         plateau.col = addalpha(params$bg, pd$nonplateau_alpha),
         non.plateau.col = addalpha(pd$nonplateaucol, pd$nonplateau_alpha),
-        detect.outliers = pd$outliers,
         oerr = params$oerr,
         sigdig = params$sigdig,
         random.effects = pd$randomeffects,
