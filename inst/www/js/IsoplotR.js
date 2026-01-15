@@ -2709,8 +2709,8 @@ $(function(){
 	change: function( event, ui ) {
 	    IsoplotR.settings.geochronometer =
 		$('option:selected', $("#geochronometer")).attr('id');
-	    selectGeochronometer();
 	    changePlotDevice();
+	    selectGeochronometer();
 	    IsoplotR.optionschanged = false;
 	}
     });
@@ -2735,14 +2735,15 @@ $(function(){
     });
 
     function applyJSON(json) {
-	    var newIsoplotR = JSON.parse(json);
-	    IsoplotR = patchJSON(newIsoplotR,IsoplotR);
-	    var set = IsoplotR.settings;
-	    $("#" + set.geochronometer ).prop("selected",true);
-	    $("#geochronometer").selectmenu("refresh");
-	    selectGeochronometer(true)
-	    json2handson();
-	    translate();
+	var newIsoplotR = JSON.parse(json);
+	IsoplotR = patchJSON(newIsoplotR,IsoplotR);
+	var set = IsoplotR.settings;
+	$("#" + set.geochronometer ).prop("selected",true);
+	$("#geochronometer").selectmenu("refresh");
+	selectGeochronometer(true);
+	json2handson();
+	changePlotDevice();
+	translate();
     }
 
     $("#OPEN").on('change', function(e){
