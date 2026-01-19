@@ -2735,14 +2735,18 @@ $(function(){
     });
 
     function applyJSON(json) {
+	var oldplotdevice = IsoplotR.settings.plotdevice
 	var newIsoplotR = JSON.parse(json);
+	var newplotdevice = newIsoplotR.settings.plotdevice
 	IsoplotR = patchJSON(newIsoplotR,IsoplotR);
-	var set = IsoplotR.settings;
-	$("#" + set.geochronometer ).prop("selected",true);
+	$("#" + IsoplotR.settings.geochronometer ).prop("selected",true);
 	$("#geochronometer").selectmenu("refresh");
 	selectGeochronometer(true);
+	if ((oldplotdevice == "ages") !== (newplotdevice == "ages")){
+	    changePlotDevice()
+	    applyJSON(json)
+	}
 	json2handson();
-	changePlotDevice();
 	translate();
     }
 
