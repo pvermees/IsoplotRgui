@@ -2709,8 +2709,8 @@ $(function(){
 	change: function( event, ui ) {
 	    IsoplotR.settings.geochronometer =
 		$('option:selected', $("#geochronometer")).attr('id');
-	    changePlotDevice();
 	    selectGeochronometer();
+	    changePlotDevice();
 	    IsoplotR.optionschanged = false;
 	}
     });
