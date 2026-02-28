@@ -498,6 +498,7 @@ kde <- function(fn, params, data, s2d, settings, cex) {
     if (gc == "detritals") {
         args$samebandwidth <- pd$samebandwidth
         args$normalise <- pd$normalise
+        args$ncol <- naifauto(pd$ncol)
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::kde, args)

@@ -190,6 +190,7 @@
     "help_isochron_maxy": "Maximum Y:",
     "help_binwidth": "Histogram binwidth:",
     "help_bandwidth": "Kernel bandwidth:",
+    "help_ncol": "Number of columns:",
     "help_Ca40Ca42": "<sup>40</sup>Ca/<sup>42</sup>Ca ratio:",
     "help_Ca40Ca43": "<sup>40</sup>Ca/<sup>43</sup>Ca ratio:",
     "help_Ca40Ca44": "<sup>40</sup>Ca/<sup>44</sup>Ca ratio:",

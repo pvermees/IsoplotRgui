@@ -1513,6 +1513,7 @@ $(function(){
 	    $('#binwidth').val(set.binwidth);
 	    $('#rugdetritals').prop('checked',set.rugdetritals);
 	    $('#rug').prop('checked',set.rug);
+	    $('#ncol').val(set.ncol);
 	    setOption('#nmodes', set.nmodes);
 	    break;
 	case 'CAD':
@@ -1946,6 +1947,7 @@ $(function(){
 	    pdsettings.rugdetritals = truefalse('#rugdetritals');
 	    pdsettings.rug = truefalse('#rug');
 	    pdsettings.nmodes = getOption("#nmodes");
+	    pdsettings.ncol = check($('#ncol').val(),'auto');
 	    i2i(geochronometer);
 	    break;
 	case 'CAD':
