@@ -127,11 +127,11 @@ str2vec <- function(s) {
 }
 
 notauto <- function(v) {
-    return(if (v == "auto") NULL else as.numeric(v))
+    return(if (isnullorauto(v)) NULL else as.numeric(v))
 }
 
 naifauto <- function(v) {
-    return(if (v == "auto") NA else as.numeric(v))
+    return(if (isnullorauto(v)) NA else as.numeric(v))
 }
 
 calculate <- function(fn, args) {
