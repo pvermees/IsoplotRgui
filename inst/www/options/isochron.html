@@ -51,10 +51,8 @@
   <option class="translate" id="isochron_model_1" value=1></option>
   <option class="translate" id="isochron_model_2" value=2></option>
   <option class="translate" id="isochron_model_3" value=3></option>
-  <option class="translate hidden show4PbPb"
-	  id="isochron_model_4_PbPb" value=4></option>
-  <option class="translate hidden show4ThU3 show4ThU4"
-	  id="isochron_model_4_ThU" value=4></option>
+  <option class="translate hidden show4PbPb hide4ThU1 hide4ThU2 show4ThU3 show4ThU4"
+	  id="isochron_model_4" value=4></option>
 </select>
 <span class="hidden show4wtype">
   <help class="translate" id="help_wtype"></help>
@@ -74,7 +72,10 @@
     <translate class="at"></translate>
     <input type="text" id="anchor"> &plusmn;
     <input type="text" id="anchor-err">
-    <span class="hidden show4tanchor"> Ma</span>
+    <span class="hidden show4tanchor">
+      <span class="hide4ThU"> Ma</span>
+      <span class="hidden show4ThU"> ka</span>
+    </span>
   </span>
   <p></p>
 </div>
