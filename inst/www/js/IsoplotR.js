@@ -1608,7 +1608,9 @@ $(function(){
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice != 'isochron'){
-		gcsettings.type = getOption("#UPb-age-type");
+		if (plotdevice != 'concordia'){
+		    gcsettings.type = getOption("#UPb-age-type");
+		}
 		gcsettings.cutoff76 = getNumber('#cutoff76');
 		gcsettings.cutoffdisc = getOption("#discordance-filter");
 		var opt = getOption("#discoption");
