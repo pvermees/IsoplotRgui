@@ -1608,7 +1608,9 @@ $(function(){
 	switch (geochronometer){
 	case 'U-Pb':
 	    if (plotdevice != 'isochron'){
-		gcsettings.type = getOption("#UPb-age-type");
+		if (plotdevice != 'concordia'){
+		    gcsettings.type = getOption("#UPb-age-type");
+		}
 		gcsettings.cutoff76 = getNumber('#cutoff76');
 		gcsettings.cutoffdisc = getOption("#discordance-filter");
 		var opt = getOption("#discoption");
@@ -2188,6 +2190,10 @@ $(function(){
 	    if (format > 1){ $("#spotSizeDiv").show(); }
 	    break;
 	case 'Th-U':
+       	    if (IsoplotR.settings["Th-U"].format<3 &&
+		IsoplotR.settings.isochron.model==4){
+		IsoplotR.settings.isochron.model = 1;
+	    }
 	    setSelectedMenus(['evolution','isochron','radial',
 			      'average','KDE','CAD','ages'],open);
 	    break;
@@ -2636,7 +2642,6 @@ $(function(){
 	    setOption('#Th0i',0);
 	}
     }
-
 
     $.chooseFormat = function(ID,chronometer){
 	IsoplotR.settings[chronometer].format = getInt(ID);
