@@ -1080,17 +1080,6 @@ $(function(){
 		$(".show4discordance").show();
 	    }
 	    setOption('#discoption',pd.discoption);
-	    switch (pd.discoption){
-	    case 1:
-	    case 2:
-	    case 3:
-	    case 4:
-	    case 5:
-		$('.show4ages_disc').show();
-		break;
-	    case 6:
-		$('.show4ages_pconc').show();
-	    }
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
