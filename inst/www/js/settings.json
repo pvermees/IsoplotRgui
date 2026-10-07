@@ -14,7 +14,7 @@
     },
     "detritals": {
 	"format": 1,
-	"hide": []
+	"hide": ""
     },
     "U-Pb": {
 	"format": 2,
@@ -185,7 +185,6 @@
 	"mint": "auto",
 	"z0": "auto",
 	"maxt": "auto",
-	"xlim": "auto",
 	"pch": 21,
 	"cex": 1,
 	"bg": {
@@ -266,6 +265,12 @@
 	"cex": 5,
 	"col": "#000000",
         "bg": "#FFFFFF"
+    },
+    "unmix": {
+	"minx": "auto",
+	"maxx": "auto",
+	"log": false,
+	"sources": 2
     },
     "helioplot": {
 	"logratio": true,

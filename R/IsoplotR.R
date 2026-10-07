@@ -616,6 +616,21 @@ mds <- function(fn, params, data, s2d, settings, cex) {
     calculate(IsoplotR::mds, args)
 }
 
+unmix <- function(fn, params, data, s2d, settings, cex) {
+    applysettings(params, settings)
+    pd <- params$pdsettings
+    x <- getdata(params, data, s2d)
+    args <- list(
+        x = x,
+        nsources = pd$sources,
+        log = ifelse(pd$log,'x',''),
+        xlim = getlimits(pd$minx, pd$maxx),
+        hide = str2vec(params$gcsettings$hide)
+    )
+    graphics::par(cex = cex, mgp = c(2.5,1,0))
+    calculate(IsoplotR::unmix, args)
+}
+
 age <- function(fn, params, data, s2d, settings) {
     applysettings(params, settings)
     args <- list(
@@ -699,6 +714,7 @@ IsoplotR <- function(
             "set-zeta" = setzeta,
             helioplot = helioplot,
             MDS = mds,
+            unmix = unmix,
             ages = age
         )
     )

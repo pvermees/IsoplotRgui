@@ -1128,12 +1128,17 @@ $(function(){
 	    $('.show4cad').show();
 	    $('.hide4cad').hide();
 	    break;
+	case 'unmix':
+	    $('.show4unmix').show();
+	    $('.hide4unmix').hide();
+	    break;
         }
     }
 
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
+	var plotdevice = IsoplotR.settings.plotdevice;
 	showOrHide();
 	setOption('#ierr',IsoplotR.settings.ierr);
 	setOption('#oerr',IsoplotR.settings.oerr);
@@ -1390,7 +1395,7 @@ $(function(){
 	    $('#hide').val(set.hide);
 	    break;
 	case 'other':
-	    if (IsoplotR.settings.plotdevice=='regression'){
+	    if (plotdevice=='regression'){
 		setOption('#regression-format',set.format);
 	    }
 	    break;
@@ -1457,7 +1462,6 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
-	    $('#xlim').val(set.xlim);
             setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
@@ -1535,6 +1539,12 @@ $(function(){
 	    $('#col').val(set.col);
             $('#bg_solid').val(set.bg);
 	    $('#pcex').val(set.cex);
+	    break;
+	case 'unmix':
+	    $('#minx').val(set.minx);
+	    $('#maxx').val(set.maxx);
+	    $('#log').prop('checked',set.log);
+	    $("#sources").val(set.sources);
 	    break;
 	case 'helioplot':
 	    $('#logratio').prop('checked',set.logratio);
@@ -1882,7 +1892,6 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.xlim = check($('#xlim').val(),'auto');
 	    pdsettings.pch = $('#pch').val();
             pdsettings.bg = {
                 option: getOption('#bg_option'),
@@ -1965,6 +1974,12 @@ $(function(){
 	    pdsettings.col = $('#col').val();
             pdsettings.bg = $('#bg_solid').val();
 	    pdsettings.cex = getNumber('#pcex');
+	    break;
+	case 'unmix':
+	    pdsettings.minx = check($('#minx').val(),'auto');
+	    pdsettings.maxx = check($('#maxx').val(),'auto');
+	    pdsettings.log = truefalse('#log');
+	    pdsettings.sources = $("#sources").val();
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
@@ -2187,7 +2202,7 @@ $(function(){
 			      'average','KDE','CAD','ages'],open);
 	    break;
 	case 'detritals':
-	    setSelectedMenus(['KDE','CAD','MDS'],open);
+	    setSelectedMenus(['KDE','CAD','MDS','unmix'],open);
 	    break;
 	case 'other':
 	    setSelectedMenus(['radial','regression','spectrum',
@@ -2196,7 +2211,7 @@ $(function(){
 	default:
 	    setSelectedMenus(['concordia','helioplot','evolution','isochron',
 			      'radial','regression','spectrum','average',
-			      'KDE','CAD','set-zeta','MDS','ages'],open);
+			      'KDE','CAD','set-zeta','MDS','unmix','ages'],open);
 	}
 	IsoplotR = populate(IsoplotR,false);
 	errconvert();
@@ -2229,6 +2244,8 @@ $(function(){
 	    html += '<option id="set-zeta" value="set-zeta">get &zeta;</option>';
 	if ($.inArray('MDS',options)>-1)
 	    html += '<option id="MDS" value="MDS">MDS</option>';
+	if ($.inArray('unmix',options)>-1)
+	    html += '<option id="unmix" value="unmix">unmix</option>';
 	if ($.inArray('ages',options)>-1)
 	    html += '<option id="ages" value="ages">ages</option>';
 	$('#plotdevice').html(html);
