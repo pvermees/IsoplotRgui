@@ -123,7 +123,7 @@ str2vec <- function(s) {
     if (length(s) == 0 || s == "auto") return(NULL)
     v <- unlist(strsplit(s,split=','))
     if (all(coerceabletonumeric(v))) return(as.numeric(v))
-    else return(v)
+    else return(trimws(v))
 }
 
 notauto <- function(v) {
@@ -622,11 +622,15 @@ unmix <- function(fn, params, data, s2d, settings, cex) {
     x <- getdata(params, data, s2d)
     args <- list(
         x = x,
-        nsources = pd$sources,
         log = ifelse(pd$log,'x',''),
         xlim = getlimits(pd$minx, pd$maxx),
-        hide = str2vec(params$gcsettings$hide)
+        hide = str2vec(params$hide)
     )
+    if (coerceabletonumeric(pd$sources)){
+        args$nsources <- as.numeric(pd$sources)
+    } else {
+        args$source_names <- str2vec(pd$sources)
+    }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::unmix, args)
 }
