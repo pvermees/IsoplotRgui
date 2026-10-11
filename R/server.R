@@ -1,6 +1,6 @@
 selection2data <- function(input,method="U-Pb",format=1,ierr=1,
                            d=IsoplotR::diseq(),
-                           U8Th2=0,Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0),
+                           U8Th2=1,Th02i=c(0,0),Th02U48=c(0,0,1e6,0,0,0,0,0,0),
                            sister=44){
     nc <- as.numeric(input$nc)
     values <- matrix(as.character(input$data), ncol = nc)

@@ -128,7 +128,7 @@ function getRcommand(prefs) {
     } else if (geochronometer === 'K-Ca') {
         input.s2d.params.sister = gcsettings.sister;
     }
-    if ((plotdevice != 'ages') && (plotdevice != 'set-zeta')){
+    if (!['ages','set-zeta'].includes(plotdevice)){
         input.cex = prefs.settings.par.cex;
     }
     input.fn = plotdevice;

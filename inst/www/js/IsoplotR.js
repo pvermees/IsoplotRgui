@@ -1080,17 +1080,6 @@ $(function(){
 		$(".show4discordance").show();
 	    }
 	    setOption('#discoption',pd.discoption);
-	    switch (pd.discoption){
-	    case 1:
-	    case 2:
-	    case 3:
-	    case 4:
-	    case 5:
-		$('.show4ages_disc').show();
-		break;
-	    case 6:
-		$('.show4ages_pconc').show();
-	    }
 	    break;
 	case 'evolution':
 	    $(".hide4evolution").hide();
@@ -1139,12 +1128,17 @@ $(function(){
 	    $('.show4cad').show();
 	    $('.hide4cad').hide();
 	    break;
+	case 'unmix':
+	    $('.show4unmix').show();
+	    $('.hide4unmix').hide();
+	    break;
         }
     }
 
     function showSettings(option){
 	var set = IsoplotR.settings[option];
 	var cst = IsoplotR.constants;
+	var plotdevice = IsoplotR.settings.plotdevice;
 	showOrHide();
 	setOption('#ierr',IsoplotR.settings.ierr);
 	setOption('#oerr',IsoplotR.settings.oerr);
@@ -1401,7 +1395,7 @@ $(function(){
 	    $('#hide').val(set.hide);
 	    break;
 	case 'other':
-	    if (IsoplotR.settings.plotdevice=='regression'){
+	    if (plotdevice=='regression'){
 		setOption('#regression-format',set.format);
 	    }
 	    break;
@@ -1547,6 +1541,12 @@ $(function(){
             $('#bg_solid').val(set.bg);
 	    $('#pcex').val(set.cex);
 	    break;
+	case 'unmix':
+	    $('#minx').val(set.minx);
+	    $('#maxx').val(set.maxx);
+	    $('#log').prop('checked',set.log);
+	    $("#sources").val(set.sources);
+	    break;
 	case 'helioplot':
 	    $('#logratio').prop('checked',set.logratio);
 	    $('#shownumbers').prop('checked',set.shownumbers);
@@ -1602,8 +1602,10 @@ $(function(){
 	    set.sigdig = getNumber("#sigdig");
 	}
 	if (['KDE','CAD','MDS'].indexOf(plotdevice) < 0){
-	    set.oerr = getInt("#oerr");
 	    cst.alpha = getNumber("#alpha");
+	}
+	if (['KDE','CAD','MDS','unmix'].indexOf(plotdevice) < 0){
+	    set.oerr = getInt("#oerr");
 	}
 	switch (geochronometer){
 	case 'U-Pb':
@@ -1893,7 +1895,6 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
-	    pdsettings.xlim = check($('#xlim').val(),'auto');
 	    pdsettings.pch = $('#pch').val();
             pdsettings.bg = {
                 option: getOption('#bg_option'),
@@ -1976,6 +1977,12 @@ $(function(){
 	    pdsettings.col = $('#col').val();
             pdsettings.bg = $('#bg_solid').val();
 	    pdsettings.cex = getNumber('#pcex');
+	    break;
+	case 'unmix':
+	    pdsettings.minx = check($('#minx').val(),'auto');
+	    pdsettings.maxx = check($('#maxx').val(),'auto');
+	    pdsettings.log = truefalse('#log');
+	    pdsettings.sources = $("#sources").val();
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
@@ -2198,7 +2205,7 @@ $(function(){
 			      'average','KDE','CAD','ages'],open);
 	    break;
 	case 'detritals':
-	    setSelectedMenus(['KDE','CAD','MDS'],open);
+	    setSelectedMenus(['KDE','CAD','MDS','unmix'],open);
 	    break;
 	case 'other':
 	    setSelectedMenus(['radial','regression','spectrum',
@@ -2207,7 +2214,7 @@ $(function(){
 	default:
 	    setSelectedMenus(['concordia','helioplot','evolution','isochron',
 			      'radial','regression','spectrum','average',
-			      'KDE','CAD','set-zeta','MDS','ages'],open);
+			      'KDE','CAD','set-zeta','MDS','unmix','ages'],open);
 	}
 	IsoplotR = populate(IsoplotR,false);
 	errconvert();
@@ -2240,6 +2247,8 @@ $(function(){
 	    html += '<option id="set-zeta" value="set-zeta">get &zeta;</option>';
 	if ($.inArray('MDS',options)>-1)
 	    html += '<option id="MDS" value="MDS">MDS</option>';
+	if ($.inArray('unmix',options)>-1)
+	    html += '<option id="unmix" value="unmix">unmix</option>';
 	if ($.inArray('ages',options)>-1)
 	    html += '<option id="ages" value="ages">ages</option>';
 	$('#plotdevice').html(html);
@@ -2892,10 +2901,6 @@ $(function(){
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         var wantSvg = true;
-        if (wantSvg) {
-            // for some reason R gives us fatter margins with SVG by default
-            input.cex *= 0.75;
-        }
         shinylight.call(input.fn, input, img, {
             imgType: wantSvg? 'svg' : 'pdf',
             info: showInfoMessage,
