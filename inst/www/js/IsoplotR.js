@@ -1597,12 +1597,15 @@ $(function(){
 	var gcsettings = set[geochronometer];
 	var pdsettings = set[plotdevice];
 	var cst = IsoplotR.constants;
-	if (['CAD','MDS','unmix'].indexOf(plotdevice) < 0){
+	if (['CAD','MDS'].indexOf(plotdevice) < 0){
 	    set.sigdig = getNumber("#sigdig");
+	}
+	if (['KDE','CAD','MDS'].indexOf(plotdevice) < 0){
+	    set.oerr = getInt("#oerr");
+	    cst.alpha = getNumber("#alpha");
 	}
 	if (['KDE','CAD','MDS','unmix'].indexOf(plotdevice) < 0){
 	    set.oerr = getInt("#oerr");
-	    cst.alpha = getNumber("#alpha");
 	}
 	switch (geochronometer){
 	case 'U-Pb':

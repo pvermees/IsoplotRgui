@@ -596,7 +596,6 @@ mds <- function(fn, params, data, s2d, settings, cex) {
     shepard <- !pd$classical && pd$shepard
     args <- list(
         x = getdata(params, data, s2d),
-        sigdig = pd$sigdig,
         classical = pd$classical,
         method = pd$diss,
         shepard = shepard,
@@ -624,7 +623,8 @@ unmix <- function(fn, params, data, s2d, settings, cex) {
         x = x,
         log = ifelse(pd$log,'x',''),
         xlim = getlimits(pd$minx, pd$maxx),
-        hide = str2vec(params$hide)
+        hide = str2vec(params$hide),
+        sigdig = params$sigdig
     )
     if (coerceabletonumeric(pd$sources)){
         args$nsources <- as.numeric(pd$sources)
