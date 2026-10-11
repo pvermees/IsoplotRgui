@@ -1895,6 +1895,7 @@ $(function(){
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.xlim = check($('#xlim').val(),'auto');
 	    pdsettings.pch = $('#pch').val();
             pdsettings.bg = {
                 option: getOption('#bg_option'),
