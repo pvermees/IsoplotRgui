@@ -1462,6 +1462,7 @@ $(function(){
 	    $('#mint').val(set.mint);
 	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
+	    $('#xlim').val(set.xlim);
             setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
@@ -1601,7 +1602,6 @@ $(function(){
 	    set.sigdig = getNumber("#sigdig");
 	}
 	if (['KDE','CAD','MDS'].indexOf(plotdevice) < 0){
-	    set.oerr = getInt("#oerr");
 	    cst.alpha = getNumber("#alpha");
 	}
 	if (['KDE','CAD','MDS','unmix'].indexOf(plotdevice) < 0){
