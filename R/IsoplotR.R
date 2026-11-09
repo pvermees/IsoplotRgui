@@ -185,7 +185,8 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
-        clabel = pd$clabel
+        clabel = pd$clabel,
+        sort = pd$sort
     )
     # These cannot go into the initializer list, or they will end up with NULLs
     args$tlim <- gettimelimits(pd$mint, pd$maxt)
@@ -287,7 +288,8 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
-        clabel = pd$clabel
+        clabel = pd$clabel,
+        sort = pd$sort
     )
     if (pd$transform) args$xlim <- gettimelimits(pd$mint, pd$maxt)
     else args$xlim <- getlimits(pd$min08or82, pd$max08or82)
@@ -315,7 +317,8 @@ setregression <- function(params, data, s2d, settings) {
         model = pd$model,
         wtype = pd$wtype,
         clabel = pd$clabel,
-        anchor = pd$anchor
+        anchor = pd$anchor,
+        sort = pd$sort
     )
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
@@ -581,7 +584,8 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
-        clabel = pd$clabel
+        clabel = pd$clabel,
+        sort = pd$sort
     )
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)

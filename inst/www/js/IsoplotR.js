@@ -1420,6 +1420,7 @@ $(function(){
 	    $('#ticks').val(set.ticks);
 	    $('#anchor').val(set.anchor[1]);
 	    $('#anchor-err').val(set.anchor[2]);
+	    $('#sort').prop('checked',set.sort);
 	    break;
 	case 'isochron':
 	    setOption('#ThU-isochron-types',set.ThUtype);
@@ -1432,7 +1433,7 @@ $(function(){
 	    $('#joint').prop('checked',set.joint)
 	    $('#anchor').val(set.anchor[1]);
 	    $('#anchor-err').val(set.anchor[2]);
-	    $('#taxis').prop('checked',set.taxis)
+	    $('#taxis').prop('checked',set.taxis);
 	case 'regression':
 	    $("#wtype").prop('checked',set.wtype==2);
 	    setOption('#regression-anchor-option',set.anchor[0]);
@@ -1450,6 +1451,7 @@ $(function(){
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    $('#clabel').val(set.clabel);
+	    $('#sort').prop('checked',set.sort);
 	    break;
 	case 'radial':
 	    setOption('#transformation',set.transformation);
@@ -1563,6 +1565,7 @@ $(function(){
 	    $('#ellipsestroke').val(set.ellipsestroke);
 	    setOption('#helioplot-models',set.model);
 	    $('#clabel').val(set.clabel);
+	    $('#sort').prop('checked',set.sort);
 	    break;
 	case 'evolution':
 	    if (set.isochron){ $('.show4evolutionIsochron').show(); }
@@ -1586,6 +1589,7 @@ $(function(){
 	    $('#clabel').val(set.clabel);
 	    $('#tticks').val(set.tticks);
 	    $('#aticks').val(set.aticks);
+	    $('#sort').prop('checked',set.sort);
 	    break;
 	default:
 	}
@@ -1850,6 +1854,7 @@ $(function(){
 	    pdsettings.anchor[0] = getOption("#anchor-option")
 	    pdsettings.anchor[1] = getNumber('#anchor');
 	    pdsettings.anchor[2] = getNumber('#anchor-err');
+	    pdsettings.sort = truefalse('#sort');
 	    break;
 	case 'isochron':
 	    pdsettings.UPbtype = getOption("#UPb-isochron-types");
@@ -1886,6 +1891,7 @@ $(function(){
             };
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings.sort = truefalse('#sort');
 	    break;
 	case 'radial':
 	    pdsettings.shownumbers = truefalse('#shownumbers');
@@ -1905,6 +1911,7 @@ $(function(){
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings["cex"] = getNumber('#pcex');
 	    pdsettings.exterr = truefalse('#exterr');
+	    pdsettings.sort = truefalse('#sort');
 	    i2i(geochronometer);
 	    break;
 	case 'average':
@@ -2017,6 +2024,7 @@ $(function(){
 	    pdsettings.ellipsestroke = $('#ellipsestroke').val();
 	    pdsettings.model = getOption("#helioplot-models");
 	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings.sort = truefalse('#sort');
 	    break;
 	case 'evolution':
 	    pdsettings.transform = truefalse('#transform-evolution');
@@ -2040,6 +2048,7 @@ $(function(){
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings.tticks = $('#tticks').val();
 	    pdsettings.aticks = $('#aticks').val();
+	    pdsettings.sort = truefalse('#sort');
 	    break;
 	default:
 	}

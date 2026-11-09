@@ -111,7 +111,8 @@
 	},
 	"ellipsestroke": "#000000",
 	"clabel": "",
-	"ticks": "auto"
+	"ticks": "auto",
+	"sort": true
     },
     "evolution": {
 	"min08or82": "auto",
@@ -134,7 +135,8 @@
 	"model": 1,
 	"clabel": "",
 	"tticks": "auto",
-	"aticks": "auto"
+	"aticks": "auto",
+	"sort": true
     },
     "isochron": {
 	"UPbtype": 1,
@@ -160,7 +162,8 @@
 	"ellipsestroke": "#000000",
 	"growth": false,
 	"clabel": "",
-	"taxis": false
+	"taxis": false,
+	"sort": true
     },
     "regression": {
 	"model": 1,
@@ -178,7 +181,8 @@
             "ramp_end": "#FF0000"
 	},
 	"ellipsestroke": "#000000",
-	"clabel": ""
+	"clabel": "",
+	"sort": true
     },
     "radial": {
 	"transformation": "log",
@@ -290,7 +294,8 @@
 	},
 	"ellipsestroke": "#000000",
 	"model": 1,
-	"clabel": ""
+	"clabel": "",
+	"sort": true
     },
     "ages": {
 	"showdisc": 0,
