@@ -1464,8 +1464,10 @@ $(function(){
 	    if (set.shownumbers){ $('#radial-pch').hide(); }
 	    else { $('#radial-pch').show(); }
 	    $('#mint').val(set.mint);
-	    $('#z0').val(set.z0);
 	    $('#maxt').val(set.maxt);
+	    $('#minc').val(set.minc);
+	    $('#maxc').val(set.maxc);
+	    $('#z0').val(set.z0);
 	    $('#xlim').val(set.xlim);
             setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
@@ -1905,8 +1907,10 @@ $(function(){
 	    pdsettings.numpeaks = getOption("#mixtures");
 	    pdsettings.np4 = truefalse('#np4');
 	    pdsettings.mint = check($('#mint').val(),'auto');
-	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.minc = check($('#minc').val(),'auto');
+	    pdsettings.maxc = check($('#maxc').val(),'auto');
+	    pdsettings.z0 = check($('#z0').val(),'auto');
 	    pdsettings.xlim = check($('#xlim').val(),'auto');
 	    pdsettings.pch = $('#pch').val();
             pdsettings.bg = {

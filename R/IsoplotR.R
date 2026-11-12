@@ -228,8 +228,10 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
     )
+    # These cannot go into the initializer list, or they will end up with NULLs
     args$from <- notauto(pd$mint)
     args$to <- notauto(pd$maxt)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     args$z0 <- notauto(pd$z0)
     args$xlim <- notauto(pd$xlim)
     if (!(params$geochronometer %in% c("other", "Th-U", "U-Th-He"))) {

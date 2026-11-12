@@ -189,8 +189,10 @@
     "radial": {
 	"transformation": "log",
 	"mint": "auto",
-	"z0": "auto",
 	"maxt": "auto",
+	"minc": "auto",
+	"maxc": "auto",
+	"z0": "auto",
 	"xlim": "auto",
 	"pch": 21,
 	"cex": 1,
