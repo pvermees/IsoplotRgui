@@ -325,6 +325,7 @@ setregression <- function(params, data, s2d, settings) {
     )
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     args
 }
 

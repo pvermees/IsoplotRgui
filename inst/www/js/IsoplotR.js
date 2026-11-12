@@ -1442,10 +1442,12 @@ $(function(){
 	    $('#regression-anchor').val(set.anchor[1]);
 	    $('#regression-anchor-err').val(set.anchor[2]);
 	    $('#shownumbers').prop('checked',set.shownumbers);
-	    $('#isochron-minx').val(set.minx);
-	    $('#isochron-maxx').val(set.maxx);
-	    $('#isochron-miny').val(set.miny);
-	    $('#isochron-maxy').val(set.maxy);
+	    $('#minx').val(set.minx);
+	    $('#maxx').val(set.maxx);
+	    $('#miny').val(set.miny);
+	    $('#maxy').val(set.maxy);
+	    $('#minc').val(set.minc);
+	    $('#maxc').val(set.maxc);
 	    setOption('#isochron-models',set.model);
             setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_alpha').val(set.ellipsefill.alpha);
@@ -1887,10 +1889,12 @@ $(function(){
 	    }
 	    pdsettings.shownumbers = truefalse('#shownumbers');
 	    pdsettings.model = getOption("#isochron-models");
-	    pdsettings.minx = check($('#isochron-minx').val(),'auto');
-	    pdsettings.maxx = check($('#isochron-maxx').val(),'auto');
-	    pdsettings.miny = check($('#isochron-miny').val(),'auto');
-	    pdsettings.maxy = check($('#isochron-maxy').val(),'auto');
+	    pdsettings.minx = check($('#minx').val(),'auto');
+	    pdsettings.maxx = check($('#maxx').val(),'auto');
+	    pdsettings.miny = check($('#miny').val(),'auto');
+	    pdsettings.maxy = check($('#maxy').val(),'auto');
+	    pdsettings.minc = check($('#minc').val(),'auto');
+	    pdsettings.maxc = check($('#maxc').val(),'auto');
 	    pdsettings.ellipsefill = {
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),

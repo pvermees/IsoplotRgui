@@ -155,6 +155,8 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"ellipsefill": {
             "option": "custom_ramp",
             "alpha": 0.5,
@@ -176,6 +178,8 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"ellipsefill": {
             "option": "custom_ramp",
             "alpha": 0.5,
