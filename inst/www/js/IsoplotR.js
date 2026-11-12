@@ -1504,6 +1504,10 @@ $(function(){
 	    $('#nonplateaucol').val(set.nonplateaucol);
             $('#nonplateau_alpha').val(set.nonplateau_alpha);
 	    $('#clabel').val(set.clabel);
+	    $('#miny').val(set.miny);
+	    $('#maxy').val(set.maxy);
+	    $('#minc').val(set.minc);
+	    $('#maxc').val(set.maxc);
 	    break;
 	case 'KDE':
 	    $('#showhist').prop('checked',set.showhist);
@@ -1927,7 +1931,6 @@ $(function(){
 	    pdsettings.clabel = $('#clabel').val();
 	    pdsettings["cex"] = getNumber('#pcex');
 	    pdsettings.exterr = truefalse('#exterr');
-	    pdsettings.sort = truefalse('#sort');
 	    i2i(geochronometer);
 	    break;
 	case 'average':
@@ -1961,6 +1964,10 @@ $(function(){
 	    pdsettings.nonplateaucol = $('#nonplateaucol').val();
             pdsettings.nonplateau_alpha = getNumber('#nonplateau_alpha', 1);
 	    pdsettings.clabel = $('#clabel').val();
+	    pdsettings.miny = $('#miny').val();
+	    pdsettings.maxy = $('#maxy').val();
+	    pdsettings.minc = $('#minc').val();
+	    pdsettings.maxc = $('#maxc').val();
 	    i2i(geochronometer);
 	    break;
 	case 'KDE':

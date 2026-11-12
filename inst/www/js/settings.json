@@ -245,7 +245,11 @@
         },
         "nonplateaucol": "#00FFFF",
         "nonplateau_alpha": 0.5,
-	"clabel": ""
+	"clabel": "",
+	"miny": "auto",
+	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto"
     },
     "KDE": {
 	"ncol": "auto",

@@ -449,6 +449,8 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
         hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
     )
+    args$ylim <- getlimits(pd$miny, pd$maxy)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     gc <- params$geochronometer
     if (gc == "Ar-Ar") {
         args$i2i <- params$gcsettings$i2i
