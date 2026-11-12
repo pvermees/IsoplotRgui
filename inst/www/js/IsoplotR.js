@@ -1481,6 +1481,8 @@ $(function(){
 	    $('#ranked').prop('checked',set.ranked);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
+	    $('#minc').val(set.minc);
+	    $('#maxc').val(set.maxc);
             setOption('#bg_option', set.bg.option);
             $('#bg_ramp_start').val(set.bg.ramp_start);
             $('#bg_ramp_end').val(set.bg.ramp_end);
@@ -1925,6 +1927,8 @@ $(function(){
 	    pdsettings.ranked = truefalse('#ranked');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.minc = check($('#minc').val(),'auto');
+	    pdsettings.maxc = check($('#maxc').val(),'auto');
 	    pdsettings.bg = {
                 option: getOption('#bg_option'),
                 ramp_start: $('#bg_ramp_start').val(),

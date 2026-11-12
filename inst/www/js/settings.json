@@ -212,6 +212,8 @@
 	"randomeffects": false,
 	"mint": "auto",
 	"maxt": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"ranked": false,
 	"bg": {
             "option": "custom_ramp",

@@ -390,8 +390,10 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
     )
+    # These cannot go into the initializer list, or they will end up with NULLs
     args$from <- notauto(pd$mint)
     args$to <- notauto(pd$maxt)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     gc <- params$geochronometer
     if (gc %in% c("Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")) {
         args$i2i <- params$gcsettings$i2i
