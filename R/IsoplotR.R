@@ -192,6 +192,7 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
     args$tlim <- gettimelimits(pd$mint, pd$maxt)
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     args$ticks <- str2vec(pd$ticks)
     args$anchor <- pd$anchor
     if (params$gcsettings$cutoffdisc>0){

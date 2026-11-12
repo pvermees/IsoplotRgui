@@ -1409,6 +1409,8 @@ $(function(){
 	    $('#maxx').val(set.maxx);
 	    $('#miny').val(set.miny);
 	    $('#maxy').val(set.maxy);
+	    $('#minc').val(set.minc);
+	    $('#maxc').val(set.maxc);
 	    $('#exterr').prop('checked',set.exterr);
 	    $('#shownumbers').prop('checked',set.shownumbers);
             setOption('#ellipsefill_option', set.ellipsefill.option);
@@ -1842,6 +1844,8 @@ $(function(){
 	    pdsettings.maxx = check($('#maxx').val(),'auto');
 	    pdsettings.miny = check($('#miny').val(),'auto');
 	    pdsettings.maxy = check($('#maxy').val(),'auto');
+	    pdsettings.minc = check($('#minc').val(),'auto');
+	    pdsettings.maxc = check($('#maxc').val(),'auto');
 	    pdsettings.ellipsefill = {
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),

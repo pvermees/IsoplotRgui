@@ -98,6 +98,8 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"type": 1,
 	"exterr": false,
 	"shownumbers": false,
