@@ -123,6 +123,8 @@
 	"max48or02": "auto",
 	"mint": "auto",
 	"maxt": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"transform": false,
 	"exterr": false,
 	"isochron": false,

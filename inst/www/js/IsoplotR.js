@@ -1588,6 +1588,8 @@ $(function(){
 	    $('#max48or02').val(set.max48or02);
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
+	    $('#minc').val(set.minc);
+	    $('#maxc').val(set.maxc);
             setOption('#ellipsefill_option', set.ellipsefill.option);
 	    $('#ellipsefill_ramp_start').val(set.ellipsefill.ramp_start);
 	    $('#ellipsefill_ramp_end').val(set.ellipsefill.ramp_end);
@@ -2053,6 +2055,8 @@ $(function(){
 	    pdsettings.max48or02 = check($('#max48or02').val(),'auto');
 	    pdsettings.mint = check($('#mint').val(),'auto');
 	    pdsettings.maxt = check($('#maxt').val(),'auto');
+	    pdsettings.minc = check($('#minc').val(),'auto');
+	    pdsettings.maxc = check($('#maxc').val(),'auto');
 	    pdsettings.ellipsefill = {
                 option: getOption('#ellipsefill_option'),
                 alpha: check($('#ellipsefill_alpha').val(), 1),
