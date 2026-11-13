@@ -185,12 +185,14 @@ concordia <- function(fn, params, data, s2d, settings, cex) {
         levels = selection2levels(data$data, nc),
         omit = omitter(data$data, nc, c("x")),
         hide = omitter(data$data, nc, c("X")),
-        clabel = pd$clabel
+        clabel = pd$clabel,
+        sort = pd$sort
     )
     # These cannot go into the initializer list, or they will end up with NULLs
     args$tlim <- gettimelimits(pd$mint, pd$maxt)
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     args$ticks <- str2vec(pd$ticks)
     args$anchor <- pd$anchor
     if (params$gcsettings$cutoffdisc>0){
@@ -226,8 +228,10 @@ radialplot <- function(fn, params, data, s2d, settings, cex) {
         hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
     )
+    # These cannot go into the initializer list, or they will end up with NULLs
     args$from <- notauto(pd$mint)
     args$to <- notauto(pd$maxt)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     args$z0 <- notauto(pd$z0)
     args$xlim <- notauto(pd$xlim)
     if (!(params$geochronometer %in% c("other", "Th-U", "U-Th-He"))) {
@@ -287,11 +291,13 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
-        clabel = pd$clabel
+        clabel = pd$clabel,
+        sort = pd$sort
     )
     if (pd$transform) args$xlim <- gettimelimits(pd$mint, pd$maxt)
     else args$xlim <- getlimits(pd$min08or82, pd$max08or82)
     args$ylim <- getlimits(pd$min48or02, pd$max48or02)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     args$tticks <- str2vec(pd$tticks)
     args$aticks <- str2vec(pd$aticks)
     graphics::par(cex = cex, mgp = c(2.5,1,0))
@@ -315,10 +321,12 @@ setregression <- function(params, data, s2d, settings) {
         model = pd$model,
         wtype = pd$wtype,
         clabel = pd$clabel,
-        anchor = pd$anchor
+        anchor = pd$anchor,
+        sort = pd$sort
     )
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     args
 }
 
@@ -386,8 +394,10 @@ weightedmean <- function(fn, params, data, s2d, settings, cex) {
         hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
     )
+    # These cannot go into the initializer list, or they will end up with NULLs
     args$from <- notauto(pd$mint)
     args$to <- notauto(pd$maxt)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     gc <- params$geochronometer
     if (gc %in% c("Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")) {
         args$i2i <- params$gcsettings$i2i
@@ -439,6 +449,8 @@ agespectrum <- function(fn, params, data, s2d, settings, cex) {
         hide = omitter(data$data, nc, c("X")),
         clabel = pd$clabel
     )
+    args$ylim <- getlimits(pd$miny, pd$maxy)
+    args$clim <- getlimits(pd$minc, pd$maxc)
     gc <- params$geochronometer
     if (gc == "Ar-Ar") {
         args$i2i <- params$gcsettings$i2i
@@ -581,7 +593,8 @@ helioplot <- function(fn, params, data, s2d, settings, cex) {
         ellipse.fill = params$ellipsefill,
         ellipse.stroke = pd$ellipsestroke,
         model = pd$model,
-        clabel = pd$clabel
+        clabel = pd$clabel,
+        sort = pd$sort
     )
     args$xlim <- getlimits(pd$minx, pd$maxx)
     args$ylim <- getlimits(pd$miny, pd$maxy)
@@ -624,7 +637,9 @@ unmix <- function(fn, params, data, s2d, settings, cex) {
         log = ifelse(pd$log,'x',''),
         xlim = getlimits(pd$minx, pd$maxx),
         hide = str2vec(params$hide),
-        sigdig = params$sigdig
+        sigdig = params$sigdig,
+        stratigraphic = pd$stratigraphic,
+        boot = pd$boot
     )
     if (coerceabletonumeric(pd$sources)){
         args$nsources <- as.numeric(pd$sources)

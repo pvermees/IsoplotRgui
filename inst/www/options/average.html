@@ -55,25 +55,33 @@
 </div>
 
 <table>
-  <tr class="hidden show4UPb show4cutoffdisc">
-    <td>&nbsp;<help class="translate" id="help_mindisc"></help></td>
+  <tr class="hidden show4cutoffdisc">
+    <td>&nbsp;<help class="translate" id="help_disclim"></help>
+      <translate class="min"></translate></td>
     <td><input type="text" id="mindisc"></td>
-  </tr>
-  <tr class="hidden show4UPb show4cutoffdisc">
-    <td>&nbsp;<help class="translate" id="help_maxdisc"></help></td>
+    <td><translate class="max"></translate></td>
     <td><input type="text" id="maxdisc"></td>
   </tr>
+  <tr>
+    <td>&nbsp;<help class="translate" id="help_tlim_average"></help>
+      <translate class="min"></translate></td>
+    <td><input type="text" id="mint"></td>
+    <td><translate class="max"></translate></td>
+    <td><input type="text" id="maxt"></td>
+  </tr>
+  <tr>
+    <td>&nbsp;<help class="translate" id="help_clim"></help>
+      <translate class="min"></translate></td>
+    <td><input type="text" id="minc"></td>
+    <td><translate class="max"></translate></td>
+    <td><input type="text" id="maxc"></td>
+  </tr>
+</table>
+
+<table>
   <tr class="hidden show4UPb show4UPbType4">
     <td>&nbsp;<help id="help_cutoff76">t(6/8) &rarr; t(7/6) @</help></td>
     <td><input type="text" id="cutoff76">Ma</td>
-  </tr>
-  <tr>
-    <td>&nbsp;<help class="translate" id="help_mint_average"></help></td>
-    <td><input type="text" id="mint"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;<help class="translate" id="help_maxt_average"></help></td>
-    <td><input type="text" id="maxt"></td>
   </tr>
   <tr>
     <td>&nbsp;<help class="translate" id="help_sigdig"></help></td>
@@ -107,7 +115,7 @@
     </td>
   </tr>
   <tr class="hide4custombgramp">
-    <td>&nbsp;<help class="translate hidden" id="help_bg_ramp_start"></help></td>
+    <td></td>
     <td id="bgramp_preview"></td>
   </tr>
   <tr>

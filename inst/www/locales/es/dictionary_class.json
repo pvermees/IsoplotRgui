@@ -9,5 +9,12 @@
     "legend": "<u>Leyenda:</u>",
     "C": "Variable opcional para ser usada como colores de relleno en gráficos de isocrón y radiales.",
     "inverse": "Isocrona inversa?",
-    "pch": "Trazar caracter:"
+    "pch": "Trazar caracter:",
+    "at": "a",
+    "min": "mín:",
+    "max": "máx:",
+    "err": "la incertidumbre analítica de x",
+    "err_disp": "la incertidumbre analítica de x con sobredispersión, calculada como z = y&radic;MSWD (solo se reporta si el valor p de la prueba de chi-cuadrado es < &alpha;).",
+    "comment": "Anotaciones opcionales que se guardan en el archivo JSON de salida pero que no se utilizan en los cálculos.",
+    "12sigmaci": "(<span class=\"hidden show4oerr1 show4oerr4\">1</span><span class=\"hidden show4oerr2 show4oerr5\">2</span><span class=\"hide4oerr3 hide4oerr6\">&sigma;</span><span class=\"hidden show4oerr4 show4oerr5\">%</span><span class=\"hidden show4oerr3\">intervalo de confianza absoluto </span><span class=\"hidden show4oerr6\">intervalo de confianza relativo </span><span class=\"hidden show4oerr3 show4oerr6\">al 100(1-&alpha;)%</span>)"
 }

@@ -98,6 +98,8 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"type": 1,
 	"exterr": false,
 	"shownumbers": false,
@@ -111,7 +113,8 @@
 	},
 	"ellipsestroke": "#000000",
 	"clabel": "",
-	"ticks": "auto"
+	"ticks": "auto",
+	"sort": true
     },
     "evolution": {
 	"min08or82": "auto",
@@ -120,6 +123,8 @@
 	"max48or02": "auto",
 	"mint": "auto",
 	"maxt": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"transform": false,
 	"exterr": false,
 	"isochron": false,
@@ -134,7 +139,8 @@
 	"model": 1,
 	"clabel": "",
 	"tticks": "auto",
-	"aticks": "auto"
+	"aticks": "auto",
+	"sort": true
     },
     "isochron": {
 	"UPbtype": 1,
@@ -151,6 +157,8 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"ellipsefill": {
             "option": "custom_ramp",
             "alpha": 0.5,
@@ -160,7 +168,8 @@
 	"ellipsestroke": "#000000",
 	"growth": false,
 	"clabel": "",
-	"taxis": false
+	"taxis": false,
+	"sort": true
     },
     "regression": {
 	"model": 1,
@@ -171,6 +180,8 @@
 	"maxx": "auto",
 	"miny": "auto",
 	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"ellipsefill": {
             "option": "custom_ramp",
             "alpha": 0.5,
@@ -178,13 +189,16 @@
             "ramp_end": "#FF0000"
 	},
 	"ellipsestroke": "#000000",
-	"clabel": ""
+	"clabel": "",
+	"sort": true
     },
     "radial": {
 	"transformation": "log",
 	"mint": "auto",
-	"z0": "auto",
 	"maxt": "auto",
+	"minc": "auto",
+	"maxc": "auto",
+	"z0": "auto",
 	"xlim": "auto",
 	"pch": 21,
 	"cex": 1,
@@ -206,6 +220,8 @@
 	"randomeffects": false,
 	"mint": "auto",
 	"maxt": "auto",
+	"minc": "auto",
+	"maxc": "auto",
 	"ranked": false,
 	"bg": {
             "option": "custom_ramp",
@@ -229,7 +245,11 @@
         },
         "nonplateaucol": "#00FFFF",
         "nonplateau_alpha": 0.5,
-	"clabel": ""
+	"clabel": "",
+	"miny": "auto",
+	"maxy": "auto",
+	"minc": "auto",
+	"maxc": "auto"
     },
     "KDE": {
 	"ncol": "auto",
@@ -271,7 +291,9 @@
 	"minx": "auto",
 	"maxx": "auto",
 	"log": false,
-	"sources": 2
+	"sources": 2,
+	"stratigraphic": true,
+	"boot": false
     },
     "helioplot": {
 	"logratio": true,
@@ -290,7 +312,8 @@
 	},
 	"ellipsestroke": "#000000",
 	"model": 1,
-	"clabel": ""
+	"clabel": "",
+	"sort": true
     },
     "ages": {
 	"showdisc": 0,

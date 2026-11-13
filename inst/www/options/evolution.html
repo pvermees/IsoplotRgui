@@ -26,6 +26,11 @@
 
 <p></p>
 
+&nbsp;<input type="checkbox" id="sort">
+<help class="translate" id="help_sort"></help>
+
+<p></p>
+
 &nbsp;<input type="checkbox" id="shownumbers">
 <help class="translate" id="help_shownumbers"></help>
 
@@ -33,36 +38,60 @@
 
 <table>
   <tr class="show4evotrans">
-    <td>&nbsp;<help class="translate" id="help_mint_evolution"></help></td>
-    <td><input type="text" id="mint"></td></tr>
-  <tr class="show4evotrans">
-    <td>&nbsp;<help class="translate" id="help_maxt_evolution"></help></td>
-    <td><input type="text" id="maxt"></td></tr>
+    <td>&nbsp;<help class="translate" id="help_tlim_evolution"></help>
+      <translate class="min"></translate></td>
+    <td><input type="text" id="mint"></td>
+    <td><translate class="max"></translate></td>
+    <td><input type="text" id="maxt"></td>
+  </tr>
   <tr class="hide4evotrans">
-    <td>&nbsp;<help class="translate" id="help_min08or82"></help></td>
-    <td><input type="text" id="min08or82"></td></tr>
+    <td>&nbsp;<help class="translate" id="help_08or82_lim"></help>
+      <translate class="min"></translate></td>
+    <td><input type="text" id="min08or82"></td>
+    <td><translate class="max"></translate></td>
+    <td><input type="text" id="max08or82"></td>
+  </tr>
   <tr class="hide4evotrans">
-    <td>&nbsp;<help class="translate" id="help_max08or82"></help></td>
-    <td><input type="text" id="max08or82"></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_min48or02"></help></td>
-    <td><input type="text" id="min48or02"></td></tr>
-  <tr><td>&nbsp;<help class="translate" id="help_max48or02"></help></td>
-    <td><input type="text" id="max48or02"></td></tr>
+    <td>&nbsp;<help class="translate" id="help_48or02_lim"></help>
+      <translate class="min"></translate></td>
+    <td><input type="text" id="min48or02"></td>
+    <td><translate class="max"></translate></td>
+    <td><input type="text" id="max48or02"></td>
+  </tr>
+  <tr>
+    <td>&nbsp;<help class="translate" id="help_clim"></help>
+      <translate class="min"></translate></td>
+    <td><input type="text" id="minc"></td>
+    <td><translate class="max"></translate></td>
+    <td><input type="text" id="maxc"></td>
+  </tr>
+</table>
+
+<table>
   <tr><td>&nbsp;<help class="translate" id="help_sigdig"></help></td>
     <td><input type="text" id="sigdig"></td></tr>
     <tr>
         <td>&nbsp;<help class="translate" id="help_ellipsefill"></help></td>
         <td>
           <select id="ellipsefill_option" onchange="$.register();">
-            <option class="translate background_custom_ramp" id="help_ramp_custom_ramp" value="custom_ramp"></option>
-            <option class="translate background_rainbow" id="help_ramp_rainbow" value="rainbow"></option>
-            <option class="translate background_rainbow_reversed" id="help_ramp_rainbow_reversed" value="rainbow_reversed"></option>
-            <option class="translate background_heat" id="help_ramp_heat" value="heat"></option>
-            <option class="translate background_heat_reversed" id="help_ramp_heat_reversed" value="heat_reversed"></option>
-            <option class="translate background_viridis" id="help_ramp_viridis" value="viridis"></option>
-            <option class="translate background_viridis_reversed" id="help_ramp_viridis_reversed" value="viridis_reversed"></option>
-            <option class="translate background_rocket" id="help_ramp_rocket" value="rocket"></option>
-            <option class="translate background_rocket_reversed" id="help_ramp_rocket_reversed" value="rocket_reversed"></option>
+            <option class="translate background_custom_ramp"
+		    id="help_ramp_custom_ramp" value="custom_ramp"></option>
+            <option class="translate background_rainbow"
+		    id="help_ramp_rainbow" value="rainbow"></option>
+            <option class="translate background_rainbow_reversed"
+		    id="help_ramp_rainbow_reversed" value="rainbow_reversed"></option>
+            <option class="translate background_heat"
+		    id="help_ramp_heat" value="heat"></option>
+            <option class="translate background_heat_reversed"
+		    id="help_ramp_heat_reversed" value="heat_reversed"></option>
+            <option class="translate background_viridis"
+		    id="help_ramp_viridis" value="viridis"></option>
+            <option class="translate background_viridis_reversed"
+		    id="help_ramp_viridis_reversed" value="viridis_reversed"></option>
+            <option class="translate background_rocket"
+		    id="help_ramp_rocket" value="rocket"></option>
+            <option class="translate background_rocket_reversed"
+		    id="help_ramp_rocket_reversed" value="rocket_reversed"></option>
           </select>
         </td>
       </tr>
