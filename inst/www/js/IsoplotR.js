@@ -1560,6 +1560,7 @@ $(function(){
 	    $('#maxx').val(set.maxx);
 	    $('#log').prop('checked',set.log);
 	    $("#sources").val(set.sources);
+	    $("#stratigraphic").prop('checked',set.stratigraphic);
 	    break;
 	case 'helioplot':
 	    $('#logratio').prop('checked',set.logratio);
@@ -2016,6 +2017,7 @@ $(function(){
 	    pdsettings.maxx = check($('#maxx').val(),'auto');
 	    pdsettings.log = truefalse('#log');
 	    pdsettings.sources = $("#sources").val();
+	    pdsettings.stratigraphic = truefalse('#stratigraphic');
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){

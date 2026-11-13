@@ -637,7 +637,8 @@ unmix <- function(fn, params, data, s2d, settings, cex) {
         log = ifelse(pd$log,'x',''),
         xlim = getlimits(pd$minx, pd$maxx),
         hide = str2vec(params$hide),
-        sigdig = params$sigdig
+        sigdig = params$sigdig,
+        stratigraphic = pd$stratigraphic
     )
     if (coerceabletonumeric(pd$sources)){
         args$nsources <- as.numeric(pd$sources)
