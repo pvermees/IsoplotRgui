@@ -111,6 +111,7 @@
     "help_hide_detritals": "Samples to omit:",
     "help_sources": "Sources:",
     "help_stratigraphic": "Stratigraphic log?",
+    "help_boot": "Bootstrap",
     "help_transform_evolution": "Plot as <sup>234</sup>U/<sup>238</sup>U vs. age?",
     "help_isochron_evolution": "Calculate isochron age?",
     "FT_EDM": "EDM",

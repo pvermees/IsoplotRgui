@@ -1561,6 +1561,7 @@ $(function(){
 	    $('#log').prop('checked',set.log);
 	    $("#sources").val(set.sources);
 	    $("#stratigraphic").prop('checked',set.stratigraphic);
+	    $("#boot").prop('checked',set.boot);
 	    break;
 	case 'helioplot':
 	    $('#logratio').prop('checked',set.logratio);
@@ -2018,6 +2019,7 @@ $(function(){
 	    pdsettings.log = truefalse('#log');
 	    pdsettings.sources = $("#sources").val();
 	    pdsettings.stratigraphic = truefalse('#stratigraphic');
+	    pdsettings.boot = truefalse('#boot');
 	    break;
 	case 'ages':
 	    if (geochronometer == 'U-Pb'){
