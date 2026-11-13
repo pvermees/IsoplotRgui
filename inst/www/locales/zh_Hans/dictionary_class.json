@@ -9,5 +9,11 @@
     "input": "输入格式：",
     "pch": "绘制字符: ",
     "exterr": "传递外部误差？",
-    "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)"
+    "12sigma": "(<span class=\"show4ierr1 show4ierr3 hide4ierr2 hide4ierr4\">1</span><span class=\"show4ierr2 show4ierr4 hide4ierr1 hide4ierr3\">2</span>&sigma;<span class=\"show4ierr3 show4ierr4 hide4ierr1 hide4ierr2\">%</span>)",
+    "min": "最小值：",
+    "max": "最大值：",
+    "err": "x的分析误差",
+    "err_disp": "包含过度离散的x的分析误差，计算公式为 z = y&radic;MSWD（仅当卡方检验的p值 < &alpha; 时报告）。",
+    "comment": "可选注释，保存在JSON输出中，但不参与实际计算。",
+    "12sigmaci": "(<span class=\"hidden show4oerr1 show4oerr4\">1</span><span class=\"hidden show4oerr2 show4oerr5\">2</span><span class=\"hide4oerr3 hide4oerr6\">&sigma;</span><span class=\"hidden show4oerr4 show4oerr5\">%</span><span class=\"hidden show4oerr3\">绝对</span><span class=\"hidden show4oerr6\">相对</span><span class=\"hidden show4oerr3 show4oerr6\">100(1-&alpha;)%置信区间</span>)"
 }
