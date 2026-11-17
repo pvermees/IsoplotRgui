@@ -2290,7 +2290,7 @@ $(function(){
 	if ($.inArray('ages',options)>-1)
 	    html += '<option id="ages" value="ages">ages</option>';
 	$('#plotdevice').html(html);
-	$(options[0]).prop('selected',true);
+	$('#'+options[0]).prop('selected',true);
 	if (open){
 	    $('#plotdevice').val(IsoplotR.settings.plotdevice);
 	} else {
@@ -2988,6 +2988,7 @@ $(function(){
         update();
         showProcessingMessage();
         let fname = prompt("Please enter a file name", "IsoplotR.pdf");
+	if (fname == null) return;
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         shinylight.call(input.fn, input, null, {

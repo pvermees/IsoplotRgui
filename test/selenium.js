@@ -233,7 +233,7 @@ describe('IsoplotRgui', function() {
             await clickButton(driver, 'help_ierr');
             await assertTextContains(driver, 'helpmenu', inputErrorHelpEN);
             await closeContextualHelp(driver);
-            await clickButton(driver, 'help_mint_concordia');
+            await clickButton(driver, 'help_tlim_concordia');
             await assertTextContains(driver, 'helpmenu', 'XXminimum age limit.');
             await closeContextualHelp(driver);
             // test home_id.json

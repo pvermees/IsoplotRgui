@@ -69,7 +69,7 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,
                         'Pb207Pb206','errPb207Pb206','rXY'),nrow=1)
     } else if (identical(method,"Pb-Pb") & format==3) {
         mat <- matrix(c('Pb206Pb204','errPb206Pb204',
-                        'Pb207Pb204','errPb207Pb206',
+                        'Pb207Pb204','errPb207Pb204',
                         'Pb207Pb206','errPb207Pb206'),nrow=1)
     } else if (identical(method,"Ar-Ar") & format==1){
         mat <- matrix('',3,6)
@@ -86,7 +86,7 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,
         mat[2,2] <- input$sJ
         mat[3,1:6] <- c('Ar39Ar40','errAr39Ar40',
                         'Ar36Ar40','errAr36Ar40',
-                        'rxY','Ar39')
+                        'rXY','Ar39')
     } else if (identical(method,"Ar-Ar") & format==3) {
         mat <- matrix('',3,7)
         mat[1,1:2] <- c('J','errJ')
@@ -149,10 +149,10 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,
                         'Srppm','errSrppm',
                         'Sr87Sr86','errSr87Sr86'),nrow=1)
     } else if (identical(method,"Sm-Nd") & format==1){
-        mat <- matrix(c('Sm143Nd144','errSm143Nd144',
-                        'Nd143Nd144','errNd143Nd144','rXY'),nrow=1)
+        mat <- matrix(c('Sm147Nd144','errSm143Nd144',
+                        'Nd147Nd144','errNd143Nd144','rXY'),nrow=1)
     } else if (identical(method,"Sm-Nd") & format==2){
-        mat <- matrix(c('Sm143Nd143','errSm143Nd143',
+        mat <- matrix(c('Sm147Nd143','errSm147Nd143',
                         'Nd144Nd143','errNd144Nd143','rXY'),nrow=1)
     } else if (identical(method,"Sm-Nd") & format==3){
         mat <- matrix(c('Smppm','errSmppm',
@@ -162,7 +162,7 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,
         mat <- matrix(c('Re187Os188','errRe187Os188',
                         'Os187Os188','errOs187Os188','rXY'),nrow=1)
     } else if (identical(method,"Re-Os") & format==2){
-        mat <- matrix(c('Re187Os188','errRe187Os187',
+        mat <- matrix(c('Re187Os187','errRe187Os187',
                         'Os188Os187','errOs188Os187','rXY'),nrow=1)
     } else if (identical(method,"Re-Os") & format==3){
         mat <- matrix(c('Reppm','errReppm',

@@ -87,14 +87,14 @@ getlimits <- function(min, max) {
 
 coerceabletonumeric <- function(v) {
     grepl(
-        "^\\s*((Inf)|([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(e[-+]?[0-9]*)?\\s*$",
+        "^\\s*[-+]?((Inf)|([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))([eE][-+]?[0-9]+)?\\s*$",
         v,
         useBytes = TRUE
     )
 }
 
 maybenumeric <- function(v) {
-    if (!is.null(v) && coerceabletonumeric(v)) as.numeric(v) else v
+    if (!is.null(v) && length(v)==1 && coerceabletonumeric(v)) as.numeric(v) else v
 }
 
 getpch <- function(pch) {
@@ -282,7 +282,6 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
         sigdig = params$sigdig,
         show.numbers = pd$shownumbers,
         transform = pd$transform,
-        detritus = params$gcsettings$detritus,
         exterr = pd$exterr,
         isochron = pd$isochron,
         levels = selection2levels(data$data, nc),
@@ -338,7 +337,6 @@ regression <- function(fn, params, data, s2d, settings, cex) {
 
 isochron <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
-    applysettings(params, settings)
     gc <- params$geochronometer
     pd <- params$pdsettings
     if (!(gc %in% c("U-Pb","Th-U","U-Th-He"))) {
@@ -478,9 +476,6 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         nmodes = pd$nmodes,
         sigdig = params$sigdig
     )
-    if (gc == "Th-U") {
-        args$detritus <- params$gcsettings$detritus
-    }
     if (gc %in% c(
         "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
     ) {
@@ -642,7 +637,7 @@ unmix <- function(fn, params, data, s2d, settings, cex) {
         stratigraphic = pd$stratigraphic,
         boot = pd$boot
     )
-    if (coerceabletonumeric(pd$sources)){
+    if (!is.null(pd$sources) && coerceabletonumeric(pd$sources)){
         args$nsources <- as.numeric(pd$sources)
     } else {
         args$source_names <- str2vec(pd$sources)

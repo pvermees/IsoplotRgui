@@ -1,15 +1,3 @@
-function setCutoffDisc(params, gcsettings) {
-    if (gcsettings.cutoffdisc === 0) {
-        return;
-    }
-    var opt = gcsettings.discoption;
-    params['cutoff.disc'] = {
-        option: opt,
-        cutoff: [ gcsettings.mindisc[opt-1], gcsettings.maxdisc[opt-1] ],
-        before: gcsettings.cutoffdisc === 1
-    };
-}
-
 function toHh(p) {
     p = Math.floor(255 * p + 0.5);
     if (p <= 0) {
