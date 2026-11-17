@@ -339,6 +339,7 @@ $(function(){
 	var c2 = selection[3];
 	var nr = 1+Math.abs(r2-r1);
 	var nc = 1+Math.abs(c2-c1);
+	var geochronometer = IsoplotR.settings.geochronometer;
 	if (geochronometer!="detritals" | nr==1){
 	    nc = dnc();
 	    c1 = 0;
@@ -349,7 +350,6 @@ $(function(){
 	    r1 = 0;
 	    r2 = nr-1;
 	}
-	geochronometer = IsoplotR.settings.geochronometer;
 	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
 	var data = cleanData(geochronometer,d,nr,nc);
 	IsoplotR.data4server = {
@@ -1060,9 +1060,9 @@ $(function(){
             break;
 	case 'radial':
 	    if (pd.shownumbers){
-		$('#radial-pch').hide();
+		$('#pch').hide();
 	    } else {
-		$('#radial-pch').show();
+		$('#pch').show();
 	    }
             setBgFillVisibility(pd.bg.option);
 	    if (pd.numpeaks=='min'){
@@ -1218,10 +1218,6 @@ $(function(){
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
 	    $('#errLambdaU234').val(cst.lambda.U234[1]);
-	    $("#U234U238").val(cst.iratio.U234U238[0]);
-	    $("#errU234U238").val(cst.iratio.U234U238[1]);
-	    $("#Th230Th232").val(cst.iratio.Th230Th232[0]);
-	    $("#errTh230Th232").val(cst.iratio.Th230Th232[1]);
 	    break;
 	case 'Pb-Pb':
 	    setOption('#PbPb-formats',set.format);
@@ -1464,8 +1460,8 @@ $(function(){
 	    $('#np4').prop('checked', set.np4);
 	    $('#shownumbers').prop('checked', set.shownumbers);
 	    $('#pch').val(set.pch);
-	    if (set.shownumbers){ $('#radial-pch').hide(); }
-	    else { $('#radial-pch').show(); }
+	    if (set.shownumbers){ $('#pch').hide(); }
+	    else { $('#pch').show(); }
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#minc').val(set.minc);
@@ -1711,10 +1707,6 @@ $(function(){
 	    cst.lambda.Th230[1] = getNumber("#errLambdaTh230");
 	    cst.lambda.U234[0] = getNumber("#LambdaU234");
 	    cst.lambda.U234[1] = getNumber("#errLambdaU234");
-	    cst.iratio.U234U238[0] = getNumber("#U234U238");
-	    cst.iratio.U234U238[1] = getNumber("#errU234U238");
-	    cst.iratio.Th230Th232[0] = getNumber("#Th230Th232");
-	    cst.iratio.Th230Th232[1] = getNumber("#errTh230Th232");
 	    break;
 	case 'Ar-Ar':
 	    cst.iratio.Ar40Ar36[0] = getNumber("#Ar40Ar36");
