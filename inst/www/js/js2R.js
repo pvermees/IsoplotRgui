@@ -89,7 +89,6 @@ function getOptions(prefs){
         gcsettings: gcsettings,
         ellipsefill: getColourRamp(pdsettings.ellipsefill, '#00FF0080'),
         bg: getColourRamp(pdsettings.bg, '#00FF0080'),
-        hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : [],
         oerr: prefs.settings.oerr,
         sigdig: prefs.settings.sigdig
     };

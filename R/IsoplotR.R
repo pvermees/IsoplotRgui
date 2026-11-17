@@ -467,8 +467,6 @@ kde <- function(fn, params, data, s2d, settings, cex) {
     gc <- params$geochronometer
     args <- list(
         x = getdata(params, data, s2d),
-        hide = if (gc == "detritals") str2vec(params$gcsettings$hide)
-               else omitter(data$data, nc, c("x", "X")),
         rug = if (gc == "detritals") pd$rugdetritals else pd$rug,
         log = pd$log,
         binwidth = naifauto(pd$binwidth),
@@ -511,6 +509,9 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         args$samebandwidth <- pd$samebandwidth
         args$normalise <- pd$normalise
         args$ncol <- naifauto(pd$ncol)
+        args$hide <- str2vec(params$gcsettings$hide)
+    } else {
+        args$hide <- omitter(data$data, nc, c("x", "X"))
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::kde, args)
@@ -520,13 +521,13 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
+    gc <- params$geochronometer
     args <- list(
         x = getdata(params, data, s2d),
         verticals = pd$verticals,
         pch = getpch(pd$pch),
         cex = pd$cex
     )
-    gc <- params$geochronometer
     if (gc == "Th-U") {
         args$Th0i <- params$gcsettings$Th0i
     }
@@ -556,7 +557,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     }
     if (gc == "detritals") {
         args$col <- pd$colmap
-        args$hide <- str2vec(params$hide)
+        args$hide <- str2vec(params$gcsettings$hide)
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
     }
@@ -616,7 +617,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
         pch = getpch(pd$pch),
         col = pd$col,
         bg = pd$bg,
-        hide = str2vec(params$hide)
+        hide = str2vec(params$gcsettings$hide)
     )
     if (!shepard) {
         args$cex <- pd$cex
@@ -636,7 +637,7 @@ unmix <- function(fn, params, data, s2d, settings, cex) {
         x = x,
         log = ifelse(pd$log,'x',''),
         xlim = getlimits(pd$minx, pd$maxx),
-        hide = str2vec(params$hide),
+        hide = str2vec(params$gcsettings$hide),
         sigdig = params$sigdig,
         stratigraphic = pd$stratigraphic,
         boot = pd$boot
