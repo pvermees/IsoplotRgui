@@ -1,10 +1,7 @@
 function check(x,val){
+    if (x === undefined || x === null || String(x).trim() === '') return(val);
     var num = Number(x);
-    if (isNaN(num)){
-	return(val);
-    } else {
-	return(num);
-    }
+    return isNaN(num) ? val : num;
 }
 
 function truefalse(id){
@@ -18,7 +15,7 @@ function getOption(id){
 }
 
 function setOption(id, val) {
-    $(id + ' option[value=' + val + ']').prop('selected', 'selected');
+    $(id + ' option[value="' + val + '"]').prop('selected', 'selected');
 }
 
 function getRadio(name){

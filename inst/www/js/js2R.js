@@ -1,15 +1,3 @@
-function setCutoffDisc(params, gcsettings) {
-    if (gcsettings.cutoffdisc === 0) {
-        return;
-    }
-    var opt = gcsettings.discoption;
-    params['cutoff.disc'] = {
-        option: opt,
-        cutoff: [ gcsettings.mindisc[opt-1], gcsettings.maxdisc[opt-1] ],
-        before: gcsettings.cutoffdisc === 1
-    };
-}
-
 function toHh(p) {
     p = Math.floor(255 * p + 0.5);
     if (p <= 0) {
@@ -89,7 +77,6 @@ function getOptions(prefs){
         gcsettings: gcsettings,
         ellipsefill: getColourRamp(pdsettings.ellipsefill, '#00FF0080'),
         bg: getColourRamp(pdsettings.bg, '#00FF0080'),
-        hide: typeof(gcsettings.hide) === 'string'? gcsettings.hide.split(',') : [],
         oerr: prefs.settings.oerr,
         sigdig: prefs.settings.sigdig
     };

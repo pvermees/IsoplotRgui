@@ -1,3 +1,4 @@
+#!/bin/sh
 start=39201
 end=39201
 cmd=$1

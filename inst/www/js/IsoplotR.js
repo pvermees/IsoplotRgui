@@ -165,6 +165,7 @@ $(function(){
 	    for (var i=(nc-1); i>0; i--){
 		if (firstrow[i]!=null && firstrow[i]!="") return i+1;
 	    }
+	    return 1;
 	case 'other':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
@@ -279,7 +280,7 @@ $(function(){
 		if (k<26) {
 		    label = labels[k];
 		} else {
-		    label = labels[Math.floor((k-1)/26)] + labels[k%26];
+		    label = labels[Math.floor(k/26)-1] + labels[k%26];
 		}
 		mydata.data[label] =
 		    $("#INPUT").handsontable('getDataAtCol',k);
@@ -338,6 +339,7 @@ $(function(){
 	var c2 = selection[3];
 	var nr = 1+Math.abs(r2-r1);
 	var nc = 1+Math.abs(c2-c1);
+	var geochronometer = IsoplotR.settings.geochronometer;
 	if (geochronometer!="detritals" | nr==1){
 	    nc = dnc();
 	    c1 = 0;
@@ -348,7 +350,6 @@ $(function(){
 	    r1 = 0;
 	    r2 = nr-1;
 	}
-	geochronometer = IsoplotR.settings.geochronometer;
 	var d = $("#INPUT").handsontable('getData',r1,c1,r2,c2);
 	var data = cleanData(geochronometer,d,nr,nc);
 	IsoplotR.data4server = {
@@ -1059,9 +1060,9 @@ $(function(){
             break;
 	case 'radial':
 	    if (pd.shownumbers){
-		$('#radial-pch').hide();
+		$('#pch').hide();
 	    } else {
-		$('#radial-pch').show();
+		$('#pch').show();
 	    }
             setBgFillVisibility(pd.bg.option);
 	    if (pd.numpeaks=='min'){
@@ -1217,10 +1218,6 @@ $(function(){
 	    $('#errLambdaTh230').val(cst.lambda.Th230[1]);
 	    $('#LambdaU234').val(cst.lambda.U234[0]);
 	    $('#errLambdaU234').val(cst.lambda.U234[1]);
-	    $("#U234U238").val(cst.iratio.U234U238[0]);
-	    $("#errU234U238").val(cst.iratio.U234U238[1]);
-	    $("#Th230Th232").val(cst.iratio.Th230Th232[0]);
-	    $("#errTh230Th232").val(cst.iratio.Th230Th232[1]);
 	    break;
 	case 'Pb-Pb':
 	    setOption('#PbPb-formats',set.format);
@@ -1463,8 +1460,8 @@ $(function(){
 	    $('#np4').prop('checked', set.np4);
 	    $('#shownumbers').prop('checked', set.shownumbers);
 	    $('#pch').val(set.pch);
-	    if (set.shownumbers){ $('#radial-pch').hide(); }
-	    else { $('#radial-pch').show(); }
+	    if (set.shownumbers){ $('#pch').hide(); }
+	    else { $('#pch').show(); }
 	    $('#mint').val(set.mint);
 	    $('#maxt').val(set.maxt);
 	    $('#minc').val(set.minc);
@@ -1629,18 +1626,22 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    if (plotdevice != 'isochron'){
-		if (plotdevice != 'concordia'){
+	    if (plotdevice!=='isochron'){
+		if (plotdevice!='concordia'){
 		    gcsettings.type = getOption("#UPb-age-type");
 		}
-		gcsettings.cutoff76 = getNumber('#cutoff76');
-		gcsettings.cutoffdisc = getOption("#discordance-filter");
 		var opt = getOption("#discoption");
-		gcsettings.discoption = opt;
-		gcsettings.mindisc[opt-1] = getNumber('#mindisc');
-		gcsettings.maxdisc[opt-1] = getNumber('#maxdisc');
+		if (plotdevice=='ages'){
+		    pdsettings.discoption = opt;
+		} else {
+		    gcsettings.cutoff76 = getNumber('#cutoff76');
+		    gcsettings.cutoffdisc = getOption("#discordance-filter");
+		    gcsettings.discoption = opt;
+		    gcsettings.mindisc[opt-1] = getNumber('#mindisc');
+		    gcsettings.maxdisc[opt-1] = getNumber('#maxdisc');
+		}
 	    }
-	    if (gcsettings.format<7 & gcsettings.type==6){
+	    if (gcsettings.format<7 && gcsettings.type==6){
 		gcsettings.type = 4;
 	    }
 	    gcsettings.diseq = truefalse('#diseq');
@@ -1648,8 +1649,8 @@ $(function(){
 	    gcsettings.ThU[2] = getOption('#ThU-diseq');
 	    gcsettings.RaU[2] = getOption('#RaU-diseq');
 	    gcsettings.PaU[2] = getOption('#PaU-diseq');
-	    if (gcsettings.format<7 & gcsettings.ThU[1]==3){
-		gcsettings.ThU[1] = 2;
+	    if (gcsettings.format<7 && gcsettings.ThU[1]==3){
+		gcsettings.ThU[2] = 0;
 	    }
 	    gcsettings.U48[0] = getNumber('#U48');
 	    gcsettings.ThU[0] = getNumber('#ThU');
@@ -1706,10 +1707,6 @@ $(function(){
 	    cst.lambda.Th230[1] = getNumber("#errLambdaTh230");
 	    cst.lambda.U234[0] = getNumber("#LambdaU234");
 	    cst.lambda.U234[1] = getNumber("#errLambdaU234");
-	    cst.iratio.U234U238[0] = getNumber("#U234U238");
-	    cst.iratio.U234U238[1] = getNumber("#errU234U238");
-	    cst.iratio.Th230Th232[0] = getNumber("#Th230Th232");
-	    cst.iratio.Th230Th232[1] = getNumber("#errTh230Th232");
 	    break;
 	case 'Ar-Ar':
 	    cst.iratio.Ar40Ar36[0] = getNumber("#Ar40Ar36");
@@ -2293,7 +2290,7 @@ $(function(){
 	if ($.inArray('ages',options)>-1)
 	    html += '<option id="ages" value="ages">ages</option>';
 	$('#plotdevice').html(html);
-	$(options[0]).prop('selected',true);
+	$('#'+options[0]).prop('selected',true);
 	if (open){
 	    $('#plotdevice').val(IsoplotR.settings.plotdevice);
 	} else {
@@ -2434,9 +2431,9 @@ $(function(){
 	    cols = [1,3];
 	} else if (UPb345 || UPb1112 || PbPb3 || ArAr3 ||
 		   ThPb3  || KCa3    || RbSr3 || SmNd3 ||
-		   ReOs3  || LuHf3   || UThHe || ThU12 || regression5){
+		   ReOs3  || LuHf3   || ThU12 || regression5){
 	    cols = [1,3,5];
-	} else if (UPb78){
+	} else if (UPb78 || UThHe){
 	    cols = [1,3,5,7];
 	} else if (UPb6){
 	    cols = [1,3,5,7,9,11];
@@ -2664,8 +2661,8 @@ $(function(){
 	    selectGeochronometer();
 	}
 	showSettings(pd);
-	if (set.ThU[1]==3 & set.format<7){
-	    set.ThU[1] = 0;
+	if (set.ThU[1]==3 && set.format<7){
+	    set.ThU[2] = 0;
 	}
     }
 
@@ -2877,10 +2874,14 @@ $(function(){
 		var chronometer = IsoplotR.settings.geochronometer;
 		var plotdevice = IsoplotR.settings.plotdevice;
 		var format = IsoplotR.settings[chronometer].format;
+		var ierr = IsoplotR.settings.ierr;
+		var language = IsoplotR.settings.language;
 		IsoplotR.settings = settings;
-		IsoplotR.settings.geochronometer = chronometer; // restore
-		IsoplotR.settings.plotdevice = plotdevice;      // restore
-		IsoplotR.settings[chronometer].format = format; // restore
+		IsoplotR.settings.geochronometer = chronometer;
+		IsoplotR.settings.plotdevice = plotdevice;
+		IsoplotR.settings[chronometer].format = format;
+		IsoplotR.settings.ierr = ierr;
+		IsoplotR.settings.language = language;
 		IsoplotR = populate(IsoplotR,false);
 	    });
 	});
@@ -2987,6 +2988,7 @@ $(function(){
         update();
         showProcessingMessage();
         let fname = prompt("Please enter a file name", "IsoplotR.pdf");
+	if (fname == null) return;
         var input = getRcommand(IsoplotR)
         input.data = IsoplotR.data4server;
         shinylight.call(input.fn, input, null, {

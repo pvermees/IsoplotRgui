@@ -49,6 +49,7 @@ settingslambda <- list(
 applysettings <- function(params, settings) {
     geochronometer <- params$geochronometer
     gcsettings <- params$gcsettings
+    IsoplotR::settings("alpha", settings$alpha)
     if (geochronometer == "fissiontracks") {
         if (gcsettings$format == 3) {
             v <- settings$iratio$U238U235
@@ -75,7 +76,6 @@ applysettings <- function(params, settings) {
         v <- settings$lambda[[nuclide]]
         IsoplotR::settings("lambda", nuclide, v[[1]], v[[2]])
     }, settingslambda[[geochronometer]])
-    IsoplotR::settings("alpha", settings$alpha)
 }
 
 getlimits <- function(min, max) {
@@ -87,14 +87,14 @@ getlimits <- function(min, max) {
 
 coerceabletonumeric <- function(v) {
     grepl(
-        "^\\s*((Inf)|([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))(e[-+]?[0-9]*)?\\s*$",
+        "^\\s*[-+]?((Inf)|([0-9]+(\\.[0-9]*)?)|(\\.[0-9]+))([eE][-+]?[0-9]+)?\\s*$",
         v,
         useBytes = TRUE
     )
 }
 
 maybenumeric <- function(v) {
-    if (!is.null(v) && coerceabletonumeric(v)) as.numeric(v) else v
+    if (!is.null(v) && length(v)==1 && coerceabletonumeric(v)) as.numeric(v) else v
 }
 
 getpch <- function(pch) {
@@ -120,7 +120,7 @@ gettimelimits <- function(min, max) {
 }
 
 str2vec <- function(s) {
-    if (length(s) == 0 || s == "auto") return(NULL)
+    if (length(s) == 0 || s[1] == "auto") return(NULL)
     v <- unlist(strsplit(s,split=','))
     if (all(coerceabletonumeric(v))) return(as.numeric(v))
     else return(trimws(v))
@@ -282,7 +282,6 @@ evolution <- function(fn, params, data, s2d, settings, cex) {
         sigdig = params$sigdig,
         show.numbers = pd$shownumbers,
         transform = pd$transform,
-        detritus = params$gcsettings$detritus,
         exterr = pd$exterr,
         isochron = pd$isochron,
         levels = selection2levels(data$data, nc),
@@ -338,7 +337,6 @@ regression <- function(fn, params, data, s2d, settings, cex) {
 
 isochron <- function(fn, params, data, s2d, settings, cex) {
     args <- setregression(params, data, s2d, settings)
-    applysettings(params, settings)
     gc <- params$geochronometer
     pd <- params$pdsettings
     if (!(gc %in% c("U-Pb","Th-U","U-Th-He"))) {
@@ -467,8 +465,6 @@ kde <- function(fn, params, data, s2d, settings, cex) {
     gc <- params$geochronometer
     args <- list(
         x = getdata(params, data, s2d),
-        hide = if (gc == "detritals") str2vec(params$gcsettings$hide)
-               else omitter(data$data, nc, c("x", "X")),
         rug = if (gc == "detritals") pd$rugdetritals else pd$rug,
         log = pd$log,
         binwidth = naifauto(pd$binwidth),
@@ -480,9 +476,6 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         nmodes = pd$nmodes,
         sigdig = params$sigdig
     )
-    if (gc == "Th-U") {
-        args$detritus <- params$gcsettings$detritus
-    }
     if (gc %in% c(
         "Th-U", "Ar-Ar", "Th-Pb", "K-Ca", "Rb-Sr", "Sm-Nd", "Re-Os", "Lu-Hf")
     ) {
@@ -511,6 +504,9 @@ kde <- function(fn, params, data, s2d, settings, cex) {
         args$samebandwidth <- pd$samebandwidth
         args$normalise <- pd$normalise
         args$ncol <- naifauto(pd$ncol)
+        args$hide <- str2vec(params$gcsettings$hide)
+    } else {
+        args$hide <- omitter(data$data, nc, c("x", "X"))
     }
     graphics::par(cex = cex, mgp = c(2.5,1,0))
     calculate(IsoplotR::kde, args)
@@ -520,13 +516,13 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     applysettings(params, settings)
     pd <- params$pdsettings
     nc <- as.numeric(data$nc)
+    gc <- params$geochronometer
     args <- list(
         x = getdata(params, data, s2d),
         verticals = pd$verticals,
         pch = getpch(pd$pch),
         cex = pd$cex
     )
-    gc <- params$geochronometer
     if (gc == "Th-U") {
         args$Th0i <- params$gcsettings$Th0i
     }
@@ -556,7 +552,7 @@ cad <- function(fn, params, data, s2d, settings, cex) {
     }
     if (gc == "detritals") {
         args$col <- pd$colmap
-        args$hide <- str2vec(params$hide)
+        args$hide <- str2vec(params$gcsettings$hide)
     } else {
         args$hide <- omitter(data$data, nc, c("x", "X"))
     }
@@ -616,7 +612,7 @@ mds <- function(fn, params, data, s2d, settings, cex) {
         pch = getpch(pd$pch),
         col = pd$col,
         bg = pd$bg,
-        hide = str2vec(params$hide)
+        hide = str2vec(params$gcsettings$hide)
     )
     if (!shepard) {
         args$cex <- pd$cex
@@ -636,12 +632,12 @@ unmix <- function(fn, params, data, s2d, settings, cex) {
         x = x,
         log = ifelse(pd$log,'x',''),
         xlim = getlimits(pd$minx, pd$maxx),
-        hide = str2vec(params$hide),
+        hide = str2vec(params$gcsettings$hide),
         sigdig = params$sigdig,
         stratigraphic = pd$stratigraphic,
         boot = pd$boot
     )
-    if (coerceabletonumeric(pd$sources)){
+    if (!is.null(pd$sources) && coerceabletonumeric(pd$sources)){
         args$nsources <- as.numeric(pd$sources)
     } else {
         args$source_names <- str2vec(pd$sources)

@@ -157,6 +157,7 @@ auto-updating.
 Put the following in a script `/usr/local/sbin/updateIsoplotR.sh`:
 
 ```sh
+#!/bin/sh
 sudo -Hiu wwwrunner Rscript -e \
      "utils::update.packages(lib.loc='~/R',ask=FALSE,repos='https://cloud.r-project.org')"
 systemctl restart isoplotr
