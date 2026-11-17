@@ -107,7 +107,7 @@ selection2data <- function(input,method="U-Pb",format=1,ierr=1,
                         paste0('errCa',sister,'Ca40'),
                         'rXY'),nrow=1)
     } else if (identical(method,"K-Ca") & format==3){
-        mat <- matrix(c(paste0('K40Ca',sister,),
+        mat <- matrix(c(paste0('K40Ca',sister),
                         paste0('errK40Ca',sister),
                         paste0('Ca40Ca',sister),
                         paste0('errCa40Ca',sister),
