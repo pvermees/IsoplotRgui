@@ -11,7 +11,7 @@ echo 'Usage:'
 echo "${scriptname} 6"
 echo "sets ${name} to use 6 processes"
 echo "${scriptname} 5 3901"
-echo "sets ${name} to use 5 processes on port numbers 3901 to 3906"
+echo "sets ${name} to use 5 processes on port numbers 3901 to 3905"
 exit
 elif [ ${max_processes} -lt "$1" ]
 then
@@ -31,7 +31,7 @@ then
 newstart=${start}
 elif [ "(" "$2" -lt 1024 ")" -o "(" 65535 -lt "$2" ")" ]
 then
-echo 'The second parameter needs to be a port number (between 4096 and 65535)'
+echo 'The second parameter needs to be a port number (between 1024 and 65535)'
 exit
 else
 newstart="$2"

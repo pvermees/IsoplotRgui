@@ -1,20 +1,18 @@
 #!/bin/bash
 
-cd ~/Documents/Programming/R/IsoplotR/
-APP="$(/usr/bin/git rev-list master --count)"
-DIF="$(git rev-list --right-only --count origin/master...origin/beta)"
-#APPVERSION=$(($APP+$DIF+1)) # comment out if deploying beta branch
-APPVERSION=$APP # comment out if deploying master branch
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
-cd ~/Documents/Programming/R/IsoplotRgui/
+cd "$SCRIPT_DIR/../../IsoplotR"
+APP="$(/usr/bin/git rev-list master --count)"
+APPVERSION=$APP
+
+cd "$SCRIPT_DIR/.."
 GUI="$(/usr/bin/git rev-list master --count)"
-DIF="$(git rev-list --right-only --count origin/master...origin/beta)"
-#GUIVERSION=$(($GUI+$DIF+1)) # comment out if deploying beta branch
-GUIVERSION=$GUI # comment out if deploying master branch
+GUIVERSION=$GUI
 
 s1="/"
 
 COMMIT="$APPVERSION$s1$GUIVERSION"
 
-FILE=inst/www/version.txt
+FILE="$SCRIPT_DIR/../inst/www/version.txt"
 echo -e "$COMMIT" > "$FILE"

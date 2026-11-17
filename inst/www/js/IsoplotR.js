@@ -280,7 +280,7 @@ $(function(){
 		if (k<26) {
 		    label = labels[k];
 		} else {
-		    label = labels[Math.floor((k-1)/26)] + labels[k%26];
+		    label = labels[Math.floor(k/26)-1] + labels[k%26];
 		}
 		mydata.data[label] =
 		    $("#INPUT").handsontable('getDataAtCol',k);
