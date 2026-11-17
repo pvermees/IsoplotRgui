@@ -49,6 +49,7 @@ settingslambda <- list(
 applysettings <- function(params, settings) {
     geochronometer <- params$geochronometer
     gcsettings <- params$gcsettings
+    IsoplotR::settings("alpha", settings$alpha)
     if (geochronometer == "fissiontracks") {
         if (gcsettings$format == 3) {
             v <- settings$iratio$U238U235
@@ -75,7 +76,6 @@ applysettings <- function(params, settings) {
         v <- settings$lambda[[nuclide]]
         IsoplotR::settings("lambda", nuclide, v[[1]], v[[2]])
     }, settingslambda[[geochronometer]])
-    IsoplotR::settings("alpha", settings$alpha)
 }
 
 getlimits <- function(min, max) {

@@ -165,6 +165,7 @@ $(function(){
 	    for (var i=(nc-1); i>0; i--){
 		if (firstrow[i]!=null && firstrow[i]!="") return i+1;
 	    }
+	    return 1;
 	case 'other':
 	    var format = IsoplotR.settings[gc].format;
 	    switch (format){
@@ -1629,18 +1630,22 @@ $(function(){
 	}
 	switch (geochronometer){
 	case 'U-Pb':
-	    if (plotdevice != 'isochron'){
-		if (plotdevice != 'concordia'){
+	    if (plotdevice!=='isochron'){
+		if (plotdevice!='concordia'){
 		    gcsettings.type = getOption("#UPb-age-type");
 		}
-		gcsettings.cutoff76 = getNumber('#cutoff76');
-		gcsettings.cutoffdisc = getOption("#discordance-filter");
 		var opt = getOption("#discoption");
-		gcsettings.discoption = opt;
-		gcsettings.mindisc[opt-1] = getNumber('#mindisc');
-		gcsettings.maxdisc[opt-1] = getNumber('#maxdisc');
+		if (plotdevice=='ages'){
+		    pdsettings.discoption = opt;
+		} else {
+		    gcsettings.cutoff76 = getNumber('#cutoff76');
+		    gcsettings.cutoffdisc = getOption("#discordance-filter");
+		    gcsettings.discoption = opt;
+		    gcsettings.mindisc[opt-1] = getNumber('#mindisc');
+		    gcsettings.maxdisc[opt-1] = getNumber('#maxdisc');
+		}
 	    }
-	    if (gcsettings.format<7 & gcsettings.type==6){
+	    if (gcsettings.format<7 && gcsettings.type==6){
 		gcsettings.type = 4;
 	    }
 	    gcsettings.diseq = truefalse('#diseq');
@@ -1648,8 +1653,8 @@ $(function(){
 	    gcsettings.ThU[2] = getOption('#ThU-diseq');
 	    gcsettings.RaU[2] = getOption('#RaU-diseq');
 	    gcsettings.PaU[2] = getOption('#PaU-diseq');
-	    if (gcsettings.format<7 & gcsettings.ThU[1]==3){
-		gcsettings.ThU[1] = 2;
+	    if (gcsettings.format<7 && gcsettings.ThU[1]==3){
+		gcsettings.ThU[2] = 0;
 	    }
 	    gcsettings.U48[0] = getNumber('#U48');
 	    gcsettings.ThU[0] = getNumber('#ThU');
@@ -2434,9 +2439,9 @@ $(function(){
 	    cols = [1,3];
 	} else if (UPb345 || UPb1112 || PbPb3 || ArAr3 ||
 		   ThPb3  || KCa3    || RbSr3 || SmNd3 ||
-		   ReOs3  || LuHf3   || UThHe || ThU12 || regression5){
+		   ReOs3  || LuHf3   || ThU12 || regression5){
 	    cols = [1,3,5];
-	} else if (UPb78){
+	} else if (UPb78 || UThHe){
 	    cols = [1,3,5,7];
 	} else if (UPb6){
 	    cols = [1,3,5,7,9,11];
@@ -2664,8 +2669,8 @@ $(function(){
 	    selectGeochronometer();
 	}
 	showSettings(pd);
-	if (set.ThU[1]==3 & set.format<7){
-	    set.ThU[1] = 0;
+	if (set.ThU[1]==3 && set.format<7){
+	    set.ThU[2] = 0;
 	}
     }
 
@@ -2877,10 +2882,14 @@ $(function(){
 		var chronometer = IsoplotR.settings.geochronometer;
 		var plotdevice = IsoplotR.settings.plotdevice;
 		var format = IsoplotR.settings[chronometer].format;
+		var ierr = IsoplotR.settings.ierr;
+		var language = IsoplotR.settings.language;
 		IsoplotR.settings = settings;
-		IsoplotR.settings.geochronometer = chronometer; // restore
-		IsoplotR.settings.plotdevice = plotdevice;      // restore
-		IsoplotR.settings[chronometer].format = format; // restore
+		IsoplotR.settings.geochronometer = chronometer;
+		IsoplotR.settings.plotdevice = plotdevice;
+		IsoplotR.settings[chronometer].format = format;
+		IsoplotR.settings.ierr = ierr;
+		IsoplotR.settings.language = language;
 		IsoplotR = populate(IsoplotR,false);
 	    });
 	});
