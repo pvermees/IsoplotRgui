@@ -1,0 +1,18 @@
+{
+    "name": "isoplotrgui",
+    "description": "Front end for IsoplotR",
+    "private": true,
+    "scripts": {
+        "server": "Rscript --vanilla build/start-gui.R 50055",
+        "install-r-dependencies": "Rscript build/install.R",
+        "test": "mocha test",
+        "bad-translation-ids": "node build/find_translation_prefixes.js"
+    },
+    "devDependencies": {
+        "selenium-webdriver": "^4.34.0",
+        "mocha": "^12.0.1",
+        "clipboardy": "^2.3.0",
+        "node-stream-zip": "^1.11.1",
+        "pngjs": "5.0.0"
+    }
+}
