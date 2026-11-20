@@ -292,7 +292,7 @@
 	"maxx": "auto",
 	"log": false,
 	"sources": 2,
-	"stratigraphic": true,
+	"stratigraphic": false,
 	"boot": false
     },
     "helioplot": {
