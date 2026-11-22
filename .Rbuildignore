@@ -6,7 +6,6 @@ Rplots.pdf
 \.deb
 .*\.tar\.gz
 ^isoplotr$
-^build$
 ^test$
 ^package\.json$
 ^package-lock\.json$
